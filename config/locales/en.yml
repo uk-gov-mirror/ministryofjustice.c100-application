@@ -26,3 +26,203 @@ en:
   generic:
     page_title: *default_service_title
     back_link: Back
+
+  errors:
+    error_summary:
+      heading: There's a problem. You need to fix this error.
+      text: ''
+
+  activemodel:
+    errors:
+      models:
+        steps/nature_of_application/case_type_form:
+          attributes:
+            case_type:
+              inclusion: Select what your case is about
+
+  helpers:
+    fieldset:
+      steps_nature_of_application_case_type_form:
+        case_type_html: What is your application about?
+    label:
+      steps_nature_of_application_case_type_form:
+        case_type:
+          child_arrangements: Child Arrangements Order
+          specific_issue: Specific Issue Order
+          prohibited_steps: Prohibited Steps Order
+      user:
+        email: Your email address
+        password: Choose password
+        password_confirmation: Confirm password
+        current_password: Old password
+      user_signin:
+        email: Your email address
+        password: Enter password
+      surveys_feedback_form:
+        comment: Describe any service improvement or problems you are having
+        email: Email (optional)
+    hint:
+      user:
+        password: Must be at least 8 characters
+        current_password: We need your current password to confirm your changes
+      surveys_feedback_form:
+        comment_html: Don't include any personal or sensitive information
+        email_html: Provide an email if you wish to receive an update on your comment
+    submit:
+      create: Continue
+      update: Continue
+      cancel: Cancel
+      save_and_come_back_later: Save and come back later
+      create_account: Save
+      sign_in: Sign in
+      reset_password: Reset password
+      change_password: Change my password
+      save_and_continue: "Save and continue"
+    case_type:
+      question: What is your %{appeal_or_application} about?
+      accessible_change_text: what your %{appeal_or_application} is about
+      answers:
+
+  number:
+    currency:
+      format:
+        unit: "£"
+        precision: 0
+  date:
+    formats:
+      compact: '%d/%m/%Y'
+      long: '%e %B %Y'
+  time:
+    case_expires_in:
+      zero: Today
+      one: '%{count} day'
+      other: '%{count} days'
+  shared:
+    language: (English)
+    password_toggle:
+      show_password: Show password
+      hide_password: Hide password
+  session:
+    note:
+      heading: Security time-out
+      text: After %{session_length} minutes of inactivity, we’ll check if you need
+        more time or automatically delete unsaved details for security reasons.
+    expiring:
+      aria-warning: You have been inactive for over %{passed} minutes.
+        Your session will time out in less than %{remain} minutes. Hit space bar to
+        continue for another %{session_length} minutes.
+      heading: Want more time to continue?
+      in: Your session will expire
+      security: For security reasons, any unsaved details will be deleted.
+      extend: Yes, continue
+      destroy: No, end session
+    expired:
+      title: Session expired
+      heading: Your case has been cancelled
+      description: For your security, the information you’ve entered has automatically
+        been deleted.
+      restart: You can start again below.
+      restart_button: Start again
+    canceled_message: Your case has been deleted. Please start again.
+    expired_message: You've been inactive for 30 minutes. Your case has been
+      automatically deleted. Please start again.
+    minute_single: minute
+    second_single: second
+    minutes_plural: minutes
+    seconds_plural: seconds
+  devise:
+    failure:
+      already_authenticated: "You are already signed in."
+      inactive: "Your account is not activated yet."
+      invalid: "There's an error. Please enter a valid email and password."
+      locked: "Your account is locked."
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "There's an error. Please enter a valid email and password."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "You need to sign in before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+    passwords:
+      no_token: "You can only change your password using a link from a password reset email. If you have come from a password reset email, please make sure you used the full URL link provided."
+      invalid_token: "The URL used to change your password is no longer valid or has expired. Please type your email to receive a new email."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your account has been updated successfully."
+    sessions:
+      signed_in: "Signed in successfully."
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."
+  users:
+    logins:
+      new:
+        heading: Sign in
+        forgot_password: "Forgot your password?"
+        page_title: Sign in
+      logged_out:
+        heading: You have signed out
+        lead_text: You can return to a saved case using the link sent in the email or by returning to the start of the service.
+        more_text_html: A draft case expires %{expire_in_days} days after it was created or when you submit it to the tax tribunal.
+        page_title: Signed out
+      save_confirmation:
+        heading: Your case has been saved
+        your_cases: Go to your saved cases
+        page_title: Case saved
+    registrations:
+      new:
+        heading: Save your application
+        existing_account: Sign into an existing account
+        account_warning_html: |
+          <p>Choose an email address and password so you can sign in and complete your case later.</p>
+        email_confirmation: "An email will be sent to:"
+        page_title: Sign up
+      save_confirmation:
+        heading: Your application has been saved
+        sign_in: Sign in
+        page_title: Application saved
+      edit:
+        heading: Change your password
+        page_title: Update password
+      update_confirmation:
+        heading: "Your password has been changed"
+        lead_text: Your password has been updated successfully.
+        your_cases: Return to your saved cases
+        page_title: Password updated
+    passwords:
+      new:
+        heading: Forgot your password
+        sign_in: Go back and sign in
+        lead_text: Enter your email address and we'll send you a link to reset your password.
+        account_text: Remember, if you haven't signed in for 30 days we delete your account for security reasons.
+        page_title: Forgot password
+      edit:
+        heading: Change your password
+        page_title: Change password
+      reset_sent:
+        heading: Please check your email
+        lead_text: We have sent you an email with a link to reset your password. Please check your inbox and spam folder.
+        deleted_account: If you haven't signed in for 30 days we delete your account for security reasons.
+        page_title: Reset link sent
+      reset_confirmation:
+        heading: Your password has been changed
+        lead_text: You have set a new password successfully.
+        sign_in: Sign in to see your saved cases
+        page_title: Password changed
+  surveys:
+    feedback:
+      new:
+        page_title: Feedback
+        heading: Help us improve this service
+        submit: Submit
+        lead_text: Please tell us how to improve the service or report a problem below (your feedback will be anonymous).
+      thanks:
+        page_title: Feedback submitted
+        heading: Thank you for your feedback
+        lead_text: Your feedback helps us to improve this service.
+        continue: Continue
