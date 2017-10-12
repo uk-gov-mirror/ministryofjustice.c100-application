@@ -1,16 +1,20 @@
-# Rails form application skeleton
+# Family Justice C100 Service
 
-This is supposed to be a starting point for a gov.uk form-based
-application, using the software patterns developed for the
+Work in progress: This is a Rails application to enable citizens
+to complete the C100 form. It is based on software patterns developed for the
 [Appeal to the Tax Tribunal][taxtribs] application.
 
 ## Getting Started
 
+* `bundle install`
 * Copy `.env.example` to `.env` and replace with suitable values
+* `bundle exec rails db:setup`
+* `bundle exec rails db:migrate`
+* `bundle exec rails server`
 
 ## Replace legacy string values
 
-Most of the code which was specific to that service has been
+Most of the code which was specific to tax tribs has been
 removed, however there are some leftover strings which will
 need to be searched for and replaced, once the name of the new
 service and its core data model have been chosen. These include:
