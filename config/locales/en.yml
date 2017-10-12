@@ -1,3 +1,22 @@
 en:
   dictionary:
+    default_service_title: &default_service_title "C100 Children and the Family Courts"
   steps:
+
+  home:
+    index:
+      heading: What do you want to do?
+
+  layouts:
+    footer_links:
+      help: Help
+      contact: Contact
+      cookies: Cookies
+      terms_and_conditions: Terms and conditions
+    phase_banner:
+      phase_info_email_html: |
+        This is a new service. <a href="mailto:family_justice_helpdesk@digital.justice.gov.uk?subject=Feedback">Report a problem</a> and help improve it for others.
+
+  generic:
+    page_title: *default_service_title
+    back_link: Back
