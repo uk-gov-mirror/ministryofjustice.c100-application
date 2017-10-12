@@ -2,10 +2,16 @@ en:
   dictionary:
     default_service_title: &default_service_title "C100 Children and the Family Courts"
   steps:
+    nature_of_application:
+      case_type:
+        edit:
+          page_title: Case type
+          heading: What is the nature of your application?
+          lead_text: Choose the most relevant option.
 
   home:
     index:
-      heading: What do you want to do?
+      heading: Start here
 
   layouts:
     footer_links:

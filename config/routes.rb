@@ -37,6 +37,10 @@ Rails.application.routes.draw do
 
   namespace :steps do
 
+    namespace :nature_of_application do
+      edit_step :case_type
+    end
+
   end
 
   root to: 'home#index'
