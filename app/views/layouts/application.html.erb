@@ -1,0 +1,73 @@
+<% content_for?(:page_title) ? yield(:page_title) : fallback_title %>
+
+<% content_for(:head) do %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <!--[if lt IE 9]>
+  <%= stylesheet_link_tag 'ie8', media: 'all' %>
+  <![endif]-->
+  <meta name="robots" content="noindex, nofollow">
+<% end %>
+
+<% content_for(:header_class) do %>with-proposition<% end %>
+
+<% content_for(:proposition_header) do %>
+  <div class="header-proposition">
+    <div class="content">
+      <% if user_signed_in? %>
+        <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+      <% end %>
+      <nav id="proposition-menu">
+        <%= link_to 'Appeal to the tax tribunal', service_homepage_url, id: 'proposition-name' %>
+        <%= render partial: 'layouts/current_user_menu' if user_signed_in? %>
+      </nav>
+    </div>
+  </div>
+<% end %>
+
+<% content_for(:body_start) do %>
+  <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
+
+  <%#
+    it's easier to trigger the non-js dropzone solution than to style and tweak
+    the dropzone fallback to work properly in IE9 and below and the upshot is
+    the same, so add a class to the html element to enable IE9 detection
+  %>
+  <!--[if lte IE 9]>
+  <script>document.documentElement.className = [document.documentElement.className, 'lte-ie9'].join(' ');</script>
+  <![endif]-->
+<% end %>
+
+<% content_for(:content) do %>
+  <main id="content" role="main">
+    <%= render partial: 'layouts/phase_banner' %>
+
+    <% if flash[:alert] %>
+      <div class="error-summary">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </main>
+<% end %>
+
+<% content_for(:body_end) do %>
+  <% if current_tribunal_case %>
+    <%= render partial: 'layouts/timeout_modal' %>
+  <% end %>
+
+  <!--[if lte IE 8]>
+  <script>
+    document.body.className = document.body.className.replace("js-enabled","")
+  </script>
+  <![endif]-->
+
+  <!--[if gt IE 8]><!--><%= javascript_include_tag 'application' %><!--<![endif]-->
+<% end %>
+
+<% content_for(:footer_support_links) do %>
+  <%= render partial: 'layouts/footer_links' %>
+<% end %>
+
+<%= render template: "layouts/govuk_template" %>

@@ -1,0 +1,13 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-large"><%= t '.heading' %></h1>
+
+    <p class="lede"><%=t '.lead_text' %></p>
+
+    <p><%=t '.deleted_account' %></p>
+
+    <%= render partial: 'steps/shared/finish_button', locals: {name: t('shared.start_again'), show_survey: false} %>
+  </div>
+</div>
