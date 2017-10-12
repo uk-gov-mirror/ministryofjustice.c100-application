@@ -2,8 +2,8 @@ module Steps::<%= task_name.camelize %>
   class <%= step_name.camelize %>Controller < Steps::<%= task_name.camelize %>StepController
     def edit
       @form_object = <%= step_name.camelize %>Form.new(
-        tribunal_case: current_tribunal_case,
-        <%= step_name.underscore  %>: current_tribunal_case.<%= step_name.underscore %>
+        c100_application: current_c100_application,
+        <%= step_name.underscore  %>: current_c100_application.<%= step_name.underscore %>
       )
     end
 

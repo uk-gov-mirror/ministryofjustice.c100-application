@@ -26,10 +26,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  helper_method :current_tribunal_case
+  helper_method :current_c100_application
 
-  def current_tribunal_case
-    @current_tribunal_case ||= TribunalCase.find_by_id(session[:tribunal_case_id])
+  def current_c100_application
+    @current_c100_application ||= C100Application.find_by_id(session[:c100_application_id])
   end
 
   def current_step_path
@@ -38,21 +38,21 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def reset_tribunal_case_session
-    session.delete(:tribunal_case_id)
+  def reset_c100_application_session
+    session.delete(:c100_application_id)
   end
 
-  def initialize_tribunal_case(attributes = {})
-    TribunalCase.create(attributes).tap do |tribunal_case|
-      session[:tribunal_case_id] = tribunal_case.id
+  def initialize_c100_application(attributes = {})
+    C100Application.create(attributes).tap do |c100_application|
+      session[:c100_application_id] = c100_application.id
     end
   end
 
-  def check_tribunal_case_presence
-    raise Errors::InvalidSession unless current_tribunal_case
+  def check_c100_application_presence
+    raise Errors::InvalidSession unless current_c100_application
   end
 
-  def check_tribunal_case_status
-    raise Errors::CaseSubmitted if current_tribunal_case.case_status&.submitted?
+  def check_c100_application_status
+    raise Errors::CaseSubmitted if current_c100_application.case_status&.submitted?
   end
 end

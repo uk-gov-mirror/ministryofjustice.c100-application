@@ -5,7 +5,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
     tribunal_case: tribunal_case,
     <%= step_name.underscore %>: <%= step_name.underscore %>
   } }
-  let(:tribunal_case) { instance_double(TribunalCase, <%= step_name.underscore %>: nil) }
+  let(:tribunal_case) { instance_double(C100Application, <%= step_name.underscore %>: nil) }
   let(:<%= step_name.underscore %>) { nil }
 
   subject { described_class.new(arguments) }
@@ -63,7 +63,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #   context 'when <%= step_name.underscore %> is already the same on the model' do
   #     let(:tribunal_case) {
   #       instance_double(
-  #         TribunalCase,
+  #         C100Application,
   #         <%= step_name.underscore %>: 'INSERT EXISTING VALUE HERE'
   #       )
   #     }

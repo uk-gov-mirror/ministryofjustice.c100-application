@@ -22,7 +22,7 @@ module Steps::<%= task_name.camelize %>
     end
 
     def persist!
-      raise 'No TribunalCase given' unless tribunal_case
+      raise 'No C100Application given' unless tribunal_case
       return true unless changed?
 
       # TODO: Update this to persist your form object if you don't have a single value object

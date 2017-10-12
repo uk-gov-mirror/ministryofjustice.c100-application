@@ -34,7 +34,7 @@ module DocumentUploadHelper
   end
 
   def uploaded_document(document_key)
-    current_tribunal_case.documents(document_key).first
+    current_c100_application.documents(document_key).first
   end
 
   def document_field(document_key)

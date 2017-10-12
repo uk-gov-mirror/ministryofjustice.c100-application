@@ -4,7 +4,7 @@ class StepController < ApplicationController
 
   def previous_step_path
     # Second to last element in the array, will be nil for arrays of size 0 or 1
-    current_tribunal_case&.navigation_stack&.slice(-2) || root_path
+    current_c100_application&.navigation_stack&.slice(-2) || root_path
   end
   helper_method :previous_step_path
 
@@ -15,12 +15,12 @@ class StepController < ApplicationController
 
     @next_step   = params[:next_step].presence
     @form_object = form_class.new(
-      hash.merge(tribunal_case: current_tribunal_case)
+      hash.merge(c100_application: current_c100_application)
     )
 
     if @form_object.save
       destination = decision_tree_class.new(
-        tribunal_case: current_tribunal_case,
+        c100_application: current_c100_application,
         step_params:   hash,
         # Used when the step name in the decision tree is not the same as the first
         # (and usually only) attribute in the form.
@@ -45,13 +45,13 @@ class StepController < ApplicationController
   end
 
   def update_navigation_stack
-    return unless current_tribunal_case
+    return unless current_c100_application
 
-    stack_until_current_page = current_tribunal_case.navigation_stack.take_while do |path|
+    stack_until_current_page = current_c100_application.navigation_stack.take_while do |path|
       path != request.fullpath
     end
 
-    current_tribunal_case.navigation_stack = stack_until_current_page + [request.fullpath]
-    current_tribunal_case.save!
+    current_c100_application.navigation_stack = stack_until_current_page + [request.fullpath]
+    current_c100_application.save!
   end
 end
