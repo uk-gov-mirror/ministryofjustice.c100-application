@@ -4,6 +4,12 @@ This is supposed to be a starting point for a gov.uk form-based
 application, using the software patterns developed for the
 [Appeal to the Tax Tribunal][taxtribs] application.
 
+## Getting Started
+
+* Copy `.env.example` to `.env` and replace with suitable values
+
+## Replace legacy string values
+
 Most of the code which was specific to that service has been
 removed, however there are some leftover strings which will
 need to be searched for and replaced, once the name of the new
