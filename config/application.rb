@@ -21,7 +21,7 @@ end
 
 Bundler.require(*Rails.groups)
 
-module C100Datacapture
+module TaxTribunalsDatacapture
   class Application < Rails::Application
     ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
 
