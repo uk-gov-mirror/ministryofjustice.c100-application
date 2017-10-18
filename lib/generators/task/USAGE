@@ -2,7 +2,6 @@ Description:
     Generates a task, including;
 
     - task supercontroller
-    - task folders
     - empty decision tree
 
 Example:
@@ -11,10 +10,6 @@ Example:
     This will create:
         app/controllers/steps/some_task/some_task_step_controller.rb
         app/services/some_task_decision_tree.rb
-        app/forms/steps/some_task/.gitkeep
-        app/views/steps/some_task/.gitkeep
-        spec/controllers/steps/some_task/.gitkeep
-        spec/forms/steps/some_task/.gitkeep
 
     This will update:
         config/routes.rb
