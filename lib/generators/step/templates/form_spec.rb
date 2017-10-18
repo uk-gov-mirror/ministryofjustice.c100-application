@@ -2,10 +2,10 @@ require 'spec_helper'
 
 RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form do
   let(:arguments) { {
-    tribunal_case: tribunal_case,
+    c100_application: c100_application,
     <%= step_name.underscore %>: <%= step_name.underscore %>
   } }
-  let(:tribunal_case) { instance_double(C100Application, <%= step_name.underscore %>: nil) }
+  let(:c100_application) { instance_double(C100Application, <%= step_name.underscore %>: nil) }
   let(:<%= step_name.underscore %>) { nil }
 
   subject { described_class.new(arguments) }
@@ -16,8 +16,8 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #   forms operating on a single value object.
 
   # describe '#save' do
-  #   context 'when no tribunal_case is associated with the form' do
-  #     let(:tribunal_case)  { nil }
+  #   context 'when no c100_application is associated with the form' do
+  #     let(:c100_application)  { nil }
   #     let(:<%= step_name.underscore %>) { 'value' }
 
   #     it 'raises an error' do
@@ -53,7 +53,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #     let(:<%= step_name.underscore %>) { 'INSERT VALID VALUE HERE' }
 
   #     it 'saves the record' do
-  #       expect(tribunal_case).to receive(:update).with(
+  #       expect(c100_application).to receive(:update).with(
   #         # TODO: What's in the update?
   #       ).and_return(true)
   #       expect(subject.save).to be(true)
@@ -61,7 +61,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #   end
 
   #   context 'when <%= step_name.underscore %> is already the same on the model' do
-  #     let(:tribunal_case) {
+  #     let(:c100_application) {
   #       instance_double(
   #         C100Application,
   #         <%= step_name.underscore %>: 'INSERT EXISTING VALUE HERE'
@@ -70,7 +70,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #     let(:<%= step_name.underscore %>) { 'CHANGEME' }
 
   #     it 'does not save the record but returns true' do
-  #       expect(tribunal_case).to_not receive(:update)
+  #       expect(c100_application).to_not receive(:update)
   #       expect(subject.save).to be(true)
   #     end
   #   end

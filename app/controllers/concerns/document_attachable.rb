@@ -22,7 +22,7 @@ module DocumentAttachable
   end
 
   def document_provided?
-    tribunal_case&.documents(document_key)&.any? || document.present?
+    c100_application&.documents(document_key)&.any? || document.present?
   end
 
   def check_document_presence
@@ -37,7 +37,7 @@ module DocumentAttachable
   def upload_document_if_present
     return true if document.nil?
 
-    document.upload!(document_key: document_key, collection_ref: tribunal_case.files_collection_ref)
+    document.upload!(document_key: document_key, collection_ref: c100_application.files_collection_ref)
     retrieve_document_errors
 
     errors.empty?
