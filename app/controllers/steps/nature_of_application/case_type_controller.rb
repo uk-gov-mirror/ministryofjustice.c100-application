@@ -12,5 +12,9 @@ module Steps::NatureOfApplication
     def update
       update_and_advance(CaseTypeForm)
     end
+
+    def case_type_kickout
+
+    end
   end
 end
