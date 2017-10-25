@@ -11,17 +11,13 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
-  config.use_transactional_fixtures = true
-
   config.infer_spec_type_from_file_location!
 
   config.filter_rails_from_backtrace!
 
-  config.include(ViewSpecHelpers, type: :helper)
   config.include(ActiveSupport::Testing::TimeHelpers)
 
+  config.include(ViewSpecHelpers, type: :helper)
   config.include(Devise::Test::ControllerHelpers, type: :view)
   config.include(Devise::Test::ControllerHelpers, type: :controller)
   config.include(AuthenticationHelpers, type: :controller)
