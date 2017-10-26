@@ -1,6 +1,11 @@
 en:
   dictionary:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
+
+    START_FINISH: &START_FINISH
+      start_again: Start again
+      finish: Finish
+
   steps:
     nature_of_application:
       case_type:
@@ -38,6 +43,12 @@ en:
     error_summary:
       heading: There's a problem. You need to fix this error.
       text: ''
+    unhandled:
+      heading: Sorry, something went wrong
+      <<: *START_FINISH
+      lead_text: To keep this service secure, any information you have entered hasn't been saved.
+      more_text: You'll need to start again.
+      page_title: Unexpected error
 
   activemodel:
     errors:
