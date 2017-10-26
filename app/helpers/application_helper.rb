@@ -39,10 +39,6 @@ module ApplicationHelper
     ENV['GA_TRACKING_ID']
   end
 
-  def service_homepage_url
-    Rails.configuration.gds_service_homepage_url
-  end
-
   def title(page_title)
     content_for :page_title, [page_title.presence, t('generic.page_title')].compact.join(' - ')
   end

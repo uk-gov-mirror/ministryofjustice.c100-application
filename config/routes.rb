@@ -11,12 +11,6 @@ class ActionDispatch::Routing::Mapper
              only:       [:show],
              controller: name
   end
-
-  def collection_step(name, action)
-    resources name, only: [] do
-      get action, on: :collection
-    end
-  end
 end
 
 Rails.application.routes.draw do
