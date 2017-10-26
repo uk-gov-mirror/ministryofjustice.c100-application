@@ -32,7 +32,7 @@ module TaxTribunalsDatacapture
     config.kickout_survey_link = 'REPLACEME'.freeze
 
     # This is the GDS-hosted homepage for our service, and the one with a `start` button
-    config.gds_service_homepage_url = 'REPLACEME'.freeze
+    config.gds_service_homepage_url = '/'.freeze  # TODO: replace this with the correct gov.uk URL, when we have one
 
     config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
     config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
