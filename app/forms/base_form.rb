@@ -2,7 +2,7 @@ class BaseForm
   include Virtus.model
   include ActiveModel::Validations
 
-  attr_accessor :tribunal_case
+  attr_accessor :c100_application
 
   def save
     if valid?

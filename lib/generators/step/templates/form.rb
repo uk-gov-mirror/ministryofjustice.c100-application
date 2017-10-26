@@ -18,15 +18,15 @@ module Steps::<%= task_name.camelize %>
 
     # TODO: Change this method if you don't have a single value object
     def changed?
-      tribunal_case.<%= step_name.underscore %> != <%= step_name.underscore %>_value
+      c100_application.<%= step_name.underscore %> != <%= step_name.underscore %>_value
     end
 
     def persist!
-      raise 'No C100Application given' unless tribunal_case
+      raise 'No C100Application given' unless c100_application
       return true unless changed?
 
       # TODO: Update this to persist your form object if you don't have a single value object
-      tribunal_case.update(
+      c100_application.update(
         <%= step_name.underscore %>: <%= step_name.underscore %>_value
         # The following are dependent attributes that need to be reset
         # TODO: Are there any dependent attributes? Reset them here.

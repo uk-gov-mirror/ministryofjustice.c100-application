@@ -8,6 +8,13 @@ en:
           page_title: Case type
           heading: What is the nature of your application?
           lead_text: Choose the most relevant option.
+      case_type_kickout:
+        show:
+          page_title: Case type kickout
+          heading: Case type kickout heading
+          lead_text: You got kicked out
+    shared:
+      kickout_feedback: Give your feedback. Help improve this service
 
   home:
     index:
