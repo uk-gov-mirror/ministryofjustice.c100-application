@@ -1,4 +1,4 @@
-class ApplicationTypeDecisionTree < BaseDecisionTree
+class CaseTypeDecisionTree < BaseDecisionTree
   def destination
     return next_step if next_step
 
@@ -6,7 +6,7 @@ class ApplicationTypeDecisionTree < BaseDecisionTree
     when :case_type
       after_case_type_step
     else
-      raise "Invalid step '#{step_params}'"
+      raise InvalidStep, "Invalid step '#{step_params}'"
     end
   end
 

@@ -6,7 +6,6 @@ task :mutant => :environment do
   flags = '--use rspec --fail-fast'
 
   classes_to_mutate.each do |klass|
-    puts "---> #{klass}"
     unless system("#{vars} mutant #{flags} #{klass}")
       raise 'Mutation testing failed'
     end

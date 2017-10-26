@@ -17,8 +17,9 @@ if defined?(Rake.application) &&
     Rake.application.top_level_tasks.grep(/^(default$|spec(:|$))/).any?
   ENV["RAILS_ENV"] ||= "test"
 end
+# :nocov:
 
-Bundler.require(*Rails.groups)
+Bundler.require *Rails.groups(assets: %w(development test))
 
 class Application < Rails::Application
   ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder

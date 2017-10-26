@@ -1,5 +1,5 @@
 class StepController < ApplicationController
-  before_action :store_step_path_in_session, only: [:edit, :update]
+  before_action :check_c100_application_presence
   before_action :update_navigation_stack
 
   def previous_step_path
@@ -38,10 +38,6 @@ class StepController < ApplicationController
     params
       .fetch(form_class.model_name.singular, {})
       .permit(form_class.new.attributes.keys)
-  end
-
-  def store_step_path_in_session
-    session[:current_step_path] = request.fullpath
   end
 
   def update_navigation_stack

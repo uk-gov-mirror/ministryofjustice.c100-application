@@ -2,9 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Heroku demo app requires basic auth to restrict access
+  # :nocov:
   if ENV.fetch('HEROKU_APP_NAME', false)
     http_basic_authenticate_with name: ENV.fetch('HTTP_AUTH_USER'), password: ENV.fetch('HTTP_AUTH_PASSWORD')
   end
+  # :nocov:
 
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
@@ -31,10 +33,6 @@ class ApplicationController < ActionController::Base
 
   def current_c100_application
     @_current_c100_application ||= C100Application.find_by_id(session[:c100_application_id])
-  end
-
-  def current_step_path
-    session[:current_step_path]
   end
 
   private

@@ -18,23 +18,14 @@ class BaseDecisionTree
     as || step_params.keys.first
   end
 
-  def answer
-    step_params.values.first.to_sym
-  end
-
   def show(step_controller)
     { controller: step_controller, action: :show }
   end
 
+  # TODO: we don't have yet any edit step so marking as nocov for now
+  # :nocov:
   def edit(step_controller)
     { controller: step_controller, action: :edit }
   end
-
-  def root_path
-    { controller: '/home', action: :index }
-  end
-
-  def registrations_path
-    { controller: '/users/registrations', action: :new }
-  end
+  # :nocov:
 end

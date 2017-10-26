@@ -14,12 +14,8 @@ module Steps::NatureOfApplication
 
     private
 
-    def case_type_value?
-      case_type
-    end
-
     def case_type_value
-      CaseType.find_constant(case_type)
+      CaseType.new(case_type)
     end
 
     def changed?
@@ -28,7 +24,7 @@ module Steps::NatureOfApplication
 
     def persist!
       raise 'No C100Application given' unless c100_application
-      return true unless case_type_value? && changed?
+      return true unless changed?
 
       c100_application.update(
         case_type: case_type_value
