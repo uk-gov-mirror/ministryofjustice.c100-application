@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Heroku demo app requires basic auth to restrict access
+  if ENV.fetch('HEROKU_APP_NAME', false)
+    http_basic_authenticate_with name: ENV.fetch('HTTP_AUTH_USER'), password: ENV.fetch('HTTP_AUTH_PASSWORD')
+  end
+
   # This is required to get request attributes in to the production logs.
   # See the various lograge configurations in `production.rb`.
   def append_info_to_payload(payload)

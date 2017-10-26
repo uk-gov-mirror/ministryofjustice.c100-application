@@ -11,4 +11,6 @@ heroku config:set \
   RAILS_SERVE_STATIC_FILES=enabled \
   SECRET_KEY_BASE=$(bundle exec rails secret) \
   GOVUK_NOTIFY_API_KEY=DUMMYVALUE \
+  HTTP_AUTH_USER=${HTTP_AUTH_USER} \
+  HTTP_AUTH_PASSWORD=${HTTP_AUTH_PASSWORD} \
   LANG=en_US.UTF-8
