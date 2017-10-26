@@ -1,10 +1,6 @@
 module StartingPointStep
   extend ActiveSupport::Concern
 
-  included do
-    before_action :save_case_for_later, if: :user_signed_in?, only: [:update]
-  end
-
   private
 
   def current_c100_application
@@ -18,9 +14,5 @@ module StartingPointStep
     # before re-initialising it in StepController#update_navigation_stack
     current_c100_application.navigation_stack = []
     super
-  end
-
-  def save_case_for_later
-    TaxTribs::SaveCaseForLater.new(current_c100_application, current_user).save
   end
 end

@@ -19,10 +19,6 @@ class ApplicationController < ActionController::Base
     case exception
     when Errors::InvalidSession, ActionController::InvalidAuthenticityToken
       redirect_to invalid_session_errors_path
-    when Errors::CaseNotFound
-      redirect_to case_not_found_errors_path
-    when Errors::CaseSubmitted
-      redirect_to case_submitted_errors_path
     else
       raise if Rails.application.config.consider_all_requests_local
 
@@ -34,7 +30,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_c100_application
 
   def current_c100_application
-    @current_c100_application ||= C100Application.find_by_id(session[:c100_application_id])
+    @_current_c100_application ||= C100Application.find_by_id(session[:c100_application_id])
   end
 
   def current_step_path
@@ -55,9 +51,5 @@ class ApplicationController < ActionController::Base
 
   def check_c100_application_presence
     raise Errors::InvalidSession unless current_c100_application
-  end
-
-  def check_c100_application_status
-    raise Errors::CaseSubmitted if current_c100_application.case_status&.submitted?
   end
 end

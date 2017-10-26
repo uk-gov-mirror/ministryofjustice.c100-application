@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :registerable, :validatable, :trackable
 
-  has_many :tribunal_cases, dependent: :destroy
+  has_one :c100_application, dependent: :destroy
 
   attribute :email, NormalisedEmailType.new
 

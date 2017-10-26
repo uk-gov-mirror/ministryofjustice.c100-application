@@ -35,11 +35,6 @@ module ApplicationHelper
     )
   end
 
-  def translate_for_user_type(key, params={})
-    suffix = '_html' if key.end_with?('_html')
-    translate_with_appeal_or_application("#{key}.as_#{current_c100_application.user_type}#{suffix}", params)
-  end
-
   def analytics_tracking_id
     ENV['GA_TRACKING_ID']
   end

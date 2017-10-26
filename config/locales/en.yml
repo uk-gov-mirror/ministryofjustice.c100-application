@@ -1,6 +1,6 @@
 en:
   dictionary:
-    default_service_title: &default_service_title "C100 Children and the Family Courts"
+    default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
   steps:
     nature_of_application:
       case_type:
