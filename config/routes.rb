@@ -17,10 +17,6 @@ class ActionDispatch::Routing::Mapper
       get action, on: :collection
     end
   end
-
-  def public_domain
-    'https://REPLACEME'.freeze
-  end
 end
 
 Rails.application.routes.draw do
@@ -36,17 +32,29 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
-
     namespace :nature_of_application do
       edit_step :case_type
       show_step :case_type_kickout
     end
+  end
 
+  resource :session, only: [:destroy] do
+    member do
+      get :ping
+    end
+  end
+
+  resources :status, only: [:index]
+
+  resource :errors, only: [] do
+    get :invalid_session
+    get :unhandled
   end
 
   root to: 'home#index'
-  get :start, to: redirect('/', status: 301)
+
   get :contact, to: 'home#contact', as: :contact_page
+  get :cookies, to: 'home#cookies', as: :cookies_page
 
   # catch-all route
   # :nocov:

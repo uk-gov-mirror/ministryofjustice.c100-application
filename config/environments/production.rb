@@ -12,7 +12,7 @@ Rails.application.configure do
       params: event.payload[:params].except(*exceptions),
       referrer: event.payload[:referrer],
       session_id: event.payload[:session_id],
-      tags: %w{taxtribs-datacapture},
+      tags: %w{c100-application},
       user_agent: event.payload[:user_agent]
     }
   end
