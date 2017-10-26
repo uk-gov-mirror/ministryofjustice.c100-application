@@ -15,13 +15,6 @@
 // From GDS's alphagov/govuk_elements
 @import 'elements/helpers';
 @import 'elements/reset';
-
-// Base (unclassed HTML elements)
-// These are predefined by govuk_template
-// If you're not using govuk_template, uncomment the line below.
-// HTML elements, set by the GOV.UK template
-// @import 'elements/base'
-
 @import 'elements/layout';
 @import 'elements/elements-typography';
 @import 'elements/buttons';
@@ -31,16 +24,14 @@
 @import 'elements/details';
 @import 'elements/panels';
 @import 'elements/forms';
-@import 'elements/forms/form-block-labels';
+@import 'elements/forms/form-multiple-choice';
 @import 'elements/forms/form-date';
 @import 'elements/forms/form-validation';
 @import 'elements/breadcrumbs';
 @import 'elements/phase-banner';
 @import 'elements/components';
-
 @import 'elements/shame';
 
-@import 'local/single-file-upload';
 @import 'local/tables';
 @import 'local/lists';
 @import 'local/inputs';
@@ -51,12 +42,8 @@
 @import 'local/panels';
 @import 'local/banners';
 @import 'local/utilities';
-@import 'local/positioning_hacks';
 @import 'local/timeout_modal';
 @import 'local/spinner';
-
-// Dropzone vendor styling + local customization
-@import 'dropzone';
 
 .js-enabled {
   .js-hidden {

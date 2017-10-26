@@ -12,10 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require dropzone
 //= require_tree .
 
+// from govuk_frontend_toolkit gem
+//= require vendor/polyfills/bind
 //= require govuk_toolkit
+//= stub govuk/selection-buttons
 
 function ShowHideContent() {
   var self = this;
@@ -146,11 +148,6 @@ function ShowHideContent() {
 }
 
 $(document).ready(function() {
-  // Use GOV.UK selection-buttons.js to set selected
-  // and focused states for block labels
-  var $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']");
-  new GOVUK.SelectionButtons($blockLabels);
-
   // Show and hide toggled content
   // Where .block-label uses the data-target attribute
   var toggleContent = new ShowHideContent();

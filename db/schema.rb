@@ -22,5 +22,4 @@ ActiveRecord::Schema.define(version: 20171012153142) do
     t.string   "navigation_stack", default: [],              array: true
     t.string   "case_type"
   end
-
 end

@@ -1,19 +1,6 @@
 class ErrorsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def case_submitted
-    @c100_application = current_c100_application
-    respond_with_status(:unprocessable_entity)
-  end
-
-  def case_not_found
-    respond_with_status(:not_found)
-  end
-
-  def not_found
-    respond_with_status(:not_found)
-  end
-
   def invalid_session
     respond_with_status(:not_found)
   end
