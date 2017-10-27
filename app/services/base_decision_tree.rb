@@ -7,9 +7,9 @@ class BaseDecisionTree
 
   def initialize(c100_application:, step_params: {}, as: nil, next_step: nil)
     @c100_application = c100_application
-    @step_params      = step_params
-    @as               = as
-    @next_step        = next_step
+    @step_params = step_params
+    @as = as
+    @next_step = next_step
   end
 
   private
@@ -19,13 +19,11 @@ class BaseDecisionTree
   end
 
   def show(step_controller)
-    { controller: step_controller, action: :show }
+    {controller: step_controller, action: :show}
   end
 
-  # TODO: we don't have yet any edit step so marking as nocov for now
-  # :nocov:
-  def edit(step_controller)
-    { controller: step_controller, action: :edit }
-  end
-  # :nocov:
+  # TODO: to be enabled when we actually have edit steps, otherwise mutant is unhappy
+  # def edit(step_controller)
+  #   {controller: step_controller, action: :edit}
+  # end
 end
