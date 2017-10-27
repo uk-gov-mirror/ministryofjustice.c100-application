@@ -18,11 +18,11 @@ module Steps::<%= task_name.camelize %>
 
     # TODO: Change this method if you don't have a single value object
     def changed?
-      c100_application.<%= step_name.underscore %> != <%= step_name.underscore %>_value
+      !c100_application.<%= step_name.underscore %>.eql?(<%= step_name.underscore %>_value)
     end
 
     def persist!
-      raise 'No C100Application given' unless c100_application
+      raise C100ApplicationNotFound unless c100_application
       return true unless changed?
 
       # TODO: Update this to persist your form object if you don't have a single value object

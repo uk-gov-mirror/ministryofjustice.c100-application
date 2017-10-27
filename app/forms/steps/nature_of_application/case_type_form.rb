@@ -20,11 +20,11 @@ module Steps
       end
 
       def changed?
-        c100_application.case_type != case_type_value
+        !c100_application.case_type.eql?(case_type_value)
       end
 
       def persist!
-        raise 'No C100Application given' unless c100_application
+        raise C100ApplicationNotFound unless c100_application
         return true unless changed?
 
         c100_application.update(

@@ -1,4 +1,6 @@
 class BaseForm
+  class C100ApplicationNotFound < RuntimeError; end
+
   include Virtus.model
   include ActiveModel::Validations
 
