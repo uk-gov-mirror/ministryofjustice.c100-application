@@ -52,6 +52,7 @@ group :test do
   gem 'brakeman'
   gem 'capybara'
   gem 'cucumber'
+  gem 'database_cleaner'
   gem 'poltergeist'
   gem 'phantomjs'
   gem 'rails-controller-testing'

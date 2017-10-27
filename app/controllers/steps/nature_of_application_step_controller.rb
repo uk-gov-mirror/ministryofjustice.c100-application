@@ -3,7 +3,7 @@ module Steps
     private
 
     def decision_tree_class
-      CaseTypeDecisionTree
+      C100App::CaseTypeDecisionTree
     end
   end
 end

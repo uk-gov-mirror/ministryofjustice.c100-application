@@ -20,5 +20,8 @@ private
 
 def classes_to_mutate
   Rails.application.eager_load!
-  Array(ARGV[1]).presence || ApplicationRecord.descendants.map(&:name) + ['C100App*']
+  Array(ARGV[1]).presence ||
+    ApplicationRecord.descendants.map(&:name) +
+    BaseForm.descendants.map(&:name) +
+    ['C100App*']
 end

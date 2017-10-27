@@ -21,6 +21,15 @@ RSpec.describe Steps::NatureOfApplication::CaseTypeForm do
   end
 
   describe '#save' do
+    context 'when no c100 application is associated with the form' do
+      let(:c100_application) { nil }
+      let(:case_type)        { 'child_arrangements' }
+
+      it 'raises an error' do
+        expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
+      end
+    end
+
     context 'when case_type is not given' do
       it 'returns false' do
         expect(subject.save).to be(false)
@@ -61,6 +70,7 @@ RSpec.describe Steps::NatureOfApplication::CaseTypeForm do
       let(:case_type)        { 'child_arrangements' }
 
       it 'does not save the record but returns true' do
+        expect(subject).to receive(:case_type_value).and_call_original
         expect(c100_application).to_not receive(:update)
         expect(subject.save).to be(true)
       end
