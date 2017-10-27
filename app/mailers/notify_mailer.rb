@@ -12,7 +12,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   # then just use mail() as with any other ActionMailer, with the recipient email
 
   # Triggered automatically by Devise when the user resets its password
-  def reset_password_instructions(user, token, _opts={})
+  def reset_password_instructions(user, token, _opts = {})
     set_template(ENV.fetch('NOTIFY_RESET_PASSWORD_TEMPLATE_ID'))
 
     set_personalisation(
@@ -23,7 +23,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   end
 
   # Triggered automatically by Devise when the user changes its password
-  def password_change(user, _opts={})
+  def password_change(user, _opts = {})
     set_template(ENV.fetch('NOTIFY_CHANGE_PASSWORD_TEMPLATE_ID'))
 
     # set_personalisation(
@@ -36,17 +36,17 @@ class NotifyMailer < GovukNotifyRails::Mailer
   private
 
   def log_errors(exception)
-    Rails.logger.info({caller: self.class.name, method: self.action_name, error: exception}.to_json)
+    Rails.logger.info({caller: self.class.name, method: action_name, error: exception}.to_json)
 
     Raven.extra_context(
-      template_id: self.govuk_notify_template,
+      template_id: govuk_notify_template,
       personalisation: filtered_personalisation
     )
     Raven.capture_exception(exception)
   end
 
   def filtered_personalisation
-    personalisation = self.govuk_notify_personalisation&.dup || {}
+    personalisation = govuk_notify_personalisation&.dup || {}
     personalisation.each_key do |key|
       personalisation[key] = FILTERED if filter_key?(key)
     end

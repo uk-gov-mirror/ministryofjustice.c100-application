@@ -4,8 +4,7 @@ module Users
       @email_address = session[:confirmation_email_address]
     end
 
-    def logged_out
-    end
+    def logged_out; end
 
     protected
 

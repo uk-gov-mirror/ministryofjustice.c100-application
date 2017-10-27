@@ -7,7 +7,7 @@ module Users
     def create
       super do |user|
         if user.errors.added?(:email, :blank)
-          respond_with(user) and return
+          respond_with(user) && return
         end
       end
     end
@@ -18,16 +18,14 @@ module Users
     def update
       super do |user|
         if user.errors.include?(:reset_password_token)
-          redirect_to new_user_password_path, alert: invalid_token_error and return
+          redirect_to(new_user_password_path, alert: invalid_token_error) && return
         end
       end
     end
 
-    def reset_confirmation
-    end
+    def reset_confirmation; end
 
-    def reset_sent
-    end
+    def reset_sent; end
 
     private
 

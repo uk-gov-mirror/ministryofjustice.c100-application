@@ -10,8 +10,7 @@ module Users
       @email_address = current_c100_application.user.email
     end
 
-    def update_confirmation
-    end
+    def update_confirmation; end
 
     protected
 

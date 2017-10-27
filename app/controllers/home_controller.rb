@@ -3,9 +3,7 @@ class HomeController < ApplicationController
     reset_c100_application_session
   end
 
-  def contact
-  end
+  def contact; end
 
-  def cookies
-  end
+  def cookies; end
 end

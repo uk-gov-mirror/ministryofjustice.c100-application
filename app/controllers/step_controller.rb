@@ -10,7 +10,7 @@ class StepController < ApplicationController
 
   private
 
-  def update_and_advance(form_class, opts={})
+  def update_and_advance(form_class, opts = {})
     hash = permitted_params(form_class).to_h
 
     @next_step   = params[:next_step].presence
