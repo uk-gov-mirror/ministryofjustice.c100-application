@@ -15,13 +15,22 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   # TODO: The below can be uncommented and serves as a starting point for
   #   forms operating on a single value object.
 
+  # describe '.choices' do
+  #   it 'returns the relevant choices' do
+  #     expect(described_class.choices).to eq(%w(
+  #       one_choice
+  #       another_choice
+  #     ))
+  #   end
+  # end
+
   # describe '#save' do
   #   context 'when no c100_application is associated with the form' do
   #     let(:c100_application)  { nil }
-  #     let(:<%= step_name.underscore %>) { 'value' }
+  #     let(:<%= step_name.underscore %>) { 'value' } # This must be a correct value
 
   #     it 'raises an error' do
-  #       expect { subject.save }.to raise_error(RuntimeError)
+  #       expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
   #     end
   #   end
 
@@ -70,10 +79,10 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #     let(:<%= step_name.underscore %>) { 'CHANGEME' }
 
   #     it 'does not save the record but returns true' do
+  #       expect(subject).to receive(:case_type_value).and_call_original
   #       expect(c100_application).to_not receive(:update)
   #       expect(subject.save).to be(true)
   #     end
   #   end
   # end
 end
-

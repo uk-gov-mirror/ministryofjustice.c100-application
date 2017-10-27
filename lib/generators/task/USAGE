@@ -9,7 +9,7 @@ Example:
 
     This will create:
         app/controllers/steps/some_task/some_task_step_controller.rb
-        app/services/some_task_decision_tree.rb
+        app/services/c100_app/some_task_decision_tree.rb
 
     This will update:
         config/routes.rb
