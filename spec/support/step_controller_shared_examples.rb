@@ -70,10 +70,6 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
 end
 
 RSpec.shared_examples 'a starting point step controller' do |_options|
-  before do
-    C100Application.delete_all
-  end
-
   describe '#edit' do
     context 'when no case exists in the session yet' do
       it 'creates a new case' do

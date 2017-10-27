@@ -4,6 +4,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require_relative '../spec/support/view_spec_helpers'
+require 'database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -21,6 +22,17 @@ RSpec.configure do |config|
   config.include(Devise::Test::ControllerHelpers, type: :controller)
 
   config.before(:each, type: :helper) { initialize_view_helpers(helper) }
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change
