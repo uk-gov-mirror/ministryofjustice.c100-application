@@ -51,6 +51,7 @@ Rails.application.routes.draw do
   get 'entrypoint/v2'
   get 'entrypoint/v3'
 
+  get :miam_acknowledgement, to: 'miam#index', as: :miam_acknowledgement
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page
 

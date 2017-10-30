@@ -1,0 +1,281 @@
+#global-header .header-proposition {
+  padding-top: 8px;
+  padding-top: 0.5rem;
+}
+
+main {
+  padding-bottom: 48px;
+  padding-bottom: 3rem;
+}
+
+#footer {
+  border-top: solid 10px #005ea5;
+}
+
+.panel-border-wide {
+  padding: 16px 32px;
+  padding: 1rem 2rem;
+  border-left: solid 10px #bfc1c3;
+  margin: 16px 0 32px;
+  margin: 1rem 0 2rem;
+}
+
+.panel-border-wide > p:last-child {
+  margin-bottom: 0;
+}
+
+.button,
+.gv-c-button {
+  text-align: center;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 32px;
+  margin-top: 2rem;
+  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  th {
+    display: none;
+  }
+
+  table td {
+    display: block;
+    border-bottom: none;
+  }
+
+  td::before {
+    content: attr(data-th);
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+}
+
+table th,
+table td {
+  vertical-align: top;
+  font-size: 22.4px;
+  font-size: 1.4rem
+}
+
+@media (min-width: 740px) {
+  table th,
+  table td {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 740px) {
+  td:first-child {
+    width: 15rem;
+  }
+
+  td:last-child {
+    width: 11rem;
+  }
+}
+
+sup {
+  font-size: 75%;
+}
+
+label br {
+  display: none;
+}
+
+.labelLine {
+  display: block;
+}
+
+br + .labelLine {
+  margin-top: 20px;
+  margin-top: 1.25rem;
+}
+
+.labelLineBullet {
+  position: relative;
+  padding-left: 64px;
+  padding-left: 4rem;
+}
+
+.labelBullet {
+  position: absolute;
+  left: 8px;
+  left: 0.5rem;
+}
+
+.app__section_heading {
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size-adjust: 0.525;
+  font-size: 25.6px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-top: 0.625em;
+  margin-bottom: 0.3125em;
+}
+
+@media (min-width: 641px) {
+  .app__section_heading {
+    font-size: 1.9rem;
+  }
+}
+
+@media (min-width: 641px) {
+  .app__section_heading {
+    line-height: 1.31579;
+    margin-top: 1.05263em;
+  }
+}
+
+.app__section_heading + .app__heading {
+  margin-top: 16px;
+  margin-top: 1rem;
+}
+
+.button--destructive {
+  margin-left: 32px;
+  margin-left: 2rem;
+  background-color: #df3034
+}
+
+.button--destructive:hover {
+  background-color: #b10e1e;
+}
+
+.form-group input[type=text].form-control, .form-group textarea.form-control {
+  width: 100%;
+}
+
+.form-group input[type=text].form-control[name*=postcode], .form-group textarea.form-control[name*=postcode] {
+  width: 192px;
+  width: 12rem;
+}
+
+.form-group input[type=text].form-control[name*=phone], .form-group textarea.form-control[name*=phone] {
+  width: 50%;
+}
+
+.form-group .form-group:first-child,
+.form-group .form-group:last-child {
+  margin-top: 0;
+}
+
+.form-date .form-label-bold {
+  font-weight: normal;
+}
+
+.form-date .error {
+  border-left: none;
+  padding-left: 0;
+}
+
+.form-date .error-message {
+  display: none;
+}
+
+.form-group[data-block-name$="unsure"],
+.form-group[data-block-name*="_unsure_"] {
+  margin-top: -20px;
+}
+
+#global-cookie-message {
+  background-color: #d5e8f3;
+  padding: 10px 0;
+}
+
+.cookie-seen {
+  display: none;
+}
+
+#global-cookie-message .CookieMessage {
+  max-width: 960px;
+  margin: 0 15px;
+  font-size: 22.4px;
+  font-size: 1.4rem
+}
+
+@media (min-width: 641px) {
+  #global-cookie-message .CookieMessage {
+    margin: 0 30px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1020px) {
+  #global-cookie-message .CookieMessage {
+    margin: 0 auto;
+  }
+}
+
+.FeedbackBanner {
+  background: #2e358b;
+  color: #fff;
+  padding: 8px 0 16px;
+  padding: 0.5rem 0 1rem
+}
+
+@media print {
+  .FeedbackBanner {
+    display: none;
+  }
+}
+
+.FeedbackBanner a {
+  color: #fff;
+}
+
+.FeedbackBanner__heading {
+  font-size: 30.4px;
+  font-size: 1.9rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.FeedbackBanner__link {
+  margin: 0;
+}
+
+.control-group__actions {
+  margin: 32px 0 48px;
+  margin: 2rem 0 3rem
+}
+
+.control-group__actions .button {
+  font-size: 24px;
+  font-size: 1.5rem;
+}
+
+#content {
+  margin-bottom: 48px;
+  margin-bottom: 3rem;
+}
+
+.button-start {
+  background-size: 3rem;
+}
+
+s {
+  display: none;
+}
+
+[data-block-name="section:miam-requirement_accept"] {
+  background-color: #e7ebda;
+  padding: 16px;
+  padding: 1rem;
+  margin: 20px -16px 0;
+  margin: 1.25rem -1rem 0
+}
+
+[data-block-name="section:miam-requirement_accept"] .moj-Section__heading--2 {
+  margin-top: 0;
+}
+
+[data-block-name="section:miam-requirement_accept"] .multiple-choice [type=radio] + label::before {
+  background-color: #fff;
+}
