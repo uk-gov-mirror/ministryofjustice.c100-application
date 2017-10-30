@@ -45,6 +45,9 @@
 @import 'local/timeout_modal';
 @import 'local/spinner';
 
+// From prototype
+@import 'local/app';
+
 .js-enabled {
   .js-hidden {
     display: none !important;
