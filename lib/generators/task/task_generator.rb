@@ -14,5 +14,6 @@ class TaskGenerator < Rails::Generators::Base
 
   def copy_decision_tree
     template 'decision_tree.rb', "app/services/c100_app/#{task_name.underscore}_decision_tree.rb"
+    template 'decision_tree_spec.rb', "spec/services/c100_app/#{task_name.underscore}_decision_tree_spec.rb"
   end
 end

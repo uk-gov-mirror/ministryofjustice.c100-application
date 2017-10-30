@@ -48,3 +48,14 @@ form.button_to {
     padding-left: 15px;
   }
 }
+
+// This is a workaround to make the fieldset legends
+// visually hidden, as `govuk_elements_form_builder`
+// doesn't support this in their current version
+fieldset {
+  legend {
+    span.form-label-bold {
+      @extend .visuallyhidden
+    }
+  }
+}

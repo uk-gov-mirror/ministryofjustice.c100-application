@@ -15,15 +15,14 @@ class BaseDecisionTree
   private
 
   def step_name
-    as || step_params.keys.first
+    (as || step_params.keys.first).to_sym
   end
 
   def show(step_controller)
     {controller: step_controller, action: :show}
   end
 
-  # TODO: to be enabled when we actually have edit steps, otherwise mutant is unhappy
-  # def edit(step_controller)
-  #   {controller: step_controller, action: :edit}
-  # end
+  def edit(step_controller)
+    {controller: step_controller, action: :edit}
+  end
 end
