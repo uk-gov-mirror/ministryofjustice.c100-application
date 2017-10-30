@@ -1,9 +1,33 @@
 <% title 'Entrypoint version 1' %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <h1 class="heading-large">Entrypoint version 1</h1>
+<div class=" grid-row gv-o-grid-row">
+  <div class=" column-two-thirds gv-o-grid-item gv-u-two-thirds">
 
-    <%= render partial: 'steps/shared/start_application' %>
+    <div class="grid_content_header">
+      <h1 class="app__heading  heading-xlarge gv-u-heading-xxlarge">Apply to court about your child arrangements</h1>
+    </div>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p>You can use this service to apply for a court order about your child arrangements in England and Wales.</p>
+      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+        <p>The process is different in
+          <a href="https://www.mygov.scot/crime-justice-and-the-law/courts-and-sentencing">Scotland</a> and
+          <a href="https://www.nidirect.gov.uk/articles/solicitors-and-courts">Northern Ireland</a>.</p>
+      </div>
+      <h2>Before you apply</h2>
+      <p>You should see if you can resolve your dispute another way, for example through mediation.</p>
+      <p>There's usually a better outcome for children if you can reach an agreement without going to court.</p>
+      <p>A court will make an order based on what is best for your children. This might mean you won’t get the outcome
+        you’re after.</p>
+      <p>If you’re worried about your or your children’s safety you should continue with this application.</p>
+      <p><a href="https://helpwithchildarrangements.service.justice.gov.uk">Compare alternatives to court</a></p>
+      <h2>Fees</h2>
+      <p>It costs £215 to apply. Only the applicant (the person applying to court) needs to pay.</p>
+      <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees">get help paying the fee</a> if
+        you’re on a low income, receive certain benefits or have little or no savings. Apply online before you start
+        if you think you're eligible.</p>
+    </div>
+
+    <%= render partial: 'entrypoint/shared/start_application' %>
   </div>
 </div>
