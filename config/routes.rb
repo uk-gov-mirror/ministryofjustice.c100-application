@@ -45,7 +45,11 @@ Rails.application.routes.draw do
     get :unhandled
   end
 
-  root to: 'home#index'
+  root to: 'entrypoint#v1'
+
+  get 'entrypoint/v1'
+  get 'entrypoint/v2'
+  get 'entrypoint/v3'
 
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page

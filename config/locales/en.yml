@@ -20,6 +20,8 @@ en:
           lead_text: You got kicked out
     shared:
       kickout_feedback: Give your feedback. Help improve this service
+      start_application:
+        choose_application_type: Choose application type
 
   home:
     index:
