@@ -3,11 +3,11 @@ module C100App
     def destination
       return next_step if next_step
 
-      case step_name.to_sym
+      case step_name
       when :case_type
         after_case_type_step
       else
-        raise InvalidStep, "Invalid step '#{step_params}'"
+        raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
 
