@@ -10,19 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030142134) do
+ActiveRecord::Schema.define(version: 20171031094943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.string   "navigation_stack", default: [],              array: true
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "navigation_stack",   default: [],              array: true
     t.string   "case_type"
     t.uuid     "user_id"
     t.string   "user_type"
+    t.integer  "number_of_children"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 

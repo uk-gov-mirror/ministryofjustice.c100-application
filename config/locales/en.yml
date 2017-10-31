@@ -25,6 +25,10 @@ en:
         edit:
           page_title: Who is applying
           heading: Are you the person making this application?
+      number_of_children:
+        edit:
+          page_title: Number of children
+          heading: How many children is the application for?
 
   home:
     index:
@@ -45,9 +49,18 @@ en:
     back_link: Back
 
   errors:
+    format: "%{message}"
+    messages:
+      blank: Please enter an answer
     error_summary:
-      heading: There's a problem. You need to fix this error.
+      heading: There was a problem on the page
       text: ''
+    invalid_session:
+      heading: Sorry, you'll have to start again
+      <<: *START_FINISH
+      lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes or after you submit your case.
+      more_text: We do this for your security. Any unsaved details will be deleted.
+      page_title: Invalid session
     unhandled:
       heading: Sorry, something went wrong
       <<: *START_FINISH
@@ -66,6 +79,10 @@ en:
           attributes:
             user_type:
               inclusion: Select who is making this application
+        steps/applicant/number_of_children_form:
+          attributes:
+            number_of_children:
+              blank: Please enter the number of children
 
   helpers:
     fieldset:
@@ -76,6 +93,8 @@ en:
         user_type:
           themself: Yes, I am the person making the application
           representative: No, I am a legal representative of the applicant
+      steps_applicant_number_of_children_form:
+        number_of_children: Enter the number of children
       steps_nature_of_application_case_type_form:
         case_type:
           child_arrangements: Child Arrangements Order

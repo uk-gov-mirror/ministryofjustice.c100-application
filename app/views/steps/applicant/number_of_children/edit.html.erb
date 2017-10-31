@@ -6,11 +6,8 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <%= step_form @form_object, html: {class: 'ga-radioButtonGroup'} do |f| %>
-      <%= f.radio_button_fieldset :user_type,
-        choices: Steps::Applicant::UserTypeForm.choices,
-        legend_options: {class: 'visuallyhidden'} %>
-
+    <%= step_form @form_object do |f| %>
+      <%= f.text_field :number_of_children, type: :number, class: 'form-control' %>
       <%= f.submit class: 'button' %>
     <% end %>
   </div>
