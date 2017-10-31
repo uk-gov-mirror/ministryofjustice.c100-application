@@ -2,6 +2,10 @@ en:
   dictionary:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
 
+    YESNO: &YESNO
+      'yes': 'Yes'
+      'no': 'No'
+
     START_FINISH: &START_FINISH
       start_again: Start again
       finish: Finish
@@ -29,6 +33,12 @@ en:
         edit:
           page_title: Number of children
           heading: How many children is the application for?
+    help_with_fees:
+      help_paying:
+        edit:
+          page_title: Help paying
+          heading: Do you need help paying the court fee?
+          lead_text: You may be able to get help paying the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.
 
   home:
     index:
@@ -83,6 +93,10 @@ en:
           attributes:
             number_of_children:
               blank: Please enter the number of children
+        steps/help_with_fees/help_paying_form:
+          attributes:
+            help_paying:
+              inclusion: Select if you need help paying the court fee
 
   helpers:
     fieldset:
@@ -95,6 +109,9 @@ en:
           representative: No, I am a legal representative of the applicant
       steps_applicant_number_of_children_form:
         number_of_children: Enter the number of children
+      steps_help_with_fees_help_paying_form:
+        help_paying:
+          <<: *YESNO
       steps_nature_of_application_case_type_form:
         case_type:
           child_arrangements: Child Arrangements Order

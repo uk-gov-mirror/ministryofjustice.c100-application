@@ -25,38 +25,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   # end
 
   # describe '#save' do
-  #   context 'when no c100_application is associated with the form' do
-  #     let(:c100_application)  { nil }
-  #     let(:<%= step_name.underscore %>) { 'value' } # This must be a correct value
-
-  #     it 'raises an error' do
-  #       expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
-  #     end
-  #   end
-
-  #   context 'when <%= step_name.underscore %> is not given' do
-  #     it 'returns false' do
-  #       expect(subject.save).to be(false)
-  #     end
-
-  #     it 'has a validation error on the field' do
-  #       expect(subject).to_not be_valid
-  #       expect(subject.errors[:<%= step_name.underscore %>]).to_not be_empty
-  #     end
-  #   end
-
-  #   context 'when <%= step_name.underscore %> is not valid' do
-  #     let(:<%= step_name.underscore %>) { 'INVALID VALUE' }
-
-  #     it 'returns false' do
-  #       expect(subject.save).to be(false)
-  #     end
-
-  #     it 'has a validation error on the field' do
-  #       expect(subject).to_not be_valid
-  #       expect(subject.errors[:<%= step_name.underscore %>]).to_not be_empty
-  #     end
-  #   end
+  #   it_behaves_like 'a value object form', attribute_name: <%= step_name.underscore %>, example_value: 'INSERT VALID VALUE HERE'
 
   #   context 'when <%= step_name.underscore %> is valid' do
   #     let(:<%= step_name.underscore %>) { 'INSERT VALID VALUE HERE' }

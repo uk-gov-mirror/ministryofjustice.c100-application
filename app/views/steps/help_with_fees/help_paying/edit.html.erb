@@ -6,9 +6,11 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
+    <p class="lede"><%=t '.lead_text' %></p>
+
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :user_type,
-        choices: Steps::Applicant::UserTypeForm.choices %>
+      <%= f.radio_button_fieldset :help_paying, inline: true,
+        choices: Steps::HelpWithFees::HelpPayingForm.choices %>
 
       <%= f.submit class: 'button' %>
     <% end %>

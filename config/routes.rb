@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       edit_step :user_type
       edit_step :number_of_children
     end
+    namespace :help_with_fees do
+      edit_step :help_paying
+    end
     namespace :nature_of_application do
       edit_step :case_type
       show_step :case_type_kickout
