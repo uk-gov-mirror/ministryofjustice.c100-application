@@ -48,10 +48,15 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #     let(:<%= step_name.underscore %>) { 'CHANGEME' }
 
   #     it 'does not save the record but returns true' do
-  #       # Mutant killer. Uncomment and change the `_value` method name if needed.
-  #       # expect(subject).to receive(:case_type_value).and_call_original
   #       expect(c100_application).to_not receive(:update)
   #       expect(subject.save).to be(true)
+  #     end
+
+  #     # This is a mutant killer. Uncomment and change method names if needed.
+  #     it 'checks if the form should be saved or bypass the save' do
+  #       expect(subject).to receive(:changed?).and_call_original
+  #       expect(subject).to receive(:help_paying_value).and_call_original
+  #       subject.save
   #     end
   #   end
   # end
