@@ -13,13 +13,18 @@ RSpec.describe C100App::HelpWithFeesDecisionTree do
   context 'when the step is `help_paying`' do
     let(:step_params) {{help_paying: 'anything'}}
 
-    context 'and the answer is `YES`' do
-      let(:c100_application) {instance_double(C100Application, help_paying: HelpPaying::YES)}
+    context 'and the answer is `yes_with_ref_number`' do
+      let(:c100_application) {instance_double(C100Application, help_paying: HelpPaying::YES_WITH_REF_NUMBER)}
       it {is_expected.to have_destination('/entrypoint', :v1)}
     end
 
-    context 'and the answer is `NO`' do
-      let(:c100_application) {instance_double(C100Application, help_paying: HelpPaying::NO)}
+    context 'and the answer is `yes_without_ref_number`' do
+      let(:c100_application) {instance_double(C100Application, help_paying: HelpPaying::YES_WITHOUT_REF_NUMBER)}
+      it {is_expected.to have_destination('/entrypoint', :v1)}
+    end
+
+    context 'and the answer is `not_needed`' do
+      let(:c100_application) {instance_double(C100Application, help_paying: HelpPaying::NOT_NEEDED)}
       it {is_expected.to have_destination('/entrypoint', :v1)}
     end
   end

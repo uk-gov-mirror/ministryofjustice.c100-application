@@ -8,9 +8,17 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
+    <!--TODO: We need to come back to this to implement the show/hide properly as it is not-->
+    <!--working at the moment due to a combination of different markup and custom JS code-->
+    <!--inherited from the taxtribs project-->
+
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :help_paying, inline: true,
+      <%= f.radio_button_fieldset :help_paying,
         choices: Steps::HelpWithFees::HelpPayingForm.choices %>
+
+      <div class="panel toggleable" id="hwf_reference_number" aria-hidden="true" data-show-elements="form input:radio:first" data-hide-elements="form input:radio:not(:first)">
+        <%= f.text_field :hwf_reference_number, class: 'form-control' %>
+      </div>
 
       <%= f.submit class: 'button' %>
     <% end %>

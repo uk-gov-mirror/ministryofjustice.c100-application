@@ -4,7 +4,8 @@ module Steps
       def edit
         @form_object = HelpPayingForm.new(
           c100_application: current_c100_application,
-          help_paying: current_c100_application.help_paying
+          help_paying: current_c100_application.help_paying,
+          hwf_reference_number: current_c100_application.hwf_reference_number
         )
       end
 
