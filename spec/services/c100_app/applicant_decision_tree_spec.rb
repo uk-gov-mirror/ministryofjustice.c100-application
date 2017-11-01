@@ -28,6 +28,6 @@ RSpec.describe C100App::ApplicantDecisionTree do
     let(:step_params) {{'number_of_children' => 'anything'}}
     let(:c100_application) {instance_double(C100Application, number_of_children: 1)}
 
-    it {is_expected.to have_destination('/entrypoint', :v1)}
+    it {is_expected.to have_destination(:personal_details, :edit)}
   end
 end

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     namespace :applicant do
       edit_step :user_type
       edit_step :number_of_children
+      edit_step :personal_details
     end
     namespace :help_with_fees do
       edit_step :help_paying
