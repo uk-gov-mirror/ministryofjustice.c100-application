@@ -1,3 +1,4 @@
+# :nocov:
 class ActionDispatch::Routing::Mapper
   def edit_step(name)
     resource name,
@@ -12,6 +13,7 @@ class ActionDispatch::Routing::Mapper
              controller: name
   end
 end
+# :nocov:
 
 Rails.application.routes.draw do
   devise_for :users,
@@ -32,10 +34,6 @@ Rails.application.routes.draw do
     end
     namespace :help_with_fees do
       edit_step :help_paying
-    end
-    namespace :nature_of_application do
-      edit_step :case_type
-      show_step :case_type_kickout
     end
   end
 
