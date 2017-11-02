@@ -30,4 +30,11 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
     it {is_expected.to have_destination(:personal_details, :edit)}
   end
+
+  context 'when the step is `personal_details`' do
+    let(:step_params) {{'personal_details' => 'anything'}}
+    let(:c100_application) {instance_double(C100Application)}
+
+    it {is_expected.to have_destination(:number_of_children, :edit)}
+  end
 end

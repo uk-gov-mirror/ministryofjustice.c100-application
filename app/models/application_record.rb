@@ -1,7 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  # rubocop:disable Naming/PredicateName
   def self.has_value_object(value_object, constructor: nil, class_name: nil)
     composed_of value_object,
                 allow_nil:   true,
@@ -9,5 +8,4 @@ class ApplicationRecord < ActiveRecord::Base
                 constructor: constructor,
                 class_name:  class_name
   end
-  # rubocop:enable Naming/PredicateName
 end

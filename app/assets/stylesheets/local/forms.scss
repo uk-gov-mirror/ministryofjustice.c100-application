@@ -49,13 +49,16 @@ form.button_to {
   }
 }
 
-// This is a workaround to make the fieldset legends
-// visually hidden, as `govuk_elements_form_builder`
-// doesn't support this in their current version
-fieldset {
-  legend {
-    span.form-label-bold {
-      @extend .visuallyhidden
-    }
-  }
-}
+// This is a workaround to make the fieldset legends visually hidden, as `govuk_elements_form_builder`
+// doesn't support this in their current version.
+//
+// Update: it turns out, WE NEED labels sometimes, so can't hide all or nothing. Commenting out for now and
+// we might need to revisit PR: https://github.com/ministryofjustice/govuk_elements_form_builder/pull/89
+//
+//fieldset {
+//  legend {
+//    span.form-label-bold {
+//      @extend .visuallyhidden
+//    }
+//  }
+//}

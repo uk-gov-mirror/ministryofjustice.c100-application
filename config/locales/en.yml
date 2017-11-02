@@ -11,17 +11,6 @@ en:
       finish: Finish
 
   steps:
-    nature_of_application:
-      case_type:
-        edit:
-          page_title: Case type
-          heading: What is the nature of your application?
-          lead_text: Choose the most relevant option.
-      case_type_kickout:
-        show:
-          page_title: Case type kickout
-          heading: Case type kickout heading
-          lead_text: You got kicked out
     shared:
       kickout_feedback: Give your feedback. Help improve this service
     applicant:
@@ -33,6 +22,11 @@ en:
         edit:
           page_title: Number of children
           heading: How many children is the application for?
+      personal_details:
+        edit:
+          page_title: Applicant personal details
+          heading: About you (the applicant(s)) - Applicant {n}
+          privacy_warning_html: '<p><strong>If you do not wish your address to be made known to the respondent</strong>, leave the details below blank and complete <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Confidential contact details Form C8</a>. Please ensure that any documents submitted with this form or at a later date, <strong>do not</strong> disclose the confidential contact details you wish to withhold.</p>'
     help_with_fees:
       help_paying:
         edit:
@@ -62,6 +56,7 @@ en:
     format: "%{message}"
     messages:
       blank: Please enter an answer
+      inclusion: Please select an option
     error_summary:
       heading: There was a problem on the page
       text: ''
@@ -81,10 +76,6 @@ en:
   activemodel:
     errors:
       models:
-        steps/nature_of_application/case_type_form:
-          attributes:
-            case_type:
-              inclusion: Select what your case is about
         steps/applicant/user_type_form:
           attributes:
             user_type:
@@ -99,11 +90,20 @@ en:
               inclusion: Select if you need help paying the court fee
             hwf_reference_number:
               blank: Please enter your reference number
-
+        steps/applicant/personal_details_form:
+          attributes:
+            full_name:
+              blank: Please enter your full name
+            previous_full_name:
+              blank: Please enter your previous name
+            birthplace:
+              blank: Please enter your place of birth
+            email:
+              invalid: Please enter a valid email
   helpers:
     fieldset:
-      steps_nature_of_application_case_type_form:
-        case_type_html: What is your application about?
+      steps_applicant_personal_details_form:
+        has_previous_name: Do you have a previous name?
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -117,11 +117,20 @@ en:
           yes_without_ref_number: Yes, but I don’t have a Help with Fees reference number
           not_needed: 'No'
         hwf_reference_number: Enter your reference number
-      steps_nature_of_application_case_type_form:
-        case_type:
-          child_arrangements: Child Arrangements Order
-          specific_issue: Specific Issue Order
-          prohibited_steps: Prohibited Steps Order
+      steps_applicant_personal_details_form:
+        full_name: Full name
+        has_previous_name:
+          <<: *YESNO
+        previous_full_name: Please enter previous name
+        gender:
+          female: Female
+          male: Male
+        birthplace: Place of birth
+        address: Address
+        postcode: Postcode
+        home_phone: Home phone
+        mobile_phone: Mobile phone
+        email: Email address
       user:
         email: Your email address
         password: Choose password
@@ -137,9 +146,8 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
-      surveys_feedback_form:
-        comment_html: Don't include any personal or sensitive information
-        email_html: Provide an email if you wish to receive an update on your comment
+      steps_applicant_personal_details_form:
+        birthplace: Town/County/Country
     submit:
       create: Continue
       update: Continue
@@ -150,10 +158,6 @@ en:
       reset_password: Reset password
       change_password: Change my password
       save_and_continue: "Save and continue"
-    case_type:
-      question: What is your %{appeal_or_application} about?
-      accessible_change_text: what your %{appeal_or_application} is about
-      answers:
 
   number:
     currency:
