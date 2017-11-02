@@ -7,7 +7,9 @@ module C100App
       when :user_type
         edit(:number_of_children)
       when :number_of_children
-        root_path # TODO: change when we have the next step
+        edit(:personal_details)
+      when :personal_details
+        edit(:number_of_children) # TODO: update when able to add more applicants
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

@@ -1,0 +1,39 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+
+      <%= f.radio_button_fieldset :has_previous_name, inline: true,
+        choices: Steps::Applicant::PersonalDetailsForm.has_previous_name_choices %>
+
+      <div class="panel toggleable" id="previous_full_name" aria-hidden="true" data-show-elements="form input:radio:first" data-hide-elements="form input:radio:not(:first)">
+        <%= f.text_field :previous_full_name %>
+      </div>
+
+      <%= f.radio_button_fieldset :gender, inline: true,
+        choices: Steps::Applicant::PersonalDetailsForm.gender_choices %>
+
+      <%= f.text_field :birthplace %>
+
+      <section id="address-privacy-warning" data-block-name="address-privacy-warning">
+        <div class="govuk-govspeak gv-s-prose">
+          <%=t '.privacy_warning_html' %>
+        </div>
+      </section>
+
+      <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.text_field :postcode %>
+      <%= f.text_field :home_phone %>
+      <%= f.text_field :mobile_phone %>
+      <%= f.text_field :email %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

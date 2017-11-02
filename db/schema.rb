@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101112204) do
+ActiveRecord::Schema.define(version: 20171101130429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "applicants", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "full_name"
+    t.string   "has_previous_name"
+    t.string   "previous_full_name"
+    t.string   "gender"
+    t.string   "birthplace"
+    t.string   "address"
+    t.string   "postcode"
+    t.string   "home_phone"
+    t.string   "mobile_phone"
+    t.string   "email"
+    t.uuid     "c100_application_id"
+    t.index ["c100_application_id"], name: "index_applicants_on_c100_application_id", using: :btree
+  end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.datetime "created_at",                        null: false
@@ -42,5 +59,6 @@ ActiveRecord::Schema.define(version: 20171101112204) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "applicants", "c100_applications"
   add_foreign_key "c100_applications", "users"
 end

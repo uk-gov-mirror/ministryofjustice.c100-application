@@ -492,6 +492,9 @@ MethodCalledOnDoEndBlock:
 SpaceInsideHashLiteralBraces:
   Enabled: false
 
+PredicateName:
+  Enabled: false
+
 AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: indent
