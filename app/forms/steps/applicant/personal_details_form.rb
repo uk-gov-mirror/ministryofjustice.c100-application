@@ -1,7 +1,6 @@
 module Steps
   module Applicant
     class PersonalDetailsForm < BaseForm
-      attribute :applicant_id, String
       attribute :full_name, StrippedString
       attribute :has_previous_name, String
       attribute :previous_full_name, StrippedString
@@ -44,7 +43,7 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        applicant = c100_application.applicants.find_or_initialize_by(id: applicant_id)
+        applicant = c100_application.applicants.find_or_initialize_by(id: record_id)
         applicant.update(
           full_name: full_name,
           has_previous_name: has_previous_name_value,

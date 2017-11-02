@@ -1,0 +1,7 @@
+<li>
+  <%= applicant.full_name %> (<%= applicant.id %>)
+  <span class="right actions actions-tight">
+    <%= link_to 'edit', edit_steps_applicant_personal_details_path(applicant), class: 'button' %>
+    <%= button_to 'delete', steps_applicant_personal_details_path(applicant), method: :delete, data: {confirm: 'Are you sure?'}, class: 'button button-secondary' %>
+  </span>
+</li>

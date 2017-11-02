@@ -4,6 +4,16 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
+    <!-- This is just for the sake of having a functional CRUD. Pending UI/UX. -->
+    <% if @existing_applicants.any? %>
+      <p>Saved applicants:</p>
+      <ul class="list list-bullet">
+        <% @existing_applicants.each do |applicant| %>
+          <%= render partial: 'applicant_row', locals: {applicant: applicant} %>
+        <% end %>
+      </ul>
+    <% end %>
+
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <%= step_form @form_object do |f| %>
@@ -33,7 +43,10 @@
       <%= f.text_field :mobile_phone %>
       <%= f.text_field :email %>
 
-      <%= f.submit class: 'button' %>
+      <div class="xform-group form-submit">
+        <%= f.submit class: 'button' %>
+        <%= f.button t('.btn_add_another'), class: 'button', type: :submit, value: :add_another_applicant %>
+      </div>
     <% end %>
   </div>
 </div>
