@@ -212,7 +212,7 @@ RSpec.shared_examples 'an intermediate step controller without update' do
   end
 end
 
-RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, decision_tree_class|
+RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, decision_tree_class, resource_class|
   include_examples 'an intermediate step controller', form_class, decision_tree_class
 
   describe '#destroy' do
@@ -231,14 +231,14 @@ RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, dec
 
     context 'when a case exists in the session' do
       let!(:existing_case) {C100Application.create}
-      let!(:existing_applicant) {existing_case.applicants.create}
+      let!(:existing_resource) { resource_class.create(c100_application: existing_case) }
 
       before do
         allow(controller).to receive(:current_c100_application).and_return(existing_case)
       end
 
-      it 'responds with HTTP success' do
-        delete :destroy, params: {id: existing_applicant.id}
+      it 'redirects to edit an empty resource' do
+        delete :destroy, params: {id: existing_resource.id}
         expect(response).to redirect_to(action: :edit, id: nil)
       end
     end
