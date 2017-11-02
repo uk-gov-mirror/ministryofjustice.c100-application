@@ -5,6 +5,7 @@ class BaseForm
   include ActiveModel::Validations
 
   attr_accessor :c100_application
+  attr_accessor :record_id
 
   def save
     if valid?

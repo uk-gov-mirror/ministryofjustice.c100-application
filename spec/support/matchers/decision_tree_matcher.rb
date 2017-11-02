@@ -2,11 +2,12 @@ require 'rspec/expectations'
 
 RSpec::Matchers.define :have_destination do |controller, action|
   match do |decision_tree|
-    decision_tree.destination == { controller: controller, action: action }
+    decision_tree.destination == { controller: controller, action: action } ||
+      decision_tree.destination == { controller: controller, action: action, id: nil }
   end
 
   failure_message do |decision_tree|
-    if decision_tree.destination.is_a?(Hash) && decision_tree.destination.keys == [:controller, :action]
+    if decision_tree.destination.is_a?(Hash) && decision_tree.destination.keys.include?(:controller, :action)
 			"expected decision tree to have a destination of " +
       "'#{controller}##{action}', " +
       "got '#{decision_tree.destination[:controller]}##{decision_tree.destination[:action]}'"

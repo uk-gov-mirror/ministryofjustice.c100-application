@@ -15,7 +15,7 @@ class StepController < ApplicationController
 
     @next_step   = params[:next_step].presence
     @form_object = form_class.new(
-      hash.merge(c100_application: current_c100_application)
+      hash.merge(c100_application: current_c100_application, record_id: opts[:record_id])
     )
 
     if @form_object.save

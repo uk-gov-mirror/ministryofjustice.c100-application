@@ -211,3 +211,36 @@ RSpec.shared_examples 'an intermediate step controller without update' do
     end
   end
 end
+
+RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, decision_tree_class, resource_class|
+  include_examples 'an intermediate step controller', form_class, decision_tree_class
+
+  describe '#destroy' do
+    context 'when no case exists in the session yet' do
+      before do
+        # Needed because some specs that include these examples stub current_c100_application,
+        # which is undesirable for this particular test
+        allow(controller).to receive(:current_c100_application).and_return(nil)
+      end
+
+      it 'redirects to the invalid session error page' do
+        delete :destroy, params: {id: '123'}
+        expect(response).to redirect_to(invalid_session_errors_path)
+      end
+    end
+
+    context 'when a case exists in the session' do
+      let!(:existing_case) {C100Application.create}
+      let!(:existing_resource) { resource_class.create(c100_application: existing_case) }
+
+      before do
+        allow(controller).to receive(:current_c100_application).and_return(existing_case)
+      end
+
+      it 'redirects to edit an empty resource' do
+        delete :destroy, params: {id: existing_resource.id}
+        expect(response).to redirect_to(action: :edit, id: nil)
+      end
+    end
+  end
+end

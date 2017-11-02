@@ -25,8 +25,9 @@ en:
       personal_details:
         edit:
           page_title: Applicant personal details
-          heading: About you (the applicant(s)) - Applicant {n}
+          heading: About you (the applicant(s))
           privacy_warning_html: '<p><strong>If you do not wish your address to be made known to the respondent</strong>, leave the details below blank and complete <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Confidential contact details Form C8</a>. Please ensure that any documents submitted with this form or at a later date, <strong>do not</strong> disclose the confidential contact details you wish to withhold.</p>'
+          btn_add_another: Add another applicant
     help_with_fees:
       help_paying:
         edit:

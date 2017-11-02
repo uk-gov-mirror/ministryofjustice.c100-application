@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Steps::Applicant::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    applicant_id: applicant_id,
+    record_id: record_id,
     full_name: full_name,
     has_previous_name: has_previous_name,
     previous_full_name: previous_full_name,
@@ -20,7 +20,7 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
   let(:applicants_collection) { double('applicants_collection') }
   let(:applicant) { double('Applicant') }
 
-  let(:applicant_id) { nil }
+  let(:record_id) { nil }
   let(:full_name) { 'Full Name' }
   let(:has_previous_name) { 'no' }
   let(:previous_full_name) { nil }
@@ -150,7 +150,7 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
     end
 
     context 'when all the details are valid and record already exists' do
-      let(:applicant_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
+      let(:record_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
 
       it 'updates the record if it already exists' do
         expect(applicants_collection).to receive(:find_or_initialize_by).with(

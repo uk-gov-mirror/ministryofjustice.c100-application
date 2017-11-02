@@ -6,10 +6,10 @@ module C100App
       case step_name
       when :user_type
         edit(:number_of_children)
-      when :number_of_children
+      when :number_of_children, :add_another_applicant
         edit(:personal_details)
-      when :personal_details
-        edit(:number_of_children) # TODO: update when able to add more applicants
+      when :applicants_finished
+        edit(:number_of_children) # TODO: update when we have next step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

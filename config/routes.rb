@@ -1,10 +1,15 @@
 # :nocov:
 class ActionDispatch::Routing::Mapper
-  def edit_step(name)
+  def edit_step(name, opts = {})
     resource name,
              only:       [:edit, :update],
              controller: name,
-             path_names: { edit: '' }
+             path_names: { edit: '' } do
+
+      resources only:       [:edit, :update, :destroy],
+                controller: name,
+                path_names: { edit: '' } if opts.fetch(:enable_crud, false)
+    end
   end
 
   def show_step(name)
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
     namespace :applicant do
       edit_step :user_type
       edit_step :number_of_children
-      edit_step :personal_details
+      edit_step :personal_details, enable_crud: true
     end
     namespace :help_with_fees do
       edit_step :help_paying

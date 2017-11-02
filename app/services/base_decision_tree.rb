@@ -28,6 +28,6 @@ class BaseDecisionTree
   # end
 
   def edit(step_controller)
-    {controller: step_controller, action: :edit}
+    {controller: step_controller, action: :edit, id: nil}
   end
 end
