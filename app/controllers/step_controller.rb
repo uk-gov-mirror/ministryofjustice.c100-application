@@ -37,13 +37,15 @@ class StepController < ApplicationController
   def permitted_params(form_class)
     params
       .fetch(form_class.model_name.singular, {})
-      .permit(form_class.attributes.map(&:name) + date_attribute_keys(form_class))
+      .permit(form_attribute_names(form_class))
   end
 
-  def date_attribute_keys(form_class)
-    date_attributes = form_class.attributes.select { |attr| attr.primitive.eql?(Date) }.map(&:name)
-    date_attributes.map do |attr_name|
-      %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy]
+  def form_attribute_names(form_class)
+    form_class.attribute_set.map do |attr|
+      attr_name = attr.name
+      primitive = attr.primitive
+
+      primitive.eql?(Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
     end.flatten
   end
 
