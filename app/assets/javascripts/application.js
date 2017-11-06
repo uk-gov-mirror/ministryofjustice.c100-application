@@ -19,6 +19,9 @@
 //= require govuk_toolkit
 //= stub govuk/selection-buttons
 
+// From MOJ gov_uk_date_fields
+//= require govuk_date_fields
+
 function ShowHideContent() {
   var self = this;
 

@@ -37,7 +37,14 @@ class StepController < ApplicationController
   def permitted_params(form_class)
     params
       .fetch(form_class.model_name.singular, {})
-      .permit(form_class.new.attributes.keys)
+      .permit(form_class.attributes.map(&:name) + date_attribute_keys(form_class))
+  end
+
+  def date_attribute_keys(form_class)
+    date_attributes = form_class.attributes.select { |attr| attr.primitive.eql?(Date) }.map(&:name)
+    date_attributes.map do |attr_name|
+      %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy]
+    end.flatten
   end
 
   def update_navigation_stack
