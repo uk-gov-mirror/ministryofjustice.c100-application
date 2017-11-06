@@ -3,7 +3,6 @@ module Steps
     class PersonalDetailsController < Steps::ApplicantStepController
       before_action :set_existing_applicants
 
-      # rubocop:disable Metrics/AbcSize
       def edit
         @form_object = PersonalDetailsForm.new(
           c100_application: current_c100_application,
@@ -21,7 +20,6 @@ module Steps
           email: current_applicant.email
         )
       end
-      # rubocop:enable Metrics/AbcSize
 
       def update
         update_and_advance(

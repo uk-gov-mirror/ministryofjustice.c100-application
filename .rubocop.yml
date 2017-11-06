@@ -495,14 +495,15 @@ SpaceInsideHashLiteralBraces:
 PredicateName:
   Enabled: false
 
+# We have several big form objects with lots of attributes and this cop keeps complaining.
+# Disabling for now until we have a more stable code base.
+AbcSize:
+  Enabled: false
+
 AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: indent
 
 MethodLength:
-  Enabled: true
-  Max: 20
-
-AbcSize:
   Enabled: true
   Max: 20

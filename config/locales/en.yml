@@ -1,10 +1,13 @@
 en:
   dictionary:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
+    dont_know: &dont_know "Don't know"
+    birthplace_hint: &birthplace_hint "Town/County/Country"
 
     YESNO: &YESNO
       'yes': 'Yes'
       'no': 'No'
+      unknown: *dont_know
 
     START_FINISH: &START_FINISH
       start_again: Start again
@@ -34,6 +37,12 @@ en:
           page_title: Help paying
           heading: Do you need help paying the court fee?
           lead_text: You may be able to get help paying the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.
+    respondent:
+      personal_details:
+        edit:
+          page_title: Respondent personal details
+          heading: The respondent(s)
+          btn_add_another: Add another respondent
 
   home:
     index:
@@ -103,10 +112,32 @@ en:
               blank: Please enter your place of birth
             email:
               invalid: Please enter a valid email
+        steps/respondent/personal_details_form:
+          attributes:
+            full_name:
+              blank: Please enter the full name
+            previous_full_name:
+              blank: Please enter the previous name
+            dob:
+              blank: Please enter the date of birth
+            birthplace:
+              blank: Please enter the place of birth
+            address:
+              blank: Please enter the address
+            home_phone:
+              blank: Please enter the home phone
+            email:
+              invalid: Please enter a valid email
   helpers:
     fieldset:
       steps_applicant_personal_details_form:
         has_previous_name: Do you have a previous name?
+      steps_respondent_personal_details_form:
+        has_previous_name: Do you have a previous name?
+        dob_unknown_html: ""
+        postcode_unknown_html: ""
+        mobile_phone_unknown_html: ""
+        email_unknown_html: ""
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -134,6 +165,25 @@ en:
         home_phone: Home phone
         mobile_phone: Mobile phone
         email: Email address
+      # TODO: share as much keys as possible between Applicant and Respondent
+      steps_respondent_personal_details_form:
+        full_name: Full name
+        has_previous_name:
+          <<: *YESNO
+        previous_full_name: Please enter previous name
+        gender:
+          female: Female
+          male: Male
+        birthplace: Place of birth
+        address: Address (to which documents relating to this application should be sent)
+        postcode: Postcode
+        home_phone: Home phone
+        mobile_phone: Mobile phone
+        email: Email address
+        dob_unknown: *dont_know
+        postcode_unknown: *dont_know
+        mobile_phone_unknown: *dont_know
+        email_unknown: *dont_know
       user:
         email: Your email address
         password: Choose password
@@ -150,7 +200,9 @@ en:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
       steps_applicant_personal_details_form:
-        birthplace: Town/County/Country
+        birthplace: *birthplace_hint
+      steps_respondent_personal_details_form:
+        birthplace: *birthplace_hint
     submit:
       create: Continue
       update: Continue
