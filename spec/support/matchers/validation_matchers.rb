@@ -19,6 +19,25 @@ RSpec::Matchers.define :validate_presence_of do |attribute, error = :blank|
   end
 end
 
+RSpec::Matchers.define :validate_presence_unless_unknown_of do |attribute, error = :blank|
+  include ValidationHelpers
+
+  match do |object|
+    object.send("#{attribute}=", nil)
+    check_errors(object, attribute, error)
+    object.send("#{attribute}_unknown=", true)
+    object.valid?
+  end
+
+  description do
+    "validate_presence_unless_unknown_of #{attribute}"
+  end
+
+  failure_message do |object|
+    "expected `#{attribute}` not to have error `#{error}` but got `#{errors_for(attribute, object)}`"
+  end
+end
+
 RSpec::Matchers.define :validate_email do |attribute, error = :invalid|
   include ValidationHelpers
 

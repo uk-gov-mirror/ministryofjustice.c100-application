@@ -38,6 +38,9 @@ Rails.application.routes.draw do
       edit_step :number_of_children
       edit_step :personal_details, enable_crud: true
     end
+    namespace :respondent do
+      edit_step :personal_details, enable_crud: true
+    end
     namespace :help_with_fees do
       edit_step :help_paying
     end
