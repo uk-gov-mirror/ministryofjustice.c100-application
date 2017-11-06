@@ -131,9 +131,9 @@ en:
   helpers:
     fieldset:
       steps_applicant_personal_details_form:
-        has_previous_name: Do you have a previous name?
+        has_previous_name: Previous name?
       steps_respondent_personal_details_form:
-        has_previous_name: Do you have a previous name?
+        has_previous_name: Previous name?
         dob_unknown_html: ""
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
