@@ -8,6 +8,7 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
     has_previous_name: has_previous_name,
     previous_full_name: previous_full_name,
     gender: gender,
+    dob: dob,
     birthplace: birthplace,
     address: address,
     postcode: postcode,
@@ -25,6 +26,7 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
   let(:has_previous_name) { 'no' }
   let(:previous_full_name) { nil }
   let(:gender) { 'male' }
+  let(:dob) { Date.today }
   let(:birthplace) { 'London' }
   let(:address) { nil }
   let(:postcode) { nil }
@@ -47,8 +49,6 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
   end
 
   describe '#save' do
-    #it_behaves_like 'a value object form', attribute_name: personal_details, example_value: 'INSERT VALID VALUE HERE'
-
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
 
@@ -126,51 +126,51 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
       end
     end
 
-    context 'when all the details are valid and record does not exist' do
-      it 'creates the record if it does not exist' do
-        expect(applicants_collection).to receive(:find_or_initialize_by).with(
-          id: nil
-        ).and_return(applicant)
-
-        expect(applicant).to receive(:update).with(
+    context 'for valid details' do
+      let(:expected_attributes) {
+        {
           full_name: 'Full Name',
           has_previous_name: GenericYesNo::NO,
           previous_full_name: '',
           gender: Gender::MALE,
+          dob: Date.today,
           birthplace: 'London',
           address: '',
           postcode: '',
           home_phone: '',
           mobile_phone: '',
           email: 'email@example.com'
-        ).and_return(true)
+        }
+      }
 
-        expect(subject.save).to be(true)
+      context 'when record does not exist' do
+        it 'creates the record if it does not exist' do
+          expect(applicants_collection).to receive(:find_or_initialize_by).with(
+            id: nil
+          ).and_return(applicant)
+
+          expect(applicant).to receive(:update).with(
+            expected_attributes
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
       end
-    end
 
-    context 'when all the details are valid and record already exists' do
-      let(:record_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
+      context 'when record already exists' do
+        let(:record_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
 
-      it 'updates the record if it already exists' do
-        expect(applicants_collection).to receive(:find_or_initialize_by).with(
-          id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6'
-        ).and_return(applicant)
+        it 'updates the record if it already exists' do
+          expect(applicants_collection).to receive(:find_or_initialize_by).with(
+            id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6'
+          ).and_return(applicant)
 
-        expect(applicant).to receive(:update).with(
-          full_name: 'Full Name',
-          has_previous_name: GenericYesNo::NO,
-          previous_full_name: '',
-          gender: Gender::MALE,
-          birthplace: 'London',
-          address: '',
-          postcode: '',
-          home_phone: '',
-          mobile_phone: '',
-          email: 'email@example.com'
-        ).and_return(true)
+          expect(applicant).to receive(:update).with(
+            expected_attributes
+          ).and_return(true)
 
-        expect(subject.save).to be(true)
+          expect(subject.save).to be(true)
+        end
       end
     end
   end

@@ -97,6 +97,8 @@ en:
               blank: Please enter your full name
             previous_full_name:
               blank: Please enter your previous name
+            dob:
+              blank: Please enter your date of birth
             birthplace:
               blank: Please enter your place of birth
             email:
@@ -179,6 +181,9 @@ en:
     password_toggle:
       show_password: Show password
       hide_password: Hide password
+    form_elements:
+      dob: Date of birth
+      dob_hint_html: 'If party under 18 read section R of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>'
   session:
     note:
       heading: Security time-out

@@ -12,6 +12,7 @@ module Steps
           has_previous_name: current_applicant.has_previous_name,
           previous_full_name: current_applicant.previous_full_name,
           gender: current_applicant.gender,
+          dob: current_applicant.dob,
           birthplace: current_applicant.birthplace,
           address: current_applicant.address,
           postcode: current_applicant.postcode,
