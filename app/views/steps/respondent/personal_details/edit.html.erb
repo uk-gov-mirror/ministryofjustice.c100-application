@@ -5,10 +5,10 @@
     <%= step_header %>
 
     <!-- This is just for the sake of having a functional CRUD. Pending UI/UX. -->
-    <% if @existing_respondents.any? %>
+    <% if @existing_records.any? %>
       <p>Saved respondents:</p>
       <ul class="list list-bullet">
-        <% @existing_respondents.each do |respondent| %>
+        <% @existing_records.each do |respondent| %>
           <%= render partial: 'respondent_row', locals: {respondent: respondent} %>
         <% end %>
       </ul>
