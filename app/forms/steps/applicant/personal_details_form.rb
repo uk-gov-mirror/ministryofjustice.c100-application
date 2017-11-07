@@ -50,17 +50,11 @@ module Steps
 
         applicant = c100_application.applicants.find_or_initialize_by(id: record_id)
         applicant.update(
-          full_name: full_name,
-          has_previous_name: has_previous_name_value,
-          previous_full_name: previous_full_name,
-          gender: gender_value,
-          dob: dob,
-          birthplace: birthplace,
-          address: address,
-          postcode: postcode,
-          home_phone: home_phone,
-          mobile_phone: mobile_phone,
-          email: email
+          # Some attributes are value objects and thus we need to provide their values
+          attributes_map.merge(
+            has_previous_name: has_previous_name_value,
+            gender: gender_value
+          )
         )
       end
     end

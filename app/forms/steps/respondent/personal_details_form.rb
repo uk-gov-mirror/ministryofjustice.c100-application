@@ -58,21 +58,11 @@ module Steps
 
         respondent = c100_application.respondents.find_or_initialize_by(id: record_id)
         respondent.update(
-          full_name: full_name,
-          has_previous_name: has_previous_name_value,
-          previous_full_name: previous_full_name,
-          gender: gender_value,
-          dob: dob,
-          dob_unknown: dob_unknown,
-          birthplace: birthplace,
-          address: address,
-          postcode: postcode,
-          postcode_unknown: postcode_unknown,
-          home_phone: home_phone,
-          mobile_phone: mobile_phone,
-          mobile_phone_unknown: mobile_phone_unknown,
-          email: email,
-          email_unknown: email_unknown
+          # Some attributes are value objects and thus we need to provide their values
+          attributes_map.merge(
+            has_previous_name: has_previous_name_value,
+            gender: gender_value
+          )
         )
       end
     end
