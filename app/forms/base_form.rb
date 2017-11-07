@@ -16,6 +16,18 @@ class BaseForm
     run_callbacks(:initialize) { super }
   end
 
+  # Initialize a new form object given an AR model, setting its attributes
+  def self.build(record, c100_application:)
+    attributes = attributes_map(record)
+
+    attributes.merge!(
+      c100_application: c100_application,
+      record_id: record.id
+    )
+
+    new(attributes)
+  end
+
   def save
     if valid?
       persist!
@@ -33,6 +45,15 @@ class BaseForm
 
   def []=(attr_name, value)
     instance_variable_set("@#{attr_name}".to_sym, value)
+  end
+
+  # Iterates through all declared attributes in the form object, mapping its values
+  def self.attributes_map(origin)
+    attribute_set.map { |attr| [attr.name, origin[attr.name]] }.to_h
+  end
+
+  def attributes_map
+    self.class.attributes_map(self)
   end
 
   def to_key
