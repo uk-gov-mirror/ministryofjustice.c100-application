@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106112653) do
+ActiveRecord::Schema.define(version: 20171107123012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,20 @@ ActiveRecord::Schema.define(version: 20171106112653) do
     t.string   "help_paying"
     t.string   "hwf_reference_number"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
+  end
+
+  create_table "children", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "full_name"
+    t.date     "dob"
+    t.boolean  "dob_unknown"
+    t.string   "gender"
+    t.text     "orders_applied_for"
+    t.text     "applicants_relationship"
+    t.text     "respondents_relationship"
+    t.uuid     "c100_application_id"
+    t.index ["c100_application_id"], name: "index_children_on_c100_application_id", using: :btree
   end
 
   create_table "respondents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -84,5 +98,6 @@ ActiveRecord::Schema.define(version: 20171106112653) do
 
   add_foreign_key "applicants", "c100_applications"
   add_foreign_key "c100_applications", "users"
+  add_foreign_key "children", "c100_applications"
   add_foreign_key "respondents", "c100_applications"
 end
