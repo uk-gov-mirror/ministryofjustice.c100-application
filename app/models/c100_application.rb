@@ -1,6 +1,7 @@
 class C100Application < ApplicationRecord
   belongs_to :user, optional: true, dependent: :destroy
 
+  has_many :children,    dependent: :destroy
   has_many :applicants,  dependent: :destroy
   has_many :respondents, dependent: :destroy
 
