@@ -244,3 +244,29 @@ RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, dec
     end
   end
 end
+
+RSpec.shared_examples 'a show step controller' do
+  describe '#show' do
+    context 'when no case exists in the session' do
+      before do
+        # Needed because some specs that include these examples stub current_c100_application,
+        # which is undesirable for this particular test
+        allow(controller).to receive(:current_c100_application).and_return(nil)
+      end
+
+      it 'redirects to the invalid session error page' do
+        get :show
+        expect(response).to redirect_to(invalid_session_errors_path)
+      end
+    end
+
+    context 'when a case exists in the session' do
+      let!(:existing_case) { C100Application.create }
+
+      it 'responds with HTTP success' do
+        get :show, session: { c100_application_id: existing_case.id }
+        expect(response).to be_successful
+      end
+    end
+  end
+end

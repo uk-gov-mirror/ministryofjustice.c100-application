@@ -22,10 +22,9 @@ class BaseDecisionTree
     { controller: '/entrypoint', action: :v1 }
   end
 
-  # TODO: Uncomment when needed. We don't have yet any `show` steps.
-  # def show(step_controller)
-  #   {controller: step_controller, action: :show}
-  # end
+  def show(step_controller)
+    {controller: step_controller, action: :show}
+  end
 
   def edit(step_controller)
     {controller: step_controller, action: :edit, id: nil}
