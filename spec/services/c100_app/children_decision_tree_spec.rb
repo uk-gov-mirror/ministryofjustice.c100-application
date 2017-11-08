@@ -10,8 +10,8 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `number_of_children`' do
-    let(:step_params) {{'number_of_children' => 'anything'}}
+  context 'when the step is `personal_details`' do
+    let(:step_params) {{'personal_details' => 'anything'}}
     let(:c100_application) {instance_double(C100Application, number_of_children: 1)}
 
     it {is_expected.to have_destination(:personal_details, :edit)}
@@ -31,11 +31,10 @@ RSpec.describe C100App::ChildrenDecisionTree do
     it {is_expected.to have_destination(:additional_details, :edit)}
   end
 
-  # TODO: this is a placeholder, to be updated when we actually have the next (real) step
   context 'when the step is `additional_details`' do
     let(:step_params) {{'additional_details' => 'anything'}}
     let(:c100_application) {instance_double(C100Application)}
 
-    it {is_expected.to have_destination('/entrypoint', :v1)}
+    it {is_expected.to have_destination('/steps/applicant/personal_details', :edit)}
   end
 end

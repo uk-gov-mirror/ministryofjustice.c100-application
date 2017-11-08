@@ -170,6 +170,8 @@ en:
 
   helpers:
     fieldset:
+      steps_help_with_fees_help_paying_form:
+        help_paying_html: ""
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:

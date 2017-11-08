@@ -5,7 +5,7 @@ module C100App
 
       case step_name
       when :help_paying
-        root_path
+        show('/steps/children/instructions')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
