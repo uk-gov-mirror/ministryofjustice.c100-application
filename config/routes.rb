@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     namespace :children do
       show_step :instructions
       edit_step :personal_details, enable_crud: true
+      edit_step :additional_details
     end
     namespace :applicant do
       edit_step :user_type
