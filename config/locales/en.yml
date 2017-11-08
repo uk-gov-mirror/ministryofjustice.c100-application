@@ -86,6 +86,10 @@ en:
           page_title: Child personal details
           heading: Child details
           btn_add_another: Add another child
+      additional_details:
+        edit:
+          page_title: Further information about the child(ren)
+          heading: Further information about the child(ren)
 
   home:
     index:
@@ -161,6 +165,8 @@ en:
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/children/additional_details_form:
+          attributes:
 
   helpers:
     fieldset:
@@ -174,6 +180,11 @@ en:
         email_unknown_html: ""
       steps_children_personal_details_form:
         dob_unknown_html: ""
+      steps_children_additional_details_form:
+        children_known_to_authorities: Are any of the children known to the local authority children’s services?
+        children_protection_plan: Are any of the children the subject of a child protection plan?
+        children_same_parents: Do all the children have the same parents?
+        children_residence: Who do the children currently live with?
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -196,6 +207,22 @@ en:
         orders_applied_for: Order(s) applied for
         applicants_relationship: Relationship to applicant(s)
         respondents_relationship: Relationship to respondent(s)
+      steps_children_additional_details_form:
+        children_known_to_authorities:
+          <<: *YESNO
+        children_protection_plan:
+          <<: *YESNO
+        children_same_parents:
+          <<: *YESNO
+        children_residence:
+          applicant: Applicant(s)
+          respondent: Respondent(s)
+          other: Other
+        children_known_to_authorities_details: Please state which child and the name of the Local Authority and Social worker (if known)
+        children_same_parents_yes_details: What are the names of the parents?
+        children_same_parents_no_details: Please give details of each parent and their children involved in this application
+        children_parental_responsibility_details: Please state everyone who has parental responsibility for each child and how they have parental responsibility
+        children_residence_details: Please give the full address of the child, the names of any adults living with the children and their relationship to or involvement with the child
       user:
         email: Your email address
         password: Choose password
@@ -215,6 +242,14 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_personal_details_form:
         birthplace: *birthplace_hint
+      steps_children_additional_details_form:
+        children_parental_responsibility_details_html: |
+          e.g. ‘child’s mother’, ‘child’s father and was married to the mother when the child was born’ etc.
+          (See Section E of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>
+          for more information)
+        children_residence_details_html: |
+          If you do not wish this information to be made known to the Respondent, leave the details blank and complete
+          Confidential contact details <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Form C8</a>.
     submit:
       create: Continue
       update: Continue

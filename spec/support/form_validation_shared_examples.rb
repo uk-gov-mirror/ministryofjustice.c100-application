@@ -9,6 +9,8 @@ RSpec.shared_examples 'a value object form' do |options|
   end
 
   context 'when attribute is not given' do
+    let(options[:attribute_name]) { nil }
+
     it 'returns false' do
       expect(subject.save).to be(false)
     end

@@ -24,9 +24,16 @@ RSpec.describe C100App::ChildrenDecisionTree do
     it {is_expected.to have_destination(:personal_details, :edit)}
   end
 
-  # TODO: this is a placeholder, to be updated when we actually have the next (real) step
   context 'when the step is `children_finished`' do
     let(:step_params) {{'children_finished' => 'anything'}}
+    let(:c100_application) {instance_double(C100Application)}
+
+    it {is_expected.to have_destination(:additional_details, :edit)}
+  end
+
+  # TODO: this is a placeholder, to be updated when we actually have the next (real) step
+  context 'when the step is `additional_details`' do
+    let(:step_params) {{'additional_details' => 'anything'}}
     let(:c100_application) {instance_double(C100Application)}
 
     it {is_expected.to have_destination('/entrypoint', :v1)}

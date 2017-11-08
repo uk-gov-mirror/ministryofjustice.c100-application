@@ -17,11 +17,11 @@ class BaseForm
   end
 
   # Initialize a new form object given an AR model, setting its attributes
-  def self.build(record, c100_application:)
+  def self.build(record, c100_application: nil)
     attributes = attributes_map(record)
 
     attributes.merge!(
-      c100_application: c100_application,
+      c100_application: c100_application || record,
       record_id: record.id
     )
 
