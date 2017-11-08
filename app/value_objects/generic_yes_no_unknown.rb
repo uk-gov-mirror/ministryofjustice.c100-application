@@ -1,4 +1,4 @@
-class HasPreviousName < ValueObject
+class GenericYesNoUnknown < ValueObject
   VALUES = [
     YES = new(:yes),
     NO  = new(:no),

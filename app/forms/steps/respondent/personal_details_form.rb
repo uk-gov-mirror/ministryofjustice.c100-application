@@ -22,7 +22,7 @@ module Steps
       acts_as_gov_uk_date :dob
 
       def self.has_previous_name_choices
-        HasPreviousName.values.map(&:to_s)
+        GenericYesNoUnknown.values.map(&:to_s)
       end
       validates_inclusion_of :has_previous_name, in: has_previous_name_choices
 
@@ -42,11 +42,11 @@ module Steps
       private
 
       def has_previous_name?
-        has_previous_name.eql?(GenericYesNo::YES.to_s)
+        has_previous_name.eql?(GenericYesNoUnknown::YES.to_s)
       end
 
       def has_previous_name_value
-        GenericYesNo.new(has_previous_name)
+        GenericYesNoUnknown.new(has_previous_name)
       end
 
       def gender_value

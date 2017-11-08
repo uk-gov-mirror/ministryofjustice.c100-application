@@ -150,7 +150,7 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
       let(:expected_attributes) {
         {
           full_name: 'Full Name',
-          has_previous_name: GenericYesNo::NO,
+          has_previous_name: GenericYesNoUnknown::NO,
           previous_full_name: '',
           gender: Gender::MALE,
           dob: Date.today,
