@@ -9,7 +9,7 @@ module C100App
       when :number_of_children, :add_another_applicant
         edit(:personal_details)
       when :applicants_finished
-        edit(:number_of_children) # TODO: update when we have next step
+        show('/steps/children/instructions')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

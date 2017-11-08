@@ -38,11 +38,10 @@ RSpec.describe C100App::ApplicantDecisionTree do
     it {is_expected.to have_destination(:personal_details, :edit)}
   end
 
-  # TODO: this is a placeholder, to be updated when we actually have the next (real) step
   context 'when the step is `applicants_finished`' do
     let(:step_params) {{'applicants_finished' => 'anything'}}
     let(:c100_application) {instance_double(C100Application)}
 
-    it {is_expected.to have_destination(:number_of_children, :edit)}
+    it {is_expected.to have_destination('/steps/children/instructions', :show)}
   end
 end
