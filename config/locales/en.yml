@@ -74,6 +74,7 @@ en:
           page_title: Help paying
           heading: Do you need help paying the court fee?
           lead_text: You may be able to get help paying the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.
+          hwf_reference_number_help_html: '<p>You’ll need to get a <a href="https://www.gov.uk/get-help-with-court-fees">reference number</a> before you can continue with this service.</p>'
     respondent:
       personal_details:
         edit:
