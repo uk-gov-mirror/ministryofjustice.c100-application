@@ -13,12 +13,15 @@
     <!--inherited from the taxtribs project-->
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :help_paying,
-        choices: Steps::HelpWithFees::HelpPayingForm.choices %>
-
-      <div class="panel toggleable" id="hwf_reference_number" aria-hidden="true" data-show-elements="form input:radio:first" data-hide-elements="form input:radio:not(:first)">
-        <%= f.text_field :hwf_reference_number, class: 'form-control' %>
-      </div>
+      <%=
+        f.radio_button_fieldset :help_paying do |fieldset|
+          fieldset.radio_input(HelpPaying::YES_WITH_REF_NUMBER, 'data-target': 'hwf_reference_number')
+          fieldset.revealing_panel(:hwf_reference_number) { f.text_field :hwf_reference_number }
+          fieldset.radio_input(HelpPaying::YES_WITHOUT_REF_NUMBER, 'data-target': 'hwf_reference_number_help')
+          fieldset.revealing_panel(:hwf_reference_number_help) { t('.hwf_reference_number_help_html') }
+          fieldset.radio_input(HelpPaying::NOT_NEEDED)
+        end
+      %>
 
       <%= f.submit class: 'button' %>
     <% end %>
