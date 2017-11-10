@@ -15,10 +15,8 @@
     <%= step_form @form_object do |f| %>
       <%=
         f.radio_button_fieldset :help_paying do |fieldset|
-          fieldset.radio_input(HelpPaying::YES_WITH_REF_NUMBER, 'data-target': 'hwf_reference_number')
-          fieldset.revealing_panel(:hwf_reference_number) { f.text_field :hwf_reference_number }
-          fieldset.radio_input(HelpPaying::YES_WITHOUT_REF_NUMBER, 'data-target': 'hwf_reference_number_help')
-          fieldset.revealing_panel(:hwf_reference_number_help) { t('.hwf_reference_number_help_html') }
+          fieldset.radio_input(HelpPaying::YES_WITH_REF_NUMBER) { f.text_field :hwf_reference_number }
+          fieldset.radio_input(HelpPaying::YES_WITHOUT_REF_NUMBER) { t('.hwf_reference_number_help_html') }
           fieldset.radio_input(HelpPaying::NOT_NEEDED)
         end
       %>

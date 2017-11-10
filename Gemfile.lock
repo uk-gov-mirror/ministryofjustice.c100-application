@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ministryofjustice/govuk_elements_form_builder.git
-  revision: 356551e1e047e3c523e74351a47e45245f259a1d
+  revision: d3b3b2e312459783fed823a13a9a0c8a43ed512b
   branch: show-hide-radios
   specs:
     govuk_elements_form_builder (1.0.0)
