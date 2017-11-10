@@ -19,12 +19,13 @@
     <%= step_form @form_object do |f| %>
       <%= f.text_field :full_name, class: 'form-control' %>
 
-      <%= f.radio_button_fieldset :has_previous_name,
-        choices: Steps::Respondent::PersonalDetailsForm.has_previous_name_choices %>
-
-      <div class="panel toggleable" id="previous_full_name" aria-hidden="true" data-show-elements="form input:radio:first" data-hide-elements="form input:radio:not(:first)">
-        <%= f.text_field :previous_full_name %>
-      </div>
+      <%=
+        f.radio_button_fieldset :has_previous_name do |fieldset|
+          fieldset.radio_input(GenericYesNoUnknown::YES) { f.text_field :previous_full_name }
+          fieldset.radio_input(GenericYesNoUnknown::NO)
+          fieldset.radio_input(GenericYesNoUnknown::UNKNOWN)
+        end
+      %>
 
       <%= f.radio_button_fieldset :gender, inline: true,
         choices: Steps::Respondent::PersonalDetailsForm.gender_choices %>

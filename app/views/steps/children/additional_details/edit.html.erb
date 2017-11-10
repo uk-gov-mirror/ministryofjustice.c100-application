@@ -7,37 +7,41 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :children_known_to_authorities,
-        choices: Steps::Children::AdditionalDetailsForm.children_known_to_authorities_choices %>
-
-      <!-- TODO: make this show/hide based on previous radio options -->
-      <div class="panel toggleable" id="children_known_to_authorities_details">
-        <%= f.text_area :children_known_to_authorities_details, size: '40x4', class: 'form-control-3-4' %>
-      </div>
+      <%=
+        f.radio_button_fieldset :children_known_to_authorities do |fieldset|
+          fieldset.radio_input(GenericYesNoUnknown::YES) {
+            f.text_area :children_known_to_authorities_details, size: '40x4', class: 'form-control-3-4'
+          }
+          fieldset.radio_input(GenericYesNoUnknown::NO)
+          fieldset.radio_input(GenericYesNoUnknown::UNKNOWN)
+        end
+      %>
 
       <%= f.radio_button_fieldset :children_protection_plan,
         choices: Steps::Children::AdditionalDetailsForm.children_protection_plan_choices %>
 
-      <%= f.radio_button_fieldset :children_same_parents,
-        choices: Steps::Children::AdditionalDetailsForm.children_same_parents_choices %>
-
-      <!-- TODO: make these show/hide based on previous radio options -->
-      <div class="panel toggleable" id="children_same_parents_yes_details">
-        <%= f.text_area :children_same_parents_yes_details, size: '40x4', class: 'form-control-3-4' %>
-      </div>
-      <div class="panel toggleable" id="children_same_parents_no_details">
-        <%= f.text_area :children_same_parents_no_details, size: '40x4', class: 'form-control-3-4' %>
-      </div>
+      <%=
+        f.radio_button_fieldset :children_same_parents do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES) {
+            f.text_area :children_same_parents_yes_details, size: '40x4', class: 'form-control-3-4'
+          }
+          fieldset.radio_input(GenericYesNo::NO) {
+            f.text_area :children_same_parents_no_details, size: '40x4', class: 'form-control-3-4'
+          }
+        end
+      %>
 
       <%= f.text_area :children_parental_responsibility_details, size: '40x4', class: 'form-control-3-4' %>
 
-      <%= f.radio_button_fieldset :children_residence,
-        choices: Steps::Children::AdditionalDetailsForm.children_residence_choices %>
-
-      <!-- TODO: make this show/hide based on previous radio options -->
-      <div class="panel toggleable" id="children_residence_details">
-        <%= f.text_area :children_residence_details, size: '40x4', class: 'form-control-3-4' %>
-      </div>
+      <%=
+        f.radio_button_fieldset :children_residence do |fieldset|
+          fieldset.radio_input(ChildrenResidence::APPLICANT)
+          fieldset.radio_input(ChildrenResidence::RESPONDENT)
+          fieldset.radio_input(ChildrenResidence::OTHER) {
+            f.text_area :children_residence_details, size: '40x4', class: 'form-control-3-4'
+          }
+        end
+      %>
 
       <%= f.submit class: 'button' %>
     <% end %>
