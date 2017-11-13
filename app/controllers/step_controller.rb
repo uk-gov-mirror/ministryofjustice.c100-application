@@ -1,6 +1,6 @@
 class StepController < ApplicationController
   before_action :check_c100_application_presence
-  before_action :update_navigation_stack
+  before_action :update_navigation_stack, only: [:show, :edit]
 
   def previous_step_path
     # Second to last element in the array, will be nil for arrays of size 0 or 1

@@ -50,6 +50,35 @@ en:
       email:
         invalid: Please enter a valid email
 
+    # This are all the kind of abuse concerns, for applicant and for children. For now they
+    # are the same for both, but we might need to customize some of these later on.
+    ABUSE_CONCERNS: &ABUSE_CONCERNS
+      substances_html: For example, you think your children may be affected by being in contact with someone who has a drug, alcohol or substance problem.
+      physical_html: Physical abuse includes actions such as pushing, punching, slapping, kicking, choking and using weapons.
+      emotional_html: Emotional abuse can be verbal or non-verbal. Examples include name calling, constant criticism, ignoring someone or not letting them have an opinion.
+      psychological_html: |
+        <p>Psychological abuse is when someone is subjected to a situation that can lead to:</p>
+        <ul class="list list-bullet">
+          <li>anxiety</li>
+          <li>depression</li>
+          <li>post-traumatic stress disorder</li>
+        </ul>
+      sexual_html: |
+        <p>Examples of sexual abuse include:</p>
+        <ul class="list list-bullet">
+          <li>being forced or pressured to have sex without consent</li>
+          <li>threatening someone into an unwanted sexual activity</li>
+          <li>unwanted touching or groping</li>
+        </ul>
+      financial_html: |
+        <p>Examples of financial abuse include:</p>
+        <ul class="list list-bullet">
+          <li>not allowing a person to work</li>
+          <li>stopping someone saving their own money</li>
+          <li>withholding money or credit cards</li>
+        </ul>
+      other_html: ""
+
   steps:
     shared:
       kickout_feedback: Give your feedback. Help improve this service
@@ -91,6 +120,46 @@ en:
         edit:
           page_title: Further information about the child(ren)
           heading: Further information about the child(ren)
+    abuse_concerns:
+      question:
+        edit:
+          page_title:
+            applicant:
+              substances: Concerns about drug, alcohol or substance abuse
+              physical: Concerns about physical abuse
+              emotional: Concerns about emotional abuse
+              psychological: Concerns about psychological abuse
+              sexual: Concerns about sexual abuse
+              financial: Concerns about financial abuse
+              other: Other concerns about your welfare
+            children:
+              physical: Concerns about your children’s physical abuse
+              emotional: Concerns about your children’s emotional abuse
+              psychological: Concerns about your children’s psychological abuse
+              sexual: Concerns about your children’s sexual abuse
+              financial: Concerns about your children’s financial abuse
+              other: Other concerns about your children’s welfare
+          heading:
+            applicant:
+              substances: Do you have any concerns about drug, alcohol or substance abuse?
+              physical: Have you suffered from any form of physical abuse?
+              emotional: Have you suffered from any form of emotional abuse?
+              psychological: Have you suffered from any form of psychological abuse?
+              sexual: Have you suffered from any form of sexual abuse?
+              financial: Have you suffered from any form of financial abuse?
+              other: Do you have any other concerns about your welfare?
+            children:
+              physical: Have your children suffered from any form of physical abuse?
+              emotional: Have your children suffered from any form of emotional abuse?
+              psychological: Have your children suffered from any form of psychological abuse?
+              sexual: Have your children suffered from any form of sexual abuse?
+              financial: Have your children suffered from any form of financial abuse?
+              other: Do you have any other concerns about your children’s welfare?
+          lead_text:
+            applicant:
+              <<: *ABUSE_CONCERNS
+            children:
+              <<: *ABUSE_CONCERNS
 
   home:
     index:
@@ -173,6 +242,8 @@ en:
     fieldset:
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
+      steps_abuse_concerns_question_form:
+        answer_html: ""
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:

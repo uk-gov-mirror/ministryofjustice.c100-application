@@ -27,7 +27,7 @@ class BaseDecisionTree
     {controller: step_controller, action: :show}
   end
 
-  def edit(step_controller)
-    {controller: step_controller, action: :edit, id: nil}
+  def edit(step_controller, params = {})
+    {controller: step_controller, action: :edit}.merge(params)
   end
 end
