@@ -120,8 +120,8 @@ en:
         edit:
           page_title: Further information about the child(ren)
           heading: Further information about the child(ren)
-    concerns:
-      abuse_question:
+    abuse_concerns:
+      question:
         edit:
           page_title:
             applicant:
@@ -242,7 +242,7 @@ en:
     fieldset:
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
-      steps_concerns_abuse_question_form:
+      steps_abuse_concerns_question_form:
         answer_html: ""
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?

@@ -15,7 +15,7 @@
       <%= f.hidden_field :kind %>
 
       <%= f.radio_button_fieldset :answer, inline: true,
-        choices: Steps::Concerns::AbuseQuestionForm.choices %>
+        choices: Steps::AbuseConcerns::QuestionForm.choices %>
 
       <%= f.submit class: 'button' %>
     <% end %>

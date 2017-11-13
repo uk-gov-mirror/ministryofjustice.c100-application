@@ -1,6 +1,6 @@
 module Steps
-  module Concerns
-    class AbuseQuestionForm < BaseForm
+  module AbuseConcerns
+    class QuestionForm < BaseForm
       attribute :subject, String
       attribute :kind, String
       attribute :answer, String

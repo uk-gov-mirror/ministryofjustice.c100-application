@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe C100App::ConcernsDecisionTree do
+RSpec.describe C100App::AbuseConcernsDecisionTree do
   let(:c100_application) { double('Object') }
   let(:step_params)      {
     {
@@ -59,37 +59,37 @@ RSpec.describe C100App::ConcernsDecisionTree do
 
       context 'abuse kind `substances`' do
         let(:abuse_kind) { 'substances' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'physical'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'physical'})}
       end
 
       context 'abuse kind `physical`' do
         let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'emotional'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'emotional'})}
       end
 
       context 'abuse kind `emotional`' do
         let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'psychological'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'psychological'})}
       end
 
       context 'abuse kind `psychological`' do
         let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'sexual'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'sexual'})}
       end
 
       context 'abuse kind `sexual`' do
         let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'financial'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'financial'})}
       end
 
       context 'abuse kind `financial`' do
         let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'applicant', kind: 'other'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'other'})}
       end
 
       context 'abuse kind `other`' do
         let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'physical'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'physical'})}
       end
     end
 
@@ -98,27 +98,27 @@ RSpec.describe C100App::ConcernsDecisionTree do
 
       context 'abuse kind `physical`' do
         let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'emotional'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'emotional'})}
       end
 
       context 'abuse kind `emotional`' do
         let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'psychological'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'psychological'})}
       end
 
       context 'abuse kind `psychological`' do
         let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'sexual'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'sexual'})}
       end
 
       context 'abuse kind `sexual`' do
         let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'financial'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'financial'})}
       end
 
       context 'abuse kind `financial`' do
         let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:abuse_question, :edit, {subject: 'children', kind: 'other'})}
+        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'other'})}
       end
 
       context 'abuse kind `other`' do

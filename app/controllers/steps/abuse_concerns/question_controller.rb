@@ -1,8 +1,8 @@
 module Steps
-  module Concerns
-    class AbuseQuestionController < Steps::ConcernsStepController
+  module AbuseConcerns
+    class QuestionController < Steps::AbuseConcernsStepController
       def edit
-        @form_object = AbuseQuestionForm.new(
+        @form_object = QuestionForm.new(
           c100_application: current_c100_application,
           subject: current_concern.subject,
           kind: current_concern.kind,
@@ -11,7 +11,7 @@ module Steps
       end
 
       def update
-        update_and_advance(AbuseQuestionForm, as: :abuse_question)
+        update_and_advance(QuestionForm, as: :question)
       end
 
       private

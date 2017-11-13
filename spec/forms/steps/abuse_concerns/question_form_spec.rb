@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Steps::Concerns::AbuseQuestionForm do
+RSpec.describe Steps::AbuseConcerns::QuestionForm do
   let(:arguments) { {
     c100_application: c100_application,
     subject: abuse_subject,

@@ -1,5 +1,5 @@
 module C100App
-  class ConcernsDecisionTree < BaseDecisionTree
+  class AbuseConcernsDecisionTree < BaseDecisionTree
     def destination
       # TODO: at the moment regardless of the answer (`yes` or `no`) we move to the
       # following question. This will change once we introduce the abuse details step.
@@ -26,7 +26,7 @@ module C100App
     def applicant_questions_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit(:abuse_question, subject: AbuseSubject::CHILDREN, kind: AbuseType::PHYSICAL)
+        edit(:question, subject: AbuseSubject::CHILDREN, kind: AbuseType::PHYSICAL)
       else
         questions_destination(AbuseSubject::APPLICANT)
       end
@@ -48,17 +48,17 @@ module C100App
     def questions_destination(subject)
       case abuse_kind
       when AbuseType::SUBSTANCES
-        edit(:abuse_question, subject: subject, kind: AbuseType::PHYSICAL)
+        edit(:question, subject: subject, kind: AbuseType::PHYSICAL)
       when AbuseType::PHYSICAL
-        edit(:abuse_question, subject: subject, kind: AbuseType::EMOTIONAL)
+        edit(:question, subject: subject, kind: AbuseType::EMOTIONAL)
       when AbuseType::EMOTIONAL
-        edit(:abuse_question, subject: subject, kind: AbuseType::PSYCHOLOGICAL)
+        edit(:question, subject: subject, kind: AbuseType::PSYCHOLOGICAL)
       when AbuseType::PSYCHOLOGICAL
-        edit(:abuse_question, subject: subject, kind: AbuseType::SEXUAL)
+        edit(:question, subject: subject, kind: AbuseType::SEXUAL)
       when AbuseType::SEXUAL
-        edit(:abuse_question, subject: subject, kind: AbuseType::FINANCIAL)
+        edit(:question, subject: subject, kind: AbuseType::FINANCIAL)
       when AbuseType::FINANCIAL
-        edit(:abuse_question, subject: subject, kind: AbuseType::OTHER)
+        edit(:question, subject: subject, kind: AbuseType::OTHER)
       else
         raise InvalidStep, "Unknown abuse kind: #{abuse_kind}"
       end
