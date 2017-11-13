@@ -2,7 +2,7 @@ class CreateAbuseConcernsTable < ActiveRecord::Migration[5.0]
   def change
     create_table :abuse_concerns, id: :uuid do |t|
       t.string :subject
-      t.string :type
+      t.string :kind
       t.string :answer
       t.text   :behaviour_description
       t.string :behaviour_start

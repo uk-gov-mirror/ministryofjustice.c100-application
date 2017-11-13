@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171110151255) do
 
   create_table "abuse_concerns", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "subject"
-    t.string "type"
+    t.string "kind"
     t.string "answer"
     t.text   "behaviour_description"
     t.string "behaviour_start"
