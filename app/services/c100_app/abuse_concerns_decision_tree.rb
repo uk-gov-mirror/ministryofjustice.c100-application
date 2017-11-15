@@ -1,13 +1,15 @@
 module C100App
   class AbuseConcernsDecisionTree < BaseDecisionTree
     def destination
-      # TODO: at the moment regardless of the answer (`yes` or `no`) we move to the
-      # following question. This will change once we introduce the abuse details step.
-      case abuse_subject
-      when AbuseSubject::APPLICANT
+      case [step_name, abuse_subject]
+      when [:question, AbuseSubject::APPLICANT]
         applicant_questions_destination
-      when AbuseSubject::CHILDREN
+      when [:details, AbuseSubject::APPLICANT]
+        applicant_details_destination
+      when [:question, AbuseSubject::CHILDREN]
         children_questions_destination
+      when [:details, AbuseSubject::CHILDREN]
+        children_details_destination
       else
         raise InvalidStep, "Invalid step '#{step_params}'"
       end
@@ -23,7 +25,20 @@ module C100App
       AbuseType.new(step_params[:kind])
     end
 
+    def answer
+      GenericYesNo.new(step_params[:answer])
+    end
+
     def applicant_questions_destination
+      case answer
+      when GenericYesNo::YES
+        edit(:details, subject: abuse_subject, kind: abuse_kind)
+      else
+        applicant_details_destination
+      end
+    end
+
+    def applicant_details_destination
       case abuse_kind
       when AbuseType::OTHER
         edit(:question, subject: AbuseSubject::CHILDREN, kind: AbuseType::PHYSICAL)
@@ -33,6 +48,15 @@ module C100App
     end
 
     def children_questions_destination
+      case answer
+      when GenericYesNo::YES
+        edit(:details, subject: abuse_subject, kind: abuse_kind)
+      else
+        children_details_destination
+      end
+    end
+
+    def children_details_destination
       case abuse_kind
       when AbuseType::OTHER # TODO: This is a placeholder. change when we have the `orders` step
         show('/steps/children/instructions')

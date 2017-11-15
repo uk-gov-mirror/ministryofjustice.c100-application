@@ -1,0 +1,39 @@
+<% title t(".page_title.#{@form_object.i18n_key}") %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t ".heading.#{@form_object.i18n_key}" %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.hidden_field :subject %>
+      <%= f.hidden_field :kind %>
+
+      <%= f.text_area :behaviour_description, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.text_field :behaviour_start %>
+
+      <%=
+        f.radio_button_fieldset :behaviour_ongoing do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES)
+          fieldset.radio_input(GenericYesNo::NO) { f.text_field :behaviour_stop }
+        end
+      %>
+
+      <!-- TODO: we have a problem with revealing fields showing more than one form element. -->
+      <!-- It will require some extra work on the gem. Leaving it for now. -->
+      <%=
+        f.radio_button_fieldset :asked_for_help do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES) do
+            f.text_field(:help_party)
+            #f.radio_button_fieldset(:help_provided, inline: true, choices: [GenericYesNo::YES, GenericYesNo::NO])
+            #f.text_area(:help_description, size: '40x4', class: 'form-control-3-4')
+          end
+          fieldset.radio_input(GenericYesNo::NO)
+        end
+      %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

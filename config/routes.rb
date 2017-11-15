@@ -40,6 +40,9 @@ Rails.application.routes.draw do
       edit_step :question do
         get '/:subject/:kind', action: :edit
       end
+      edit_step :details do
+        get '/:subject/:kind', action: :edit
+      end
     end
     namespace :children do
       show_step :instructions

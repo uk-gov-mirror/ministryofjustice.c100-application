@@ -1,14 +1,14 @@
 module Steps
   module AbuseConcerns
-    class QuestionController < BaseAbuseStepController
+    class DetailsController < BaseAbuseStepController
       def edit
-        @form_object = QuestionForm.build(
+        @form_object = DetailsForm.build(
           current_concern, c100_application: current_c100_application
         )
       end
 
       def update
-        update_and_advance(QuestionForm, as: :question)
+        update_and_advance(DetailsForm, as: :details)
       end
     end
   end

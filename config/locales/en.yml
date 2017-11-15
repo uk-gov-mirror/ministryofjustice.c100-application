@@ -160,6 +160,40 @@ en:
               <<: *ABUSE_CONCERNS
             children:
               <<: *ABUSE_CONCERNS
+      details:
+        edit:
+          page_title:
+            applicant:
+              substances: Details of the substances abuse
+              physical: Details of the physical abuse
+              emotional: Details of the emotional abuse
+              psychological: Details of the psychological abuse
+              sexual: Details of the sexual abuse
+              financial: Details of the financial abuse
+              other: Details of your other concerns
+            children:
+              physical: Details of your children’s physical abuse
+              emotional: Details of your children’s emotional abuse
+              psychological: Details of your children’s psychological abuse
+              sexual: Details of your children’s sexual abuse
+              financial: Details of your children’s financial abuse
+              other: Details of other concerns about your children
+          heading:
+            applicant:
+              substances: Provide details of the drug, alcohol or substance abuse
+              physical: Provide details of the physical abuse
+              emotional: Provide details of the emotional abuse
+              psychological: Provide details of the psychological abuse
+              sexual: Provide details of the sexual abuse
+              financial: Provide details of the financial abuse
+              other: Provide details of your other concerns
+            children:
+              physical: Provide details of your children’s physical abuse
+              emotional: Provide details of your children’s emotional abuse
+              psychological: Provide details of your children’s psychological abuse
+              sexual: Provide details of your children’s sexual abuse
+              financial: Provide details of your children’s financial abuse
+              other: Provide details of your other concerns about your children
 
   home:
     index:
@@ -244,6 +278,9 @@ en:
         help_paying_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
+      steps_abuse_concerns_details_form:
+        behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
+        asked_for_help_html: Have you ever asked for help?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:
@@ -297,6 +334,17 @@ en:
         children_same_parents_no_details: Please give details of each parent and their children involved in this application
         children_parental_responsibility_details: Please state everyone who has parental responsibility for each child and how they have parental responsibility
         children_residence_details: Please give the full address of the child, the names of any adults living with the children and their relationship to or involvement with the child
+      steps_abuse_concerns_details_form:
+        behaviour_description: Give a short description
+        behaviour_start: When did your concerns about your children start?
+        behaviour_stop: When did you stop being concerned about the issue affecting your children?
+        help_party: Who did you ask for help?
+        behaviour_ongoing:
+          <<: *YESNO
+        asked_for_help:
+          <<: *YESNO
+        help_provided:
+          <<: *YESNO
       user:
         email: Your email address
         password: Choose password
@@ -324,6 +372,10 @@ en:
         children_residence_details_html: |
           If you do not wish this information to be made known to the Respondent, leave the details blank and complete
           Confidential contact details <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Form C8</a>.
+      steps_abuse_concerns_details_form:
+        behaviour_start: Add an approximate date if you’re unsure
+        behaviour_stop: Add an approximate date if you’re unsure
+        asked_for_help: For example, your GP
     submit:
       create: Continue
       update: Continue
