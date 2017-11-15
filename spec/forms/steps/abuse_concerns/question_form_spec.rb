@@ -80,17 +80,43 @@ RSpec.describe Steps::AbuseConcerns::QuestionForm do
     end
 
     context 'for valid details' do
-      it 'creates the record if it does not exist' do
-        expect(concerns_collection).to receive(:find_or_initialize_by).with(
+      before do
+        allow(concerns_collection).to receive(:find_or_initialize_by).with(
           subject: AbuseSubject::APPLICANT,
           kind: AbuseType::EMOTIONAL
         ).and_return(abuse_concern)
+      end
 
-        expect(abuse_concern).to receive(:update).with(
-          answer: GenericYesNo::NO
-        ).and_return(true)
+      context 'for a `yes` answer' do
+        let(:abuse_answer) { 'yes' }
 
-        expect(subject.save).to be(true)
+        it 'saves the answer' do
+          expect(abuse_concern).to receive(:update).with(
+            answer: GenericYesNo::YES
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'for a `no` answer' do
+        let(:abuse_answer) { 'no' }
+
+        it 'saves the answer and also reset the details attributes' do
+          expect(abuse_concern).to receive(:update).with(
+            answer: GenericYesNo::NO,
+            behaviour_description: nil,
+            behaviour_start: nil,
+            behaviour_ongoing: nil,
+            behaviour_stop: nil,
+            asked_for_help: nil,
+            help_party: nil,
+            help_provided: nil,
+            help_description: nil
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
       end
     end
   end

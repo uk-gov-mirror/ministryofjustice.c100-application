@@ -498,6 +498,9 @@ PredicateName:
 RedundantMerge:
   Enabled: false
 
+MultilineIfModifier:
+  Enabled: false
+
 AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: indent
