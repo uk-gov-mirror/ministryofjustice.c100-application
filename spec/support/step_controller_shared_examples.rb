@@ -19,20 +19,20 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
       end
     end
 
-    xcontext 'when there is an already submitted case in the session' do
-      let(:existing_case) { C100Application.create(case_status: CaseStatus::SUBMITTED) }
-
-      before do
-        # Needed because some specs that include these examples stub current_c100_application,
-        # which is undesirable for this particular test
-        allow(controller).to receive(:current_c100_application).and_call_original
-      end
-
-      it 'redirects to the case already submitted error page' do
-        put :update, params: expected_params, session: { c100_application_id: existing_case.id }
-        expect(response).to redirect_to(case_submitted_errors_path)
-      end
-    end
+    # context 'when there is an already submitted case in the session' do
+    #   let(:existing_case) { C100Application.create(case_status: CaseStatus::SUBMITTED) }
+    #
+    #   before do
+    #     # Needed because some specs that include these examples stub current_c100_application,
+    #     # which is undesirable for this particular test
+    #     allow(controller).to receive(:current_c100_application).and_call_original
+    #   end
+    #
+    #   it 'redirects to the case already submitted error page' do
+    #     put :update, params: expected_params, session: { c100_application_id: existing_case.id }
+    #     expect(response).to redirect_to(case_submitted_errors_path)
+    #   end
+    # end
 
     context 'when a case in progress is in the session' do
       let(:existing_case) { C100Application.create }
@@ -114,49 +114,49 @@ RSpec.shared_examples 'a starting point step controller' do
       end
     end
 
-    xcontext 'saving the case for later on `edit`' do
-      context 'for a signed in user' do
-        let(:user) { instance_double(User) }
-
-        before do
-          sign_in(user)
-        end
-
-        it 'does not save the case for later' do
-          expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
-          get :edit
-        end
-      end
-    end
+    # context 'saving the case for later on `edit`' do
+    #   context 'for a signed in user' do
+    #     let(:user) { instance_double(User) }
+    #
+    #     before do
+    #       sign_in(user)
+    #     end
+    #
+    #     it 'does not save the case for later' do
+    #       expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
+    #       get :edit
+    #     end
+    #   end
+    # end
   end
 
-  xdescribe '#update' do
-    context 'saving the case for later on `update`' do
-      context 'for a signed in user' do
-        let(:user) { instance_double(User) }
-
-        before do
-          sign_in(user)
-        end
-
-        it 'saves the case for later' do
-          expect(TaxTribs::SaveCaseForLater).to receive(:new).with(
-            an_instance_of(C100Application),
-            user
-          ).and_return(double.as_null_object)
-
-          put :update, params: {}
-        end
-      end
-
-      context 'for a signed out user' do
-        it 'does not save the case for later' do
-          expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
-          put :update, params: {}
-        end
-      end
-    end
-  end
+  # describe '#update' do
+  #   context 'saving the case for later on `update`' do
+  #     context 'for a signed in user' do
+  #       let(:user) { instance_double(User) }
+  #
+  #       before do
+  #         sign_in(user)
+  #       end
+  #
+  #       it 'saves the case for later' do
+  #         expect(TaxTribs::SaveCaseForLater).to receive(:new).with(
+  #           an_instance_of(C100Application),
+  #           user
+  #         ).and_return(double.as_null_object)
+  #
+  #         put :update, params: {}
+  #       end
+  #     end
+  #
+  #     context 'for a signed out user' do
+  #       it 'does not save the case for later' do
+  #         expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
+  #         put :update, params: {}
+  #       end
+  #     end
+  #   end
+  # end
 end
 
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
