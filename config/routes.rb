@@ -44,6 +44,9 @@ Rails.application.routes.draw do
         get '/:subject/:kind', action: :edit
       end
     end
+    namespace :court_orders do
+      edit_step :has_orders
+    end
     namespace :children do
       show_step :instructions
       edit_step :personal_details, enable_crud: true

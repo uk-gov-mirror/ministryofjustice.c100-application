@@ -194,6 +194,12 @@ en:
               sexual: Provide details of your children’s sexual abuse
               financial: Provide details of your children’s financial abuse
               other: Provide details of your other concerns about your children
+    court_orders:
+      has_orders:
+        edit:
+          page_title: Have you had court orders made?
+          heading: Have you had any court orders made for your protection?
+          lead_text: For example, a restraining order. Include any orders that are still valid.
 
   home:
     index:
@@ -278,6 +284,8 @@ en:
         help_paying_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
+      steps_court_orders_has_orders_form:
+        has_court_orders_html: ""
       steps_abuse_concerns_details_form:
         behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
         asked_for_help_html: Have you ever asked for help?
@@ -346,6 +354,9 @@ en:
         asked_for_help:
           <<: *YESNO
         help_provided:
+          <<: *YESNO
+      steps_court_orders_has_orders_form:
+        has_court_orders:
           <<: *YESNO
       user:
         email: Your email address

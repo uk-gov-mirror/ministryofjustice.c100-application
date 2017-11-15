@@ -25,7 +25,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   # end
 
   # describe '#save' do
-  #   it_behaves_like 'a value object form', attribute_name: <%= step_name.underscore %>, example_value: 'INSERT VALID VALUE HERE'
+  #   it_behaves_like 'a value object form', attribute_name: :<%= step_name.underscore %>, example_value: 'INSERT VALID VALUE HERE'
 
   #   context 'when <%= step_name.underscore %> is valid' do
   #     let(:<%= step_name.underscore %>) { 'INSERT VALID VALUE HERE' }

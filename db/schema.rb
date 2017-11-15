@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110151255) do
+ActiveRecord::Schema.define(version: 20171115143551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20171110151255) do
     t.text     "children_parental_responsibility_details"
     t.string   "children_residence"
     t.text     "children_residence_details"
+    t.string   "has_court_orders"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 
@@ -84,6 +85,41 @@ ActiveRecord::Schema.define(version: 20171110151255) do
     t.text     "respondents_relationship"
     t.uuid     "c100_application_id"
     t.index ["c100_application_id"], name: "index_children_on_c100_application_id", using: :btree
+  end
+
+  create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "non_molestation"
+    t.date   "non_molestation_issue_date"
+    t.string "non_molestation_length"
+    t.string "non_molestation_is_current"
+    t.string "non_molestation_court_name"
+    t.string "occupation"
+    t.date   "occupation_issue_date"
+    t.string "occupation_length"
+    t.string "occupation_is_current"
+    t.string "occupation_court_name"
+    t.string "forced_marriage_protection"
+    t.date   "forced_marriage_protection_issue_date"
+    t.string "forced_marriage_protection_length"
+    t.string "forced_marriage_protection_is_current"
+    t.string "forced_marriage_protection_court_name"
+    t.string "restraining"
+    t.date   "restraining_issue_date"
+    t.string "restraining_length"
+    t.string "restraining_is_current"
+    t.string "restraining_court_name"
+    t.string "injunctive"
+    t.date   "injunctive_issue_date"
+    t.string "injunctive_length"
+    t.string "injunctive_is_current"
+    t.string "injunctive_court_name"
+    t.string "undertaking"
+    t.date   "undertaking_issue_date"
+    t.string "undertaking_length"
+    t.string "undertaking_is_current"
+    t.string "undertaking_court_name"
+    t.uuid   "c100_application_id"
+    t.index ["c100_application_id"], name: "index_court_orders_on_c100_application_id", using: :btree
   end
 
   create_table "respondents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -126,5 +162,6 @@ ActiveRecord::Schema.define(version: 20171110151255) do
   add_foreign_key "applicants", "c100_applications"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "children", "c100_applications"
+  add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "respondents", "c100_applications"
 end
