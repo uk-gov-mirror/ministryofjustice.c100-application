@@ -281,6 +281,7 @@ en:
       steps_abuse_concerns_details_form:
         behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
         asked_for_help_html: Have you ever asked for help?
+        help_provided_html: Did they help you?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:
@@ -339,6 +340,7 @@ en:
         behaviour_start: When did your concerns about your children start?
         behaviour_stop: When did you stop being concerned about the issue affecting your children?
         help_party: Who did you ask for help?
+        help_description: What did they do?
         behaviour_ongoing:
           <<: *YESNO
         asked_for_help:

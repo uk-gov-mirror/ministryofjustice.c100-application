@@ -14,22 +14,21 @@
       <%= f.text_field :behaviour_start %>
 
       <%=
-        f.radio_button_fieldset :behaviour_ongoing do |fieldset|
+        f.radio_button_fieldset :behaviour_ongoing, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES)
           fieldset.radio_input(GenericYesNo::NO) { f.text_field :behaviour_stop }
         end
       %>
 
-      <!-- TODO: we have a problem with revealing fields showing more than one form element. -->
-      <!-- It will require some extra work on the gem. Leaving it for now. -->
       <%=
-        f.radio_button_fieldset :asked_for_help do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES) do
-            f.text_field(:help_party)
-            #f.radio_button_fieldset(:help_provided, inline: true, choices: [GenericYesNo::YES, GenericYesNo::NO])
-            #f.text_area(:help_description, size: '40x4', class: 'form-control-3-4')
-          end
+        f.radio_button_fieldset :asked_for_help, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :asked_for_help_panel)
           fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:asked_for_help_panel) do |panel|
+            panel.text_field(:help_party)
+            panel.radio_button_fieldset(:help_provided, inline: true, choices: GenericYesNo.values)
+            panel.text_area(:help_description, size: '40x4', class: 'form-control-3-4')
+          end
         end
       %>
 

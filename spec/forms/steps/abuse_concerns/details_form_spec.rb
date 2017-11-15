@@ -11,8 +11,8 @@ RSpec.describe Steps::AbuseConcerns::DetailsForm do
     behaviour_stop: behaviour_stop,
     asked_for_help: asked_for_help,
     help_party: help_party,
-    # help_provided: help_provided,
-    # help_description: help_description
+    help_provided: help_provided,
+    help_description: help_description
   } }
 
   let(:c100_application) { instance_double(C100Application, abuse_concerns: concerns_collection) }
@@ -27,8 +27,8 @@ RSpec.describe Steps::AbuseConcerns::DetailsForm do
   let(:behaviour_stop) { 'last monday' }
   let(:asked_for_help) { 'yes' }
   let(:help_party) { 'doctor' }
-  let(:help_provided) { nil }
-  let(:help_description) { nil }
+  let(:help_provided) { 'yes' }
+  let(:help_description) { 'description' }
 
   subject { described_class.new(arguments) }
 
@@ -75,32 +75,33 @@ RSpec.describe Steps::AbuseConcerns::DetailsForm do
       end
     end
 
-    # TODO: revisit this once we fix the gem to support multiple fields inside a revealing div
     context 'validation on help fields' do
       context 'when `asked_for_help` is yes' do
         let(:asked_for_help) { 'yes' }
 
         it { should validate_presence_of(:help_party) }
-        # it { should validate_presence_of(:help_provided, :inclusion) }
-        # it { should validate_presence_of(:help_description) }
+        it { should validate_presence_of(:help_provided, :inclusion) }
+        it { should validate_presence_of(:help_description) }
       end
 
       context 'when `asked_for_help` is no' do
         let(:asked_for_help) { 'no' }
 
         it { should_not validate_presence_of(:help_party) }
-        # it { should_not validate_presence_of(:help_provided, :inclusion) }
-        # it { should_not validate_presence_of(:help_description) }
+        it { should_not validate_presence_of(:help_provided, :inclusion) }
+        it { should_not validate_presence_of(:help_description) }
       end
     end
 
     context 'for valid details' do
-      it 'creates the record if it does not exist' do
-        expect(concerns_collection).to receive(:find_or_initialize_by).with(
+      before do
+        allow(concerns_collection).to receive(:find_or_initialize_by).with(
           subject: AbuseSubject::APPLICANT,
           kind: AbuseType::EMOTIONAL
         ).and_return(abuse_concern)
+      end
 
+      it 'creates the record if it does not exist' do
         expect(abuse_concern).to receive(:update).with(
           behaviour_description: 'a description',
           behaviour_start: '1 year ago',
@@ -108,11 +109,32 @@ RSpec.describe Steps::AbuseConcerns::DetailsForm do
           behaviour_stop: 'last monday',
           asked_for_help: GenericYesNo::YES,
           help_party: 'doctor',
-          # help_provided: nil,
-          # help_description: nil
+          help_provided: GenericYesNo::YES,
+          help_description: 'description'
         ).and_return(true)
 
         expect(subject.save).to be(true)
+      end
+
+      context 'when `asked_for_help` is no' do
+        let(:asked_for_help) { 'no' }
+        let(:help_party) { nil }
+        let(:help_provided) { nil }
+        let(:help_description) { nil}
+
+        # mutant killer, really
+        it 'has the right attributes' do
+          expect(abuse_concern).to receive(:update).with(
+            hash_including(
+              asked_for_help: GenericYesNo::NO,
+              help_party: nil,
+              help_provided: nil,
+              help_description: nil
+            )
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
       end
     end
   end
