@@ -5,8 +5,8 @@ module Steps
       attribute :kind, String
 
       # This ensures no tampering with the values
-      validates_inclusion_of :subject, in: AbuseSubject.values.map(&:to_s)
-      validates_inclusion_of :kind,    in: AbuseType.values.map(&:to_s)
+      validates_inclusion_of :subject, in: AbuseSubject.string_values
+      validates_inclusion_of :kind,    in: AbuseType.string_values
 
       # As this form object is reused permuting `subject` and `kind`, sharing the
       # same view, this key will allow us to render the appropriate translations.

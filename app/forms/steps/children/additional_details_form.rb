@@ -13,22 +13,22 @@ module Steps
       attribute :children_residence_details, String
 
       def self.children_known_to_authorities_choices
-        GenericYesNoUnknown.values.map(&:to_s)
+        GenericYesNoUnknown.string_values
       end
       validates_inclusion_of :children_known_to_authorities, in: children_known_to_authorities_choices
 
       def self.children_protection_plan_choices
-        GenericYesNoUnknown.values.map(&:to_s)
+        GenericYesNoUnknown.string_values
       end
       validates_inclusion_of :children_protection_plan, in: children_protection_plan_choices
 
       def self.children_same_parents_choices
-        GenericYesNo.values.map(&:to_s)
+        GenericYesNo.string_values
       end
       validates_inclusion_of :children_same_parents, in: children_same_parents_choices
 
       def self.children_residence_choices
-        ChildrenResidence.values.map(&:to_s)
+        ChildrenResidence.string_values
       end
       validates_inclusion_of :children_residence, in: children_residence_choices
 

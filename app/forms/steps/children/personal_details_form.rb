@@ -14,7 +14,7 @@ module Steps
       acts_as_gov_uk_date :dob
 
       def self.gender_choices
-        Gender.values.map(&:to_s)
+        Gender.string_values
       end
       validates_inclusion_of :gender, in: gender_choices
 

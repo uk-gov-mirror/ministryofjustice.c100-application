@@ -4,7 +4,7 @@ module Steps
       attribute :answer, String
 
       def self.choices
-        GenericYesNo.values.map(&:to_s)
+        GenericYesNo.string_values
       end
       validates_inclusion_of :answer, in: choices
 

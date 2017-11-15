@@ -13,6 +13,10 @@ class ValueObject
   alias === ==
   alias eql? ==
 
+  def self.string_values
+    values.map(&:to_s)
+  end
+
   def hash
     [ValueObject, self.class, value].hash
   end

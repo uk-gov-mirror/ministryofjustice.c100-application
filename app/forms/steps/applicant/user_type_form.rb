@@ -4,7 +4,7 @@ module Steps
       attribute :user_type, String
 
       def self.choices
-        UserType.values.map(&:to_s)
+        UserType.string_values
       end
       validates_inclusion_of :user_type, in: choices
 

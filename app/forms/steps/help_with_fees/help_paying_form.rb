@@ -5,7 +5,7 @@ module Steps
       attribute :hwf_reference_number, String
 
       def self.choices
-        HelpPaying.values.map(&:to_s)
+        HelpPaying.string_values
       end
 
       validates_inclusion_of :help_paying, in: choices

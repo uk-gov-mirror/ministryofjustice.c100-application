@@ -6,7 +6,7 @@ module Steps
 
       # TODO: Delete this method and add different validation if you don't have a value object
       def self.choices
-        <%= step_name.camelize %>.values.map(&:to_s)
+        <%= step_name.camelize %>.string_values
       end
       validates_inclusion_of :<%= step_name.underscore %>, in: choices
 

@@ -22,12 +22,12 @@ module Steps
       acts_as_gov_uk_date :dob
 
       def self.has_previous_name_choices
-        GenericYesNoUnknown.values.map(&:to_s)
+        GenericYesNoUnknown.string_values
       end
       validates_inclusion_of :has_previous_name, in: has_previous_name_choices
 
       def self.gender_choices
-        Gender.values.map(&:to_s)
+        Gender.string_values
       end
       validates_inclusion_of :gender, in: gender_choices
 
