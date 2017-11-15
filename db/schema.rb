@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20171115143551) do
     t.text     "children_parental_responsibility_details"
     t.string   "children_residence"
     t.text     "children_residence_details"
-    t.string   "court_orders"
+    t.string   "has_court_orders"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 

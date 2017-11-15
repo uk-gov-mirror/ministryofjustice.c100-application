@@ -15,7 +15,7 @@ RSpec.describe C100App::<%= task_name.camelize %>DecisionTree do
   # TODO: The below can be uncommented and serves as a starting point
 
   # context 'when the step is `user_type`' do
-  #   let(:step_params) { { user_type: 'anything'  } }
+  #   let(:step_params) { { user_type: 'anything' } }
   #
   #   context 'and the answer is `themself`' do
   #     let(:c100_application) { instance_double(C100Application, user_type: UserType::THEMSELF) }
