@@ -284,20 +284,6 @@ en:
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/court_orders/details_form:
-          attributes:
-            non_molestation_is_current:
-              blank: *order_current_error
-            occupation_is_current:
-              blank: *order_current_error
-            forced_marriage_protection_is_current:
-              blank: *order_current_error
-            restraining_is_current:
-              blank: *order_current_error
-            injunctive_is_current:
-              blank: *order_current_error
-            undertaking_is_current:
-              blank: *order_current_error
 
   helpers:
     fieldset:

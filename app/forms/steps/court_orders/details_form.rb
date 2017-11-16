@@ -65,12 +65,23 @@ module Steps
 
       validates_inclusion_of *ORDER_NAMES, in: GenericYesNo.values
 
-      validates_presence_of *NON_MOLESTATION_ATTRIBUTES.keys,            if: -> { non_molestation.yes? }
-      validates_presence_of *OCCUPATION_ATTRIBUTES.keys,                 if: -> { occupation.yes? }
-      validates_presence_of *FORCED_MARRIAGE_PROTECTION_ATTRIBUTES.keys, if: -> { forced_marriage_protection.yes? }
-      validates_presence_of *RESTRAINING_ATTRIBUTES.keys,                if: -> { restraining.yes? }
-      validates_presence_of *INJUNCTIVE_ATTRIBUTES.keys,                 if: -> { injunctive.yes? }
-      validates_presence_of *UNDERTAKING_ATTRIBUTES.keys,                if: -> { undertaking.yes? }
+      validates_presence_of  *NON_MOLESTATION_ATTRIBUTES.keys, if: -> { non_molestation&.yes? }
+      validates_inclusion_of :non_molestation_is_current, in: GenericYesNo.values, if: -> { non_molestation&.yes? }
+
+      validates_presence_of  *OCCUPATION_ATTRIBUTES.keys, if: -> { occupation&.yes? }
+      validates_inclusion_of :occupation_is_current, in: GenericYesNo.values, if: -> { occupation&.yes? }
+
+      validates_presence_of  *FORCED_MARRIAGE_PROTECTION_ATTRIBUTES.keys, if: -> { forced_marriage_protection&.yes? }
+      validates_inclusion_of :forced_marriage_protection_is_current, in: GenericYesNo.values, if: -> { forced_marriage_protection&.yes? }
+
+      validates_presence_of  *RESTRAINING_ATTRIBUTES.keys, if: -> { restraining&.yes? }
+      validates_inclusion_of :restraining_is_current, in: GenericYesNo.values, if: -> { restraining&.yes? }
+
+      validates_presence_of  *INJUNCTIVE_ATTRIBUTES.keys, if: -> { injunctive&.yes? }
+      validates_inclusion_of :injunctive_is_current, in: GenericYesNo.values, if: -> { injunctive&.yes? }
+
+      validates_presence_of  *UNDERTAKING_ATTRIBUTES.keys, if: -> { undertaking&.yes? }
+      validates_inclusion_of :undertaking_is_current, in: GenericYesNo.values, if: -> { undertaking&.yes? }
       # rubocop:enable AmbiguousOperator
 
       private
