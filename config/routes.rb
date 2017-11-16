@@ -46,6 +46,7 @@ Rails.application.routes.draw do
     end
     namespace :court_orders do
       edit_step :has_orders
+      edit_step :details
     end
     namespace :children do
       show_step :instructions

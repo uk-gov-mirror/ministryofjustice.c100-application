@@ -3,6 +3,10 @@ en:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
     birthplace_hint: &birthplace_hint "Town/County/Country"
+    order_current: &order_current "Is the order current?"
+    order_current_error: &order_current_error "Please answer if the order is current"
+    order_length: &order_length "How long is the order for?"
+    order_court_name: &order_court_name "Which court issued the order?"
 
     YESNO: &YESNO
       'yes': 'Yes'
@@ -200,6 +204,11 @@ en:
           page_title: Have you had court orders made?
           heading: Have you had any court orders made for your protection?
           lead_text: For example, a restraining order. Include any orders that are still valid.
+      details:
+        edit:
+          page_title: Orders details
+          heading: What orders have been made?
+          lead_text: Select all that apply
 
   home:
     index:
@@ -275,8 +284,20 @@ en:
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/children/additional_details_form:
+        steps/court_orders/details_form:
           attributes:
+            non_molestation_is_current:
+              blank: *order_current_error
+            occupation_is_current:
+              blank: *order_current_error
+            forced_marriage_protection_is_current:
+              blank: *order_current_error
+            restraining_is_current:
+              blank: *order_current_error
+            injunctive_is_current:
+              blank: *order_current_error
+            undertaking_is_current:
+              blank: *order_current_error
 
   helpers:
     fieldset:
@@ -286,6 +307,19 @@ en:
         answer_html: ""
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
+      steps_court_orders_details_form:
+        non_molestation: Non-molestation order
+        non_molestation_is_current: *order_current
+        occupation: Occupation order
+        occupation_is_current: *order_current
+        forced_marriage_protection: Forced marriage protection order
+        forced_marriage_protection_is_current: *order_current
+        restraining: Restraining order
+        restraining_is_current: *order_current
+        injunctive: Other injunctive order
+        injunctive_is_current: *order_current
+        undertaking: Undertaking in place of an order
+        undertaking_is_current: *order_current
       steps_abuse_concerns_details_form:
         behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
         asked_for_help_html: Have you ever asked for help?
@@ -358,6 +392,19 @@ en:
       steps_court_orders_has_orders_form:
         has_court_orders:
           <<: *YESNO
+      steps_court_orders_details_form:
+        non_molestation_length: *order_length
+        non_molestation_court_name: *order_court_name
+        occupation_length: *order_length
+        occupation_court_name: *order_court_name
+        forced_marriage_protection_length: *order_length
+        forced_marriage_protection_court_name: *order_court_name
+        restraining_length: *order_length
+        restraining_court_name: *order_court_name
+        injunctive_length: *order_length
+        injunctive_court_name: *order_court_name
+        undertaking_length: *order_length
+        undertaking_court_name: *order_court_name
       user:
         email: Your email address
         password: Choose password
@@ -422,6 +469,7 @@ en:
     form_elements:
       dob: Date of birth
       dob_hint_html: 'If party under 18 read section R of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>'
+      order_issue: What date was it issued?
   session:
     note:
       heading: Security time-out
