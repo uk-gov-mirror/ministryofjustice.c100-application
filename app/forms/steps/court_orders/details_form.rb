@@ -13,69 +13,67 @@ module Steps
       ].freeze
 
       NON_MOLESTATION_ATTRIBUTES = {
-        non_molestation: String,
+        non_molestation: YesNo,
         non_molestation_issue_date: Date,
         non_molestation_length: String,
-        non_molestation_is_current: String,
+        non_molestation_is_current: YesNo,
         non_molestation_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       OCCUPATION_ATTRIBUTES = {
-        occupation: String,
+        occupation: YesNo,
         occupation_issue_date: Date,
         occupation_length: String,
-        occupation_is_current: String,
+        occupation_is_current: YesNo,
         occupation_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       FORCED_MARRIAGE_PROTECTION_ATTRIBUTES = {
-        forced_marriage_protection: String,
+        forced_marriage_protection: YesNo,
         forced_marriage_protection_issue_date: Date,
         forced_marriage_protection_length: String,
-        forced_marriage_protection_is_current: String,
+        forced_marriage_protection_is_current: YesNo,
         forced_marriage_protection_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       RESTRAINING_ATTRIBUTES = {
-        restraining: String,
+        restraining: YesNo,
         restraining_issue_date: Date,
         restraining_length: String,
-        restraining_is_current: String,
+        restraining_is_current: YesNo,
         restraining_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       INJUNCTIVE_ATTRIBUTES = {
-        injunctive: String,
+        injunctive: YesNo,
         injunctive_issue_date: Date,
         injunctive_length: String,
-        injunctive_is_current: String,
+        injunctive_is_current: YesNo,
         injunctive_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       UNDERTAKING_ATTRIBUTES = {
-        undertaking: String,
+        undertaking: YesNo,
         undertaking_issue_date: Date,
         undertaking_length: String,
-        undertaking_is_current: String,
+        undertaking_is_current: YesNo,
         undertaking_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
-      acts_as_gov_uk_date *(ORDER_NAMES.map{ |att| "#{att}_issue_date" })
+      # rubocop:disable AmbiguousOperator
+      acts_as_gov_uk_date *ORDER_NAMES.map { |name| "#{name}_issue_date" }
 
-      validates_inclusion_of *ORDER_NAMES, in: GenericYesNo.string_values
+      validates_inclusion_of *ORDER_NAMES, in: GenericYesNo.values
 
-      validates_presence_of *NON_MOLESTATION_ATTRIBUTES.keys,            if: ->{ yes?(non_molestation) }
-      validates_presence_of *OCCUPATION_ATTRIBUTES.keys,                 if: ->{ yes?(occupation) }
-      validates_presence_of *FORCED_MARRIAGE_PROTECTION_ATTRIBUTES.keys, if: ->{ yes?(forced_marriage_protection) }
-      validates_presence_of *RESTRAINING_ATTRIBUTES.keys,                if: ->{ yes?(restraining) }
-      validates_presence_of *INJUNCTIVE_ATTRIBUTES.keys,                 if: ->{ yes?(injunctive) }
-      validates_presence_of *UNDERTAKING_ATTRIBUTES.keys,                if: ->{ yes?(undertaking) }
+      validates_presence_of *NON_MOLESTATION_ATTRIBUTES.keys,            if: -> { non_molestation.yes? }
+      validates_presence_of *OCCUPATION_ATTRIBUTES.keys,                 if: -> { occupation.yes? }
+      validates_presence_of *FORCED_MARRIAGE_PROTECTION_ATTRIBUTES.keys, if: -> { forced_marriage_protection.yes? }
+      validates_presence_of *RESTRAINING_ATTRIBUTES.keys,                if: -> { restraining.yes? }
+      validates_presence_of *INJUNCTIVE_ATTRIBUTES.keys,                 if: -> { injunctive.yes? }
+      validates_presence_of *UNDERTAKING_ATTRIBUTES.keys,                if: -> { undertaking.yes? }
+      # rubocop:enable AmbiguousOperator
 
       private
-
-      def yes?(order)
-        order.eql?(GenericYesNo::YES.to_s)
-      end
 
       def persist!
         raise C100ApplicationNotFound unless c100_application
