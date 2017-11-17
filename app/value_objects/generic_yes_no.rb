@@ -7,4 +7,12 @@ class GenericYesNo < ValueObject
   def self.values
     VALUES
   end
+
+  def yes?
+    value == :yes
+  end
+
+  def no?
+    value == :no
+  end
 end
