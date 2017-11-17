@@ -1,21 +1,14 @@
 module Steps
   module AbuseConcerns
     class QuestionForm < BaseAbuseForm
-      attribute :answer, String
+      attribute :answer, YesNo
 
-      def self.choices
-        GenericYesNo.string_values
-      end
-      validates_inclusion_of :answer, in: choices
+      validates_inclusion_of :answer, in: GenericYesNo.values
 
       private
 
-      def answer_value
-        GenericYesNo.new(answer)
-      end
-
       def persist!
-        abuse_attributes = { answer: answer_value }
+        abuse_attributes = { answer: answer }
 
         # The following are dependent attributes that need to be reset
         abuse_attributes.merge!(
@@ -27,7 +20,7 @@ module Steps
           help_party: nil,
           help_provided: nil,
           help_description: nil
-        ) if answer_value.eql?(GenericYesNo::NO)
+        ) if answer.no?
 
         super(abuse_attributes)
       end

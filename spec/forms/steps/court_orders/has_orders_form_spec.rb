@@ -10,12 +10,6 @@ RSpec.describe Steps::CourtOrders::HasOrdersForm do
 
   subject { described_class.new(arguments) }
 
-  describe '.choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.choices).to eq(%w(yes no))
-    end
-  end
-
   describe '#save' do
     it_behaves_like 'a value object form', attribute_name: :has_court_orders, example_value: 'no'
 

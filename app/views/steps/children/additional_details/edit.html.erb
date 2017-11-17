@@ -17,8 +17,7 @@
         end
       %>
 
-      <%= f.radio_button_fieldset :children_protection_plan,
-        choices: Steps::Children::AdditionalDetailsForm.children_protection_plan_choices %>
+      <%= f.radio_button_fieldset :children_protection_plan, choices: GenericYesNoUnknown.values %>
 
       <%=
         f.radio_button_fieldset :children_same_parents do |fieldset|

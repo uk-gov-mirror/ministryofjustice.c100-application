@@ -22,7 +22,9 @@ module Steps
         c100_application.abuse_concerns.find_or_initialize_by(
           subject: AbuseSubject.new(subject),
           kind: AbuseType.new(kind),
-        ).update(attributes)
+        ).update(
+          attributes.except(:subject, :kind)
+        )
       end
     end
   end

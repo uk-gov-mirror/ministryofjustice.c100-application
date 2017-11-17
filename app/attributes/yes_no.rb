@@ -1,5 +1,10 @@
 class YesNo < Virtus::Attribute
   def coerce(value)
-    value ? GenericYesNo.new(value) : nil
+    case value
+    when String, Symbol
+      GenericYesNo.new(value)
+    when GenericYesNo
+      value
+    end
   end
 end
