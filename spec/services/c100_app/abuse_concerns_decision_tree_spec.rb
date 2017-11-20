@@ -317,7 +317,11 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
   describe 'when the step is `contact`' do
     let(:as) { 'contact' }
+    it { is_expected.to have_destination(:previous_proceedings, :edit) }
+  end
 
+  describe 'when the step is `previous_proceedings`' do
+    let(:as) { 'previous_proceedings' }
     it { is_expected.to have_destination('/steps/children/instructions', :show) }
   end
 

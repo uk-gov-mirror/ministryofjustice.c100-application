@@ -7,6 +7,8 @@ module C100App
       when :details
         after_details_step
       when :contact
+        edit(:previous_proceedings)
+      when :previous_proceedings
         show('/steps/children/instructions') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
