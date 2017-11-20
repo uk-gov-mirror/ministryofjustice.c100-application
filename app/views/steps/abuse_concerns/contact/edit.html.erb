@@ -1,0 +1,26 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%=t '.lead_text' %></p>
+      <div role="note" class=" panel panel-border-wide info-notice">
+        <p><%=t '.info_notice' %></p>
+      </div>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.radio_button_fieldset :concerns_contact_type,
+          choices: ConcernsContactType.values %>
+
+      <%= f.radio_button_fieldset :concerns_contact_other, inline: true,
+          choices: GenericYesNo.values %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

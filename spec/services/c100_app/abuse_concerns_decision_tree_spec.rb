@@ -40,193 +40,187 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
   end
   # END - Mutant killers
 
-  describe 'when answer is `no`' do
-    let(:abuse_answer) { 'no' }
+  describe 'when the step is `question`' do
+    let(:as) { 'question' }
 
-    context 'when the subject is invalid' do
-      let(:abuse_subject) { 'foobar' }
+    context 'when answer is `no`' do
+      let(:abuse_answer) { 'no' }
 
-      it 'raises an error' do
-        expect { subject.destination }.to raise_error(
-          BaseDecisionTree::InvalidStep, "Invalid step '{:subject=>\"foobar\", :kind=>\"substances\", :answer=>\"no\"}'"
-        )
-      end
-    end
+      context 'when the subject is `applicant`' do
+        let(:abuse_subject) { 'applicant' }
 
-    context 'when the subject is `applicant`' do
-      let(:abuse_subject) { 'applicant' }
+        context 'when the abuse kind is invalid' do
+          let(:abuse_kind) { 'foobar' }
 
-      context 'when the abuse kind is invalid' do
-        let(:abuse_kind) { 'foobar' }
+          it 'raises an error' do
+            expect { subject.destination }.to raise_error(
+              BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
+            )
+          end
+        end
 
-        it 'raises an error' do
-          expect { subject.destination }.to raise_error(
-            BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
-          )
+        context 'abuse kind `substances`' do
+          let(:abuse_kind) { 'substances' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'physical'})}
+        end
+
+        context 'abuse kind `physical`' do
+          let(:abuse_kind) { 'physical' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'emotional'})}
+        end
+
+        context 'abuse kind `emotional`' do
+          let(:abuse_kind) { 'emotional' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'psychological'})}
+        end
+
+        context 'abuse kind `psychological`' do
+          let(:abuse_kind) { 'psychological' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'sexual'})}
+        end
+
+        context 'abuse kind `sexual`' do
+          let(:abuse_kind) { 'sexual' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'financial'})}
+        end
+
+        context 'abuse kind `financial`' do
+          let(:abuse_kind) { 'financial' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'other'})}
+        end
+
+        context 'abuse kind `other`' do
+          let(:abuse_kind) { 'other' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'physical'})}
         end
       end
 
-      context 'abuse kind `substances`' do
-        let(:abuse_kind) { 'substances' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'physical'})}
-      end
+      context 'when the subject is `children`' do
+        let(:abuse_subject) { 'children' }
 
-      context 'abuse kind `physical`' do
-        let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'emotional'})}
-      end
+        context 'when the abuse kind is invalid' do
+          let(:abuse_kind) { 'foobar' }
 
-      context 'abuse kind `emotional`' do
-        let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'psychological'})}
-      end
+          it 'raises an error' do
+            expect { subject.destination }.to raise_error(
+              BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
+            )
+          end
+        end
 
-      context 'abuse kind `psychological`' do
-        let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'sexual'})}
-      end
+        context 'abuse kind `physical`' do
+          let(:abuse_kind) { 'physical' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'emotional'})}
+        end
 
-      context 'abuse kind `sexual`' do
-        let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'financial'})}
-      end
+        context 'abuse kind `emotional`' do
+          let(:abuse_kind) { 'emotional' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'psychological'})}
+        end
 
-      context 'abuse kind `financial`' do
-        let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'other'})}
-      end
+        context 'abuse kind `psychological`' do
+          let(:abuse_kind) { 'psychological' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'sexual'})}
+        end
 
-      context 'abuse kind `other`' do
-        let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'physical'})}
-      end
-    end
+        context 'abuse kind `sexual`' do
+          let(:abuse_kind) { 'sexual' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'financial'})}
+        end
 
-    context 'when the subject is `children`' do
-      let(:abuse_subject) { 'children' }
+        context 'abuse kind `financial`' do
+          let(:abuse_kind) { 'financial' }
+          it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'other'})}
+        end
 
-      context 'abuse kind `physical`' do
-        let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'emotional'})}
-      end
-
-      context 'abuse kind `emotional`' do
-        let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'psychological'})}
-      end
-
-      context 'abuse kind `psychological`' do
-        let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'sexual'})}
-      end
-
-      context 'abuse kind `sexual`' do
-        let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'financial'})}
-      end
-
-      context 'abuse kind `financial`' do
-        let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'other'})}
-      end
-
-      context 'abuse kind `other`' do
-        let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination('/steps/children/instructions', :show)}
-      end
-    end
-  end
-
-  describe 'when answer is `yes`' do
-    let(:abuse_answer) { 'yes' }
-
-    context 'when the subject is `applicant`' do
-      let(:abuse_subject) { 'applicant' }
-
-      context 'abuse kind `substances`' do
-        let(:abuse_kind) { 'substances' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'substances'})}
-      end
-
-      context 'abuse kind `physical`' do
-        let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'physical'})}
-      end
-
-      context 'abuse kind `emotional`' do
-        let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'emotional'})}
-      end
-
-      context 'abuse kind `psychological`' do
-        let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'psychological'})}
-      end
-
-      context 'abuse kind `sexual`' do
-        let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'sexual'})}
-      end
-
-      context 'abuse kind `financial`' do
-        let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'financial'})}
-      end
-
-      context 'abuse kind `other`' do
-        let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'other'})}
+        context 'abuse kind `other`' do
+          let(:abuse_kind) { 'other' }
+          it {is_expected.to have_destination('/steps/court_orders/has_orders', :edit)}
+        end
       end
     end
 
-    context 'when the subject is `children`' do
-      let(:abuse_subject) { 'children' }
+    context 'when answer is `yes`' do
+      let(:abuse_answer) { 'yes' }
 
-      context 'abuse kind `physical`' do
-        let(:abuse_kind) { 'physical' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'physical'})}
+      context 'when the subject is `applicant`' do
+        let(:abuse_subject) { 'applicant' }
+
+        context 'abuse kind `substances`' do
+          let(:abuse_kind) { 'substances' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'substances'})}
+        end
+
+        context 'abuse kind `physical`' do
+          let(:abuse_kind) { 'physical' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'physical'})}
+        end
+
+        context 'abuse kind `emotional`' do
+          let(:abuse_kind) { 'emotional' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'emotional'})}
+        end
+
+        context 'abuse kind `psychological`' do
+          let(:abuse_kind) { 'psychological' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'psychological'})}
+        end
+
+        context 'abuse kind `sexual`' do
+          let(:abuse_kind) { 'sexual' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'sexual'})}
+        end
+
+        context 'abuse kind `financial`' do
+          let(:abuse_kind) { 'financial' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'financial'})}
+        end
+
+        context 'abuse kind `other`' do
+          let(:abuse_kind) { 'other' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'other'})}
+        end
       end
 
-      context 'abuse kind `emotional`' do
-        let(:abuse_kind) { 'emotional' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'emotional'})}
-      end
+      context 'when the subject is `children`' do
+        let(:abuse_subject) { 'children' }
 
-      context 'abuse kind `psychological`' do
-        let(:abuse_kind) { 'psychological' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'psychological'})}
-      end
+        context 'abuse kind `physical`' do
+          let(:abuse_kind) { 'physical' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'physical'})}
+        end
 
-      context 'abuse kind `sexual`' do
-        let(:abuse_kind) { 'sexual' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'sexual'})}
-      end
+        context 'abuse kind `emotional`' do
+          let(:abuse_kind) { 'emotional' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'emotional'})}
+        end
 
-      context 'abuse kind `financial`' do
-        let(:abuse_kind) { 'financial' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'financial'})}
-      end
+        context 'abuse kind `psychological`' do
+          let(:abuse_kind) { 'psychological' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'psychological'})}
+        end
 
-      context 'abuse kind `other`' do
-        let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'other'})}
+        context 'abuse kind `sexual`' do
+          let(:abuse_kind) { 'sexual' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'sexual'})}
+        end
+
+        context 'abuse kind `financial`' do
+          let(:abuse_kind) { 'financial' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'financial'})}
+        end
+
+        context 'abuse kind `other`' do
+          let(:abuse_kind) { 'other' }
+          it {is_expected.to have_destination(:details, :edit, {subject: 'children', kind: 'other'})}
+        end
       end
     end
   end
 
-  describe 'after entering the details' do
+  describe 'when the step is `details`' do
     let(:as) { 'details' }
 
-    context 'when the subject is invalid' do
-      let(:abuse_subject) { 'foobar' }
-
-      it 'raises an error' do
-        expect { subject.destination }.to raise_error(
-          BaseDecisionTree::InvalidStep, "Invalid step '{:subject=>\"foobar\", :kind=>\"substances\", :answer=>\"no\"}'"
-        )
-      end
-    end
-
     context 'when the subject is `applicant`' do
       let(:abuse_subject) { 'applicant' }
 
@@ -279,6 +273,16 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
     context 'when the subject is `children`' do
       let(:abuse_subject) { 'children' }
 
+      context 'when the abuse kind is invalid' do
+        let(:abuse_kind) { 'foobar' }
+
+        it 'raises an error' do
+          expect { subject.destination }.to raise_error(
+            BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
+          )
+        end
+      end
+
       context 'abuse kind `physical`' do
         let(:abuse_kind) { 'physical' }
         it {is_expected.to have_destination(:question, :edit, {subject: 'children', kind: 'emotional'})}
@@ -306,8 +310,24 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
       context 'abuse kind `other`' do
         let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination('/steps/children/instructions', :show)}
+        it {is_expected.to have_destination('/steps/court_orders/has_orders', :edit)}
       end
+    end
+  end
+
+  describe 'when the step is `contact`' do
+    let(:as) { 'contact' }
+
+    it { is_expected.to have_destination('/steps/children/instructions', :show) }
+  end
+
+  describe 'when the step is not known' do
+    let(:as) { 'anything' }
+
+    it 'raises an error' do
+      expect { subject.destination }.to raise_error(
+        BaseDecisionTree::InvalidStep, "Invalid step 'anything'"
+      )
     end
   end
 end

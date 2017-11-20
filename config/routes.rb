@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       edit_step :details do
         get '/:subject/:kind', action: :edit
       end
+      edit_step :contact
     end
     namespace :court_orders do
       edit_step :has_orders

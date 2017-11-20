@@ -198,6 +198,12 @@ en:
               sexual: Provide details of your children’s sexual abuse
               financial: Provide details of your children’s financial abuse
               other: Provide details of your other concerns about your children
+      contact:
+        edit:
+          page_title: Concerns contact
+          heading: Contact between your children and the other person
+          lead_text: The court needs to know if you will allow your children to have contact with the other person while you wait for a court date.
+          info_notice: If you have no safety concerns it’s better for your children to have regular contact with both parents.
     court_orders:
       has_orders:
         edit:
@@ -291,6 +297,9 @@ en:
         help_paying_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
+      steps_abuse_concerns_contact_form:
+        concerns_contact_type_html: "Do you agree to your children spending time with the other person?"
+        concerns_contact_other_html: "Do you agree to your children having other forms of contact with the other person?"
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
       steps_court_orders_details_form:
@@ -375,6 +384,13 @@ en:
           <<: *YESNO
         help_provided:
           <<: *YESNO
+      steps_abuse_concerns_contact_form:
+        concerns_contact_type:
+          unsupervised: 'Yes'
+          supervised: Yes, but it must be supervised
+          none: No, I don’t want the other person to spend time with my children
+        concerns_contact_other:
+          <<: *YESNO
       steps_court_orders_has_orders_form:
         has_court_orders:
           <<: *YESNO
@@ -422,6 +438,8 @@ en:
         behaviour_start: Add an approximate date if you’re unsure
         behaviour_stop: Add an approximate date if you’re unsure
         asked_for_help: For example, your GP
+      steps_abuse_concerns_contact_form:
+        concerns_contact_other: For example, by phone, text or email
     submit:
       create: Continue
       update: Continue

@@ -1,17 +1,15 @@
 module C100App
   class AbuseConcernsDecisionTree < BaseDecisionTree
     def destination
-      case [step_name, abuse_subject]
-      when [:question, AbuseSubject::APPLICANT]
-        applicant_questions_destination
-      when [:details, AbuseSubject::APPLICANT]
-        applicant_details_destination
-      when [:question, AbuseSubject::CHILDREN]
-        children_questions_destination
-      when [:details, AbuseSubject::CHILDREN]
-        children_details_destination
+      case step_name
+      when :question
+        after_question_step
+      when :details
+        after_details_step
+      when :contact
+        show('/steps/children/instructions') # TODO: change when we have next step
       else
-        raise InvalidStep, "Invalid step '#{step_params}'"
+        raise InvalidStep, "Invalid step '#{step_name}'"
       end
     end
 
@@ -27,6 +25,24 @@ module C100App
 
     def answer
       GenericYesNo.new(step_params[:answer])
+    end
+
+    def after_question_step
+      case abuse_subject
+      when AbuseSubject::APPLICANT
+        applicant_questions_destination
+      when AbuseSubject::CHILDREN
+        children_questions_destination
+      end
+    end
+
+    def after_details_step
+      case abuse_subject
+      when AbuseSubject::APPLICANT
+        applicant_details_destination
+      when AbuseSubject::CHILDREN
+        children_details_destination
+      end
     end
 
     def applicant_questions_destination
@@ -58,8 +74,8 @@ module C100App
 
     def children_details_destination
       case abuse_kind
-      when AbuseType::OTHER # TODO: This is a placeholder. change when we have the `orders` step
-        show('/steps/children/instructions')
+      when AbuseType::OTHER
+        edit('/steps/court_orders/has_orders')
       else
         questions_destination(AbuseSubject::CHILDREN)
       end

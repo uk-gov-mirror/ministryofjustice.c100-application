@@ -20,12 +20,12 @@ RSpec.describe C100App::CourtOrdersDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination('/steps/children/instructions', :show) }
+      it { is_expected.to have_destination('/steps/abuse_concerns/contact', :edit) }
     end
   end
 
   context 'when the step is `orders_details`' do
     let(:step_params) { { orders_details: 'whatever' } }
-    it { is_expected.to have_destination('/steps/children/instructions', :show) }
+    it { is_expected.to have_destination('/steps/abuse_concerns/contact', :edit) }
   end
 end
