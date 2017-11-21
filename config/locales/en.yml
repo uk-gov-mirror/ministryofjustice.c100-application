@@ -209,6 +209,10 @@ en:
           page_title: Previous proceedings
           heading: Have any of the children in this application been involved in another family court case?
           lead_text: For example an emergency protection order or supervision order. Include any ongoing cases.
+      emergency_proceedings:
+        edit:
+          page_title: Emergency proceedings
+          heading: Were any of the cases about an emergency protection order, care or supervision order?
     court_orders:
       has_orders:
         edit:
@@ -307,6 +311,8 @@ en:
         concerns_contact_other_html: "Do you agree to your children having other forms of contact with the other person?"
       steps_abuse_concerns_previous_proceedings_form:
         children_previous_proceedings_html: ""
+      steps_abuse_concerns_emergency_proceedings_form:
+        emergency_proceedings_html: ""
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
       steps_court_orders_details_form:

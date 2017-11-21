@@ -13,6 +13,7 @@ class C100Application < ApplicationRecord
   has_value_object :concerns_contact_type
   has_value_object :concerns_contact_other,        class_name: 'GenericYesNo'
   has_value_object :children_previous_proceedings, class_name: 'GenericYesNo'
+  has_value_object :emergency_proceedings,         class_name: 'GenericYesNo'
 
   # Children additional details
   has_value_object :children_residence

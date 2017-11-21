@@ -9,6 +9,8 @@ module C100App
       when :contact
         edit(:previous_proceedings)
       when :previous_proceedings
+        after_previous_proceedings
+      when :emergency_proceedings
         show('/steps/children/instructions') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
@@ -25,8 +27,17 @@ module C100App
       AbuseType.new(step_params[:kind])
     end
 
-    def answer
+    def abuse_answer
       GenericYesNo.new(step_params[:answer])
+    end
+
+    def after_previous_proceedings
+      case step_params.fetch(:children_previous_proceedings)
+      when GenericYesNo::YES.to_s
+        edit(:emergency_proceedings)
+      else
+        show('/steps/children/instructions') # TODO: change when we have next step
+      end
     end
 
     def after_question_step
@@ -48,7 +59,7 @@ module C100App
     end
 
     def applicant_questions_destination
-      case answer
+      case abuse_answer
       when GenericYesNo::YES
         edit(:details, subject: abuse_subject, kind: abuse_kind)
       else
@@ -66,7 +77,7 @@ module C100App
     end
 
     def children_questions_destination
-      case answer
+      case abuse_answer
       when GenericYesNo::YES
         edit(:details, subject: abuse_subject, kind: abuse_kind)
       else

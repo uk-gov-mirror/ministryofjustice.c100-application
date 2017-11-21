@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120101456) do
+ActiveRecord::Schema.define(version: 20171120112650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20171120101456) do
     t.string   "concerns_contact_type"
     t.string   "concerns_contact_other"
     t.string   "children_previous_proceedings"
+    t.string   "emergency_proceedings"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 

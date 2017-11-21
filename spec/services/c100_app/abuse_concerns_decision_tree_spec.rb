@@ -28,7 +28,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
   it 'retrieve the abuse kind from the `step_params`' do
     expect(subject.step_params).to receive(:[]).with(:kind).and_return(:other)
     allow(subject).to receive(:abuse_subject).and_return(AbuseSubject::APPLICANT)
-    allow(subject).to receive(:answer).and_return(GenericYesNo::NO)
+    allow(subject).to receive(:abuse_answer).and_return(GenericYesNo::NO)
     subject.destination
   end
 
@@ -322,6 +322,20 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
   describe 'when the step is `previous_proceedings`' do
     let(:as) { 'previous_proceedings' }
+
+    context 'when answer is `yes`' do
+      let(:step_params) { {children_previous_proceedings: 'yes'} }
+      it { is_expected.to have_destination(:emergency_proceedings, :edit) }
+    end
+
+    context 'when answer is `no`' do
+      let(:step_params) { {children_previous_proceedings: 'no'} }
+      it { is_expected.to have_destination('/steps/children/instructions', :show) }
+    end
+  end
+
+  describe 'when the step is `emergency_proceedings`' do
+    let(:as) { 'emergency_proceedings' }
     it { is_expected.to have_destination('/steps/children/instructions', :show) }
   end
 
