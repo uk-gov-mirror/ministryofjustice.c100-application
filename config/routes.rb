@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     namespace :safety_questions do
       show_step :start
       edit_step :risk_of_abduction
+      edit_step :substance_abuse
     end
     namespace :abuse_concerns do
       edit_step :question do

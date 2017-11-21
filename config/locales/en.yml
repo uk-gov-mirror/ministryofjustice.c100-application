@@ -231,6 +231,11 @@ en:
           heading: Are your children at risk of being abducted?
           lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
           info_notice: Child abduction is when a person takes or sends a child under 16 out of the UK without permission.
+      substance_abuse:
+        edit:
+          page_title: Substance abuse
+          heading: Do you have any concerns about drug, alcohol or substance abuse?
+          lead_text: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
 
   home:
     index:
@@ -313,6 +318,8 @@ en:
         help_paying_html: ""
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
+      steps_safety_questions_substance_abuse_form:
+        substance_abuse_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:

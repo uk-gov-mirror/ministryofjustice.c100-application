@@ -5,6 +5,8 @@ module C100App
 
       case step_name
       when :risk_of_abduction
+        edit(:substance_abuse)
+      when :substance_abuse
         edit('/steps/abuse_concerns/question') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
