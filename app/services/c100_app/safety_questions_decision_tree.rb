@@ -7,9 +7,21 @@ module C100App
       when :risk_of_abduction
         edit(:substance_abuse)
       when :substance_abuse
+        after_substance_abuse
+      when :substance_abuse_details
         edit('/steps/abuse_concerns/question') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
+      end
+    end
+
+    private
+
+    def after_substance_abuse
+      if question(:substance_abuse).yes?
+        edit(:substance_abuse_details)
+      else
+        edit('/steps/abuse_concerns/question') # TODO: change when we have next step
       end
     end
   end

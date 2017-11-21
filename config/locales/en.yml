@@ -236,6 +236,10 @@ en:
           page_title: Substance abuse
           heading: Do you have any concerns about drug, alcohol or substance abuse?
           lead_text: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
+      substance_abuse_details:
+        edit:
+          page_title: Substance abuse details
+          heading: Provide a brief summary of the nature and frequency of the substance abuse
 
   home:
     index:
@@ -401,6 +405,8 @@ en:
         children_same_parents_no_details: Please give details of each parent and their children involved in this application
         children_parental_responsibility_details: Please state everyone who has parental responsibility for each child and how they have parental responsibility
         children_residence_details: Please give the full address of the child, the names of any adults living with the children and their relationship to or involvement with the child
+      steps_safety_questions_substance_abuse_details_form:
+        substance_abuse_details: Details
       steps_abuse_concerns_details_form:
         behaviour_description: Give a short description
         behaviour_start: When did your concerns about your children start?
@@ -463,6 +469,8 @@ en:
         children_residence_details_html: |
           If you do not wish this information to be made known to the Respondent, leave the details blank and complete
           Confidential contact details <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Form C8</a>.
+      steps_safety_questions_substance_abuse_details_form:
+        substance_abuse_details: You don’t need to give a full statement, although you may be asked to do so at a later date
       steps_abuse_concerns_details_form:
         behaviour_start: Add an approximate date if you’re unsure
         behaviour_stop: Add an approximate date if you’re unsure

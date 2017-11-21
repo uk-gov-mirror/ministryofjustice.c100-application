@@ -18,6 +18,10 @@ class BaseDecisionTree
     (as || step_params.keys.first).to_sym
   end
 
+  def question(attribute_name, klass = GenericYesNo)
+    klass.new c100_application.public_send(attribute_name)
+  end
+
   # Enable again when needed. Coverage complains otherwise.
   # def root_path
   #   { controller: '/entrypoint', action: :v1 }
