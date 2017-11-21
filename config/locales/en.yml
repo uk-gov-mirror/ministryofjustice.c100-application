@@ -57,7 +57,7 @@ en:
     # This are all the kind of abuse concerns, for applicant and for children. For now they
     # are the same for both, but we might need to customize some of these later on.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
-      substances_html: For example, you think your children may be affected by being in contact with someone who has a drug, alcohol or substance problem.
+      substances_html: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       physical_html: Physical abuse includes actions such as pushing, punching, slapping, kicking, choking and using weapons.
       emotional_html: Emotional abuse can be verbal or non-verbal. Examples include name calling, constant criticism, ignoring someone or not letting them have an opinion.
       psychological_html: |
@@ -224,6 +224,13 @@ en:
           page_title: Orders details
           heading: What orders have been made?
           lead_text: Select all that apply
+    safety_questions:
+      risk_of_abduction:
+        edit:
+          page_title: Risk of abduction
+          heading: Are your children at risk of being abducted?
+          lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
+          info_notice: Child abduction is when a person takes or sends a child under 16 out of the UK without permission.
 
   home:
     index:
@@ -304,6 +311,8 @@ en:
     fieldset:
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
+      steps_safety_questions_risk_of_abduction_form:
+        risk_of_abduction_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:

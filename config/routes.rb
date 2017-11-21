@@ -35,8 +35,11 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
-    namespace :abuse_concerns do
+    namespace :safety_questions do
       show_step :start
+      edit_step :risk_of_abduction
+    end
+    namespace :abuse_concerns do
       edit_step :question do
         get '/:subject/:kind', action: :edit
       end
