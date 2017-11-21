@@ -10,19 +10,40 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `user_type`' do
+  context 'when the step is `risk_of_abduction`' do
+    let(:c100_application) { instance_double(C100Application, risk_of_abduction: value) }
     let(:step_params) { { risk_of_abduction: 'anything' } }
 
-    # TODO: change test when we do something with the answer yes/no
     context 'and the answer is `yes`' do
-      let(:c100_application) { instance_double(C100Application, risk_of_abduction: GenericYesNo::YES) }
-      it { is_expected.to have_destination('/steps/abuse_concerns/question', :edit) }
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination(:substance_abuse, :edit) }
     end
 
-    # TODO: change test when we do something with the answer yes/no
     context 'and the answer is `no`' do
-      let(:c100_application) { instance_double(C100Application, risk_of_abduction: GenericYesNo::NO) }
+      let(:value) { 'no' }
+      it { is_expected.to have_destination(:substance_abuse, :edit) }
+    end
+  end
+
+  context 'when the step is `substance_abuse`' do
+    let(:c100_application) { instance_double(C100Application, substance_abuse: value) }
+    let(:step_params) { { substance_abuse: 'anything' } }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination(:substance_abuse_details, :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
       it { is_expected.to have_destination('/steps/abuse_concerns/question', :edit) }
     end
+  end
+
+  context 'when the step is `substance_abuse_details`' do
+    let(:c100_application) {instance_double(C100Application)}
+    let(:step_params) { { substance_abuse_details: 'anything' } }
+
+    it {is_expected.to have_destination('/steps/abuse_concerns/question', :edit) }
   end
 end

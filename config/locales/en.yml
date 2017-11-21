@@ -57,7 +57,6 @@ en:
     # This are all the kind of abuse concerns, for applicant and for children. For now they
     # are the same for both, but we might need to customize some of these later on.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
-      substances_html: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       physical_html: Physical abuse includes actions such as pushing, punching, slapping, kicking, choking and using weapons.
       emotional_html: Emotional abuse can be verbal or non-verbal. Examples include name calling, constant criticism, ignoring someone or not letting them have an opinion.
       psychological_html: |
@@ -129,7 +128,6 @@ en:
         edit:
           page_title:
             applicant:
-              substances: Concerns about drug, alcohol or substance abuse
               physical: Concerns about physical abuse
               emotional: Concerns about emotional abuse
               psychological: Concerns about psychological abuse
@@ -145,7 +143,6 @@ en:
               other: Other concerns about your children’s welfare
           heading:
             applicant:
-              substances: Do you have any concerns about drug, alcohol or substance abuse?
               physical: Have you suffered from any form of physical abuse?
               emotional: Have you suffered from any form of emotional abuse?
               psychological: Have you suffered from any form of psychological abuse?
@@ -168,7 +165,6 @@ en:
         edit:
           page_title:
             applicant:
-              substances: Details of the substances abuse
               physical: Details of the physical abuse
               emotional: Details of the emotional abuse
               psychological: Details of the psychological abuse
@@ -184,7 +180,6 @@ en:
               other: Details of other concerns about your children
           heading:
             applicant:
-              substances: Provide details of the drug, alcohol or substance abuse
               physical: Provide details of the physical abuse
               emotional: Provide details of the emotional abuse
               psychological: Provide details of the psychological abuse
@@ -231,6 +226,15 @@ en:
           heading: Are your children at risk of being abducted?
           lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
           info_notice: Child abduction is when a person takes or sends a child under 16 out of the UK without permission.
+      substance_abuse:
+        edit:
+          page_title: Substance abuse
+          heading: Do you have any concerns about drug, alcohol or substance abuse?
+          lead_text: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
+      substance_abuse_details:
+        edit:
+          page_title: Substance abuse details
+          heading: Provide a brief summary of the nature and frequency of the substance abuse
 
   home:
     index:
@@ -313,6 +317,8 @@ en:
         help_paying_html: ""
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
+      steps_safety_questions_substance_abuse_form:
+        substance_abuse_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
@@ -394,6 +400,8 @@ en:
         children_same_parents_no_details: Please give details of each parent and their children involved in this application
         children_parental_responsibility_details: Please state everyone who has parental responsibility for each child and how they have parental responsibility
         children_residence_details: Please give the full address of the child, the names of any adults living with the children and their relationship to or involvement with the child
+      steps_safety_questions_substance_abuse_details_form:
+        substance_abuse_details: Details
       steps_abuse_concerns_details_form:
         behaviour_description: Give a short description
         behaviour_start: When did your concerns about your children start?
@@ -456,6 +464,8 @@ en:
         children_residence_details_html: |
           If you do not wish this information to be made known to the Respondent, leave the details blank and complete
           Confidential contact details <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Form C8</a>.
+      steps_safety_questions_substance_abuse_details_form:
+        substance_abuse_details: You don’t need to give a full statement, although you may be asked to do so at a later date
       steps_abuse_concerns_details_form:
         behaviour_start: Add an approximate date if you’re unsure
         behaviour_stop: Add an approximate date if you’re unsure

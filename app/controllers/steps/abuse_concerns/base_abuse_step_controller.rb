@@ -8,7 +8,7 @@ module Steps
       end
 
       def kind_value
-        AbuseType.new(params.fetch(:kind, AbuseType::SUBSTANCES.to_s))
+        AbuseType.new(params.fetch(:kind, AbuseType::PHYSICAL.to_s))
       end
 
       def current_concern
