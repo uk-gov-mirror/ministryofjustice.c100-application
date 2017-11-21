@@ -13,7 +13,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
   let(:as)               { 'question' }
 
   let(:abuse_subject)    { 'applicant' }
-  let(:abuse_kind)       { 'substances' }
+  let(:abuse_kind)       { 'physical' }
   let(:abuse_answer)     { 'no' }
 
   subject { described_class.new(c100_application: c100_application, step_params: step_params, as: as, next_step: next_step) }
@@ -35,7 +35,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
   it 'retrieve the answer from the `step_params`' do
     expect(subject.step_params).to receive(:[]).with(:answer).and_return(:yes)
     allow(subject).to receive(:abuse_subject).and_return(AbuseSubject::APPLICANT)
-    allow(subject).to receive(:abuse_kind).and_return(AbuseType::SUBSTANCES)
+    allow(subject).to receive(:abuse_kind).and_return(AbuseType::PHYSICAL)
     subject.destination
   end
   # END - Mutant killers
@@ -57,11 +57,6 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
               BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
             )
           end
-        end
-
-        context 'abuse kind `substances`' do
-          let(:abuse_kind) { 'substances' }
-          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'physical'})}
         end
 
         context 'abuse kind `physical`' do
@@ -146,11 +141,6 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
       context 'when the subject is `applicant`' do
         let(:abuse_subject) { 'applicant' }
 
-        context 'abuse kind `substances`' do
-          let(:abuse_kind) { 'substances' }
-          it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'substances'})}
-        end
-
         context 'abuse kind `physical`' do
           let(:abuse_kind) { 'physical' }
           it {is_expected.to have_destination(:details, :edit, {subject: 'applicant', kind: 'physical'})}
@@ -232,11 +222,6 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
             BaseDecisionTree::InvalidStep, 'Unknown abuse kind: foobar'
           )
         end
-      end
-
-      context 'abuse kind `substances`' do
-        let(:abuse_kind) { 'substances' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant', kind: 'physical'})}
       end
 
       context 'abuse kind `physical`' do

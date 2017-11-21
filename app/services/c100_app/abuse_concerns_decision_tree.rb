@@ -97,11 +97,8 @@ module C100App
     # Note: this is a lot of branching but makes for a more readable code, and is easier to
     # change the ordering. It could be refactored once we have the abuse details step.
     #
-    # rubocop:disable CyclomaticComplexity
     def questions_destination(subject)
       case abuse_kind
-      when AbuseType::SUBSTANCES
-        edit(:question, subject: subject, kind: AbuseType::PHYSICAL)
       when AbuseType::PHYSICAL
         edit(:question, subject: subject, kind: AbuseType::EMOTIONAL)
       when AbuseType::EMOTIONAL
@@ -116,6 +113,5 @@ module C100App
         raise InvalidStep, "Unknown abuse kind: #{abuse_kind}"
       end
     end
-    # rubocop:enable CyclomaticComplexity
   end
 end
