@@ -239,6 +239,14 @@ en:
         edit:
           page_title: Children abuse
           heading: Have the children suffered any form of abuse?
+      domestic_abuse:
+        edit:
+          page_title: Domestic abuse
+          heading: Have you suffered from any form of domestic abuse?
+      other_abuse:
+        edit:
+          page_title: Other concerns
+          heading: Any other concerns?
 
   home:
     index:
@@ -325,6 +333,10 @@ en:
         substance_abuse_html: ""
       steps_safety_questions_children_abuse_form:
         children_abuse_html: ""
+      steps_safety_questions_domestic_abuse_form:
+        domestic_abuse_html: ""
+      steps_safety_questions_other_abuse_form:
+        other_abuse_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
