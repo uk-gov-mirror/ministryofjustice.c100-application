@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       edit_step :risk_of_abduction
       edit_step :substance_abuse
       edit_step :substance_abuse_details
+      edit_step :children_abuse
     end
     namespace :abuse_concerns do
       edit_step :question do

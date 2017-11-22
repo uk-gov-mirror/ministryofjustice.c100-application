@@ -512,3 +512,6 @@ MethodLength:
 AbcSize:
   Enabled: true
   Max: 20
+
+CyclomaticComplexity:
+  Enabled: false

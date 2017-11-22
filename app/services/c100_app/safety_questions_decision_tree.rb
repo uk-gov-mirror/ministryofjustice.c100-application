@@ -9,6 +9,8 @@ module C100App
       when :substance_abuse
         after_substance_abuse
       when :substance_abuse_details
+        edit(:children_abuse)
+      when :children_abuse
         edit('/steps/abuse_concerns/question') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
@@ -21,7 +23,7 @@ module C100App
       if question(:substance_abuse).yes?
         edit(:substance_abuse_details)
       else
-        edit('/steps/abuse_concerns/question') # TODO: change when we have next step
+        edit(:children_abuse)
       end
     end
   end

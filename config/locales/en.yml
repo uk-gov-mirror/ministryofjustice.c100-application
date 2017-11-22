@@ -235,6 +235,10 @@ en:
         edit:
           page_title: Substance abuse details
           heading: Provide a brief summary of the nature and frequency of the substance abuse
+      children_abuse:
+        edit:
+          page_title: Children abuse
+          heading: Have the children suffered any form of abuse?
 
   home:
     index:
@@ -319,6 +323,8 @@ en:
         risk_of_abduction_html: ""
       steps_safety_questions_substance_abuse_form:
         substance_abuse_html: ""
+      steps_safety_questions_children_abuse_form:
+        children_abuse_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
