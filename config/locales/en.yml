@@ -325,6 +325,10 @@ en:
 
   helpers:
     fieldset:
+      steps_applicant_user_type_form:
+        user_type_html: ""
+      steps_miam_acknowledgement_form:
+        miam_acknowledgement_html: ""
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
       steps_safety_questions_risk_of_abduction_form:
@@ -385,6 +389,8 @@ en:
         user_type:
           themself: Yes, I am the person making the application
           representative: No, I am a legal representative of the applicant
+      steps_miam_acknowledgement_form:
+        miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
       steps_applicant_number_of_children_form:
         number_of_children: Enter the number of children
       steps_help_with_fees_help_paying_form:

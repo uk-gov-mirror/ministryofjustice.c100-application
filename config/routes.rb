@@ -35,6 +35,9 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
+    namespace :miam do
+      edit_step :acknowledgement
+    end
     namespace :safety_questions do
       show_step :start
       edit_step :risk_of_abduction
@@ -97,7 +100,6 @@ Rails.application.routes.draw do
   get 'entrypoint/v2'
   get 'entrypoint/v3'
 
-  get :miam_acknowledgement, to: 'miam#index', as: :miam_acknowledgement
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page
 
