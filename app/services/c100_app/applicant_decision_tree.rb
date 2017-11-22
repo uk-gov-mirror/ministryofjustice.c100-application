@@ -1,6 +1,5 @@
 module C100App
   class ApplicantDecisionTree < BaseDecisionTree
-    # rubocop:disable CyclomaticComplexity
     def destination
       return next_step if next_step
 
@@ -17,6 +16,5 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable CyclomaticComplexity
   end
 end
