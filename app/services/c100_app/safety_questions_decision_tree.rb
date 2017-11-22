@@ -9,9 +9,13 @@ module C100App
       when :substance_abuse
         after_substance_abuse
       when :substance_abuse_details
-        edit(:children_abuse)
+        start_abuse_concerns_journey
       when :children_abuse
-        edit('/steps/abuse_concerns/question') # TODO: change when we have next step
+        after_children_abuse
+      when :domestic_abuse
+        after_domestic_abuse
+      when :other_abuse
+        after_other_abuse
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -25,6 +29,34 @@ module C100App
       else
         edit(:children_abuse)
       end
+    end
+
+    def after_children_abuse
+      if question(:children_abuse).yes?
+        start_abuse_concerns_journey
+      else
+        edit(:domestic_abuse)
+      end
+    end
+
+    def after_domestic_abuse
+      if question(:domestic_abuse).yes?
+        start_abuse_concerns_journey
+      else
+        edit(:other_abuse)
+      end
+    end
+
+    def after_other_abuse
+      if question(:other_abuse).yes?
+        start_abuse_concerns_journey
+      else
+        edit('/steps/abuse_concerns/previous_proceedings') # TODO: change once we have negotiation steps
+      end
+    end
+
+    def start_abuse_concerns_journey
+      show('/steps/abuse_concerns/start')
     end
   end
 end

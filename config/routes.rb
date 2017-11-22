@@ -41,8 +41,11 @@ Rails.application.routes.draw do
       edit_step :substance_abuse
       edit_step :substance_abuse_details
       edit_step :children_abuse
+      edit_step :domestic_abuse
+      edit_step :other_abuse
     end
     namespace :abuse_concerns do
+      show_step :start
       edit_step :question do
         get '/:subject/:kind', action: :edit
       end
