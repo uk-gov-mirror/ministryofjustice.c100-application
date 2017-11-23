@@ -39,6 +39,7 @@ Rails.application.routes.draw do
       edit_step :acknowledgement
       edit_step :attended
       edit_step :certification
+      show_step :no_certification_kickout
     end
     namespace :safety_questions do
       show_step :start

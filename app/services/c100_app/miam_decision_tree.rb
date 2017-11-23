@@ -29,7 +29,7 @@ module C100App
       if question(:miam_certification).yes?
         edit(:certification_details)
       else
-        #TODO: kickout
+        show(:no_certification_kickout)
       end
     end
   end
