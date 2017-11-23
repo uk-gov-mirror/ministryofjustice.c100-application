@@ -21,7 +21,7 @@ module C100App
       if question(:miam_attended).yes?
         edit(:certification)
       else
-        #TODO: edit(:children_abuse)
+        show(:not_attended_info)
       end
     end
 
