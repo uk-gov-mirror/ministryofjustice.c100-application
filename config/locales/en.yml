@@ -247,6 +247,11 @@ en:
         edit:
           page_title: Other concerns
           heading: Any other concerns?
+    miam:
+      attended:
+        edit:
+          page_title: MIAM attended
+          heading: Have you attended a MIAM?
 
   home:
     index:
@@ -329,6 +334,8 @@ en:
         user_type_html: ""
       steps_miam_acknowledgement_form:
         miam_acknowledgement_html: ""
+      steps_miam_attended_form:
+        miam_attended_html: ""
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
       steps_safety_questions_risk_of_abduction_form:
