@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     namespace :miam do
       edit_step :acknowledgement
       edit_step :attended
+      edit_step :certification
     end
     namespace :safety_questions do
       show_step :start
