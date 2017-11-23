@@ -1,6 +1,8 @@
 module Steps
   module Miam
     class AcknowledgementController < Steps::MiamStepController
+      include StartingPointStep
+
       def edit
         @form_object = AcknowledgementForm.new(
           c100_application: current_c100_application,

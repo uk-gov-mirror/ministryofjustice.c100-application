@@ -27,7 +27,9 @@ module C100App
 
     def after_miam_certification
       if question(:miam_certification).yes?
-        edit(:certification_details)
+        # edit(:certification_details)
+        # TODO: waiting for now until this step is more solid
+        edit('/steps/applicant/number_of_children')
       else
         show(:no_certification_kickout)
       end
