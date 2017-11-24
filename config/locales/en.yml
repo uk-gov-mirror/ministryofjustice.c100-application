@@ -256,6 +256,16 @@ en:
         edit:
           page_title: MIAM certification
           heading: Have you got a signed certificate from the mediator?
+    petition:
+      orders:
+        edit:
+          page_title: What are you asking the court to do?
+          heading: What are you asking the court to do about your children?
+          lead_text: Select all that apply
+      other_issue:
+        edit:
+          page_title: Provide details of the issue
+          heading: Provide details of the issue you’re asking the court to resolve
 
   home:
     index:
@@ -342,6 +352,11 @@ en:
         miam_attended_html: ""
       steps_miam_certification_form:
         miam_certification_html: ""
+      steps_petition_orders_form:
+        orders_html: ""
+        orders_issues_html: "Resolve a dispute over a specific issue"
+      steps_petition_other_issue_form:
+        other_issue_html: "What orders are you applying for? (optional)"
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
       steps_safety_questions_risk_of_abduction_form:
@@ -412,6 +427,25 @@ en:
           yes_without_ref_number: Yes, but I don’t have a Help with Fees reference number
           not_needed: 'No'
         hwf_reference_number: Enter your reference number
+      steps_petition_orders_form:
+        child_home: Arrange where they live
+        child_times: Arrange how much time they spend with each parent
+        child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
+        child_specific_issue_school: Which school they go to
+        child_specific_issue_religion: A religious issue
+        child_specific_issue_name: Changing their names
+        child_specific_issue_medical: Medical treatment
+        child_specific_issue_abroad: Moving location (including moving abroad)
+        consent_order: Make an agreement with the other parent legally binding (also known as a consent order)
+        child_return: Return them to your care
+        child_abduction: Stop the other parent abducting them
+        child_flight: Stop the other parent taking them abroad or moving location without your permission
+        other: Resolve another issue
+      steps_petition_other_issue_form:
+        other_details: Details
+        child_arrangements_order: Child Arrangements Order
+        prohibited_steps_order: Prohibited Steps Order
+        specific_issue_order: Specific Issue Order
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
@@ -489,6 +523,9 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
+      steps_petition_other_issue_form:
+        other_details: Give a short description
+        other_issue: Select any that apply
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_personal_details_form:

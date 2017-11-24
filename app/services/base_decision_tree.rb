@@ -22,6 +22,10 @@ class BaseDecisionTree
     klass.new c100_application.public_send(attribute_name)
   end
 
+  def checked?(attribute_name)
+    step_params.fetch(attribute_name, '0').true?
+  end
+
   # Enable again when needed. Coverage complains otherwise.
   # def root_path
   #   { controller: '/entrypoint', action: :v1 }

@@ -35,6 +35,10 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
+    namespace :petition do
+      edit_step :orders
+      edit_step :other_issue
+    end
     namespace :miam do
       edit_step :acknowledgement
       edit_step :attended

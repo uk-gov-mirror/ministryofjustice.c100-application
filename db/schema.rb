@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123095928) do
+ActiveRecord::Schema.define(version: 20171123125740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,29 @@ ActiveRecord::Schema.define(version: 20171123095928) do
     t.uuid     "c100_application_id"
     t.date     "dob"
     t.index ["c100_application_id"], name: "index_applicants_on_c100_application_id", using: :btree
+  end
+
+  create_table "asking_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.boolean "child_home"
+    t.boolean "child_times"
+    t.boolean "child_contact"
+    t.boolean "child_specific_issue"
+    t.boolean "child_specific_issue_school"
+    t.boolean "child_specific_issue_religion"
+    t.boolean "child_specific_issue_name"
+    t.boolean "child_specific_issue_medical"
+    t.boolean "child_specific_issue_abroad"
+    t.boolean "consent_order"
+    t.boolean "child_return"
+    t.boolean "child_abduction"
+    t.boolean "child_flight"
+    t.boolean "other"
+    t.text    "other_details"
+    t.boolean "child_arrangements_order"
+    t.boolean "prohibited_steps_order"
+    t.boolean "specific_issue_order"
+    t.uuid    "c100_application_id"
+    t.index ["c100_application_id"], name: "index_asking_orders_on_c100_application_id", using: :btree
   end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -173,6 +196,7 @@ ActiveRecord::Schema.define(version: 20171123095928) do
 
   add_foreign_key "abuse_concerns", "c100_applications"
   add_foreign_key "applicants", "c100_applications"
+  add_foreign_key "asking_orders", "c100_applications"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "children", "c100_applications"
   add_foreign_key "court_orders", "c100_applications"
