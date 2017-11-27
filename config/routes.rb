@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     end
     namespace :abduction do
       edit_step :children_have_passport
+      edit_step :international
     end
     namespace :safety_questions do
       show_step :start

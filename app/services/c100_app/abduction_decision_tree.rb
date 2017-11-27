@@ -5,9 +5,21 @@ module C100App
 
       case step_name
       when :children_have_passport
+        after_children_have_passport
+      when :international
         edit('/steps/safety_questions/substance_abuse') # TODO: change when we have next step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
+      end
+    end
+
+    private
+
+    def after_children_have_passport
+      if selected?(:children_have_passport)
+        edit(:international)
+      else
+        edit('/steps/safety_questions/substance_abuse') # TODO: change when we have next step
       end
     end
   end
