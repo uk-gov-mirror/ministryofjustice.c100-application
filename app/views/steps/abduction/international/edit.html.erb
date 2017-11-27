@@ -1,0 +1,36 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.radio_button_fieldset :international_risk, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :international_risk_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:international_risk_panel) do |panel|
+            panel.radio_button_fieldset(:passport_office_notified, inline: true, choices: GenericYesNo.values)
+            panel.content_tag(:p, t('.contact_info_html'))
+          end
+        end
+      %>
+
+      <%= f.radio_button_fieldset :children_multiple_passports, inline: true, choices: GenericYesNo.values %>
+
+      <%= f.check_box_fieldset :passport_possesion, [
+        :passport_possession_mother,
+        :passport_possession_father,
+        :passport_possession_other
+      ] %>
+
+      <!-- TODO: the following text area should be in a revealing panel triggered by -->
+      <!-- above `other` checkbox. Gem needs to support checkbox revealing panels for this. -->
+      <%= f.text_area :passport_possession_other_details, size: '40x4', class: 'form-control-3-4' %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

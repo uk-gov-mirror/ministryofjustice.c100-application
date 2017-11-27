@@ -271,6 +271,14 @@ en:
         edit:
           page_title: Children have passport
           heading: Do any of your children have a passport?
+      international:
+        edit:
+          page_title: International abduction risk
+          heading: Are you worried your children will be taken out of the country?
+          contact_info_html: |
+            If you think your children are at risk of being abducted abroad you must
+            <a href="https://www.gov.uk/government/organisations/hm-passport-office" target="external_link">contact
+            the passport office</a> immediately.
 
   home:
     index:
@@ -294,6 +302,7 @@ en:
     format: "%{message}"
     messages:
       blank: Please enter an answer
+      present: Please leave empty
       inclusion: Please select an option
     error_summary:
       heading: There was a problem on the page
@@ -376,6 +385,11 @@ en:
         other_abuse_html: ""
       steps_abduction_children_have_passport_form:
         children_have_passport_html: ""
+      steps_abduction_international_form:
+        international_risk_html: ""
+        passport_office_notified_html: "Has the passport office been notified?"
+        children_multiple_passports_html: "Do the children have more than one passport?"
+        passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
@@ -453,6 +467,11 @@ en:
         child_arrangements_order: Child Arrangements Order
         prohibited_steps_order: Prohibited Steps Order
         specific_issue_order: Specific Issue Order
+      steps_abduction_international_form:
+        passport_possession_mother: Mother
+        passport_possession_father: Father
+        passport_possession_other: Other
+        passport_possession_other_details: Provide more details (If 'other' is selected)
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
@@ -533,6 +552,8 @@ en:
       steps_petition_other_issue_form:
         other_details: Give a short description
         other_issue: Select any that apply
+      steps_abduction_international_form:
+        passport_possesion: Select all that apply
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_personal_details_form:
