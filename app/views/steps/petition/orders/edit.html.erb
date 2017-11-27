@@ -1,0 +1,41 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.check_box_fieldset :orders, [
+        :child_home,
+        :child_times,
+        :child_contact
+      ] %>
+
+      <!-- TODO: update `govuk_elements_form_builder` gem to support checkboxes revealing panels.
+           For now, the following checkboxes are flattened. -->
+
+      <%= f.check_box_fieldset :orders_issues, [
+        :child_specific_issue_school,
+        :child_specific_issue_religion,
+        :child_specific_issue_name,
+        :child_specific_issue_medical,
+        :child_specific_issue_abroad
+      ] %>
+
+      <%= f.check_box_fieldset :orders, [
+        :consent_order,
+        :child_return,
+        :child_abduction,
+        :child_flight
+      ] %>
+
+      <%= f.check_box_fieldset :orders, [:other] %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

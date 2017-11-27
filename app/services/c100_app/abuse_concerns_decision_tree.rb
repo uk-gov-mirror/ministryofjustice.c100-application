@@ -1,17 +1,19 @@
 module C100App
   class AbuseConcernsDecisionTree < BaseDecisionTree
     def destination
-      case [step_name, abuse_subject]
-      when [:question, AbuseSubject::APPLICANT]
-        applicant_questions_destination
-      when [:details, AbuseSubject::APPLICANT]
-        applicant_details_destination
-      when [:question, AbuseSubject::CHILDREN]
-        children_questions_destination
-      when [:details, AbuseSubject::CHILDREN]
-        children_details_destination
+      case step_name
+      when :question
+        after_question_step
+      when :details
+        after_details_step
+      when :contact
+        edit(:previous_proceedings)
+      when :previous_proceedings
+        after_previous_proceedings
+      when :emergency_proceedings
+        show('/steps/children/instructions') # TODO: change when we have next step
       else
-        raise InvalidStep, "Invalid step '#{step_params}'"
+        raise InvalidStep, "Invalid step '#{step_name}'"
       end
     end
 
@@ -25,12 +27,39 @@ module C100App
       AbuseType.new(step_params[:kind])
     end
 
-    def answer
+    def abuse_answer
       GenericYesNo.new(step_params[:answer])
     end
 
+    def after_previous_proceedings
+      case step_params.fetch(:children_previous_proceedings)
+      when GenericYesNo::YES.to_s
+        edit(:emergency_proceedings)
+      else
+        show('/steps/children/instructions') # TODO: change when we have next step
+      end
+    end
+
+    def after_question_step
+      case abuse_subject
+      when AbuseSubject::APPLICANT
+        applicant_questions_destination
+      when AbuseSubject::CHILDREN
+        children_questions_destination
+      end
+    end
+
+    def after_details_step
+      case abuse_subject
+      when AbuseSubject::APPLICANT
+        applicant_details_destination
+      when AbuseSubject::CHILDREN
+        children_details_destination
+      end
+    end
+
     def applicant_questions_destination
-      case answer
+      case abuse_answer
       when GenericYesNo::YES
         edit(:details, subject: abuse_subject, kind: abuse_kind)
       else
@@ -48,7 +77,7 @@ module C100App
     end
 
     def children_questions_destination
-      case answer
+      case abuse_answer
       when GenericYesNo::YES
         edit(:details, subject: abuse_subject, kind: abuse_kind)
       else
@@ -58,8 +87,8 @@ module C100App
 
     def children_details_destination
       case abuse_kind
-      when AbuseType::OTHER # TODO: This is a placeholder. change when we have the `orders` step
-        show('/steps/children/instructions')
+      when AbuseType::OTHER
+        edit('/steps/court_orders/has_orders')
       else
         questions_destination(AbuseSubject::CHILDREN)
       end
@@ -68,11 +97,8 @@ module C100App
     # Note: this is a lot of branching but makes for a more readable code, and is easier to
     # change the ordering. It could be refactored once we have the abuse details step.
     #
-    # rubocop:disable CyclomaticComplexity
     def questions_destination(subject)
       case abuse_kind
-      when AbuseType::SUBSTANCES
-        edit(:question, subject: subject, kind: AbuseType::PHYSICAL)
       when AbuseType::PHYSICAL
         edit(:question, subject: subject, kind: AbuseType::EMOTIONAL)
       when AbuseType::EMOTIONAL
@@ -87,6 +113,5 @@ module C100App
         raise InvalidStep, "Unknown abuse kind: #{abuse_kind}"
       end
     end
-    # rubocop:enable CyclomaticComplexity
   end
 end

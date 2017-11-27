@@ -9,8 +9,7 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object, inline: true do |f| %>
-      <%= f.radio_button_fieldset :has_court_orders, inline: true,
-        choices: Steps::CourtOrders::HasOrdersForm.choices %>
+      <%= f.radio_button_fieldset :has_court_orders, inline: true, choices: GenericYesNo.values %>
 
       <%= f.submit class: 'button' %>
     <% end %>

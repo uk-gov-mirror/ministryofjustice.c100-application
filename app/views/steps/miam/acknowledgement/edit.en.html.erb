@@ -1,0 +1,36 @@
+<% title 'MIAM Requirement' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Attending a Mediation Information and Assessment Meeting (MIAM)</h1>
+      <p class="lede gv-u-text-lede">Before completing this application you’re legally required to attend a
+        <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
+      </p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>A <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> will assess your situation and try and help you avoid the stress of going to court to make arrangements.</p>
+      <p>At the <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> a mediator will explain:</p>
+      <ul class="list list-bullet">
+        <li>how mediation works</li>
+        <li>the benefits</li>
+        <li>whether it’s right for you</li>
+        <li>the likely costs</li>
+        <li><a href="https://www.gov.uk/check-legal-aid">if you’re eligible for mediation through legal aid</a></li>
+        <li>other options available to you</li>
+      </ul>
+      <p>You don’t have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> if you have a valid reason - for example you’re a victim of domestic abuse or your children are at risk of harm.</p>
+      <p><a href="https://www.familymediationcouncil.org.uk/family-mediation/assessment-meeting-miam/miams-exemptions/">Read the full list of <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> exemptions</a></p>
+      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO"><p>If you’ve been to a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> it must have taken place within the past 4 months. It must also have been about the same reason why you’re now applying to court.</p>
+      </div>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.check_box_fieldset :miam_acknowledgement, [:miam_acknowledgement] %>
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

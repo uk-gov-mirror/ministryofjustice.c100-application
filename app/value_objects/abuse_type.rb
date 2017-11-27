@@ -1,6 +1,5 @@
 class AbuseType < ValueObject
   VALUES = [
-    SUBSTANCES    = new(:substances),
     PHYSICAL      = new(:physical),
     EMOTIONAL     = new(:emotional),
     PSYCHOLOGICAL = new(:psychological),

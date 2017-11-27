@@ -4,9 +4,16 @@ class StepGenerator < Rails::Generators::Base
   argument :step_name,  type: :string
   class_option :type,   type: :string, required: false, default: 'edit'
 
+  # If you add a new type of step, do not forget to update this hash
+  TYPE_TEMPLATES = {
+    show: 'show.html.erb',
+    edit: 'edit.html.erb',
+    question: 'edit.html.erb'
+  }.freeze
+
   def validate_options!
-    %w(show edit).include?(type) ||
-      raise('Unknown value for `--type` option. Valid options: `show|edit`. Default: `edit`')
+    TYPE_TEMPLATES.keys.include?(type) ||
+      raise("Unknown value for `--type` option. Valid options: `#{TYPE_TEMPLATES.keys.join('|')}`. Default: `edit`")
   end
 
   def copy_controller
@@ -15,21 +22,20 @@ class StepGenerator < Rails::Generators::Base
   end
 
   def copy_template
-    template "#{type}/#{template_name}.html.erb", "app/views/steps/#{task_name.underscore}/#{step_name.underscore}/#{template_name}.html.erb"
+    template "#{type}/#{template_name}", "app/views/steps/#{task_name.underscore}/#{step_name.underscore}/#{template_name}"
   end
 
   def copy_form
-    return if type == 'show' # show steps doesn't have form objects
+    return if type == :show # show steps doesn't have form objects
     template "#{type}/form.rb", "app/forms/steps/#{task_name.underscore}/#{step_name.underscore}_form.rb"
     template "#{type}/form_spec.rb", "spec/forms/steps/#{task_name.underscore}/#{step_name.underscore}_form_spec.rb"
   end
 
-  # Prepared to cope with type `crud` in the future. Add here another branch.
   def add_step_to_routes
     case type
-    when 'show'
+    when :show
       add_to_routes("show_step :#{step_name.underscore}")
-    else
+    when :edit, :question
       add_to_routes("edit_step :#{step_name.underscore}")
     end
   end
@@ -40,16 +46,13 @@ class StepGenerator < Rails::Generators::Base
     insert_into_file('config/routes.rb', after: /namespace :#{task_name.underscore} do.+?(?=end)/m) { "  #{step_line}\n    " }
   end
 
-  # Supplied as an optional parameter in the command line with `--type=show|edit`
+  # Supplied as an optional parameter in the command line with `--type=X`
   # Default value if option not passed is `edit`
   def type
-    options.type
+    options.type.to_sym
   end
 
-  # Currently, the type (`show` or `edit`) also matches the template name `show.html.erb` `edit.html.erb`
-  # but this method exists to be able to cope with other types in the future (for example we could have a
-  # new type named `crud` which will have a `edit.html.erb` template and other few differences).
   def template_name
-    type
+    TYPE_TEMPLATES[type]
   end
 end

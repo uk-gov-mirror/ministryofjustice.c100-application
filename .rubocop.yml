@@ -389,16 +389,6 @@ HandleExceptions:
   Description: "Don't suppress exception."
   Enabled: true
 
-InvalidCharacterLiteral:
-  Description: >-
-     Checks for invalid character literals with a non-escaped
-     whitespace character.
-  Enabled: true
-
-LiteralInCondition:
-  Description: 'Checks of literals used in conditions.'
-  Enabled: true
-
 LiteralInInterpolation:
   Description: 'Checks for literals used in interpolation.'
   Enabled: true
@@ -512,3 +502,6 @@ MethodLength:
 AbcSize:
   Enabled: true
   Max: 20
+
+CyclomaticComplexity:
+  Enabled: false

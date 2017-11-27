@@ -35,6 +35,29 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
+    namespace :petition do
+      edit_step :orders
+      edit_step :other_issue
+    end
+    namespace :miam do
+      edit_step :acknowledgement
+      edit_step :attended
+      show_step :not_attended_info
+      edit_step :certification
+      show_step :no_certification_kickout
+    end
+    namespace :abduction do
+      edit_step :children_have_passport
+    end
+    namespace :safety_questions do
+      show_step :start
+      edit_step :risk_of_abduction
+      edit_step :substance_abuse
+      edit_step :substance_abuse_details
+      edit_step :children_abuse
+      edit_step :domestic_abuse
+      edit_step :other_abuse
+    end
     namespace :abuse_concerns do
       show_step :start
       edit_step :question do
@@ -43,9 +66,13 @@ Rails.application.routes.draw do
       edit_step :details do
         get '/:subject/:kind', action: :edit
       end
+      edit_step :contact
+      edit_step :previous_proceedings
+      edit_step :emergency_proceedings
     end
     namespace :court_orders do
       edit_step :has_orders
+      edit_step :details
     end
     namespace :children do
       show_step :instructions
@@ -84,7 +111,6 @@ Rails.application.routes.draw do
   get 'entrypoint/v2'
   get 'entrypoint/v3'
 
-  get :miam_acknowledgement, to: 'miam#index', as: :miam_acknowledgement
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page
 

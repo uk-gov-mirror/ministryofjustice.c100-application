@@ -11,16 +11,21 @@ RSpec.describe C100App::CourtOrdersDecisionTree do
   it_behaves_like 'a decision tree'
 
   context 'when the step is `has_court_orders`' do
-    let(:step_params) { { has_court_orders: 'anything' } }
+    let(:step_params) { { has_court_orders: answer } }
 
     context 'and the answer is `yes`' do
-      let(:c100_application) { instance_double(C100Application, has_court_orders: GenericYesNo::YES) }
-      it { is_expected.to have_destination('/steps/children/instructions', :show) }
+      let(:answer) { 'yes' }
+      it { is_expected.to have_destination(:details, :edit) }
     end
 
     context 'and the answer is `no`' do
-      let(:c100_application) { instance_double(C100Application, has_court_orders: GenericYesNo::NO) }
-      it { is_expected.to have_destination('/steps/children/instructions', :show) }
+      let(:answer) { 'no' }
+      it { is_expected.to have_destination('/steps/abuse_concerns/contact', :edit) }
     end
+  end
+
+  context 'when the step is `orders_details`' do
+    let(:step_params) { { orders_details: 'whatever' } }
+    it { is_expected.to have_destination('/steps/abuse_concerns/contact', :edit) }
   end
 end

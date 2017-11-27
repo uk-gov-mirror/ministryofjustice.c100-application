@@ -4,7 +4,7 @@ module Steps
       include GovUkDateFields::ActsAsGovUkDate
 
       attribute :full_name, StrippedString
-      attribute :has_previous_name, String
+      attribute :has_previous_name, YesNo
       attribute :previous_full_name, StrippedString
       attribute :gender, String
       attribute :dob, Date
@@ -17,10 +17,7 @@ module Steps
 
       acts_as_gov_uk_date :dob
 
-      def self.has_previous_name_choices
-        GenericYesNo.string_values
-      end
-      validates_inclusion_of :has_previous_name, in: has_previous_name_choices
+      validates_inclusion_of :has_previous_name, in: GenericYesNo.values
 
       def self.gender_choices
         Gender.string_values
@@ -29,17 +26,9 @@ module Steps
 
       validates :email, email: true
       validates_presence_of :full_name, :birthplace, :dob
-      validates_presence_of :previous_full_name, if: :has_previous_name?
+      validates_presence_of :previous_full_name, if: -> { has_previous_name&.yes? }
 
       private
-
-      def has_previous_name?
-        has_previous_name.eql?(GenericYesNo::YES.to_s)
-      end
-
-      def has_previous_name_value
-        GenericYesNo.new(has_previous_name)
-      end
 
       def gender_value
         Gender.new(gender)
@@ -50,9 +39,9 @@ module Steps
 
         applicant = c100_application.applicants.find_or_initialize_by(id: record_id)
         applicant.update(
-          # Some attributes are value objects and thus we need to provide their values
+          # Some attributes are value objects and thus we need to provide their values,
+          # but eventually we may end up with the same solution as for `YesNo` attributes.
           attributes_map.merge(
-            has_previous_name: has_previous_name_value,
             gender: gender_value
           )
         )

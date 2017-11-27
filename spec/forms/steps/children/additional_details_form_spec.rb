@@ -30,24 +30,6 @@ RSpec.describe Steps::Children::AdditionalDetailsForm do
 
   subject { described_class.new(arguments) }
 
-  describe '.children_known_to_authorities_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.children_known_to_authorities_choices).to eq(%w(yes no unknown))
-    end
-  end
-
-  describe '.children_protection_plan_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.children_protection_plan_choices).to eq(%w(yes no unknown))
-    end
-  end
-
-  describe '.children_same_parents_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.children_same_parents_choices).to eq(%w(yes no))
-    end
-  end
-
   describe '.children_residence_choices' do
     it 'returns the relevant choices' do
       expect(described_class.children_residence_choices).to eq(%w(applicant respondent other))

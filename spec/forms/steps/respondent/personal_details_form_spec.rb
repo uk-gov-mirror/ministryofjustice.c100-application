@@ -50,12 +50,6 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
     end
   end
 
-  describe '.has_previous_name_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.has_previous_name_choices).to eq(%w(yes no unknown))
-    end
-  end
-
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }

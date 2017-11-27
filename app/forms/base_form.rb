@@ -72,6 +72,12 @@ class BaseForm
 
   private
 
+  # This can be overridden by more specific implementations, for example as we do
+  # within the `HasOneAssociationForm` concern. The default is always the 'main' model.
+  def record
+    c100_application
+  end
+
   # :nocov:
   def persist!
     raise 'Subclasses of BaseForm need to implement #persist!'
