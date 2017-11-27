@@ -8,7 +8,7 @@ module Steps
       end
 
       def update
-        update_and_advance(InternationalForm, as: :international)
+        update_and_advance(InternationalForm, as: :international_risk)
       end
     end
   end
