@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123125740) do
+ActiveRecord::Schema.define(version: 20171124141636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "abduction_details", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string  "children_have_passport"
+    t.string  "international_risk"
+    t.string  "passport_office_notified"
+    t.string  "children_multiple_passports"
+    t.boolean "passport_possession_mother"
+    t.boolean "passport_possession_father"
+    t.boolean "passport_possession_other"
+    t.text    "passport_possession_other_details"
+    t.string  "previous_attempt"
+    t.text    "previous_attempt_details"
+    t.string  "previous_attempt_agency_involved"
+    t.text    "previous_attempt_agency_details"
+    t.text    "risk_details"
+    t.uuid    "c100_application_id"
+    t.index ["c100_application_id"], name: "index_abduction_details_on_c100_application_id", using: :btree
+  end
 
   create_table "abuse_concerns", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "subject"
@@ -194,6 +212,7 @@ ActiveRecord::Schema.define(version: 20171123125740) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "abduction_details", "c100_applications"
   add_foreign_key "abuse_concerns", "c100_applications"
   add_foreign_key "applicants", "c100_applications"
   add_foreign_key "asking_orders", "c100_applications"

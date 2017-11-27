@@ -266,6 +266,11 @@ en:
         edit:
           page_title: Provide details of the issue
           heading: Provide details of the issue you’re asking the court to resolve
+    abduction:
+      children_have_passport:
+        edit:
+          page_title: Children have passport
+          heading: Do any of your children have a passport?
 
   home:
     index:
@@ -369,6 +374,8 @@ en:
         domestic_abuse_html: ""
       steps_safety_questions_other_abuse_form:
         other_abuse_html: ""
+      steps_abduction_children_have_passport_form:
+        children_have_passport_html: ""
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:

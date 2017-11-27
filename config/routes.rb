@@ -46,6 +46,9 @@ Rails.application.routes.draw do
       edit_step :certification
       show_step :no_certification_kickout
     end
+    namespace :abduction do
+      edit_step :children_have_passport
+    end
     namespace :safety_questions do
       show_step :start
       edit_step :risk_of_abduction

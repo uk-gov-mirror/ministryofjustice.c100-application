@@ -5,7 +5,7 @@ module C100App
 
       case step_name
       when :risk_of_abduction
-        edit(:substance_abuse)
+        after_risk_of_abduction
       when :substance_abuse
         after_substance_abuse
       when :substance_abuse_details
@@ -22,6 +22,14 @@ module C100App
     end
 
     private
+
+    def after_risk_of_abduction
+      if question(:risk_of_abduction).yes?
+        edit('/steps/abduction/children_have_passport')
+      else
+        edit(:substance_abuse)
+      end
+    end
 
     def after_substance_abuse
       if question(:substance_abuse).yes?

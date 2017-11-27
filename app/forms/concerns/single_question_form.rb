@@ -30,7 +30,7 @@ module SingleQuestionForm
   def persist!
     raise BaseForm::C100ApplicationNotFound unless c100_application
 
-    c100_application.update(
+    record.update(
       attributes_map.merge(attributes_to_reset)
     )
   end
