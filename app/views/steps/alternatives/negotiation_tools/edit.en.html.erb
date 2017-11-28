@@ -1,0 +1,61 @@
+<% title 'Negotiation tools and services' %>
+
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Negotiation tools and services</h1>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>If you still communicate with the other person, and there are no concerns about domestic or child abuse, the
+        cheapest and easiest way to make arrangements is to negotiate with each other.</p>
+      <p>There are free tools and services such as
+        <a href="http://www.splittingup-putkidsfirst.org.uk/home" target="external_link">parenting plans</a> that can
+        help you reach an agreement.</p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div>
+        <div class="ProsCons">
+          <div class="Pros">
+            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
+              <span data-block-name="ProsCons__heading--pros">Pros</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--pros">
+              <li class="ProsCons__item ProsCons__item--pros">cheapest and quickest option</li>
+              <li class="ProsCons__item ProsCons__item--pros">you and the other parent are in control</li>
+              <li class="ProsCons__item ProsCons__item--pros">helps children continue family relationships</li>
+              <li class="ProsCons__item ProsCons__item--pros">agreements are flexible</li>
+            </ul>
+          </div>
+
+          <div class="Cons">
+            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+              <span data-block-name="ProsCons__heading--cons">Cons</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--cons">
+              <li class="ProsCons__item ProsCons__item--cons">you’ll need a consent order to make agreement legally binding</li>
+              <li class="ProsCons__item ProsCons__item--cons">process heavily relies on parent co-operation</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="CallToAction">
+          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/negotiating-between-parents" target="external_link">Find
+            out more about negotiation tools and services</a></p>
+
+        <%= step_form @form_object do |f| %>
+            <%= f.radio_button_fieldset :alternative_negotiation_tools, inline: true, choices: GenericYesNo.values %>
+            <%= f.submit class: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  </div>
+</div>

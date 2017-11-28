@@ -1,0 +1,61 @@
+<% title 'Professional mediation' %>
+
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Professional mediation</h1>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>Mediation sessions are run by professionals who help you try to reach an agreement without going to court.</p>
+      <p>Mediation isn’t relationship counselling and you don’t have to be in the same room as the other parent.</p>
+      <p>Mediation is suitable for people who want to reach an agreement but need help from someone who is independent.</p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div>
+        <div class="ProsCons">
+          <div class="Pros">
+            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
+              <span data-block-name="ProsCons__heading--pros">Pros</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--pros">
+              <li class="ProsCons__item ProsCons__item--pros">it’s quicker than court in most cases</li>
+              <li class="ProsCons__item ProsCons__item--pros">can be cheaper than using a lawyer</li>
+              <li class="ProsCons__item ProsCons__item--pros">less conflict between parents</li>
+              <li class="ProsCons__item ProsCons__item--pros">helps children continue family relationships</li>
+              <li class="ProsCons__item ProsCons__item--pros">agreements are flexible</li>
+            </ul>
+          </div>
+
+          <div class="Cons">
+            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+              <span data-block-name="ProsCons__heading--cons">Cons</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--cons">
+              <li class="ProsCons__item ProsCons__item--cons">you’ll need a consent order to make agreement legally binding</li>
+              <li class="ProsCons__item ProsCons__item--cons">process won’t work unless parents can co-operate</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="CallToAction">
+          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/professional-mediation" target="external_link">Find
+            out more about professional mediation</a>
+        </p>
+
+        <%= step_form @form_object do |f| %>
+          <%= f.radio_button_fieldset :alternative_mediation, inline: true, choices: GenericYesNo.values %>
+          <%= f.submit class: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  </div>
+</div>

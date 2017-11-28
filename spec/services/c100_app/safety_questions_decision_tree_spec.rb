@@ -88,7 +88,7 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
+      it { is_expected.to have_destination('/steps/alternatives/negotiation_tools', :edit) }
     end
   end
 end

@@ -59,7 +59,7 @@ module C100App
       if question(:other_abuse).yes?
         start_abuse_concerns_journey
       else
-        edit('/steps/abuse_concerns/previous_proceedings') # TODO: change once we have negotiation steps
+        edit('/steps/alternatives/negotiation_tools')
       end
     end
 

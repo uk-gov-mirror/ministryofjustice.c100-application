@@ -78,6 +78,13 @@ Rails.application.routes.draw do
       edit_step :has_orders
       edit_step :details
     end
+    namespace :alternatives do
+      edit_step :negotiation_tools
+      edit_step :mediation
+      edit_step :lawyer_negotiation
+      edit_step :collaborative_law
+      edit_step :court
+    end
     namespace :children do
       show_step :instructions
       edit_step :personal_details, enable_crud: true

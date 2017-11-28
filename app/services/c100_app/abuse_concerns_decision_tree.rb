@@ -70,7 +70,7 @@ module C100App
     def applicant_details_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit('/steps/court_orders/has_orders')
+        edit(:contact)
       else
         questions_destination(AbuseSubject::APPLICANT)
       end
