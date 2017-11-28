@@ -1,0 +1,60 @@
+<% title 'Lawyer negotiation' %>
+
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Lawyer negotiation</h1>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>With lawyer negotiation you don’t deal directly with the person. You hire a lawyer to negotiate arrangements for you.</p>
+      <p>You can still hire a lawyer to negotiate on your behalf even if the other person chooses not to use one.</p>
+      <p>Lawyer negotiation is suitable for people who prefer not to meet because their relationship is still difficult, or because there’s a lack of trust.</p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div>
+        <div class="ProsCons">
+          <div class="Pros">
+            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
+              <span data-block-name="ProsCons__heading--pros">Pros</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--pros">
+              <li class="ProsCons__item ProsCons__item--pros">your lawyer supports you throughout</li>
+              <li class="ProsCons__item ProsCons__item--pros">quicker and less stressful than court</li>
+              <li class="ProsCons__item ProsCons__item--pros">you don’t deal directly with the other parent</li>
+            </ul>
+          </div>
+
+          <div class="Cons">
+            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+              <span data-block-name="ProsCons__heading--cons">Cons</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--cons">
+              <li class="ProsCons__item ProsCons__item--cons">can be a more expensive process</li>
+              <li class="ProsCons__item ProsCons__item--cons">you may feel you’re not in control</li>
+              <li class="ProsCons__item ProsCons__item--cons">can be seen as a confrontational approach</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="CallToAction">
+          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/lawyer-negotiation" target="external_link">Find
+            out more about lawyer negotiation</a>
+        </p>
+
+        <%= step_form @form_object do |f| %>
+          <%= f.radio_button_fieldset :alternative_lawyer_negotiation, inline: true, choices: GenericYesNo.values %>
+          <%= f.submit class: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  </div>
+</div>

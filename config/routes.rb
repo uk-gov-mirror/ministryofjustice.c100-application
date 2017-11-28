@@ -81,6 +81,7 @@ Rails.application.routes.draw do
     namespace :alternatives do
       edit_step :negotiation_tools
       edit_step :mediation
+      edit_step :lawyer_negotiation
     end
     namespace :children do
       show_step :instructions

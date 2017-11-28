@@ -492,6 +492,8 @@ en:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
       steps_alternatives_mediation_form:
         alternative_mediation: Have you tried professional mediation?
+      steps_alternatives_lawyer_negotiation_form:
+        alternative_lawyer_negotiation: Have you tried lawyer negotiation?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:
