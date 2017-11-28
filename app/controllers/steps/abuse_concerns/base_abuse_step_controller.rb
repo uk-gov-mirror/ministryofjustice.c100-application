@@ -4,11 +4,11 @@ module Steps
       private
 
       def subject_value
-        AbuseSubject.new(params.fetch(:subject, AbuseSubject::APPLICANT.to_s))
+        AbuseSubject.new(params.fetch(:subject, AbuseSubject::CHILDREN.to_s))
       end
 
       def kind_value
-        AbuseType.new(params.fetch(:kind, AbuseType::PHYSICAL.to_s))
+        AbuseType.new(params.fetch(:kind, AbuseType::SEXUAL.to_s))
       end
 
       def current_concern

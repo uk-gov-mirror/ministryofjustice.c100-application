@@ -4,11 +4,16 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Safety concerns - we need to ask more questions</h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">You and your children’s safety</h1>
 
-    <!-- This is a placeholder until we have final copy -->
-
-    <p class="lede">Because you answered x - blah blah blah</p>
+    <div class="govuk-govspeak gv-s-prose">
+      <p>Based on your previous answer, we’ll need to ask you some questions about your concerns.</p>
+      <p>The aim of the following questions is to provide more information for an advisor from the
+        <a href="https://www.cafcass.gov.uk/" target="external_link">Children and Family Court Advisory and Support
+          Service (Cafcass)</a>. They will carry out background checks before the first hearing.</p>
+      <p>Due to the sensitive nature of the questions you may find some of them difficult to answer.
+        If you don’t know an answer you can select ‘Don’t know’.</p>
+    </div>
 
     <div class="xform-group form-submit">
       <%= link_to 'Continue', edit_steps_abuse_concerns_question_path, class: 'button', role: 'button' %>

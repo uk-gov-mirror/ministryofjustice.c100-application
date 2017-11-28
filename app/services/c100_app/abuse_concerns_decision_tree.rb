@@ -70,7 +70,7 @@ module C100App
     def applicant_details_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit(:question, subject: AbuseSubject::CHILDREN, kind: AbuseType::PHYSICAL)
+        edit('/steps/court_orders/has_orders')
       else
         questions_destination(AbuseSubject::APPLICANT)
       end
@@ -88,7 +88,7 @@ module C100App
     def children_details_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit('/steps/court_orders/has_orders')
+        edit(:question, subject: AbuseSubject::APPLICANT)
       else
         questions_destination(AbuseSubject::CHILDREN)
       end
@@ -99,15 +99,15 @@ module C100App
     #
     def questions_destination(subject)
       case abuse_kind
-      when AbuseType::PHYSICAL
-        edit(:question, subject: subject, kind: AbuseType::EMOTIONAL)
-      when AbuseType::EMOTIONAL
-        edit(:question, subject: subject, kind: AbuseType::PSYCHOLOGICAL)
-      when AbuseType::PSYCHOLOGICAL
-        edit(:question, subject: subject, kind: AbuseType::SEXUAL)
       when AbuseType::SEXUAL
+        edit(:question, subject: subject, kind: AbuseType::PHYSICAL)
+      when AbuseType::PHYSICAL
         edit(:question, subject: subject, kind: AbuseType::FINANCIAL)
       when AbuseType::FINANCIAL
+        edit(:question, subject: subject, kind: AbuseType::PSYCHOLOGICAL)
+      when AbuseType::PSYCHOLOGICAL
+        edit(:question, subject: subject, kind: AbuseType::EMOTIONAL)
+      when AbuseType::EMOTIONAL
         edit(:question, subject: subject, kind: AbuseType::OTHER)
       else
         raise InvalidStep, "Unknown abuse kind: #{abuse_kind}"

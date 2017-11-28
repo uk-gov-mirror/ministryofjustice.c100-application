@@ -57,21 +57,20 @@ en:
     # This are all the kind of abuse concerns, for applicant and for children. For now they
     # are the same for both, but we might need to customize some of these later on.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
-      physical_html: Physical abuse includes actions such as pushing, punching, slapping, kicking, choking and using weapons.
-      emotional_html: Emotional abuse can be verbal or non-verbal. Examples include name calling, constant criticism, ignoring someone or not letting them have an opinion.
+      physical_html: |
+        <p>Physical abuse includes actions such as:</p>
+        <ul class="list list-bullet">
+          <li>punching</li>
+          <li>choking</li>
+          <li>kicking</li>
+          <li>hitting with an object</li>
+        </ul>
       psychological_html: |
         <p>Psychological abuse is when someone is subjected to a situation that can lead to:</p>
         <ul class="list list-bullet">
           <li>anxiety</li>
           <li>depression</li>
           <li>post-traumatic stress disorder</li>
-        </ul>
-      sexual_html: |
-        <p>Examples of sexual abuse include:</p>
-        <ul class="list list-bullet">
-          <li>being forced or pressured to have sex without consent</li>
-          <li>threatening someone into an unwanted sexual activity</li>
-          <li>unwanted touching or groping</li>
         </ul>
       financial_html: |
         <p>Examples of financial abuse include:</p>
@@ -143,24 +142,54 @@ en:
               other: Other concerns about your children’s welfare
           heading:
             applicant:
-              physical: Have you suffered from any form of physical abuse?
-              emotional: Have you suffered from any form of emotional abuse?
-              psychological: Have you suffered from any form of psychological abuse?
-              sexual: Have you suffered from any form of sexual abuse?
-              financial: Have you suffered from any form of financial abuse?
+              physical: Have you ever been physically abused?
+              emotional: Have you ever been emotionally abused?
+              psychological: Have you ever been psychologically abused?
+              sexual: Have you ever been sexually abused?
+              financial: Have you ever been financially abused?
               other: Do you have any other concerns about your welfare?
             children:
-              physical: Have your children suffered from any form of physical abuse?
-              emotional: Have your children suffered from any form of emotional abuse?
-              psychological: Have your children suffered from any form of psychological abuse?
-              sexual: Have your children suffered from any form of sexual abuse?
-              financial: Have your children suffered from any form of financial abuse?
+              physical: Have your children ever been physically abused?
+              emotional: Have your children ever been emotionally abused?
+              psychological: Have your children ever been psychologically abused?
+              sexual: Have your children ever been sexually abused?
+              financial: Have your children ever been financially abused?
               other: Do you have any other concerns about your children’s welfare?
           lead_text:
             applicant:
               <<: *ABUSE_CONCERNS
+              sexual_html: |
+                <p>Examples of sexual abuse include:</p>
+                <ul class="list list-bullet">
+                  <li>being forced or pressured to have sex without consent</li>
+                  <li>threatening someone into an unwanted sexual activity</li>
+                  <li>unwanted touching or groping</li>
+                </ul>
+              emotional_html: |
+                <p>Emotional abuse can be verbal or non-verbal.</p>
+                <p>Examples include:</p>
+                <ul class="list list-bullet">
+                  <li>name calling</li>
+                  <li>constant criticism</li>
+                  <li>ignoring someone</li>
+                  <li>not letting them have an opinion</li>
+                </ul>
             children:
               <<: *ABUSE_CONCERNS
+              sexual_html: |
+                <p>A child is sexually abused when they are forced or persuaded to take part in sexual activities. There are 2 types of child sexual abuse:</p>
+                <ul class="list list-bullet">
+                  <li>contact abuse (where an abuser makes physical contact)</li>
+                  <li>non-contact abuse (for example grooming or exploitation)</li>
+                </ul>
+              emotional_html: |
+                <p>Examples of emotional abuse can include making the children feel:</p>
+                <ul class="list list-bullet">
+                  <li>unloved</li>
+                  <li>worthless</li>
+                  <li>humiliated</li>
+                  <li>ignored</li>
+                </ul>
       details:
         edit:
           page_title:
@@ -238,11 +267,29 @@ en:
       children_abuse:
         edit:
           page_title: Children abuse
-          heading: Have the children suffered any form of abuse?
+          heading: Have your children ever been abused?
+          info_html: |
+            <p>Child abuse is any action that causes significant harm to a child.</p>
+            <p>Examples include:</p>
+            <ul class="list list-bullet">
+              <li>emotional or psychological abuse</li>
+              <li>a lack of love, care and attention</li>
+              <li>physical abuse</li>
+              <li>sexual abuse</li>
+            </ul>
       domestic_abuse:
         edit:
           page_title: Domestic abuse
-          heading: Have you suffered from any form of domestic abuse?
+          heading: Have you ever been abused?
+          info_html: |
+            <p>Domestic abuse is any type of controlling, threatening or violent behaviour between people in a relationship.</p>
+            <p>Examples include:</p>
+            <ul class="list list-bullet">
+              <li>financial abuse</li>
+              <li>emotional or psychological abuse</li>
+              <li>physical abuse</li>
+              <li>sexual abuse</li>
+            </ul>
       other_abuse:
         edit:
           page_title: Other concerns
@@ -252,10 +299,17 @@ en:
         edit:
           page_title: MIAM attended
           heading: Have you attended a MIAM?
+          miam_info_html: |
+            <p>The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
+            <ul class="list list-bullet">
+              <li>taken place within the past 4 months</li>
+              <li>been about the same issue why you’re now applying to court</li>
+            </ul>
       certification:
         edit:
           page_title: MIAM certification
           heading: Have you got a signed certificate from the mediator?
+          lead_text: Your mediator should have signed a certificate confirming your MIAM attendance
     petition:
       orders:
         edit:
