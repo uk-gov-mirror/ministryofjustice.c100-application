@@ -6,13 +6,8 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <%=t '.miam_info_html' %>
-    </div>
-
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :miam_attended, inline: true, choices: GenericYesNo.values %>
-
+      <%= f.text_area :risk_details, size: '40x4', class: 'form-control-3-4' %>
       <%= f.submit class: 'button' %>
     <% end %>
   </div>

@@ -26,6 +26,10 @@ class BaseDecisionTree
     step_params.fetch(attribute_name, '0').true?
   end
 
+  def selected?(attribute_name, value: 'yes')
+    step_params.fetch(attribute_name).eql?(value)
+  end
+
   # Enable again when needed. Coverage complains otherwise.
   # def root_path
   #   { controller: '/entrypoint', action: :v1 }
