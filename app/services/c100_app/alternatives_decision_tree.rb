@@ -11,6 +11,8 @@ module C100App
       when :lawyer_negotiation
         edit(:collaborative_law)
       when :collaborative_law
+        edit(:court)
+      when :court
         edit('/steps/petition/orders')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
