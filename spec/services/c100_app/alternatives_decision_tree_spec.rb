@@ -22,6 +22,11 @@ RSpec.describe C100App::AlternativesDecisionTree do
 
   context 'when the step is `lawyer_negotiation`' do
     let(:step_params) { { lawyer_negotiation: 'anything' } }
+    it { is_expected.to have_destination(:collaborative_law, :edit) }
+  end
+
+  context 'when the step is `collaborative_law`' do
+    let(:step_params) { { collaborative_law: 'anything' } }
     it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 end

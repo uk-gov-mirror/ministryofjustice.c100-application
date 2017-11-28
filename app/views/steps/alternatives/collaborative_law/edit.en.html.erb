@@ -1,0 +1,61 @@
+<% title 'Collaborative law' %>
+
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Collaborative law</h1>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>Collaborative lawyers work with you and the other parent to resolve your issues out of court. You each hire a lawyer then all meet to negotiate face-to-face.</p>
+      <p>The collaborative process involves several steps but is usually quicker and cheaper than going to court.</p>
+      <p>Collaborative law is suitable for people who can still communicate with each other but may have complex legal issues to resolve.</p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div>
+        <div class="ProsCons">
+          <div class="Pros">
+            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
+              <span data-block-name="ProsCons__heading--pros">Pros</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--pros">
+              <li class="ProsCons__item ProsCons__item--pros">everyone is committed to not going to court</li>
+              <li class="ProsCons__item ProsCons__item--pros">quicker and less stressful than court</li>
+              <li class="ProsCons__item ProsCons__item--pros">you and the other parent set the agenda</li>
+              <li class="ProsCons__item ProsCons__item--pros">lawyers are present throughout</li>
+              <li class="ProsCons__item ProsCons__item--pros">good for your children to see their parents working together</li>
+            </ul>
+          </div>
+
+          <div class="Cons">
+            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+              <span data-block-name="ProsCons__heading--cons">Cons</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--cons">
+              <li class="ProsCons__item ProsCons__item--cons">can be an expensive process</li>
+              <li class="ProsCons__item ProsCons__item--cons">won’t work unless you can trust the other parent and co-operate with them</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="CallToAction">
+          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/collaborative-law" target="external_link">Find
+            out more about collaborative law</a>
+        </p>
+
+        <%= step_form @form_object do |f| %>
+            <%= f.radio_button_fieldset :alternative_collaborative_law, inline: true, choices: GenericYesNo.values %>
+            <%= f.submit class: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  </div>
+</div>

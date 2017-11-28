@@ -494,6 +494,8 @@ en:
         alternative_mediation: Have you tried professional mediation?
       steps_alternatives_lawyer_negotiation_form:
         alternative_lawyer_negotiation: Have you tried lawyer negotiation?
+      steps_alternatives_collaborative_law_form:
+        alternative_collaborative_law: Have you tried collaborative law?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:
