@@ -279,6 +279,18 @@ en:
             If you think your children are at risk of being abducted abroad you must
             <a href="https://www.gov.uk/government/organisations/hm-passport-office" target="external_link">contact
             the passport office</a> immediately.
+      previous_attempt:
+        edit:
+          page_title: Previous abduction attempts
+          heading: Have your children been abducted before or have there been any previous attempts or threats to abduct them?
+      previous_attempt_details:
+        edit:
+          page_title: Previous abduction details
+          heading: Provide more details of the previous attempts or threats to abduct your children
+      risk_details:
+        edit:
+          page_title: Abduction risk details
+          heading: Provide details of why you think your children may be abducted
 
   home:
     index:
@@ -390,6 +402,10 @@ en:
         passport_office_notified_html: "Has the passport office been notified?"
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
+      steps_abduction_previous_attempt_form:
+        previous_attempt_html: ""
+      steps_abduction_previous_attempt_details_form:
+        previous_attempt_agency_involved_html: "Were the police, private investigators or any other organisation involved?"
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
@@ -472,6 +488,11 @@ en:
         passport_possession_father: Father
         passport_possession_other: Other
         passport_possession_other_details: Provide more details (If 'other' is selected)
+      steps_abduction_previous_attempt_details_form:
+        previous_attempt_details: Give a short description
+        previous_attempt_agency_details: Provide more details
+      steps_abduction_risk_details_form:
+        risk_details: Give a short description
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
@@ -554,6 +575,8 @@ en:
         other_issue: Select any that apply
       steps_abduction_international_form:
         passport_possesion: Select all that apply
+      steps_abduction_previous_attempt_details_form:
+        previous_attempt_agency_involved: Including in the UK or abroad
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_personal_details_form:
