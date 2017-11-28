@@ -1,0 +1,60 @@
+<% title 'Going to court' %>
+
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
+    <%= step_header %>
+
+    <div class="grid_content_header">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">Going to court</h1>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>You’ll need to go to court if you’ve tried other suitable options and still can’t agree arrangements.</p>
+      <p>Before applying to court you should see if you can resolve your dispute another way unless you’re worried about your or your children’s safety.</p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div>
+        <div class="ProsCons">
+          <div class="Pros">
+            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
+              <span data-block-name="ProsCons__heading--pros">Pros</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--pros">
+              <li class="ProsCons__item ProsCons__item--pros">a decision is made in your child’s best interest</li>
+              <li class="ProsCons__item ProsCons__item--pros">legally binding outcome</li>
+            </ul>
+          </div>
+
+          <div class="Cons">
+            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+              <span data-block-name="ProsCons__heading--cons">Cons</span>
+            </h2>
+
+            <ul class="ProsCons__list ProsCons__list--cons">
+              <li class="ProsCons__item ProsCons__item--cons">can be expensive</li>
+              <li class="ProsCons__item ProsCons__item--cons">court process takes a long time</li>
+              <li class="ProsCons__item ProsCons__item--cons">you might not get what you want - a judge makes the decision</li>
+              <li class="ProsCons__item ProsCons__item--cons">can be more stressful for you and your children</li>
+              <li class="ProsCons__item ProsCons__item--cons">may increase conflict between you and the other parent</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="CallToAction">
+          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/going-to-court" target="external_link">Find
+            out more about going to court</a>
+        </p>
+
+        <%= step_form @form_object do |f| %>
+          <%= f.radio_button_fieldset :alternative_court, inline: true, choices: GenericYesNo.values %>
+          <%= f.submit class: 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  </div>
+</div>
