@@ -488,6 +488,8 @@ en:
         behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
         asked_for_help_html: Have you ever asked for help?
         help_provided_html: Did they help you?
+      steps_alternatives_negotiation_tools_form:
+        alternative_negotiation_tools: Have you tried any negotiation tools or services?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
       steps_respondent_personal_details_form:

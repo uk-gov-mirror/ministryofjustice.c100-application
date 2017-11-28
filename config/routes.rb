@@ -78,6 +78,9 @@ Rails.application.routes.draw do
       edit_step :has_orders
       edit_step :details
     end
+    namespace :alternatives do
+      edit_step :negotiation_tools
+    end
     namespace :children do
       show_step :instructions
       edit_step :personal_details, enable_crud: true
