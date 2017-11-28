@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     end
     namespace :alternatives do
       edit_step :negotiation_tools
+      edit_step :mediation
     end
     namespace :children do
       show_step :instructions

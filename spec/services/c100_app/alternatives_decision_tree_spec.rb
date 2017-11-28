@@ -12,6 +12,11 @@ RSpec.describe C100App::AlternativesDecisionTree do
 
   context 'when the step is `negotiation_tools`' do
     let(:step_params) { { negotiation_tools: 'anything' } }
+    it { is_expected.to have_destination(:mediation, :edit) }
+  end
+
+  context 'when the step is `mediation`' do
+    let(:step_params) { { mediation: 'anything' } }
     it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 end

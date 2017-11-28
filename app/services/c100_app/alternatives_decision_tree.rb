@@ -5,6 +5,8 @@ module C100App
 
       case step_name
       when :negotiation_tools
+        edit(:mediation)
+      when :mediation
         edit('/steps/petition/orders')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
