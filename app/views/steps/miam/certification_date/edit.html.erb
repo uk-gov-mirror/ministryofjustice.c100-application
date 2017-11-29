@@ -1,0 +1,17 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <div class="form-group">
+        <%= f.gov_uk_date_field :miam_certification_date, placeholders: true, legend_text: nil, form_hint_text: '' %>
+      </div>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

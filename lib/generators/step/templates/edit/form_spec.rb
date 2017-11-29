@@ -27,7 +27,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   # describe '#save' do
   #   it_behaves_like 'a value object form', attribute_name: :<%= step_name.underscore %>, example_value: 'INSERT VALID VALUE HERE'
 
-  #   context 'when <%= step_name.underscore %> is valid' do
+  #   context 'when form is valid' do
   #     let(:<%= step_name.underscore %>) { 'INSERT VALID VALUE HERE' }
 
   #     it 'saves the record' do
@@ -38,7 +38,7 @@ RSpec.describe Steps::<%= task_name.camelize %>::<%= step_name.camelize %>Form d
   #     end
   #   end
 
-  #   context 'when <%= step_name.underscore %> is already the same on the model' do
+  #   context 'when attributes are the same on the model' do
   #     let(:c100_application) {
   #       instance_double(
   #         C100Application,

@@ -1,0 +1,14 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_field :miam_certification_number %>
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

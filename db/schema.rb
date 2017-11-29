@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128123916) do
+ActiveRecord::Schema.define(version: 20171129123803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 20171128123916) do
     t.string   "alternative_lawyer_negotiation"
     t.string   "alternative_collaborative_law"
     t.string   "alternative_court"
+    t.date     "miam_certification_date"
+    t.string   "miam_certification_number"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 
