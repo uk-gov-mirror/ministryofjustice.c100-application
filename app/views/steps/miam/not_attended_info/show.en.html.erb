@@ -4,22 +4,22 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <!-- This is a temporary placeholder -->
-
     <div class="grid_content_header">
-      <h1 class="heading-xlarge gv-u-heading-xxlarge">You have not attended a MIAM</h1>
-      <p class="lede gv-u-text-lede">Before completing this application you’re legally required to attend a
-        <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>, unless you have a valid reason.
-      </p>
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">You haven’t attended a MIAM</h1>
     </div>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>We’ll need to ask some questions to check whether you have a valid reason not to attend.
-        You will not be able to complete this application if you don’t.</p>
+    <p class="lede gv-u-text-lede">You’re legally required to attend a
+      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>, unless you have a valid reason.
+    </p>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p>
+        <a href="https://www.familymediationcouncil.org.uk/family-mediation/assessment-meeting-miam/miams-exemptions/" target="external_link">Check
+          if you have a valid reason</a> before you continue with your application.</p>
     </div>
 
     <div class="xform-group form-submit">
-      <%= link_to 'Continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
+      <%= link_to 'Confirm and continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
     </div>
   </div>
 </div>

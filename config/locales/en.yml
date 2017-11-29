@@ -303,13 +303,21 @@ en:
             <p>The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
             <ul class="list list-bullet">
               <li>taken place within the past 4 months</li>
-              <li>been about the same issue why you’re now applying to court</li>
+              <li>been about the same child arrangements issue</li>
             </ul>
       certification:
         edit:
           page_title: MIAM certification
           heading: Have you got a signed certificate from the mediator?
           lead_text: Your mediator should have signed a certificate confirming your MIAM attendance
+      certification_date:
+        edit:
+          page_title: MIAM certification date
+          heading: When did you attend the MIAM?
+      certification_number:
+        edit:
+          page_title: MIAM certification details
+          heading: Enter details of MIAM certification
     petition:
       orders:
         edit:
@@ -520,6 +528,8 @@ en:
           representative: No, I am a legal representative of the applicant
       steps_miam_acknowledgement_form:
         miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
+      steps_miam_certification_number_form:
+        miam_certification_number: FMC registration number
       steps_applicant_number_of_children_form:
         number_of_children: Enter the number of children
       steps_help_with_fees_help_paying_form:
@@ -634,6 +644,8 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
+      steps_miam_certification_number_form:
+        miam_certification_number: You can find this number at the bottom of the form your mediator signed
       steps_petition_other_issue_form:
         other_details: Give a short description
         other_issue: Select any that apply
