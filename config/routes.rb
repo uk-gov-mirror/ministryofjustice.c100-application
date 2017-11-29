@@ -79,6 +79,7 @@ Rails.application.routes.draw do
       edit_step :details
     end
     namespace :alternatives do
+      show_step :start
       edit_step :negotiation_tools
       edit_step :mediation
       edit_step :lawyer_negotiation
