@@ -28,6 +28,6 @@ RSpec.describe C100App::RespondentDecisionTree do
     let(:step_params) {{'respondents_finished' => 'anything'}}
     let(:c100_application) {instance_double(C100Application)}
 
-    it {is_expected.to have_destination('/steps/children/instructions', :show)}
+    it {is_expected.to have_destination('/steps/children/names', :show)}
   end
 end
