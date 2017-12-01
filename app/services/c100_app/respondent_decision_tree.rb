@@ -7,7 +7,7 @@ module C100App
       when :personal_details, :add_another_respondent
         edit(:personal_details)
       when :respondents_finished
-        show('/steps/children/instructions')
+        show('/steps/children/names') # TODO: change once we re-work the relationships journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

@@ -7,9 +7,6 @@ module Steps
       attribute :gender, String
       attribute :dob, Date
       attribute :dob_unknown, Boolean
-      attribute :orders_applied_for, String
-      attribute :applicants_relationship, String
-      attribute :respondents_relationship, String
 
       acts_as_gov_uk_date :dob
 
@@ -20,10 +17,7 @@ module Steps
 
       validates_presence_of :dob, unless: :dob_unknown?
 
-      validates_presence_of :full_name,
-                            :orders_applied_for,
-                            :applicants_relationship,
-                            :respondents_relationship
+      validates_presence_of :full_name
 
       private
 

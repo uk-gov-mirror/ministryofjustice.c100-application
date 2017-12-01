@@ -90,7 +90,6 @@ Rails.application.routes.draw do
       edit_step :court
     end
     namespace :children do
-      show_step :instructions
       edit_step :names, enable_crud: true
       edit_step :personal_details, enable_crud: true
       edit_step :additional_details
