@@ -4,7 +4,9 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :personal_details, :add_another_child
+      when :add_another_name, :remove_name
+        edit(:names)
+      when :names_finished, :personal_details, :add_another_child
         edit(:personal_details)
       when :children_finished
         edit(:additional_details)
