@@ -124,8 +124,7 @@ en:
       personal_details:
         edit:
           page_title: Child personal details
-          heading: Child details
-          btn_add_another: Add another child
+          heading: "Provide details for %{name}"
       additional_details:
         edit:
           page_title: Further information about the child(ren)

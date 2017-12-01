@@ -1,7 +1,0 @@
-<li>
-  <%= child.full_name %> (<%= child.id %>)
-  <span class="right actions actions-tight">
-    <%= link_to 'edit', edit_steps_children_personal_details_path(child), class: 'button' %>
-    <%= button_to 'delete', steps_children_personal_details_path(child), method: :delete, data: {confirm: 'Are you sure?'}, class: 'button button-secondary' %>
-  </span>
-</li>
