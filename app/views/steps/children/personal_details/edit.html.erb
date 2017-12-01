@@ -31,10 +31,6 @@
       <%= f.radio_button_fieldset :gender, inline: true,
         choices: Steps::Children::PersonalDetailsForm.gender_choices %>
 
-      <%= f.text_area :orders_applied_for, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_area :applicants_relationship, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_area :respondents_relationship, size: '40x4', class: 'form-control-3-4' %>
-
       <div class="xform-group form-submit">
         <%= f.submit class: 'button' %>
         <%= f.button t('.btn_add_another'), class: 'button', type: :submit, value: :add_another_child %>

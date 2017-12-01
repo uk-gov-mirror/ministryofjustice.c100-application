@@ -17,11 +17,6 @@ RSpec.describe C100App::ChildrenDecisionTree do
     it {is_expected.to have_destination(:names, :edit)}
   end
 
-  context 'when the step is `remove_name`' do
-    let(:step_params) {{'remove_name' => 'anything'}}
-    it {is_expected.to have_destination(:names, :edit)}
-  end
-
   context 'when the step is `names_finished`' do
     let(:step_params) {{'names_finished' => 'anything'}}
     it {is_expected.to have_destination(:personal_details, :edit)}

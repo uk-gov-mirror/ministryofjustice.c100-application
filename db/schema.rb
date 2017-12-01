@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129153909) do
+ActiveRecord::Schema.define(version: 20171201120110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,17 +135,16 @@ ActiveRecord::Schema.define(version: 20171129153909) do
   end
 
   create_table "children", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "full_name"
     t.date     "dob"
     t.boolean  "dob_unknown"
     t.string   "gender"
-    t.text     "orders_applied_for"
-    t.text     "applicants_relationship"
-    t.text     "respondents_relationship"
     t.uuid     "c100_application_id"
     t.string   "name"
+    t.string   "age_estimate"
+    t.string   "kind"
     t.index ["c100_application_id"], name: "index_children_on_c100_application_id", using: :btree
   end
 

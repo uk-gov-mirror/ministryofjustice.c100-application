@@ -7,10 +7,7 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
     full_name: full_name,
     gender: gender,
     dob: dob,
-    dob_unknown: dob_unknown,
-    orders_applied_for: orders_applied_for,
-    applicants_relationship: applicants_relationship,
-    respondents_relationship: respondents_relationship
+    dob_unknown: dob_unknown
   } }
 
   let(:c100_application) { instance_double(C100Application, children: children_collection) }
@@ -22,9 +19,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
   let(:gender) { 'male' }
   let(:dob) { Date.today }
   let(:dob_unknown) { false }
-  let(:orders_applied_for) { 'orders' }
-  let(:applicants_relationship) { 'relationships' }
-  let(:respondents_relationship) { 'relationships' }
 
   subject { described_class.new(arguments) }
 
@@ -73,9 +67,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
 
     context 'validations on field presence' do
       it { should validate_presence_of(:full_name) }
-      it { should validate_presence_of(:orders_applied_for) }
-      it { should validate_presence_of(:applicants_relationship) }
-      it { should validate_presence_of(:respondents_relationship) }
     end
 
     context 'validations on field presence unless `unknown`' do
@@ -88,10 +79,7 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
           full_name: 'Full Name',
           gender: Gender::MALE,
           dob: Date.today,
-          dob_unknown: false,
-          orders_applied_for: 'orders',
-          applicants_relationship: 'relationships',
-          respondents_relationship: 'relationships'
+          dob_unknown: false
         }
       }
 

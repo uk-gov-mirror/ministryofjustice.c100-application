@@ -585,9 +585,6 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-        orders_applied_for: Order(s) applied for
-        applicants_relationship: Relationship to applicant(s)
-        respondents_relationship: Relationship to respondent(s)
       steps_children_additional_details_form:
         children_known_to_authorities:
           <<: *YESNO
