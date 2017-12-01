@@ -1,16 +1,17 @@
 # :nocov:
 class ActionDispatch::Routing::Mapper
-  def edit_step(name, opts = {}, &block)
+  def edit_step(name, &block)
     resource name,
              only:       [:edit, :update],
              controller: name,
-             path_names: { edit: '' } do
+             path_names: { edit: '' } do; block.call if block_given?; end
+  end
 
-      resources only:       [:edit, :update, :destroy],
+  def crud_step(name, opts = {})
+    edit_step name do
+      resources only: opts.fetch(:only, [:edit, :update, :destroy]),
                 controller: name,
-                path_names: { edit: '' } if opts.fetch(:enable_crud, false)
-
-      block.call if block_given?
+                path_names: { edit: '' }
     end
   end
 
@@ -90,17 +91,17 @@ Rails.application.routes.draw do
       edit_step :court
     end
     namespace :children do
-      edit_step :names, enable_crud: true
-      edit_step :personal_details, enable_crud: true
+      crud_step :names
+      crud_step :personal_details, only: [:edit, :update]
       edit_step :additional_details
     end
     namespace :applicant do
       edit_step :user_type
       edit_step :number_of_children
-      edit_step :personal_details, enable_crud: true
+      crud_step :personal_details
     end
     namespace :respondent do
-      edit_step :personal_details, enable_crud: true
+      crud_step :personal_details
     end
     namespace :help_with_fees do
       edit_step :help_paying
