@@ -4,7 +4,7 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: 'ChangeMe' %></h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.name %></h1>
 
     <%= step_form @form_object do |f| %>
       <%= f.text_field :full_name, class: 'form-control' %>

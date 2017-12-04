@@ -6,7 +6,7 @@ class BaseForm
   extend ActiveModel::Callbacks
 
   attr_accessor :c100_application
-  attr_accessor :record_id
+  attr_accessor :record
 
   # This will allow subclasses to define after_initialize callbacks
   # and is needed for some functionality to work, i.e. acts_as_gov_uk_date
@@ -22,7 +22,7 @@ class BaseForm
 
     attributes.merge!(
       c100_application: c100_application || record,
-      record_id: record.id
+      record: record
     )
 
     new(attributes)
@@ -72,10 +72,8 @@ class BaseForm
 
   private
 
-  # This can be overridden by more specific implementations, for example as we do
-  # within the `HasOneAssociationForm` concern. The default is always the 'main' model.
-  def record
-    c100_application
+  def record_id
+    record&.id
   end
 
   # :nocov:

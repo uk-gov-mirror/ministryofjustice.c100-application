@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Steps::Children::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    record_id: record_id,
+    record: record,
     full_name: full_name,
     gender: gender,
     dob: dob,
@@ -12,9 +12,9 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
 
   let(:c100_application) { instance_double(C100Application, children: children_collection) }
   let(:children_collection) { double('children_collection') }
-  let(:child) { double('Child') }
+  let(:child) { double('Child', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
-  let(:record_id) { nil }
+  let(:record) { nil }
   let(:full_name) { 'Full Name' }
   let(:gender) { 'male' }
   let(:dob) { Date.today }
@@ -84,6 +84,8 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
       }
 
       context 'when record does not exist' do
+        let(:record) { nil }
+
         it 'creates the record if it does not exist' do
           expect(children_collection).to receive(:find_or_initialize_by).with(
             id: nil
@@ -98,7 +100,7 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
       end
 
       context 'when record already exists' do
-        let(:record_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
+        let(:record) { child }
 
         it 'updates the record if it already exists' do
           expect(children_collection).to receive(:find_or_initialize_by).with(

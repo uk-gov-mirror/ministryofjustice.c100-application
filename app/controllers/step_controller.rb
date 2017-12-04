@@ -12,15 +12,17 @@ class StepController < ApplicationController
 
   def update_and_advance(form_class, opts = {})
     hash = permitted_params(form_class).to_h
+    record = opts[:record]
 
     @next_step   = params[:next_step].presence
     @form_object = form_class.new(
-      hash.merge(c100_application: current_c100_application, record_id: opts[:record_id])
+      hash.merge(c100_application: current_c100_application, record: record)
     )
 
     if @form_object.save
       destination = decision_tree_class.new(
         c100_application: current_c100_application,
+        record:        record,
         step_params:   hash,
         # Used when the step name in the decision tree is not the same as the first
         # (and usually only) attribute in the form.
