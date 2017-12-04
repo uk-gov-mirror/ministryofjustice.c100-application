@@ -11,7 +11,9 @@ module C100App
       when :personal_details
         after_personal_details
       when :additional_details
-        edit('/steps/applicant/personal_details') # TODO: change once we have the `other children` journey
+        edit(:other_children)
+      when :other_children
+        after_other_children
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -28,6 +30,14 @@ module C100App
         edit(:personal_details, id: next_child)
       else
         edit(:additional_details)
+      end
+    end
+
+    def after_other_children
+      if question(:other_children).yes?
+        edit(:other_children) # TODO: change when we have `other children` journey
+      else
+        edit('/steps/applicant/personal_details')
       end
     end
 
