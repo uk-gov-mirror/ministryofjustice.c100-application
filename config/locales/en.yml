@@ -129,6 +129,10 @@ en:
         edit:
           page_title: Further information about the child(ren)
           heading: Further information about the child(ren)
+      other_children:
+        edit:
+          page_title: Other children required
+          heading: Do you have other children that aren’t part of this application?
     abuse_concerns:
       question:
         edit:
@@ -528,6 +532,8 @@ en:
         children_protection_plan: Are any of the children the subject of a child protection plan?
         children_same_parents: Do all the children have the same parents?
         children_residence: Who do the children currently live with?
+      steps_children_other_children_form:
+        other_children_html: ""
     label:
       steps_applicant_user_type_form:
         user_type:
