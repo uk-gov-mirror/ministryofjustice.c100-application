@@ -18,4 +18,10 @@ module HasOneAssociationForm
       self.association_name = name
     end
   end
+
+  private
+
+  def record_to_persist
+    @_record_to_persist ||= self.class.associated_record(c100_application)
+  end
 end

@@ -76,6 +76,13 @@ class BaseForm
     record&.id
   end
 
+  # When using concerns like `HasOneAssociationForm` or `SingleQuestionForm`, this ensures
+  # a common interface to always have the correct record being updated in the `persist!` method.
+  # The default is the main model, i.e. `c100_application` unless overridden by subclasses.
+  def record_to_persist
+    c100_application
+  end
+
   # :nocov:
   def persist!
     raise 'Subclasses of BaseForm need to implement #persist!'
