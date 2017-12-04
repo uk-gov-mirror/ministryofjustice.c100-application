@@ -46,6 +46,10 @@ RSpec.describe Steps::OtherChildren::NamesForm do
     end
 
     context 'when form is valid' do
+      before do
+        expect(children_collection).to receive(:secondary).and_return(children_collection)
+      end
+
       context 'adding new children names' do
         let(:new_name) { 'Gareth XYZ' }
 
