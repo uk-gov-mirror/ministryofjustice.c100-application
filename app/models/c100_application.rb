@@ -5,10 +5,12 @@ class C100Application < ApplicationRecord
   has_one  :asking_order,     dependent: :destroy
   has_one  :court_order,      dependent: :destroy
 
-  has_many :abuse_concerns, dependent: :destroy
-  has_many :children,       dependent: :destroy
-  has_many :applicants,     dependent: :destroy
-  has_many :respondents,    dependent: :destroy
+  has_many :abuse_concerns,   dependent: :destroy
+
+  # Remember, we are using UUIDs as the record IDs, we can't rely on ID sequential ordering
+  has_many :children,    -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :applicants,  -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :respondents, -> { order(created_at: :asc) }, dependent: :destroy
 
   has_value_object :user_type
   has_value_object :help_paying

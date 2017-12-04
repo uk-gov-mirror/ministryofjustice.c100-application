@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Steps::Applicant::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    record_id: record_id,
+    record: record,
     full_name: full_name,
     has_previous_name: has_previous_name,
     previous_full_name: previous_full_name,
@@ -19,9 +19,9 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
 
   let(:c100_application) { instance_double(C100Application, applicants: applicants_collection) }
   let(:applicants_collection) { double('applicants_collection') }
-  let(:applicant) { double('Applicant') }
+  let(:applicant) { double('Applicant', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
-  let(:record_id) { nil }
+  let(:record) { nil }
   let(:full_name) { 'Full Name' }
   let(:has_previous_name) { 'no' }
   let(:previous_full_name) { nil }
@@ -138,6 +138,8 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
       }
 
       context 'when record does not exist' do
+        let(:record) { nil }
+
         it 'creates the record if it does not exist' do
           expect(applicants_collection).to receive(:find_or_initialize_by).with(
             id: nil
@@ -152,7 +154,7 @@ RSpec.describe Steps::Applicant::PersonalDetailsForm do
       end
 
       context 'when record already exists' do
-        let(:record_id) { 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6' }
+        let(:record) { applicant }
 
         it 'updates the record if it already exists' do
           expect(applicants_collection).to receive(:find_or_initialize_by).with(

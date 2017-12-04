@@ -4,17 +4,7 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <!-- This is just for the sake of having a functional CRUD. Pending UI/UX. -->
-    <% if @existing_records.any? %>
-      <p>Saved children:</p>
-      <ul class="list list-bullet">
-        <% @existing_records.each do |child| %>
-          <%= render partial: 'child_row', locals: {child: child} %>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.name %></h1>
 
     <%= step_form @form_object do |f| %>
       <%= f.text_field :full_name, class: 'form-control' %>
@@ -31,10 +21,7 @@
       <%= f.radio_button_fieldset :gender, inline: true,
         choices: Steps::Children::PersonalDetailsForm.gender_choices %>
 
-      <div class="xform-group form-submit">
-        <%= f.submit class: 'button' %>
-        <%= f.button t('.btn_add_another'), class: 'button', type: :submit, value: :add_another_child %>
-      </div>
+      <%= f.submit class: 'button' %>
     <% end %>
   </div>
 </div>

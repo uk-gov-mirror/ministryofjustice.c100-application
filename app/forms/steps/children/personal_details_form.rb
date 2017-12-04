@@ -28,8 +28,8 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        applicant = c100_application.children.find_or_initialize_by(id: record_id)
-        applicant.update(
+        child = c100_application.children.find_or_initialize_by(id: record_id)
+        child.update(
           # Some attributes are value objects and thus we need to provide their values
           attributes_map.merge(
             gender: gender_value

@@ -12,8 +12,8 @@ module Steps
       def update
         update_and_advance(
           PersonalDetailsForm,
-          record_id: current_record.id,
-          as: params.fetch(:button, :children_finished)
+          record: current_record,
+          as: :personal_details
         )
       end
 

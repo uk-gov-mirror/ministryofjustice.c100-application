@@ -19,7 +19,7 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        record.update(
+        record_to_persist.update(
           attributes_map
         )
       end
