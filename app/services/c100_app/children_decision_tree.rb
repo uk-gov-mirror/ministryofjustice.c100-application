@@ -35,7 +35,7 @@ module C100App
 
     def after_other_children
       if question(:other_children).yes?
-        edit(:other_children) # TODO: change when we have `other children` journey
+        edit('/steps/other_children/names')
       else
         edit('/steps/applicant/personal_details')
       end
