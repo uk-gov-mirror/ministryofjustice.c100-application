@@ -141,6 +141,10 @@ en:
           child_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
+      personal_details:
+        edit:
+          page_title: Child personal details
+          heading: "Provide details for %{name}"
     abuse_concerns:
       question:
         edit:
@@ -542,6 +546,8 @@ en:
         children_residence: Who do the children currently live with?
       steps_children_other_children_form:
         other_children_html: ""
+      steps_other_children_personal_details_form:
+        dob_unknown_html: ""
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -599,6 +605,8 @@ en:
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
+        <<: *PERSONAL_DETAILS_FIELDS
+      steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
