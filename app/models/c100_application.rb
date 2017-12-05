@@ -21,7 +21,6 @@ class C100Application < ApplicationRecord
 
   # Children additional details
   has_value_object :children_residence
-  has_value_object :has_court_orders,              class_name: 'GenericYesNo'
   has_value_object :children_same_parents,         class_name: 'GenericYesNo'
   has_value_object :children_known_to_authorities, class_name: 'GenericYesNoUnknown'
   has_value_object :children_protection_plan,      class_name: 'GenericYesNoUnknown'

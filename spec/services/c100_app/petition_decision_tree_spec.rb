@@ -21,12 +21,12 @@ RSpec.describe C100App::PetitionDecisionTree do
 
     context 'and the checkbox `other` is not selected' do
       let(:value) { '0' }
-      it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+      it { is_expected.to have_destination('/steps/children/names', :edit) }
     end
   end
 
   context 'when the step is `other_issue`' do
     let(:step_params) { { other_issue: 'anything' } }
-    it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+    it { is_expected.to have_destination('/steps/children/names', :edit) }
   end
 end
