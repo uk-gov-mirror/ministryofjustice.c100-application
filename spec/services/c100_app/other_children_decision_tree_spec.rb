@@ -1,13 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe C100App::ChildrenDecisionTree do
+RSpec.describe C100App::OtherChildrenDecisionTree do
   let(:c100_application) { double('Object') }
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) {instance_double(C100Application)}
+  let(:c100_application) { instance_double(C100Application, children: children_collection) }
+  let(:children_collection) { double('children_collection', secondary: filtered_collection) }
+  let(:filtered_collection) { double('filtered_collection') }
 
   subject {
     described_class.new(
@@ -28,7 +30,10 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `names_finished`' do
     let(:step_params) {{'names_finished' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application, child_ids: [1, 2, 3])}
+
+    before do
+      allow(filtered_collection).to receive(:pluck).with(:id).and_return([1, 2, 3])
+    end
 
     it 'goes to edit the details of the first child' do
       expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 1)
@@ -37,7 +42,10 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application, child_ids: [1, 2, 3])}
+
+    before do
+      allow(filtered_collection).to receive(:pluck).with(:id).and_return([1, 2, 3])
+    end
 
     context 'when there are remaining children' do
       let(:record) { double('Child', id: 1) }
@@ -49,27 +57,7 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
     context 'when all children have been edited' do
       let(:record) { double('Child', id: 3) }
-      it {is_expected.to have_destination(:additional_details, :edit)}
-    end
-  end
-
-  context 'when the step is `additional_details`' do
-    let(:step_params) {{'additional_details' => 'anything'}}
-    it {is_expected.to have_destination(:other_children, :edit)}
-  end
-
-  context 'when the step is `other_children`' do
-    let(:c100_application) { instance_double(C100Application, other_children: value) }
-    let(:step_params) { { other_children: 'anything' } }
-
-    context 'and the answer is `yes`' do
-      let(:value) { 'yes' }
-      it { is_expected.to have_destination('/steps/other_children/names', :edit) }
-    end
-
-    context 'and the answer is `no`' do
-      let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/applicant/personal_details', :edit) }
+      it {is_expected.to have_destination('/steps/applicant/personal_details', :edit)}
     end
   end
 end

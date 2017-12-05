@@ -96,6 +96,10 @@ Rails.application.routes.draw do
       edit_step :additional_details
       edit_step :other_children
     end
+    namespace :other_children do
+      crud_step :names
+      crud_step :personal_details, only: [:edit, :update]
+    end
     namespace :applicant do
       edit_step :user_type
       edit_step :number_of_children

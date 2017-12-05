@@ -1,5 +1,5 @@
 module C100App
-  class ChildrenDecisionTree < BaseDecisionTree
+  class OtherChildrenDecisionTree < BaseDecisionTree
     def destination
       return next_step if next_step
 
@@ -10,10 +10,6 @@ module C100App
         after_names_finished
       when :personal_details
         after_personal_details
-      when :additional_details
-        edit(:other_children)
-      when :other_children
-        after_other_children
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -29,21 +25,13 @@ module C100App
       if next_child
         edit(:personal_details, id: next_child)
       else
-        edit(:additional_details)
-      end
-    end
-
-    def after_other_children
-      if question(:other_children).yes?
-        edit('/steps/other_children/names')
-      else
         edit('/steps/applicant/personal_details')
       end
     end
 
     def next_child
       @_next_child ||= begin
-        ids = c100_application.child_ids
+        ids = c100_application.children.secondary.pluck(:id)
 
         return ids.first if record.nil?
 
