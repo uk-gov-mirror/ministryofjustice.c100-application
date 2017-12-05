@@ -86,7 +86,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
         context 'abuse kind `other`' do
           let(:abuse_kind) { 'other' }
-          it {is_expected.to have_destination(:contact, :edit)}
+          it {is_expected.to have_destination('/steps/court_orders/has_orders', :edit)}
         end
       end
 
@@ -251,7 +251,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
       context 'abuse kind `other`' do
         let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:contact, :edit)}
+        it {is_expected.to have_destination('/steps/court_orders/has_orders', :edit)}
       end
     end
 
@@ -302,7 +302,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
   describe 'when the step is `contact`' do
     let(:as) { 'contact' }
-    it { is_expected.to have_destination(:previous_proceedings, :edit) }
+    it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 
   describe 'when the step is `previous_proceedings`' do

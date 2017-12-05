@@ -7,7 +7,7 @@ module C100App
       when :orders
         after_orders
       when :other_issue
-        show('/steps/safety_questions/start') # TODO: change when we have next step
+        start_children_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -19,8 +19,12 @@ module C100App
       if checked?(:other)
         edit(:other_issue)
       else
-        show('/steps/safety_questions/start') # TODO: change when we have next step
+        start_children_journey
       end
+    end
+
+    def start_children_journey
+      edit('/steps/children/names')
     end
   end
 end

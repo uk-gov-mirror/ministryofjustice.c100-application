@@ -16,8 +16,7 @@ module C100App
     private
 
     def after_has_court_orders
-      case step_params.fetch(:has_court_orders)
-      when GenericYesNo::YES.to_s
+      if question(:has_court_orders).yes?
         edit(:details)
       else
         edit('/steps/abuse_concerns/contact')

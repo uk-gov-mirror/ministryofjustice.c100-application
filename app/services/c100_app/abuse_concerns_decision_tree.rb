@@ -7,11 +7,11 @@ module C100App
       when :details
         after_details_step
       when :contact
-        edit(:previous_proceedings)
+        edit('/steps/petition/orders')
       when :previous_proceedings
         after_previous_proceedings
       when :emergency_proceedings
-        show('/steps/children/names') # TODO: change when we have next step
+        show('/steps/children/names') # TODO: change when we have the MIAM exemptions steps
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
       end
@@ -70,7 +70,7 @@ module C100App
     def applicant_details_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit(:contact)
+        edit('/steps/court_orders/has_orders')
       else
         questions_destination(AbuseSubject::APPLICANT)
       end

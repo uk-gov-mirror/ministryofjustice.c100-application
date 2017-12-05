@@ -11,7 +11,8 @@ RSpec.describe C100App::CourtOrdersDecisionTree do
   it_behaves_like 'a decision tree'
 
   context 'when the step is `has_court_orders`' do
-    let(:step_params) { { has_court_orders: answer } }
+    let(:c100_application) { instance_double(C100Application, has_court_orders: answer) }
+    let(:step_params) { { has_court_orders: 'whatever' } }
 
     context 'and the answer is `yes`' do
       let(:answer) { 'yes' }
