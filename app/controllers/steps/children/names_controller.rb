@@ -28,7 +28,7 @@ module Steps
       end
 
       def record_collection
-        @_record_collection ||= current_c100_application.children
+        @_record_collection ||= current_c100_application.children.primary
       end
     end
   end

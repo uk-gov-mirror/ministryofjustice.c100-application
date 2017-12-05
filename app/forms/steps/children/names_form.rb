@@ -18,12 +18,18 @@ module Steps
       end
 
       def create_new_child_with_name
-        record_collection.create(name: new_name) unless new_name.blank?
+        return if new_name.blank?
+
+        record_collection.create(
+          name: new_name,
+          kind: ChildrenType::PRIMARY
+        )
       end
 
       def update_existing_children_names
         names_attributes.each_value do |attrs|
-          record_collection.update(attrs.fetch('id'), attrs) unless attrs.fetch('name').blank?
+          next if attrs.fetch('name').blank?
+          record_collection.update(attrs.fetch('id'), attrs)
         end
       end
 
@@ -33,7 +39,7 @@ module Steps
       end
 
       def record_collection
-        @_record_collection ||= c100_application.children
+        @_record_collection ||= c100_application.children.primary
       end
     end
   end
