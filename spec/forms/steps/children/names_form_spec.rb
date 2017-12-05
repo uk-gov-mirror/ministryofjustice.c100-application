@@ -17,6 +17,10 @@ RSpec.describe Steps::Children::NamesForm do
   subject { described_class.new(arguments) }
 
   describe '#save' do
+    before do
+      allow(children_collection).to receive(:primary).and_return(children_collection)
+    end
+
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
 
@@ -27,23 +31,32 @@ RSpec.describe Steps::Children::NamesForm do
 
     context 'validations on `new_name`' do
       context 'when there are no other children names' do
-        let(:children_collection) { [] }
-        it { should validate_presence_of(:new_name) }
+        it {
+          expect(children_collection).to receive(:empty?).and_return(true)
+          should validate_presence_of(:new_name)
+        }
       end
 
       context 'when there are existing children names' do
-        let(:children_collection) { ['whatever'] }
-        it { should_not validate_presence_of(:new_name) }
+        it {
+          expect(children_collection).to receive(:empty?).and_return(false)
+          should_not validate_presence_of(:new_name)
+        }
       end
     end
 
     context 'when form is valid' do
+      before do
+        expect(children_collection).to receive(:primary).and_return(children_collection)
+      end
+
       context 'adding new children names' do
         let(:new_name) { 'Gareth' }
 
         it 'it creates a new child with the provided name' do
           expect(children_collection).to receive(:create).with(
-            name: 'Gareth'
+            name: 'Gareth',
+            kind: ChildrenType::PRIMARY
           ).and_return(true)
 
           expect(subject.save).to be(true)

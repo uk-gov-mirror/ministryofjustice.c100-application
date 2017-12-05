@@ -7,7 +7,9 @@ RSpec.describe C100App::ChildrenDecisionTree do
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) {instance_double(C100Application)}
+  let(:c100_application) { instance_double(C100Application, children: children_collection) }
+  let(:children_collection) { double('children_collection', primary: filtered_collection) }
+  let(:filtered_collection) { double('filtered_collection') }
 
   subject {
     described_class.new(
@@ -28,7 +30,10 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `names_finished`' do
     let(:step_params) {{'names_finished' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application, child_ids: [1, 2, 3])}
+
+    before do
+      allow(filtered_collection).to receive(:pluck).with(:id).and_return([1, 2, 3])
+    end
 
     it 'goes to edit the details of the first child' do
       expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 1)
@@ -37,7 +42,10 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application, child_ids: [1, 2, 3])}
+
+    before do
+      allow(filtered_collection).to receive(:pluck).with(:id).and_return([1, 2, 3])
+    end
 
     context 'when there are remaining children' do
       let(:record) { double('Child', id: 1) }

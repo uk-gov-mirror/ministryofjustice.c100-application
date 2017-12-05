@@ -1,6 +1,6 @@
 class ChildrenType < ValueObject
   VALUES = [
-    PRINCIPAL = new(:principal),
+    PRIMARY   = new(:primary),
     SECONDARY = new(:secondary)
   ].freeze
 end
