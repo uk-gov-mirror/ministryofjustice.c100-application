@@ -2,29 +2,12 @@ module Steps
   module Children
     class NamesController < Steps::ChildrenStepController
       include CrudStep
-
-      def edit
-        @form_object = NamesForm.new(
-          c100_application: current_c100_application
-        )
-      end
-
-      def update
-        update_and_advance(
-          NamesForm,
-          as: params.fetch(:button, :names_finished)
-        )
-      end
-
-      def destroy
-        current_record.destroy
-        redirect_to action: :edit, id: nil
-      end
+      include NamesCrudStep
 
       private
 
-      def additional_permitted_params
-        [names_attributes: [:id, :name]]
+      def form_class
+        NamesForm
       end
 
       def record_collection

@@ -1,11 +1,11 @@
 module Steps
   module Children
     class NamesForm < BaseNamesForm
-      private
-
-      def name_attribute
+      def self.name_attribute
         :name
       end
+
+      private
 
       def record_collection
         @_record_collection ||= c100_application.children
