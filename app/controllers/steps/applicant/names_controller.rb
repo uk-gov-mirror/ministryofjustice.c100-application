@@ -1,6 +1,6 @@
 module Steps
-  module Children
-    class NamesController < Steps::ChildrenStepController
+  module Applicant
+    class NamesController < Steps::ApplicantStepController
       include CrudStep
       include NamesCrudStep
 
@@ -11,7 +11,7 @@ module Steps
       end
 
       def record_collection
-        @_record_collection ||= current_c100_application.children
+        @_record_collection ||= current_c100_application.applicants
       end
     end
   end

@@ -25,7 +25,7 @@ module C100App
       if next_child
         edit(:personal_details, id: next_child)
       else
-        edit('/steps/applicant/personal_details')
+        edit('/steps/applicant/names')
       end
     end
 

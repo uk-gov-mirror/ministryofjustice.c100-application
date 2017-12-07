@@ -47,7 +47,7 @@ RSpec.describe C100App::OtherChildrenDecisionTree do
 
     context 'when all children have been edited' do
       let(:record) { double('Child', id: 3) }
-      it {is_expected.to have_destination('/steps/applicant/personal_details', :edit)}
+      it {is_expected.to have_destination('/steps/applicant/names', :edit)}
     end
   end
 end

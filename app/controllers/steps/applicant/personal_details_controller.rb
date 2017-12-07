@@ -13,7 +13,7 @@ module Steps
         update_and_advance(
           PersonalDetailsForm,
           record: current_record,
-          as: params.fetch(:button, :applicants_finished)
+          as: :personal_details
         )
       end
 

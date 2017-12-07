@@ -37,7 +37,7 @@ module C100App
       if question(:other_children).yes?
         edit('/steps/other_children/names')
       else
-        edit('/steps/applicant/personal_details')
+        edit('/steps/applicant/names')
       end
     end
 

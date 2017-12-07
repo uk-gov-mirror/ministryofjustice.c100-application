@@ -9,11 +9,11 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <% @existing_records.each.with_index do |child, index| %>
-        <%= f.fields_for :names_attributes, child, index: index do |c| %>
+      <% @existing_records.each.with_index do |applicant, index| %>
+        <%= f.fields_for :names_attributes, applicant, index: index do |c| %>
           <span><%= t('.record_index', index: index + 1) %></span>
           <%= c.hidden_field :id %>
-          <%= c.text_field :name %>
+          <%= c.text_field :full_name %>
         <% end %>
       <% end %>
 
@@ -22,7 +22,7 @@
       <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: 'link-button' %>
 
       <% if @existing_records.any? %>
-        <%= link_to t('.btn_remove'), steps_children_names_path(@existing_records.last), method: :delete, class: 'link-button' %>
+        <%= link_to t('.btn_remove'), steps_applicant_names_path(@existing_records.last), method: :delete, class: 'link-button' %>
       <% end %>
 
       <div class="xform-group form-submit">

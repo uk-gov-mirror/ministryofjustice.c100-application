@@ -1,10 +1,10 @@
 module Steps
-  module OtherChildren
+  module Applicant
     class NamesForm < NamesBaseForm
       private
 
       def record_collection
-        @_record_collection ||= c100_application.other_children
+        @_record_collection ||= c100_application.applicants
       end
     end
   end
