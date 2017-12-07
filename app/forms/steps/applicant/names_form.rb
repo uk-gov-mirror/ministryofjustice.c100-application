@@ -1,6 +1,6 @@
 module Steps
   module Applicant
-    class NamesForm < BaseNamesForm
+    class NamesForm < NamesBaseForm
       private
 
       def record_collection

@@ -1,6 +1,6 @@
 module Steps
   module Children
-    class NamesForm < BaseNamesForm
+    class NamesForm < NamesBaseForm
       def self.name_attribute
         :name
       end

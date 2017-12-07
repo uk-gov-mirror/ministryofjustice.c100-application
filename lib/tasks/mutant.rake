@@ -22,6 +22,6 @@ def classes_to_mutate
   Rails.application.eager_load!
   Array(ARGV[1]).presence ||
     ApplicationRecord.descendants.map(&:name) +
-    BaseForm.descendants.map(&:name) +
+    BaseForm.descendants.map(&:name).grep(/^Steps::/) +
     ['C100App*']
 end
