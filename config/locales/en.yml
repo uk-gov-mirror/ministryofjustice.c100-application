@@ -2,7 +2,7 @@ en:
   dictionary:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
-    birthplace_hint: &birthplace_hint "Town/County/Country"
+    birthplace_hint: &birthplace_hint "For example, town or city"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Please answer if the order is current"
     order_length: &order_length "How long is the order for?"
@@ -22,7 +22,7 @@ en:
       full_name: Full name
       has_previous_name:
         <<: *YESNO
-      previous_full_name: Please enter previous name
+      previous_name: Please enter previous name
       gender:
         female: Female
         male: Male
@@ -41,7 +41,7 @@ en:
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
       full_name:
         blank: Please enter the full name
-      previous_full_name:
+      previous_name:
         blank: Please enter the previous name
       dob:
         blank: Please enter the date of birth
@@ -104,9 +104,7 @@ en:
       personal_details:
         edit:
           page_title: Applicant personal details
-          heading: About you (the applicant(s))
-          privacy_warning_html: '<p><strong>If you do not wish your address to be made known to the respondent</strong>, leave the details below blank and complete <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Confidential contact details Form C8</a>. Please ensure that any documents submitted with this form or at a later date, <strong>do not</strong> disclose the confidential contact details you wish to withhold.</p>'
-          btn_add_another: Add another applicant
+          heading: "Provide details for %{name}"
     help_with_fees:
       help_paying:
         edit:
@@ -446,7 +444,7 @@ en:
           attributes:
             full_name:
               blank: Please enter your full name
-            previous_full_name:
+            previous_name:
               blank: Please enter your previous name
             dob:
               blank: Please enter your date of birth

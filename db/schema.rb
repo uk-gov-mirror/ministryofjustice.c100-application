@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207092509) do
+ActiveRecord::Schema.define(version: 20171207120927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,24 +48,6 @@ ActiveRecord::Schema.define(version: 20171207092509) do
     t.text   "help_description"
     t.uuid   "c100_application_id"
     t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id", using: :btree
-  end
-
-  create_table "applicants", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "full_name"
-    t.string   "has_previous_name"
-    t.string   "previous_full_name"
-    t.string   "gender"
-    t.string   "birthplace"
-    t.string   "address"
-    t.string   "postcode"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
-    t.string   "email"
-    t.uuid     "c100_application_id"
-    t.date     "dob"
-    t.index ["c100_application_id"], name: "index_applicants_on_c100_application_id", using: :btree
   end
 
   create_table "asking_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -236,7 +218,6 @@ ActiveRecord::Schema.define(version: 20171207092509) do
 
   add_foreign_key "abduction_details", "c100_applications"
   add_foreign_key "abuse_concerns", "c100_applications"
-  add_foreign_key "applicants", "c100_applications"
   add_foreign_key "asking_orders", "c100_applications"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "court_orders", "c100_applications"
