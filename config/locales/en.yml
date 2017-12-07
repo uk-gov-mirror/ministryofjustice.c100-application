@@ -93,6 +93,14 @@ en:
         edit:
           page_title: Number of children
           heading: How many children is the application for?
+      names:
+        edit:
+          page_title: Applicant names
+          heading: Enter the applicant’s name
+          lead_text: Anyone who is making this application is known as the applicant.
+          record_index: "Applicant %{index}"
+          btn_add_another: Add another applicant
+          btn_remove: Remove last applicant
       personal_details:
         edit:
           page_title: Applicant personal details
@@ -118,7 +126,7 @@ en:
           page_title: Enter the names of your children
           heading: Enter the names of your children
           lead_text: Only include the children you’re making this application for
-          child_index: "Child %{index}"
+          record_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
       personal_details:
@@ -138,7 +146,7 @@ en:
         edit:
           page_title: Other children
           heading: Enter your other child’s name
-          child_index: "Child %{index}"
+          record_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
       personal_details:

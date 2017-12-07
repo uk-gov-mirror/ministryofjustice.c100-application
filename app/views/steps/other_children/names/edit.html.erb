@@ -9,7 +9,7 @@
     <%= step_form @form_object do |f| %>
       <% @existing_records.each.with_index do |child, index| %>
         <%= f.fields_for :names_attributes, child, index: index do |c| %>
-          <span><%= t('.child_index', index: index + 1) %></span>
+          <span><%= t('.record_index', index: index + 1) %></span>
           <%= c.hidden_field :id %>
           <%= c.text_field :full_name %>
         <% end %>

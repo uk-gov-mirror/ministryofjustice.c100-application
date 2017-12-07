@@ -31,6 +31,11 @@ RSpec.describe C100App::ApplicantDecisionTree do
     it {is_expected.to have_destination('/steps/help_with_fees/help_paying', :edit)}
   end
 
+  context 'when the step is `add_another_name`' do
+    let(:step_params) {{'add_another_name' => 'anything'}}
+    it {is_expected.to have_destination(:names, :edit)}
+  end
+
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:c100_application) {instance_double(C100Application)}

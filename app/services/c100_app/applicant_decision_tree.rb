@@ -8,6 +8,8 @@ module C100App
         edit(:number_of_children)
       when :number_of_children
         edit('/steps/help_with_fees/help_paying')
+      when :add_another_name
+        edit(:names)
       when :personal_details, :add_another_applicant
         edit(:personal_details)
       when :applicants_finished
