@@ -67,7 +67,7 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/applicant/personal_details', :edit) }
+      it { is_expected.to have_destination('/steps/applicant/names', :edit) }
     end
   end
 end
