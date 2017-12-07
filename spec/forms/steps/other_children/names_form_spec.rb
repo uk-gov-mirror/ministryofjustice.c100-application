@@ -7,7 +7,7 @@ RSpec.describe Steps::OtherChildren::NamesForm do
     new_name: new_name
   } }
 
-  let(:c100_application) { instance_double(C100Application, children: children_collection) }
+  let(:c100_application) { instance_double(C100Application, other_children: children_collection) }
   let(:children_collection) { double('children_collection', empty?: false, create: true) }
   let(:child) { double('Child') }
 
@@ -17,10 +17,6 @@ RSpec.describe Steps::OtherChildren::NamesForm do
   subject { described_class.new(arguments) }
 
   describe '#save' do
-    before do
-      allow(children_collection).to receive(:secondary).and_return(children_collection)
-    end
-
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
 
@@ -46,17 +42,12 @@ RSpec.describe Steps::OtherChildren::NamesForm do
     end
 
     context 'when form is valid' do
-      before do
-        expect(children_collection).to receive(:secondary).and_return(children_collection)
-      end
-
       context 'adding new children names' do
         let(:new_name) { 'Gareth XYZ' }
 
         it 'it creates a new child with the provided name' do
           expect(children_collection).to receive(:create).with(
-            full_name: 'Gareth XYZ',
-            kind: ChildrenType::SECONDARY
+            full_name: 'Gareth XYZ'
           ).and_return(true)
 
           expect(subject.save).to be(true)

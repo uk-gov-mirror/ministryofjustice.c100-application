@@ -43,7 +43,7 @@ module C100App
 
     def next_child
       @_next_child ||= begin
-        ids = c100_application.children.primary.pluck(:id)
+        ids = c100_application.child_ids
 
         return ids.first if record.nil?
 

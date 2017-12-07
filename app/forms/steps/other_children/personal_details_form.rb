@@ -25,11 +25,7 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        child = c100_application.children.find_or_initialize_by(
-          id: record_id,
-          kind: ChildrenType::SECONDARY.to_s
-        )
-
+        child = c100_application.other_children.find_or_initialize_by(id: record_id)
         child.update(
           # Some attributes are value objects and thus we need to provide their values
           attributes_map.merge(

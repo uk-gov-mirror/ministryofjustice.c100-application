@@ -9,7 +9,7 @@ RSpec.describe Steps::OtherChildren::PersonalDetailsForm do
     dob_unknown: dob_unknown
   } }
 
-  let(:c100_application) { instance_double(C100Application, children: children_collection) }
+  let(:c100_application) { instance_double(C100Application, other_children: children_collection) }
   let(:children_collection) { double('children_collection') }
   let(:child) { double('Child', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
@@ -81,8 +81,7 @@ RSpec.describe Steps::OtherChildren::PersonalDetailsForm do
 
         it 'creates the record if it does not exist' do
           expect(children_collection).to receive(:find_or_initialize_by).with(
-            id: nil,
-            kind: 'secondary'
+            id: nil
           ).and_return(child)
 
           expect(child).to receive(:update).with(
@@ -98,8 +97,7 @@ RSpec.describe Steps::OtherChildren::PersonalDetailsForm do
 
         it 'updates the record if it already exists' do
           expect(children_collection).to receive(:find_or_initialize_by).with(
-            id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6',
-            kind: 'secondary'
+            id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6'
           ).and_return(child)
 
           expect(child).to receive(:update).with(

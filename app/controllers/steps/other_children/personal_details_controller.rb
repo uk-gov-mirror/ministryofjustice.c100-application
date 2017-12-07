@@ -20,7 +20,7 @@ module Steps
       private
 
       def record_collection
-        @_record_collection ||= current_c100_application.children.secondary
+        @_record_collection ||= current_c100_application.other_children
       end
     end
   end

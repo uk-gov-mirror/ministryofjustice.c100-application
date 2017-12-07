@@ -18,12 +18,7 @@ module Steps
       end
 
       def create_new_child_with_name
-        return if new_name.blank?
-
-        record_collection.create(
-          full_name: new_name,
-          kind: ChildrenType::SECONDARY
-        )
+        record_collection.create(full_name: new_name) unless new_name.blank?
       end
 
       def update_existing_children_names
@@ -39,7 +34,7 @@ module Steps
       end
 
       def record_collection
-        @_record_collection ||= c100_application.children.secondary
+        @_record_collection ||= c100_application.other_children
       end
     end
   end
