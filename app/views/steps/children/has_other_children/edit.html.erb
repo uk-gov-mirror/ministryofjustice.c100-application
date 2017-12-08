@@ -7,7 +7,7 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :other_children, inline: true, choices: GenericYesNo.values %>
+      <%= f.radio_button_fieldset :has_other_children, inline: true, choices: GenericYesNo.values %>
 
       <%= f.submit class: 'button' %>
     <% end %>

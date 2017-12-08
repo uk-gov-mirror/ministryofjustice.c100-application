@@ -53,12 +53,12 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `additional_details`' do
     let(:step_params) {{'additional_details' => 'anything'}}
-    it {is_expected.to have_destination(:other_children, :edit)}
+    it {is_expected.to have_destination(:has_other_children, :edit)}
   end
 
-  context 'when the step is `other_children`' do
-    let(:c100_application) { instance_double(C100Application, other_children: value) }
-    let(:step_params) { { other_children: 'anything' } }
+  context 'when the step is `has_other_children`' do
+    let(:c100_application) { instance_double(C100Application, has_other_children: value) }
+    let(:step_params) { { has_other_children: 'anything' } }
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
