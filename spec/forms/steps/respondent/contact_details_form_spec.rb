@@ -1,15 +1,19 @@
 require 'spec_helper'
 
-RSpec.describe Steps::Respondent::PersonalDetailsForm do
+RSpec.describe Steps::Respondent::ContactDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
-    has_previous_name: has_previous_name,
-    previous_name: previous_name,
-    gender: gender,
-    dob: dob,
-    dob_unknown: dob_unknown,
-    birthplace: birthplace
+    address: address,
+    postcode: postcode,
+    postcode_unknown: postcode_unknown,
+    home_phone: home_phone,
+    mobile_phone: mobile_phone,
+    mobile_phone_unknown: mobile_phone_unknown,
+    email: email,
+    email_unknown: email_unknown,
+    residence_requirement_met: residence_requirement_met,
+    residence_history: residence_history
   } }
 
   let(:c100_application) { instance_double(C100Application, respondents: respondents_collection) }
@@ -17,20 +21,18 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
   let(:respondent) { double('Respondent', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
   let(:record) { nil }
-  let(:has_previous_name) { 'no' }
-  let(:previous_name) { nil }
-  let(:gender) { 'male' }
-  let(:dob) { Date.today }
-  let(:dob_unknown) { false }
-  let(:birthplace) { 'London' }
+  let(:address) { 'address' }
+  let(:postcode) { 'postcode' }
+  let(:postcode_unknown) { false }
+  let(:home_phone) { nil }
+  let(:mobile_phone) { nil }
+  let(:mobile_phone_unknown) { true }
+  let(:email) { nil }
+  let(:email_unknown) { true }
+  let(:residence_requirement_met) { 'no' }
+  let(:residence_history) { 'history' }
 
   subject { described_class.new(arguments) }
-
-  describe '.gender_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.gender_choices).to eq(%w(female male))
-    end
-  end
 
   describe '#save' do
     context 'when no c100_application is associated with the form' do
@@ -41,9 +43,9 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
       end
     end
 
-    context 'has previous name' do
+    context 'residence_requirement_met' do
       context 'when attribute is not given' do
-        let(:has_previous_name) { nil }
+        let(:residence_requirement_met) { nil }
 
         it 'returns false' do
           expect(subject.save).to be(false)
@@ -51,50 +53,49 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
 
         it 'has a validation error on the field' do
           expect(subject).to_not be_valid
-          expect(subject.errors[:has_previous_name]).to_not be_empty
+          expect(subject.errors[:residence_requirement_met]).to_not be_empty
         end
       end
 
-      context 'when attribute is given and requires previous name' do
-        let(:has_previous_name) { 'yes' }
+      context 'when attribute is given and requires residency history' do
+        let(:residence_requirement_met) { 'no' }
+        let(:residence_history) { nil }
 
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the `previous_name` field' do
+        it 'has a validation error on the `residence_history` field' do
           expect(subject).to_not be_valid
-          expect(subject.errors[:previous_name]).to_not be_empty
+          expect(subject.errors[:residence_history]).to_not be_empty
         end
       end
 
-      context 'when attribute value is not valid' do
-        let(:has_previous_name) {'INVALID VALUE'}
+      context 'when attribute is given and does not requires residency history' do
+        let(:residence_requirement_met) { 'yes' }
+        let(:residence_history) { nil }
 
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:has_previous_name]).to_not be_empty
+        it 'has no validation errors' do
+          expect(subject).to be_valid
         end
       end
     end
 
     context 'validations on field presence unless `unknown`' do
-      it { should validate_presence_unless_unknown_of(:dob) }
+      it { should validate_presence_unless_unknown_of(:postcode) }
+      it { should validate_presence_unless_unknown_of(:mobile_phone) }
+      it { should validate_presence_unless_unknown_of(:email) }
     end
 
     context 'for valid details' do
       let(:expected_attributes) {
         {
-          has_previous_name: GenericYesNoUnknown::NO,
-          previous_name: '',
-          gender: Gender::MALE,
-          dob: Date.today,
-          dob_unknown: false,
-          birthplace: 'London'
+          address: 'address',
+          postcode: 'postcode',
+          postcode_unknown: false,
+          home_phone: '',
+          mobile_phone: '',
+          mobile_phone_unknown: true,
+          email: '',
+          email_unknown: true,
+          residence_requirement_met: GenericYesNoUnknown::NO,
+          residence_history: 'history'
         }
       }
 

@@ -77,7 +77,7 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
     context 'when all applicants have been edited' do
       let(:record) { double('Applicant', id: 3) }
-      it {is_expected.to have_destination('/steps/respondent/personal_details', :edit)}
+      it {is_expected.to have_destination('/steps/respondent/names', :edit)}
     end
   end
 end

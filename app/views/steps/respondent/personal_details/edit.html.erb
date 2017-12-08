@@ -4,26 +4,15 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <!-- This is just for the sake of having a functional CRUD. Pending UI/UX. -->
-    <% if @existing_records.any? %>
-      <p>Saved respondents:</p>
-      <ul class="list list-bullet">
-        <% @existing_records.each do |respondent| %>
-          <%= render partial: 'respondent_row', locals: {respondent: respondent} %>
-        <% end %>
-      </ul>
-    <% end %>
-
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%= f.text_field :full_name, class: 'form-control' %>
-
       <%=
-        f.radio_button_fieldset :has_previous_name do |fieldset|
-          fieldset.radio_input(GenericYesNoUnknown::YES) { f.text_field :previous_full_name }
-          fieldset.radio_input(GenericYesNoUnknown::NO)
-          fieldset.radio_input(GenericYesNoUnknown::UNKNOWN)
+        f.radio_button_fieldset :has_previous_name, inline: true do |fieldset|
+          fieldset.radio_input GenericYesNoUnknown::YES, panel_id: :previous_name_panel
+          fieldset.radio_input GenericYesNoUnknown::NO
+          fieldset.radio_input GenericYesNoUnknown::UNKNOWN
+          fieldset.revealing_panel(:previous_name_panel) { |panel| panel.text_field :previous_name }
         end
       %>
 
@@ -40,18 +29,9 @@
       <%= f.check_box_fieldset :dob_unknown, [:dob_unknown] %>
 
       <%= f.text_field :birthplace %>
-      <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_field :postcode %>
-      <%= f.check_box_fieldset :postcode_unknown, [:postcode_unknown] %>
-      <%= f.text_field :home_phone %>
-      <%= f.text_field :mobile_phone %>
-      <%= f.check_box_fieldset :mobile_phone_unknown, [:mobile_phone_unknown] %>
-      <%= f.text_field :email %>
-      <%= f.check_box_fieldset :email_unknown, [:email_unknown] %>
 
       <div class="xform-group form-submit">
         <%= f.submit class: 'button' %>
-        <%= f.button t('.btn_add_another'), class: 'button', type: :submit, value: :add_another_respondent %>
       </div>
     <% end %>
   </div>

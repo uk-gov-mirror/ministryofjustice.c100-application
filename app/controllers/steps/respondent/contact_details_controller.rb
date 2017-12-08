@@ -1,19 +1,19 @@
 module Steps
   module Respondent
-    class PersonalDetailsController < Steps::RespondentStepController
+    class ContactDetailsController < Steps::RespondentStepController
       include CrudStep
 
       def edit
-        @form_object = PersonalDetailsForm.build(
+        @form_object = ContactDetailsForm.build(
           current_record, c100_application: current_c100_application
         )
       end
 
       def update
         update_and_advance(
-          PersonalDetailsForm,
+          ContactDetailsForm,
           record: current_record,
-          as: :personal_details
+          as: :contact_details
         )
       end
 

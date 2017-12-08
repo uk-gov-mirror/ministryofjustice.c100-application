@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208110809) do
+ActiveRecord::Schema.define(version: 20171208150846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,28 +180,6 @@ ActiveRecord::Schema.define(version: 20171208110809) do
     t.index ["c100_application_id"], name: "index_people_on_c100_application_id", using: :btree
   end
 
-  create_table "respondents", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.string   "full_name"
-    t.string   "has_previous_name"
-    t.string   "previous_full_name"
-    t.string   "gender"
-    t.date     "dob"
-    t.boolean  "dob_unknown"
-    t.string   "birthplace"
-    t.string   "address"
-    t.string   "postcode"
-    t.boolean  "postcode_unknown"
-    t.string   "home_phone"
-    t.string   "mobile_phone"
-    t.boolean  "mobile_phone_unknown"
-    t.string   "email"
-    t.boolean  "email_unknown"
-    t.uuid     "c100_application_id"
-    t.index ["c100_application_id"], name: "index_respondents_on_c100_application_id", using: :btree
-  end
-
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -222,5 +200,4 @@ ActiveRecord::Schema.define(version: 20171208110809) do
   add_foreign_key "c100_applications", "users"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "people", "c100_applications"
-  add_foreign_key "respondents", "c100_applications"
 end

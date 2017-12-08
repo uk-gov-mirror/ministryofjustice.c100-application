@@ -212,7 +212,7 @@ RSpec.shared_examples 'an intermediate step controller without update' do
   end
 end
 
-RSpec.shared_examples 'an intermediate CRUD step controller' do |form_class, decision_tree_class, resource_class|
+RSpec.shared_examples 'an names CRUD step controller' do |form_class, decision_tree_class, resource_class|
   include_examples 'an intermediate step controller', form_class, decision_tree_class
 
   describe '#destroy' do
