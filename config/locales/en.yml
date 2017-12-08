@@ -26,15 +26,18 @@ en:
       gender:
         female: Female
         male: Male
+      dob_unknown: *dont_know
       birthplace: Place of birth
-      address: Address (to which documents relating to this application should be sent)
+
+    # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
+    PERSONAL_CONTACT_FIELDS: &PERSONAL_CONTACT_FIELDS
+      address: Address
       postcode: Postcode
+      postcode_unknown: *dont_know
       home_phone: Home phone
       mobile_phone: Mobile phone
-      email: Email address
-      dob_unknown: *dont_know
-      postcode_unknown: *dont_know
       mobile_phone_unknown: *dont_know
+      email: Email address
       email_unknown: *dont_know
 
     # This is a compilation of all possible errors shared between Respondents and Children
@@ -105,6 +108,10 @@ en:
         edit:
           page_title: Applicant personal details
           heading: "Provide details for %{name}"
+      contact_details:
+        edit:
+          page_title: Applicant contact details
+          heading: "Contact details of %{name}"
     help_with_fees:
       help_paying:
         edit:
@@ -537,6 +544,8 @@ en:
         alternative_court: Have you been to court before about your situation?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
+      steps_applicant_contact_details_form:
+        residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_respondent_personal_details_form:
         has_previous_name: Previous name?
         dob_unknown_html: ""
@@ -612,6 +621,8 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+      steps_applicant_contact_details_form:
+        <<: *PERSONAL_CONTACT_FIELDS
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_children_personal_details_form:

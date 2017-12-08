@@ -105,6 +105,7 @@ Rails.application.routes.draw do
       edit_step :number_of_children
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
+      crud_step :contact_details,  only: [:edit, :update]
     end
     namespace :respondent do
       crud_step :personal_details
