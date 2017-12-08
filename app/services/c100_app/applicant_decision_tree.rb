@@ -11,9 +11,11 @@ module C100App
       when :add_another_name
         edit(:names)
       when :names_finished
-        after_names_finished
+        edit(:personal_details, id: next_record_id)
       when :personal_details
-        after_personal_details
+        edit(:contact_details, id: record)
+      when :contact_details
+        after_contact_details
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -21,27 +23,16 @@ module C100App
 
     private
 
-    def after_names_finished
-      edit(:personal_details, id: next_record)
-    end
-
-    def after_personal_details
-      if next_record
-        edit(:personal_details, id: next_record)
+    def after_contact_details
+      if next_record_id
+        edit(:personal_details, id: next_record_id)
       else
         edit('/steps/respondent/personal_details') # TODO: change when we have next steps
       end
     end
 
-    def next_record
-      @_next_record ||= begin
-        ids = c100_application.applicant_ids
-
-        return ids.first if record.nil?
-
-        pos = ids.index(record.id)
-        ids.at(pos + 1)
-      end
+    def next_record_id
+      super(c100_application.applicant_ids)
     end
   end
 end

@@ -7,7 +7,7 @@ module C100App
       when :add_another_name
         edit(:names)
       when :names_finished
-        after_names_finished
+        edit(:personal_details, id: next_record_id)
       when :personal_details
         after_personal_details
       else
@@ -17,27 +17,16 @@ module C100App
 
     private
 
-    def after_names_finished
-      edit(:personal_details, id: next_child)
-    end
-
     def after_personal_details
-      if next_child
-        edit(:personal_details, id: next_child)
+      if next_record_id
+        edit(:personal_details, id: next_record_id)
       else
         edit('/steps/applicant/names')
       end
     end
 
-    def next_child
-      @_next_child ||= begin
-        ids = c100_application.other_child_ids
-
-        return ids.first if record.nil?
-
-        pos = ids.index(record.id)
-        ids.at(pos + 1)
-      end
+    def next_record_id
+      super(c100_application.other_child_ids)
     end
   end
 end
