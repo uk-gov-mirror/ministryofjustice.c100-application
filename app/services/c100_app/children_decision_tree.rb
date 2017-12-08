@@ -11,9 +11,9 @@ module C100App
       when :personal_details
         after_personal_details
       when :additional_details
-        edit(:other_children)
-      when :other_children
-        after_other_children
+        edit(:has_other_children)
+      when :has_other_children
+        after_has_other_children
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -29,8 +29,8 @@ module C100App
       end
     end
 
-    def after_other_children
-      if question(:other_children).yes?
+    def after_has_other_children
+      if question(:has_other_children).yes?
         edit('/steps/other_children/names')
       else
         edit('/steps/applicant/names')
