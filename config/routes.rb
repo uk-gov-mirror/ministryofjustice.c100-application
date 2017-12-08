@@ -110,6 +110,7 @@ Rails.application.routes.draw do
     namespace :respondent do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
+      crud_step :contact_details,  only: [:edit, :update]
     end
     namespace :help_with_fees do
       edit_step :help_paying

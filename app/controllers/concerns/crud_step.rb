@@ -5,11 +5,6 @@ module CrudStep
     before_action :set_existing_records
   end
 
-  def destroy
-    current_record.destroy
-    redirect_to action: :edit, id: @existing_records.first
-  end
-
   private
 
   # :nocov:

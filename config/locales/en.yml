@@ -39,8 +39,10 @@ en:
       mobile_phone_unknown: *dont_know
       email: Email address
       email_unknown: *dont_know
+      residence_requirement_met:
+        <<: *YESNO
 
-    # This is a compilation of all possible errors shared between Respondents and Children
+    # This is a compilation of all possible errors shared between different parties
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
       full_name:
         blank: Please enter the full name
@@ -52,10 +54,13 @@ en:
         blank: Please enter the place of birth
       address:
         blank: Please enter the address
-      home_phone:
-        blank: Please enter the home phone
+      postcode:
+        blank: Please enter the postcode
+      mobile_phone:
+        blank: Please enter the mobile phone
       email:
         invalid: Please enter a valid email
+        blank: Please enter an email
 
     # This are all the kind of abuse concerns, for applicant and for children. For now they
     # are the same for both, but we might need to customize some of these later on.
@@ -132,6 +137,10 @@ en:
         edit:
           page_title: Respondent personal details
           heading: "Provide details for %{name}"
+      contact_details:
+        edit:
+          page_title: Respondent contact details
+          heading: "Contact details of %{name}"
     children:
       names:
         edit:
@@ -456,20 +465,20 @@ en:
               blank: Please enter your reference number
         steps/applicant/personal_details_form:
           attributes:
-            full_name:
-              blank: Please enter your full name
-            previous_name:
-              blank: Please enter your previous name
-            dob:
-              blank: Please enter your date of birth
-            birthplace:
-              blank: Please enter your place of birth
-            email:
-              invalid: Please enter a valid email
+            <<: *PERSONAL_DETAILS_ERRORS
+        steps/applicant/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/respondent/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/respondent/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/children/personal_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
+        steps/other_children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
 
@@ -557,6 +566,8 @@ en:
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
+      steps_respondent_contact_details_form:
+        residence_requirement_met: Have they lived at this address for more than 5 years?
         dob_unknown_html: ""
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
@@ -635,6 +646,10 @@ en:
         previous_name: What was their previous name?
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
+        residence_history: Provide details and dates of all previous addresses for the last 5 years
+      steps_respondent_contact_details_form:
+        <<: *PERSONAL_CONTACT_FIELDS
+        residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_children_personal_details_form:
@@ -720,6 +735,8 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_personal_details_form:
         birthplace: *birthplace_hint
+      steps_respondent_contact_details_form:
+        address: Documents for this application will be sent here
       steps_children_additional_details_form:
         children_parental_responsibility_details_html: |
           e.g. ‘child’s mother’, ‘child’s father and was married to the mother when the child was born’ etc.
