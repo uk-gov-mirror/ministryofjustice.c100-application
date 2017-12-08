@@ -1,0 +1,33 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+    <%= step_form @form_object do |f| %>
+      <% @existing_records.each.with_index do |respondent, index| %>
+        <%= f.fields_for :names_attributes, respondent, index: index do |c| %>
+          <span><%= t('.record_index', index: index + 1) %></span>
+          <%= c.hidden_field :id %>
+          <%= c.text_field :full_name %>
+        <% end %>
+      <% end %>
+
+      <%= f.text_field :new_name %>
+
+      <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: 'link-button' %>
+
+      <% if @existing_records.any? %>
+        <%= link_to t('.btn_remove'), steps_respondent_names_path(@existing_records.last), method: :delete, class: 'link-button' %>
+      <% end %>
+
+      <div class="xform-group form-submit">
+        <%= f.submit class: 'button' %>
+      </div>
+    <% end %>
+  </div>
+</div>

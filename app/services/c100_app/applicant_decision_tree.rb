@@ -27,7 +27,7 @@ module C100App
       if next_record_id
         edit(:personal_details, id: next_record_id)
       else
-        edit('/steps/respondent/personal_details') # TODO: change when we have next steps
+        edit('/steps/respondent/names')
       end
     end
 

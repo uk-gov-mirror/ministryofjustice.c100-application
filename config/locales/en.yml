@@ -120,11 +120,18 @@ en:
           lead_text: You may be able to get help paying the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.
           hwf_reference_number_help_html: '<p>You’ll need to get a <a href="https://www.gov.uk/get-help-with-court-fees">reference number</a> before you can continue with this service.</p>'
     respondent:
+      names:
+        edit:
+          page_title: Respondent names
+          heading: Enter the respondent’s name
+          lead_text: The other person who will receive this application is known as the respondent.
+          record_index: "Respondent %{index}"
+          btn_add_another: Add another respondent
+          btn_remove: Remove last respondent
       personal_details:
         edit:
           page_title: Respondent personal details
-          heading: The respondent(s)
-          btn_add_another: Add another respondent
+          heading: "Provide details for %{name}"
     children:
       names:
         edit:
@@ -544,16 +551,19 @@ en:
         alternative_court: Have you been to court before about your situation?
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
+        gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_respondent_personal_details_form:
-        has_previous_name: Previous name?
+        has_previous_name: Have they changed their name?
+        gender: Sex
         dob_unknown_html: ""
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
         email_unknown_html: ""
       steps_children_personal_details_form:
         dob_unknown_html: ""
+        gender: Sex
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to the local authority children’s services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
@@ -563,6 +573,7 @@ en:
         has_other_children_html: ""
       steps_other_children_personal_details_form:
         dob_unknown_html: ""
+        gender: Sex
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -621,6 +632,7 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+        previous_name: What was their previous name?
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_other_children_personal_details_form:

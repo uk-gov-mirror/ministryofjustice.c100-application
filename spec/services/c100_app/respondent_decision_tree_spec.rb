@@ -5,29 +5,58 @@ RSpec.describe C100App::RespondentDecisionTree do
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }
   let(:as)               { nil }
+  let(:record)           { nil }
 
-  subject { described_class.new(c100_application: c100_application, step_params: step_params, as: as, next_step: next_step) }
+  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3]) }
+
+  subject {
+    described_class.new(
+      c100_application: c100_application,
+      record: record,
+      step_params: step_params,
+      as: as,
+      next_step: next_step
+    )
+  }
 
   it_behaves_like 'a decision tree'
 
+  context 'when the step is `add_another_name`' do
+    let(:step_params) {{'add_another_name' => 'anything'}}
+    it {is_expected.to have_destination(:names, :edit)}
+  end
+
+  context 'when the step is `names_finished`' do
+    let(:step_params) {{'names_finished' => 'anything'}}
+
+    it 'goes to edit the details of the first respondent' do
+      expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 1)
+    end
+  end
+
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application, number_of_children: 1)}
+    let(:record) {double('Respondent', id: 1)}
 
-    it {is_expected.to have_destination(:personal_details, :edit)}
+    it 'goes to edit the contact details of the current record' do
+      expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
+    end
   end
 
-  context 'when the step is `add_another_respondent`' do
-    let(:step_params) {{'add_another_respondent' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application)}
+  context 'when the step is `contact_details`' do
+    let(:step_params) {{'contact_details' => 'anything'}}
 
-    it {is_expected.to have_destination(:personal_details, :edit)}
-  end
+    context 'when there are remaining respondents' do
+      let(:record) { double('Respondent', id: 1) }
 
-  context 'when the step is `respondents_finished`' do
-    let(:step_params) {{'respondents_finished' => 'anything'}}
-    let(:c100_application) {instance_double(C100Application)}
+      it 'goes to edit the personal details of the next respondent' do
+        expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 2)
+      end
+    end
 
-    it {is_expected.to have_destination('/steps/children/names', :show)}
+    context 'when all respondents have been edited' do
+      let(:record) { double('Respondent', id: 3) }
+      it {is_expected.to have_destination('/steps/respondent/names', :edit)}
+    end
   end
 end

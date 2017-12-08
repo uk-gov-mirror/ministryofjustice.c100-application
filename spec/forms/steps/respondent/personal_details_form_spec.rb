@@ -4,21 +4,12 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
-    full_name: full_name,
     has_previous_name: has_previous_name,
-    previous_full_name: previous_full_name,
+    previous_name: previous_name,
     gender: gender,
     dob: dob,
     dob_unknown: dob_unknown,
-    birthplace: birthplace,
-    address: address,
-    postcode: postcode,
-    postcode_unknown: postcode_unknown,
-    home_phone: home_phone,
-    mobile_phone: mobile_phone,
-    mobile_phone_unknown: mobile_phone_unknown,
-    email: email,
-    email_unknown: email_unknown
+    birthplace: birthplace
   } }
 
   let(:c100_application) { instance_double(C100Application, respondents: respondents_collection) }
@@ -26,21 +17,12 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
   let(:respondent) { double('Respondent', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
   let(:record) { nil }
-  let(:full_name) { 'Full Name' }
   let(:has_previous_name) { 'no' }
-  let(:previous_full_name) { nil }
+  let(:previous_name) { nil }
   let(:gender) { 'male' }
   let(:dob) { Date.today }
   let(:dob_unknown) { false }
   let(:birthplace) { 'London' }
-  let(:address) { 'Address' }
-  let(:postcode) { nil }
-  let(:postcode_unknown) { true }
-  let(:home_phone) { '123456789' }
-  let(:mobile_phone) { nil }
-  let(:mobile_phone_unknown) { false }
-  let(:email) { 'email@example.com' }
-  let(:email_unknown) { false }
 
   subject { described_class.new(arguments) }
 
@@ -80,9 +62,9 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
           expect(subject.save).to be(false)
         end
 
-        it 'has a validation error on the `previous_full_name` field' do
+        it 'has a validation error on the `previous_name` field' do
           expect(subject).to_not be_valid
-          expect(subject.errors[:previous_full_name]).to_not be_empty
+          expect(subject.errors[:previous_name]).to_not be_empty
         end
       end
 
@@ -100,64 +82,19 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
       end
     end
 
-    context 'gender' do
-      context 'when attribute is not given' do
-        let(:gender) { nil }
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:gender]).to_not be_empty
-        end
-      end
-
-      context 'when attribute value is not valid' do
-        let(:gender) {'INVALID VALUE'}
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:gender]).to_not be_empty
-        end
-      end
-    end
-
-    context 'validations on field presence' do
-      it { should validate_presence_of(:full_name) }
-      it { should validate_presence_of(:address) }
-      it { should validate_presence_of(:home_phone) }
-    end
-
     context 'validations on field presence unless `unknown`' do
-      it {should validate_presence_unless_unknown_of(:dob)}
-      it {should validate_presence_unless_unknown_of(:postcode)}
-      it {should validate_presence_unless_unknown_of(:email)}
+      it { should validate_presence_unless_unknown_of(:dob) }
     end
 
     context 'for valid details' do
       let(:expected_attributes) {
         {
-          full_name: 'Full Name',
           has_previous_name: GenericYesNoUnknown::NO,
-          previous_full_name: '',
+          previous_name: '',
           gender: Gender::MALE,
           dob: Date.today,
           dob_unknown: false,
-          birthplace: 'London',
-          address: 'Address',
-          postcode: '',
-          postcode_unknown: true,
-          home_phone: '123456789',
-          mobile_phone: '',
-          mobile_phone_unknown: false,
-          email: 'email@example.com',
-          email_unknown: false
+          birthplace: 'London'
         }
       }
 
