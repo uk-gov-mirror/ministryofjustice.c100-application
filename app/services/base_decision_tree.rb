@@ -43,4 +43,13 @@ class BaseDecisionTree
   def edit(step_controller, params = {})
     {controller: step_controller, action: :edit}.merge(params)
   end
+
+  def next_record_id(collection_ids)
+    @_next_record_id ||= begin
+      return collection_ids.first if record.nil?
+
+      pos = collection_ids.index(record.id)
+      collection_ids.at(pos + 1)
+    end
+  end
 end

@@ -57,11 +57,20 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
+    let(:record) {double('Applicant', id: 1)}
+
+    it 'goes to edit the contact details of the current record' do
+      expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
+    end
+  end
+
+  context 'when the step is `contact_details`' do
+    let(:step_params) {{'contact_details' => 'anything'}}
 
     context 'when there are remaining applicants' do
       let(:record) { double('Applicant', id: 1) }
 
-      it 'goes to edit the details of the next applicant' do
+      it 'goes to edit the personal details of the next applicant' do
         expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 2)
       end
     end
