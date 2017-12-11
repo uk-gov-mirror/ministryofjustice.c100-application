@@ -1,0 +1,36 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.radio_button_fieldset :has_previous_name, inline: true do |fieldset|
+          fieldset.radio_input GenericYesNoUnknown::YES, panel_id: :previous_name_panel
+          fieldset.radio_input GenericYesNoUnknown::NO
+          fieldset.radio_input GenericYesNoUnknown::UNKNOWN
+          fieldset.revealing_panel(:previous_name_panel) { |panel| panel.text_field :previous_name }
+        end
+      %>
+
+      <%= f.radio_button_fieldset :gender, inline: true,
+        choices: Steps::Respondent::PersonalDetailsForm.gender_choices %>
+
+      <div class="form-group">
+        <%= f.gov_uk_date_field :dob,
+          placeholders: true,
+          legend_text: t('shared.form_elements.dob'),
+          legend_class: 'form-label-bold',
+          form_hint_text: '' %>
+      </div>
+      <%= f.check_box_fieldset :dob_unknown, [:dob_unknown] %>
+
+      <div class="xform-group form-submit">
+        <%= f.submit class: 'button' %>
+      </div>
+    <% end %>
+  </div>
+</div>
