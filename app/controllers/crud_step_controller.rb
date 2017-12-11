@@ -1,15 +1,15 @@
-module CrudStep
-  extend ActiveSupport::Concern
-
-  included do
-    before_action :set_existing_records
-  end
+class CrudStepController < StepController
+  before_action :set_existing_records
 
   private
 
   # :nocov:
+  def names_form_class
+    raise 'implement in subclasses'
+  end
+
   def record_collection
-    raise 'implement in the class including this module'
+    raise 'implement in subclasses'
   end
   # :nocov:
 

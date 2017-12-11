@@ -2,14 +2,14 @@ module NamesCrudStep
   extend ActiveSupport::Concern
 
   def edit
-    @form_object = form_class.new(
+    @form_object = names_form_class.new(
       c100_application: current_c100_application
     )
   end
 
   def update
     update_and_advance(
-      form_class,
+      names_form_class,
       as: params.fetch(:button, :names_finished)
     )
   end
@@ -21,13 +21,7 @@ module NamesCrudStep
 
   private
 
-  # :nocov:
-  def form_class
-    raise 'implement in the class including this module'
-  end
-  # :nocov:
-
   def additional_permitted_params
-    [names_attributes: [:id, form_class.name_attribute]]
+    [names_attributes: [:id, names_form_class.name_attribute]]
   end
 end
