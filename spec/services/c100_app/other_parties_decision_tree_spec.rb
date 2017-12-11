@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe C100App::RespondentDecisionTree do
+RSpec.describe C100App::OtherPartiesDecisionTree do
   let(:c100_application) { double('Object') }
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3]) }
+  let(:c100_application) { instance_double(C100Application, other_party_ids: [1, 2, 3]) }
 
   subject {
     described_class.new(
@@ -29,14 +29,14 @@ RSpec.describe C100App::RespondentDecisionTree do
   context 'when the step is `names_finished`' do
     let(:step_params) {{'names_finished' => 'anything'}}
 
-    it 'goes to edit the details of the first respondent' do
+    it 'goes to edit the details of the first party' do
       expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 1)
     end
   end
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
-    let(:record) {double('Respondent', id: 1)}
+    let(:record) {double('OtherParty', id: 1)}
 
     it 'goes to edit the contact details of the current record' do
       expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
@@ -46,32 +46,17 @@ RSpec.describe C100App::RespondentDecisionTree do
   context 'when the step is `contact_details`' do
     let(:step_params) {{'contact_details' => 'anything'}}
 
-    context 'when there are remaining respondents' do
-      let(:record) { double('Respondent', id: 1) }
+    context 'when there are remaining parties' do
+      let(:record) { double('OtherParty', id: 1) }
 
-      it 'goes to edit the personal details of the next respondent' do
+      it 'goes to edit the personal details of the next party' do
         expect(subject.destination).to eq(controller: :personal_details, action: :edit, id: 2)
       end
     end
 
-    context 'when all respondents have been edited' do
-      let(:record) { double('Respondent', id: 3) }
-      it {is_expected.to have_destination(:has_other_parties, :edit)}
-    end
-  end
-
-  context 'when the step is `has_other_parties`' do
-    let(:c100_application) { instance_double(C100Application, has_other_parties: value) }
-    let(:step_params) { { has_other_parties: 'anything' } }
-
-    context 'and the answer is `yes`' do
-      let(:value) { 'yes' }
-      it { is_expected.to have_destination('/steps/other_parties/names', :edit) }
-    end
-
-    context 'and the answer is `no`' do
-      let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
+    context 'when all parties have been edited' do
+      let(:record) { double('OtherParty', id: 3) }
+      it {is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit)}
     end
   end
 end

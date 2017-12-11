@@ -22,7 +22,7 @@ en:
       full_name: Full name
       has_previous_name:
         <<: *YESNO
-      previous_name: Please enter previous name
+      previous_name: What was their previous name?
       gender:
         female: Female
         male: Male
@@ -141,6 +141,10 @@ en:
         edit:
           page_title: Respondent contact details
           heading: "Contact details of %{name}"
+      has_other_parties:
+        edit:
+          page_title: Other parties required
+          heading: Are there any other people who should be given notice of the hearing?
     children:
       names:
         edit:
@@ -174,6 +178,22 @@ en:
         edit:
           page_title: Child personal details
           heading: "Provide details for %{name}"
+    other_parties:
+      names:
+        edit:
+          page_title: Other parties
+          heading: Enter the other party’s name
+          record_index: "Party %{index}"
+          btn_add_another: Add another party
+          btn_remove: Remove last party
+      personal_details:
+        edit:
+          page_title: Other party personal details
+          heading: "Provide details for %{name}"
+      contact_details:
+        edit:
+          page_title: Other party contact details
+          heading: "Contact details of %{name}"
     abuse_concerns:
       question:
         edit:
@@ -481,6 +501,12 @@ en:
         steps/other_children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/other_parties/personal_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
+        steps/other_parties/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
 
   helpers:
     fieldset:
@@ -572,6 +598,8 @@ en:
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
         email_unknown_html: ""
+      steps_respondent_has_other_parties_form:
+        has_other_parties_html: ""
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -585,6 +613,12 @@ en:
       steps_other_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
+      steps_other_parties_personal_details_form:
+        has_previous_name: Have they changed their name?
+        gender: Sex
+        dob_unknown_html: ""
+      steps_other_parties_contact_details_form:
+        postcode_unknown_html: ""
     label:
       steps_applicant_user_type_form:
         user_type:
@@ -639,11 +673,15 @@ en:
         new_name: Full name of child
       steps_other_children_names_form[names_attributes]:
         name: Full name
+      steps_other_parties_names_form:
+        new_name: Full name of other party
+      steps_other_parties_names_form[names_attributes]:
+        name: Full name
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+        previous_name: Please enter previous name
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-        previous_name: What was their previous name?
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
@@ -652,6 +690,10 @@ en:
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+      steps_other_parties_personal_details_form:
+        <<: *PERSONAL_DETAILS_FIELDS
+      steps_other_parties_contact_details_form:
+        <<: *PERSONAL_CONTACT_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_children_additional_details_form:
