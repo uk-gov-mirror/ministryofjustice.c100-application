@@ -5,7 +5,7 @@ class NamesBaseForm < BaseForm
   validates_presence_of :new_name, if: :first_name?
 
   # The default attribute for storing the name in the People table is `full_name`,
-  # but can be customised in subclasses, for example for Children we ask for the 'short' name.
+  # but can be customised in subclasses, if needed.
   def self.name_attribute
     :full_name
   end

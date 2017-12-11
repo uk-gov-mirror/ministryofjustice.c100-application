@@ -4,7 +4,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
-    full_name: full_name,
     gender: gender,
     dob: dob,
     dob_unknown: dob_unknown
@@ -15,7 +14,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
   let(:child) { double('Child', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
   let(:record) { nil }
-  let(:full_name) { 'Full Name' }
   let(:gender) { 'male' }
   let(:dob) { Date.today }
   let(:dob_unknown) { false }
@@ -65,10 +63,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
       end
     end
 
-    context 'validations on field presence' do
-      it { should validate_presence_of(:full_name) }
-    end
-
     context 'validations on field presence unless `unknown`' do
       it {should validate_presence_unless_unknown_of(:dob)}
     end
@@ -76,7 +70,6 @@ RSpec.describe Steps::Children::PersonalDetailsForm do
     context 'for valid details' do
       let(:expected_attributes) {
         {
-          full_name: 'Full Name',
           gender: Gender::MALE,
           dob: Date.today,
           dob_unknown: false
