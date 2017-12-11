@@ -56,7 +56,22 @@ RSpec.describe C100App::RespondentDecisionTree do
 
     context 'when all respondents have been edited' do
       let(:record) { double('Respondent', id: 3) }
-      it {is_expected.to have_destination('/steps/respondent/names', :edit)}
+      it {is_expected.to have_destination(:has_other_parties, :edit)}
+    end
+  end
+
+  context 'when the step is `has_other_parties`' do
+    let(:c100_application) { instance_double(C100Application, has_other_parties: value) }
+    let(:step_params) { { has_other_parties: 'anything' } }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination('/steps/other_parties/names', :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
     end
   end
 end

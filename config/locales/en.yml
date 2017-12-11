@@ -141,6 +141,10 @@ en:
         edit:
           page_title: Respondent contact details
           heading: "Contact details of %{name}"
+      has_other_parties:
+        edit:
+          page_title: Other parties required
+          heading: Are there any other people who should be given notice of the hearing?
     children:
       names:
         edit:
@@ -572,6 +576,8 @@ en:
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
         email_unknown_html: ""
+      steps_respondent_has_other_parties_form:
+        has_other_parties_html: ""
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
