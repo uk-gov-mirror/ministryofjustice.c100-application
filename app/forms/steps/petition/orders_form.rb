@@ -12,7 +12,6 @@ module Steps
       attribute :child_specific_issue_medical, Boolean
       attribute :child_specific_issue_abroad, Boolean
 
-      attribute :consent_order, Boolean
       attribute :child_return, Boolean
       attribute :child_abduction, Boolean
       attribute :child_flight, Boolean
