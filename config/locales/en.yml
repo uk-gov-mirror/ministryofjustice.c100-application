@@ -366,6 +366,14 @@ en:
         edit:
           page_title: Other concerns
           heading: Any other concerns?
+      address_confidentiality:
+        edit:
+          page_title: Address confidentiality
+          heading: Keeping your contact details private
+          lead_text_html: |
+            <p>A copy of your court application will be sent to the other person.</p>
+            <p>The court won’t include the contact details for you and your children if you prefer to keep them private.</p>
+
     miam:
       attended:
         edit:
@@ -525,6 +533,8 @@ en:
         other_issue_html: "What orders are you applying for? (optional)"
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
+      steps_safety_questions_address_confidentiality_form:
+        address_confidentiality_html: "Do you want to keep your contact details private?"
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
       steps_safety_questions_substance_abuse_form:
