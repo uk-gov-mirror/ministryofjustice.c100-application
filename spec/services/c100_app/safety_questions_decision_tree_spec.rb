@@ -12,6 +12,11 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
 
   it_behaves_like 'a decision tree'
 
+  context 'when the step is `address_confidentiality`' do
+    let(:step_params) { { 'address_confidentiality' => 'anything' } }
+    it { is_expected.to have_destination(:risk_of_abduction, :edit) }
+  end
+
   context 'when the step is `risk_of_abduction`' do
     let(:c100_application) { instance_double(C100Application, risk_of_abduction: value) }
     let(:step_params) { { risk_of_abduction: 'anything' } }

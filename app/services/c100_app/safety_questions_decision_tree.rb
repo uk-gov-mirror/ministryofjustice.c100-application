@@ -4,6 +4,8 @@ module C100App
       return next_step if next_step
 
       case step_name
+      when :address_confidentiality
+        edit(:risk_of_abduction)
       when :risk_of_abduction
         after_risk_of_abduction
       when :substance_abuse
