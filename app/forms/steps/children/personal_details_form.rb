@@ -3,7 +3,6 @@ module Steps
     class PersonalDetailsForm < BaseForm
       include GovUkDateFields::ActsAsGovUkDate
 
-      attribute :full_name, StrippedString
       attribute :gender, String
       attribute :dob, Date
       attribute :dob_unknown, Boolean
@@ -16,8 +15,6 @@ module Steps
       validates_inclusion_of :gender, in: gender_choices
 
       validates_presence_of :dob, unless: :dob_unknown?
-
-      validates_presence_of :full_name
 
       private
 

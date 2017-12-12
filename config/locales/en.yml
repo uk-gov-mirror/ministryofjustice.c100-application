@@ -666,17 +666,17 @@ en:
       steps_abduction_risk_details_form:
         risk_details: Give a short description
       steps_children_names_form[names_attributes]:
-        name: Name
+        full_name: Full name of child
       steps_children_names_form:
-        new_name: Name you normally use for your child
+        new_name: Full name of child
       steps_other_children_names_form:
         new_name: Full name of child
       steps_other_children_names_form[names_attributes]:
-        name: Full name
+        full_name: Full name of child
       steps_other_parties_names_form:
         new_name: Full name of other party
       steps_other_parties_names_form[names_attributes]:
-        name: Full name
+        full_name: Full name of other party
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
         previous_name: Please enter previous name
