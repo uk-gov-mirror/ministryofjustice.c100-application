@@ -9,8 +9,28 @@
     </div>
 
     <div class="govuk-govspeak gv-s-prose">
-      <p>You’ll need to go to court if you’ve tried other suitable options and still can’t agree arrangements.</p>
-      <p>Before applying to court you should see if you can resolve your dispute another way unless you’re worried about your or your children’s safety.</p>
+      <p>Before you continue with your application you should consider what the court process involves and whether you
+        need to go.</p>
+      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+        <p>If you decide not to go to court you’ll be helping cases involving vulnerable children get to court
+          quicker.</p>
+      </div>
+      <h2>What happens at court</h2>
+      <p>A judge will always put your children first. What you want may not be the best thing for your children. You
+        must be prepared to accept the judge’s decision, even if you find it difficult.</p>
+      <p>The judge’s decision is legally binding. This means that you and the other person must follow the terms of
+        the order.</p>
+      <p><a href="https://helpwithchildarrangements.service.justice.gov.uk/going-to-court" target="external_link">Find
+        out more about going to court </a></p>
+      <h2>Change or enforce an order</h2>
+      <p>The court order isn’t flexible. If you disagree with any part of the order you can ask a court to change it.
+        You can also ask a court to enforce an order if the other person isn’t following it.</p>
+      <p>You’ll need to apply to court again if you want to change or enforce an order.</p>
+      <h2>Representing yourself in court</h2>
+      <p>Most people no longer qualify for free legal help. If you don’t qualify, or can’t afford a lawyer, you will
+        need to learn
+        <a href="https://www.gov.uk/represent-yourself-in-court" target="external_link">how to represent yourself in
+          court</a> before you apply.</p>
     </div>
 
     <div class="govuk-govspeak gv-s-prose">
@@ -20,35 +40,30 @@
             <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
               <span data-block-name="ProsCons__heading--pros">Pros</span>
             </h2>
-
             <ul class="ProsCons__list ProsCons__list--pros">
-              <li class="ProsCons__item ProsCons__item--pros">a decision is made in your child’s best interest</li>
               <li class="ProsCons__item ProsCons__item--pros">legally binding outcome</li>
             </ul>
           </div>
 
           <div class="Cons">
-            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
+            <h2 class="ProsCons__heading ProsCons__heading--cons heading-small gv-u-heading-small" aria-label="Cons of ">
               <span data-block-name="ProsCons__heading--cons">Cons</span>
             </h2>
-
             <ul class="ProsCons__list ProsCons__list--cons">
               <li class="ProsCons__item ProsCons__item--cons">can be expensive</li>
               <li class="ProsCons__item ProsCons__item--cons">court process takes a long time</li>
-              <li class="ProsCons__item ProsCons__item--cons">you might not get what you want - a judge makes the decision</li>
+              <li class="ProsCons__item ProsCons__item--cons">you may not feel in a control - a judge makes the
+                decision
+              </li>
               <li class="ProsCons__item ProsCons__item--cons">can be more stressful for you and your children</li>
-              <li class="ProsCons__item ProsCons__item--cons">may increase conflict between you and the other parent</li>
+              <li class="ProsCons__item ProsCons__item--cons">may increase conflict between you and the other person
+              </li>
             </ul>
           </div>
         </div>
 
-        <p class="CallToAction">
-          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/going-to-court" target="external_link">Find
-            out more about going to court</a>
-        </p>
-
         <%= step_form @form_object do |f| %>
-          <%= f.radio_button_fieldset :alternative_court, inline: true, choices: GenericYesNo.values %>
+          <%= f.check_box_fieldset :court_acknowledgement, [:court_acknowledgement] %>
           <%= f.submit class: 'button' %>
         <% end %>
       </div>

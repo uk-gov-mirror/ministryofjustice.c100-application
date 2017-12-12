@@ -7,7 +7,7 @@ module C100App
       when :orders
         after_orders
       when :other_issue
-        start_children_journey
+        start_alternatives_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -19,12 +19,12 @@ module C100App
       if checked?(:other)
         edit(:other_issue)
       else
-        start_children_journey
+        start_alternatives_journey
       end
     end
 
-    def start_children_journey
-      edit('/steps/children/names')
+    def start_alternatives_journey
+      edit('/steps/alternatives/court')
     end
   end
 end
