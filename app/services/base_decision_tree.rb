@@ -20,7 +20,8 @@ class BaseDecisionTree
   end
 
   def question(attribute_name, klass = GenericYesNo)
-    klass.new c100_application.public_send(attribute_name)
+    value = c100_application.public_send(attribute_name)
+    klass.new(value) if value
   end
 
   def checked?(attribute_name)

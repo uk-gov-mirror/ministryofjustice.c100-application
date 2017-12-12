@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212105422) do
+ActiveRecord::Schema.define(version: 20171212143713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,12 +110,12 @@ ActiveRecord::Schema.define(version: 20171212105422) do
     t.string   "alternative_mediation"
     t.string   "alternative_lawyer_negotiation"
     t.string   "alternative_collaborative_law"
-    t.string   "alternative_court"
     t.date     "miam_certification_date"
     t.string   "miam_certification_number"
     t.string   "has_other_children"
     t.string   "has_other_parties"
     t.string   "address_confidentiality"
+    t.boolean  "court_acknowledgement"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 

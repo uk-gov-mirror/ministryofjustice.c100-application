@@ -6,7 +6,7 @@ module Steps
       end
 
       def update
-        update_and_advance(CourtForm, as: :court)
+        update_and_advance(CourtForm, as: :court_acknowledgement)
       end
     end
   end

@@ -593,7 +593,7 @@ en:
       steps_alternatives_collaborative_law_form:
         alternative_collaborative_law: Have you tried collaborative law?
       steps_alternatives_court_form:
-        alternative_court: Have you been to court before about your situation?
+        court_acknowledgement_html: ""
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
         gender: Sex
@@ -634,6 +634,8 @@ en:
         user_type:
           themself: Yes, I am the person making the application
           representative: No, I am a legal representative of the applicant
+      steps_alternatives_court_form:
+        court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
         miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
       steps_miam_certification_number_form:

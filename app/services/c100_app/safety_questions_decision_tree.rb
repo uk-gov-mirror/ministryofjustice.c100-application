@@ -61,7 +61,7 @@ module C100App
       if question(:other_abuse).yes?
         start_abuse_concerns_journey
       else
-        show('/steps/alternatives/start')
+        edit('/steps/petition/orders')
       end
     end
 
