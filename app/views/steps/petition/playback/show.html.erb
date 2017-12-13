@@ -1,0 +1,43 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <% if @petition.child_arrangements_orders.any? %>
+      <p class="lede"><%=t '.lead_text', count: 0 %></p>
+      <ul class="list list-bullet">
+        <% @petition.child_arrangements_orders.each do |order| %>
+          <%= content_tag :li, t(".#{order}") %>
+        <% end %>
+      </ul>
+      <p><%= t('.aka.child_arrangements_order') %></p>
+    <% end %>
+
+    <% if @petition.specific_issues_orders.any? %>
+      <p class="lede"><%=t '.lead_text_issues', count: @petition.child_arrangements_orders.count %></p>
+      <ul class="list list-bullet">
+        <% @petition.specific_issues_orders.each do |order| %>
+          <%= content_tag :li, t(".#{order}") %>
+        <% end %>
+      </ul>
+      <p><%= t('.aka.specific_issues_order') %></p>
+    <% end %>
+
+    <% if @petition.prohibited_steps_orders.any? %>
+      <p class="lede"><%=t '.lead_text', count: @petition.child_arrangements_orders.count + @petition.specific_issues_orders.count %></p>
+      <ul class="list list-bullet">
+        <% @petition.prohibited_steps_orders.each do |order| %>
+          <%= content_tag :li, t(".#{order}") %>
+        <% end %>
+      </ul>
+      <p><%= t('.aka.prohibited_steps_order') %></p>
+    <% end %>
+
+    <div class="xform-group form-submit">
+      <%= link_to t('.continue'), edit_steps_alternatives_court_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

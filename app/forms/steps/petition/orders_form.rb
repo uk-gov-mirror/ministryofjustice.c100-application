@@ -1,6 +1,10 @@
 module Steps
   module Petition
     class OrdersForm < BaseForm
+      include HasOneAssociationForm
+
+      has_one_association :asking_order
+
       attribute :child_home, Boolean
       attribute :child_times, Boolean
       attribute :child_contact, Boolean
@@ -12,7 +16,6 @@ module Steps
       attribute :child_specific_issue_medical, Boolean
       attribute :child_specific_issue_abroad, Boolean
 
-      attribute :consent_order, Boolean
       attribute :child_return, Boolean
       attribute :child_abduction, Boolean
       attribute :child_flight, Boolean
@@ -24,8 +27,7 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        asking_order = c100_application.asking_order || c100_application.build_asking_order
-        asking_order.update(
+        record_to_persist.update(
           attributes_map
         )
       end

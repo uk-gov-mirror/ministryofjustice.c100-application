@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212143713) do
+ActiveRecord::Schema.define(version: 20171212172124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20171212143713) do
     t.boolean "child_specific_issue_name"
     t.boolean "child_specific_issue_medical"
     t.boolean "child_specific_issue_abroad"
-    t.boolean "consent_order"
     t.boolean "child_return"
     t.boolean "child_abduction"
     t.boolean "child_flight"

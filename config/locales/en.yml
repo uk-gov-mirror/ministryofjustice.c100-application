@@ -17,6 +17,20 @@ en:
       start_again: Start again
       finish: Finish
 
+    PETITION_ORDERS: &PETITION_ORDERS
+      child_home: Arrange where they live
+      child_times: Arrange how much time they spend with each parent
+      child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
+      child_specific_issue_school: Which school they go to
+      child_specific_issue_religion: A religious issue
+      child_specific_issue_name: Changing their names
+      child_specific_issue_medical: Medical treatment
+      child_specific_issue_abroad: Moving location (including moving abroad)
+      child_return: Return them to your care
+      child_abduction: Stop the other parent abducting them
+      child_flight: Stop the other parent taking them abroad or moving location without your permission
+      other: Resolve another issue
+
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
       full_name: Full name
@@ -408,6 +422,26 @@ en:
         edit:
           page_title: Provide details of the issue
           heading: Provide details of the issue you’re asking the court to resolve
+      playback:
+        show:
+          page_title: What you are asking the court to do
+          heading: What you’re asking the court to do about your children
+          lead_text:
+            zero: You’d like the court to
+            one: You’d also like the court to
+            other: You’d also like the court to
+          lead_text_issues:
+            zero: You’d like the court to resolve a dispute about
+            one: You’d also like the court to resolve a dispute about
+            other: You’d also like the court to resolve a dispute about
+          continue: Continue
+          <<: *PETITION_ORDERS
+          child_contact: Confirm when and what other types of contact will take place with them
+          child_specific_issue_abroad: Moving location
+          aka:
+            child_arrangements_order: This is known as a Child Arrangements Order.
+            specific_issues_order: This is known as a Specific Issue Order.
+            prohibited_steps_order: This is known as a Prohibited Steps Order.
     abduction:
       children_have_passport:
         edit:
@@ -649,19 +683,7 @@ en:
           not_needed: 'No'
         hwf_reference_number: Enter your reference number
       steps_petition_orders_form:
-        child_home: Arrange where they live
-        child_times: Arrange how much time they spend with each parent
-        child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
-        child_specific_issue_school: Which school they go to
-        child_specific_issue_religion: A religious issue
-        child_specific_issue_name: Changing their names
-        child_specific_issue_medical: Medical treatment
-        child_specific_issue_abroad: Moving location (including moving abroad)
-        consent_order: Make an agreement with the other parent legally binding (also known as a consent order)
-        child_return: Return them to your care
-        child_abduction: Stop the other parent abducting them
-        child_flight: Stop the other parent taking them abroad or moving location without your permission
-        other: Resolve another issue
+        <<: *PETITION_ORDERS
       steps_petition_other_issue_form:
         other_details: Details
         child_arrangements_order: Child Arrangements Order
