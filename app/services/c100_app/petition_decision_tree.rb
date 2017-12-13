@@ -7,7 +7,7 @@ module C100App
       when :orders
         after_orders
       when :other_issue
-        start_alternatives_journey
+        playback_step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -19,12 +19,12 @@ module C100App
       if checked?(:other)
         edit(:other_issue)
       else
-        start_alternatives_journey
+        playback_step
       end
     end
 
-    def start_alternatives_journey
-      edit('/steps/alternatives/court')
+    def playback_step
+      show(:playback)
     end
   end
 end
