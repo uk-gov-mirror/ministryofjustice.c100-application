@@ -1,39 +1,24 @@
 class PetitionPresenter < SimpleDelegator
-  ORDERS = {
-    child_arrangements: [
-      :child_home,
-      :child_times,
-      :child_contact
-    ],
-    specific_issues: [
-      :child_specific_issue_school,
-      :child_specific_issue_religion,
-      :child_specific_issue_name,
-      :child_specific_issue_medical,
-      :child_specific_issue_abroad,
-      :child_return
-    ],
-    prohibited_steps: [
-      :child_abduction,
-      :child_flight
-    ]
-  }.freeze
-
   def child_arrangements_orders
-    orders_for(:child_arrangements)
+    selected_orders_from(OrderAttributes::CHILD_ARRANGEMENTS)
   end
 
   def specific_issues_orders
-    orders_for(:specific_issues)
+    selected_orders_from(OrderAttributes::SPECIFIC_ISSUES)
   end
 
   def prohibited_steps_orders
-    orders_for(:prohibited_steps)
+    selected_orders_from(OrderAttributes::PROHIBITED_STEPS)
+  end
+
+  def all_selected_orders
+    selected_orders_from(OrderAttributes::ALL_ORDERS)
   end
 
   private
 
-  def orders_for(group_name)
-    ORDERS.fetch(group_name).select { |attrib| self[attrib] }
+  def selected_orders_from(collection)
+    return [] if __getobj__.nil?
+    collection.select { |attrib| self[attrib] }
   end
 end
