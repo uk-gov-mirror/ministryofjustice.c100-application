@@ -1,0 +1,15 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.check_box_fieldset :orders, @petition.all_selected_orders %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

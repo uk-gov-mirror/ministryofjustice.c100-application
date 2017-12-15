@@ -20,12 +20,12 @@ en:
     PETITION_ORDERS: &PETITION_ORDERS
       child_home: Arrange where they live
       child_times: Arrange how much time they spend with each parent
-      child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
+      child_contact: Confirm when and what other types of contact will take place with them
       child_specific_issue_school: Which school they go to
       child_specific_issue_religion: A religious issue
       child_specific_issue_name: Changing their names
       child_specific_issue_medical: Medical treatment
-      child_specific_issue_abroad: Moving location (including moving abroad)
+      child_specific_issue_abroad: Moving location
       child_return: Return them to your care
       child_abduction: Stop the other parent abducting them
       child_flight: Stop the other parent taking them abroad or moving location without your permission
@@ -180,6 +180,10 @@ en:
         edit:
           page_title: Other children required
           heading: Do you have other children that aren’t part of this application?
+      orders:
+        edit:
+          page_title: Which orders apply to the child
+          heading: "Which of the requested orders relate to %{name}?"
     other_children:
       names:
         edit:
@@ -436,8 +440,6 @@ en:
             other: You’d also like the court to resolve a dispute about
           continue: Continue
           <<: *PETITION_ORDERS
-          child_contact: Confirm when and what other types of contact will take place with them
-          child_specific_issue_abroad: Moving location
           aka:
             child_arrangements_order: This is known as a Child Arrangements Order.
             specific_issues_order: This is known as a Specific Issue Order.
@@ -647,6 +649,8 @@ en:
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
+      steps_children_orders_form:
+        orders_html: ""
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to the local authority children’s services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
@@ -684,6 +688,8 @@ en:
         hwf_reference_number: Enter your reference number
       steps_petition_orders_form:
         <<: *PETITION_ORDERS
+        child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
+        child_specific_issue_abroad: Moving location (including moving abroad)
       steps_petition_other_issue_form:
         other_details: Details
         child_arrangements_order: Child Arrangements Order
@@ -730,6 +736,8 @@ en:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+      steps_children_orders_form:
+        <<: *PETITION_ORDERS
       steps_children_additional_details_form:
         children_known_to_authorities:
           <<: *YESNO

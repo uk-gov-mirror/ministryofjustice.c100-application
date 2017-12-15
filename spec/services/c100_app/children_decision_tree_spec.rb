@@ -36,6 +36,15 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
+    let(:record) {double('Child', id: 1)}
+
+    it 'goes to edit the orders of the current record' do
+      expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+    end
+  end
+
+  context 'when the step is `orders`' do
+    let(:step_params) {{'orders' => 'anything'}}
 
     context 'when there are remaining children' do
       let(:record) { double('Child', id: 1) }
