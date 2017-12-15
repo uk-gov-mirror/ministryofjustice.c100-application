@@ -21,10 +21,4 @@ class C100Application < ApplicationRecord
   has_value_object :concerns_contact_other,        class_name: 'GenericYesNo'
   has_value_object :children_previous_proceedings, class_name: 'GenericYesNo'
   has_value_object :emergency_proceedings,         class_name: 'GenericYesNo'
-
-  # Children additional details
-  has_value_object :children_residence
-  has_value_object :children_same_parents,         class_name: 'GenericYesNo'
-  has_value_object :children_known_to_authorities, class_name: 'GenericYesNoUnknown'
-  has_value_object :children_protection_plan,      class_name: 'GenericYesNoUnknown'
 end
