@@ -9,14 +9,14 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.check_box_fieldset :orders, OrderAttributes::CHILD_ARRANGEMENTS %>
+      <%= f.check_box_fieldset :orders, PetitionOrder::CHILD_ARRANGEMENTS %>
 
       <!-- TODO: update `govuk_elements_form_builder` gem to support checkboxes revealing panels.
            For now, the `orders_issues` checkboxes are flattened. -->
 
-      <%= f.check_box_fieldset :orders_issues, OrderAttributes::SPECIFIC_ISSUES %>
-      <%= f.check_box_fieldset :orders, OrderAttributes::PROHIBITED_STEPS %>
-      <%= f.check_box_fieldset :orders, OrderAttributes::OTHER %>
+      <%= f.check_box_fieldset :orders_issues, PetitionOrder::SPECIFIC_ISSUES %>
+      <%= f.check_box_fieldset :orders, PetitionOrder::PROHIBITED_STEPS %>
+      <%= f.check_box_fieldset :orders, PetitionOrder::OTHER %>
 
       <%= f.submit class: 'button' %>
     <% end %>

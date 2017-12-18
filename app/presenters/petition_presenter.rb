@@ -1,18 +1,18 @@
 class PetitionPresenter < SimpleDelegator
   def child_arrangements_orders
-    selected_orders_from(OrderAttributes::CHILD_ARRANGEMENTS)
+    selected_orders_from(PetitionOrder::CHILD_ARRANGEMENTS)
   end
 
   def specific_issues_orders
-    selected_orders_from(OrderAttributes::SPECIFIC_ISSUES)
+    selected_orders_from(PetitionOrder::SPECIFIC_ISSUES)
   end
 
   def prohibited_steps_orders
-    selected_orders_from(OrderAttributes::PROHIBITED_STEPS)
+    selected_orders_from(PetitionOrder::PROHIBITED_STEPS)
   end
 
   def all_selected_orders
-    selected_orders_from(OrderAttributes::ALL_ORDERS)
+    selected_orders_from(PetitionOrder.values)
   end
 
   private
