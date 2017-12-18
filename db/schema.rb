@@ -112,6 +112,12 @@ ActiveRecord::Schema.define(version: 20171215143416) do
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 
+  create_table "child_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid   "child_id"
+    t.string "orders",   default: [], array: true
+    t.index ["child_id"], name: "index_child_orders_on_child_id", using: :btree
+  end
+
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "non_molestation"
     t.date   "non_molestation_issue_date"
@@ -193,6 +199,7 @@ ActiveRecord::Schema.define(version: 20171215143416) do
   add_foreign_key "abuse_concerns", "c100_applications"
   add_foreign_key "asking_orders", "c100_applications"
   add_foreign_key "c100_applications", "users"
+  add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "people", "c100_applications"
 end

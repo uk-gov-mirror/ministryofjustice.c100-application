@@ -95,6 +95,7 @@ Rails.application.routes.draw do
     namespace :children do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
+      crud_step :orders, only: [:edit, :update]
       edit_step :additional_details
       edit_step :has_other_children
     end

@@ -9,7 +9,9 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_record_id)
       when :personal_details
-        after_personal_details
+        edit(:orders, id: record) # TODO: refinement to bypass `orders` when children < 2
+      when :orders
+        after_orders
       when :additional_details
         edit(:has_other_children)
       when :has_other_children
@@ -21,7 +23,7 @@ module C100App
 
     private
 
-    def after_personal_details
+    def after_orders
       if next_record_id
         edit(:personal_details, id: next_record_id)
       else
