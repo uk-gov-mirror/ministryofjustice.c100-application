@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215143416) do
+ActiveRecord::Schema.define(version: 20171218141037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,16 @@ ActiveRecord::Schema.define(version: 20171215143416) do
     t.index ["c100_application_id"], name: "index_people_on_c100_application_id", using: :btree
   end
 
+  create_table "relationships", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.string "relation"
+    t.string "relation_other_value"
+    t.uuid   "child_id",             null: false
+    t.uuid   "person_id",            null: false
+    t.uuid   "c100_application_id"
+    t.index ["c100_application_id"], name: "index_relationships_on_c100_application_id", using: :btree
+    t.index ["child_id", "person_id"], name: "index_relationships_on_child_id_and_person_id", unique: true, using: :btree
+  end
+
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -202,4 +212,7 @@ ActiveRecord::Schema.define(version: 20171215143416) do
   add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "people", "c100_applications"
+  add_foreign_key "relationships", "c100_applications"
+  add_foreign_key "relationships", "people"
+  add_foreign_key "relationships", "people", column: "child_id"
 end
