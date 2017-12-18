@@ -174,8 +174,8 @@ en:
           heading: "Provide details for %{name}"
       additional_details:
         edit:
-          page_title: Further information about the child(ren)
-          heading: Further information about the child(ren)
+          page_title: Further information
+          heading: Further information
       has_other_children:
         edit:
           page_title: Other children required
@@ -652,10 +652,8 @@ en:
       steps_children_orders_form:
         orders_html: ""
       steps_children_additional_details_form:
-        children_known_to_authorities: Are any of the children known to the local authority children’s services?
+        children_known_to_authorities: Are any of the children known to social services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
-        children_same_parents: Do all the children have the same parents?
-        children_residence: Who do the children currently live with?
       steps_children_has_other_children_form:
         has_other_children_html: ""
       steps_other_children_personal_details_form:
@@ -743,17 +741,7 @@ en:
           <<: *YESNO
         children_protection_plan:
           <<: *YESNO
-        children_same_parents:
-          <<: *YESNO
-        children_residence:
-          applicant: Applicant(s)
-          respondent: Respondent(s)
-          other: Other
-        children_known_to_authorities_details: Please state which child and the name of the Local Authority and Social worker (if known)
-        children_same_parents_yes_details: What are the names of the parents?
-        children_same_parents_no_details: Please give details of each parent and their children involved in this application
-        children_parental_responsibility_details: Please state everyone who has parental responsibility for each child and how they have parental responsibility
-        children_residence_details: Please give the full address of the child, the names of any adults living with the children and their relationship to or involvement with the child
+        children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Details
       steps_abuse_concerns_details_form:
@@ -822,13 +810,8 @@ en:
       steps_respondent_contact_details_form:
         address: Documents for this application will be sent here
       steps_children_additional_details_form:
-        children_parental_responsibility_details_html: |
-          e.g. ‘child’s mother’, ‘child’s father and was married to the mother when the child was born’ etc.
-          (See Section E of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>
-          for more information)
-        children_residence_details_html: |
-          If you do not wish this information to be made known to the Respondent, leave the details blank and complete
-          Confidential contact details <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c8-eng.pdf">Form C8</a>.
+        children_protection_plan_html: |
+          A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: You don’t need to give a full statement, although you may be asked to do so at a later date
       steps_abuse_concerns_details_form:

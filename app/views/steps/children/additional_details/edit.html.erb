@@ -8,39 +8,17 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :children_known_to_authorities do |fieldset|
-          fieldset.radio_input(GenericYesNoUnknown::YES) {
-            f.text_area :children_known_to_authorities_details, size: '40x4', class: 'form-control-3-4'
-          }
+        f.radio_button_fieldset :children_known_to_authorities, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNoUnknown::YES, panel_id: :children_known_to_authorities_panel)
           fieldset.radio_input(GenericYesNoUnknown::NO)
           fieldset.radio_input(GenericYesNoUnknown::UNKNOWN)
+          fieldset.revealing_panel(:children_known_to_authorities_panel) do |panel|
+            panel.text_area :children_known_to_authorities_details, size: '40x4', class: 'form-control-3-4'
+          end
         end
       %>
 
-      <%= f.radio_button_fieldset :children_protection_plan, choices: GenericYesNoUnknown.values %>
-
-      <%=
-        f.radio_button_fieldset :children_same_parents do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES) {
-            f.text_area :children_same_parents_yes_details, size: '40x4', class: 'form-control-3-4'
-          }
-          fieldset.radio_input(GenericYesNo::NO) {
-            f.text_area :children_same_parents_no_details, size: '40x4', class: 'form-control-3-4'
-          }
-        end
-      %>
-
-      <%= f.text_area :children_parental_responsibility_details, size: '40x4', class: 'form-control-3-4' %>
-
-      <%=
-        f.radio_button_fieldset :children_residence do |fieldset|
-          fieldset.radio_input(ChildrenResidence::APPLICANT)
-          fieldset.radio_input(ChildrenResidence::RESPONDENT)
-          fieldset.radio_input(ChildrenResidence::OTHER) {
-            f.text_area :children_residence_details, size: '40x4', class: 'form-control-3-4'
-          }
-        end
-      %>
+      <%= f.radio_button_fieldset :children_protection_plan, inline: true, choices: GenericYesNoUnknown.values %>
 
       <%= f.submit class: 'button' %>
     <% end %>

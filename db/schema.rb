@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171213160508) do
+ActiveRecord::Schema.define(version: 20171215143416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(version: 20171213160508) do
   end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",                                            null: false
-    t.datetime "updated_at",                                            null: false
-    t.string   "navigation_stack",                         default: [],              array: true
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.string   "navigation_stack",                      default: [],              array: true
     t.uuid     "user_id"
     t.string   "user_type"
     t.integer  "number_of_children"
@@ -85,12 +85,6 @@ ActiveRecord::Schema.define(version: 20171213160508) do
     t.text     "children_known_to_authorities_details"
     t.string   "children_protection_plan"
     t.text     "children_protection_plan_details"
-    t.string   "children_same_parents"
-    t.text     "children_same_parents_yes_details"
-    t.text     "children_same_parents_no_details"
-    t.text     "children_parental_responsibility_details"
-    t.string   "children_residence"
-    t.text     "children_residence_details"
     t.string   "has_court_orders"
     t.string   "concerns_contact_type"
     t.string   "concerns_contact_other"
