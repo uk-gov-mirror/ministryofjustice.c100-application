@@ -51,4 +51,16 @@ RSpec.describe ValueObject do
       expect(foo_two.hash).to_not eq(bar_one.hash)
     end
   end
+
+  describe '#to_s' do
+    it 'returns the value as a string' do
+      expect(foo_one.to_s).to eq('one')
+    end
+  end
+
+  describe '#to_sym' do
+    it 'returns the value (which is already a symbol)' do
+      expect(foo_one.to_sym).to eq(:one)
+    end
+  end
 end
