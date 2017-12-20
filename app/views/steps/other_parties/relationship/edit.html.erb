@@ -1,0 +1,9 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <%= render partial: 'steps/shared/relationship_step', locals: { form_object: @form_object } %>
+  </div>
+</div>
