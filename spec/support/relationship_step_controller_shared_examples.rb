@@ -17,7 +17,6 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
   before do
     allow(controller).to receive(:current_c100_application).and_return(existing_case)
     allow(controller).to receive(:update_navigation_stack)
-    allow(controller).to receive(:set_existing_records)
   end
 
   describe '#update' do
