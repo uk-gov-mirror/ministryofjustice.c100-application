@@ -1,6 +1,10 @@
 module NamesCrudStep
   extend ActiveSupport::Concern
 
+  included do
+    before_action :set_existing_records
+  end
+
   def edit
     @form_object = names_form_class.new(
       c100_application: current_c100_application

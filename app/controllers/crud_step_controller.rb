@@ -1,6 +1,4 @@
 class CrudStepController < StepController
-  before_action :set_existing_records
-
   private
 
   # :nocov:

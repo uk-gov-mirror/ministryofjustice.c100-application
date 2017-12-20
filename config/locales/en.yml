@@ -116,6 +116,8 @@ en:
   steps:
     shared:
       kickout_feedback: Give your feedback. Help improve this service
+      relationship_step:
+        heading: "How is %{person_name} related to %{child_name}"
     applicant:
       user_type:
         edit:
@@ -144,7 +146,6 @@ en:
       relationship:
         edit:
           page_title: Applicant relationship
-          heading: "How is %{applicant_name} related to %{child_name}"
     help_with_fees:
       help_paying:
         edit:
@@ -173,6 +174,9 @@ en:
         edit:
           page_title: Other parties required
           heading: Are there any other people who should be given notice of the hearing?
+      relationship:
+        edit:
+          page_title: Respondent relationship
     children:
       names:
         edit:
@@ -568,6 +572,8 @@ en:
 
   helpers:
     fieldset:
+      steps_shared_relationship_form:
+        relation_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_acknowledgement_form:
@@ -647,16 +653,14 @@ en:
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
         gender: Sex
-      steps_applicant_relationship_form:
-        relation_html: ""
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
+        dob_unknown_html: ""
       steps_respondent_contact_details_form:
         residence_requirement_met: Have they lived at this address for more than 5 years?
-        dob_unknown_html: ""
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
         email_unknown_html: ""
@@ -682,6 +686,10 @@ en:
       steps_other_parties_contact_details_form:
         postcode_unknown_html: ""
     label:
+      steps_shared_relationship_form:
+        relation_other_value: Provide details
+        relation:
+          <<: *RELATIONS
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
@@ -739,10 +747,6 @@ en:
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
-      steps_applicant_relationship_form:
-        relation_other_value: Provide details
-        relation:
-          <<: *RELATIONS
       steps_respondent_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)

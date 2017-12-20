@@ -7,7 +7,7 @@ RSpec.describe C100App::RespondentDecisionTree do
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3]) }
+  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3], child_ids: [1, 2, 3]) }
 
   subject {
     described_class.new(
@@ -38,8 +38,31 @@ RSpec.describe C100App::RespondentDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) {double('Respondent', id: 1)}
 
-    it 'goes to edit the contact details of the current record' do
-      expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
+    it 'goes to edit the first child relationship for the current record' do
+      expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
+    end
+  end
+
+  context 'when the step is `relationship`' do
+    let(:step_params) {{'relationship' => 'anything'}}
+    let(:record) { double('Relationship', respondent: respondent, child: child) }
+
+    let(:respondent) { double('Respondent', id: 1) }
+
+    context 'when there are remaining children' do
+      let(:child) { double('Child', id: 1) }
+
+      it 'goes to edit the relationship of the next child' do
+        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: respondent, child_id: 2)
+      end
+    end
+
+    context 'when all child relationships have been edited' do
+      let(:child) { double('Child', id: 3) }
+
+      it 'goes to edit the contact details of the current respondent' do
+        expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: respondent)
+      end
     end
   end
 

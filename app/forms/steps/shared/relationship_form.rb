@@ -1,5 +1,5 @@
 module Steps
-  module Applicant
+  module Shared
     class RelationshipForm < BaseForm
       attribute :relation, String
       attribute :relation_other_value, String
