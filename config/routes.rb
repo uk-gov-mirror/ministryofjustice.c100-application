@@ -1,14 +1,14 @@
 # :nocov:
 class ActionDispatch::Routing::Mapper
-  def edit_step(name, &block)
+  def edit_step(name, opts = {}, &block)
     resource name,
-             only:       [:edit, :update],
+             only:       opts.fetch(:only, [:edit, :update]),
              controller: name,
              path_names: { edit: '' } do; block.call if block_given?; end
   end
 
   def crud_step(name, opts = {})
-    edit_step name do
+    edit_step name, opts do
       resources only: opts.fetch(:only, [:edit, :update, :destroy]),
                 controller: name,
                 path_names: { edit: '' }
@@ -19,6 +19,12 @@ class ActionDispatch::Routing::Mapper
     resource name,
              only:       [:show],
              controller: name
+  end
+
+  def edit_routes(path)
+    get   path, action: :edit
+    put   path, action: :update
+    patch path, action: :update
   end
 end
 # :nocov:
@@ -109,11 +115,8 @@ Rails.application.routes.draw do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
-
-      namespace :relationship do
-        get   ':id/child/:child_id', action: :edit
-        put   ':id/child/:child_id', action: :update
-        patch ':id/child/:child_id', action: :update
+      edit_step :relationship, only: [] do
+        edit_routes ':id/child/:child_id'
       end
     end
     namespace :respondent do
@@ -121,7 +124,9 @@ Rails.application.routes.draw do
       crud_step :personal_details, only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
       edit_step :has_other_parties
-      edit_step :relationship
+      edit_step :relationship, only: [] do
+        edit_routes ':id/child/:child_id'
+      end
     end
     namespace :other_parties do
       crud_step :names
