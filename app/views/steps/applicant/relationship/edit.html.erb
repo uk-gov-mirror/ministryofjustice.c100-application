@@ -4,27 +4,6 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      <%= t('.heading',
-        applicant_name: @form_object.record.applicant.full_name,
-        child_name: @form_object.record.child.full_name) %>
-    </h1>
-
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.radio_button_fieldset :relation do |fieldset|
-          fieldset.radio_input Relation::MOTHER
-          fieldset.radio_input Relation::FATHER
-          fieldset.radio_input Relation::LEGAL_GUARDIAN
-          fieldset.radio_input Relation::GRANDPARENT
-          fieldset.radio_input Relation::RELATIVE
-          fieldset.radio_input Relation::FAMILY_FRIEND
-          fieldset.radio_input Relation::SOCIAL_WORKER
-          fieldset.radio_input(Relation::OTHER) { f.text_field :relation_other_value }
-        end
-      %>
-
-      <%= f.submit class: 'button' %>
-    <% end %>
+    <%= render partial: 'steps/shared/relationship_step', locals: { form_object: @form_object } %>
   </div>
 </div>

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Steps::Applicant::RelationshipForm do
+RSpec.describe Steps::Shared::RelationshipForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
