@@ -7,9 +7,11 @@ module C100App
       when :add_another_name
         edit(:names)
       when :names_finished
-        edit(:personal_details, id: next_record_id)
+        edit(:personal_details, id: next_respondent_id)
       when :personal_details
-        edit(:contact_details, id: record)
+        edit(:relationship, id: record, child_id: first_child_id)
+      when :relationship
+        children_relationships
       when :contact_details
         after_contact_details
       when :has_other_parties
@@ -22,8 +24,8 @@ module C100App
     private
 
     def after_contact_details
-      if next_record_id
-        edit(:personal_details, id: next_record_id)
+      if next_respondent_id
+        edit(:personal_details, id: next_respondent_id)
       else
         edit(:has_other_parties)
       end
@@ -37,8 +39,24 @@ module C100App
       end
     end
 
-    def next_record_id
-      super(c100_application.respondent_ids)
+    def children_relationships
+      if next_child_id
+        edit(:relationship, id: record.respondent, child_id: next_child_id)
+      else
+        edit(:contact_details, id: record.respondent)
+      end
+    end
+
+    def next_respondent_id
+      next_record_id(c100_application.respondent_ids)
+    end
+
+    def next_child_id
+      next_record_id(c100_application.child_ids, current: record.child)
+    end
+
+    def first_child_id
+      c100_application.child_ids.first
     end
   end
 end
