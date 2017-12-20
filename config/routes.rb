@@ -121,6 +121,7 @@ Rails.application.routes.draw do
       crud_step :personal_details, only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
       edit_step :has_other_parties
+      edit_step :relationship
     end
     namespace :other_parties do
       crud_step :names

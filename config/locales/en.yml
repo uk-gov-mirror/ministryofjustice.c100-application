@@ -654,9 +654,9 @@ en:
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
+        dob_unknown_html: ""
       steps_respondent_contact_details_form:
         residence_requirement_met: Have they lived at this address for more than 5 years?
-        dob_unknown_html: ""
         postcode_unknown_html: ""
         mobile_phone_unknown_html: ""
         email_unknown_html: ""
