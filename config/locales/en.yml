@@ -17,6 +17,16 @@ en:
       start_again: Start again
       finish: Finish
 
+    RELATIONS: &RELATIONS
+      mother: Mother
+      father: Father
+      legal_guardian: Legal guardian
+      grandparent: Grandparent
+      relative: Relative
+      family_friend: Family friend
+      social_worker: Social worker
+      other: Other
+
     PETITION_ORDERS: &PETITION_ORDERS
       child_home: Arrange where they live
       child_times: Arrange how much time they spend with each parent
@@ -131,6 +141,10 @@ en:
         edit:
           page_title: Applicant contact details
           heading: "Contact details of %{name}"
+      relationship:
+        edit:
+          page_title: Applicant relationship
+          heading: "How is %{applicant_name} related to %{child_name}"
     help_with_fees:
       help_paying:
         edit:
@@ -633,6 +647,8 @@ en:
       steps_applicant_personal_details_form:
         has_previous_name: Previous name?
         gender: Sex
+      steps_applicant_relationship_form:
+        relation_html: ""
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_respondent_personal_details_form:
@@ -723,6 +739,10 @@ en:
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
+      steps_applicant_relationship_form:
+        relation_other_value: Provide details
+        relation:
+          <<: *RELATIONS
       steps_respondent_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)

@@ -109,6 +109,12 @@ Rails.application.routes.draw do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
+
+      namespace :relationship do
+        get   ':id/child/:child_id', action: :edit
+        put   ':id/child/:child_id', action: :update
+        patch ':id/child/:child_id', action: :update
+      end
     end
     namespace :respondent do
       crud_step :names

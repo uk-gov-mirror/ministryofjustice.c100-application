@@ -45,11 +45,11 @@ class BaseDecisionTree
     {controller: step_controller, action: :edit}.merge(params)
   end
 
-  def next_record_id(collection_ids)
+  def next_record_id(collection_ids, current: record)
     @_next_record_id ||= begin
-      return collection_ids.first if record.nil?
+      return collection_ids.first if current.nil?
 
-      pos = collection_ids.index(record.id)
+      pos = collection_ids.index(current.id)
       collection_ids.at(pos + 1)
     end
   end
