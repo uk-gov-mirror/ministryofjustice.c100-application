@@ -7,9 +7,11 @@ module C100App
       when :add_another_name
         edit(:names)
       when :names_finished
-        edit(:personal_details, id: next_record_id)
+        edit(:personal_details, id: next_party_id)
       when :personal_details
-        edit(:contact_details, id: record)
+        edit(:relationship, id: record, child_id: first_child_id)
+      when :relationship
+        children_relationships
       when :contact_details
         after_contact_details
       else
@@ -20,15 +22,31 @@ module C100App
     private
 
     def after_contact_details
-      if next_record_id
-        edit(:personal_details, id: next_record_id)
+      if next_party_id
+        edit(:personal_details, id: next_party_id)
       else
         edit('/steps/abuse_concerns/previous_proceedings') # TODO: change when we have children residence step
       end
     end
 
-    def next_record_id
-      super(c100_application.other_party_ids)
+    def children_relationships
+      if next_child_id
+        edit(:relationship, id: record.other_party, child_id: next_child_id)
+      else
+        edit(:contact_details, id: record.other_party)
+      end
+    end
+
+    def next_party_id
+      next_record_id(c100_application.other_party_ids)
+    end
+
+    def next_child_id
+      next_record_id(c100_application.child_ids, current: record.child)
+    end
+
+    def first_child_id
+      c100_application.child_ids.first
     end
   end
 end

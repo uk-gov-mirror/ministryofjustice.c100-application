@@ -226,6 +226,9 @@ en:
         edit:
           page_title: Other party contact details
           heading: "Contact details of %{name}"
+      relationship:
+        edit:
+          page_title: Other party relationship
     abuse_concerns:
       question:
         edit:
