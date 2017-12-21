@@ -1,0 +1,35 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_area :without_notice_details, size: '40x4', class: 'form-control-3-4' %>
+
+      <%=
+        f.radio_button_fieldset :without_notice_frustrate, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :without_notice_frustrate_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:without_notice_frustrate_panel) do |panel|
+            panel.text_area :without_notice_frustrate_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
+
+      <%=
+        f.radio_button_fieldset :without_notice_impossible, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :without_notice_impossible_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:without_notice_impossible_panel) do |panel|
+            panel.text_area :without_notice_impossible_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>
