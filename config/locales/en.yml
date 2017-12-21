@@ -486,6 +486,21 @@ en:
         edit:
           page_title: Abduction risk details
           heading: Provide details of why you think your children may be abducted
+    application:
+      without_notice:
+        edit:
+          page_title: Without notice hearing
+          heading: Are you asking for a without notice hearing?
+          lead_text_html: |
+            <div class=" govuk-govspeak gv-s-prose">
+              <p>A without notice hearing is when your case is urgent and you don’t want to tell the other person about your application.</p>
+              <p>You can only apply for a without notice hearing if you can show that:</p>
+              <ul class="list list-bullet">
+                <li>telling the other person would allow them to interfere with your application</li>
+                <li>you or your children wouldn’t be safe if the other person knows</li>
+                <li>you don’t have time to tell the other person</li>
+              </ul>
+            </div>
 
   home:
     index:
@@ -569,6 +584,8 @@ en:
     fieldset:
       steps_shared_relationship_form:
         relation_html: ""
+      steps_application_without_notice_form:
+        without_notice_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_acknowledgement_form:

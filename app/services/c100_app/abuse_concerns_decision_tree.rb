@@ -11,7 +11,7 @@ module C100App
       when :previous_proceedings
         after_previous_proceedings
       when :emergency_proceedings
-        edit('/steps/children/names') # TODO: change when we have the MIAM exemptions steps
+        edit('/steps/application/without_notice')
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
       end
@@ -36,7 +36,7 @@ module C100App
       when GenericYesNo::YES.to_s
         edit(:emergency_proceedings)
       else
-        edit('/steps/children/names') # TODO: change when we have next step
+        edit('/steps/application/without_notice')
       end
     end
 

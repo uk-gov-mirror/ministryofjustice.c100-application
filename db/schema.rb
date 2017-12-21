@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221091732) do
+ActiveRecord::Schema.define(version: 20171221111510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(version: 20171221091732) do
     t.string   "has_other_parties"
     t.string   "address_confidentiality"
     t.boolean  "court_acknowledgement"
+    t.string   "without_notice"
+    t.text     "without_notice_details"
+    t.string   "without_notice_frustrate"
+    t.text     "without_notice_frustrate_details"
+    t.string   "without_notice_impossible"
+    t.text     "without_notice_impossible_details"
     t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
   end
 
