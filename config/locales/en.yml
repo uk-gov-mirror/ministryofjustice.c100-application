@@ -501,6 +501,10 @@ en:
                 <li>you don’t have time to tell the other person</li>
               </ul>
             </div>
+      without_notice_details:
+        edit:
+          page_title: Details of without notice hearing
+          heading: Details of without notice hearing
 
   home:
     index:
@@ -586,6 +590,9 @@ en:
         relation_html: ""
       steps_application_without_notice_form:
         without_notice_html: ""
+      steps_application_without_notice_details_form:
+        without_notice_frustrate_html: Do you require a without notice hearing because notice to a respondent will frustrate the order that is being applied for?
+        without_notice_impossible_html: Do you require a without notice hearing because it is not possible to give notice including abridged or informal notice?
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_acknowledgement_form:
@@ -702,6 +709,10 @@ en:
         relation_other_value: Provide details
         relation:
           <<: *RELATIONS
+      steps_application_without_notice_details_form:
+        without_notice_details: Give as much information as you can
+        without_notice_frustrate_details: Provide details
+        without_notice_impossible_details: Provide details
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
@@ -828,6 +839,8 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
+      steps_application_without_notice_details_form:
+        without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_miam_certification_number_form:
         miam_certification_number: You can find this number at the bottom of the form your mediator signed
       steps_petition_other_issue_form:
