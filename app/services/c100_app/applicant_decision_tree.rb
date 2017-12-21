@@ -5,8 +5,6 @@ module C100App
 
       case step_name
       when :user_type
-        edit(:number_of_children)
-      when :number_of_children
         edit('/steps/help_with_fees/help_paying')
       when :add_another_name
         edit(:names)

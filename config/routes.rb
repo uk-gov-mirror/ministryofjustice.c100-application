@@ -111,7 +111,6 @@ Rails.application.routes.draw do
     end
     namespace :applicant do
       edit_step :user_type
-      edit_step :number_of_children
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
