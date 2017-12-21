@@ -123,10 +123,6 @@ en:
         edit:
           page_title: Who is applying
           heading: Are you the person making this application?
-      number_of_children:
-        edit:
-          page_title: Number of children
-          heading: How many children is the application for?
       names:
         edit:
           page_title: Applicant names
@@ -535,10 +531,6 @@ en:
           attributes:
             user_type:
               inclusion: Select who is making this application
-        steps/applicant/number_of_children_form:
-          attributes:
-            number_of_children:
-              blank: Please enter the number of children
         steps/help_with_fees/help_paying_form:
           attributes:
             help_paying:
@@ -700,8 +692,6 @@ en:
         miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
       steps_miam_certification_number_form:
         miam_certification_number: FMC registration number
-      steps_applicant_number_of_children_form:
-        number_of_children: Enter the number of children
       steps_help_with_fees_help_paying_form:
         help_paying:
           yes_with_ref_number: Yes, I have a Help with Fees reference number
