@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108123316) do
+ActiveRecord::Schema.define(version: 20180108145551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,14 @@ ActiveRecord::Schema.define(version: 20180108123316) do
     t.index ["child_id"], name: "index_child_orders_on_child_id"
   end
 
+  create_table "child_residences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "child_id"
+    t.string "person_ids", default: [], array: true
+    t.boolean "other"
+    t.string "other_full_name"
+    t.index ["child_id"], name: "index_child_residences_on_child_id"
+  end
+
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "non_molestation"
     t.date "non_molestation_issue_date"
@@ -216,6 +224,7 @@ ActiveRecord::Schema.define(version: 20180108123316) do
   add_foreign_key "asking_orders", "c100_applications"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "child_orders", "people", column: "child_id"
+  add_foreign_key "child_residences", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"
