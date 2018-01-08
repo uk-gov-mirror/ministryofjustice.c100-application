@@ -10,44 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221111510) do
+ActiveRecord::Schema.define(version: 20180108123316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
 
   create_table "abduction_details", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string  "children_have_passport"
-    t.string  "international_risk"
-    t.string  "passport_office_notified"
-    t.string  "children_multiple_passports"
+    t.string "children_have_passport"
+    t.string "international_risk"
+    t.string "passport_office_notified"
+    t.string "children_multiple_passports"
     t.boolean "passport_possession_mother"
     t.boolean "passport_possession_father"
     t.boolean "passport_possession_other"
-    t.text    "passport_possession_other_details"
-    t.string  "previous_attempt"
-    t.text    "previous_attempt_details"
-    t.string  "previous_attempt_agency_involved"
-    t.text    "previous_attempt_agency_details"
-    t.text    "risk_details"
-    t.uuid    "c100_application_id"
-    t.index ["c100_application_id"], name: "index_abduction_details_on_c100_application_id", using: :btree
+    t.text "passport_possession_other_details"
+    t.string "previous_attempt"
+    t.text "previous_attempt_details"
+    t.string "previous_attempt_agency_involved"
+    t.text "previous_attempt_agency_details"
+    t.text "risk_details"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_abduction_details_on_c100_application_id"
   end
 
   create_table "abuse_concerns", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "subject"
     t.string "kind"
     t.string "answer"
-    t.text   "behaviour_description"
+    t.text "behaviour_description"
     t.string "behaviour_start"
     t.string "behaviour_ongoing"
     t.string "behaviour_stop"
     t.string "asked_for_help"
     t.string "help_party"
     t.string "help_provided"
-    t.text   "help_description"
-    t.uuid   "c100_application_id"
-    t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id", using: :btree
+    t.text "help_description"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id"
   end
 
   create_table "asking_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -64,150 +65,150 @@ ActiveRecord::Schema.define(version: 20171221111510) do
     t.boolean "child_abduction"
     t.boolean "child_flight"
     t.boolean "other"
-    t.text    "other_details"
+    t.text "other_details"
     t.boolean "child_arrangements_order"
     t.boolean "prohibited_steps_order"
     t.boolean "specific_issue_order"
-    t.uuid    "c100_application_id"
-    t.index ["c100_application_id"], name: "index_asking_orders_on_c100_application_id", using: :btree
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_asking_orders_on_c100_application_id"
   end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.string   "navigation_stack",                      default: [],              array: true
-    t.uuid     "user_id"
-    t.string   "user_type"
-    t.string   "help_paying"
-    t.string   "hwf_reference_number"
-    t.string   "children_known_to_authorities"
-    t.text     "children_known_to_authorities_details"
-    t.string   "children_protection_plan"
-    t.text     "children_protection_plan_details"
-    t.string   "has_court_orders"
-    t.string   "concerns_contact_type"
-    t.string   "concerns_contact_other"
-    t.string   "children_previous_proceedings"
-    t.string   "emergency_proceedings"
-    t.string   "risk_of_abduction"
-    t.string   "substance_abuse"
-    t.text     "substance_abuse_details"
-    t.string   "children_abuse"
-    t.string   "domestic_abuse"
-    t.string   "other_abuse"
-    t.boolean  "miam_acknowledgement"
-    t.string   "miam_attended"
-    t.string   "miam_certification"
-    t.string   "alternative_negotiation_tools"
-    t.string   "alternative_mediation"
-    t.string   "alternative_lawyer_negotiation"
-    t.string   "alternative_collaborative_law"
-    t.date     "miam_certification_date"
-    t.string   "miam_certification_number"
-    t.string   "has_other_children"
-    t.string   "has_other_parties"
-    t.string   "address_confidentiality"
-    t.boolean  "court_acknowledgement"
-    t.string   "without_notice"
-    t.text     "without_notice_details"
-    t.string   "without_notice_frustrate"
-    t.text     "without_notice_frustrate_details"
-    t.string   "without_notice_impossible"
-    t.text     "without_notice_impossible_details"
-    t.index ["user_id"], name: "index_c100_applications_on_user_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "navigation_stack", default: [], array: true
+    t.uuid "user_id"
+    t.string "user_type"
+    t.string "help_paying"
+    t.string "hwf_reference_number"
+    t.string "children_known_to_authorities"
+    t.text "children_known_to_authorities_details"
+    t.string "children_protection_plan"
+    t.text "children_protection_plan_details"
+    t.string "has_court_orders"
+    t.string "concerns_contact_type"
+    t.string "concerns_contact_other"
+    t.string "children_previous_proceedings"
+    t.string "emergency_proceedings"
+    t.string "risk_of_abduction"
+    t.string "substance_abuse"
+    t.text "substance_abuse_details"
+    t.string "children_abuse"
+    t.string "domestic_abuse"
+    t.string "other_abuse"
+    t.boolean "miam_acknowledgement"
+    t.string "miam_attended"
+    t.string "miam_certification"
+    t.string "alternative_negotiation_tools"
+    t.string "alternative_mediation"
+    t.string "alternative_lawyer_negotiation"
+    t.string "alternative_collaborative_law"
+    t.date "miam_certification_date"
+    t.string "miam_certification_number"
+    t.string "has_other_children"
+    t.string "has_other_parties"
+    t.string "address_confidentiality"
+    t.boolean "court_acknowledgement"
+    t.string "without_notice"
+    t.text "without_notice_details"
+    t.string "without_notice_frustrate"
+    t.text "without_notice_frustrate_details"
+    t.string "without_notice_impossible"
+    t.text "without_notice_impossible_details"
+    t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 
   create_table "child_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.uuid   "child_id"
-    t.string "orders",   default: [], array: true
-    t.index ["child_id"], name: "index_child_orders_on_child_id", using: :btree
+    t.uuid "child_id"
+    t.string "orders", default: [], array: true
+    t.index ["child_id"], name: "index_child_orders_on_child_id"
   end
 
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "non_molestation"
-    t.date   "non_molestation_issue_date"
+    t.date "non_molestation_issue_date"
     t.string "non_molestation_length"
     t.string "non_molestation_is_current"
     t.string "non_molestation_court_name"
     t.string "occupation"
-    t.date   "occupation_issue_date"
+    t.date "occupation_issue_date"
     t.string "occupation_length"
     t.string "occupation_is_current"
     t.string "occupation_court_name"
     t.string "forced_marriage_protection"
-    t.date   "forced_marriage_protection_issue_date"
+    t.date "forced_marriage_protection_issue_date"
     t.string "forced_marriage_protection_length"
     t.string "forced_marriage_protection_is_current"
     t.string "forced_marriage_protection_court_name"
     t.string "restraining"
-    t.date   "restraining_issue_date"
+    t.date "restraining_issue_date"
     t.string "restraining_length"
     t.string "restraining_is_current"
     t.string "restraining_court_name"
     t.string "injunctive"
-    t.date   "injunctive_issue_date"
+    t.date "injunctive_issue_date"
     t.string "injunctive_length"
     t.string "injunctive_is_current"
     t.string "injunctive_court_name"
     t.string "undertaking"
-    t.date   "undertaking_issue_date"
+    t.date "undertaking_issue_date"
     t.string "undertaking_length"
     t.string "undertaking_is_current"
     t.string "undertaking_court_name"
-    t.uuid   "c100_application_id"
-    t.index ["c100_application_id"], name: "index_court_orders_on_c100_application_id", using: :btree
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_court_orders_on_c100_application_id"
   end
 
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
-    t.string   "type",                                      null: false
-    t.string   "name"
-    t.string   "full_name"
-    t.string   "has_previous_name"
-    t.string   "previous_name"
-    t.string   "gender"
-    t.date     "dob"
-    t.boolean  "dob_unknown",               default: false
-    t.string   "age_estimate"
-    t.string   "birthplace"
-    t.text     "address"
-    t.string   "postcode"
-    t.boolean  "postcode_unknown",          default: false
-    t.string   "home_phone"
-    t.boolean  "home_phone_unknown",        default: false
-    t.string   "mobile_phone"
-    t.boolean  "mobile_phone_unknown",      default: false
-    t.string   "email"
-    t.boolean  "email_unknown",             default: false
-    t.string   "residence_requirement_met"
-    t.text     "residence_history"
-    t.uuid     "c100_application_id"
-    t.index ["c100_application_id"], name: "index_people_on_c100_application_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "type", null: false
+    t.string "name"
+    t.string "full_name"
+    t.string "has_previous_name"
+    t.string "previous_name"
+    t.string "gender"
+    t.date "dob"
+    t.boolean "dob_unknown", default: false
+    t.string "age_estimate"
+    t.string "birthplace"
+    t.text "address"
+    t.string "postcode"
+    t.boolean "postcode_unknown", default: false
+    t.string "home_phone"
+    t.boolean "home_phone_unknown", default: false
+    t.string "mobile_phone"
+    t.boolean "mobile_phone_unknown", default: false
+    t.string "email"
+    t.boolean "email_unknown", default: false
+    t.string "residence_requirement_met"
+    t.text "residence_history"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_people_on_c100_application_id"
   end
 
   create_table "relationships", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "relation"
     t.string "relation_other_value"
-    t.uuid   "child_id",             null: false
-    t.uuid   "person_id",            null: false
-    t.uuid   "c100_application_id"
-    t.index ["c100_application_id"], name: "index_relationships_on_c100_application_id", using: :btree
-    t.index ["child_id", "person_id"], name: "index_relationships_on_child_id_and_person_id", unique: true, using: :btree
+    t.uuid "child_id", null: false
+    t.uuid "person_id", null: false
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_relationships_on_c100_application_id"
+    t.index ["child_id", "person_id"], name: "index_relationships_on_child_id_and_person_id", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "abduction_details", "c100_applications"

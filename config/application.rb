@@ -25,7 +25,9 @@ class Application < Rails::Application
   ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
 
   # This automatically adds id: :uuid to create_table in all future migrations
-  config.active_record.primary_key = :uuid
+  config.generators do |g|
+    g.orm :active_record, primary_key_type: :uuid
+  end
 
   config.survey_link = 'https://www.gov.uk/done/c100'.freeze
   config.kickout_survey_link = 'REPLACEME'.freeze
