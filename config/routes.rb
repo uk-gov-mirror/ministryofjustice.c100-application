@@ -108,6 +108,7 @@ Rails.application.routes.draw do
       crud_step :orders, only: [:edit, :update]
       edit_step :additional_details
       edit_step :has_other_children
+      crud_step :residence, only: [:edit, :update]
     end
     namespace :other_children do
       crud_step :names

@@ -1,0 +1,24 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">
+      <%=t '.heading', name: @form_object.record.child.full_name %>
+    </h1>
+
+    <%= step_form @form_object do |f| %>
+      <!-- TODO: Add checkboxes for all existing parties -->
+
+      <!--
+        TODO: The following checkbox should reveal the `other_full_name` input
+        but for now we don't have a solution for this until the gem is updated.
+       -->
+      <%= f.check_box_fieldset :other, [:other] %>
+      <%= f.text_field :other_full_name %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>
