@@ -4,6 +4,7 @@ RSpec.describe Steps::Children::ResidenceForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
+    person_ids: person_ids,
     other: other,
     other_full_name: other_full_name
   } }
@@ -11,10 +12,21 @@ RSpec.describe Steps::Children::ResidenceForm do
   let(:c100_application) { instance_double(C100Application) }
 
   let(:record) { double('Residence') }
+  let(:person_ids) { %w(1 2) }
   let(:other) { true }
   let(:other_full_name) { 'John Doe' }
 
   subject { described_class.new(arguments) }
+
+  describe '#people' do
+    it 'returns a flattened collection of all the people children can live with' do
+      expect(c100_application).to receive(:applicants).and_return(['a'])
+      expect(c100_application).to receive(:respondents).and_return(['b', 'c'])
+      expect(c100_application).to receive(:other_parties).and_return(['d'])
+
+      expect(subject.people).to eq(%w(a b c d))
+    end
+  end
 
   describe '#save' do
     context 'when no c100_application is associated with the form' do
@@ -53,6 +65,7 @@ RSpec.describe Steps::Children::ResidenceForm do
     context 'for valid details' do
       it 'updates the record' do
         expect(record).to receive(:update).with(
+          person_ids: %w(1 2),
           other: true,
           other_full_name: 'John Doe'
         ).and_return(true)
@@ -66,6 +79,7 @@ RSpec.describe Steps::Children::ResidenceForm do
 
         it 'reset `other_full_name` when no needed' do
           expect(record).to receive(:update).with(
+            person_ids: %w(1 2),
             other: false,
             other_full_name: nil
           ).and_return(true)
