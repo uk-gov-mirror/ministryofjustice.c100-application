@@ -35,7 +35,7 @@ module C100App
       if question(:has_other_parties).yes?
         edit('/steps/other_parties/names')
       else
-        edit('/steps/abuse_concerns/previous_proceedings') # TODO: change when we have children residence step
+        edit('/steps/children/residence', id: first_child_id)
       end
     end
 

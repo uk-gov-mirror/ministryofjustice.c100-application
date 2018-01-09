@@ -25,7 +25,7 @@ module C100App
       if next_party_id
         edit(:personal_details, id: next_party_id)
       else
-        edit('/steps/abuse_concerns/previous_proceedings') # TODO: change when we have children residence step
+        edit('/steps/children/residence', id: first_child_id)
       end
     end
 
