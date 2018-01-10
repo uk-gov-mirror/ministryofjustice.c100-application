@@ -6,6 +6,7 @@ module Steps
       attribute :gender, String
       attribute :dob, Date
       attribute :dob_unknown, Boolean
+      attribute :age_estimate, StrippedString
 
       acts_as_gov_uk_date :dob
 

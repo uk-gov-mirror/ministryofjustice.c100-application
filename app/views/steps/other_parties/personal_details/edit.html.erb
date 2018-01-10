@@ -26,7 +26,12 @@
           legend_class: 'form-label-bold',
           form_hint_text: '' %>
       </div>
-      <%= f.check_box_fieldset :dob_unknown, [:dob_unknown] %>
+
+      <%=
+        f.check_box_fieldset :dob_unknown, [:dob_unknown] do |fieldset|
+          fieldset.check_box_input(:dob_unknown) { f.text_field :age_estimate }
+        end
+      %>
 
       <div class="xform-group form-submit">
         <%= f.submit class: 'button' %>

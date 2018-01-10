@@ -26,7 +26,12 @@
           legend_class: 'form-label-bold',
           form_hint_text: t('shared.form_elements.dob_hint_html') %>
       </div>
-      <%= f.check_box_fieldset :dob_unknown, [:dob_unknown] %>
+
+      <%=
+        f.check_box_fieldset :dob_unknown, [:dob_unknown] do |fieldset|
+          fieldset.check_box_input(:dob_unknown) { f.text_field :age_estimate }
+        end
+      %>
 
       <%= f.text_field :birthplace %>
 
