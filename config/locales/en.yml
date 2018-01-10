@@ -51,6 +51,7 @@ en:
         female: Female
         male: Male
       dob_unknown: *dont_know
+      age_estimate: Approximate age or year born
       birthplace: Place of birth
 
     # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
@@ -786,6 +787,7 @@ en:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
+        age_estimate: Approximate age or year child was born
       steps_children_orders_form:
         <<: *PETITION_ORDERS
       steps_children_additional_details_form:
