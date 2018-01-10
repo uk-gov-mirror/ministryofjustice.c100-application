@@ -79,4 +79,22 @@ RSpec.describe C100App::ChildrenDecisionTree do
       it { is_expected.to have_destination('/steps/applicant/names', :edit) }
     end
   end
+
+  context 'when the step is `residence`' do
+    let(:step_params) {{'residence' => 'anything'}}
+    let(:record) { double('ChildResidence', child: child) }
+
+    context 'when there are remaining children' do
+      let(:child) { double('Child', id: 1) }
+
+      it 'goes to edit the residence of the next child' do
+        expect(subject.destination).to eq(controller: :residence, action: :edit, id: 2)
+      end
+    end
+
+    context 'when all child residences have been edited' do
+      let(:child) { double('Child', id: 3) }
+      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
+    end
+  end
 end

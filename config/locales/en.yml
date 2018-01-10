@@ -198,6 +198,11 @@ en:
         edit:
           page_title: Which orders apply to the child
           heading: "Which of the requested orders relate to %{name}?"
+      residence:
+        edit:
+          page_title: Child residence
+          heading: "Who does %{name} live with?"
+          form_hint: Select all that apply
     other_children:
       names:
         edit:
@@ -690,6 +695,8 @@ en:
         gender: Sex
       steps_children_orders_form:
         orders_html: ""
+      steps_children_residence_form:
+        other_html: ""
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to social services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
@@ -787,6 +794,9 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
+      steps_children_residence_form:
+        other: Other
+        other_full_name: Enter full name
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Details
       steps_abuse_concerns_details_form:

@@ -84,8 +84,11 @@ RSpec.describe C100App::RespondentDecisionTree do
   end
 
   context 'when the step is `has_other_parties`' do
-    let(:c100_application) { instance_double(C100Application, has_other_parties: value) }
     let(:step_params) { { has_other_parties: 'anything' } }
+
+    before do
+      allow(c100_application).to receive(:has_other_parties).and_return(value)
+    end
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
@@ -94,7 +97,10 @@ RSpec.describe C100App::RespondentDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
+
+      it 'goes to edit the residence of the first child' do
+        expect(subject.destination).to eq(controller: '/steps/children/residence', action: :edit, id: 1)
+      end
     end
   end
 end
