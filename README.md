@@ -29,6 +29,22 @@ password should be available from the MoJ Rattic server, in the Family Justice g
 * `RAILS_ENV=test bundle exec rails db:migrate`
 * `RAILS_ENV=test bundle exec rake`
 
+## Mutation testing
+
+This project uses extensive mutation coverage, which makes the (mutation) tests take a long time to run, and can end up with the CI killing the build due to excessive job work time.
+
+In order to make this a bit faster, by default in CI (and in local when run without any flags), the scope of mutant testing will be reduced to the models, and a randomized small sample of classes in each of these groups: Form objects and Decision trees.
+
+However it is still possible to have full flexibility of what mutant runs in your local environment:
+
+##### Run mutation on a specific file:
+`bundle exec rake mutant C100App::OtherPartiesDecisionTree`
+
+##### Run mutation on the whole project (no random samples):
+`bundle exec rake mutant all`
+
+##### Run mutation on a small sample of classes (default):
+`bundle exec rake mutant`
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
 [heroku-demo]: https://c100-demo.herokuapp.com
