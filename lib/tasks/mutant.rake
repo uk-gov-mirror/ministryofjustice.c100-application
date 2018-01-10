@@ -20,8 +20,22 @@ private
 
 def classes_to_mutate
   Rails.application.eager_load!
-  Array(ARGV[1]).presence ||
-    ApplicationRecord.descendants.map(&:name) +
-    BaseForm.descendants.map(&:name).grep(/^Steps::/) +
-    ['C100App*']
+
+  case ARGV[1]
+    when nil
+      # Quicker run, reduced testing scope (random sample), default option
+      puts '> running quick sample mutant testing'
+      ApplicationRecord.descendants.map(&:name) +
+        BaseForm.descendants.map(&:name).grep(/^Steps::/).sample(10) +
+        BaseDecisionTree.descendants.map(&:name).sample(5)
+    when 'all'
+      # Complete coverage, very long run time
+      puts '> running complete mutant testing'
+      ApplicationRecord.descendants.map(&:name) +
+        BaseForm.descendants.map(&:name).grep(/^Steps::/) +
+        ['C100App*']
+    else
+      # Individual class testing, very quick
+      Array(ARGV[1])
+  end
 end
