@@ -9,6 +9,7 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
     gender: gender,
     dob: dob,
     dob_unknown: dob_unknown,
+    age_estimate: age_estimate,
     birthplace: birthplace
   } }
 
@@ -22,6 +23,7 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
   let(:gender) { 'male' }
   let(:dob) { Date.today }
   let(:dob_unknown) { false }
+  let(:age_estimate) { nil }
   let(:birthplace) { 'London' }
 
   subject { described_class.new(arguments) }
@@ -94,6 +96,7 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
           gender: Gender::MALE,
           dob: Date.today,
           dob_unknown: false,
+          age_estimate: '',
           birthplace: 'London'
         }
       }
