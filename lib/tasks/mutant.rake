@@ -21,19 +21,23 @@ private
 def classes_to_mutate
   Rails.application.eager_load!
 
+  # As the current models are just empty shells for ActiveRecord relationships,
+  # and we don't even have corresponding spec tests for those, there is no point
+  # in including these in the mutation test, and thus we can save some time.
+  # Only include in this collection the models that matter and have specs.
+  model_classes = %w(C100Application User).freeze
+
   case ARGV[1]
     when nil
       # Quicker run, reduced testing scope (random sample), default option
       puts '> running quick sample mutant testing'
-      ApplicationRecord.descendants.map(&:name) +
-        BaseForm.descendants.map(&:name).grep(/^Steps::/).sample(10) +
-        BaseDecisionTree.descendants.map(&:name).sample(5)
+      BaseForm.descendants.map(&:name).grep(/^Steps::/).sample(10) +
+        BaseDecisionTree.descendants.map(&:name).sample(5) +
+        model_classes
     when 'all'
       # Complete coverage, very long run time
       puts '> running complete mutant testing'
-      ApplicationRecord.descendants.map(&:name) +
-        BaseForm.descendants.map(&:name).grep(/^Steps::/) +
-        ['C100App*']
+      BaseForm.descendants.map(&:name).grep(/^Steps::/) + ['C100App*'] + model_classes
     else
       # Individual class testing, very quick
       Array(ARGV[1])
