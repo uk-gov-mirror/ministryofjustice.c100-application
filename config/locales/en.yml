@@ -180,6 +180,12 @@ en:
       relationship:
         edit:
           page_title: Respondent relationship
+      under_age:
+        edit:
+          page_title: Respondent under age
+          heading: The respondent is (or may be) less than 18 years old
+          lead_text: CB1 text to go here
+          continue: Continue
     children:
       names:
         edit:

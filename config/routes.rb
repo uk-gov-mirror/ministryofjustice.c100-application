@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     namespace :respondent do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
+      crud_step :under_age,        only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
       edit_step :has_other_parties
       edit_step :relationship, only: [] do

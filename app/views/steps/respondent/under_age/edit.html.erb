@@ -1,0 +1,17 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede"><%=t '.lead_text' %></p>
+
+    <!-- TODO: prototype still needs to finish this view -->
+
+    <%= step_form @form_object do |f| %>
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>
