@@ -7,6 +7,7 @@ en:
     order_current_error: &order_current_error "Please answer if the order is current"
     order_length: &order_length "How long is the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
+    provide_details: &provide_details "Provide details"
 
     YESNO: &YESNO
       'yes': 'Yes'
@@ -529,6 +530,10 @@ en:
           page_title: International resident
           heading: Does anyone significant to your children live in another country?
           lead_text: For example, a grandparent or other close relatives
+      jurisdiction:
+        edit:
+          page_title: International jurisdiction
+          heading: Do you think the other person may have grounds to apply for a similar order in another country?
 
   home:
     index:
@@ -732,15 +737,17 @@ en:
         postcode_unknown_html: ""
       steps_international_resident_form:
         international_resident_html: ""
+      steps_international_jurisdiction_form:
+        international_jurisdiction_html: ""
     label:
       steps_shared_relationship_form:
-        relation_other_value: Provide details
+        relation_other_value: *provide_details
         relation:
           <<: *RELATIONS
       steps_application_without_notice_details_form:
         without_notice_details: Give as much information as you can
-        without_notice_frustrate_details: Provide details
-        without_notice_impossible_details: Provide details
+        without_notice_frustrate_details: *provide_details
+        without_notice_impossible_details: *provide_details
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
@@ -857,7 +864,9 @@ en:
         undertaking_length: *order_length
         undertaking_court_name: *order_court_name
       steps_international_resident_form:
-        international_resident_details: Provide details
+        international_resident_details: *provide_details
+      steps_international_jurisdiction_form:
+        international_jurisdiction_details: *provide_details
       user:
         email: Your email address
         password: Choose password

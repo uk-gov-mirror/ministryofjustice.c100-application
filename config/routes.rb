@@ -144,6 +144,7 @@ Rails.application.routes.draw do
     end
     namespace :international do
       edit_step :resident
+      edit_step :jurisdiction
     end
     namespace :help_with_fees do
       edit_step :help_paying
