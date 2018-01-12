@@ -762,7 +762,7 @@ en:
         passport_possession_mother: Mother
         passport_possession_father: Father
         passport_possession_other: Other
-        passport_possession_other_details: Provide more details (If 'other' is selected)
+        passport_possession_other_details: Provide more details
       steps_abduction_previous_attempt_details_form:
         previous_attempt_details: Give a short description
         previous_attempt_agency_details: Provide more details

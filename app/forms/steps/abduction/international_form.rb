@@ -19,7 +19,6 @@ module Steps
       validates_inclusion_of :passport_office_notified, in: GenericYesNo.values, if: -> { international_risk&.yes? }
 
       validates_presence_of :passport_possession_other_details, if: :passport_possession_other?
-      validates_absence_of  :passport_possession_other_details, unless: :passport_possession_other?
 
       private
 
@@ -27,7 +26,9 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         record_to_persist.update(
-          attributes_map
+          attributes_map.merge(
+            passport_possession_other_details: (passport_possession_other_details if passport_possession_other)
+          )
         )
       end
     end
