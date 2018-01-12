@@ -10,21 +10,18 @@ RSpec.describe C100App::InternationalDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  pending 'Write specs for InternationalDecisionTree!'
+  context 'when the step is `resident`' do
+    let(:step_params) { { resident: 'anything' } }
+    it { is_expected.to have_destination(:jurisdiction, :edit) }
+  end
 
-  # TODO: The below can be uncommented and serves as a starting point
+  context 'when the step is `jurisdiction`' do
+    let(:step_params) { { jurisdiction: 'anything' } }
+    it { is_expected.to have_destination(:request, :edit) }
+  end
 
-  # context 'when the step is `user_type`' do
-  #   let(:step_params) { { user_type: 'anything' } }
-  #
-  #   context 'and the answer is `themself`' do
-  #     let(:c100_application) { instance_double(C100Application, user_type: UserType::THEMSELF) }
-  #     it { is_expected.to have_destination(:user_type, :edit) }
-  #   end
-  #
-  #   context 'and the answer is `representative`' do
-  #     let(:c100_application) { instance_double(C100Application, user_type: UserType::REPRESENTATIVE) }
-  #     it { is_expected.to have_destination(:user_type, :edit) }
-  #   end
-  # end
+  context 'when the step is `request`' do
+    let(:step_params) { { request: 'anything' } }
+    it { is_expected.to have_destination(:resident, :edit) } # TODO: update when we have the next block of steps
+  end
 end

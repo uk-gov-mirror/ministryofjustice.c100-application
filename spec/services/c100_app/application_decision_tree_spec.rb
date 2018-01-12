@@ -21,12 +21,12 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination(:without_notice, :edit) }
+      it { is_expected.to have_destination('/steps/international/resident', :edit) }
     end
   end
 
   context 'when the step is `without_notice_details`' do
     let(:step_params) { { without_notice_details: 'anything' } }
-    it { is_expected.to have_destination(:without_notice, :edit) }
+    it { is_expected.to have_destination('/steps/international/resident', :edit) }
   end
 end

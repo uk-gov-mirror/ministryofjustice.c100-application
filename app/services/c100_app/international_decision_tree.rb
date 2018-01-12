@@ -4,9 +4,12 @@ module C100App
       return next_step if next_step
 
       case step_name
-      # TODO: Put decision logic here
-      when :name
-        root_path
+      when :resident
+        edit(:jurisdiction)
+      when :jurisdiction
+        edit(:request)
+      when :request
+        edit(:resident) # TODO: update when we have the next block of steps
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

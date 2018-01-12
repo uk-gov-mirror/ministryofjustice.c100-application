@@ -7,7 +7,7 @@ module C100App
       when :without_notice
         after_without_notice
       when :without_notice_details
-        edit(:without_notice) # TODO: change when we have international steps
+        start_international_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -19,8 +19,12 @@ module C100App
       if question(:without_notice).yes?
         edit(:without_notice_details)
       else
-        edit(:without_notice)
+        start_international_journey
       end
+    end
+
+    def start_international_journey
+      edit('/steps/international/resident')
     end
   end
 end
