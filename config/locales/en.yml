@@ -534,6 +534,10 @@ en:
         edit:
           page_title: International jurisdiction
           heading: Do you think the other person may have grounds to apply for a similar order in another country?
+      request:
+        edit:
+          page_title: International request
+          heading: Has a court case about your children already started in another country?
 
   home:
     index:
@@ -739,6 +743,8 @@ en:
         international_resident_html: ""
       steps_international_jurisdiction_form:
         international_jurisdiction_html: ""
+      steps_international_request_form:
+        international_request_html: ""
     label:
       steps_shared_relationship_form:
         relation_other_value: *provide_details
@@ -867,6 +873,8 @@ en:
         international_resident_details: *provide_details
       steps_international_jurisdiction_form:
         international_jurisdiction_details: *provide_details
+      steps_international_request_form:
+        international_request_details: *provide_details
       user:
         email: Your email address
         password: Choose password
