@@ -143,6 +143,7 @@ Rails.application.routes.draw do
       end
     end
     namespace :international do
+      edit_step :resident
     end
     namespace :help_with_fees do
       edit_step :help_paying
