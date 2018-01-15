@@ -24,10 +24,6 @@ class BaseDecisionTree
     klass.new(value) if value
   end
 
-  def checked?(attribute_name)
-    step_params.fetch(attribute_name, '0').true?
-  end
-
   def selected?(attribute_name, value: 'yes')
     step_params.fetch(attribute_name).eql?(value)
   end

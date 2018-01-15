@@ -10,13 +10,16 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.check_box_fieldset :orders, PetitionOrder::CHILD_ARRANGEMENTS %>
-
-      <!-- TODO: update `govuk_elements_form_builder` gem to support checkboxes revealing panels.
-           For now, the `orders_issues` checkboxes are flattened. -->
-
-      <%= f.check_box_fieldset :orders_issues, PetitionOrder::SPECIFIC_ISSUES %>
       <%= f.check_box_fieldset :orders, PetitionOrder::PROHIBITED_STEPS %>
-      <%= f.check_box_fieldset :orders, PetitionOrder::OTHER %>
+      <%= f.check_box_fieldset :orders, PetitionOrder::SPECIFIC_ISSUES %>
+
+      <%=
+        f.check_box_fieldset :orders, [:other] do |fieldset|
+          fieldset.check_box_input(:other) {
+            f.text_area :other_details, size: '40x4', class: 'form-control-3-4'
+          }
+        end
+      %>
 
       <%= f.submit class: 'button' %>
     <% end %>

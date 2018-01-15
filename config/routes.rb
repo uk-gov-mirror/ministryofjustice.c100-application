@@ -52,7 +52,6 @@ Rails.application.routes.draw do
     end
     namespace :petition do
       edit_step :orders
-      edit_step :other_issue
       show_step :playback
     end
     namespace :miam do
