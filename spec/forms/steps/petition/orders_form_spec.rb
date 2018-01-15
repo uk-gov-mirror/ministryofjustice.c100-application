@@ -14,10 +14,14 @@ RSpec.describe Steps::Petition::OrdersForm do
     child_return: '0',
     child_abduction: '0',
     child_flight: '0',
-    other: '0',
+    other: other,
+    other_details: other_details
   } }
 
   let(:c100_application) { instance_double(C100Application) }
+
+  let(:other) { '1' }
+  let(:other_details) { 'details' }
 
   subject { described_class.new(arguments) }
 
@@ -28,15 +32,37 @@ RSpec.describe Steps::Petition::OrdersForm do
                       child_home: true,
                       child_times: true,
                       child_contact: true,
+                      child_return: false,
+                      child_abduction: false,
+                      child_flight: false,
                       child_specific_issue_school: false,
                       child_specific_issue_religion: false,
                       child_specific_issue_name: false,
                       child_specific_issue_medical: false,
                       child_specific_issue_abroad: false,
-                      child_return: false,
-                      child_abduction: false,
-                      child_flight: false,
-                      other: false
+                      other: true,
+                      other_details: 'details'
                     }
+
+    context 'validations' do
+      context '`other_details` when `other` is true' do
+        let(:other) { '1' }
+        let(:other_details) { nil }
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors[:other_details]).to_not be_empty
+        end
+      end
+
+      context '`other_details` when `other` is false' do
+        let(:other) { '0' }
+        let(:other_details) { nil }
+
+        it 'has no validation errors' do
+          expect(subject).to be_valid
+        end
+      end
+    end
   end
 end

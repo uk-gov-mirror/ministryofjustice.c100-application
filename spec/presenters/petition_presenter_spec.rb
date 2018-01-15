@@ -9,14 +9,16 @@ RSpec.describe PetitionPresenter do
       child_home: true,
       child_times: false,
       child_contact: nil,
+      child_return: nil,
+      child_abduction: false,
+      child_flight: true,
       child_specific_issue_school: false,
       child_specific_issue_religion: true,
       child_specific_issue_name: nil,
       child_specific_issue_medical: true,
       child_specific_issue_abroad: false,
-      child_return: nil,
-      child_abduction: false,
-      child_flight: true
+      other: true,
+      other_details: 'details'
     }
   }
 
@@ -56,9 +58,10 @@ RSpec.describe PetitionPresenter do
       expect(subject.all_selected_orders).to eq(
        [
          PetitionOrder.new(:child_home),
+         PetitionOrder.new(:child_flight),
          PetitionOrder.new(:child_specific_issue_religion),
          PetitionOrder.new(:child_specific_issue_medical),
-         PetitionOrder.new(:child_flight)
+         PetitionOrder.new(:other)
        ]
       )
     end

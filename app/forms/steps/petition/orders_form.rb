@@ -6,6 +6,10 @@ module Steps
 
       has_one_association :asking_order
 
+      attribute :other_details, String
+
+      validates_presence_of :other_details, if: :other?
+
       private
 
       def persist!

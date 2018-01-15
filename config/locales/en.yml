@@ -32,6 +32,7 @@ en:
       child_home: Arrange where they live
       child_times: Arrange how much time they spend with each parent
       child_contact: Confirm when and what other types of contact will take place with them
+      child_specific_issue: Resolve a dispute over a specific issue (For example, what school they’ll go to)
       child_specific_issue_school: Which school they go to
       child_specific_issue_religion: A religious issue
       child_specific_issue_name: Changing their names
@@ -40,7 +41,8 @@ en:
       child_return: Return them to your care
       child_abduction: Stop the other parent abducting them
       child_flight: Stop the other parent taking them abroad or moving location without your permission
-      other: Resolve another issue
+      other: Another issue
+      other_details: *provide_details
 
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
@@ -474,6 +476,10 @@ en:
             zero: You’d like the court to resolve a dispute about
             one: You’d also like the court to resolve a dispute about
             other: You’d also like the court to resolve a dispute about
+          lead_text_other:
+            zero: "You told us that you need help with this issue:"
+            one: "You also told us that you need help with this issue:"
+            other: "You also told us that you need help with this issue:"
           continue: Continue
           <<: *PETITION_ORDERS
           aka:
@@ -661,9 +667,6 @@ en:
         miam_certification_html: ""
       steps_petition_orders_form:
         orders_html: ""
-        orders_issues_html: "Resolve a dispute over a specific issue"
-      steps_petition_other_issue_form:
-        other_issue_html: "What orders are you applying for? (optional)"
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
       steps_safety_questions_address_confidentiality_form:
@@ -807,11 +810,6 @@ en:
         <<: *PETITION_ORDERS
         child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
         child_specific_issue_abroad: Moving location (including moving abroad)
-      steps_petition_other_issue_form:
-        other_details: Details
-        child_arrangements_order: Child Arrangements Order
-        prohibited_steps_order: Prohibited Steps Order
-        specific_issue_order: Specific Issue Order
       steps_abduction_international_form:
         passport_possession_mother: Mother
         passport_possession_father: Father
@@ -927,9 +925,6 @@ en:
         without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_miam_certification_number_form:
         miam_certification_number: You can find this number at the bottom of the form your mediator signed
-      steps_petition_other_issue_form:
-        other_details: Give a short description
-        other_issue: Select any that apply
       steps_abduction_international_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:

@@ -36,6 +36,13 @@
       <p><%= t('.aka.prohibited_steps_order') %></p>
     <% end %>
 
+    <% if @petition.other? %>
+      <p class="lede"><%=t '.lead_text_other', count: @petition.child_arrangements_orders.count + @petition.specific_issues_orders.count %></p>
+      <div class="panel">
+        <%= @petition.other_details %>
+      </div>
+    <% end %>
+
     <div class="xform-group form-submit">
       <%= link_to t('.continue'), edit_steps_alternatives_court_path, class: 'button', role: 'button' %>
     </div>

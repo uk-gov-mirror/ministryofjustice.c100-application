@@ -10,13 +10,15 @@ RSpec.describe PetitionOrder do
         child_home
         child_times
         child_contact
+        child_return
+        child_abduction
+        child_flight
         child_specific_issue_school
         child_specific_issue_religion
         child_specific_issue_name
         child_specific_issue_medical
         child_specific_issue_abroad
-        child_return child_abduction
-        child_flight other
+        other
       ))
     end
   end
@@ -27,6 +29,7 @@ RSpec.describe PetitionOrder do
         child_home
         child_times
         child_contact
+        child_return
       ))
     end
   end
@@ -39,7 +42,6 @@ RSpec.describe PetitionOrder do
         child_specific_issue_name
         child_specific_issue_medical
         child_specific_issue_abroad
-        child_return
       ))
     end
   end
