@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       edit_step :without_notice_details
       edit_step :litigation_capacity
       edit_step :litigation_capacity_details
+      edit_step :special_assistance
     end
     namespace :petition do
       edit_step :orders
