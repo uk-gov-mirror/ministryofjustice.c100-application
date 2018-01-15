@@ -538,6 +538,11 @@ en:
           page_title: Special Assistance
           heading: Does anyone in this application need assistance or special facilities when attending court?
           lead_text: For example you need a hearing loop or your documents in braille
+      special_arrangements:
+        edit:
+          page_title: Special Arrangements
+          heading: Do you or your children need specific arrangements when you attend court?
+          lead_text: For example you need a separate waiting room to the other person due to safety concerns
     international:
       resident:
         edit:
@@ -644,6 +649,8 @@ en:
         reduced_litigation_capacity_html: ""
       steps_application_special_assistance_form:
         special_assistance_html: ""
+      steps_application_special_arrangements_form:
+        special_arrangements_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_acknowledgement_form:
@@ -778,6 +785,8 @@ en:
         participation_other_factors_details: Are you aware of any other factors which may affect the ability of the person concerned to take part in the proceedings?
       steps_application_special_assistance_form:
         special_assistance_details: *provide_details
+      steps_application_special_arrangements_form:
+        special_arrangements_details: *provide_details
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
