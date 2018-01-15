@@ -1,0 +1,23 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.radio_button_fieldset :international_request, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :international_request_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:international_request_panel) do |panel|
+            panel.text_area :international_request_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

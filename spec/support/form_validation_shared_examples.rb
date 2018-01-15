@@ -42,12 +42,20 @@ RSpec.shared_examples 'a yes-no question form' do |options|
   let(:reset_when_yes) { options.fetch(:reset_when_yes, []) }
   let(:reset_when_no)  { options.fetch(:reset_when_no,  []) }
 
-  let(:arguments) { {
-    c100_application: c100_application,
-    question_attribute => answer_value
-  } }
+  let(:linked_attribute)  { options[:linked_attribute] }
+  let(:linked_attribute_value) { 'details' }
+  let(:linked_attributes) { linked_attribute ? { linked_attribute => linked_attribute_value } : {} }
+
+  let(:arguments) {
+    {
+      c100_application: c100_application,
+      question_attribute => answer_value
+    }.merge(linked_attributes)
+  }
 
   let(:c100_application) { instance_double(C100Application) }
+
+  subject { described_class.new(arguments) }
 
   def attributes_to_reset(attrs)
     Hash[attrs.collect {|att| [att, nil]}]
@@ -55,6 +63,18 @@ RSpec.shared_examples 'a yes-no question form' do |options|
 
   describe 'validations on field presence' do
     it { should validate_presence_of(question_attribute, :inclusion) }
+
+    if options[:linked_attribute]
+      context 'when answer is yes, validates presence of linked attribute' do
+        let(:answer_value) { 'yes' }
+        it { should validate_presence_of(linked_attribute) }
+      end
+
+      context 'when answer is no, does not validate presence of linked attribute' do
+        let(:answer_value) { 'no' }
+        it { should_not validate_presence_of(linked_attribute) }
+      end
+    end
   end
 
   describe '#save' do
@@ -68,7 +88,7 @@ RSpec.shared_examples 'a yes-no question form' do |options|
 
     context 'when answer is `yes`' do
       let(:answer_value) { 'yes' }
-      let(:additional_attributes) { attributes_to_reset(reset_when_yes) }
+      let(:additional_attributes) { attributes_to_reset(reset_when_yes).merge(linked_attributes) }
 
       it 'saves the record' do
         expect(c100_application).to receive(:update).with(

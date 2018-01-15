@@ -142,6 +142,11 @@ Rails.application.routes.draw do
         edit_routes ':id/child/:child_id'
       end
     end
+    namespace :international do
+      edit_step :resident
+      edit_step :jurisdiction
+      edit_step :request
+    end
     namespace :help_with_fees do
       edit_step :help_paying
     end
