@@ -29,4 +29,24 @@ RSpec.describe C100App::ApplicationDecisionTree do
     let(:step_params) { { without_notice_details: 'anything' } }
     it { is_expected.to have_destination('/steps/international/resident', :edit) }
   end
+
+  context 'when the step is `litigation_capacity`' do
+    let(:c100_application) { instance_double(C100Application, reduced_litigation_capacity: answer) }
+    let(:step_params) { { litigation_capacity: 'whatever' } }
+
+    context 'and the answer is `yes`' do
+      let(:answer) { 'yes' }
+      it { is_expected.to have_destination(:litigation_capacity_details, :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:answer) { 'no' }
+      it { is_expected.to have_destination('/steps/international/resident', :edit) }
+    end
+  end
+
+  context 'when the step is `litigation_capacity_details`' do
+    let(:step_params) { { litigation_capacity_details: 'anything' } }
+    it { is_expected.to have_destination('/steps/international/resident', :edit) }
+  end
 end

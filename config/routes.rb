@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     namespace :application do
       edit_step :without_notice
       edit_step :without_notice_details
+      edit_step :litigation_capacity
+      edit_step :litigation_capacity_details
     end
     namespace :petition do
       edit_step :orders

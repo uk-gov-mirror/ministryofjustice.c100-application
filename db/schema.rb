@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112105909) do
+ActiveRecord::Schema.define(version: 20180115104941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,10 @@ ActiveRecord::Schema.define(version: 20180112105909) do
     t.text "international_jurisdiction_details"
     t.string "international_request"
     t.text "international_request_details"
+    t.string "reduced_litigation_capacity"
+    t.text "participation_capacity_details"
+    t.text "participation_referral_or_assessment_details"
+    t.text "participation_other_factors_details"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 
