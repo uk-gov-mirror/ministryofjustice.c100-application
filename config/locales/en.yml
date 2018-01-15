@@ -529,6 +529,10 @@ en:
           page_title: Litigation capacity
           heading: Does anyone in this application have a condition that may affect their understanding of the court process?
           lead_text: For example dyslexia or Attention deficit hyperactivity disorder (ADHD)
+      litigation_capacity_details:
+        edit:
+          page_title: Factors affecting ability to participate in proceedings
+          heading: Factors affecting ability to participate in proceedings
     international:
       resident:
         edit:
@@ -761,6 +765,10 @@ en:
         without_notice_details: Give as much information as you can
         without_notice_frustrate_details: *provide_details
         without_notice_impossible_details: *provide_details
+      steps_application_litigation_capacity_details_form:
+        participation_capacity_details: Please give details of any factors affecting litigation capacity
+        participation_referral_or_assessment_details: Provide details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
+        participation_other_factors_details: Are you aware of any other factors which may affect the ability of the person concerned to take part in the proceedings?
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
