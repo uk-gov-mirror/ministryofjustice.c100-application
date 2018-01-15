@@ -41,12 +41,22 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination('/steps/international/resident', :edit) }
+      it { is_expected.to have_destination(:special_assistance, :edit) }
     end
   end
 
   context 'when the step is `litigation_capacity_details`' do
     let(:step_params) { { litigation_capacity_details: 'anything' } }
+    it { is_expected.to have_destination(:special_assistance, :edit) }
+  end
+
+  context 'when the step is `special_assistance`' do
+    let(:step_params) { { special_assistance: 'anything' } }
+    it { is_expected.to have_destination(:special_arrangements, :edit) }
+  end
+
+  context 'when the step is `special_arrangements`' do
+    let(:step_params) { { special_arrangements: 'anything' } }
     it { is_expected.to have_destination('/steps/international/resident', :edit) }
   end
 end
