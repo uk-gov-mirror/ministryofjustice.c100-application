@@ -8,6 +8,10 @@ module C100App
         after_without_notice
       when :without_notice_details
         start_international_journey
+      when :litigation_capacity
+        after_litigation_capacity
+      when :litigation_capacity_details
+        start_international_journey # TODO: change when we have special assistance step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -20,6 +24,14 @@ module C100App
         edit(:without_notice_details)
       else
         start_international_journey
+      end
+    end
+
+    def after_litigation_capacity
+      if question(:reduced_litigation_capacity).yes?
+        edit(:litigation_capacity_details)
+      else
+        start_international_journey # TODO: change when we have special assistance step
       end
     end
 
