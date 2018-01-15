@@ -524,6 +524,11 @@ en:
         edit:
           page_title: Details of without notice hearing
           heading: Details of without notice hearing
+      litigation_capacity:
+        edit:
+          page_title: Litigation capacity
+          heading: Does anyone in this application have a condition that may affect their understanding of the court process?
+          lead_text: For example dyslexia or Attention deficit hyperactivity disorder (ADHD)
     international:
       resident:
         edit:
@@ -626,6 +631,8 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Do you require a without notice hearing because notice to a respondent will frustrate the order that is being applied for?
         without_notice_impossible_html: Do you require a without notice hearing because it is not possible to give notice including abridged or informal notice?
+      steps_application_litigation_capacity_form:
+        reduced_litigation_capacity_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_acknowledgement_form:
