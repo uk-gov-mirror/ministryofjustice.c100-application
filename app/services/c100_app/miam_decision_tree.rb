@@ -4,6 +4,10 @@ module C100App
       return next_step if next_step
 
       case step_name
+      when :consent_order
+        after_consent_order
+      when :child_protection_cases
+        after_child_protection_cases
       when :miam_acknowledgement
         edit(:attended)
       when :miam_attended
@@ -20,6 +24,22 @@ module C100App
     end
 
     private
+
+    def after_consent_order
+      if question(:consent_order).yes?
+        show(:consent_order_sought)
+      else
+        edit(:child_protection_cases)
+      end
+    end
+
+    def after_child_protection_cases
+      if question(:child_protection_cases).yes?
+        show(:child_protection_info)
+      else
+        edit(:acknowledgement)
+      end
+    end
 
     def after_miam_attended
       if question(:miam_attended).yes?

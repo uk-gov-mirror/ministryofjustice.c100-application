@@ -454,6 +454,25 @@ en:
         edit:
           page_title: MIAM certification details
           heading: Enter details of MIAM certification
+      consent_order:
+        edit:
+          page_title: Consent order
+          heading: Do you have a written agreement you want the court to make legally binding?
+          lead_text_html: |
+            <div class="govuk-govspeak gv-s-prose">
+              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to make it legally binding.</p>
+              <p>This is known as a consent order.</p>
+              <p>You can only ask for a consent order if:</p>
+              <ul class="list list-bullet">
+                <li>you have your agreement in writing (you’ll need to attach the agreement to your application)</li>
+                <li>you’re not in dispute with the other person</li>
+                <li>the court has no concerns about the safety or welfare of anyone involved</li>
+              </ul>
+            </div>
+      child_protection_cases:
+        edit:
+          page_title: Child protection cases
+          heading: Have the children ever been involved in any court cases about an emergency protection, care or supervision order?
     petition:
       orders:
         edit:
@@ -659,6 +678,10 @@ en:
         special_arrangements_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
+      steps_miam_consent_order_form:
+        consent_order_html: ""
+      steps_miam_child_protection_cases_form:
+        child_protection_cases_html: ""
       steps_miam_acknowledgement_form:
         miam_acknowledgement_html: ""
       steps_miam_attended_form:
