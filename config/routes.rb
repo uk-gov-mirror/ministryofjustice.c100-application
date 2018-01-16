@@ -55,6 +55,10 @@ Rails.application.routes.draw do
       show_step :playback
     end
     namespace :miam do
+      edit_step :consent_order
+      show_step :consent_order_sought
+      edit_step :child_protection_cases
+      show_step :child_protection_info
       edit_step :acknowledgement
       edit_step :attended
       show_step :not_attended_info
