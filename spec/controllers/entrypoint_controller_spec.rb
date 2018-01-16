@@ -32,4 +32,11 @@ RSpec.describe EntrypointController do
       expect(response).to render_template(:what_is_needed)
     end
   end
+
+  describe '#how_long' do
+    it 'renders the expected page' do
+      get :how_long
+      expect(response).to render_template(:how_long)
+    end
+  end
 end

@@ -175,6 +175,7 @@ Rails.application.routes.draw do
   get 'entrypoint/v3'
 
   get 'entrypoint/what_is_needed'
+  get 'entrypoint/how_long'
 
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page
