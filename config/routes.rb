@@ -174,6 +174,8 @@ Rails.application.routes.draw do
   get 'entrypoint/v2'
   get 'entrypoint/v3'
 
+  get 'entrypoint/what_is_needed'
+
   get :contact, to: 'home#contact', as: :contact_page
   get :cookies, to: 'home#cookies', as: :cookies_page
   get :miam_exemptions, to: 'home#miam_exemptions', as: :miam_exemptions_page

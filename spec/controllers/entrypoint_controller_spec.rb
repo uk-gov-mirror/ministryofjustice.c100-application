@@ -25,4 +25,11 @@ RSpec.describe EntrypointController do
       expect(response).to render_template(:v3)
     end
   end
+
+  describe '#what_is_needed' do
+    it 'renders the expected page' do
+      get :what_is_needed
+      expect(response).to render_template(:what_is_needed)
+    end
+  end
 end

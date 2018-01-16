@@ -6,4 +6,6 @@ class EntrypointController < ApplicationController
   def v2; end
 
   def v3; end
+
+  def what_is_needed; end
 end

@@ -1,0 +1,32 @@
+<% title 'What is required' %>
+
+<main data-block-name="route:application-requirements">
+  <div class=" grid-row gv-o-grid-row">
+    <div class=" column-two-thirds gv-o-grid-item gv-u-two-thirds">
+      <div class="grid_content_header">
+        <p class="app__section_heading">Before you continue</p>
+        <h1 class="app__heading  heading-xlarge gv-u-heading-xxlarge">What you’ll need to complete your application</h1>
+      </div>
+
+      <div class=" govuk-govspeak gv-s-prose">
+        <p>You will need the following:</p>
+        <ul class="list list-bullet">
+          <li>details of the other person (the respondent), including address and phone number</li>
+          <li>details of any previous family court cases</li>
+          <li><abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> certificate (if applicable)</li>
+          <li>your children’s details, including date of birth</li>
+          <li>solicitor’s details (if you’re using one)</li>
+          <li>access to a printer</li>
+        </ul>
+
+        <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+          <p>If you don’t know any of the details you can still complete your application but it may take longer to process.</p>
+        </div>
+      </div>
+
+      <div class="xform-group form-submit">
+        <%= link_to 'Continue', edit_steps_miam_acknowledgement_path, class: 'button button-start', role: 'button' %>
+      </div>
+    </div>
+  </div>
+</main>
