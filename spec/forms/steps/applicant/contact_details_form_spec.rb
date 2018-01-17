@@ -5,7 +5,6 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
     c100_application: c100_application,
     record: record,
     address: address,
-    postcode: postcode,
     home_phone: home_phone,
     mobile_phone: mobile_phone,
     email: email,
@@ -19,7 +18,6 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
 
   let(:record) { nil }
   let(:address) { 'address' }
-  let(:postcode) { 'postcode' }
   let(:home_phone) { nil }
   let(:mobile_phone) { nil }
   let(:email) { nil }
@@ -75,7 +73,6 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
       let(:expected_attributes) {
         {
           address: 'address',
-          postcode: 'postcode',
           home_phone: '',
           mobile_phone: '',
           email: '',

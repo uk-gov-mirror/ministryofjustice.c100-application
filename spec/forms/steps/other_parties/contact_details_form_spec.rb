@@ -5,8 +5,7 @@ RSpec.describe Steps::OtherParties::ContactDetailsForm do
     c100_application: c100_application,
     record: record,
     address: address,
-    postcode: postcode,
-    postcode_unknown: postcode_unknown
+    address_unknown: address_unknown
   } }
 
   let(:c100_application) { instance_double(C100Application, other_parties: other_parties_collection) }
@@ -15,8 +14,7 @@ RSpec.describe Steps::OtherParties::ContactDetailsForm do
 
   let(:record) { nil }
   let(:address) { 'address' }
-  let(:postcode) { 'postcode' }
-  let(:postcode_unknown) { false }
+  let(:address_unknown) { false }
 
   subject { described_class.new(arguments) }
 
@@ -30,15 +28,14 @@ RSpec.describe Steps::OtherParties::ContactDetailsForm do
     end
 
     context 'validations on field presence unless `unknown`' do
-      it { should validate_presence_unless_unknown_of(:postcode) }
+      it { should validate_presence_unless_unknown_of(:address) }
     end
 
     context 'for valid details' do
       let(:expected_attributes) {
         {
           address: 'address',
-          postcode: 'postcode',
-          postcode_unknown: false
+          address_unknown: false
         }
       }
 

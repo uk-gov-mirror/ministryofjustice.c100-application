@@ -2,10 +2,9 @@ module Steps
   module OtherParties
     class ContactDetailsForm < BaseForm
       attribute :address, StrippedString
-      attribute :postcode, StrippedString
-      attribute :postcode_unknown, Boolean
+      attribute :address_unknown, Boolean
 
-      validates_presence_of :postcode, unless: :postcode_unknown?
+      validates_presence_of :address, unless: :address_unknown?
 
       private
 
