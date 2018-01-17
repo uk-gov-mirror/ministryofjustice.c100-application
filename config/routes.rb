@@ -62,11 +62,12 @@ Rails.application.routes.draw do
       edit_step :acknowledgement
       edit_step :attended
       show_step :not_attended_info
-      edit_step :certification_date
       edit_step :certification
+      show_step :no_certification_info
+      edit_step :certification_date
+      show_step :certification_expired_info
       edit_step :certification_number
-      show_step :no_certification_kickout
-      show_step :certification_expired_kickout
+      show_step :certification_confirmation
     end
     namespace :abduction do
       edit_step :children_have_passport

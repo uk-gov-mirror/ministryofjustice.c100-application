@@ -1,0 +1,46 @@
+<% title 'MIAM is out of date' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Your MIAM is out of date</h1>
+
+    <p class="app__lede lede gv-u-text-lede">You’re legally required to attend a
+      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> within 4 months of your application, unless
+      you have a valid reason.
+    </p>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p>
+        <a href="/miam_exemptions" target="_blank">Check if you have
+          a valid reason</a> before you continue with your application.</p>
+
+      <h2>If you don’t have a valid reason</h2>
+      <ol>
+        <li>
+          <a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" target="external_link">Find
+            a mediator</a> and book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
+        </li>
+        <li>Attend the <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></li>
+        <li>Ask the mediator for a certificate confirming your attendance</li>
+      </ol>
+
+      <p>You can then return to this form to continue with your application.</p>
+
+      <h2>If you are unsure, or think you have a valid reason</h2>
+      <p>If you’re still unsure you can continue and we’ll try and work out if you have a valid reason based on the
+        answers you give.</p>
+
+      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+        <p>If you do not have a valid reason you will not be able to make the application and will be directed to attend
+          a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
+        </p>
+      </div>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Confirm and continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

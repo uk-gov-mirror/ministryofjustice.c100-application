@@ -53,32 +53,12 @@ RSpec.describe C100App::MiamDecisionTree do
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
-      it { is_expected.to have_destination(:certification_date, :edit) }
+      it { is_expected.to have_destination(:certification, :edit) }
     end
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
       it { is_expected.to have_destination(:not_attended_info, :show) }
-    end
-  end
-
-  context 'when the step is `miam_certification_date`' do
-    let(:c100_application) { instance_double(C100Application, miam_certification_date: value.to_date) }
-    let(:step_params) { { miam_certification_date: 'anything' } }
-
-    context 'and date entered is not expired' do
-      let(:value) { 3.months.ago }
-      it { is_expected.to have_destination(:certification, :edit) }
-    end
-
-    context 'and date entered is not expired (equality mutant killer)' do
-      let(:value) { 4.months.ago }
-      it { is_expected.to have_destination(:certification, :edit) }
-    end
-
-    context 'and date entered is expired' do
-      let(:value) { 5.months.ago }
-      it { is_expected.to have_destination(:certification_expired_kickout, :show) }
     end
   end
 
@@ -88,17 +68,37 @@ RSpec.describe C100App::MiamDecisionTree do
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
-      it { is_expected.to have_destination(:certification_number, :edit) }
+      it { is_expected.to have_destination(:certification_date, :edit) }
     end
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination(:no_certification_kickout, :show) }
+      it { is_expected.to have_destination(:no_certification_info, :show) }
+    end
+  end
+
+  context 'when the step is `miam_certification_date`' do
+    let(:c100_application) { instance_double(C100Application, miam_certification_date: value.to_date) }
+    let(:step_params) { { miam_certification_date: 'anything' } }
+
+    context 'and date entered is not expired' do
+      let(:value) { 3.months.ago }
+      it { is_expected.to have_destination(:certification_number, :edit) }
+    end
+
+    context 'and date entered is not expired (equality mutant killer)' do
+      let(:value) { 4.months.ago }
+      it { is_expected.to have_destination(:certification_number, :edit) }
+    end
+
+    context 'and date entered is expired' do
+      let(:value) { 5.months.ago }
+      it { is_expected.to have_destination(:certification_expired_info, :show) }
     end
   end
 
   context 'when the step is `miam_certification_number`' do
     let(:step_params) {{miam_certification_number: 'anything'}}
-    it {is_expected.to have_destination('/steps/safety_questions/start', :show)}
+    it {is_expected.to have_destination(:certification_confirmation, :show)}
   end
 end
