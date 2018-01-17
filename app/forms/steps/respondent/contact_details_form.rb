@@ -2,8 +2,7 @@ module Steps
   module Respondent
     class ContactDetailsForm < BaseForm
       attribute :address, StrippedString
-      attribute :postcode, StrippedString
-      attribute :postcode_unknown, Boolean
+      attribute :address_unknown, Boolean
       attribute :home_phone, StrippedString
       attribute :mobile_phone, StrippedString
       attribute :mobile_phone_unknown, Boolean
@@ -12,7 +11,7 @@ module Steps
       attribute :residence_requirement_met, YesNoUnknown
       attribute :residence_history, String
 
-      validates_presence_of :postcode,     unless: :postcode_unknown?
+      validates_presence_of :address,      unless: :address_unknown?
       validates_presence_of :mobile_phone, unless: :mobile_phone_unknown?
       validates_presence_of :email,        unless: :email_unknown?
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116125030) do
+ActiveRecord::Schema.define(version: 20180117154337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -198,7 +198,7 @@ ActiveRecord::Schema.define(version: 20180116125030) do
     t.string "birthplace"
     t.text "address"
     t.string "postcode"
-    t.boolean "postcode_unknown", default: false
+    t.boolean "address_unknown", default: false
     t.string "home_phone"
     t.boolean "home_phone_unknown", default: false
     t.string "mobile_phone"

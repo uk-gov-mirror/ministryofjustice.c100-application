@@ -5,8 +5,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
     c100_application: c100_application,
     record: record,
     address: address,
-    postcode: postcode,
-    postcode_unknown: postcode_unknown,
+    address_unknown: address_unknown,
     home_phone: home_phone,
     mobile_phone: mobile_phone,
     mobile_phone_unknown: mobile_phone_unknown,
@@ -22,8 +21,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
 
   let(:record) { nil }
   let(:address) { 'address' }
-  let(:postcode) { 'postcode' }
-  let(:postcode_unknown) { false }
+  let(:address_unknown) { false }
   let(:home_phone) { nil }
   let(:mobile_phone) { nil }
   let(:mobile_phone_unknown) { true }
@@ -78,7 +76,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
     end
 
     context 'validations on field presence unless `unknown`' do
-      it { should validate_presence_unless_unknown_of(:postcode) }
+      it { should validate_presence_unless_unknown_of(:address) }
       it { should validate_presence_unless_unknown_of(:mobile_phone) }
       it { should validate_presence_unless_unknown_of(:email) }
     end
@@ -87,8 +85,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
       let(:expected_attributes) {
         {
           address: 'address',
-          postcode: 'postcode',
-          postcode_unknown: false,
+          address_unknown: false,
           home_phone: '',
           mobile_phone: '',
           mobile_phone_unknown: true,
