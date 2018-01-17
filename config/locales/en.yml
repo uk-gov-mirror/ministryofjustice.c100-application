@@ -60,7 +60,6 @@ en:
     # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
     PERSONAL_CONTACT_FIELDS: &PERSONAL_CONTACT_FIELDS
       address: Address
-      postcode: Postcode
       address_unknown: *dont_know
       home_phone: Home phone
       mobile_phone: Mobile phone
@@ -82,8 +81,6 @@ en:
         blank: Please enter the place of birth
       address:
         blank: Please enter the address
-      postcode:
-        blank: Please enter the postcode
       mobile_phone:
         blank: Please enter the mobile phone
       email:
@@ -962,6 +959,8 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
         address: Documents for this application will be sent here. Include the postcode
+      steps_other_parties_contact_details_form:
+        address: Enter the full address including postcode
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
