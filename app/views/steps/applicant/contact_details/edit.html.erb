@@ -8,10 +8,6 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_field :postcode %>
-      <%= f.text_field :home_phone %>
-      <%= f.text_field :mobile_phone %>
-      <%= f.text_field :email %>
 
       <%=
         f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
@@ -19,6 +15,10 @@
           fieldset.radio_input(GenericYesNo::NO) { f.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
         end
       %>
+
+      <%= f.text_field :home_phone %>
+      <%= f.text_field :mobile_phone %>
+      <%= f.text_field :email %>
 
       <%= f.submit class: 'button' %>
     <% end %>

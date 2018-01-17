@@ -955,6 +955,9 @@ en:
         previous_attempt_agency_involved: Including in the UK or abroad
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
+      steps_applicant_contact_details_form:
+        address: Enter your full address including postcode
+        residence_history: Start with the most recent
       steps_respondent_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
