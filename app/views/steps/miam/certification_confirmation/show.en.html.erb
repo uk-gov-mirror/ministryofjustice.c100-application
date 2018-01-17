@@ -1,0 +1,33 @@
+<% title 'MIAM attendance confirmation' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">MIAM attendance confirmation</h1>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p>We will contact the following mediator to confirm that you attended a
+        <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> on <%= current_c100_application.miam_certification_date %>.</p>
+
+      <!-- TODO: Pending prototype changes -->
+      <p>TODO</p>
+
+      <p>You may be asked to bring your certificate to court.</p>
+
+      <div role="note" aria-label="Warning" class=" notice gv-c-notice">
+        <i class=" icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
+          <span class=" visually-hidden gv-c-notice__icon-fallback-text">Warning</span>
+        </i>
+        <strong class=" bold-small gv-c-notice__text">You could be fined or imprisoned for contempt of court if you
+          deliberately submit false information about attending
+          a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
+        </strong>
+      </div>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

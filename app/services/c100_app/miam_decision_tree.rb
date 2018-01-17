@@ -12,10 +12,10 @@ module C100App
         edit(:attended)
       when :miam_attended
         after_miam_attended
-      when :miam_certification_date
-        after_miam_certification_date
       when :miam_certification
         after_miam_certification
+      when :miam_certification_date
+        after_miam_certification_date
       when :miam_certification_number
         after_miam_certification_number
       else
@@ -43,32 +43,32 @@ module C100App
 
     def after_miam_attended
       if question(:miam_attended).yes?
-        edit(:certification_date)
+        edit(:certification)
       else
         show(:not_attended_info)
       end
     end
 
-    def after_miam_certification_date
-      if certification_expired?
-        show(:certification_expired_kickout)
+    def after_miam_certification
+      if question(:miam_certification).yes?
+        edit(:certification_date)
       else
-        edit(:certification)
+        show(:no_certification_info)
       end
     end
 
-    def after_miam_certification
-      if question(:miam_certification).yes?
-        edit(:certification_number)
+    def after_miam_certification_date
+      if certification_expired?
+        show(:certification_expired_info)
       else
-        show(:no_certification_kickout)
+        edit(:certification_number)
       end
     end
 
     def after_miam_certification_number
       # TODO: eventually, we will call an external mediators API to check whether the
       # reference number is valid or not, and retrieve the mediator details.
-      show('/steps/safety_questions/start')
+      show(:certification_confirmation)
     end
 
     def certification_expired?

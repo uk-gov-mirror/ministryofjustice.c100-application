@@ -450,6 +450,7 @@ en:
         edit:
           page_title: MIAM certification date
           heading: When did you attend the MIAM?
+          lead_text: You can find the date at the bottom of the certificate your mediator signed.
       certification_number:
         edit:
           page_title: MIAM certification details
@@ -947,7 +948,7 @@ en:
       steps_application_without_notice_details_form:
         without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_miam_certification_number_form:
-        miam_certification_number: You can find this number at the bottom of the form your mediator signed
+        miam_certification_number: You can find this number at the bottom of the certificate your mediator signed
       steps_abduction_international_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
