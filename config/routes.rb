@@ -88,6 +88,7 @@ Rails.application.routes.draw do
     end
     namespace :abuse_concerns do
       show_step :start
+      show_step :children_info
       edit_step :question do
         get '/:subject/:kind', action: :edit
       end

@@ -1,0 +1,23 @@
+<% title 'Your children’s safety' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your children’s safety</h1>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>The court needs to know if the other person (the respondent) or anyone they’re in contact with poses a risk to
+        the safety of your children.</p>
+      <p>The following questions will ask whether your children have experienced, or are at risk of experiencing, any
+        form of harm.</p>
+      <p>Find out about the
+        <a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" target="external_link">signs
+          of child abuse</a>.</p>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Continue', edit_steps_abuse_concerns_question_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>
