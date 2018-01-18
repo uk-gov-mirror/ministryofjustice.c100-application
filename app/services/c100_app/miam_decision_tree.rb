@@ -53,7 +53,7 @@ module C100App
       if question(:miam_certification).yes?
         edit(:certification_date)
       else
-        show(:no_certification_info)
+        show('/steps/safety_questions/start')
       end
     end
 
