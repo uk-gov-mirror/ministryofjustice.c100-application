@@ -88,7 +88,7 @@ module C100App
     def children_details_destination
       case abuse_kind
       when AbuseType::OTHER
-        edit(:question, subject: AbuseSubject::APPLICANT)
+        show(:applicant_info)
       else
         questions_destination(AbuseSubject::CHILDREN)
       end
