@@ -27,7 +27,7 @@ module C100App
 
     def after_risk_of_abduction
       if question(:risk_of_abduction).yes?
-        edit('/steps/abduction/children_have_passport')
+        edit('/steps/abduction/international')
       else
         edit(:substance_abuse)
       end

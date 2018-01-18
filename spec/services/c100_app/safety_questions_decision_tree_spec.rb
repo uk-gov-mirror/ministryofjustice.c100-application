@@ -23,7 +23,7 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
-      it { is_expected.to have_destination('/steps/abduction/children_have_passport', :edit) }
+      it { is_expected.to have_destination('/steps/abduction/international', :edit) }
     end
 
     context 'and the answer is `no`' do
