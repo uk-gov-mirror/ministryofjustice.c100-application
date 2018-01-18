@@ -519,15 +519,22 @@ en:
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
-          heading: Have your children been abducted before or have there been any previous attempts or threats to abduct them?
+          heading: Have your children been abducted before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
-          heading: Provide more details of the previous attempts or threats to abduct your children
+          heading: Provide details of the previous abductions
+          lead_text: Include any previous attempts or threats to abduct them
       risk_details:
         edit:
           page_title: Abduction risk details
-          heading: Provide details of why you think your children may be abducted
+          heading: Why do you think your children may be abducted?
+          info_html: |
+            <p>Briefly explain your concerns, including:</p>
+            <ul class="list list-bullet">
+              <li>who might take them</li>
+              <li>where they might be taken</li>
+            </ul>
       passport_details:
         edit:
           page_title: Children’s passports
