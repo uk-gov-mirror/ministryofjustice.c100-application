@@ -130,7 +130,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
         context 'abuse kind `other`' do
           let(:abuse_kind) { 'other' }
-          it {is_expected.to have_destination(:question, :edit, {subject: 'applicant'})}
+          it {is_expected.to have_destination(:applicant_info, :show)}
         end
       end
     end
@@ -295,7 +295,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
       context 'abuse kind `other`' do
         let(:abuse_kind) { 'other' }
-        it {is_expected.to have_destination(:question, :edit, {subject: 'applicant'})}
+        it {is_expected.to have_destination(:applicant_info, :show)}
       end
     end
   end

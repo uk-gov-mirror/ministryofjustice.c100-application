@@ -1,0 +1,23 @@
+<% title 'Your safety' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your safety</h1>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p>The court needs to know if the other person (the respondent) or anyone they’re in contact with poses a risk to
+        your safety.</p>
+      <p>The following questions will ask whether you have experienced, or are at risk of experiencing, any form of
+        harm.</p>
+      <p>Find out about the
+        <a href="http://www.refuge.org.uk/get-help-now/help-for-women/recognising-abuse/" target="external_link">signs
+          of domestic abuse</a>.</p>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Continue', edit_steps_abuse_concerns_question_path(subject: AbuseSubject::APPLICANT), class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>
