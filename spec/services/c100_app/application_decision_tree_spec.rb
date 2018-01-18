@@ -30,6 +30,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
     it { is_expected.to have_destination('/steps/international/resident', :edit) }
   end
 
+  context 'when the step is `application_details`' do
+    let(:step_params) { { application_details: 'anything' } }
+    it { is_expected.to have_destination(:litigation_capacity, :edit) }
+  end
+
   context 'when the step is `litigation_capacity`' do
     let(:c100_application) { instance_double(C100Application, reduced_litigation_capacity: answer) }
     let(:step_params) { { litigation_capacity: 'whatever' } }

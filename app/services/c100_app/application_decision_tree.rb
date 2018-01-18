@@ -8,6 +8,8 @@ module C100App
         after_without_notice
       when :without_notice_details
         start_international_journey
+      when :application_details
+        edit(:litigation_capacity)
       when :litigation_capacity
         after_litigation_capacity
       when :litigation_capacity_details
