@@ -379,7 +379,7 @@ en:
           page_title: Risk of abduction
           heading: Are your children at risk of being abducted?
           lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
-          info_notice: Child abduction is when a person takes or sends a child under 16 out of the UK without permission.
+          info_notice: Child abduction is when a person takes or sends a child under 16 away from the care of the person they normally live with. A child can be abducted both in the UK and abroad.
       substance_abuse:
         edit:
           page_title: Substance abuse
@@ -528,6 +528,10 @@ en:
         edit:
           page_title: Abduction risk details
           heading: Provide details of why you think your children may be abducted
+      passport_details:
+        edit:
+          page_title: Children’s passports
+          heading: Provide details of the children’s passports
     application:
       without_notice:
         edit:
@@ -715,6 +719,9 @@ en:
         other_abuse_html: ""
       steps_abduction_children_have_passport_form:
         children_have_passport_html: ""
+      steps_abduction_passport_details_form:
+        children_multiple_passports_html: "Do the children have more than one passport?"
+        passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_international_form:
         international_risk_html: ""
         passport_office_notified_html: "Has the passport office been notified?"
@@ -844,7 +851,7 @@ en:
         <<: *PETITION_ORDERS
         child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
         child_specific_issue_abroad: Moving location (including moving abroad)
-      steps_abduction_international_form:
+      steps_abduction_passport_details_form:
         passport_possession_mother: Mother
         passport_possession_father: Father
         passport_possession_other: Other
@@ -959,7 +966,7 @@ en:
         without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_miam_certification_number_form:
         miam_certification_number: You can find this number at the bottom of the certificate your mediator signed
-      steps_abduction_international_form:
+      steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
