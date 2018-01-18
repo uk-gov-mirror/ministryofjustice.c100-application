@@ -12,6 +12,8 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.text_area :risk_details, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.text_area :current_location, size: '40x4', class: 'form-control-3-4' %>
+
       <%= f.submit class: 'button' %>
     <% end %>
   </div>

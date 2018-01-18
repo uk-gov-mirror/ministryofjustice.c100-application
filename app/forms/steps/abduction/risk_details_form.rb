@@ -6,8 +6,10 @@ module Steps
       has_one_association :abduction_detail
 
       attribute :risk_details, String
+      attribute :current_location, String
 
-      validates_presence_of :risk_details
+      validates_presence_of :risk_details,
+                            :current_location
 
       private
 

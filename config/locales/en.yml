@@ -868,6 +868,7 @@ en:
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Give a short description
+        current_location: Where are the children now?
       steps_children_names_form[names_attributes]:
         full_name: Full name of child
       steps_children_names_form:
