@@ -566,6 +566,17 @@ en:
           page_title: Special Arrangements
           heading: Do you or your children need specific arrangements when you attend court?
           lead_text: For example you need a separate waiting room to the other person due to safety concerns
+      details:
+        edit:
+          page_title: Application details
+          heading: Why are you making this application?
+          info_html: |
+            <p>You should include details of any of the following (if they apply):</p>
+            <ul class="list list-bullet">
+              <li>your reasons for bringing this application to court</li>
+              <li>any previous parenting plans or agreements (formal or informal), and why they broke down</li>
+            </ul>
+            <p>You don’t have to give a full statement although you may be asked to provide one later.</p>
     international:
       resident:
         edit:
@@ -811,6 +822,8 @@ en:
         special_assistance_details: *provide_details
       steps_application_special_arrangements_form:
         special_arrangements_details: *provide_details
+      steps_application_details_form:
+        application_details: *provide_details
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application

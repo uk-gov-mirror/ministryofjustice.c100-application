@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180117160059) do
+ActiveRecord::Schema.define(version: 20180118095646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,6 +131,7 @@ ActiveRecord::Schema.define(version: 20180117160059) do
     t.text "special_arrangements_details"
     t.string "consent_order"
     t.string "child_protection_cases"
+    t.text "application_details"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 

@@ -22,6 +22,6 @@ RSpec.describe C100App::InternationalDecisionTree do
 
   context 'when the step is `request`' do
     let(:step_params) { { request: 'anything' } }
-    it { is_expected.to have_destination('/steps/application/litigation_capacity', :edit) }
+    it { is_expected.to have_destination('/steps/application/details', :edit) }
   end
 end
