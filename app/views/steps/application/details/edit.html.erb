@@ -1,0 +1,19 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <%=t '.info_html' %>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_area :application_details, size: '40x4', class: 'form-control-3-4' %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>
