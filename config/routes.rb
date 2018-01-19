@@ -69,6 +69,10 @@ Rails.application.routes.draw do
       edit_step :certification_number
       show_step :certification_confirmation
     end
+    namespace :miam_exemptions do
+      edit_step :safety
+      edit_step :urgency
+    end
     namespace :abduction do
       edit_step :international
       edit_step :children_have_passport

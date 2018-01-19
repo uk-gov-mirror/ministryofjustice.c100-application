@@ -1,0 +1,32 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+        <p><%= t '.lead_text' %></p>
+      </div>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.check_box_fieldset :exemptions_group, [:group_risk] do |fieldset|
+          fieldset.check_box_input(:group_risk) {
+            f.check_box_fieldset :exemptions_group, [
+              :risk_applicant,
+              :risk_unreasonable_hardship,
+              :risk_children,
+              :risk_unlawful_removal_retention
+            ]
+          }
+        end
+      %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

@@ -7,7 +7,7 @@ module C100App
       when :details
         after_details_step
       when :contact
-        edit('/steps/petition/orders')
+        edit('/steps/miam_exemptions/safety')
       when :previous_proceedings
         after_previous_proceedings
       when :emergency_proceedings
