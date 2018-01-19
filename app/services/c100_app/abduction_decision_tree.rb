@@ -4,10 +4,12 @@ module C100App
       return next_step if next_step
 
       case step_name
+      when :international_risk
+        edit(:children_have_passport)
       when :children_have_passport
         after_children_have_passport
-      when :international_risk
-        after_international_risk
+      when :passport_details
+        edit(:previous_attempt)
       when :previous_attempt
         after_previous_attempt
       when :previous_attempt_details
@@ -23,17 +25,9 @@ module C100App
 
     def after_children_have_passport
       if selected?(:children_have_passport)
-        edit(:international)
+        edit(:passport_details)
       else
         edit(:previous_attempt)
-      end
-    end
-
-    def after_international_risk
-      if selected?(:international_risk)
-        edit(:previous_attempt)
-      else
-        edit(:risk_details)
       end
     end
 
