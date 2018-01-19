@@ -14,14 +14,13 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.check_box_fieldset :exemptions_group, [:group_police] do |fieldset|
-          fieldset.check_box_input(:group_police) {
+        f.check_box_fieldset :exemptions_group, [:group_risk] do |fieldset|
+          fieldset.check_box_input(:group_risk) {
             f.check_box_fieldset :exemptions_group, [
-              :police_arrested,
-              :police_caution,
-              :police_ongoing_proceedings,
-              :police_conviction,
-              :police_dvpn
+              :risk_applicant,
+              :risk_unreasonable_hardship,
+              :risk_children,
+              :risk_unlawful_removal_retention
             ]
           }
         end

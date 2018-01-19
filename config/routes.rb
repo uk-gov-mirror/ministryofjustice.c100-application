@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     end
     namespace :miam_exemptions do
       edit_step :safety
+      edit_step :urgency
     end
     namespace :abduction do
       edit_step :international

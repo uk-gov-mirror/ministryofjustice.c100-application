@@ -608,6 +608,11 @@ en:
           page_title: Evidence of safety concerns
           heading: Can you provide evidence of any safety concerns?
           lead_text: You will need to provide evidence to support your claim
+      urgency:
+        edit:
+          page_title: Evidence that your application is urgent
+          heading: Can you provide evidence that your application is urgent?
+          lead_text: You will need to provide evidence to support your claim
 
   home:
     index:
@@ -715,7 +720,9 @@ en:
       steps_miam_certification_form:
         miam_certification_html: ""
       steps_miam_exemptions_safety_form:
-        exemptions_group_police_html: ""
+        exemptions_group_html: ""
+      steps_miam_exemptions_urgency_form:
+        exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
       steps_help_with_fees_help_paying_form:
@@ -865,6 +872,14 @@ en:
         police_ongoing_proceedings: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
         police_conviction: Evidence of a relevant conviction for a domestic violence offence
         police_dvpn: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
+      steps_miam_exemptions_urgency_form:
+        group_risk_html: |
+          <span class="heading-small gv-u-heading-small">There’s an immediate risk of harm</span><br/>
+          <span class="form-hint">This includes if you, your children or home are at immediate risk of harm</span>
+        risk_applicant: There is risk to the life, liberty or physical safety of the prospective applicant or his or her family or his or her home
+        risk_unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship to the prospective applicant
+        risk_children: Any delay caused by attending a MIAM would cause a risk of harm to a child
+        risk_unlawful_removal_retention: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently outside England and Wales
       steps_help_with_fees_help_paying_form:
         help_paying:
           yes_with_ref_number: Yes, I have a Help with Fees reference number
