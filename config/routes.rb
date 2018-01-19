@@ -70,6 +70,7 @@ Rails.application.routes.draw do
       show_step :certification_confirmation
     end
     namespace :miam_exemptions do
+      edit_step :safety
     end
     namespace :abduction do
       edit_step :international
