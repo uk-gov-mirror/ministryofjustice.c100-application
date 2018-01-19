@@ -4,9 +4,10 @@ module C100App
       return next_step if next_step
 
       case step_name
-      # TODO: Put decision logic here
-      when :name
-        root_path
+      when :safety
+        edit(:urgency)
+      when :urgency
+        edit('/steps/petition/orders')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

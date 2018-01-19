@@ -10,21 +10,13 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  pending 'Write specs for MiamExemptionsDecisionTree!'
+  context 'when the step is `safety`' do
+    let(:step_params) { { safety: 'anything' } }
+    it { is_expected.to have_destination(:urgency, :edit) }
+  end
 
-  # TODO: The below can be uncommented and serves as a starting point
-
-  # context 'when the step is `user_type`' do
-  #   let(:step_params) { { user_type: 'anything' } }
-  #
-  #   context 'and the answer is `themself`' do
-  #     let(:c100_application) { instance_double(C100Application, user_type: UserType::THEMSELF) }
-  #     it { is_expected.to have_destination(:user_type, :edit) }
-  #   end
-  #
-  #   context 'and the answer is `representative`' do
-  #     let(:c100_application) { instance_double(C100Application, user_type: UserType::REPRESENTATIVE) }
-  #     it { is_expected.to have_destination(:user_type, :edit) }
-  #   end
-  # end
+  context 'when the step is `urgency`' do
+    let(:step_params) { { urgency: 'anything' } }
+    it { is_expected.to have_destination('/steps/petition/orders', :edit) }
+  end
 end
