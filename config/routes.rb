@@ -70,8 +70,9 @@ Rails.application.routes.draw do
       show_step :certification_confirmation
     end
     namespace :abduction do
-      edit_step :children_have_passport
       edit_step :international
+      edit_step :children_have_passport
+      edit_step :passport_details
       edit_step :previous_attempt
       edit_step :previous_attempt_details
       edit_step :risk_details

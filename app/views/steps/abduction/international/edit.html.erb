@@ -18,20 +18,6 @@
         end
       %>
 
-      <%= f.radio_button_fieldset :children_multiple_passports, inline: true, choices: GenericYesNo.values %>
-
-      <%=
-        f.check_box_fieldset :passport_possesion, [
-          :passport_possession_mother, :passport_possession_father, :passport_possession_other
-        ] do |fieldset|
-          fieldset.check_box_input(:passport_possession_mother)
-          fieldset.check_box_input(:passport_possession_father)
-          fieldset.check_box_input(:passport_possession_other) {
-            f.text_area :passport_possession_other_details, size: '40x4', class: 'form-control-3-4'
-          }
-        end
-      %>
-
       <%= f.submit class: 'button' %>
     <% end %>
   </div>
