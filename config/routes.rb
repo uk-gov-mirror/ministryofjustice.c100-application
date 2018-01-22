@@ -166,6 +166,7 @@ Rails.application.routes.draw do
       edit_step :help_paying
     end
     namespace :completion do
+      show_step :summary
       show_step :download
     end
   end
