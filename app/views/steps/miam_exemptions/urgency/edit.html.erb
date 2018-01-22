@@ -14,17 +14,22 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.check_box_fieldset :exemptions_group, [:group_risk] do |fieldset|
-          fieldset.check_box_input(:group_risk) {
-            f.check_box_fieldset :exemptions_group, [
-              :risk_applicant,
-              :risk_unreasonable_hardship,
-              :risk_children,
-              :risk_unlawful_removal_retention
-            ]
+        f.check_box_fieldset :exemptions_group, [
+          UrgencyExemptions::GROUP_RISK,
+          UrgencyExemptions::GROUP_MISCARRIAGE
+        ] do |fieldset|
+          fieldset.check_box_input(UrgencyExemptions::GROUP_RISK) {
+            f.check_box_fieldset :exemptions_group, UrgencyExemptions::RISK
+          }
+          fieldset.check_box_input(UrgencyExemptions::GROUP_MISCARRIAGE) {
+            f.check_box_fieldset :exemptions_group, UrgencyExemptions::MISCARRIAGE
           }
         end
       %>
+
+      <p class="form-block or-block"><%=t '.or' %></p>
+
+      <%= f.check_box_fieldset :exemptions_group, [UrgencyExemptions::URGENCY_NONE] %>
 
       <%= f.submit class: 'button' %>
     <% end %>
