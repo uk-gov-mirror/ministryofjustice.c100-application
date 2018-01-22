@@ -41,4 +41,13 @@ RSpec.describe BaseForm do
       expect(subject.c100_application).to eq(c100_application)
     end
   end
+
+  describe '.attributes' do
+    it 'defines individual attributes given a collection' do
+      expect(described_class).to receive(:attribute).with(:a, String, default: 'test')
+      expect(described_class).to receive(:attribute).with(:b, String, default: 'test')
+
+      described_class.attributes([:a, :b], String, default: 'test')
+    end
+  end
 end
