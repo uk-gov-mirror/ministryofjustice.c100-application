@@ -165,6 +165,9 @@ Rails.application.routes.draw do
     namespace :help_with_fees do
       edit_step :help_paying
     end
+    namespace :completion do
+      show_step :download
+    end
   end
 
   resource :session, only: [:destroy] do
