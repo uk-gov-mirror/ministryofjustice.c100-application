@@ -8,4 +8,4 @@ before_script:
 
 script:
   - bundle exec rake
-  - bundle exec danger
+  #- bundle exec danger
