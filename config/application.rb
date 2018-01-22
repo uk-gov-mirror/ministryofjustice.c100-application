@@ -29,6 +29,8 @@ class Application < Rails::Application
     g.orm :active_record, primary_key_type: :uuid
   end
 
+  config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
+
   config.survey_link = 'https://www.gov.uk/done/c100'.freeze
   config.kickout_survey_link = 'REPLACEME'.freeze
 
