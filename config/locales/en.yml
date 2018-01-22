@@ -864,6 +864,7 @@ en:
       steps_miam_certification_number_form:
         miam_certification_number: FMC registration number
       steps_miam_exemptions_safety_form:
+        ## GROUP POLICE ##
         group_police_html: |
           <span class="heading-small gv-u-heading-small">The police have been involved</span><br/>
           <span class="form-hint">For example, you or the other person (the respondent) has been arrested or cautioned for domestic or child abuse offences.</span>
@@ -872,6 +873,83 @@ en:
         police_ongoing_proceedings: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
         police_conviction: Evidence of a relevant conviction for a domestic violence offence
         police_dvpn: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
+        ## GROUP COURT ##
+        group_court_html: |
+          <span class="heading-small gv-u-heading-small">You’ve already been to court</span><br/>
+          <span class="form-hint">For example, a court has issued an order protecting someone in your family from risk of harm.</span>
+        court_bound_over: A court order binding a prospective party over in connection with a domestic violence offence
+        court_protective_injunction: A relevant protective injunction
+        court_undertaking: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
+        court_finding_of_fact: A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
+        court_expert_report: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
+        ## GROUP SPECIALIST ##
+        group_specialist_html: |
+          <span class="heading-small gv-u-heading-small">You’ve received a letter confirming you’re a victim of domestic abuse</span><br/>
+          <span class="form-hint">For example, a health professional or specialist has confirmed you have, or had, injuries that are a result of domestic abuse.</span>
+        specialist_examination_html: |
+          <span class="labelLine">A letter or report from an appropriate health professional confirming that-<p></p>
+            <p>(i) that professional, or another appropriate health professional, has examined a prospective party in person; and</p>
+            <p>(ii) in the reasonable professional judgment of the author or the examining appropriate health professional, that prospective party has, or has had, injuries or a condition consistent with being a victim of domestic violence</p>
+          </span>
+        specialist_referral_html: |
+          <span class="labelLine">a letter or report from-<p></p>
+            <p>(i) the appropriate health professional who made the referral described below;</p>
+            <p>(ii) an appropriate health professional who has access to the medical records of the prospective party referred to below; or</p>
+            <p>(iii) the person to whom the referral described below was made; confirming that there was a referral by an appropriate health professional of a prospective party to a person who provides specialist support or assistance for victims of, or those at risk of, domestic violence</p>
+          </span>
+        ## GROUP LOCAL AUTHORITY ##
+        group_local_authority_html: |
+          <span class="heading-small gv-u-heading-small">You’ve received a letter confirming you or your children are at risk of harm</span><br/>
+          <span class="form-hint">For example, a local authority or housing association has confirmed someone in your family is at risk of harm.</span>
+        local_authority_marac: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
+        local_authority_la_ha_html: |
+          <span class="labelLine">A letter from an officer employed by a local authority or housing association (or their equivalent in Scotland or Northern Ireland) for the purpose of supporting tenants containing-<p></p>
+            <p>(i) a statement to the effect that, in their reasonable professional judgment, a person with whom a prospective party is or has been in a family relationship is, or is at risk of being, a victim of domestic violence by that prospective party;</p>
+            <p>(ii) a description of the specific matters relied upon to support that judgment; and</p>
+            <p>(iii) a description of the support they provided to the victim of domestic violence or the person at risk of domestic violence by that prospective party</p>
+          </span>
+        local_authority_public_authority: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
+        ## GROUP DA SERVICE ##
+        group_da_service_html: |
+          <span class="heading-small gv-u-heading-small">You’ve received a letter from a domestic abuse support service or specialist</span><br/>
+          <span class="form-hint">An independent domestic abuse advisor has confirmed they’re providing someone in your family with support.</span>
+        da_service_idva: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
+        da_service_isva: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
+        da_service_organisation_html: |
+          <span class="labelLine">a letter which-<p></p>
+            <p>(i) is from an organisation providing domestic violence support services, or a registered charity, which letter confirms that it-</p>
+            <p>(a) is situated in England and Wales,</p>
+            <p>(b) has been operating for an uninterrupted period of six months or more; and</p>
+            <p>(c) provided a prospective party with support in relation to that person’s needs as a victim, or a person at risk, of domestic violence; and</p>
+            <p>(ii) contains-</p>
+            <p>(a) a statement to the effect that, in the reasonable professional judgment of the author of the letter, the prospective party is, or is at risk of being, a victim of domestic violence;</p>
+            <p>(b) a description of the specific matters relied upon to support that judgment;</p>
+            <p>(c) a description of the support provided to the prospective party; and</p>
+            <p>(d) a statement of the reasons why the prospective party needed that support;</p>
+          </span>
+        da_service_refuge_refusal_html: |
+          <span class="labelLine">A letter or report from an organisation providing domestic violence support services in the United Kingdom confirming-<p></p>
+            <p>(i) that a person with whom a prospective party is or was in a family relationship was refused admission to a refuge;</p>
+            <p>(ii) the date on which they were refused admission to the refuge; and</p>
+            <p>(iii) they sought admission to the refuge because of allegations of domestic violence by the prospective party referred to in paragraph (i)</p>
+          </span>
+        ## RIGHT TO REMAIN ##
+        right_to_remain_html: |
+          <span class="heading-small gv-u-heading-small">You’ve received a letter granting you leave to remain in the UK</span><br/>
+          <span class="form-hint">The letter must be from the Home Office confirming your leave is on the grounds you were subject to domestic abuse by a husband or wife who is a British citizen.</span>
+        ## FINANCIAL ABUSE ##
+        financial_abuse_html: |
+          <span class="heading-small gv-u-heading-small">You have evidence you’ve been financially abused</span><br/>
+          <span class="form-hint">Examples of financial abuse include not allowing a person to work or withholding money.<p></p>
+          <p>The following are examples of what counts as evidence:</p>
+          <ul class="list list-bullet">
+            <li>a copy of a credit card account, loan document or bank statements</li>
+            <li>a letter from a domestic violence support organisation</li>
+            <li>emails, text messages or a diary kept by the victim</li>
+          </ul>
+          </span>
+        ## SAFETY NONE ##
+        safety_none: None of these
       steps_miam_exemptions_urgency_form:
         group_risk_html: |
           <span class="heading-small gv-u-heading-small">There’s an immediate risk of harm</span><br/>

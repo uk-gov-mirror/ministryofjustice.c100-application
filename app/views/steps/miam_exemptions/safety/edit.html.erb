@@ -14,18 +14,38 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.check_box_fieldset :exemptions_group, [:group_police] do |fieldset|
-          fieldset.check_box_input(:group_police) {
-            f.check_box_fieldset :exemptions_group, [
-              :police_arrested,
-              :police_caution,
-              :police_ongoing_proceedings,
-              :police_conviction,
-              :police_dvpn
-            ]
+        f.check_box_fieldset :exemptions_group, [
+            SafetyExemptions::GROUP_POLICE,
+            SafetyExemptions::GROUP_COURT,
+            SafetyExemptions::GROUP_SPECIALIST,
+            SafetyExemptions::GROUP_LOCAL_AUTHORITY,
+            SafetyExemptions::GROUP_DA_SERVICE,
+            SafetyExemptions::RIGHT_TO_REMAIN,
+            SafetyExemptions::FINANCIAL_ABUSE
+        ] do |fieldset|
+          fieldset.check_box_input(SafetyExemptions::GROUP_POLICE) {
+            f.check_box_fieldset :exemptions_group, SafetyExemptions::POLICE
           }
+          fieldset.check_box_input(SafetyExemptions::GROUP_COURT) {
+            f.check_box_fieldset :exemptions_group, SafetyExemptions::COURT
+          }
+          fieldset.check_box_input(SafetyExemptions::GROUP_SPECIALIST) {
+            f.check_box_fieldset :exemptions_group, SafetyExemptions::SPECIALIST
+          }
+          fieldset.check_box_input(SafetyExemptions::GROUP_LOCAL_AUTHORITY) {
+            f.check_box_fieldset :exemptions_group, SafetyExemptions::LOCAL_AUTHORITY
+          }
+          fieldset.check_box_input(SafetyExemptions::GROUP_DA_SERVICE) {
+            f.check_box_fieldset :exemptions_group, SafetyExemptions::DA_SERVICE
+          }
+          fieldset.check_box_input(SafetyExemptions::RIGHT_TO_REMAIN)
+          fieldset.check_box_input(SafetyExemptions::FINANCIAL_ABUSE)
         end
       %>
+
+      <p class="form-block or-block">or</p>
+
+      <%= f.check_box_fieldset :exemptions_group, [SafetyExemptions::SAFETY_NONE] %>
 
       <%= f.submit class: 'button' %>
     <% end %>

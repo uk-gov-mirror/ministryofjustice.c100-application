@@ -47,6 +47,11 @@ class BaseForm
     instance_variable_set("@#{attr_name}".to_sym, value)
   end
 
+  # A shortcut to declaring multiple attributes of the same type
+  def self.attributes(collection, type, opts = {})
+    collection.each { |name| attribute(name, type, opts) }
+  end
+
   # Iterates through all declared attributes in the form object, mapping its values
   def self.attributes_map(origin)
     attribute_set.map { |attr| [attr.name, origin[attr.name]] }.to_h
