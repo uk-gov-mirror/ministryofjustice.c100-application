@@ -149,5 +149,12 @@ background-image:url(https://assets.publishing.service.gov.uk/static/icon-steps/
     background-color: #fff;
     color: #0053a5;
   }
+  & .panel-border-wide {
+    border-color: #fff;
+  }
+  & .panel-border-wide p {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
 }
 /* */
