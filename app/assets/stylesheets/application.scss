@@ -138,4 +138,16 @@ background-image:url(https://assets.publishing.service.gov.uk/static/icon-steps/
   padding-top:96px;
   padding-top:6rem;
 }
+#content [data-block-name="route:application-requirements"] {
+    background-color: #0053a5;
+    color: #fff;
+    padding: 3rem;
+    margin-top: 1rem;
+}          
+#content [data-block-name="route:application-requirements"] {
+  & .button {
+    background-color: #fff;
+    color: #0053a5;
+  }
+}
 /* */
