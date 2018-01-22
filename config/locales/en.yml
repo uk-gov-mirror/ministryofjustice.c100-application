@@ -608,11 +608,13 @@ en:
           page_title: Evidence of safety concerns
           heading: Can you provide evidence of any safety concerns?
           lead_text: You will need to provide evidence to support your claim
+          or: or
       urgency:
         edit:
           page_title: Evidence that your application is urgent
           heading: Can you provide evidence that your application is urgent?
           lead_text: You will need to provide evidence to support your claim
+          or: or
 
   home:
     index:
