@@ -5,12 +5,24 @@ module Steps
 
       has_one_association :exemption
 
-      attribute :group_police, Boolean
-      attribute :police_arrested, Boolean
-      attribute :police_caution, Boolean
-      attribute :police_ongoing_proceedings, Boolean
-      attribute :police_conviction, Boolean
-      attribute :police_dvpn, Boolean
+      attribute  SafetyExemptions::GROUP_POLICE, Boolean, default: false
+      attributes SafetyExemptions::POLICE, Boolean, default: false
+
+      attribute  SafetyExemptions::GROUP_COURT, Boolean, default: false
+      attributes SafetyExemptions::COURT, Boolean, default: false
+
+      attribute  SafetyExemptions::GROUP_SPECIALIST, Boolean, default: false
+      attributes SafetyExemptions::SPECIALIST, Boolean, default: false
+
+      attribute  SafetyExemptions::GROUP_LOCAL_AUTHORITY, Boolean, default: false
+      attributes SafetyExemptions::LOCAL_AUTHORITY, Boolean, default: false
+
+      attribute  SafetyExemptions::GROUP_DA_SERVICE, Boolean, default: false
+      attributes SafetyExemptions::DA_SERVICE, Boolean, default: false
+
+      attribute  SafetyExemptions::RIGHT_TO_REMAIN, Boolean, default: false
+      attribute  SafetyExemptions::FINANCIAL_ABUSE, Boolean, default: false
+      attribute  SafetyExemptions::SAFETY_NONE, Boolean, default: false
 
       private
 
