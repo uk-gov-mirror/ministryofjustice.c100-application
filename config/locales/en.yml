@@ -615,6 +615,15 @@ en:
           heading: Can you provide evidence that your application is urgent?
           lead_text: You will need to provide evidence to support your claim
           or: or
+    completion:
+      summary:
+        show:
+          page_title: Check your answers
+          heading: Check your answers
+          lead_text: Please review your answers before submitting your application
+          confirm: Confirm and continue
+          pdf:
+            heading: C100 Application
 
   home:
     index:

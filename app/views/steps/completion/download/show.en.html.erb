@@ -1,0 +1,19 @@
+<% title 'Download your application' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">
+      Download your application before you continue
+    </h1>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <p><%= link_to 'Save or print your application', steps_completion_summary_path(format: :pdf), target: '_blank' %></p>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Continue', '/', class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

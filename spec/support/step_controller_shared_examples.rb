@@ -270,3 +270,43 @@ RSpec.shared_examples 'a show step controller' do
     end
   end
 end
+
+RSpec.shared_examples 'a summary step controller' do
+  describe '#show' do
+    context 'when no case exists in the session' do
+      before do
+        # Needed because some specs that include these examples stub current_c100_application,
+        # which is undesirable for this particular test
+        allow(controller).to receive(:current_c100_application).and_return(nil)
+      end
+
+      it 'redirects to the invalid session error page' do
+        get :show
+        expect(response).to redirect_to(invalid_session_errors_path)
+      end
+    end
+
+    context 'when a case exists in the session' do
+      let!(:existing_case) { C100Application.create }
+
+      context 'HTML format' do
+        it 'assigns the presenter' do
+          get :show, format: :html, session: { c100_application_id: existing_case.id }
+
+          expect(subject).to render_template(:show)
+          expect(assigns[:presenter]).to be_an_instance_of(Summary::HtmlPresenter)
+        end
+      end
+
+      context 'PDF format' do
+        it 'generates and sends the case details PDF' do
+          get :show, format: :pdf, session: { c100_application_id: existing_case.id }
+
+          expect(subject).to render_template(:show)
+          expect(assigns[:presenter]).to be_an_instance_of(Summary::PdfPresenter)
+          expect(response.headers['Content-Disposition']).to eq('inline; filename="c100_application.pdf"')
+        end
+      end
+    end
+  end
+end

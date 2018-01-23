@@ -1,0 +1,13 @@
+<% title t('.page_title') %>
+
+<%= step_header %>
+
+<h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+<p class="lede"><%=t '.lead_text' %></p>
+
+<%= render @presenter.sections %>
+
+<div class="xform-group form-submit">
+  <%= link_to t('.confirm'), steps_completion_download_path, class: 'button', role: 'button' %>
+</div>
