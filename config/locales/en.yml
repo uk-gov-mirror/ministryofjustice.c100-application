@@ -622,6 +622,8 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before submitting your application
           confirm: Confirm and continue
+          pdf:
+            heading: C100 Application
 
   home:
     index:
