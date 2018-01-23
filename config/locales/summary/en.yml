@@ -1,0 +1,10 @@
+en:
+  check_answers:
+    sections:
+      example_section: Example section
+    consent_order:
+      question: Do you have a written agreement you want the court to make legally binding?
+      accessible_change_text: whether you have a consent order
+      answers:
+        'yes': 'Yes'
+        'no': 'No'
