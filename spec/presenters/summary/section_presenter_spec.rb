@@ -10,6 +10,14 @@ describe Summary::SectionPresenter do
     end
   end
 
+  describe '#name' do
+    subject { described_class.new(c100_application, name: :anything) }
+
+    it 'can be given a dynamic name' do
+      expect(subject.name).to eq(:anything)
+    end
+  end
+
   describe '#show?' do
     context 'for an empty answers collection' do
       before do
