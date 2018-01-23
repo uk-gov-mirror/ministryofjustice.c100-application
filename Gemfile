@@ -4,9 +4,7 @@ ruby '2.4.2'
 
 gem 'devise'
 gem 'email_validator'
-# gem 'govuk_elements_form_builder', '~>1.0.0'
-# TODO: temporally using the branch until the PR is approved and merged and the gem version bumped
-gem 'govuk_elements_form_builder', git: 'https://github.com/ministryofjustice/govuk_elements_form_builder.git', branch: 'show-hide-radios'
+gem 'govuk_elements_form_builder', '~> 1.1.0'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_notify_rails', '~> 2.0.0'
 gem 'govuk_template'
