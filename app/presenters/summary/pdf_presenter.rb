@@ -9,7 +9,7 @@ module Summary
     def sections
       [
         Sections::HeaderSection.new(c100_application, name: :c100_form),
-        Sections::ExampleSection.new(c100_application),
+        Sections::HelpWithFees.new(c100_application),
       ].select(&:show?)
     end
 
