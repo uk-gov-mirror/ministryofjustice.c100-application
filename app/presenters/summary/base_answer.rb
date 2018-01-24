@@ -1,15 +1,16 @@
 module Summary
   class BaseAnswer
-    attr_reader :question, :value, :change_path
+    attr_reader :question, :value, :show, :change_path
 
-    def initialize(question, value, change_path: nil)
+    def initialize(question, value, show: nil, change_path: nil)
       @question = question
       @value = value
+      @show = show
       @change_path = change_path
     end
 
     def show?
-      value?
+      show.presence || value?
     end
 
     def value?
