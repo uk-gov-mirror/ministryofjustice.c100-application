@@ -42,6 +42,9 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
+    namespace :postcode_screen do
+      edit_step :children_postcodes
+    end
     namespace :application do
       edit_step :without_notice
       edit_step :without_notice_details
