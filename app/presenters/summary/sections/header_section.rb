@@ -1,6 +1,6 @@
 module Summary
   module Sections
-    class HeaderSection < SectionPresenter
+    class HeaderSection < BaseSectionPresenter
       def to_partial_path
         'shared/header'
       end

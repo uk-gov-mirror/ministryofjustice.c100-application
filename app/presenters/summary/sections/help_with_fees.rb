@@ -1,6 +1,6 @@
 module Summary
   module Sections
-    class HelpWithFees < SectionPresenter
+    class HelpWithFees < BaseSectionPresenter
       def name
         :help_with_fees
       end
