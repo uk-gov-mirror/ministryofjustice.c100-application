@@ -6,6 +6,11 @@ en:
         details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order.
     sections:
       help_with_fees: Help with fees
+      applicant_respondent: Applicant and respondent
     hwf_reference_number:
       question: Reference number
       absence_answer: Not applicable
+    applicants_full_name:
+      question: Full name of applicant(s)
+    respondents_full_name:
+      question: Full name of respondent(s)

@@ -10,6 +10,7 @@ module Summary
       [
         Sections::HeaderSection.new(c100_application, name: :c100_form),
         Sections::HelpWithFees.new(c100_application),
+        Sections::ApplicantRespondent.new(c100_application),
       ].select(&:show?)
     end
 
