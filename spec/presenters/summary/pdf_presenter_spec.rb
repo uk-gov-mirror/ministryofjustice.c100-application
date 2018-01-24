@@ -11,22 +11,16 @@ describe Summary::PdfPresenter do
   end
 
   describe '#sections' do
-    let(:header_presenter) { double(Summary::Sections::HeaderSection, show?: true) }
-    let(:help_with_fees_presenter) { double(Summary::Sections::HelpWithFees, show?: true) }
-
     before do
-      allow(Summary::Sections::HeaderSection).to  receive(:new).with(c100_application, name: :c100_form).and_return(header_presenter)
-      allow(Summary::Sections::HelpWithFees).to receive(:new).with(c100_application).and_return(help_with_fees_presenter)
+      allow_any_instance_of(Summary::Sections::BaseSectionPresenter).to receive(:show?).and_return(true)
     end
 
     it 'has the right sections in the right order' do
-      expect(subject.sections.count).to eq(2)
-      expect(subject.sections).to eq(
-        [
-          header_presenter,
-          help_with_fees_presenter,
-        ]
-      )
+      expect(subject.sections).to match_instances_array([
+        Summary::Sections::HeaderSection,
+        Summary::Sections::HelpWithFees,
+        Summary::Sections::ApplicantRespondent
+      ])
     end
   end
 end
