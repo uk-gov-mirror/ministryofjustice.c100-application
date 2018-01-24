@@ -3,11 +3,7 @@
     <%=t "check_answers.#{row.question}.question" %>
   </dt>
   <dd class="answer">
-    <% if row.raw? %>
-      <%= row.value %>
-    <% else %>
-      <%=t "check_answers.#{row.question}.answers.#{row.value}" %>
-    <% end %>
+    <%=t "check_answers.#{row.question}.answers.#{row.value}" %>
   </dd>
   <dd class="change">
     <% if row.show_change_link? %>
