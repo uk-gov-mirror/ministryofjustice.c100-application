@@ -7,9 +7,7 @@ module Summary
     end
 
     def sections
-      [
-        Sections::ExampleSection.new(c100_application),
-      ].select(&:show?)
+      [] # If we were to have a check your answers page, add here the sections
     end
   end
 end
