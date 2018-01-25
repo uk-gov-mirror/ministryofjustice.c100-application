@@ -1,6 +1,8 @@
 module Steps
   module PostcodeScreen
     class ChildrenPostcodesController < Steps::PostcodeScreenStepController
+      include StartingPointStep
+
       def edit
         @form_object = ChildrenPostcodesForm.new(
           c100_application: current_c100_application,

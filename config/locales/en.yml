@@ -598,6 +598,23 @@ en:
           heading: Where do your children live?
           lead_text: Please tell us the postcodes of all the children you’re making this application for, so that we can help you send your application to the right court
           children_postcodes: Postcodes of the children you're making this application for
+      error_but_continue:
+        show:
+          page_title: Where your children live
+          heading: Something went wrong
+          lead_text: "TODO: THIS IS PLACEHOLDER COPY Something went wrong checking your postcode against our courtfinder service. This might be a problem with the postcode you entered, or a problem with our checker service."
+          go_back_or_continue: You can go back and try again, or continue with your application anyway
+          go_back: Go back and try again
+          continue: Continue
+      no_court_found:
+        show:
+          page_title: Sorry, you're not eligible for this service
+          heading: Sorry, you're not eligible for this service
+          lead_text: This is a new service we are trying out at a limited number of courts. Unfortunately the appropriate court for your request is not yet taking part in this trial.
+          what_to_do_now:
+            heading: What to do now
+            copy: To submit your application, you should download the C100 form, print it, complete it, and submit it by post.
+          download_c100_link: Download the form (PDF)
     completion:
       summary:
         show:

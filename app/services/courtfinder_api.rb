@@ -40,7 +40,7 @@ class CourtfinderAPI
   def log_error(msg, exception)
     logger.add(Logger::ERROR) do
       [
-        [msg, e.message] + e.backtrace
+        [msg, exception.message] + exception.backtrace
       ].join("\n")
     end
   end

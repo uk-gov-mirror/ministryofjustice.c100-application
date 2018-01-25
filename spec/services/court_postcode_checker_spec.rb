@@ -66,8 +66,8 @@ describe CourtPostcodeChecker do
         allow_any_instance_of(CourtfinderAPI).to receive(:court_for).and_raise(Exception)
       end
 
-      it 'returns an empty array' do
-        expect(subject.send(:court_for, 'mypostcode')).to eq([])
+      it 'allows the error to propagate out un-caught' do
+        expect{ subject.send(:court_for, 'blah') }.to raise_error
       end
     end
   end
