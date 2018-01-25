@@ -66,4 +66,17 @@ RSpec.describe PetitionPresenter do
       )
     end
   end
+
+  describe '#other_details' do
+    context 'when there is an asking order' do
+      it { expect(subject.other_details).to eq('details') }
+    end
+
+    context 'when the asking order is nil' do
+      let(:asking_order) { nil }
+
+      it { expect { subject.other_details }.not_to raise_error(NoMethodError) }
+      it { expect(subject.other_details).to be_nil }
+    end
+  end
 end

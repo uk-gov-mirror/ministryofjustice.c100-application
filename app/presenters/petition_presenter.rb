@@ -15,6 +15,10 @@ class PetitionPresenter < SimpleDelegator
     selected_orders_from(PetitionOrder.values)
   end
 
+  def other_details
+    __getobj__&.other_details
+  end
+
   private
 
   def selected_orders_from(collection)
