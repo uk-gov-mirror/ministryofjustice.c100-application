@@ -15,6 +15,7 @@ en:
       applicant_respondent: Applicant and respondent
       nature_of_application: Nature of application
       risk_concerns: Concerns about risk of harm
+      additional_information: Additional information
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
@@ -65,5 +66,29 @@ en:
         <<: *YESNO
     other_concerns:
       question: Other safety or welfare concerns?
+      answers:
+        <<: *YESNO
+    asking_for_permission:
+      question: Asking for permission to make this application, where that is required
+      answers:
+        <<: *YESNO
+    urgent_or_without_notice:
+      question: An urgent hearing or without notice hearing required
+      answers:
+        <<: *YESNO
+    children_previous_proceedings:
+      question: Previous or ongoing proceedings for the child(ren)
+      answers:
+        <<: *YESNO
+    consent_order:
+      question: Applying for an order to formalise an agreement (consent order)
+      answers:
+        <<: *YESNO
+    international_or_capacity:
+      question: Case with an international element or factors affecting litigation capacity
+      answers:
+        <<: *YESNO
+    language_assistance:
+      question: Child or people involved need language assistance during the course of the proceedings
       answers:
         <<: *YESNO

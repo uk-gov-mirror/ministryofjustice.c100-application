@@ -82,10 +82,25 @@
     page-break-before: always;
   }
 
-  #risk-concerns-section {
+  #risk_concerns {
     td.description {
       width: 50%;
       padding-right: 10px;
+    }
+  }
+
+  #additional_information {
+    td {
+      border: none;
+      padding: 5px 0 0;
+    }
+    td.question {
+      font-weight: 500;
+      width: 90%;
+    }
+    td.answer {
+      width: 10%;
+      text-align: right;
     }
   }
 }

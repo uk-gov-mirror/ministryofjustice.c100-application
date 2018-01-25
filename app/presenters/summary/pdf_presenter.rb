@@ -13,6 +13,7 @@ module Summary
         Sections::ApplicantRespondent.new(c100_application),
         Sections::NatureOfApplication.new(c100_application),
         Sections::RiskConcerns.new(c100_application),
+        Sections::AdditionalInformation.new(c100_application),
       ].select(&:show?)
     end
 
