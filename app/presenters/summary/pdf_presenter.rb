@@ -12,6 +12,7 @@ module Summary
         Sections::HelpWithFees.new(c100_application),
         Sections::ApplicantRespondent.new(c100_application),
         Sections::NatureOfApplication.new(c100_application),
+        Sections::RiskConcerns.new(c100_application),
       ].select(&:show?)
     end
 

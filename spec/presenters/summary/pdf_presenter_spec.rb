@@ -22,6 +22,7 @@ module Summary
           Sections::HelpWithFees,
           Sections::ApplicantRespondent,
           Sections::NatureOfApplication,
+          Sections::RiskConcerns,
         ])
       end
     end
