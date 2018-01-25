@@ -7,6 +7,7 @@ en:
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
+      nature_of_application: Nature of application
     hwf_reference_number:
       question: Reference number
       absence_answer: Not applicable
@@ -14,3 +15,25 @@ en:
       question: Full name of applicant(s)
     respondents_full_name:
       question: Full name of respondent(s)
+    child_arrangements_orders:
+      question: 'Child arrangement order(s):'
+      answers:
+        child_home: Arrange where they live
+        child_times: Arrange how much time they spend with each parent
+        child_contact: Confirm when and what other types of contact will take place with them
+        child_return: Return them to your care
+    specific_issues_orders:
+      question: 'Specific issue order(s):'
+      answers:
+        child_specific_issue_school: Which school they go to
+        child_specific_issue_religion: A religious issue
+        child_specific_issue_name: Changing their names
+        child_specific_issue_medical: Medical treatment
+        child_specific_issue_abroad: Moving location
+    prohibited_steps_orders:
+      question: 'Prohibited steps order(s):'
+      answers:
+        child_abduction: Stop the other parent abducting them
+        child_flight: Stop the other parent taking them abroad or moving location without your permission
+    other_details:
+      question: 'Other:'

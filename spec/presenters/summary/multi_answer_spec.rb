@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Summary::Answer do
+describe Summary::MultiAnswer do
   let(:question) {'Question?'}
   let(:value) {'Answer!'}
 
@@ -8,7 +8,7 @@ describe Summary::Answer do
 
   describe '#to_partial_path' do
     it 'returns the correct partial path' do
-      expect(subject.to_partial_path).to eq('shared/row')
+      expect(subject.to_partial_path).to eq('shared/multi_answer_row')
     end
   end
 end

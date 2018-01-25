@@ -1,0 +1,11 @@
+<tr>
+  <td class="question">
+    <%=t "check_answers.#{multi_answer_row.question}.question" %>
+  </td>
+
+  <td class="answer answer-value">
+    <%= multi_answer_row.value.map do |value| %>
+      <% t("check_answers.#{multi_answer_row.question}.answers.#{value}") %>
+    <% end.join('; ') %>
+  </td>
+</tr>
