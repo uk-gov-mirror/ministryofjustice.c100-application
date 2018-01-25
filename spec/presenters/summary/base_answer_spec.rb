@@ -4,8 +4,9 @@ describe Summary::BaseAnswer do
   let(:question) {'Question?'}
   let(:value) {'Answer!'}
   let(:change_path) {nil}
+  let(:default) {nil}
 
-  subject { described_class.new(question, value, change_path: change_path) }
+  subject { described_class.new(question, value, default: default, change_path: change_path) }
 
   describe '#show?' do
     it 'returns true' do
@@ -39,6 +40,26 @@ describe Summary::BaseAnswer do
 
       it 'returns false' do
         expect(subject.value?).to eq(false)
+      end
+    end
+  end
+
+  describe 'can be given a default value' do
+    context 'when value is nil' do
+      let(:value) { nil }
+      let(:default) { 'no' }
+
+      it 'returns the default value' do
+        expect(subject.value).to eq('no')
+      end
+    end
+
+    context 'when value is not nil' do
+      let(:value) { 'yes' }
+      let(:default) { 'no' }
+
+      it 'returns the original value' do
+        expect(subject.value).to eq('yes')
       end
     end
   end

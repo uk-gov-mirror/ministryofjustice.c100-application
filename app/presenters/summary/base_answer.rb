@@ -2,9 +2,9 @@ module Summary
   class BaseAnswer
     attr_reader :question, :value, :show, :change_path
 
-    def initialize(question, value, show: nil, change_path: nil)
+    def initialize(question, value, default: nil, show: nil, change_path: nil)
       @question = question
-      @value = value
+      @value = value || default
       @show = show
       @change_path = change_path
     end
