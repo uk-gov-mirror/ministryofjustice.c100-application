@@ -379,7 +379,7 @@ en:
           page_title: Risk of abduction
           heading: Are your children at risk of being abducted?
           lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
-          info_notice: Child abduction is when a person takes or sends a child under 16 out of the UK without permission.
+          info_notice: Child abduction is when a person takes or sends a child under 16 away from the care of the person they normally live with. A child can be abducted both in the UK and abroad.
       substance_abuse:
         edit:
           page_title: Substance abuse
@@ -519,15 +519,26 @@ en:
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
-          heading: Have your children been abducted before or have there been any previous attempts or threats to abduct them?
+          heading: Have your children been abducted before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
-          heading: Provide more details of the previous attempts or threats to abduct your children
+          heading: Provide details of the previous abductions
+          lead_text: Include any previous attempts or threats to abduct them
       risk_details:
         edit:
           page_title: Abduction risk details
-          heading: Provide details of why you think your children may be abducted
+          heading: Why do you think your children may be abducted?
+          info_html: |
+            <p>Briefly explain your concerns, including:</p>
+            <ul class="list list-bullet">
+              <li>who might take them</li>
+              <li>where they might be taken</li>
+            </ul>
+      passport_details:
+        edit:
+          page_title: Children’s passports
+          heading: Provide details of the children’s passports
     application:
       without_notice:
         edit:
@@ -591,6 +602,19 @@ en:
         edit:
           page_title: International request
           heading: Has a court case about your children already started in another country?
+    miam_exemptions:
+      safety:
+        edit:
+          page_title: Evidence of safety concerns
+          heading: Can you provide evidence of any safety concerns?
+          lead_text: You will need to provide evidence to support your claim
+          or: or
+      urgency:
+        edit:
+          page_title: Evidence that your application is urgent
+          heading: Can you provide evidence that your application is urgent?
+          lead_text: You will need to provide evidence to support your claim
+          or: or
     postcode_screen:
       children_postcodes:
         edit:
@@ -730,6 +754,10 @@ en:
         miam_attended_html: ""
       steps_miam_certification_form:
         miam_certification_html: ""
+      steps_miam_exemptions_safety_form:
+        exemptions_group_html: ""
+      steps_miam_exemptions_urgency_form:
+        exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
       steps_help_with_fees_help_paying_form:
@@ -748,6 +776,9 @@ en:
         other_abuse_html: ""
       steps_abduction_children_have_passport_form:
         children_have_passport_html: ""
+      steps_abduction_passport_details_form:
+        children_multiple_passports_html: "Do the children have more than one passport?"
+        passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_international_form:
         international_risk_html: ""
         passport_office_notified_html: "Has the passport office been notified?"
@@ -877,7 +908,7 @@ en:
         <<: *PETITION_ORDERS
         child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
         child_specific_issue_abroad: Moving location (including moving abroad)
-      steps_abduction_international_form:
+      steps_abduction_passport_details_form:
         passport_possession_mother: Mother
         passport_possession_father: Father
         passport_possession_other: Other
@@ -887,6 +918,7 @@ en:
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Give a short description
+        current_location: Where are the children now?
       steps_children_names_form[names_attributes]:
         full_name: Full name of child
       steps_children_names_form:
@@ -994,7 +1026,7 @@ en:
         without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_miam_certification_number_form:
         miam_certification_number: You can find this number at the bottom of the certificate your mediator signed
-      steps_abduction_international_form:
+      steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
