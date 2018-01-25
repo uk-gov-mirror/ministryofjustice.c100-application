@@ -1,11 +1,12 @@
 require 'courtfinder_api'
 
 class CourtPostcodeChecker
-  AREA_OF_LAW = "Children"
+  AREA_OF_LAW = "Children".freeze
   COURT_SLUGS_USING_THIS_APP = [
     "central-family-court",
     "east-london-family-court"
-  ]
+  ].freeze
+
   # Separate multiple postcodes/postcode areas by "\n"
   # Will return an array of courts to which the application
   # could be sent, based on the postcodes given.
@@ -29,5 +30,4 @@ class CourtPostcodeChecker
       COURT_SLUGS_USING_THIS_APP.include?(court['slug'] || court[:slug])
     end
   end
-
 end

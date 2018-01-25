@@ -3,18 +3,16 @@ require 'open-uri'
 
 class CourtfinderAPI
   attr_accessor :logger
-  API_URL = "https://courttribunalfinder.service.gov.uk/%s.json?aol=%s&postcode=%s"
+  API_URL = "https://courttribunalfinder.service.gov.uk/%{endpoint}.json?aol=%{aol}&postcode=%{pcd}".freeze
 
-  def initialize(params={})
+  def initialize(params = {})
     self.logger = params[:logger] || Rails.logger
   end
-  
+
   def court_for(area_of_law, postcode)
-    begin
-      JSON.parse(search(area_of_law, postcode))
-    rescue Exception => e
-      handle_error(e)
-    end
+    JSON.parse(search(area_of_law, postcode))
+  rescue => e
+    handle_error(e)
   end
 
   def search(area_of_law, postcode)
@@ -25,8 +23,8 @@ class CourtfinderAPI
 
   private
 
-  def construct_url(endpoint, *args)
-    sprintf(API_URL, endpoint, *args)
+  def construct_url(endpoint, area_of_law, postcode)
+    API_URL % {endpoint: endpoint, aol: area_of_law, pcd: postcode}
   end
 
   # TODO: what's our plan for exception handling?

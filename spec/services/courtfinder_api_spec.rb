@@ -17,7 +17,7 @@ describe CourtfinderAPI do
     end
 
     context 'when an error is thrown' do
-      let(:dummy_exception){ Exception.new('test exception') }
+      let(:dummy_exception){ StandardError.new('test exception') }
       before do
         allow(subject).to receive(:search).and_raise(dummy_exception)
       end

@@ -12,21 +12,19 @@ module C100App
       end
     end
 
-    private 
+    private
 
     def check_if_court_is_valid
-      begin
-        courts = CourtPostcodeChecker.new.courts_for(c100_application.children_postcodes)
-        if courts.empty?
-          show(:no_court_found)
-        else
-          edit('/steps/miam/consent_order')
-        end
-      rescue Exception => e
-        puts e.message; puts e.backtrace
-        show(:error_but_continue)
+      courts = CourtPostcodeChecker.new.courts_for(c100_application.children_postcodes)
+      if courts.empty?
+        show(:no_court_found)
+      else
+        edit('/steps/miam/consent_order')
       end
 
+    # CourtPostcodeChecker already logs the exception
+    rescue
+      show(:error_but_continue)
     end
   end
 end
