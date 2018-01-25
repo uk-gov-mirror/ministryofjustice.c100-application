@@ -23,6 +23,7 @@ module Summary
           Sections::ApplicantRespondent,
           Sections::NatureOfApplication,
           Sections::RiskConcerns,
+          Sections::AdditionalInformation,
         ])
       end
     end

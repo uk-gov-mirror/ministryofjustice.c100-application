@@ -1,5 +1,5 @@
 <h2 class="section-header"><%=t "check_answers.sections.#{section.name}" %></h2>
 
-<table>
+<table id="<%= section.name %>">
   <%= render section.answers %>
 </table>
