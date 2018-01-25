@@ -1,4 +1,10 @@
 en:
+  dictionary:
+    YESNO: &YESNO
+      'yes': 'Yes'
+      'no': 'No'
+      unknown: "Don't know"
+
   check_answers:
     headers:
       c100_form:
@@ -8,6 +14,10 @@ en:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
       nature_of_application: Nature of application
+      risk_concerns: Concerns about risk of harm
+    descriptions:
+      risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
+      c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     hwf_reference_number:
       question: Reference number
       absence_answer: Not applicable
@@ -37,3 +47,23 @@ en:
         child_flight: Stop the other parent taking them abroad or moving location without your permission
     other_details:
       question: 'Other:'
+    domestic_abuse:
+      question: Any form of domestic abuse?
+      answers:
+        <<: *YESNO
+    children_abduction:
+      question: Child abduction?
+      answers:
+        <<: *YESNO
+    children_abuse:
+      question: Child abuse?
+      answers:
+        <<: *YESNO
+    substance_abuse:
+      question: Drugs, alcohol or substance abuse?
+      answers:
+        <<: *YESNO
+    other_concerns:
+      question: Other safety or welfare concerns?
+      answers:
+        <<: *YESNO

@@ -1,0 +1,23 @@
+<h2 class="section-header"><%= t "check_answers.sections.#{risk_concerns.name}" %></h2>
+
+<table id="risk-concerns-section">
+  <tr>
+    <td class="description">
+      <%= t "check_answers.descriptions.#{risk_concerns.name}" %>
+    </td>
+
+    <td>
+      <table class="no-borders subtable">
+        <%= render risk_concerns.answers %>
+
+        <% if risk_concerns.any? %>
+          <tr>
+            <td class="question">
+              <%=t "check_answers.descriptions.c1a_attached_html" %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
