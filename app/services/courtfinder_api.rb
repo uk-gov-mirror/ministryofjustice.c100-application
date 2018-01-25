@@ -38,10 +38,8 @@ class CourtfinderAPI
   end
 
   def log_error(msg, exception)
-    logger.add(Logger::ERROR) do
-      [
-        [msg, exception.message] + exception.backtrace
-      ].join("\n")
-    end
+    Rails.logger.info(msg)
+    Rails.logger.info({caller: self.class.name, method: 'court_for', error: exception}.to_json)
+    Raven.capture_exception(exception)
   end
 end

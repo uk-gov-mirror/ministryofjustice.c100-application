@@ -18,9 +18,8 @@ class CourtPostcodeChecker
   end
 
   def court_for(postcode)
-    
-      possible_courts = CourtfinderAPI.new.court_for(AREA_OF_LAW, postcode)
-      choose_from(possible_courts)
+    possible_courts = CourtfinderAPI.new.court_for(AREA_OF_LAW, postcode)
+    choose_from(possible_courts)
   end
 
   private

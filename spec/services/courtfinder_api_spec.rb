@@ -79,4 +79,28 @@ describe CourtfinderAPI do
       subject.send(:handle_error, e)
     end
   end
+
+  describe '#log_error' do
+    let(:msg){ "blah" }
+    let(:exception){ double('Exception') }
+    before do
+      allow(Rails.logger).to receive(:info).with(anything)
+      allow(Raven).to receive(:capture_exception)
+    end
+
+    it 'logs the message as info using the Rails logger' do
+      expect(Rails.logger).to receive(:info).with(msg)
+      subject.send(:log_error, msg, exception)
+    end
+
+    it 'logs info about the exception using the Rails logger' do
+      expect(Rails.logger).to receive(:info).with({caller: 'CourtfinderAPI', method: 'court_for', error: exception}.to_json)
+      subject.send(:log_error, msg, exception)
+    end
+
+    it 'captures the exception in Raven' do
+      expect(Raven).to receive(:capture_exception).with(exception)
+      subject.send(:log_error, msg, exception)
+    end
+  end
 end
