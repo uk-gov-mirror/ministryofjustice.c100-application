@@ -14,6 +14,7 @@ module Summary
         Sections::NatureOfApplication.new(c100_application),
         Sections::RiskConcerns.new(c100_application),
         Sections::AdditionalInformation.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :children),
       ].select(&:show?)
     end
 

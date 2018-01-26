@@ -10,6 +10,8 @@ en:
       c100_form:
         title: C100
         details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order.
+    section_headers:
+      children: 1. The Child(ren)
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
