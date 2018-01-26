@@ -27,6 +27,12 @@ describe C100App::CourtPostcodeChecker do
         subject.courts_for(postcodes)
       end
     end
+    context 'when given nil' do
+      let(:postcodes){ nil }
+      it 'does not raise an error' do
+        expect{ subject.courts_for(postcodes) }.to_not raise_error
+      end
+    end
     it 'returns the results of the court_for calls' do
       expect(subject.courts_for("A1AAA\nB1BBB")).to eq(['call1', 'call2'])
     end

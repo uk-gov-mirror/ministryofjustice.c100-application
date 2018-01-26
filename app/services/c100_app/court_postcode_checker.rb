@@ -14,7 +14,7 @@ module C100App
     # If the courts serving the postcodes given are not
     # taking part in our service, they will not be returned
     def courts_for(postcodes)
-      postcodes.split("\n").reject(&:blank?).map do |postcode|
+      postcodes.to_s.split("\n").reject(&:blank?).map do |postcode|
         court_for(postcode)
       end.compact
     end
