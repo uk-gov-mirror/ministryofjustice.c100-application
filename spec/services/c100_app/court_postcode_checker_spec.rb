@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CourtPostcodeChecker do
+describe C100App::CourtPostcodeChecker do
   describe '#courts_for' do
     before do
       allow(subject).to receive(:court_for).and_return( 'call1', 'call2', 'call3' )
@@ -38,7 +38,7 @@ describe CourtPostcodeChecker do
     }
 
     it 'calls court_for on the CourtfinderAPI, passing the AREA_OF_LAW and given postcode' do
-      expect_any_instance_of(CourtfinderAPI).to receive(:court_for).
+      expect_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).
                                                     once.
                                                     with(subject.class::AREA_OF_LAW, 'mypostcode').
                                                     and_return(dummy_court_objects)
@@ -47,7 +47,7 @@ describe CourtPostcodeChecker do
 
     context 'when the CourtfinderAPI does not throw an error' do
       before do
-        allow_any_instance_of(CourtfinderAPI).to receive(:court_for).and_return(dummy_court_objects)
+        allow_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).and_return(dummy_court_objects)
       end
 
       it 'calls choose_from with the returned objects' do
@@ -63,7 +63,7 @@ describe CourtPostcodeChecker do
 
     context 'when the CourtfinderAPI throws an error' do
       before do
-        allow_any_instance_of(CourtfinderAPI).to receive(:court_for).and_raise(Exception)
+        allow_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).and_raise(Exception)
       end
 
       it 'allows the error to propagate out un-caught' do
@@ -78,12 +78,12 @@ describe CourtPostcodeChecker do
         [
           {key: 'value'},
           {slug: 'slug-1'},
-          {slug: CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first}
+          {slug: C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first}
         ]
       }
 
       it 'returns the first hash whose :slug is in the COURT_SLUGS_USING_THIS_APP' do
-        expect(subject.send(:choose_from,arg)).to eq({slug: CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
+        expect(subject.send(:choose_from,arg)).to eq({slug: C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
       end
     end
   end

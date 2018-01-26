@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CourtfinderAPI do
+describe C100App::CourtfinderAPI do
   describe '#court_for' do
     let(:dummy_json){ '[{"search": "result"}]' }
     before do
@@ -94,7 +94,7 @@ describe CourtfinderAPI do
     end
 
     it 'logs info about the exception using the Rails logger' do
-      expect(Rails.logger).to receive(:info).with({caller: 'CourtfinderAPI', method: 'court_for', error: exception}.to_json)
+      expect(Rails.logger).to receive(:info).with({caller: 'C100App::CourtfinderAPI', method: 'court_for', error: exception}.to_json)
       subject.send(:log_error, msg, exception)
     end
 

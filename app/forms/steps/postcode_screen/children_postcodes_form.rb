@@ -1,8 +1,6 @@
 module Steps
   module PostcodeScreen
     class ChildrenPostcodesForm < BaseForm
-      include SingleQuestionForm
-
       attribute :children_postcodes, String
 
       private
@@ -10,8 +8,8 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        record_to_persist.update(
-          attributes_map
+        c100_application.update(
+          children_postcodes: children_postcodes
         )
       end
     end

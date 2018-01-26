@@ -23,7 +23,7 @@ module C100App
       end
 
     # CourtPostcodeChecker already logs the exception
-    rescue
+    rescue StandardError
       show(:error_but_continue)
     end
   end
