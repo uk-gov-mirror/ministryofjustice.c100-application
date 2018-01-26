@@ -1,8 +1,8 @@
 module Summary
   module Sections
-    class HeaderSection < BaseSectionPresenter
+    class FormHeader < BaseSectionPresenter
       def to_partial_path
-        'shared/header'
+        'shared/form_header'
       end
 
       def show?
