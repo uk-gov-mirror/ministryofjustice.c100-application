@@ -31,5 +31,14 @@ RSpec.describe Steps::PostcodeScreen::ChildrenPostcodesForm do
         expect(subject.save).to be(true)
       end
     end
+
+    context 'when no c100_application is associated with the form' do
+      let(:c100_application) { nil }
+
+      it 'raises an error' do
+        expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
+      end
+    end
+
   end
 end
