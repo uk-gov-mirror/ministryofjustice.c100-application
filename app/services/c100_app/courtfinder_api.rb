@@ -5,7 +5,7 @@ module C100App
   class CourtfinderAPI
     attr_accessor :logger
     API_URL = "https://courttribunalfinder.service.gov.uk/%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
-    COURTFINDER_ERROR_MSG="Exception hitting Courtfinder:".freeze
+    COURTFINDER_ERROR_MSG = "Exception hitting Courtfinder:".freeze
 
     def initialize(params = {})
       self.logger = params[:logger] || Rails.logger
