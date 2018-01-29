@@ -41,6 +41,12 @@ module Summary
       end
     end
 
+    describe '#show_header?' do
+      it 'is true by default' do
+        expect(subject.show_header?).to eq(true)
+      end
+    end
+
     describe '#t' do
       subject { described_class.new(c100_application, name: :my_presenter) }
 
