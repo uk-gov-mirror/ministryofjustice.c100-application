@@ -1,8 +1,6 @@
 module Steps
   module Miam
     class ConsentOrderController < Steps::MiamStepController
-      include StartingPointStep
-
       def edit
         @form_object = ConsentOrderForm.new(
           c100_application: current_c100_application,
