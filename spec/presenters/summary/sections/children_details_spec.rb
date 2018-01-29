@@ -1,8 +1,17 @@
 require 'spec_helper'
 
 module Summary
-  describe Sections::Children do
-    let(:c100_application) { instance_double(C100Application, children: [child], applicants: [], respondents: []) }
+  describe Sections::ChildrenDetails do
+    let(:c100_application) {
+      instance_double(C100Application,
+        children: [child],
+        applicants: [],
+        respondents: [],
+        children_known_to_authorities: 'yes',
+        children_known_to_authorities_details: 'details',
+        children_protection_plan: 'no',
+      )
+    }
 
     let(:child) {
       instance_double(Child,
@@ -26,7 +35,7 @@ module Summary
 
     describe '#name' do
       it 'is expected to be correct' do
-        expect(subject.name).to eq(:children)
+        expect(subject.name).to eq(:children_details)
       end
     end
 
@@ -36,7 +45,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(9)
       end
 
       it 'has the correct rows in the right order' do
@@ -65,6 +74,18 @@ module Summary
         expect(answers[5]).to be_an_instance_of(MultiAnswer)
         expect(answers[5].question).to eq(:child_orders)
         expect(answers[5].value).to eq(['an_order'])
+
+        expect(answers[6]).to be_an_instance_of(Answer)
+        expect(answers[6].question).to eq(:children_known_to_authorities)
+        expect(c100_application).to have_received(:children_known_to_authorities)
+
+        expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[7].question).to eq(:children_known_to_authorities_details)
+        expect(c100_application).to have_received(:children_known_to_authorities_details)
+
+        expect(answers[8]).to be_an_instance_of(Answer)
+        expect(answers[8].question).to eq(:children_protection_plan)
+        expect(c100_application).to have_received(:children_protection_plan)
       end
 
       context 'when `dob` is nil' do
