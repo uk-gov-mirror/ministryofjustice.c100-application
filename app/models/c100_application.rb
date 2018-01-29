@@ -10,6 +10,7 @@ class C100Application < ApplicationRecord
   has_many :relationships,    dependent: :destroy
 
   # Remember, we are using UUIDs as the record IDs, we can't rely on ID sequential ordering
+  has_many :people,      -> { order(created_at: :asc) }
   has_many :children,    -> { order(created_at: :asc) }, dependent: :destroy
   has_many :applicants,  -> { order(created_at: :asc) }, dependent: :destroy
   has_many :respondents, -> { order(created_at: :asc) }, dependent: :destroy

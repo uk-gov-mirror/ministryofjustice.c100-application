@@ -25,7 +25,8 @@ module Summary
           Sections::RiskConcerns,
           Sections::AdditionalInformation,
           Sections::SectionHeader,
-          Sections::Children,
+          Sections::ChildrenDetails,
+          Sections::ChildrenRelationships,
         ])
       end
     end
