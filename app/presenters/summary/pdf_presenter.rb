@@ -8,12 +8,14 @@ module Summary
 
     def sections
       [
-        Sections::HeaderSection.new(c100_application, name: :c100_form),
+        Sections::FormHeader.new(c100_application, name: :c100_form),
         Sections::HelpWithFees.new(c100_application),
         Sections::ApplicantRespondent.new(c100_application),
         Sections::NatureOfApplication.new(c100_application),
         Sections::RiskConcerns.new(c100_application),
         Sections::AdditionalInformation.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :children),
+        Sections::Children.new(c100_application),
       ].select(&:show?)
     end
 

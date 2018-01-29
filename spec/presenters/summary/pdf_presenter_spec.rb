@@ -18,12 +18,14 @@ module Summary
 
       it 'has the right sections in the right order' do
         expect(subject.sections).to match_instances_array([
-          Sections::HeaderSection,
+          Sections::FormHeader,
           Sections::HelpWithFees,
           Sections::ApplicantRespondent,
           Sections::NatureOfApplication,
           Sections::RiskConcerns,
           Sections::AdditionalInformation,
+          Sections::SectionHeader,
+          Sections::Children,
         ])
       end
     end
