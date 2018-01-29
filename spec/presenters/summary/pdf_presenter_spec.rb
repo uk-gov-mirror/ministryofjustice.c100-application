@@ -27,6 +27,8 @@ module Summary
           Sections::SectionHeader,
           Sections::ChildrenDetails,
           Sections::ChildrenRelationships,
+          Sections::SectionHeader,
+          Sections::MiamRequirement,
         ])
       end
     end

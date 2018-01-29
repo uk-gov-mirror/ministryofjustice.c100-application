@@ -6,6 +6,7 @@ module Summary
       @c100_application = c100_application
     end
 
+    # rubocop:disable Metrics/AbcSize
     def sections
       [
         Sections::FormHeader.new(c100_application, name: :c100_form),
@@ -17,8 +18,11 @@ module Summary
         Sections::SectionHeader.new(c100_application, name: :children),
         Sections::ChildrenDetails.new(c100_application),
         Sections::ChildrenRelationships.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :miam_requirement),
+        Sections::MiamRequirement.new(c100_application),
       ].select(&:show?)
     end
+    # rubocop:enable Metrics/AbcSize
 
     def pdf_params
       { pdf: pdf_filename, footer: { right: '[page]' } }
