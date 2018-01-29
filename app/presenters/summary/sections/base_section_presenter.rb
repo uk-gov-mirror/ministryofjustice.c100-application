@@ -25,6 +25,11 @@ module Summary
 
       protected
 
+      def t(key, opts = {})
+        scope = opts.delete(:scope) { "check_answers.#{name}" }
+        I18n.translate!(key, {scope: scope}.merge(opts))
+      end
+
       # :nocov:
       def answers
         raise 'must be implemented in subclasses'
