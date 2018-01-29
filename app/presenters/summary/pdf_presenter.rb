@@ -16,6 +16,7 @@ module Summary
         Sections::AdditionalInformation.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :children),
         Sections::ChildrenDetails.new(c100_application),
+        Sections::ChildrenRelationships.new(c100_application),
       ].select(&:show?)
     end
 

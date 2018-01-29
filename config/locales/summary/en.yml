@@ -50,6 +50,7 @@ en:
       risk_concerns: Concerns about risk of harm
       additional_information: Additional information
       children_details: Summary of children’s details
+      children_relationships: Children’s relationship with parties
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
@@ -153,3 +154,11 @@ en:
       question: Are any of the children the subject of a child protection plan?
       answers:
         <<: *YESNO
+    applicants_relationships:
+      question: Applicant(s)
+    respondents_relationships:
+      question: Respondent(s)
+    other_parties_relationships:
+      question: Other parties
+    children_residence:
+      question: Who do the children currently live with?

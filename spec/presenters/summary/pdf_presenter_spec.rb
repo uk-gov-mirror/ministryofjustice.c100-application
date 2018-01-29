@@ -26,6 +26,7 @@ module Summary
           Sections::AdditionalInformation,
           Sections::SectionHeader,
           Sections::ChildrenDetails,
+          Sections::ChildrenRelationships,
         ])
       end
     end
