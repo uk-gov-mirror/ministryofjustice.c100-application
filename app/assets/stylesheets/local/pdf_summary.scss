@@ -4,7 +4,7 @@
   width: 70%;
   margin: 0 auto;
 
-  .pdf-header {
+  .form-header {
     h1 {
       font-size: 110%;
       font-weight: bold;
@@ -12,21 +12,25 @@
     }
   }
 
-  p.generated-at {
-    font-size: 60%;
-  }
-
-  h2.section-header {
-    font-size: 110%;
+  h2.main-section-header {
+    font-size: 90%;
     font-weight: 700;
     border-bottom: 1px solid #6f777b;
-    margin: 40px 0 0;
-    padding: 5px 0;
+    padding: 2px 0 0 0;
+  }
+
+  h3.section-header {
+    font-size: 70%;
+    font-weight: 700;
+    border-bottom: 1px solid #6f777b;
+    padding: 2px 0 0 0;
   }
 
   table {
     border-spacing: 0;
     width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   table.no-borders {
@@ -40,13 +44,15 @@
     font-size: 70%;
     border-bottom: 1px solid #bfc1c3;
     margin: 0;
-    padding: 10px 5px;
   }
 
-  td.question {
-    font-weight: 700;
+  td.question,
+  td.answer {
     width: 50%;
     padding-right: 10px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    font-size: 60%;
   }
 
   table.subtable {
@@ -55,6 +61,7 @@
     }
     td.question {
       font-weight: 500;
+      font-size: 70%;
       width: 100%;
     }
     td.answer {
@@ -92,7 +99,7 @@
   #additional_information {
     td {
       border: none;
-      padding: 5px 0 0;
+      padding: 5px 0 0 0;
     }
     td.question {
       font-weight: 500;
