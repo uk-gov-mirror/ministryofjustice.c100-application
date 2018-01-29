@@ -24,7 +24,8 @@ module Summary
           Sections::NatureOfApplication,
           Sections::RiskConcerns,
           Sections::AdditionalInformation,
-          Sections::SectionHeader
+          Sections::SectionHeader,
+          Sections::Children,
         ])
       end
     end
