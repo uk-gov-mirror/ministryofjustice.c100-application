@@ -467,6 +467,8 @@ en:
                 <li>the court has no concerns about the safety or welfare of anyone involved</li>
               </ul>
             </div>
+          info_notice: |
+            This question only applies to any new agreement. Don’t include any previous agreements or orders the court may have made.  
       child_protection_cases:
         edit:
           page_title: Child protection cases
