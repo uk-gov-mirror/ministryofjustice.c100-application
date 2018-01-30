@@ -35,6 +35,7 @@ module Summary
           Sections::ApplicationReasons,
           Sections::SectionHeader,
           Sections::UrgentHearing,
+          Sections::WithoutNoticeHearing,
         ])
       end
     end
