@@ -43,6 +43,7 @@ en:
         details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order.
     section_headers:
       children: 1. The Child(ren)
+      miam_requirement: 2. Requirement to attend a Mediation, Information and Assessment Meeting (MIAM)
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -162,3 +163,19 @@ en:
       question: Other parties
     children_residence:
       question: Who do the children currently live with?
+    miam_child_protection:
+      question: Current or previous court cases about emergency protection, care or supervision order
+      answers:
+        <<: *YESNO
+    miam_exemption_claimed:
+      question: Exemption claimed from the requirement to attend a MIAM
+      answers:
+        <<: *YESNO
+    miam_certificate_received:
+      question: MIAM certificate received from mediator
+      answers:
+        <<: *YESNO
+    miam_attended:
+      question: Attended a MIAM
+      answers:
+        <<: *YESNO

@@ -23,6 +23,11 @@ module Summary
         answers.any?
       end
 
+      # May be overridden in subclasses to hide/show if appropriate
+      def show_header?
+        true
+      end
+
       protected
 
       def t(key, opts = {})
