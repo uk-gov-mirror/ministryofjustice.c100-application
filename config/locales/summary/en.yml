@@ -1,5 +1,7 @@
 en:
   dictionary:
+    not_applicable: &not_applicable "Not applicable"
+
     YESNO: &YESNO
       'yes': 'Yes'
       'no': 'No'
@@ -46,6 +48,7 @@ en:
       miam_requirement: 2. Requirement to attend a Mediation, Information and Assessment Meeting (MIAM)
       mediator_certification: 4. Mediator certifies that the prospective applicant is exempt from attendance at Mediation Information and Assessment Meeting (MIAM) or confirms MIAM attendance
       application_reasons: 5. Why are you making this application?
+      urgent_and_without_notice: 6. Urgent and without notice hearings
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -54,12 +57,14 @@ en:
       additional_information: Additional information
       children_details: Summary of children’s details
       children_relationships: Children’s relationship with parties
+      urgent_hearing: Urgent hearing
+      without_notice_hearing: Without notice hearing
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     hwf_reference_number:
       question: Reference number
-      absence_answer: Not applicable
+      absence_answer: *not_applicable
     applicants_full_name:
       question: Full name of applicant(s)
     respondents_full_name:
@@ -185,7 +190,7 @@ en:
       question: 'Mediator details:'
       answers:
         'yes': ''
-        'no': Not applicable
+        'no': *not_applicable
     miam_certification_number:
       question: FMC registration no
     miam_certification_date:
@@ -196,3 +201,27 @@ en:
         <<: *YESNO
     application_details:
       question: Why are you making this application?
+    urgent_hearing_details:
+      question: 'Details:'
+      answers:
+        'yes': ''
+        'no': *not_applicable
+    without_notice_hearing_details:
+      question: 'Details:'
+      answers:
+        'yes': ''
+        'no': *not_applicable
+    without_notice_details:
+      question: Reasons for the application to be considered without notice
+    without_notice_impossible:
+      question: Do you require a without notice hearing because it is not possible to give notice including abridged or informal notice?
+      answers:
+        <<: *YESNO
+    without_notice_impossible_details:
+      question: ''
+    without_notice_frustrate:
+      question: Do you require a without notice hearing because notice to a respondent will frustrate the order that is being applied for?
+      answers:
+        <<: *YESNO
+    without_notice_frustrate_details:
+      question: ''
