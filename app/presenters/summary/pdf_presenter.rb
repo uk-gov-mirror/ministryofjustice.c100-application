@@ -24,9 +24,14 @@ module Summary
         Sections::MediatorCertification.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :application_reasons),
         Sections::ApplicationReasons.new(c100_application),
+<<<<<<< HEAD
         Sections::SectionHeader.new(c100_application, name: :urgent_and_without_notice),
         Sections::UrgentHearing.new(c100_application),
         Sections::WithoutNoticeHearing.new(c100_application),
+=======
+        Sections::SectionHeader.new(c100_application, name: :international_element),
+        Sections::InternationalElement.new(c100_application)
+>>>>>>> 73e01cb... add PDF section for Cases with an international element
       ].select(&:show?)
     end
     # rubocop:enable Metrics/AbcSize

@@ -36,6 +36,8 @@ module Summary
           Sections::SectionHeader,
           Sections::UrgentHearing,
           Sections::WithoutNoticeHearing,
+          Sections::SectionHeader,
+          Sections::InternationalElement,
         ])
       end
     end
