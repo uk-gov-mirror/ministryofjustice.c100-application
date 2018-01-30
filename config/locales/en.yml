@@ -1075,7 +1075,7 @@ en:
         precision: 0
   date:
     formats:
-      compact: '%d/%m/%Y'
+      default: '%d-%m-%Y'
       long: '%e %B %Y'
   time:
     case_expires_in:
