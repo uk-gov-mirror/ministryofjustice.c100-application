@@ -125,23 +125,23 @@ en:
       answers:
         <<: *YESNO
     international_resident:
-      question: Does anyone significant to your children live in another country?
+      question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
       answers:
         <<: *YESNO
     international_resident_details:
-      question: Details
+      question: ''
     international_jurisdiction:
-      question: Do you think the other person may have grounds to apply for a similar order in another country?
+      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)? 
       answers:
         <<: *YESNO
     international_jurisdiction_details:
-      question: Details
+      question: ''
     international_request:
-      question: Has a court case about your children already started in another country?
+      question: Has a request been made or should a request be made to a Central Authority or other competent authority in a foreign state or a consular authority in England and Wales?
       answers:
         <<: *YESNO
     international_request_details:
-      question: Details
+      question: ''
 
     language_assistance:
       question: Child or people involved need language assistance during the course of the proceedings
