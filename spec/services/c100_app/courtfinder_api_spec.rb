@@ -1,6 +1,33 @@
 require 'rails_helper'
 
 describe C100App::CourtfinderAPI do
+  describe '#initialize' do
+    context 'given arguments' do
+      subject{ described_class.new(params) }
+      context 'given a :logger' do
+        let(:params){ {logger: double('logger') } }
+      
+        it 'stores the given logger' do
+          expect(subject.logger).to eq(params[:logger])
+        end
+      end
+
+      context 'given no :logger' do
+        let(:params){ {} }
+      
+        it 'stores the Rails logger' do
+          expect(subject.logger).to eq(Rails.logger)
+        end
+      end
+    end
+
+    context 'given no arguments' do
+      it 'stores the Rails logger' do
+        expect( described_class.new.logger ).to eq(Rails.logger)
+      end
+    end
+  end
+
   describe '#court_for' do
     let(:dummy_json){ '[{"search": "result"}]' }
     before do
@@ -47,6 +74,19 @@ describe C100App::CourtfinderAPI do
       end
     end
 
+    context 'when the postcode is mixed-case' do
+      it "retains the mixed-case characters in the postcode" do
+        expect(subject).to receive(:construct_url).with('search/results', 'aol', 'myPcD')
+        subject.search('aol', "my PcD")   
+      end
+    end
+
+    it 'opens the constructed url' do
+      allow(subject).to receive(:construct_url).with('search/results', 'aol', 'pcd').and_return 'constructed url'
+      expect(subject).to receive(:open).with('constructed url').and_return(mock_response)
+      subject.search('aol', 'pcd')
+    end
+
     it 'returns the response' do
       expect(subject.search('aol', 'pcd')).to eq('response body')
     end
@@ -67,9 +107,9 @@ describe C100App::CourtfinderAPI do
   describe "#handle_error" do
     let(:e){ double('exception') }
 
-    it 'logs the error' do
+    it 'logs the error with the COURTFINDER_ERROR_MSG' do
       allow(subject).to receive(:raise)
-      expect(subject).to receive(:log_error).with(anything, e)
+      expect(subject).to receive(:log_error).with(C100App::CourtfinderAPI::COURTFINDER_ERROR_MSG, e)
       subject.send(:handle_error, e)
     end
 
@@ -84,17 +124,17 @@ describe C100App::CourtfinderAPI do
     let(:msg){ "blah" }
     let(:exception){ double('Exception') }
     before do
-      allow(Rails.logger).to receive(:info).with(anything)
+      allow(subject.logger).to receive(:info).with(anything)
       allow(Raven).to receive(:capture_exception)
     end
 
-    it 'logs the message as info using the Rails logger' do
-      expect(Rails.logger).to receive(:info).with(msg)
+    it 'logs the message as info using its own logger' do
+      expect(subject.logger).to receive(:info).with(msg)
       subject.send(:log_error, msg, exception)
     end
 
-    it 'logs info about the exception using the Rails logger' do
-      expect(Rails.logger).to receive(:info).with({caller: 'C100App::CourtfinderAPI', method: 'court_for', error: exception}.to_json)
+    it 'logs info about the exception using its own logger' do
+      expect(subject.logger).to receive(:info).with({caller: 'C100App::CourtfinderAPI', method: 'court_for', error: exception}.to_json)
       subject.send(:log_error, msg, exception)
     end
 
