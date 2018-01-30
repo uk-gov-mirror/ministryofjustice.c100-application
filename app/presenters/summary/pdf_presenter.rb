@@ -24,6 +24,8 @@ module Summary
         Sections::MediatorCertification.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :application_reasons),
         Sections::ApplicationReasons.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :urgent_and_without_notice),
+        Sections::UrgentHearing.new(c100_application),
       ].select(&:show?)
     end
     # rubocop:enable Metrics/AbcSize

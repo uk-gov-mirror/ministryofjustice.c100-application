@@ -33,6 +33,8 @@ module Summary
           Sections::MediatorCertification,
           Sections::SectionHeader,
           Sections::ApplicationReasons,
+          Sections::SectionHeader,
+          Sections::UrgentHearing,
         ])
       end
     end
