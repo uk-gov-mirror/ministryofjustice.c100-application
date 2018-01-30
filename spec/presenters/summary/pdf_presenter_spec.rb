@@ -29,6 +29,8 @@ module Summary
           Sections::ChildrenRelationships,
           Sections::SectionHeader,
           Sections::MiamRequirement,
+          Sections::SectionHeader,
+          Sections::MediatorCertification,
         ])
       end
     end
