@@ -45,6 +45,7 @@ en:
       children: 1. The Child(ren)
       miam_requirement: 2. Requirement to attend a Mediation, Information and Assessment Meeting (MIAM)
       mediator_certification: 4. Mediator certifies that the prospective applicant is exempt from attendance at Mediation Information and Assessment Meeting (MIAM) or confirms MIAM attendance
+      application_reasons: 5. Why are you making this application?
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -189,3 +190,9 @@ en:
       question: FMC registration no
     miam_certification_date:
       question: Date
+    applied_for_permission:
+      question: Have you applied to the court for permission to make this application?
+      answers:
+        <<: *YESNO
+    application_details:
+      question: Why are you making this application?

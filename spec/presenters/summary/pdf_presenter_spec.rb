@@ -31,6 +31,8 @@ module Summary
           Sections::MiamRequirement,
           Sections::SectionHeader,
           Sections::MediatorCertification,
+          Sections::SectionHeader,
+          Sections::ApplicationReasons,
         ])
       end
     end
