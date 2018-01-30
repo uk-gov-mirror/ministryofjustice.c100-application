@@ -53,7 +53,7 @@ module Summary
         expect(answers[0].question).to eq(:child_full_name)
         expect(answers[0].value).to eq('name')
 
-        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[1]).to be_an_instance_of(DateAnswer)
         expect(answers[1].question).to eq(:child_dob)
         expect(answers[1].value).to eq(Date.new(2018, 1, 20))
 
