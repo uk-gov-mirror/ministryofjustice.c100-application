@@ -38,6 +38,8 @@ module Summary
           Sections::WithoutNoticeHearing,
           Sections::SectionHeader,
           Sections::InternationalElement,
+          Sections::SectionHeader,
+          Sections::LitigationCapacity,
         ])
       end
     end

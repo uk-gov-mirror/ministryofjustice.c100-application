@@ -50,6 +50,7 @@ en:
       application_reasons: 5. Why are you making this application?
       urgent_and_without_notice: 6. Urgent and without notice hearings
       international_element: 8. Cases with an international element
+      litigation_capacity: 9. Factors affecting ability to participate in proceedings
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -207,7 +208,7 @@ en:
       answers:
         <<: *YESNO
     miam_certification_details:
-      question: 'Mediator details:'
+      question: 'Details:'
       answers:
         'yes': ''
         'no': *not_applicable
@@ -245,3 +246,15 @@ en:
         <<: *YESNO
     without_notice_frustrate_details:
       question: ''
+
+    reduced_litigation_capacity:
+      question: 'Details:'
+      answers:
+        'yes': ''
+        'no': *not_applicable
+    participation_capacity_details:
+      question: Details of any factors affecting litigation capacity
+    participation_referral_or_assessment_details:
+      question: Details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
+    participation_other_factors_details:
+      question: Other factors which may affect the ability of the person concerned to take part in the proceedings?
