@@ -52,6 +52,7 @@ en:
       international_element: 8. Cases with an international element
       litigation_capacity: 9. Factors affecting ability to participate in proceedings
       applicants_details: 11. About you (the applicant(s))
+      respondents_details: 12. The respondent(s)
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -67,7 +68,8 @@ en:
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     separators:
       child_index_title: Child %{index}
-      applicant_index_title: Applicant %{index}
+      applicants_details_index_title: Applicant %{index}
+      respondents_details_index_title: Respondent %{index}
     hwf_reference_number:
       question: Reference number
       absence_answer: *not_applicable
@@ -265,7 +267,7 @@ en:
 
     person_full_name:
       question: Full name
-    person_has_previous_name:
+    person_previous_name:
       question: Previous name
       answers:
         <<: *YESNO
@@ -275,6 +277,8 @@ en:
         <<: *SEX_OPTIONS
     person_dob:
       question: Date of birth
+    person_age_estimate:
+      question: Approximate age or year born
     person_birthplace:
       question: Place of birth
     person_address:
@@ -283,6 +287,8 @@ en:
       question: Lived at this address for more than 5 years?
       answers:
         <<: *YESNO
+    person_residence_history:
+      question: Previous addresses
     person_home_phone:
       question: Home telephone number
     person_mobile_phone:

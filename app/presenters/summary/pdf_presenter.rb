@@ -16,6 +16,7 @@ module Summary
         international_element_sections,
         litigation_capacity_sections,
         applicants_section,
+        respondents_section,
       ].flatten.select(&:show?)
     end
 
@@ -91,6 +92,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :applicants_details),
         Sections::ApplicantsDetails.new(c100_application),
+      ]
+    end
+
+    def respondents_section
+      [
+        Sections::SectionHeader.new(c100_application, name: :respondents_details),
+        Sections::RespondentsDetails.new(c100_application),
       ]
     end
   end

@@ -1,12 +1,12 @@
 module Summary
   module Sections
-    class ApplicantsDetails < PeopleDetails
+    class RespondentsDetails < PeopleDetails
       def name
-        :applicants_details
+        :respondents_details
       end
 
       def record_collection
-        c100.applicants
+        c100.respondents
       end
     end
   end

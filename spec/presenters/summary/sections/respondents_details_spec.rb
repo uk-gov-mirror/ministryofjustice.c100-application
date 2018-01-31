@@ -1,16 +1,16 @@
 require 'spec_helper'
 
 module Summary
-  describe Sections::ApplicantsDetails do
-    let(:c100_application) { instance_double(C100Application, applicants: [applicant]) }
+  describe Sections::RespondentsDetails do
+    let(:c100_application) { instance_double(C100Application, respondents: [respondent]) }
 
-    let(:applicant) {
-      instance_double(Applicant,
+    let(:respondent) {
+      instance_double(Respondent,
         full_name: 'fullname',
         has_previous_name: has_previous_name,
         previous_name: previous_name,
-        dob: Date.new(2018, 1, 20),
-        age_estimate: nil,
+        dob: dob,
+        age_estimate: age_estimate,
         gender: 'female',
         birthplace: 'birthplace',
         address: 'address',
@@ -26,11 +26,13 @@ module Summary
 
     let(:has_previous_name) { 'no' }
     let(:previous_name) { nil }
+    let(:dob) { Date.new(2018, 1, 20) }
+    let(:age_estimate) { nil }
 
     let(:answers) { subject.answers }
 
     describe '#name' do
-      it { expect(subject.name).to eq(:applicants_details) }
+      it { expect(subject.name).to eq(:respondents_details) }
     end
 
     describe '#show_header?' do
@@ -39,7 +41,7 @@ module Summary
 
     describe '#record_collection' do
       it {
-        expect(c100_application).to receive(:applicants)
+        expect(c100_application).to receive(:respondents)
         subject.record_collection
       }
     end
@@ -51,7 +53,7 @@ module Summary
 
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Separator)
-        expect(answers[0].title).to eq('applicants_details_index_title')
+        expect(answers[0].title).to eq('respondents_details_index_title')
         expect(answers[0].i18n_opts).to eq({index: 1})
 
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
@@ -111,6 +113,21 @@ module Summary
           expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[2].question).to eq(:person_previous_name)
           expect(answers[2].value).to eq('previous_name')
+        end
+      end
+
+      context 'when `dob` is nil' do
+        let(:dob) { nil }
+        let(:age_estimate) { 18 }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(12)
+        end
+
+        it 'uses the age estimate' do
+          expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[4].question).to eq(:person_age_estimate)
+          expect(answers[4].value).to eq(18)
         end
       end
     end
