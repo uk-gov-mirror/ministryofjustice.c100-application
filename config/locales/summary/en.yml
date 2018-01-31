@@ -265,7 +265,7 @@ en:
 
     person_full_name:
       question: Full name
-    person_has_previous_name:
+    person_previous_name:
       question: Previous name
       answers:
         <<: *YESNO
@@ -283,6 +283,8 @@ en:
       question: Lived at this address for more than 5 years?
       answers:
         <<: *YESNO
+    person_residence_history:
+      question: Previous addresses
     person_home_phone:
       question: Home telephone number
     person_mobile_phone:
