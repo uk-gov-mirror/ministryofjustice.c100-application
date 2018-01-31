@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 module Summary
-  describe Sections::ApplicantsDetails do
-    let(:c100_application) { instance_double(C100Application, applicants: [applicant]) }
+  describe Sections::RespondentsDetails do
+    let(:c100_application) { instance_double(C100Application, respondents: [respondent]) }
 
-    let(:applicant) {
-      instance_double(Applicant,
+    let(:respondent) {
+      instance_double(Respondent,
         full_name: 'fullname',
         has_previous_name: has_previous_name,
         previous_name: previous_name,
@@ -29,7 +29,7 @@ module Summary
     let(:answers) { subject.answers }
 
     describe '#name' do
-      it { expect(subject.name).to eq(:applicants_details) }
+      it { expect(subject.name).to eq(:respondents_details) }
     end
 
     describe '#show_header?' do
@@ -38,7 +38,7 @@ module Summary
 
     describe '#record_collection' do
       it {
-        expect(c100_application).to receive(:applicants)
+        expect(c100_application).to receive(:respondents)
         subject.record_collection
       }
     end
@@ -50,7 +50,7 @@ module Summary
 
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Separator)
-        expect(answers[0].title).to eq('applicants_details_index_title')
+        expect(answers[0].title).to eq('respondents_details_index_title')
         expect(answers[0].i18n_opts).to eq({index: 1})
 
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
