@@ -18,8 +18,9 @@ module Summary
 
       # rubocop:disable Metrics/AbcSize
       def children_personal_details
-        c100.children.map do |child|
+        c100.children.map.with_index(1) do |child, index|
           [
+            Separator.new(:child_index_title, index: index),
             FreeTextAnswer.new(:child_full_name, child.full_name),
             DateAnswer.new(:child_dob, child.dob),
             FreeTextAnswer.new(:child_age_estimate, child.age_estimate), # This shows only if a value is present
