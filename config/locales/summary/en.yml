@@ -51,6 +51,7 @@ en:
       urgent_and_without_notice: 6. Urgent and without notice hearings
       international_element: 8. Cases with an international element
       litigation_capacity: 9. Factors affecting ability to participate in proceedings
+      applicants_details: 11. About you (the applicant(s))
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -64,6 +65,8 @@ en:
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
+    separators:
+      applicant_index_title: Applicant %{index}
     hwf_reference_number:
       question: Reference number
       absence_answer: *not_applicable
@@ -258,3 +261,30 @@ en:
       question: Details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
     participation_other_factors_details:
       question: Other factors which may affect the ability of the person concerned to take part in the proceedings?
+
+    person_full_name:
+      question: Full name
+    person_has_previous_name:
+      question: Previous name
+      answers:
+        <<: *YESNO
+    person_sex:
+      question: Sex
+      answers:
+        <<: *SEX_OPTIONS
+    person_dob:
+      question: Date of birth
+    person_birthplace:
+      question: Place of birth
+    person_address:
+      question: Address
+    person_residence_requirement_met:
+      question: Lived at this address for more than 5 years?
+      answers:
+        <<: *YESNO
+    person_home_phone:
+      question: Home telephone number
+    person_mobile_phone:
+      question: Mobile telephone number
+    person_email:
+      question: Email address

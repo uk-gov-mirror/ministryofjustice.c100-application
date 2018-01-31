@@ -40,6 +40,8 @@ module Summary
           Sections::InternationalElement,
           Sections::SectionHeader,
           Sections::LitigationCapacity,
+          Sections::SectionHeader,
+          Sections::ApplicantsDetails,
         ])
       end
     end
