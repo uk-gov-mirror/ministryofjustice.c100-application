@@ -66,6 +66,7 @@ en:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     separators:
+      child_index_title: Child %{index}
       applicant_index_title: Applicant %{index}
     hwf_reference_number:
       question: Reference number
@@ -152,7 +153,7 @@ en:
       answers:
         <<: *YESNO
     child_full_name:
-      question: Child full name
+      question: Full name
     child_dob:
       question: Date of birth
     child_age_estimate:
