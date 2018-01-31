@@ -277,6 +277,8 @@ en:
         <<: *SEX_OPTIONS
     person_dob:
       question: Date of birth
+    person_age_estimate:
+      question: Approximate age or year born
     person_birthplace:
       question: Place of birth
     person_address:
