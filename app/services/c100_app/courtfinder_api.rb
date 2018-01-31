@@ -5,6 +5,7 @@ module C100App
   class CourtfinderAPI
     attr_accessor :logger
     API_URL = "https://courttribunalfinder.service.gov.uk/%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
+    COURTFINDER_ERROR_MSG = "Exception hitting Courtfinder:".freeze
 
     def initialize(params = {})
       self.logger = params[:logger] || Rails.logger
@@ -32,13 +33,13 @@ module C100App
     # For now, just log it and re-raise - the caller should know what to do
     # better than we can (Dev principle!)
     def handle_error(e)
-      log_error("Exception hitting Courtfinder:", e)
+      log_error(COURTFINDER_ERROR_MSG, e)
       raise
     end
 
     def log_error(msg, exception)
-      Rails.logger.info(msg)
-      Rails.logger.info({caller: self.class.name, method: 'court_for', error: exception}.to_json)
+      logger.info(msg)
+      logger.info({caller: self.class.name, method: 'court_for', error: exception}.to_json)
       Raven.capture_exception(exception)
     end
   end

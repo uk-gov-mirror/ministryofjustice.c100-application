@@ -22,11 +22,20 @@ describe C100App::CourtPostcodeChecker do
         "\n\nA1AAA\n\nB1BBB\n\n"
       }
       it 'does not call court_for with the blank lines' do
-        expect(subject).to receive(:court_for).once.with('A1AAA')
-        expect(subject).to receive(:court_for).once.with('B1BBB')
+        expect(subject).to_not receive(:court_for).with('')
         subject.courts_for(postcodes)
       end
     end
+    context 'when the given postcodes contain spaces' do
+      let(:postcodes){
+        "B1 BBB"
+      }
+      it 'does not strip the spaces before calling court_for' do
+        expect(subject).to receive(:court_for).with('B1 BBB')
+        subject.courts_for(postcodes)
+      end
+    end
+
     context 'when given nil' do
       let(:postcodes){ nil }
       it 'does not raise an error' do
@@ -35,6 +44,15 @@ describe C100App::CourtPostcodeChecker do
     end
     it 'returns the results of the court_for calls' do
       expect(subject.courts_for("A1AAA\nB1BBB")).to eq(['call1', 'call2'])
+    end
+
+    context 'when court_for returns nil' do
+      before do
+        allow(subject).to receive(:court_for).and_return(nil)
+      end
+      it 'removes the nils' do
+        expect(subject.courts_for("A1AAA\nB1BBB")).to eq([])
+      end
     end
   end
 
@@ -90,6 +108,18 @@ describe C100App::CourtPostcodeChecker do
 
       it 'returns the first hash whose :slug is in the COURT_SLUGS_USING_THIS_APP' do
         expect(subject.send(:choose_from,arg)).to eq({slug: C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
+      end
+
+      context 'with a string key' do
+        let(:arg){
+          [
+            {'slug' => 'my slug'},
+            {'slug' => C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first}
+          ]
+        }
+        it 'returns the first hash whose :slug is in the COURT_SLUGS_USING_THIS_APP' do
+          expect(subject.send(:choose_from,arg)).to eq({'slug'=> C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
+        end
       end
     end
   end
