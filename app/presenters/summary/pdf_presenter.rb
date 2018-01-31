@@ -6,30 +6,17 @@ module Summary
       @c100_application = c100_application
     end
 
-    # rubocop:disable Metrics/AbcSize
     def sections
       [
-        Sections::FormHeader.new(c100_application, name: :c100_form),
-        Sections::HelpWithFees.new(c100_application),
-        Sections::ApplicantRespondent.new(c100_application),
-        Sections::NatureOfApplication.new(c100_application),
-        Sections::RiskConcerns.new(c100_application),
-        Sections::AdditionalInformation.new(c100_application),
-        Sections::SectionHeader.new(c100_application, name: :children),
-        Sections::ChildrenDetails.new(c100_application),
-        Sections::ChildrenRelationships.new(c100_application),
-        Sections::SectionHeader.new(c100_application, name: :miam_requirement),
-        Sections::MiamRequirement.new(c100_application),
-        Sections::SectionHeader.new(c100_application, name: :mediator_certification),
-        Sections::MediatorCertification.new(c100_application),
-        Sections::SectionHeader.new(c100_application, name: :application_reasons),
-        Sections::ApplicationReasons.new(c100_application),
-        Sections::SectionHeader.new(c100_application, name: :urgent_and_without_notice),
-        Sections::UrgentHearing.new(c100_application),
-        Sections::WithoutNoticeHearing.new(c100_application),
-      ].select(&:show?)
+        c100_form_sections,
+        children_form_sections,
+        miam_requirement_sections,
+        mediator_certification_sections,
+        application_reasons_sections,
+        urgent_and_without_notice_sections,
+        international_element_sections,
+      ].flatten.select(&:show?)
     end
-    # rubocop:enable Metrics/AbcSize
 
     def pdf_params
       { pdf: pdf_filename, footer: { right: '[page]' } }
@@ -39,6 +26,61 @@ module Summary
 
     def pdf_filename
       'c100_application'.freeze # TODO: to be decided
+    end
+
+    def c100_form_sections
+      [
+        Sections::FormHeader.new(c100_application, name: :c100_form),
+        Sections::HelpWithFees.new(c100_application),
+        Sections::ApplicantRespondent.new(c100_application),
+        Sections::NatureOfApplication.new(c100_application),
+        Sections::RiskConcerns.new(c100_application),
+        Sections::AdditionalInformation.new(c100_application)
+      ]
+    end
+
+    def children_form_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :children),
+        Sections::ChildrenDetails.new(c100_application),
+        Sections::ChildrenRelationships.new(c100_application)
+      ]
+    end
+
+    def miam_requirement_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :miam_requirement),
+        Sections::MiamRequirement.new(c100_application),
+      ]
+    end
+
+    def mediator_certification_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :mediator_certification),
+        Sections::MediatorCertification.new(c100_application),
+      ]
+    end
+
+    def application_reasons_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :application_reasons),
+        Sections::ApplicationReasons.new(c100_application),
+      ]
+    end
+
+    def urgent_and_without_notice_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :urgent_and_without_notice),
+        Sections::UrgentHearing.new(c100_application),
+        Sections::WithoutNoticeHearing.new(c100_application),
+      ]
+    end
+
+    def international_element_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :international_element),
+        Sections::InternationalElement.new(c100_application)
+      ]
     end
   end
 end

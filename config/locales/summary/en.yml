@@ -49,6 +49,7 @@ en:
       mediator_certification: 4. Mediator certifies that the prospective applicant is exempt from attendance at Mediation Information and Assessment Meeting (MIAM) or confirms MIAM attendance
       application_reasons: 5. Why are you making this application?
       urgent_and_without_notice: 6. Urgent and without notice hearings
+      international_element: 8. Cases with an international element
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -123,6 +124,25 @@ en:
       question: Case with an international element or factors affecting litigation capacity
       answers:
         <<: *YESNO
+    international_resident:
+      question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
+      answers:
+        <<: *YESNO
+    international_resident_details:
+      question: ''
+    international_jurisdiction:
+      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)? 
+      answers:
+        <<: *YESNO
+    international_jurisdiction_details:
+      question: ''
+    international_request:
+      question: Has a request been made or should a request be made to a Central Authority or other competent authority in a foreign state or a consular authority in England and Wales?
+      answers:
+        <<: *YESNO
+    international_request_details:
+      question: ''
+
     language_assistance:
       question: Child or people involved need language assistance during the course of the proceedings
       answers:
