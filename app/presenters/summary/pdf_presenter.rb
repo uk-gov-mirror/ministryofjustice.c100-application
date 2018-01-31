@@ -10,11 +10,11 @@ module Summary
       [
         c100_form_sections,
         children_form_sections,
-        miam_requirement_sections,
-        mediator_certification_sections,
+        miam_sections,
         application_reasons_sections,
         urgent_and_without_notice_sections,
         international_element_sections,
+        litigation_capacity_sections,
       ].flatten.select(&:show?)
     end
 
@@ -47,15 +47,11 @@ module Summary
       ]
     end
 
-    def miam_requirement_sections
+    def miam_sections
       [
         Sections::SectionHeader.new(c100_application, name: :miam_requirement),
         Sections::MiamRequirement.new(c100_application),
-      ]
-    end
-
-    def mediator_certification_sections
-      [
+        # TODO: exemptions (section 3)
         Sections::SectionHeader.new(c100_application, name: :mediator_certification),
         Sections::MediatorCertification.new(c100_application),
       ]
@@ -80,6 +76,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :international_element),
         Sections::InternationalElement.new(c100_application)
+      ]
+    end
+
+    def litigation_capacity_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :litigation_capacity),
+        Sections::LitigationCapacity.new(c100_application),
       ]
     end
   end
