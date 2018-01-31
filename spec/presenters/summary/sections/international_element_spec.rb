@@ -21,6 +21,10 @@ module Summary
       end
     end
 
+    describe '#show_header?' do
+      it { expect(subject.show_header?).to eq(false) }
+    end
+
     describe '#answers' do
       it 'has the correct number of rows' do
         expect(answers.count).to eq(6)
