@@ -22,7 +22,7 @@ module Summary
             DateAnswer.new(:person_dob, person.dob),
             FreeTextAnswer.new(:person_age_estimate, person.age_estimate), # This shows only if a value is present
             FreeTextAnswer.new(:person_birthplace, person.birthplace),
-            FreeTextAnswer.new(:person_address, person.address),
+            FreeTextAnswer.new(:person_address, person.address, show: true),
             Answer.new(:person_residence_requirement_met, person.residence_requirement_met),
             FreeTextAnswer.new(:person_residence_history, person.residence_history),
             FreeTextAnswer.new(:person_home_phone, person.home_phone),

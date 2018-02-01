@@ -1,11 +1,12 @@
 en:
   dictionary:
     not_applicable: &not_applicable "Not applicable"
+    unknown: &unknown "Don't know"
 
     YESNO: &YESNO
       'yes': 'Yes'
       'no': 'No'
-      unknown: "Don't know"
+      unknown: *unknown
 
     SEX_OPTIONS: &SEX_OPTIONS
       female: Female
@@ -53,6 +54,7 @@ en:
       litigation_capacity: 9. Factors affecting ability to participate in proceedings
       applicants_details: 11. About you (the applicant(s))
       respondents_details: 12. The respondent(s)
+      other_parties_details: 13. Others who should be given notice
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -70,6 +72,7 @@ en:
       child_index_title: Child %{index}
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
+      other_parties_details_index_title: Person %{index}
     hwf_reference_number:
       question: Reference number
       absence_answer: *not_applicable
@@ -283,6 +286,7 @@ en:
       question: Place of birth
     person_address:
       question: Address
+      absence_answer: *unknown
     person_residence_requirement_met:
       question: Lived at this address for more than 5 years?
       answers:
