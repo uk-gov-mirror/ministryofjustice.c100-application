@@ -44,6 +44,8 @@ module Summary
           Sections::ApplicantsDetails,
           Sections::SectionHeader,
           Sections::RespondentsDetails,
+          Sections::SectionHeader,
+          Sections::OtherPartiesDetails,
         ])
       end
     end

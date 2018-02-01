@@ -15,8 +15,7 @@ module Summary
         urgent_and_without_notice_sections,
         international_element_sections,
         litigation_capacity_sections,
-        applicants_section,
-        respondents_section,
+        people_sections,
       ].flatten.select(&:show?)
     end
 
@@ -88,17 +87,14 @@ module Summary
       ]
     end
 
-    def applicants_section
+    def people_sections
       [
         Sections::SectionHeader.new(c100_application, name: :applicants_details),
         Sections::ApplicantsDetails.new(c100_application),
-      ]
-    end
-
-    def respondents_section
-      [
         Sections::SectionHeader.new(c100_application, name: :respondents_details),
         Sections::RespondentsDetails.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :other_parties_details),
+        Sections::OtherPartiesDetails.new(c100_application),
       ]
     end
   end

@@ -495,7 +495,7 @@ MethodLength:
 
 AbcSize:
   Enabled: true
-  Max: 20
+  Max: 22
 
 CyclomaticComplexity:
   Enabled: false
