@@ -47,8 +47,14 @@ module Summary
     end
 
     describe '#answers' do
+      before do
+        allow_any_instance_of(
+          RelationshipsPresenter
+        ).to receive(:relationship_to_children).with(respondent, show_person_name: false).and_return('relationships')
+      end
+
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(12)
+        expect(answers.count).to eq(13)
       end
 
       it 'has the correct rows in the right order' do
@@ -99,6 +105,10 @@ module Summary
         expect(answers[11]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[11].question).to eq(:person_email)
         expect(answers[11].value).to eq('email')
+
+        expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[12].question).to eq(:person_relationship_to_children)
+        expect(answers[12].value).to eq('relationships')
       end
 
       context 'for existing previous name' do
@@ -106,7 +116,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(12)
+          expect(answers.count).to eq(13)
         end
 
         it 'renders the previous name' do
@@ -121,7 +131,7 @@ module Summary
         let(:age_estimate) { 18 }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(12)
+          expect(answers.count).to eq(13)
         end
 
         it 'uses the age estimate' do

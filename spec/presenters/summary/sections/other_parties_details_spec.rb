@@ -47,8 +47,14 @@ module Summary
     end
 
     describe '#answers' do
+      before do
+        allow_any_instance_of(
+          RelationshipsPresenter
+        ).to receive(:relationship_to_children).with(other_party, show_person_name: false).and_return('relationships')
+      end
+
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(7)
       end
 
       it 'has the correct rows in the right order' do
@@ -75,6 +81,10 @@ module Summary
         expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[5].question).to eq(:person_address)
         expect(answers[5].value).to eq('address')
+
+        expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[6].question).to eq(:person_relationship_to_children)
+        expect(answers[6].value).to eq('relationships')
       end
 
       context 'for existing previous name' do
@@ -82,7 +92,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(6)
+          expect(answers.count).to eq(7)
         end
 
         it 'renders the previous name' do
@@ -97,13 +107,26 @@ module Summary
         let(:age_estimate) { 18 }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(6)
+          expect(answers.count).to eq(7)
         end
 
         it 'uses the age estimate' do
           expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[4].question).to eq(:person_age_estimate)
           expect(answers[4].value).to eq(18)
+        end
+      end
+
+      context 'when no other parties present' do
+        let(:c100_application) { instance_double(C100Application, other_parties: []) }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(1)
+        end
+
+        it 'has the correct rows in the right order' do
+          expect(answers[0]).to be_an_instance_of(Separator)
+          expect(answers[0].title).to eq(:not_applicable)
         end
       end
     end

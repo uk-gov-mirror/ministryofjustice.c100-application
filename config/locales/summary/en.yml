@@ -69,6 +69,7 @@ en:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     separators:
+      not_applicable: Not applicable
       child_index_title: Child %{index}
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
@@ -299,3 +300,5 @@ en:
       question: Mobile telephone number
     person_email:
       question: Email address
+    person_relationship_to_children:
+      question: Relationship to children listed in this application
