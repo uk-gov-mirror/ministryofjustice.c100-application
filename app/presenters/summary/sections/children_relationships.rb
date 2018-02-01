@@ -7,10 +7,19 @@ module Summary
 
       def answers
         [
-          FreeTextAnswer.new(:applicants_relationships,    relationships_with(c100.applicants)),
-          FreeTextAnswer.new(:respondents_relationships,   relationships_with(c100.respondents)),
-          FreeTextAnswer.new(:other_parties_relationships, relationships_with(c100.other_parties)),
-          FreeTextAnswer.new(:children_residence,          children_residence)
+          FreeTextAnswer.new(
+            :applicants_relationships,
+            RelationshipsPresenter.new(c100_application).relationship_to_children(c100.applicants)
+          ),
+          FreeTextAnswer.new(
+            :respondents_relationships,
+            RelationshipsPresenter.new(c100_application).relationship_to_children(c100.respondents)
+          ),
+          FreeTextAnswer.new(
+            :other_parties_relationships,
+            RelationshipsPresenter.new(c100_application).relationship_to_children(c100.other_parties)
+          ),
+          FreeTextAnswer.new(:children_residence, children_residence)
         ].select(&:show?)
       end
 
@@ -24,21 +33,6 @@ module Summary
         ChildResidence.where(child: children).map do |residence|
           residence_full_names(residence)
         end.join('; ')
-      end
-
-      def relationships_with(people)
-        c100.relationships.where(child: children, person: people).map do |relationship|
-          [
-            relationship.person.full_name,
-            i18n_relation(relationship),
-            relationship.child.full_name
-          ].join(' - ')
-        end.join('; ')
-      end
-
-      def i18n_relation(relationship)
-        return relationship.relation_other_value if relationship.relation.eql?(Relation::OTHER.to_s)
-        t(relationship.relation, scope: 'dictionary.RELATIONS')
       end
 
       # TODO: we might need to separate which child lives with each of the parties

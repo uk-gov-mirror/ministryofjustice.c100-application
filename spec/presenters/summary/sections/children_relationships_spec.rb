@@ -5,16 +5,16 @@ module Summary
     let(:c100_application) {
       instance_double(C100Application,
         children: [],
-        applicants: [],
-        respondents: [],
-        other_parties: [],
-        relationships: relationships,
+        applicants: applicants,
+        respondents: respondents,
+        other_parties: other_parties,
       )
     }
 
-    let(:relationships) { double('relationships') }
-    let(:relationship)  { instance_double(Relationship) }
-    let(:residence)     { instance_double(ChildResidence) }
+    let(:applicants) { double('applicants') }
+    let(:respondents) { double('respondents') }
+    let(:other_parties) { double('other_parties') }
+    let(:residence) { instance_double(ChildResidence) }
 
     subject { described_class.new(c100_application) }
 
@@ -28,13 +28,17 @@ module Summary
 
     describe '#answers' do
       before do
-        allow(relationships).to receive(:where).and_return([relationship])
+        allow_any_instance_of(
+          RelationshipsPresenter
+        ).to receive(:relationship_to_children).with(applicants).and_return('applicants_relationships')
 
-        allow(relationship).to receive(:relation).and_return('whatever')
-        allow(relationship).to receive(:person).and_return(double(full_name: 'person name'))
-        allow(relationship).to receive(:child).and_return(double(full_name: 'child name'))
+        allow_any_instance_of(
+          RelationshipsPresenter
+        ).to receive(:relationship_to_children).with(respondents).and_return('respondents_relationships')
 
-        allow(I18n).to receive(:translate!).with('whatever', {scope: 'dictionary.RELATIONS'}).and_return('Whatever')
+        allow_any_instance_of(
+          RelationshipsPresenter
+        ).to receive(:relationship_to_children).with(other_parties).and_return('other_parties_relationships')
 
         # This is a quick smoke test, not in deep, as we are probably need to change the
         # implementation of the residence_full_names method once the PDF mockup is finished.
@@ -51,34 +55,20 @@ module Summary
 
         expect(answers[0]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[0].question).to eq(:applicants_relationships)
-        expect(answers[0].value).to eq('person name - Whatever - child name')
-        expect(c100_application).to have_received(:applicants)
+        expect(answers[0].value).to eq('applicants_relationships')
 
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[1].question).to eq(:respondents_relationships)
-        expect(answers[1].value).to eq('person name - Whatever - child name')
-        expect(c100_application).to have_received(:respondents)
+        expect(answers[1].value).to eq('respondents_relationships')
 
         expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[2].question).to eq(:other_parties_relationships)
-        expect(answers[2].value).to eq('person name - Whatever - child name')
-        expect(c100_application).to have_received(:other_parties)
+        expect(answers[2].value).to eq('other_parties_relationships')
 
         expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[3].question).to eq(:children_residence)
         expect(answers[3].value).to eq('Full name')
         expect(subject).to have_received(:residence_full_names)
-      end
-
-      context 'when relation is `other`' do
-        before do
-          allow(relationship).to receive(:relation).and_return('other')
-          allow(relationship).to receive(:relation_other_value).and_return('a friend')
-        end
-
-        it 'renders the `relation_other_value`' do
-          expect(answers[0].value).to eq('person name - a friend - child name')
-        end
       end
     end
   end
