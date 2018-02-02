@@ -95,6 +95,7 @@ module Summary
         Sections::RespondentsDetails.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :other_parties_details),
         Sections::OtherPartiesDetails.new(c100_application),
+        Sections::OtherChildrenDetails.new(c100_application),
       ]
     end
   end
