@@ -85,7 +85,7 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
   context 'when the step is `relationship`' do
     let(:step_params) {{'relationship' => 'anything'}}
-    let(:record) { double('Relationship', applicant: applicant, child: child) }
+    let(:record) { double('Relationship', person: applicant, child: child) }
 
     let(:applicant) { double('Applicant', id: 1) }
 

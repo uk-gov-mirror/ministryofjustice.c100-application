@@ -11,7 +11,7 @@ module C100App
       when :personal_details
         after_personal_details(age_check: false)
       when :relationship
-        children_relationships(record.other_party)
+        children_relationships
       when :contact_details
         after_contact_details
       else

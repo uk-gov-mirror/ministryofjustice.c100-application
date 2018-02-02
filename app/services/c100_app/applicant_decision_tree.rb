@@ -15,7 +15,7 @@ module C100App
       when :under_age
         edit_first_child_relationships
       when :relationship
-        children_relationships(record.applicant)
+        children_relationships
       when :contact_details
         after_contact_details
       else

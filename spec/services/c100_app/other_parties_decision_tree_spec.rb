@@ -50,7 +50,7 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
 
   context 'when the step is `relationship`' do
     let(:step_params) {{'relationship' => 'anything'}}
-    let(:record) { double('Relationship', other_party: other_party, child: child) }
+    let(:record) { double('Relationship', person: other_party, child: child) }
 
     let(:other_party) { double('OtherParty', id: 1) }
 

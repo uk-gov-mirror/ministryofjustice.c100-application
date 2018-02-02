@@ -13,7 +13,7 @@ module C100App
       when :under_age
         edit_first_child_relationships
       when :relationship
-        children_relationships(record.respondent)
+        children_relationships
       when :contact_details
         after_contact_details
       when :has_other_parties
