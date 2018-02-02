@@ -65,6 +65,7 @@ en:
       children_relationships: Children’s relationship with parties
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
+      other_children_details: Other children not part of the application
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
@@ -169,11 +170,11 @@ en:
       answers:
         <<: *SEX_OPTIONS
     child_applicants_relationship:
-      question: Applicant(s) relationship to child
+      question: Relationship to applicant(s)
       answers:
         <<: *RELATIONS
     child_respondents_relationship:
-      question: Respondent(s) relationship to child
+      question: Relationship to respondent(s)
       answers:
         <<: *RELATIONS
     child_orders:

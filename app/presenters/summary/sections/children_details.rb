@@ -1,40 +1,34 @@
 module Summary
   module Sections
-    class ChildrenDetails < BaseSectionPresenter
+    class ChildrenDetails < BaseChildrenDetails
       def name
         :children_details
       end
 
       def answers
         [
-          *children_personal_details,
+          children_details,
           Answer.new(:children_known_to_authorities, c100.children_known_to_authorities),
           FreeTextAnswer.new(:children_known_to_authorities_details, c100.children_known_to_authorities_details),
           Answer.new(:children_protection_plan, c100.children_protection_plan),
-        ].select(&:show?)
+        ].flatten.select(&:show?)
       end
 
       private
 
-      # rubocop:disable Metrics/AbcSize
-      def children_personal_details
-        c100.children.map.with_index(1) do |child, index|
+      def children_details
+        children.map.with_index(1) do |child, index|
           [
             Separator.new(:child_index_title, index: index),
-            FreeTextAnswer.new(:child_full_name, child.full_name),
-            DateAnswer.new(:child_dob, child.dob),
-            FreeTextAnswer.new(:child_age_estimate, child.age_estimate), # This shows only if a value is present
-            Answer.new(:child_sex, child.gender),
-            MultiAnswer.new(:child_applicants_relationship, relation_to_child(child, c100.applicants)),
-            MultiAnswer.new(:child_respondents_relationship, relation_to_child(child, c100.respondents)),
-            MultiAnswer.new(:child_orders, child.child_order&.orders),
+            personal_details(child),
+            relationships(child),
+            MultiAnswer.new(:child_orders, child.child_order&.orders)
           ]
-        end.flatten
+        end
       end
-      # rubocop:enable Metrics/AbcSize
 
-      def relation_to_child(child, people)
-        child.relationships.where(person: people).pluck(:relation)
+      def children
+        @_children ||= c100.children
       end
     end
   end

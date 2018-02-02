@@ -46,6 +46,7 @@ module Summary
           Sections::RespondentsDetails,
           Sections::SectionHeader,
           Sections::OtherPartiesDetails,
+          Sections::OtherChildrenDetails,
         ])
       end
     end
