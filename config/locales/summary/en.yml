@@ -56,6 +56,7 @@ en:
       applicants_details: 11. About you (the applicant(s))
       respondents_details: 12. The respondent(s)
       other_parties_details: 13. Others who should be given notice
+      solicitor_details: 14. Solicitor’s details
     sections:
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
@@ -320,3 +321,7 @@ en:
       question: Email address
     person_relationship_to_children:
       question: Relationship to children listed in this application
+    has_solicitor:
+      question: Is a solicitor acting for you?
+      answers:
+        <<: *YESNO
