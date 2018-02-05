@@ -163,4 +163,12 @@ background-image:url(https://assets.publishing.service.gov.uk/static/icon-steps/
     font-weight: 700;
   }
 }
+label[for="steps_safety_questions_substance_abuse_details_form_substance_abuse_details"]
+{
+  color: transparent;
+}
+label[for="steps_abduction_risk_details_form_risk_details"]
+{
+  display: none;
+}
 /* */

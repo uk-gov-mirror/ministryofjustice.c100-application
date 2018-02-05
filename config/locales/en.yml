@@ -271,7 +271,7 @@ en:
               emotional: Have you ever been emotionally abused?
               psychological: Have you ever been psychologically abused?
               sexual: Have you ever been sexually abused?
-              financial: Have you ever been financially abused?
+              financial: Has the other person ever financially abused you?
               other: Do you have any other concerns about your welfare?
             children:
               physical: Have your children ever been physically abused?
@@ -279,7 +279,7 @@ en:
               psychological: Have your children ever been psychologically abused?
               sexual: Have your children ever been sexually abused?
               financial: Have your children ever been financially abused?
-              other: Do you have any other concerns about your children’s welfare?
+              other: Do you have any other safety or welfare concerns about your children?
           lead_text:
             applicant:
               <<: *ABUSE_CONCERNS
@@ -377,21 +377,25 @@ en:
       risk_of_abduction:
         edit:
           page_title: Risk of abduction
+          section: Safety concerns
           heading: Are your children at risk of being abducted?
           lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
           info_notice: Child abduction is when a person takes or sends a child under 16 away from the care of the person they normally live with. A child can be abducted both in the UK and abroad.
       substance_abuse:
         edit:
           page_title: Substance abuse
+          section: Safety concerns
           heading: Do you have any concerns about drug, alcohol or substance abuse?
           lead_text: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       substance_abuse_details:
         edit:
           page_title: Substance abuse details
-          heading: Provide a brief summary of the nature and frequency of the substance abuse
+          section: Safety concerns
+          heading: Provide details of the drug, alcohol or substance abuse
       children_abuse:
         edit:
           page_title: Children abuse
+          section: Safety concerns          
           heading: Have your children ever been abused?
           info_html: |
             <p>Child abuse is any action that causes significant harm to a child.</p>
@@ -418,14 +422,16 @@ en:
       other_abuse:
         edit:
           page_title: Other concerns
+          section: Safety concerns
           heading: Any other concerns?
       address_confidentiality:
         edit:
           page_title: Address confidentiality
+          section: Safety concerns
           heading: Keeping your contact details private
           lead_text_html: |
-            <p>A copy of your court application will be sent to the other person.</p>
-            <p>The court won’t include the contact details for you and your children if you prefer to keep them private.</p>
+            <p>A copy of your court application will be sent to the other person. This will include your contact details.</p>
+            <p>If you think the other person poses a threat to the safety of you or your children you can keep your contact details private.</p>
 
     miam:
       attended:
@@ -509,10 +515,12 @@ en:
       children_have_passport:
         edit:
           page_title: Children have passport
+          section: Safety concerns
           heading: Do any of your children have a passport?
       international:
         edit:
           page_title: International abduction risk
+          section: Safety concerns
           heading: Are you worried your children will be taken out of the country?
           contact_info_html: |
             If you think your children are at risk of being abducted abroad you must
@@ -521,15 +529,18 @@ en:
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
+          section: Safety concerns
           heading: Have your children been abducted before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
+          section: Safety concerns
           heading: Provide details of the previous abductions
           lead_text: Include any previous attempts or threats to abduct them
       risk_details:
         edit:
           page_title: Abduction risk details
+          section: Safety concerns
           heading: Why do you think your children may be abducted?
           info_html: |
             <p>Briefly explain your concerns, including:</p>
@@ -537,9 +548,11 @@ en:
               <li>who might take them</li>
               <li>where they might be taken</li>
             </ul>
+          children_location: Where are the children now?
       passport_details:
         edit:
           page_title: Children’s passports
+          section: Safety concerns
           heading: Provide details of the children’s passports
     application:
       without_notice:
@@ -765,7 +778,7 @@ en:
       steps_help_with_fees_help_paying_form:
         help_paying_html: ""
       steps_safety_questions_address_confidentiality_form:
-        address_confidentiality_html: "Do you want to keep your contact details private?"
+        address_confidentiality_html: "Do you want to keep your contact details private from the other person?"
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
       steps_safety_questions_substance_abuse_form:
@@ -920,7 +933,7 @@ en:
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Give a short description
-        current_location: Where are the children now?
+        current_location: If they're outside England or Wales, include what country they're in and how long they've been there. You don't need to include any addresses.
       steps_children_names_form[names_attributes]:
         full_name: Full name of child
       steps_children_names_form:
@@ -965,7 +978,7 @@ en:
         other: Other
         other_full_name: Enter full name
       steps_safety_questions_substance_abuse_details_form:
-        substance_abuse_details: Details
+        substance_abuse_details:
       steps_abuse_concerns_details_form:
         behaviour_description: Give a short description
         behaviour_start: When did your concerns about your children start?
@@ -1047,7 +1060,7 @@ en:
         children_protection_plan_html: |
           A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
       steps_safety_questions_substance_abuse_details_form:
-        substance_abuse_details: You don’t need to give a full statement, although you may be asked to do so at a later date
+        substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
         behaviour_start: Add an approximate date if you’re unsure
         behaviour_stop: Add an approximate date if you’re unsure
