@@ -1,5 +1,6 @@
 module C100App
   class ApplicationDecisionTree < BaseDecisionTree
+    # rubocop:disable Metrics/MethodLength
     def destination
       return next_step if next_step
 
@@ -9,6 +10,8 @@ module C100App
       when :without_notice_details
         start_international_journey
       when :application_details
+        edit(:language_help)
+      when :language_help
         edit(:litigation_capacity)
       when :litigation_capacity
         after_litigation_capacity
@@ -22,6 +25,7 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
