@@ -22,7 +22,7 @@ module Steps
       end
 
       def other_value_needed?
-        relation_value.eql?(Relation::OTHER)
+        relation.eql?(Relation::OTHER.to_s)
       end
 
       def persist!

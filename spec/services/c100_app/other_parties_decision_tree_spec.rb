@@ -7,7 +7,7 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) { instance_double(C100Application, other_party_ids: [1, 2, 3], child_ids: [1, 2, 3]) }
+  let(:c100_application) { instance_double(C100Application, other_party_ids: [1, 2, 3], minor_ids: [1, 2, 3]) }
 
   subject {
     described_class.new(
@@ -38,6 +38,11 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) {double('OtherParty', id: 1)}
 
+    it 'does not run the age check' do
+      expect(subject).to receive(:after_personal_details).with(age_check: false)
+      subject.destination
+    end
+
     it 'goes to edit the first child relationship for the current record' do
       expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
     end
@@ -45,7 +50,7 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
 
   context 'when the step is `relationship`' do
     let(:step_params) {{'relationship' => 'anything'}}
-    let(:record) { double('Relationship', other_party: other_party, child: child) }
+    let(:record) { double('Relationship', person: other_party, minor: child) }
 
     let(:other_party) { double('OtherParty', id: 1) }
 

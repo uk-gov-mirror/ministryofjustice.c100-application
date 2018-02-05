@@ -1,5 +1,5 @@
 module C100App
-  class OtherPartiesDecisionTree < BaseDecisionTree
+  class OtherPartiesDecisionTree < PeopleDecisionTree
     def destination
       return next_step if next_step
 
@@ -9,7 +9,7 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_party_id)
       when :personal_details
-        edit(:relationship, id: record, child_id: first_child_id)
+        after_personal_details(age_check: false)
       when :relationship
         children_relationships
       when :contact_details
@@ -29,24 +29,8 @@ module C100App
       end
     end
 
-    def children_relationships
-      if next_child_id
-        edit(:relationship, id: record.other_party, child_id: next_child_id)
-      else
-        edit(:contact_details, id: record.other_party)
-      end
-    end
-
     def next_party_id
       next_record_id(c100_application.other_party_ids)
-    end
-
-    def next_child_id
-      next_record_id(c100_application.child_ids, current: record.child)
-    end
-
-    def first_child_id
-      c100_application.child_ids.first
     end
   end
 end

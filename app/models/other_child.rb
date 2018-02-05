@@ -1,2 +1,2 @@
-class OtherChild < Person
+class OtherChild < Minor
 end

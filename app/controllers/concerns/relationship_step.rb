@@ -18,12 +18,12 @@ module RelationshipStep
   private
 
   def child_record
-    current_c100_application.children.find(params[:child_id])
+    current_c100_application.minors.find(params[:child_id])
   end
 
   def relationship_record
     current_c100_application.relationships.find_or_initialize_by(
-      person: current_record, child: child_record
+      person: current_record, minor: child_record
     )
   end
 end

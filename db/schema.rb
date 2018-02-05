@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123123759) do
+ActiveRecord::Schema.define(version: 20180205101502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -257,11 +257,11 @@ ActiveRecord::Schema.define(version: 20180123123759) do
   create_table "relationships", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "relation"
     t.string "relation_other_value"
-    t.uuid "child_id", null: false
+    t.uuid "minor_id", null: false
     t.uuid "person_id", null: false
     t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_relationships_on_c100_application_id"
-    t.index ["child_id", "person_id"], name: "index_relationships_on_child_id_and_person_id", unique: true
+    t.index ["minor_id", "person_id"], name: "index_relationships_on_minor_id_and_person_id", unique: true
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -289,5 +289,5 @@ ActiveRecord::Schema.define(version: 20180123123759) do
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"
   add_foreign_key "relationships", "people"
-  add_foreign_key "relationships", "people", column: "child_id"
+  add_foreign_key "relationships", "people", column: "minor_id"
 end

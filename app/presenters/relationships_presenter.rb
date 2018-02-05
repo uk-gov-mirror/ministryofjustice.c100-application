@@ -9,9 +9,9 @@ class RelationshipsPresenter
   end
 
   def relationship_to_children(person_or_people, show_person_name: true)
-    relationships.where(child: children, person: person_or_people).map do |relationship|
+    relationships.where(minor: minors, person: person_or_people).map do |relationship|
       person_full_name = show_person_name ? relationship.person.full_name : nil
-      child_full_name  = relationship.child.full_name
+      child_full_name  = relationship.minor.full_name
       relation = i18n_relation(relationship)
 
       [person_full_name, relation, child_full_name].compact.join(RELATION_SEPARATOR)
@@ -20,8 +20,8 @@ class RelationshipsPresenter
 
   private
 
-  def children
-    c100_application.children
+  def minors
+    c100_application.minors
   end
 
   def relationships
