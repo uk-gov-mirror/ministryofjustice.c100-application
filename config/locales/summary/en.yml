@@ -52,6 +52,7 @@ en:
       urgent_and_without_notice: 6. Urgent and without notice hearings
       international_element: 8. Cases with an international element
       litigation_capacity: 9. Factors affecting ability to participate in proceedings
+      attending_court: 10. Attending the court
       applicants_details: 11. About you (the applicant(s))
       respondents_details: 12. The respondent(s)
       other_parties_details: 13. Others who should be given notice
@@ -71,6 +72,9 @@ en:
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     separators:
       not_applicable: Not applicable
+      language_assistance: Language assistance
+      intermediary: Intermediary
+      special_assistance: Special assistance / facilities
       child_index_title: Child %{index}
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
@@ -269,6 +273,19 @@ en:
       question: Details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
     participation_other_factors_details:
       question: Other factors which may affect the ability of the person concerned to take part in the proceedings?
+
+    special_assistance:
+      question: Special assistance or special facilities required for any of the parties
+      answers:
+        <<: *YESNO
+    special_assistance_details:
+      question: 'Details:'
+    special_arrangements:
+      question: Special arrangements for applicant or relevant children to attend court
+      answers:
+        <<: *YESNO
+    special_arrangements_details:
+      question: 'Details:'
 
     person_full_name:
       question: Full name

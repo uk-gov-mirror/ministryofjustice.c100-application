@@ -41,6 +41,8 @@ module Summary
           Sections::SectionHeader,
           Sections::LitigationCapacity,
           Sections::SectionHeader,
+          Sections::AttendingCourt,
+          Sections::SectionHeader,
           Sections::ApplicantsDetails,
           Sections::SectionHeader,
           Sections::RespondentsDetails,

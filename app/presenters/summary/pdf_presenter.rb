@@ -15,6 +15,7 @@ module Summary
         urgent_and_without_notice_sections,
         international_element_sections,
         litigation_capacity_sections,
+        attending_court_sections,
         people_sections,
       ].flatten.select(&:show?)
     end
@@ -84,6 +85,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :litigation_capacity),
         Sections::LitigationCapacity.new(c100_application),
+      ]
+    end
+
+    def attending_court_sections
+      [
+        Sections::SectionHeader.new(c100_application, name: :attending_court),
+        Sections::AttendingCourt.new(c100_application),
       ]
     end
 
