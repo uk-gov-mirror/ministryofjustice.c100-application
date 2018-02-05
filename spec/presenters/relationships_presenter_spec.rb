@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe RelationshipsPresenter do
-  let(:c100_application) { instance_double(C100Application, children: children, relationships: relationships) }
+  let(:c100_application) { instance_double(C100Application, minors: minors, relationships: relationships) }
 
-  let(:children) { [] }
+  let(:minors) { [] }
   let(:relationships) { double('relationships') }
   let(:child_relationship) { double(Relationship) }
 
@@ -13,10 +13,10 @@ RSpec.describe RelationshipsPresenter do
     let(:person) { instance_double(Person, relationships: relationships) }
 
     before do
-      allow(relationships).to receive(:where).with(child: children, person: person).and_return([child_relationship])
+      allow(relationships).to receive(:where).with(minor: minors, person: person).and_return([child_relationship])
 
       allow(child_relationship).to receive(:relation).and_return('father')
-      allow(child_relationship).to receive(:child).and_return(double(full_name: 'Child name'))
+      allow(child_relationship).to receive(:minor).and_return(double(full_name: 'Child name'))
       allow(child_relationship).to receive(:person).and_return(double(full_name: 'Person name'))
     end
 

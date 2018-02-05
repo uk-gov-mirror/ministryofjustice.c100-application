@@ -7,7 +7,7 @@ RSpec.describe C100App::RespondentDecisionTree do
   let(:as)               { nil }
   let(:record)           { nil }
 
-  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3], child_ids: [1, 2, 3]) }
+  let(:c100_application) { instance_double(C100Application, respondent_ids: [1, 2, 3], minor_ids: [1, 2, 3]) }
 
   subject {
     described_class.new(
@@ -87,7 +87,7 @@ RSpec.describe C100App::RespondentDecisionTree do
 
   context 'when the step is `relationship`' do
     let(:step_params) {{'relationship' => 'anything'}}
-    let(:record) { double('Relationship', person: respondent, child: child) }
+    let(:record) { double('Relationship', person: respondent, minor: child) }
 
     let(:respondent) { double('Respondent', id: 1) }
 

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.shared_examples 'a relationship step controller' do |form_class, decision_tree_class|
   let(:relationships) { double('relationships').as_null_object }
-  let(:children)      { double('children').as_null_object }
+  let(:minors)        { double('minors').as_null_object }
   let(:person)        { double('Person') }
   let(:child)         { double('Child') }
 
-  let(:existing_case) { instance_double(C100Application, relationships: relationships, children: children) }
+  let(:existing_case) { instance_double(C100Application, relationships: relationships, minors: minors) }
 
   # This is a side effect of everything being a double, we have to do a lot of 'setup', but all this
   # is not part of these tests and we don't need to test the functionality, just trust it.
@@ -37,9 +37,9 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
       before do
         allow(form_class).to receive(:new).and_return(form_object)
         allow(controller).to receive(:current_record).and_return(person)
-        allow(children).to receive(:find).with('123').and_return(child)
+        allow(minors).to receive(:find).with('123').and_return(child)
 
-        expect(relationships).to receive(:find_or_initialize_by).with(person: person, child: child)
+        expect(relationships).to receive(:find_or_initialize_by).with(person: person, minor: child)
       end
 
       context 'when the form saves successfully' do
@@ -86,8 +86,8 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
     context 'when a case exists in the session' do
       before do
         allow(controller).to receive(:current_record).and_return(person)
-        allow(children).to receive(:find).with('123').and_return(child)
-        expect(relationships).to receive(:find_or_initialize_by).with(person: person, child: child)
+        allow(minors).to receive(:find).with('123').and_return(child)
+        expect(relationships).to receive(:find_or_initialize_by).with(person: person, minor: child)
       end
 
       it 'responds with HTTP success' do

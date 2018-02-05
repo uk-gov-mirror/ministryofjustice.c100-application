@@ -170,11 +170,11 @@ en:
       answers:
         <<: *SEX_OPTIONS
     child_applicants_relationship:
-      question: Relationship to applicant(s)
+      question: Applicant(s) relationship to child
       answers:
         <<: *RELATIONS
     child_respondents_relationship:
-      question: Relationship to respondent(s)
+      question: Respondent(s) relationship to child
       answers:
         <<: *RELATIONS
     child_orders:

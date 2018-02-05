@@ -26,10 +26,10 @@ class PeopleDecisionTree < BaseDecisionTree
   end
 
   def next_child_id
-    next_record_id(c100_application.child_ids, current: record.child)
+    next_record_id(c100_application.minor_ids, current: record.minor)
   end
 
   def first_child_id
-    c100_application.child_ids.first
+    c100_application.minor_ids.first
   end
 end
