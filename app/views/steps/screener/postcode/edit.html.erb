@@ -9,7 +9,7 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :postcode, inline: true, choices: GenericYesNo.values %>
+      <%= f.text_area :children_postcodes, size: '40x4', class: 'form-control-3-4' %>
 
       <%= f.submit class: 'button' %>
     <% end %>
