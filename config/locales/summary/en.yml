@@ -274,6 +274,12 @@ en:
     participation_other_factors_details:
       question: Other factors which may affect the ability of the person concerned to take part in the proceedings?
 
+    language_help:
+      question: Does anyone in this application require any language help?
+      answers:
+        <<: *YESNO
+    language_help_details:
+      question: 'Details:'
     special_assistance:
       question: Special assistance or special facilities required for any of the parties
       answers:

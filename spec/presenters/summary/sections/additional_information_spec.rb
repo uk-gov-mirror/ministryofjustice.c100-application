@@ -41,7 +41,7 @@ module Summary
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:language_assistance)
-        expect(answers[5].value).to eq(GenericYesNo::NO) # TODO: Pending step
+        expect(c100_application).to have_received(:language_help)
       end
     end
 
