@@ -49,6 +49,8 @@ module Summary
           Sections::SectionHeader,
           Sections::OtherPartiesDetails,
           Sections::OtherChildrenDetails,
+          Sections::SectionHeader,
+          Sections::SolicitorDetails,
         ])
       end
     end
