@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(version: 20180206101647) do
     t.string "consent_order"
     t.string "child_protection_cases"
     t.text "application_details"
-    t.string "children_postcodes"
     t.string "language_help"
     t.text "language_help_details"
     t.string "intermediary_help"
