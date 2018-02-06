@@ -230,6 +230,10 @@ en:
         'no': *not_applicable
     miam_certification_number:
       question: FMC registration no
+    miam_certification_service_name:
+      question: Family mediation service name
+    miam_certification_sole_trader_name:
+      question: Sole trader name
     miam_certification_date:
       question: Date
     applied_for_permission:
