@@ -42,8 +42,8 @@ Rails.application.routes.draw do
              }
 
   namespace :steps do
-    namespace :postcode_screen do
-      edit_step :children_postcodes
+    namespace :screener do
+      edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
     end

@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe C100App::PostcodeScreenDecisionTree do
+RSpec.describe C100App::ScreenerDecisionTree do
   let(:postcodes)        { 'anything' }
-  let(:c100_application) { double('Object', children_postcodes: postcodes) }
+  let(:screener_answers) { double('screener_answers', children_postcodes: postcodes) }
+  let(:c100_application) { double('Object', screener_answers: screener_answers) }
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }
   let(:as)               { nil }
@@ -13,7 +14,7 @@ RSpec.describe C100App::PostcodeScreenDecisionTree do
 
 
   context 'when the step is `children_postcodes`' do
-    let(:step_params) { { children_postcodes: 'ldksgjdl' } }
+    let(:step_params) { { children_postcodes: postcodes } }
   
     context 'and no valid courts are found' do
       before do

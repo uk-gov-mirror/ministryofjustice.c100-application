@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(version: 20180206101647) do
     t.string "consent_order"
     t.string "child_protection_cases"
     t.text "application_details"
-    t.string "children_postcodes"
     t.string "language_help"
     t.text "language_help_details"
     t.string "intermediary_help"
@@ -268,6 +267,14 @@ ActiveRecord::Schema.define(version: 20180206101647) do
     t.index ["minor_id", "person_id"], name: "index_relationships_on_minor_id_and_person_id", unique: true
   end
 
+  create_table "screener_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "children_postcodes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -294,4 +301,5 @@ ActiveRecord::Schema.define(version: 20180206101647) do
   add_foreign_key "relationships", "c100_applications"
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "people", column: "minor_id"
+  add_foreign_key "screener_answers", "c100_applications"
 end
