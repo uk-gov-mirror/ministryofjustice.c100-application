@@ -19,9 +19,9 @@ class BaseDecisionTree
     (as || step_params.keys.first).to_sym
   end
 
-  def question(attribute_name, klass = GenericYesNo)
-    value = c100_application.public_send(attribute_name)
-    klass.new(value) if value
+  def question(attribute_name, record = c100_application)
+    value = record.public_send(attribute_name)
+    GenericYesNo.new(value) if value
   end
 
   def selected?(attribute_name, value: 'yes')

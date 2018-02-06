@@ -15,19 +15,19 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
   context 'when the step is `children_postcodes`' do
     let(:step_params) { { children_postcodes: postcodes } }
-  
+
     context 'and no valid courts are found' do
       before do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).with(postcodes).and_return([])
       end
       it { is_expected.to have_destination(:no_court_found, :show) }
     end
-  
+
     context 'and at least one valid court is found' do
       before do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).with(postcodes).and_return(['i am a court'])
       end
-      it { is_expected.to have_destination('/steps/miam/consent_order', :edit) }
+      it { is_expected.to have_destination(:urgency, :edit) }
     end
 
     context 'when the postcode checker raises an error' do
@@ -43,6 +43,25 @@ RSpec.describe C100App::ScreenerDecisionTree do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).and_raise("expected exception for testing, please ignore")
       end
       it { is_expected.to have_destination(:error_but_continue, :show)}
+    end
+  end
+
+  context 'when the step is `urgency`' do
+    let(:as){ :urgency }
+    let(:step_params){ {urgent: urgent} }
+    let(:screener_answers) { double('screener_answers', urgent: urgent) }
+
+
+    context 'and urgent is "yes"' do
+      let(:urgent){ GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:urgent_exit, :show) }
+    end
+
+    context 'and urgent is "no"' do
+      let(:urgent){ GenericYesNo::NO }
+
+      it { is_expected.to have_destination('/steps/miam/consent_order', :edit) }
     end
   end
 end
