@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       edit_step :special_arrangements
       edit_step :details
       edit_step :language
+      edit_step :intermediary
     end
     namespace :petition do
       edit_step :orders

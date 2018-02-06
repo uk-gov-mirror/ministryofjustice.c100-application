@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205153804) do
+ActiveRecord::Schema.define(version: 20180206101647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 20180205153804) do
     t.string "children_postcodes"
     t.string "language_help"
     t.text "language_help_details"
+    t.string "intermediary_help"
+    t.text "intermediary_help_details"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 

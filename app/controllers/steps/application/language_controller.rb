@@ -6,7 +6,7 @@ module Steps
       end
 
       def update
-        update_and_advance(LanguageForm, as: :language_help)
+        update_and_advance(LanguageForm, as: :language)
       end
     end
   end

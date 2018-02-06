@@ -607,6 +607,11 @@ en:
         edit:
           page_title: Language help
           heading: Does anyone in this application require help with any language?
+      intermediary:
+        edit:
+          page_title: Intermediary help
+          heading: Does anyone in this application need a person to help them in court?
+          lead_text: You may need a person (also known as an intermediary) to help if you have condition that affects your ability to participate in the court process.
     international:
       resident:
         edit:
@@ -763,6 +768,8 @@ en:
         special_arrangements_html: ""
       steps_application_language_form:
         language_help_html: ""
+      steps_application_intermediary_form:
+        intermediary_help_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_consent_order_form:
@@ -911,6 +918,8 @@ en:
         application_details: *provide_details
       steps_application_language_form:
         language_help_details: *provide_details
+      steps_application_intermediary_form:
+        intermediary_help_details: *provide_details
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application

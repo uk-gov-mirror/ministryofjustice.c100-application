@@ -10,12 +10,14 @@ module C100App
       when :without_notice_details
         start_international_journey
       when :application_details
-        edit(:language_help)
-      when :language_help
+        edit(:language)
+      when :language
         edit(:litigation_capacity)
       when :litigation_capacity
         after_litigation_capacity
       when :litigation_capacity_details
+        edit(:intermediary)
+      when :intermediary
         edit(:special_assistance)
       when :special_assistance
         edit(:special_arrangements)
@@ -41,7 +43,7 @@ module C100App
       if question(:reduced_litigation_capacity).yes?
         edit(:litigation_capacity_details)
       else
-        edit(:special_assistance)
+        edit(:intermediary)
       end
     end
 
