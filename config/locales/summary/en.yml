@@ -281,6 +281,12 @@ en:
         <<: *YESNO
     language_help_details:
       question: 'Details:'
+    intermediary_help:
+      question: Are you aware of whether an intermediary will be required?
+      answers:
+        <<: *YESNO
+    intermediary_help_details:
+      question: 'Details:'
     special_assistance:
       question: Special assistance or special facilities required for any of the parties
       answers:
