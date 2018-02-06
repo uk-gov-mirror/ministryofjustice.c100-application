@@ -32,11 +32,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `application_details`' do
     let(:step_params) { { application_details: 'anything' } }
-    it { is_expected.to have_destination(:language_help, :edit) }
+    it { is_expected.to have_destination(:language, :edit) }
   end
 
-  context 'when the step is `language_help`' do
-    let(:step_params) { { language_help: 'anything' } }
+  context 'when the step is `language`' do
+    let(:step_params) { { language: 'anything' } }
     it { is_expected.to have_destination(:litigation_capacity, :edit) }
   end
 
@@ -51,12 +51,17 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination(:special_assistance, :edit) }
+      it { is_expected.to have_destination(:intermediary, :edit) }
     end
   end
 
   context 'when the step is `litigation_capacity_details`' do
     let(:step_params) { { litigation_capacity_details: 'anything' } }
+    it { is_expected.to have_destination(:intermediary, :edit) }
+  end
+
+  context 'when the step is `intermediary`' do
+    let(:step_params) { { intermediary: 'anything' } }
     it { is_expected.to have_destination(:special_assistance, :edit) }
   end
 
