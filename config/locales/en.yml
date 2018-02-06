@@ -454,10 +454,11 @@ en:
           page_title: MIAM certification date
           heading: When did you attend the MIAM?
           lead_text: You can find the date at the bottom of the certificate your mediator signed.
-      certification_number:
+      certification_details:
         edit:
           page_title: MIAM certification details
           heading: Enter details of MIAM certification
+          lead_text: You can find this information at the bottom of the certificate your mediator signed.
       consent_order:
         edit:
           page_title: Consent order
@@ -928,8 +929,10 @@ en:
         court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
         miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
-      steps_miam_certification_number_form:
+      steps_miam_certification_details_form:
         miam_certification_number: FMC registration number
+        miam_certification_service_name: Family mediation service name
+        miam_certification_sole_trader_name: Sole trader name
       steps_help_with_fees_help_paying_form:
         help_paying:
           yes_with_ref_number: Yes, I have a Help with Fees reference number
@@ -1059,8 +1062,6 @@ en:
       steps_application_language_form:
         language_help: Including British Sign Language
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
-      steps_miam_certification_number_form:
-        miam_certification_number: You can find this number at the bottom of the certificate your mediator signed
       steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
@@ -1109,6 +1110,7 @@ en:
   date:
     formats:
       default: '%d-%m-%Y'
+      short: '%d/%m/%Y'
       long: '%e %B %Y'
   time:
     case_expires_in:

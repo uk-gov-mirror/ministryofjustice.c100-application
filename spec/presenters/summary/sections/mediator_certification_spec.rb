@@ -7,10 +7,14 @@ module Summary
         miam_certification: miam_certification,
         miam_certification_number: miam_certification_number,
         miam_certification_date: miam_certification_date,
+        miam_certification_service_name: miam_certification_service_name,
+        miam_certification_sole_trader_name: miam_certification_sole_trader_name,
     ) }
 
     let(:miam_certification) { 'yes' }
     let(:miam_certification_number) { '12345-X' }
+    let(:miam_certification_service_name) { 'service name' }
+    let(:miam_certification_sole_trader_name) { 'trader name' }
     let(:miam_certification_date) { Date.new(2018, 1, 20) }
 
     subject { described_class.new(c100_application) }
@@ -27,7 +31,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(3)
+        expect(answers.count).to eq(5)
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:miam_certification_details)
@@ -37,14 +41,24 @@ module Summary
         expect(answers[1].question).to eq(:miam_certification_number)
         expect(c100_application).to have_received(:miam_certification_number)
 
-        expect(answers[2]).to be_an_instance_of(DateAnswer)
-        expect(answers[2].question).to eq(:miam_certification_date)
+        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[2].question).to eq(:miam_certification_service_name)
+        expect(c100_application).to have_received(:miam_certification_service_name)
+
+        expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[3].question).to eq(:miam_certification_sole_trader_name)
+        expect(c100_application).to have_received(:miam_certification_sole_trader_name)
+
+        expect(answers[4]).to be_an_instance_of(DateAnswer)
+        expect(answers[4].question).to eq(:miam_certification_date)
         expect(c100_application).to have_received(:miam_certification_date)
       end
 
       context 'when no certification received' do
         let(:miam_certification) { nil }
         let(:miam_certification_number) { nil }
+        let(:miam_certification_service_name) { nil }
+        let(:miam_certification_sole_trader_name) { nil }
         let(:miam_certification_date) { nil }
 
         it 'has the correct rows' do
