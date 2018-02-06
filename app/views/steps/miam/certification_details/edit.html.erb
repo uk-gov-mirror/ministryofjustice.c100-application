@@ -6,8 +6,15 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%=t '.lead_text' %></p>
+    </div>
+
     <%= step_form @form_object do |f| %>
       <%= f.text_field :miam_certification_number %>
+      <%= f.text_field :miam_certification_service_name %>
+      <%= f.text_field :miam_certification_sole_trader_name %>
+
       <%= f.submit class: 'button' %>
     <% end %>
   </div>

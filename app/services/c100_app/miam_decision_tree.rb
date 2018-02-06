@@ -16,8 +16,8 @@ module C100App
         after_miam_certification
       when :miam_certification_date
         after_miam_certification_date
-      when :miam_certification_number
-        after_miam_certification_number
+      when :miam_certification_details
+        after_miam_certification_details
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -61,11 +61,11 @@ module C100App
       if certification_expired?
         show(:certification_expired_info)
       else
-        edit(:certification_number)
+        edit(:certification_details)
       end
     end
 
-    def after_miam_certification_number
+    def after_miam_certification_details
       # TODO: eventually, we will call an external mediators API to check whether the
       # reference number is valid or not, and retrieve the mediator details.
       show(:certification_confirmation)
