@@ -12,7 +12,8 @@ module Summary
       def answers
         [
           Separator.new(:language_assistance),
-          # TODO: `language_assistance` pending until we have these steps in the app
+          Answer.new(:language_help, c100.language_help),
+          FreeTextAnswer.new(:language_help_details, c100.language_help_details),
           Separator.new(:intermediary),
           # TODO: `intermediary` pending until we have these steps in the app
           Separator.new(:special_assistance),

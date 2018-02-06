@@ -12,7 +12,7 @@ module Summary
           Answer.new(:children_previous_proceedings, c100.children_previous_proceedings, default: default_value),
           Answer.new(:consent_order,                 c100.consent_order,                 default: default_value),
           Answer.new(:international_or_capacity,     international_or_capacity_value,    default: default_value),
-          Answer.new(:language_assistance,           default_value), # TODO: this step is still missing
+          Answer.new(:language_assistance,           c100.language_help,                 default: default_value),
         ]
       end
 
