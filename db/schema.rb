@@ -267,8 +267,10 @@ ActiveRecord::Schema.define(version: 20180206101647) do
     t.index ["minor_id", "person_id"], name: "index_relationships_on_minor_id_and_person_id", unique: true
   end
 
-  create_table "screener_answers", force: :cascade do |t|
+  create_table "screener_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "children_postcodes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
   end
