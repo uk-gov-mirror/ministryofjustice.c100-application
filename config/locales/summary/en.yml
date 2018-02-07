@@ -39,6 +39,9 @@ en:
     OTHER_ORDER: &OTHER_ORDER
       other: Other
 
+  shared:
+    c8_confidential_answer: < See C8 attached >
+
   check_answers:
     headers:
       c100_form:
