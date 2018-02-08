@@ -15,7 +15,7 @@ module Summary
 
       # Used by Rails to determine which partial to render. May be overridden in subclasses
       def to_partial_path
-        'shared/section'
+        'steps/completion/shared/section'
       end
 
       # May be overridden in subclasses to hide/show if appropriate

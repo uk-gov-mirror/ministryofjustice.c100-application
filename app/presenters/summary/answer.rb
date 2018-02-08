@@ -1,7 +1,7 @@
 module Summary
   class Answer < BaseAnswer
     def to_partial_path
-      'shared/row'
+      'steps/completion/shared/row'
     end
   end
 end

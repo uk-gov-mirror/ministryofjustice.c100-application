@@ -8,7 +8,7 @@ describe Summary::Answer do
 
   describe '#to_partial_path' do
     it 'returns the correct partial path' do
-      expect(subject.to_partial_path).to eq('shared/row')
+      expect(subject.to_partial_path).to eq('steps/completion/shared/row')
     end
   end
 end

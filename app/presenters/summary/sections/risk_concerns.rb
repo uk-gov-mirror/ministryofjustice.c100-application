@@ -6,7 +6,7 @@ module Summary
       end
 
       def to_partial_path
-        'shared/risk_concerns'
+        'steps/completion/shared/risk_concerns'
       end
 
       def answers

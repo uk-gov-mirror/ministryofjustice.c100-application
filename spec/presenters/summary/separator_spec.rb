@@ -10,7 +10,7 @@ describe Summary::Separator do
   end
 
   describe '#to_partial_path' do
-    it { expect(subject.to_partial_path).to eq('shared/separator') }
+    it { expect(subject.to_partial_path).to eq('steps/completion/shared/separator') }
   end
 
   describe 'can be given i18n options' do

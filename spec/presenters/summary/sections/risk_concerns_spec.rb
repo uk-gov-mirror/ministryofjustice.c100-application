@@ -14,7 +14,7 @@ module Summary
     end
 
     describe '#to_partial_path' do
-      it { expect(subject.to_partial_path).to eq('shared/risk_concerns') }
+      it { expect(subject.to_partial_path).to eq('steps/completion/shared/risk_concerns') }
     end
 
     describe '#answers' do

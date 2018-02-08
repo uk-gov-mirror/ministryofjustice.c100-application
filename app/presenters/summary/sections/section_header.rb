@@ -2,7 +2,7 @@ module Summary
   module Sections
     class SectionHeader < BaseSectionPresenter
       def to_partial_path
-        'shared/section_header'
+        'steps/completion/shared/section_header'
       end
 
       def show?

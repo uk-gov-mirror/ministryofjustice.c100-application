@@ -7,7 +7,7 @@ module Summary
 
     describe '#to_partial_path' do
       it 'returns the partial path' do
-        expect(subject.to_partial_path).to eq('shared/section')
+        expect(subject.to_partial_path).to eq('steps/completion/shared/section')
       end
     end
 
