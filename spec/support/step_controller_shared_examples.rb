@@ -299,12 +299,16 @@ RSpec.shared_examples 'a summary step controller' do
       end
 
       context 'PDF format' do
-        it 'generates and sends the case details PDF' do
+        let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: nil, to_pdf: 'a majestic pdf') }
+
+        before do
+          allow(Summary::PdfPresenter).to receive(:new).and_return(pdf_presenter)
+        end
+
+        it 'generates and renders the PDF' do
           get :show, format: :pdf, session: { c100_application_id: existing_case.id }
 
-          expect(subject).to render_template(:show)
-          expect(assigns[:presenter]).to be_an_instance_of(Summary::PdfPresenter)
-          expect(response.headers['Content-Disposition']).to eq('inline; filename="c100_application.pdf"')
+          expect(response.body).to eq('a majestic pdf')
         end
       end
     end

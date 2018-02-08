@@ -8,7 +8,7 @@ describe Summary::FreeTextAnswer do
 
   describe '#to_partial_path' do
     it 'returns the correct partial path' do
-      expect(subject.to_partial_path).to eq('shared/free_text_row')
+      expect(subject.to_partial_path).to eq('steps/completion/shared/free_text_row')
     end
   end
 end

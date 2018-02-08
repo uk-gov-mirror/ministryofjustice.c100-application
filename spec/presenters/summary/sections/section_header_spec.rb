@@ -10,7 +10,7 @@ module Summary
     end
 
     describe '#to_partial_path' do
-      it { expect(subject.to_partial_path).to eq('shared/section_header') }
+      it { expect(subject.to_partial_path).to eq('steps/completion/shared/section_header') }
     end
 
     describe '#show?' do

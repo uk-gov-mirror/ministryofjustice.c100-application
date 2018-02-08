@@ -8,7 +8,7 @@ describe Summary::DateAnswer do
 
   describe '#to_partial_path' do
     it 'returns the correct partial path' do
-      expect(subject.to_partial_path).to eq('shared/date_row')
+      expect(subject.to_partial_path).to eq('steps/completion/shared/date_row')
     end
   end
 end

@@ -2,7 +2,7 @@ module Summary
   module Sections
     class FormHeader < BaseSectionPresenter
       def to_partial_path
-        'shared/form_header'
+        'steps/completion/shared/form_header'
       end
 
       def show?

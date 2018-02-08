@@ -12,7 +12,7 @@ module Summary
     end
 
     def to_partial_path
-      'shared/separator'
+      'steps/completion/shared/separator'
     end
   end
 end

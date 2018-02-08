@@ -22,7 +22,7 @@ module C100App
       when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
-        start_international_journey # TODO: change when we have 'statement of truth'
+        show('/steps/completion/summary') # TODO: change when we have 'statement of truth'
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
