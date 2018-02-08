@@ -47,6 +47,9 @@ en:
       c100_form:
         title: C100
         details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order.
+      c8_form:
+        title: C8
+        details: Confidential contact details - Family Procedure Rules 2010 Rule 29.1
     section_headers:
       children: 1. The Child(ren)
       miam_requirement: 2. Requirement to attend a Mediation, Information and Assessment Meeting (MIAM)
@@ -71,10 +74,13 @@ en:
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       other_children_details: Other children not part of the application
+      ### C8 ###
+      c8_court_details: To be completed by the court
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
     separators:
+      blank_space: ""
       not_applicable: Not applicable
       language_assistance: Language assistance
       intermediary: Intermediary
@@ -344,3 +350,14 @@ en:
       question: Is a solicitor acting for you?
       answers:
         <<: *YESNO
+
+    ### C8 questions/answers ###
+    #
+    c8_family_court:
+      question: The family court sitting at
+    c8_case_number:
+      question: Case number
+    c8_children_names:
+      question: Child(ren)’s names
+      answers:
+        c8_children_numbers: Child(ren)’s numbers
