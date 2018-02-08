@@ -140,6 +140,13 @@ module Summary
           expect(answers[4].value).to eq(18)
         end
       end
+
+      context 'C8 confidentiality' do
+        it 'uses the confidentiality presenter' do
+          expect(C8ConfidentialityPresenter).to receive(:new).with(respondent, c100_application).and_call_original
+          answers
+        end
+      end
     end
   end
 end

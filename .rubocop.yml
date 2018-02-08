@@ -498,4 +498,9 @@ AbcSize:
   Max: 22
 
 CyclomaticComplexity:
-  Enabled: false
+  Enabled: true
+  Max: 15
+
+MethodMissing:
+  Exclude:
+    - app/presenters/c8_confidentiality_presenter.rb

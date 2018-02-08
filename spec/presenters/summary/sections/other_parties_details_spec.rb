@@ -129,6 +129,13 @@ module Summary
           expect(answers[0].title).to eq(:not_applicable)
         end
       end
+
+      context 'C8 confidentiality' do
+        it 'uses the confidentiality presenter' do
+          expect(C8ConfidentialityPresenter).to receive(:new).with(other_party, c100_application).and_call_original
+          answers
+        end
+      end
     end
   end
 end

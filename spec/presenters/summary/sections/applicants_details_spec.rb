@@ -123,6 +123,13 @@ module Summary
           expect(answers[2].value).to eq('previous_name')
         end
       end
+
+      context 'C8 confidentiality' do
+        it 'uses the confidentiality presenter' do
+          expect(C8ConfidentialityPresenter).to receive(:new).with(applicant, c100_application).and_call_original
+          answers
+        end
+      end
     end
   end
 end
