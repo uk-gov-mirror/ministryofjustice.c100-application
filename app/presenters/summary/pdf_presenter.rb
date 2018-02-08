@@ -12,6 +12,7 @@ module Summary
 
     def generate
       pdf_generator.generate(c100_form, copies: 3)
+      pdf_generator.generate(c8_form,   copies: 1) if c100_application.confidentiality_enabled?
     end
 
     private
@@ -25,7 +26,7 @@ module Summary
     end
 
     def c8_form
-      # TODO
+      Summary::C8Form.new(c100_application)
     end
 
     def cover_letter
