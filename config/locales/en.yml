@@ -671,8 +671,6 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before submitting your application
           confirm: Confirm and continue
-          pdf:
-            heading: C100 Application
 
   home:
     index:
@@ -1118,7 +1116,6 @@ en:
       one: '%{count} day'
       other: '%{count} days'
   shared:
-    language: (English)
     password_toggle:
       show_password: Show password
       hide_password: Hide password

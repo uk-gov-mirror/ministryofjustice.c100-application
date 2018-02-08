@@ -8,8 +8,12 @@ module Steps
           end
 
           format.pdf do
-            @presenter = Summary::PdfPresenter.new(current_c100_application)
-            render @presenter.pdf_params
+            presenter = Summary::PdfPresenter.new(current_c100_application)
+            presenter.generate
+
+            # If we want to trigger a file download, instead of showing the PDF
+            # in the browser, we can use `send_data presenter.to_pdf`
+            render plain: presenter.to_pdf
           end
         end
       end

@@ -2,11 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title><%= t '.pdf.heading' %> <%= t 'shared.language' %></title>
     <%= stylesheet_link_tag wicked_pdf_asset_base64('local/pdf_summary') -%>
   </head>
 
   <body id="application-details-pdf">
-    <%= render @presenter.sections %>
+    <%= render presenter.sections %>
   </body>
 </html>
