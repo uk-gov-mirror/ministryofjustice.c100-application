@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe C100App::PdfGenerator do
-  let(:renderer)   { ApplicationController.renderer }
   let(:wicked_pdf) { instance_double(WickedPdf) }
   let(:combiner)   { [] }
 
@@ -15,7 +14,7 @@ RSpec.describe C100App::PdfGenerator do
     let(:document)  { 'a form document' }
 
     it 'renders a form using a presenter' do
-      expect(renderer).to receive(:render).with(
+      expect(ApplicationController).to receive(:render).with(
         template: 'path/to/template', locals: { presenter: presenter }
       ).and_return(document)
 

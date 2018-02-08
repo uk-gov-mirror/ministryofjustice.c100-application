@@ -17,7 +17,7 @@ module C100App
     end
 
     def render(presenter)
-      ApplicationController.renderer.render(
+      ApplicationController.render(
         template: presenter.template,
         locals: { presenter: presenter }
       )
