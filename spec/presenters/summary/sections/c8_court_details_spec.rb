@@ -25,8 +25,8 @@ module Summary
         expect(answers[1]).to be_an_instance_of(AnswerBox)
         expect(answers[1].question).to eq(:c8_case_number)
 
-        expect(answers[2]).to be_an_instance_of(Separator)
-        expect(answers[2].title).to eq(:blank_space)
+        expect(answers[2]).to be_an_instance_of(Partial)
+        expect(answers[2].name).to eq(:blank_space)
 
         expect(answers[3]).to be_an_instance_of(Answer)
         expect(answers[3].question).to eq(:c8_children_names)

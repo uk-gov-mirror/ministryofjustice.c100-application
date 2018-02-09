@@ -18,6 +18,7 @@ module Summary
         expect(subject.sections).to match_instances_array([
           Sections::FormHeader,
           Sections::C8CourtDetails,
+          Partial
         ])
       end
     end
