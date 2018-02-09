@@ -2,10 +2,7 @@ require 'spec_helper'
 
 RSpec.describe C8ConfidentialityPresenter do
   let(:c100_application) {
-    instance_double(
-      C100Application,
-      address_confidentiality: address_confidentiality
-    )
+    C100Application.new(address_confidentiality: address_confidentiality)
   }
 
   let(:person) {

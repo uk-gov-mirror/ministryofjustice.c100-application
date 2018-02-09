@@ -12,6 +12,19 @@
     }
   }
 
+  tr.answer-box {
+    td {
+      border-bottom: none;
+      vertical-align: middle;
+    }
+
+    div.box-to-fill {
+      border: 1px solid #6f777b;
+      background-color: #fff;
+      padding: 9px;
+    }
+  }
+
   h2.main-section-header {
     font-size: 90%;
     font-weight: 700;
@@ -119,6 +132,15 @@
   #children_known_to_authorities {
     td {
       padding-top: 15px;
+    }
+  }
+
+  #c8_court_details {
+    background-color: #eee;
+    padding: 10px;
+
+    td {
+      border-bottom: none;
     }
   }
 }

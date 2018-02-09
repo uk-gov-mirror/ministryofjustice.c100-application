@@ -32,7 +32,7 @@ class C8ConfidentialityPresenter < SimpleDelegator
   def confidentiality_enabled?
     @_confidentiality_enabled ||= begin
       PEOPLE_UNDER_C8.include?(__getobj__.class) &&
-        c100_application.address_confidentiality.eql?(GenericYesNo::YES.to_s)
+        c100_application.confidentiality_enabled?
     end
   end
 
