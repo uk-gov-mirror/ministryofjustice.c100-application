@@ -9,7 +9,7 @@ module Summary
         [
           AnswerBox.new(:c8_family_court),
           AnswerBox.new(:c8_case_number),
-          Separator.new(:blank_space),
+          Partial.new(:blank_space),
           Answer.new(:c8_children_names, :c8_children_numbers),
           *children_boxes
         ].select(&:show?)
