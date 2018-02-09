@@ -2,7 +2,13 @@ require 'spec_helper'
 
 module Summary
   describe Sections::ApplicantsDetails do
-    let(:c100_application) { instance_double(C100Application, applicants: [applicant]) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        confidentiality_enabled?: false,
+        applicants: [applicant]
+      )
+    }
 
     let(:applicant) {
       instance_double(Applicant,
@@ -41,6 +47,10 @@ module Summary
       it {
         expect(c100_application).to receive(:applicants)
         subject.record_collection
+      }
+
+      it {
+        expect(subject.record_collection).to be_an_instance_of(C8CollectionProxy)
       }
     end
 
@@ -121,13 +131,6 @@ module Summary
           expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[2].question).to eq(:person_previous_name)
           expect(answers[2].value).to eq('previous_name')
-        end
-      end
-
-      context 'C8 confidentiality' do
-        it 'uses the confidentiality presenter' do
-          expect(C8ConfidentialityPresenter).to receive(:new).with(applicant, c100_application).and_call_original
-          answers
         end
       end
     end

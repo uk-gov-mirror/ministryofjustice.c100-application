@@ -44,6 +44,10 @@ module Summary
         expect(c100_application).to receive(:respondents)
         subject.record_collection
       }
+
+      it {
+        expect(subject.record_collection).not_to be_an_instance_of(C8CollectionProxy)
+      }
     end
 
     describe '#answers' do
@@ -138,13 +142,6 @@ module Summary
           expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[4].question).to eq(:person_age_estimate)
           expect(answers[4].value).to eq(18)
-        end
-      end
-
-      context 'C8 confidentiality' do
-        it 'uses the confidentiality presenter' do
-          expect(C8ConfidentialityPresenter).to receive(:new).with(respondent, c100_application).and_call_original
-          answers
         end
       end
     end

@@ -2,7 +2,15 @@ require 'spec_helper'
 
 module Summary
   describe Sections::OtherPartiesDetails do
-    let(:c100_application) { instance_double(C100Application, other_parties: [other_party]) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        confidentiality_enabled?: confidentiality_enabled,
+        other_parties: other_parties,
+      )
+    }
+    let(:confidentiality_enabled) { false }
+    let(:other_parties) { [other_party] }
 
     let(:other_party) {
       instance_double(OtherParty,
@@ -43,6 +51,10 @@ module Summary
       it {
         expect(c100_application).to receive(:other_parties)
         subject.record_collection
+      }
+
+      it {
+        expect(subject.record_collection).not_to be_an_instance_of(C8CollectionProxy)
       }
     end
 
@@ -118,7 +130,7 @@ module Summary
       end
 
       context 'when no other parties present' do
-        let(:c100_application) { instance_double(C100Application, other_parties: []) }
+        let(:other_parties) { [] }
 
         it 'has the correct number of rows' do
           expect(answers.count).to eq(1)
@@ -130,10 +142,16 @@ module Summary
         end
       end
 
-      context 'C8 confidentiality' do
-        it 'uses the confidentiality presenter' do
-          expect(C8ConfidentialityPresenter).to receive(:new).with(other_party, c100_application).and_call_original
-          answers
+      context 'when confidentiality is enabled' do
+        let(:confidentiality_enabled) { true }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(1)
+        end
+
+        it 'has the correct rows in the right order' do
+          expect(answers[0]).to be_an_instance_of(Separator)
+          expect(answers[0].title).to eq(:c8_attached)
         end
       end
     end
