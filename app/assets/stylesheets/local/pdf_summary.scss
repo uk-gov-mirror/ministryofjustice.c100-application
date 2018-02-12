@@ -26,12 +26,26 @@
     td {
       border-bottom: none;
       vertical-align: middle;
+      height: 20px;
     }
 
     div.box-to-fill {
       border: 1px solid #6f777b;
       background-color: #fff;
-      padding: 9px;
+      color: #eeeeee;
+      padding: 3px;
+    }
+
+    div.date-box {
+      display: inline-block;
+      margin-right: -4px;
+    }
+    div.text-area-box {
+      height: 40px;
+    }
+
+    span.separator {
+      margin-right: 10px;
     }
   }
 
@@ -145,9 +159,11 @@
     }
   }
 
+  #c100_court_details,
   #c8_court_details {
     background-color: #eee;
     padding: 10px;
+    margin-bottom: 20px;
 
     td {
       border-bottom: none;

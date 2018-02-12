@@ -26,6 +26,11 @@ module Summary
       it { expect(subject.show_header?).to eq(false) }
     end
 
+    # The following tests can be fragile, but on purpose. During the development phase
+    # we have to update the tests each time we introduce a new row or remove another.
+    # But once it is finished and stable, it will raise a red flag if it ever gets out
+    # of sync, which means a quite solid safety net for any maintainers in the future.
+    #
     describe '#answers' do
       it 'has the correct rows' do
         expect(answers.count).to eq(11)

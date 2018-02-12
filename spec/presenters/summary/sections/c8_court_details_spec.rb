@@ -17,23 +17,20 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(4)
 
-        expect(answers[0]).to be_an_instance_of(AnswerBox)
-        expect(answers[0].question).to eq(:c8_family_court)
+        expect(answers[0]).to be_an_instance_of(Partial)
+        expect(answers[0].name).to eq(:admin_court_and_case_number)
 
-        expect(answers[1]).to be_an_instance_of(AnswerBox)
-        expect(answers[1].question).to eq(:c8_case_number)
+        expect(answers[1]).to be_an_instance_of(Partial)
+        expect(answers[1].name).to eq(:row_blank_space)
 
-        expect(answers[2]).to be_an_instance_of(Partial)
-        expect(answers[2].name).to eq(:row_blank_space)
+        expect(answers[2]).to be_an_instance_of(Answer)
+        expect(answers[2].question).to eq(:c8_children_names)
+        expect(answers[2].value).to eq(:c8_children_numbers)
 
-        expect(answers[3]).to be_an_instance_of(Answer)
-        expect(answers[3].question).to eq(:c8_children_names)
-        expect(answers[3].value).to eq(:c8_children_numbers)
-
-        expect(answers[4]).to be_an_instance_of(AnswerBox)
-        expect(answers[4].question).to eq('John Doe')
+        expect(answers[3]).to be_an_instance_of(AnswerBox)
+        expect(answers[3].question).to eq('John Doe')
       end
     end
   end

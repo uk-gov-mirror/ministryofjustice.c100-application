@@ -40,13 +40,17 @@ en:
       other: Other
 
   shared:
+    admin_family_court: The family court sitting at
+    admin_case_number: Case number
+    admin_date_issued: Date issued
+    admin_orders_applied_for: Order(s) applied for
     c8_confidential_answer: < See C8 attached >
 
   check_answers:
     headers:
       c100_form:
         title: C100
-        details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order.
+        details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order
       c8_form:
         title: C8
         details: Confidential contact details - Family Procedure Rules 2010 Rule 29.1
@@ -64,6 +68,8 @@ en:
       other_parties_details: 13. Others who should be given notice
       solicitor_details: 14. Solicitor’s details
     sections:
+      ### C100 ###
+      c100_court_details: To be completed by the court
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
       nature_of_application: Nature of application
@@ -358,10 +364,6 @@ en:
 
     ### C8 questions/answers ###
     #
-    c8_family_court:
-      question: The family court sitting at
-    c8_case_number:
-      question: Case number
     c8_children_names:
       question: Child(ren)’s names
       answers:
