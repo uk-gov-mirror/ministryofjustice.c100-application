@@ -76,6 +76,8 @@ en:
       other_children_details: Other children not part of the application
       ### C8 ###
       c8_court_details: To be completed by the court
+      c8_applicants_details: Applicant contact details to be kept private
+      c8_other_parties_details: Other parties contact details to be kept private
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
@@ -89,6 +91,9 @@ en:
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Person %{index}
+      ### C8 ###
+      c8_applicants_details_index_title: Applicant %{index}
+      c8_other_parties_details_index_title: Person %{index}
     hwf_reference_number:
       question: Reference number
       absence_answer: *not_applicable

@@ -62,7 +62,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(13)
+        expect(answers.count).to eq(14)
       end
 
       it 'has the correct rows in the right order' do
@@ -117,6 +117,9 @@ module Summary
         expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[12].question).to eq(:person_relationship_to_children)
         expect(answers[12].value).to eq('relationships')
+
+        expect(answers[13]).to be_an_instance_of(Partial)
+        expect(answers[13].name).to eq(:row_blank_space)
       end
 
       context 'for existing previous name' do
@@ -124,7 +127,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(13)
+          expect(answers.count).to eq(14)
         end
 
         it 'renders the previous name' do

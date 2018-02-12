@@ -32,6 +32,7 @@ module Summary
               :person_relationship_to_children,
               RelationshipsPresenter.new(c100_application).relationship_to_children(person, show_person_name: false)
             ),
+            Partial.row_blank_space,
           ]
         end.flatten.select(&:show?)
       end
