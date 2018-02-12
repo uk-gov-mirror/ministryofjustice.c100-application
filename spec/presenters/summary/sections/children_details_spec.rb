@@ -39,13 +39,18 @@ module Summary
       end
     end
 
+    # The following tests can be fragile, but on purpose. During the development phase
+    # we have to update the tests each time we introduce a new row or remove another.
+    # But once it is finished and stable, it will raise a red flag if it ever gets out
+    # of sync, which means a quite solid safety net for any maintainers in the future.
+    #
     describe '#answers' do
       before do
         allow(relationships).to receive_message_chain(:where, :pluck).and_return(['mother'])
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(10)
+        expect(answers.count).to eq(11)
       end
 
       it 'has the correct rows in the right order' do
@@ -79,16 +84,19 @@ module Summary
         expect(answers[6].question).to eq(:child_orders)
         expect(answers[6].value).to eq(['an_order'])
 
-        expect(answers[7]).to be_an_instance_of(Answer)
-        expect(answers[7].question).to eq(:children_known_to_authorities)
+        expect(answers[7]).to be_an_instance_of(Partial)
+        expect(answers[7].name).to eq(:row_blank_space)
+
+        expect(answers[8]).to be_an_instance_of(Answer)
+        expect(answers[8].question).to eq(:children_known_to_authorities)
         expect(c100_application).to have_received(:children_known_to_authorities)
 
-        expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[8].question).to eq(:children_known_to_authorities_details)
+        expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[9].question).to eq(:children_known_to_authorities_details)
         expect(c100_application).to have_received(:children_known_to_authorities_details)
 
-        expect(answers[9]).to be_an_instance_of(Answer)
-        expect(answers[9].question).to eq(:children_protection_plan)
+        expect(answers[10]).to be_an_instance_of(Answer)
+        expect(answers[10].question).to eq(:children_protection_plan)
         expect(c100_application).to have_received(:children_protection_plan)
       end
 
