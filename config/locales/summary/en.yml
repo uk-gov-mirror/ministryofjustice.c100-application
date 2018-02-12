@@ -45,6 +45,9 @@ en:
     admin_date_issued: Date issued
     admin_orders_applied_for: Order(s) applied for
     c8_confidential_answer: < See C8 attached >
+    relationship_to_child:
+      show_person: "%{person_name} - %{relation} to %{child_name}"
+      hide_person: "%{relation} to %{child_name}"
 
   check_answers:
     headers:
@@ -141,26 +144,32 @@ en:
       question: Other safety or welfare concerns?
       answers:
         <<: *YESNO
+
     asking_for_permission:
-      question: Asking for permission to make this application, where that is required
+      question: Asking for permission to make this application, where that is required?
       answers:
         <<: *YESNO
     urgent_or_without_notice:
-      question: An urgent hearing or without notice hearing required
+      question: An urgent hearing or without notice hearing required?
       answers:
         <<: *YESNO
     children_previous_proceedings:
-      question: Previous or ongoing proceedings for the child(ren)
+      question: Previous or ongoing proceedings for the child(ren)?
       answers:
         <<: *YESNO
     consent_order:
-      question: Applying for an order to formalise an agreement (consent order)
+      question: Applying for an order to formalise an agreement (consent order)?
       answers:
         <<: *YESNO
     international_or_capacity:
-      question: Case with an international element or factors affecting litigation capacity
+      question: Case with an international element or factors affecting litigation capacity?
       answers:
         <<: *YESNO
+    language_assistance:
+      question: Child or people involved need language assistance during the course of the proceedings?
+      answers:
+        <<: *YESNO
+
     international_resident:
       question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
       answers:
@@ -179,11 +188,6 @@ en:
         <<: *YESNO
     international_request_details:
       question: ''
-
-    language_assistance:
-      question: Child or people involved need language assistance during the course of the proceedings
-      answers:
-        <<: *YESNO
     child_full_name:
       question: Full name
     child_dob:
@@ -228,19 +232,19 @@ en:
     children_residence:
       question: Who do the children currently live with?
     miam_child_protection:
-      question: Current or previous court cases about emergency protection, care or supervision order
+      question: "Current or previous proceedings: are/were any of those cases about an emergency protection, care or supervision order?"
       answers:
         <<: *YESNO
     miam_exemption_claimed:
-      question: Exemption claimed from the requirement to attend a MIAM
+      question: Are you claiming exemption from the requirement to attend a MIAM?
       answers:
         <<: *YESNO
     miam_certificate_received:
-      question: MIAM certificate received from mediator
+      question: Have you got a signed certificate from the mediator?
       answers:
         <<: *YESNO
     miam_attended:
-      question: Attended a MIAM
+      question: Have you attended a MIAM?
       answers:
         <<: *YESNO
     miam_certification_details:
@@ -259,7 +263,8 @@ en:
     applied_for_permission:
       question: Have you applied to the court for permission to make this application?
       answers:
-        <<: *YESNO
+        'yes': Yes
+        'no': No - permission not required
     application_details:
       question: Why are you making this application?
     urgent_hearing_details:
