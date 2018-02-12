@@ -7,8 +7,7 @@ module Summary
 
       def answers
         [
-          AnswerBox.new(:c8_family_court),
-          AnswerBox.new(:c8_case_number),
+          Partial.new(:admin_court_and_case_number),
           Partial.row_blank_space,
           Answer.new(:c8_children_names, :c8_children_numbers),
           *children_boxes

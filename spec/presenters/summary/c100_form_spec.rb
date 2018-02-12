@@ -17,6 +17,7 @@ module Summary
       it 'has the right sections in the right order' do
         expect(subject.sections).to match_instances_array([
           Sections::FormHeader,
+          Sections::C100CourtDetails,
           Sections::HelpWithFees,
           Sections::ApplicantRespondent,
           Sections::NatureOfApplication,

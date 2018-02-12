@@ -19,6 +19,7 @@ module Summary
     def summary_sections
       [
         Sections::FormHeader.new(c100_application, name: :c100_form),
+        Sections::C100CourtDetails.new(c100_application),
         Sections::HelpWithFees.new(c100_application),
         Sections::ApplicantRespondent.new(c100_application),
         Sections::NatureOfApplication.new(c100_application),
