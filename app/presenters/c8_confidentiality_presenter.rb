@@ -7,6 +7,10 @@ class C8ConfidentialityPresenter < SimpleDelegator
     :email,
   ].freeze
 
+  def self.replacement_answer
+    I18n.translate!('shared.c8_confidential_answer')
+  end
+
   def method_missing(name, *args, &block)
     confidential_detail?(name, super) ? replacement_answer : super
   end
@@ -18,6 +22,6 @@ class C8ConfidentialityPresenter < SimpleDelegator
   end
 
   def replacement_answer
-    @_replacement_answer ||= I18n.translate!('shared.c8_confidential_answer')
+    @_replacement_answer ||= self.class.replacement_answer
   end
 end

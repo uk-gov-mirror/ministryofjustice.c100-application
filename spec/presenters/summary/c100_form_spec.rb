@@ -26,6 +26,7 @@ module Summary
           Sections::SectionHeader,
           Sections::ChildrenDetails,
           Sections::ChildrenRelationships,
+          Sections::ChildrenResidence,
           Sections::SectionHeader,
           Sections::MiamRequirement,
           Sections::SectionHeader,

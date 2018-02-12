@@ -8,6 +8,8 @@ class RelationshipsPresenter
   end
 
   def relationship_to_children(person_or_people, show_person_name: true)
+    return C8ConfidentialityPresenter.replacement_answer if under_c8?(person_or_people)
+
     relationships.where(minor: minors, person: person_or_people).map do |relationship|
       show_person_name ? present_relation_with_person(relationship) : present_relation_without_person(relationship)
     end.join(PEOPLE_SEPARATOR)
@@ -21,6 +23,11 @@ class RelationshipsPresenter
 
   def relationships
     c100_application.relationships
+  end
+
+  # For other parties, we need to hide the relationships if C8 is triggered
+  def under_c8?(person_or_people)
+    c100_application.confidentiality_enabled? && Array(person_or_people).first.is_a?(OtherParty)
   end
 
   def i18n_relation(relationship)

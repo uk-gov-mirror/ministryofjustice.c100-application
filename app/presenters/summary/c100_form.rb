@@ -32,7 +32,8 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :children),
         Sections::ChildrenDetails.new(c100_application),
-        Sections::ChildrenRelationships.new(c100_application)
+        Sections::ChildrenRelationships.new(c100_application),
+        Sections::ChildrenResidence.new(c100_application),
       ]
     end
 
