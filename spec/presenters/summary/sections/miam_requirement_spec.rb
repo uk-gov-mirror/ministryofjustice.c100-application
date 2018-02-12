@@ -21,24 +21,32 @@ module Summary
       it { expect(subject.show_header?).to eq(false) }
     end
 
+    # The following tests can be fragile, but on purpose. During the development phase
+    # we have to update the tests each time we introduce a new row or remove another.
+    # But once it is finished and stable, it will raise a red flag if it ever gets out
+    # of sync, which means a quite solid safety net for any maintainers in the future.
+    #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(4)
+        expect(answers.count).to eq(5)
 
-        expect(answers[0]).to be_an_instance_of(Answer)
-        expect(answers[0].question).to eq(:miam_child_protection)
-        expect(c100_application).to have_received(:child_protection_cases)
+        expect(answers[0]).to be_an_instance_of(Partial)
+        expect(answers[0].name).to eq(:miam_information)
 
         expect(answers[1]).to be_an_instance_of(Answer)
-        expect(answers[1].question).to eq(:miam_exemption_claimed)
-        expect(answers[1].value).to eq(GenericYesNo::NO) # Always NO for now
+        expect(answers[1].question).to eq(:miam_child_protection)
+        expect(c100_application).to have_received(:child_protection_cases)
 
         expect(answers[2]).to be_an_instance_of(Answer)
-        expect(answers[2].question).to eq(:miam_certificate_received)
-        expect(c100_application).to have_received(:miam_certification)
+        expect(answers[2].question).to eq(:miam_exemption_claimed)
+        expect(answers[2].value).to eq(GenericYesNo::NO) # Always NO for now
 
         expect(answers[3]).to be_an_instance_of(Answer)
-        expect(answers[3].question).to eq(:miam_attended)
+        expect(answers[3].question).to eq(:miam_certificate_received)
+        expect(c100_application).to have_received(:miam_certification)
+
+        expect(answers[4]).to be_an_instance_of(Answer)
+        expect(answers[4].question).to eq(:miam_attended)
         expect(c100_application).to have_received(:miam_attended)
       end
     end

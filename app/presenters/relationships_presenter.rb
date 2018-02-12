@@ -1,5 +1,4 @@
 class RelationshipsPresenter
-  RELATION_SEPARATOR = ' - '.freeze
   PEOPLE_SEPARATOR = '; '.freeze
 
   attr_reader :c100_application
@@ -10,11 +9,7 @@ class RelationshipsPresenter
 
   def relationship_to_children(person_or_people, show_person_name: true)
     relationships.where(minor: minors, person: person_or_people).map do |relationship|
-      person_full_name = show_person_name ? relationship.person.full_name : nil
-      child_full_name  = relationship.minor.full_name
-      relation = i18n_relation(relationship)
-
-      [person_full_name, relation, child_full_name].compact.join(RELATION_SEPARATOR)
+      show_person_name ? present_relation_with_person(relationship) : present_relation_without_person(relationship)
     end.join(PEOPLE_SEPARATOR)
   end
 
@@ -31,5 +26,22 @@ class RelationshipsPresenter
   def i18n_relation(relationship)
     return relationship.relation_other_value if relationship.relation.eql?(Relation::OTHER.to_s)
     I18n.translate!(relationship.relation, scope: 'dictionary.RELATIONS')
+  end
+
+  def present_relation_with_person(relationship)
+    I18n.translate!(
+      'shared.relationship_to_child.show_person',
+      person_name: relationship.person.full_name,
+      child_name: relationship.minor.full_name,
+      relation: i18n_relation(relationship)
+    )
+  end
+
+  def present_relation_without_person(relationship)
+    I18n.translate!(
+      'shared.relationship_to_child.hide_person',
+      child_name: relationship.minor.full_name,
+      relation: i18n_relation(relationship)
+    )
   end
 end

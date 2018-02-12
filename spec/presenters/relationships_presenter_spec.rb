@@ -22,13 +22,13 @@ RSpec.describe RelationshipsPresenter do
 
     context 'showing the person name' do
       it 'returns a string describing the relationships' do
-        expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - Father - Child name')
+        expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - Father to Child name')
       end
     end
 
     context 'hiding the person name' do
       it 'returns a string describing the relationships' do
-        expect(subject.relationship_to_children(person, show_person_name: false)).to eq('Father - Child name')
+        expect(subject.relationship_to_children(person, show_person_name: false)).to eq('Father to Child name')
       end
     end
 
@@ -40,13 +40,13 @@ RSpec.describe RelationshipsPresenter do
 
       context 'showing the person name' do
         it 'returns a string describing the relationships' do
-          expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - A friend - Child name')
+          expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - A friend to Child name')
         end
       end
 
       context 'hiding the person name' do
         it 'returns a string describing the relationships' do
-          expect(subject.relationship_to_children(person, show_person_name: false)).to eq('A friend - Child name')
+          expect(subject.relationship_to_children(person, show_person_name: false)).to eq('A friend to Child name')
         end
       end
     end
