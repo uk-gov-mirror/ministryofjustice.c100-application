@@ -2,7 +2,15 @@ require 'spec_helper'
 
 module Summary
   describe Sections::OtherPartiesDetails do
-    let(:c100_application) { instance_double(C100Application, other_parties: [other_party]) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        confidentiality_enabled?: confidentiality_enabled,
+        other_parties: other_parties,
+      )
+    }
+    let(:confidentiality_enabled) { false }
+    let(:other_parties) { [other_party] }
 
     let(:other_party) {
       instance_double(OtherParty,
@@ -44,6 +52,10 @@ module Summary
         expect(c100_application).to receive(:other_parties)
         subject.record_collection
       }
+
+      it {
+        expect(subject.record_collection).not_to be_an_instance_of(C8CollectionProxy)
+      }
     end
 
     describe '#answers' do
@@ -54,7 +66,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(7)
+        expect(answers.count).to eq(8)
       end
 
       it 'has the correct rows in the right order' do
@@ -85,6 +97,9 @@ module Summary
         expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[6].question).to eq(:person_relationship_to_children)
         expect(answers[6].value).to eq('relationships')
+
+        expect(answers[7]).to be_an_instance_of(Partial)
+        expect(answers[7].name).to eq(:row_blank_space)
       end
 
       context 'for existing previous name' do
@@ -92,7 +107,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(7)
+          expect(answers.count).to eq(8)
         end
 
         it 'renders the previous name' do
@@ -107,7 +122,7 @@ module Summary
         let(:age_estimate) { 18 }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(7)
+          expect(answers.count).to eq(8)
         end
 
         it 'uses the age estimate' do
@@ -118,7 +133,7 @@ module Summary
       end
 
       context 'when no other parties present' do
-        let(:c100_application) { instance_double(C100Application, other_parties: []) }
+        let(:other_parties) { [] }
 
         it 'has the correct number of rows' do
           expect(answers.count).to eq(1)
@@ -130,10 +145,16 @@ module Summary
         end
       end
 
-      context 'C8 confidentiality' do
-        it 'uses the confidentiality presenter' do
-          expect(C8ConfidentialityPresenter).to receive(:new).with(other_party, c100_application).and_call_original
-          answers
+      context 'when confidentiality is enabled' do
+        let(:confidentiality_enabled) { true }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(1)
+        end
+
+        it 'has the correct rows in the right order' do
+          expect(answers[0]).to be_an_instance_of(Separator)
+          expect(answers[0].title).to eq(:c8_attached)
         end
       end
     end

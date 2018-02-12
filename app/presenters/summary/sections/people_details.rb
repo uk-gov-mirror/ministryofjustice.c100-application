@@ -13,11 +13,7 @@ module Summary
 
       # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def answers
-        return [Separator.new(:not_applicable)] if record_collection.empty?
-
         record_collection.map.with_index(1) do |person, index|
-          person = C8ConfidentialityPresenter.new(person, c100)
-
           [
             Separator.new("#{name}_index_title", index: index),
             FreeTextAnswer.new(:person_full_name, person.full_name),
@@ -36,6 +32,7 @@ module Summary
               :person_relationship_to_children,
               RelationshipsPresenter.new(c100_application).relationship_to_children(person, show_person_name: false)
             ),
+            Partial.row_blank_space,
           ]
         end.flatten.select(&:show?)
       end

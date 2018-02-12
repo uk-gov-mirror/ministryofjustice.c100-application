@@ -2,7 +2,13 @@ require 'spec_helper'
 
 module Summary
   describe Sections::ApplicantsDetails do
-    let(:c100_application) { instance_double(C100Application, applicants: [applicant]) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        confidentiality_enabled?: false,
+        applicants: [applicant]
+      )
+    }
 
     let(:applicant) {
       instance_double(Applicant,
@@ -42,6 +48,10 @@ module Summary
         expect(c100_application).to receive(:applicants)
         subject.record_collection
       }
+
+      it {
+        expect(subject.record_collection).to be_an_instance_of(C8CollectionProxy)
+      }
     end
 
     describe '#answers' do
@@ -52,7 +62,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(13)
+        expect(answers.count).to eq(14)
       end
 
       it 'has the correct rows in the right order' do
@@ -107,6 +117,9 @@ module Summary
         expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[12].question).to eq(:person_relationship_to_children)
         expect(answers[12].value).to eq('relationships')
+
+        expect(answers[13]).to be_an_instance_of(Partial)
+        expect(answers[13].name).to eq(:row_blank_space)
       end
 
       context 'for existing previous name' do
@@ -114,20 +127,13 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(13)
+          expect(answers.count).to eq(14)
         end
 
         it 'renders the previous name' do
           expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[2].question).to eq(:person_previous_name)
           expect(answers[2].value).to eq('previous_name')
-        end
-      end
-
-      context 'C8 confidentiality' do
-        it 'uses the confidentiality presenter' do
-          expect(C8ConfidentialityPresenter).to receive(:new).with(applicant, c100_application).and_call_original
-          answers
         end
       end
     end

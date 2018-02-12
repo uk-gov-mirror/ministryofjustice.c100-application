@@ -1,24 +1,29 @@
 require 'spec_helper'
 
 module Summary
-  describe Sections::RespondentsDetails do
-    let(:c100_application) { instance_double(C100Application, respondents: [respondent]) }
+  describe Sections::C8OtherPartiesDetails do
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        other_parties: [other_party],
+      )
+    }
 
-    let(:respondent) {
-      instance_double(Respondent,
+    let(:other_party) {
+      instance_double(OtherParty,
         full_name: 'fullname',
         has_previous_name: has_previous_name,
         previous_name: previous_name,
         dob: dob,
         age_estimate: age_estimate,
         gender: 'female',
-        birthplace: 'birthplace',
+        birthplace: nil,
         address: 'address',
-        residence_requirement_met: 'yes',
-        residence_history: 'history',
-        home_phone: 'home_phone',
-        mobile_phone: 'mobile_phone',
-        email: 'email'
+        residence_requirement_met: nil,
+        residence_history: nil,
+        home_phone: nil,
+        mobile_phone: nil,
+        email: nil,
       )
     }
 
@@ -32,21 +37,17 @@ module Summary
     let(:answers) { subject.answers }
 
     describe '#name' do
-      it { expect(subject.name).to eq(:respondents_details) }
+      it { expect(subject.name).to eq(:c8_other_parties_details) }
     end
 
     describe '#show_header?' do
-      it { expect(subject.show_header?).to eq(false) }
+      it { expect(subject.show_header?).to eq(true) }
     end
 
     describe '#record_collection' do
       it {
-        expect(c100_application).to receive(:respondents)
+        expect(c100_application).to receive(:other_parties)
         subject.record_collection
-      }
-
-      it {
-        expect(subject.record_collection).not_to be_an_instance_of(C8CollectionProxy)
       }
     end
 
@@ -54,16 +55,16 @@ module Summary
       before do
         allow_any_instance_of(
           RelationshipsPresenter
-        ).to receive(:relationship_to_children).with(respondent, show_person_name: false).and_return('relationships')
+        ).to receive(:relationship_to_children).with(other_party, show_person_name: false).and_return('relationships')
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(14)
+        expect(answers.count).to eq(8)
       end
 
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Separator)
-        expect(answers[0].title).to eq('respondents_details_index_title')
+        expect(answers[0].title).to eq('c8_other_parties_details_index_title')
         expect(answers[0].i18n_opts).to eq({index: 1})
 
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
@@ -83,39 +84,15 @@ module Summary
         expect(answers[4].value).to eq(Date.new(2018, 1, 20))
 
         expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[5].question).to eq(:person_birthplace)
-        expect(answers[5].value).to eq('birthplace')
+        expect(answers[5].question).to eq(:person_address)
+        expect(answers[5].value).to eq('address')
 
         expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[6].question).to eq(:person_address)
-        expect(answers[6].value).to eq('address')
+        expect(answers[6].question).to eq(:person_relationship_to_children)
+        expect(answers[6].value).to eq('relationships')
 
-        expect(answers[7]).to be_an_instance_of(Answer)
-        expect(answers[7].question).to eq(:person_residence_requirement_met)
-        expect(answers[7].value).to eq('yes')
-
-        expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[8].question).to eq(:person_residence_history)
-        expect(answers[8].value).to eq('history')
-
-        expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[9].question).to eq(:person_home_phone)
-        expect(answers[9].value).to eq('home_phone')
-
-        expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[10].question).to eq(:person_mobile_phone)
-        expect(answers[10].value).to eq('mobile_phone')
-
-        expect(answers[11]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[11].question).to eq(:person_email)
-        expect(answers[11].value).to eq('email')
-
-        expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[12].question).to eq(:person_relationship_to_children)
-        expect(answers[12].value).to eq('relationships')
-
-        expect(answers[13]).to be_an_instance_of(Partial)
-        expect(answers[13].name).to eq(:row_blank_space)
+        expect(answers[7]).to be_an_instance_of(Partial)
+        expect(answers[7].name).to eq(:row_blank_space)
       end
 
       context 'for existing previous name' do
@@ -123,7 +100,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(14)
+          expect(answers.count).to eq(8)
         end
 
         it 'renders the previous name' do
@@ -138,7 +115,7 @@ module Summary
         let(:age_estimate) { 18 }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(14)
+          expect(answers.count).to eq(8)
         end
 
         it 'uses the age estimate' do

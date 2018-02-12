@@ -6,7 +6,19 @@ module Summary
       end
 
       def record_collection
-        c100.other_parties
+        @_record_collection ||= c100.other_parties
+      end
+
+      def answers
+        return [
+          Separator.new(:not_applicable)
+        ] if record_collection.empty?
+
+        return [
+          Separator.new(:c8_attached)
+        ] if c100.confidentiality_enabled?
+
+        super
       end
     end
   end

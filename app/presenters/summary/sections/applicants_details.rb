@@ -6,7 +6,7 @@ module Summary
       end
 
       def record_collection
-        c100.applicants
+        C8CollectionProxy.new(c100, c100.applicants)
       end
     end
   end
