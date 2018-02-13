@@ -21,6 +21,10 @@ RSpec.describe C8ConfidentialityPresenter do
     }
   end
 
+  describe '.replacement_answer' do
+    it { expect(described_class.replacement_answer).to eq('< See C8 attached >') }
+  end
+
   it 'returns the original answer if it is blank/nil' do
     expect(subject.residence_history).to eq(nil)
   end

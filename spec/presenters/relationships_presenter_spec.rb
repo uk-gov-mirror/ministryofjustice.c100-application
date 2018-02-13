@@ -1,7 +1,16 @@
 require 'spec_helper'
 
 RSpec.describe RelationshipsPresenter do
-  let(:c100_application) { instance_double(C100Application, minors: minors, relationships: relationships) }
+  let(:c100_application) {
+    instance_double(
+      C100Application,
+      confidentiality_enabled?: confidentiality_enabled,
+      minors: minors,
+      relationships: relationships,
+    )
+  }
+
+  let(:confidentiality_enabled) { false }
 
   let(:minors) { [] }
   let(:relationships) { double('relationships') }
@@ -47,6 +56,26 @@ RSpec.describe RelationshipsPresenter do
       context 'hiding the person name' do
         it 'returns a string describing the relationships' do
           expect(subject.relationship_to_children(person, show_person_name: false)).to eq('A friend to Child name')
+        end
+      end
+    end
+
+    context 'for a collection under C8 confidentiality' do
+      let(:person) { OtherParty.new }
+
+      context 'and confidentiality is enabled' do
+        let(:confidentiality_enabled) { true }
+
+        it 'returns the C8 replacement string' do
+          expect(subject.relationship_to_children(person)).to eq('< See C8 attached >')
+        end
+      end
+
+      context 'and confidentiality is disabled' do
+        let(:confidentiality_enabled) { false }
+
+        it 'returns the C8 replacement string' do
+          expect(subject.relationship_to_children(person)).to eq('Person name - Father to Child name')
         end
       end
     end
