@@ -25,7 +25,6 @@ class C100Application < ApplicationRecord
   has_value_object :concerns_contact_type
   has_value_object :concerns_contact_other,        class_name: 'GenericYesNo'
   has_value_object :children_previous_proceedings, class_name: 'GenericYesNo'
-  has_value_object :emergency_proceedings,         class_name: 'GenericYesNo'
 
   def confidentiality_enabled?
     address_confidentiality.eql?(GenericYesNo::YES.to_s)
