@@ -110,7 +110,6 @@ Rails.application.routes.draw do
       end
       edit_step :contact
       edit_step :previous_proceedings
-      edit_step :emergency_proceedings
     end
     namespace :court_orders do
       edit_step :has_orders

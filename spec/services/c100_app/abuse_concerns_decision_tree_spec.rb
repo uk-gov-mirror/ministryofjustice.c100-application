@@ -319,11 +319,6 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
     end
   end
 
-  describe 'when the step is `emergency_proceedings`' do
-    let(:as) { 'emergency_proceedings' }
-    it { is_expected.to have_destination('/steps/application/without_notice', :edit) }
-  end
-
   describe 'when the step is not known' do
     let(:as) { 'anything' }
 
