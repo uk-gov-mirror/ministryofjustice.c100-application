@@ -7,6 +7,7 @@ module Summary
         miam_sections,
         application_reasons_sections,
         urgent_and_without_notice_sections,
+        other_court_cases_section,
         international_element_sections,
         litigation_capacity_sections,
         attending_court_sections,
@@ -59,6 +60,13 @@ module Summary
         Sections::SectionHeader.new(c100_application, name: :urgent_and_without_notice),
         Sections::UrgentHearing.new(c100_application),
         Sections::WithoutNoticeHearing.new(c100_application),
+      ]
+    end
+
+    def other_court_cases_section
+      [
+        Sections::SectionHeader.new(c100_application, name: :other_court_cases),
+        Sections::OtherCourtCases.new(c100_application),
       ]
     end
 

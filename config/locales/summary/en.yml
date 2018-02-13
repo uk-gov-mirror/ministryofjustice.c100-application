@@ -63,6 +63,7 @@ en:
       mediator_certification: 4. Mediator certifies that the prospective applicant is exempt from attendance at Mediation Information and Assessment Meeting (MIAM) or confirms MIAM attendance
       application_reasons: 5. Why are you making this application?
       urgent_and_without_notice: 6. Urgent and without notice hearings
+      other_court_cases: 7. Other court cases which concern the child(ren) listed in Section 1
       international_element: 8. Cases with an international element
       litigation_capacity: 9. Factors affecting ability to participate in proceedings
       attending_court: 10. Attending the court
@@ -366,6 +367,20 @@ en:
       question: Is a solicitor acting for you?
       answers:
         <<: *YESNO
+    court_proceeding_children_names:
+      question: Name of child(ren)
+    court_proceeding_court_name:
+      question: Name of court where proceedings were heard
+    court_proceeding_case_number:
+      question: Case number
+    court_proceeding_proceedings_date:
+      question: Date/year
+    court_proceeding_cafcass_details:
+      question: Name and office of Cafcass/CAFCASS CYMRU officer
+    court_proceeding_order_types:
+      question: Type of proceedings - if known
+    court_proceeding_previous_details:
+      question: Details of any other previous family case
 
     ### C8 questions/answers ###
     #
