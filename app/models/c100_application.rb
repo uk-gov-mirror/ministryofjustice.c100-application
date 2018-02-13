@@ -4,6 +4,7 @@ class C100Application < ApplicationRecord
   has_one  :abduction_detail, dependent: :destroy
   has_one  :asking_order,     dependent: :destroy
   has_one  :court_order,      dependent: :destroy
+  has_one  :court_proceeding, dependent: :destroy
   has_one  :exemption,        dependent: :destroy
   has_one  :screener_answers, dependent: :destroy
 
