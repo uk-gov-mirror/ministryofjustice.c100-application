@@ -8,8 +8,6 @@ module C100App
         after_details_step
       when :contact
         edit('/steps/miam_exemptions/safety')
-      when :previous_proceedings
-        after_previous_proceedings
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
       end
@@ -27,15 +25,6 @@ module C100App
 
     def abuse_answer
       GenericYesNo.new(step_params[:answer])
-    end
-
-    def after_previous_proceedings
-      case step_params.fetch(:children_previous_proceedings)
-      when GenericYesNo::YES.to_s
-        edit(:emergency_proceedings) # TODO: this will become `previous court proceedings` step
-      else
-        edit('/steps/application/without_notice')
-      end
     end
 
     def after_question_step

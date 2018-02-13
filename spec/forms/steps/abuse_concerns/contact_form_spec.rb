@@ -29,7 +29,7 @@ RSpec.describe Steps::AbuseConcerns::ContactForm do
       it 'saves the record' do
         expect(c100_application).to receive(:update).with(
           concerns_contact_type: ConcernsContactType.new(:unsupervised),
-          concerns_contact_other: GenericYesNo.new(:yes)
+          concerns_contact_other: GenericYesNo::YES,
         ).and_return(true)
 
         expect(subject.save).to be(true)

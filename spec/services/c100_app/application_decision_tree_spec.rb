@@ -10,6 +10,21 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   it_behaves_like 'a decision tree'
 
+  describe 'when the step is `previous_proceedings`' do
+    let(:c100_application) { instance_double(C100Application, children_previous_proceedings: answer) }
+    let(:step_params) { { previous_proceedings: 'whatever' } }
+
+    context 'when answer is `yes`' do
+      let(:answer) { 'yes' }
+      it { is_expected.to have_destination(:emergency_proceedings, :edit) }
+    end
+
+    context 'when answer is `no`' do
+      let(:answer) { 'no' }
+      it { is_expected.to have_destination(:without_notice, :edit) }
+    end
+  end
+
   context 'when the step is `without_notice`' do
     let(:c100_application) { instance_double(C100Application, without_notice: answer) }
     let(:step_params) { { without_notice: 'whatever' } }
