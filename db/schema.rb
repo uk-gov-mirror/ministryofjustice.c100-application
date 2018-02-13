@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213101530) do
+ActiveRecord::Schema.define(version: 20180213120817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,18 @@ ActiveRecord::Schema.define(version: 20180213101530) do
     t.index ["c100_application_id"], name: "index_court_orders_on_c100_application_id"
   end
 
+  create_table "court_proceedings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "children_names"
+    t.string "court_name"
+    t.string "case_number"
+    t.string "proceedings_date"
+    t.text "cafcass_details"
+    t.text "order_types"
+    t.text "previous_details"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_court_proceedings_on_c100_application_id"
+  end
+
   create_table "exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.boolean "group_police", default: false
     t.boolean "police_arrested", default: false
@@ -297,6 +309,7 @@ ActiveRecord::Schema.define(version: 20180213101530) do
   add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "child_residences", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
+  add_foreign_key "court_proceedings", "c100_applications"
   add_foreign_key "exemptions", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"

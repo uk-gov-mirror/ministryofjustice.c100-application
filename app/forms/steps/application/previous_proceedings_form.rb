@@ -1,5 +1,5 @@
 module Steps
-  module AbuseConcerns
+  module Application
     class PreviousProceedingsForm < BaseForm
       include SingleQuestionForm
 

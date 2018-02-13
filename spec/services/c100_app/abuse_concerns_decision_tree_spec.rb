@@ -305,20 +305,6 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
     it { is_expected.to have_destination('/steps/miam_exemptions/safety', :edit) }
   end
 
-  describe 'when the step is `previous_proceedings`' do
-    let(:as) { 'previous_proceedings' }
-
-    context 'when answer is `yes`' do
-      let(:step_params) { {children_previous_proceedings: 'yes'} }
-      it { is_expected.to have_destination(:emergency_proceedings, :edit) }
-    end
-
-    context 'when answer is `no`' do
-      let(:step_params) { {children_previous_proceedings: 'no'} }
-      it { is_expected.to have_destination('/steps/application/without_notice', :edit) }
-    end
-  end
-
   describe 'when the step is not known' do
     let(:as) { 'anything' }
 

@@ -4,6 +4,7 @@ class C100Application < ApplicationRecord
   has_one  :abduction_detail, dependent: :destroy
   has_one  :asking_order,     dependent: :destroy
   has_one  :court_order,      dependent: :destroy
+  has_one  :court_proceeding, dependent: :destroy
   has_one  :exemption,        dependent: :destroy
   has_one  :screener_answers, dependent: :destroy
 
@@ -23,8 +24,6 @@ class C100Application < ApplicationRecord
   has_value_object :user_type
   has_value_object :help_paying
   has_value_object :concerns_contact_type
-  has_value_object :concerns_contact_other,        class_name: 'GenericYesNo'
-  has_value_object :children_previous_proceedings, class_name: 'GenericYesNo'
 
   def confidentiality_enabled?
     address_confidentiality.eql?(GenericYesNo::YES.to_s)

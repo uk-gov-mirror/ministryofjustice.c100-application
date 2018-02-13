@@ -1,6 +1,6 @@
 module Steps
-  module AbuseConcerns
-    class PreviousProceedingsController < Steps::AbuseConcernsStepController
+  module Application
+    class PreviousProceedingsController < Steps::ApplicationStepController
       def edit
         @form_object = PreviousProceedingsForm.new(
           c100_application: current_c100_application,

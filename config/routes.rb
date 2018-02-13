@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       show_step :no_court_found
     end
     namespace :application do
+      edit_step :previous_proceedings
+      edit_step :court_proceedings
       edit_step :without_notice
       edit_step :without_notice_details
       edit_step :litigation_capacity
@@ -109,7 +111,6 @@ Rails.application.routes.draw do
         get '/:subject/:kind', action: :edit
       end
       edit_step :contact
-      edit_step :previous_proceedings
     end
     namespace :court_orders do
       edit_step :has_orders

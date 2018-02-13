@@ -5,6 +5,10 @@ module C100App
       return next_step if next_step
 
       case step_name
+      when :previous_proceedings
+        after_previous_proceedings
+      when :court_proceedings
+        edit(:without_notice)
       when :without_notice
         after_without_notice
       when :without_notice_details
@@ -30,6 +34,14 @@ module C100App
     # rubocop:enable Metrics/MethodLength
 
     private
+
+    def after_previous_proceedings
+      if question(:children_previous_proceedings).yes?
+        edit(:court_proceedings)
+      else
+        edit(:without_notice)
+      end
+    end
 
     def after_without_notice
       if question(:without_notice).yes?

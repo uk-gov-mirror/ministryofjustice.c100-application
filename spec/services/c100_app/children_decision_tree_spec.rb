@@ -94,7 +94,7 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
     context 'when all child residences have been edited' do
       let(:child) { double('Child', id: 3) }
-      it { is_expected.to have_destination('/steps/abuse_concerns/previous_proceedings', :edit) }
+      it { is_expected.to have_destination('/steps/application/previous_proceedings', :edit) }
     end
   end
 end
