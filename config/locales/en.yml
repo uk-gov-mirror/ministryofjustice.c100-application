@@ -550,8 +550,15 @@ en:
       previous_proceedings:
         edit:
           page_title: Previous proceedings
+          section: Previous proceedings
           heading: Have any of the children in this application been involved in another family court case?
           lead_text: For example an emergency protection order or supervision order. Include any ongoing cases.
+      court_proceedings:
+        edit:
+          page_title: Previous court cases
+          section: Previous proceedings
+          heading: Details of previous court case
+          case_number_info: If you have your case number it will help us process your application more quickly.
       without_notice:
         edit:
           page_title: Without notice hearing
@@ -895,6 +902,14 @@ en:
         relation_other_value: *provide_details
         relation:
           <<: *RELATIONS
+      steps_application_court_proceedings_form:
+        children_names: Names of children involved
+        court_name: Name of court
+        case_number: Case number
+        proceedings_date: Date/year
+        cafcass_details: Name and office of Cafcass/CAFCASS CYMRU officer
+        order_types: Type of proceedings
+        previous_details: Add details of any other previous family case
       steps_application_without_notice_details_form:
         without_notice_details: Give as much information as you can
         without_notice_frustrate_details: *provide_details
@@ -1049,6 +1064,12 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
+      steps_application_court_proceedings_form:
+        proceedings_date: Enter an approximate date if unsure
+        case_number: Leave blank if you don’t know
+        cafcass_details: Leave blank if you don’t know
+        order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
+        previous_details: Try and include as many details as possible, for example case number, date and name of court
       steps_application_without_notice_details_form:
         without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
       steps_application_language_form:

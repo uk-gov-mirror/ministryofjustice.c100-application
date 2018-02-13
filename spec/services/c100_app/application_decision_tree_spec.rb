@@ -16,13 +16,18 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'when answer is `yes`' do
       let(:answer) { 'yes' }
-      it { is_expected.to have_destination(:emergency_proceedings, :edit) }
+      it { is_expected.to have_destination(:court_proceedings, :edit) }
     end
 
     context 'when answer is `no`' do
       let(:answer) { 'no' }
       it { is_expected.to have_destination(:without_notice, :edit) }
     end
+  end
+
+  context 'when the step is `court_proceedings`' do
+    let(:step_params) { { court_proceedings: 'anything' } }
+    it { is_expected.to have_destination(:without_notice, :edit) }
   end
 
   context 'when the step is `without_notice`' do
