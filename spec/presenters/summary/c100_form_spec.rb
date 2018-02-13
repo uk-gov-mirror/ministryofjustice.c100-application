@@ -37,6 +37,8 @@ module Summary
           Sections::UrgentHearing,
           Sections::WithoutNoticeHearing,
           Sections::SectionHeader,
+          Sections::OtherCourtCases,
+          Sections::SectionHeader,
           Sections::InternationalElement,
           Sections::SectionHeader,
           Sections::LitigationCapacity,
