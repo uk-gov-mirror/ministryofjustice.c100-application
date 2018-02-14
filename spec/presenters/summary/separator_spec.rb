@@ -13,6 +13,13 @@ describe Summary::Separator do
     it { expect(subject.to_partial_path).to eq('steps/completion/shared/separator') }
   end
 
+  describe '.not_applicable' do
+    it 'instantiates a specific Separator object' do
+      separator = described_class.not_applicable
+      expect(separator.title).to eq(:not_applicable)
+    end
+  end
+
   describe 'can be given i18n options' do
     context 'when there are no options' do
       it 'returns the default value' do

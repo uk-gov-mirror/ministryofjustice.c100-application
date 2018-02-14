@@ -7,6 +7,12 @@ module Summary
       @i18n_opts = i18n_opts
     end
 
+    class << self
+      def not_applicable
+        new(:not_applicable)
+      end
+    end
+
     def show?
       true
     end

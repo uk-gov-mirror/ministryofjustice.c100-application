@@ -6,7 +6,7 @@ module Summary
       end
 
       def answers
-        return [Separator.new(:not_applicable)] if children.empty?
+        return [Separator.not_applicable] if children.empty?
 
         [
           children_details

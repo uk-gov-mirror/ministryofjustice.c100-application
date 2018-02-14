@@ -11,7 +11,7 @@ module Summary
 
       def answers
         return [
-          Separator.new(:not_applicable)
+          Separator.not_applicable
         ] if record_collection.empty?
 
         return [

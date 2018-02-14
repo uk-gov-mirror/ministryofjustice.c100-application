@@ -46,23 +46,5 @@ module Summary
         expect(subject.show_header?).to eq(true)
       end
     end
-
-    describe '#t' do
-      subject { described_class.new(c100_application, name: :my_presenter) }
-
-      context 'for a default scope' do
-        it 'builds the scope from the name of the presenter' do
-          expect(I18n).to receive(:translate!).with('a_key', {scope: 'check_answers.my_presenter'})
-          subject.send(:t, 'a_key')
-        end
-      end
-
-      context 'for a custom scope' do
-        it 'uses the custom scope' do
-          expect(I18n).to receive(:translate!).with('a_key', {scope: 'test'})
-          subject.send(:t, 'a_key', scope: 'test')
-        end
-      end
-    end
   end
 end

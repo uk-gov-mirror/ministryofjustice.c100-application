@@ -1,4 +1,7 @@
 #application-details-pdf {
+  $light-grey: #cccccc;
+  $dark-grey: #6f777b;
+
   font-family: "nta", Arial, sans-serif;
   padding: 20px;
   width: 70%;
@@ -30,9 +33,9 @@
     }
 
     div.box-to-fill {
-      border: 1px solid #6f777b;
+      border: 1px solid $dark-grey;
       background-color: #fff;
-      color: #eeeeee;
+      color: $light-grey;
       padding: 3px;
     }
 
@@ -52,14 +55,14 @@
   h2.main-section-header {
     font-size: 90%;
     font-weight: 700;
-    border-bottom: 1px solid #6f777b;
+    border-bottom: 1px solid $dark-grey;
     padding: 2px 0 0 0;
   }
 
   h3.section-header {
     font-size: 70%;
     font-weight: 700;
-    border-bottom: 1px solid #6f777b;
+    border-bottom: 1px solid $dark-grey;
     padding: 2px 0 0 0;
   }
 
@@ -79,7 +82,7 @@
   td {
     vertical-align: top;
     font-size: 70%;
-    border-bottom: 1px solid #bfc1c3;
+    border-bottom: 1px solid $light-grey;
     margin: 0;
   }
 

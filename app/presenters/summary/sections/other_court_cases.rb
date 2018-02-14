@@ -11,7 +11,7 @@ module Summary
 
       # rubocop:disable Metrics/AbcSize
       def answers
-        return [Separator.new(:not_applicable)] unless previous_proceedings?
+        return [Separator.not_applicable] unless previous_proceedings?
 
         [
           FreeTextAnswer.new(:court_proceeding_children_names,   court_proceeding.children_names),
