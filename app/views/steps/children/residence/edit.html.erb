@@ -9,33 +9,15 @@
     </h1>
 
     <%= step_form @form_object do |f| %>
-      <div class="form-group" id="child-residence" data-block-name="child-residence">
-        <fieldset class="fieldset-block">
-          <legend>
-            <span class="form-label-bold visuallyhidden">
-              <%=t '.heading', name: @form_object.record.child.full_name %>
-            </span>
-            <span class="form-hint">
-              <%=t '.form_hint' %>
-            </span>
-          </legend>
+      <%= f.collection_check_boxes :person_ids, @form_object.people, :id, :full_name %>
 
-          <%= f.collection_check_boxes :person_ids, @form_object.people, :id, :full_name do |cb| %>
-            <div class="multiple-choice">
-              <%= cb.check_box %>
-              <%= cb.label class: 'block-label selection-button-checkbox' %>
-            </div>
-          <% end %>
+      <p class="form-block or-block"><%=t '.or' %></p>
 
-          <div class="multiple-choice" data-target="children_residence_other_panel">
-            <%= f.check_box :other, {'aria-controls': 'children_residence_other_panel'} %>
-            <%= f.label(:other, class: 'block-label selection-button-checkbox') %>
-          </div>
-          <div class="panel panel-border-narrow js-hidden" id="children_residence_other_panel">
-            <%= f.text_field :other_full_name %>
-          </div>
-        </fieldset>
-      </div>
+      <%=
+        f.check_box_fieldset :other, [:other] do |fieldset|
+          fieldset.check_box_input(:other) { f.text_field :other_full_name }
+        end
+      %>
 
       <%= f.submit class: 'button' %>
     <% end %>
