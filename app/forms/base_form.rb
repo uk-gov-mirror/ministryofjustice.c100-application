@@ -3,6 +3,7 @@ class BaseForm
 
   include Virtus.model
   include ActiveModel::Validations
+  include FormAttributeMethods
   extend ActiveModel::Callbacks
 
   attr_accessor :c100_application
@@ -18,6 +19,8 @@ class BaseForm
 
   # Initialize a new form object given an AR model, setting its attributes
   def self.build(record, c100_application: nil)
+    raise "expected `ApplicationRecord`, got `#{record.class}`" unless record.is_a?(ApplicationRecord)
+
     attributes = attributes_map(record)
 
     attributes.merge!(
@@ -34,31 +37,6 @@ class BaseForm
     else
       false
     end
-  end
-
-  # Add the ability to read/write attributes without calling their accessor methods.
-  # Needed to behave more like an ActiveRecord model, where you can manipulate the
-  # database attributes making use of `self[:attribute]`
-  def [](attr_name)
-    instance_variable_get("@#{attr_name}".to_sym)
-  end
-
-  def []=(attr_name, value)
-    instance_variable_set("@#{attr_name}".to_sym, value)
-  end
-
-  # A shortcut to declaring multiple attributes of the same type
-  def self.attributes(collection, type, opts = {})
-    collection.each { |name| attribute(name, type, opts) }
-  end
-
-  # Iterates through all declared attributes in the form object, mapping its values
-  def self.attributes_map(origin)
-    attribute_set.map { |attr| [attr.name, origin[attr.name]] }.to_h
-  end
-
-  def attributes_map
-    self.class.attributes_map(self)
   end
 
   def to_key
