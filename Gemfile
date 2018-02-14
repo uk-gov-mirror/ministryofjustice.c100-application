@@ -4,7 +4,7 @@ ruby '2.4.2'
 
 gem 'devise'
 gem 'email_validator'
-gem 'govuk_elements_form_builder', '~> 1.1.0'
+gem 'govuk_elements_form_builder', '~> 1.2.0'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_notify_rails', '~> 2.0.0'
 gem 'govuk_template'

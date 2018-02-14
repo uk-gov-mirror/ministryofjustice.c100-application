@@ -215,7 +215,7 @@ en:
         edit:
           page_title: Child residence
           heading: "Who does %{name} live with?"
-          form_hint: Select all that apply
+          or: or
     other_children:
       names:
         edit:
@@ -876,6 +876,7 @@ en:
       steps_children_orders_form:
         orders_html: ""
       steps_children_residence_form:
+        person_ids_html: ""
         other_html: ""
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to social services?
@@ -1093,6 +1094,8 @@ en:
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
+      steps_children_residence_form:
+        person_ids_html: Select all that apply
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
