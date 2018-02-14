@@ -16,6 +16,18 @@ RSpec.describe Steps::Children::OrdersForm do
 
   subject { described_class.new(arguments) }
 
+  describe 'custom getters override' do
+    let(:child_order) { double('child_order', orders: ['child_home']) }
+
+    it 'returns true if the exemption is in the list' do
+      expect(subject.child_home).to eq(true)
+    end
+
+    it 'returns false if the exemption is not in the list' do
+      expect(subject.child_specific_issue_school).to eq(false)
+    end
+  end
+
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
