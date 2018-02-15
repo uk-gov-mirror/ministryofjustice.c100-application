@@ -6,6 +6,7 @@ class C100Application < ApplicationRecord
   has_one  :court_order,      dependent: :destroy
   has_one  :court_proceeding, dependent: :destroy
   has_one  :exemption,        dependent: :destroy
+  has_one  :miam_exemption,   dependent: :destroy
   has_one  :screener_answers, dependent: :destroy
 
   has_many :abuse_concerns,   dependent: :destroy

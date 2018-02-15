@@ -1,0 +1,52 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+    <p class="app__section_heading"><%=t '.section' %></p>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%= t '.lead_text' %></p>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.check_box_fieldset :domestic_exemptions, [
+          DomesticExemptions::GROUP_POLICE,
+          DomesticExemptions::GROUP_COURT,
+          DomesticExemptions::GROUP_SPECIALIST,
+          DomesticExemptions::GROUP_LOCAL_AUTHORITY,
+          DomesticExemptions::GROUP_DA_SERVICE,
+          DomesticExemptions::RIGHT_TO_REMAIN,
+          DomesticExemptions::FINANCIAL_ABUSE
+        ] do |fieldset|
+          fieldset.check_box_input(DomesticExemptions::GROUP_POLICE) {
+            f.check_box_fieldset :exemptions_group, DomesticExemptions::POLICE
+          }
+          fieldset.check_box_input(DomesticExemptions::GROUP_COURT) {
+            f.check_box_fieldset :exemptions_group, DomesticExemptions::COURT
+          }
+          fieldset.check_box_input(DomesticExemptions::GROUP_SPECIALIST) {
+            f.check_box_fieldset :exemptions_group, DomesticExemptions::SPECIALIST
+          }
+          fieldset.check_box_input(DomesticExemptions::GROUP_LOCAL_AUTHORITY) {
+            f.check_box_fieldset :exemptions_group, DomesticExemptions::LOCAL_AUTHORITY
+          }
+          fieldset.check_box_input(DomesticExemptions::GROUP_DA_SERVICE) {
+            f.check_box_fieldset :exemptions_group, DomesticExemptions::DA_SERVICE
+          }
+          fieldset.check_box_input(DomesticExemptions::RIGHT_TO_REMAIN)
+          fieldset.check_box_input(DomesticExemptions::FINANCIAL_ABUSE)
+        end
+      %>
+
+      <p class="form-block or-block"><%=t '.or' %></p>
+
+      <%= f.check_box_fieldset :exemptions_group, [DomesticExemptions::SAFETY_NONE] %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

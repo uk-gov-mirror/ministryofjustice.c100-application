@@ -631,11 +631,12 @@ en:
           page_title: International request
           heading: Has a court case about your children already started in another country?
     miam_exemptions:
-      safety:
+      domestic:
         edit:
           page_title: Evidence of safety concerns
-          heading: Can you provide evidence of any safety concerns?
-          lead_text: You will need to provide evidence to support your claim
+          section: MIAM exemptions
+          heading: Providing evidence of domestic abuse concerns
+          lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have to support your claim.
           or: or
       urgency:
         edit:
@@ -786,7 +787,8 @@ en:
         miam_attended_html: ""
       steps_miam_certification_form:
         miam_certification_html: ""
-      steps_miam_exemptions_safety_form:
+      steps_miam_exemptions_domestic_form:
+        domestic_exemptions_html: "Do you have any of the following evidence of domestic abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
         exemptions_group_html: ""
@@ -1104,6 +1106,8 @@ en:
         asked_for_help: For example, your GP
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
+      steps_miam_exemptions_domestic_form:
+        domestic_exemptions: Select all that apply or ‘None of these’
       steps_postcode_screen_children_postcodes_form:
         children_postcodes: Please enter one postcode per line. Only include postcodes that you are sure of - if you don't know any postcodes, leave this box blank. Please only enter full postcodes (like "SW1H 9AJ").
       

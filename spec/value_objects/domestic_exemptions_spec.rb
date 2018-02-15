@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SafetyExemptions do
+RSpec.describe DomesticExemptions do
   let(:value) { :foo }
   subject     { described_class.new(value) }
 

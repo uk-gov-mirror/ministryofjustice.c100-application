@@ -1,6 +1,6 @@
 en:
   dictionary:
-    SAFETY_EXEMPTIONS: &SAFETY_EXEMPTIONS
+    DOMESTIC_EXEMPTIONS: &DOMESTIC_EXEMPTIONS
       ## GROUP POLICE ##
       group_police_html: |
         <span class="heading-small gv-u-heading-small">The police have been involved</span><br/>
@@ -108,7 +108,7 @@ en:
 
   helpers:
     label:
-      steps_miam_exemptions_safety_form:
-        <<: *SAFETY_EXEMPTIONS
+      steps_miam_exemptions_domestic_form:
+        <<: *DOMESTIC_EXEMPTIONS
       steps_miam_exemptions_urgency_form:
         <<: *URGENCY_EXEMPTIONS

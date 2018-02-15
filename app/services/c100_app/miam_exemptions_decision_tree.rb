@@ -4,7 +4,7 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :safety
+      when :domestic
         edit(:urgency)
       when :urgency
         edit('/steps/petition/orders')

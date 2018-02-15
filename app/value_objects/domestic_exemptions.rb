@@ -1,4 +1,4 @@
-class SafetyExemptions < ValueObject
+class DomesticExemptions < ValueObject
   VALUES = [
     GROUP_POLICE = new(:group_police),
     POLICE = [
