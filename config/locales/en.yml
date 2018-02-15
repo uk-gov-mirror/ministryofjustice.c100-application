@@ -8,6 +8,9 @@ en:
     order_length: &order_length "How long is the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
+    select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
+    sections:
+      miam_exemptions: &miam_exemptions "MIAM exemptions"
 
     YESNO: &YESNO
       'yes': 'Yes'
@@ -631,17 +634,18 @@ en:
           page_title: International request
           heading: Has a court case about your children already started in another country?
     miam_exemptions:
-      safety:
+      domestic:
         edit:
-          page_title: Evidence of safety concerns
-          heading: Can you provide evidence of any safety concerns?
-          lead_text: You will need to provide evidence to support your claim
+          page_title: Evidence of domestic abuse concerns
+          section: *miam_exemptions
+          heading: Providing evidence of domestic abuse concerns
+          lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have to support your claim.
           or: or
       urgency:
         edit:
           page_title: Evidence that your application is urgent
-          heading: Can you provide evidence that your application is urgent?
-          lead_text: You will need to provide evidence to support your claim
+          section: *miam_exemptions
+          heading: Providing evidence that your application is urgent
           or: or
     screener:
       postcode:
@@ -786,9 +790,11 @@ en:
         miam_attended_html: ""
       steps_miam_certification_form:
         miam_certification_html: ""
-      steps_miam_exemptions_safety_form:
+      steps_miam_exemptions_domestic_form:
+        domestic_exemptions_html: "Do you have any of the following evidence of domestic abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
+        urgency_exemptions_html: "Do you have any of the following evidence that your application is urgent?"
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
@@ -1104,9 +1110,13 @@ en:
         asked_for_help: For example, your GP
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
+      steps_miam_exemptions_domestic_form:
+        domestic_exemptions: *select_all_that_apply_or_none
+      steps_miam_exemptions_urgency_form:
+        urgency_exemptions: *select_all_that_apply_or_none
       steps_postcode_screen_children_postcodes_form:
         children_postcodes: Please enter one postcode per line. Only include postcodes that you are sure of - if you don't know any postcodes, leave this box blank. Please only enter full postcodes (like "SW1H 9AJ").
-      
+
     submit:
       create: Continue
       update: Continue

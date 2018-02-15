@@ -1,14 +1,14 @@
 module Steps
   module MiamExemptions
-    class SafetyController < Steps::MiamExemptionsStepController
+    class DomesticController < Steps::MiamExemptionsStepController
       def edit
-        @form_object = SafetyForm.build(
+        @form_object = DomesticForm.build(
           c100_application: current_c100_application
         )
       end
 
       def update
-        update_and_advance(SafetyForm, as: :safety)
+        update_and_advance(DomesticForm, as: :domestic)
       end
     end
   end

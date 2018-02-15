@@ -79,7 +79,7 @@ Rails.application.routes.draw do
       show_step :certification_confirmation
     end
     namespace :miam_exemptions do
-      edit_step :safety
+      edit_step :domestic
       edit_step :urgency
     end
     namespace :abduction do

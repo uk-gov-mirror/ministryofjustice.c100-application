@@ -10,8 +10,8 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `safety`' do
-    let(:step_params) { { safety: 'anything' } }
+  context 'when the step is `domestic`' do
+    let(:step_params) { { domestic: 'anything' } }
     it { is_expected.to have_destination(:urgency, :edit) }
   end
 

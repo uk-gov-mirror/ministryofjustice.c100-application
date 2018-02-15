@@ -1,24 +1,24 @@
 require 'spec_helper'
 
-RSpec.describe Steps::MiamExemptions::UrgencyForm do
+RSpec.describe Steps::MiamExemptions::DomesticForm do
   let(:arguments) { {
     c100_application: c100_application,
-    risk_applicant: '1',
-    risk_children: '0',
+    police_conviction: '1',
+    specialist_examination: '0',
   } }
 
   let(:c100_application) { instance_double(C100Application, miam_exemption: miam_exemption_record) }
-  let(:miam_exemption_record) { MiamExemption.new(urgency: ['risk_applicant']) }
+  let(:miam_exemption_record) { MiamExemption.new(domestic: ['police_conviction']) }
 
   subject { described_class.new(arguments) }
 
   describe 'custom getters override' do
     it 'returns true if the exemption is in the list' do
-      expect(subject.risk_applicant).to eq(true)
+      expect(subject.police_conviction).to eq(true)
     end
 
     it 'returns false if the exemption is not in the list' do
-      expect(subject.risk_children).to eq(false)
+      expect(subject.specialist_examination).to eq(false)
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe Steps::MiamExemptions::UrgencyForm do
     context 'when form is valid' do
       it 'saves the record' do
         expect(miam_exemption_record).to receive(:update).with(
-          urgency: [:risk_applicant],
+          domestic: [:police_conviction],
         ).and_return(true)
 
         expect(subject.save).to be(true)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213120817) do
+ActiveRecord::Schema.define(version: 20180215112031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,45 +202,14 @@ ActiveRecord::Schema.define(version: 20180213120817) do
     t.index ["c100_application_id"], name: "index_court_proceedings_on_c100_application_id"
   end
 
-  create_table "exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.boolean "group_police", default: false
-    t.boolean "police_arrested", default: false
-    t.boolean "police_caution", default: false
-    t.boolean "police_ongoing_proceedings", default: false
-    t.boolean "police_conviction", default: false
-    t.boolean "police_dvpn", default: false
-    t.boolean "group_court", default: false
-    t.boolean "court_bound_over", default: false
-    t.boolean "court_protective_injunction", default: false
-    t.boolean "court_undertaking", default: false
-    t.boolean "court_finding_of_fact", default: false
-    t.boolean "court_expert_report", default: false
-    t.boolean "group_specialist", default: false
-    t.boolean "specialist_examination", default: false
-    t.boolean "specialist_referral", default: false
-    t.boolean "group_local_authority", default: false
-    t.boolean "local_authority_marac", default: false
-    t.boolean "local_authority_la_ha", default: false
-    t.boolean "local_authority_public_authority", default: false
-    t.boolean "group_da_service", default: false
-    t.boolean "da_service_idva", default: false
-    t.boolean "da_service_isva", default: false
-    t.boolean "da_service_organisation", default: false
-    t.boolean "da_service_refuge_refusal", default: false
-    t.boolean "right_to_remain", default: false
-    t.boolean "financial_abuse", default: false
-    t.boolean "safety_none", default: false
-    t.boolean "group_risk", default: false
-    t.boolean "risk_applicant", default: false
-    t.boolean "risk_unreasonable_hardship", default: false
-    t.boolean "risk_children", default: false
-    t.boolean "risk_unlawful_removal_retention", default: false
-    t.boolean "group_miscarriage", default: false
-    t.boolean "miscarriage_justice", default: false
-    t.boolean "miscarriage_irretrievable_problems", default: false
-    t.boolean "urgency_none", default: false
+  create_table "miam_exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "domestic", default: [], array: true
+    t.string "protection", default: [], array: true
+    t.string "urgency", default: [], array: true
+    t.string "adr", default: [], array: true
+    t.string "misc", default: [], array: true
     t.uuid "c100_application_id"
-    t.index ["c100_application_id"], name: "index_exemptions_on_c100_application_id"
+    t.index ["c100_application_id"], name: "index_miam_exemptions_on_c100_application_id"
   end
 
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -310,7 +279,7 @@ ActiveRecord::Schema.define(version: 20180213120817) do
   add_foreign_key "child_residences", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "court_proceedings", "c100_applications"
-  add_foreign_key "exemptions", "c100_applications"
+  add_foreign_key "miam_exemptions", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"
   add_foreign_key "relationships", "people"
