@@ -83,6 +83,7 @@ Rails.application.routes.draw do
       edit_step :protection
       edit_step :urgency
       edit_step :adr
+      edit_step :misc
     end
     namespace :abduction do
       edit_step :international

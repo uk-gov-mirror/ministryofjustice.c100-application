@@ -1,0 +1,38 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+    <p class="app__section_heading"><%=t '.section' %></p>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.check_box_fieldset :misc_exemptions, [
+          MiscExemptions::NO_RESPONDENT_ADDRESS,
+          MiscExemptions::WITHOUT_NOTICE,
+          MiscExemptions::GROUP_MIAM_ACCESS,
+          MiscExemptions::ACCESS_PROHIBITED,
+          MiscExemptions::NON_RESIDENT,
+          MiscExemptions::APPLICANT_UNDER_AGE,
+        ] do |fieldset|
+          fieldset.check_box_input(MiscExemptions::NO_RESPONDENT_ADDRESS)
+          fieldset.check_box_input(MiscExemptions::WITHOUT_NOTICE)
+          fieldset.check_box_input(MiscExemptions::GROUP_MIAM_ACCESS) {
+            f.check_box_fieldset :exemptions_group, MiscExemptions::MIAM_ACCESS
+          }
+          fieldset.check_box_input(MiscExemptions::ACCESS_PROHIBITED)
+          fieldset.check_box_input(MiscExemptions::NON_RESIDENT)
+          fieldset.check_box_input(MiscExemptions::APPLICANT_UNDER_AGE)
+        end
+      %>
+
+      <p class="form-block or-block"><%=t '.or' %></p>
+
+      <%= f.check_box_fieldset :exemptions_group, [MiscExemptions::MISC_NONE] %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>
