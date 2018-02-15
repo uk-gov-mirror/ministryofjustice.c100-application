@@ -5,6 +5,8 @@ module C100App
 
       case step_name
       when :domestic
+        edit(:protection)
+      when :protection
         edit(:urgency)
       when :urgency
         edit('/steps/petition/orders')

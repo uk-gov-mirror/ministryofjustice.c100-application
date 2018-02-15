@@ -88,6 +88,11 @@ en:
       ## SAFETY NONE ##
       safety_none: None of these
 
+    PROTECTION_EXEMPTIONS: &PROTECTION_EXEMPTIONS
+      authority_enquiring: A local authority is currently enquiring about any of your children
+      authority_protection_order: A local authority has made a child protection order for any of your children that is still in effect
+      protection_none: None of these
+
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
       ## GROUP RISK ##
       group_risk_html: |
@@ -110,5 +115,7 @@ en:
     label:
       steps_miam_exemptions_domestic_form:
         <<: *DOMESTIC_EXEMPTIONS
+      steps_miam_exemptions_protection_form:
+        <<: *PROTECTION_EXEMPTIONS
       steps_miam_exemptions_urgency_form:
         <<: *URGENCY_EXEMPTIONS
