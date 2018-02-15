@@ -9,6 +9,8 @@ module C100App
       when :protection
         edit(:urgency)
       when :urgency
+        edit(:adr)
+      when :adr
         edit('/steps/petition/orders')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"

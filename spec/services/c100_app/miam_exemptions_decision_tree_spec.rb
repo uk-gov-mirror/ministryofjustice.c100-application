@@ -22,6 +22,11 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
 
   context 'when the step is `urgency`' do
     let(:step_params) { { urgency: 'anything' } }
+    it { is_expected.to have_destination(:adr, :edit) }
+  end
+
+  context 'when the step is `adr`' do
+    let(:step_params) { { adr: 'anything' } }
     it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 end
