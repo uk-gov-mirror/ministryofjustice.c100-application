@@ -1,0 +1,32 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+    <p class="app__section_heading"><%=t '.section' %></p>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.check_box_fieldset :adr_exemptions, [
+          AdrExemptions::GROUP_PREVIOUS_ADR,
+          AdrExemptions::GROUP_PREVIOUS_MIAM
+        ] do |fieldset|
+          fieldset.check_box_input(AdrExemptions::GROUP_PREVIOUS_ADR) {
+            f.check_box_fieldset :exemptions_group, AdrExemptions::PREVIOUS_ADR
+          }
+          fieldset.check_box_input(AdrExemptions::GROUP_PREVIOUS_MIAM) {
+            f.check_box_fieldset :exemptions_group, AdrExemptions::PREVIOUS_MIAM
+          }
+        end
+      %>
+
+      <p class="form-block or-block"><%=t '.or' %></p>
+
+      <%= f.check_box_fieldset :exemptions_group, [AdrExemptions::ADR_NONE] %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

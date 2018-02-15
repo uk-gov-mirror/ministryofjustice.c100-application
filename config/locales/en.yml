@@ -653,6 +653,12 @@ en:
           section: *miam_exemptions
           heading: Providing evidence that your application is urgent
           or: or
+      adr:
+        edit:
+          page_title: Evidence of a previous valid reason or non-court resolution attendance
+          heading: Providing evidence of a previous valid reason or non-court resolution attendance
+          section: *miam_exemptions
+          or: or
     screener:
       postcode:
         edit:
@@ -804,6 +810,9 @@ en:
         exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
         urgency_exemptions_html: "Do you have any of the following evidence that your application is urgent?"
+        exemptions_group_html: ""
+      steps_miam_exemptions_adr_form:
+        adr_exemptions_html: "Do you have any of the following evidence of a previous valid reason or non-court resolution attendance?"
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
@@ -1125,6 +1134,8 @@ en:
         protection_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_urgency_form:
         urgency_exemptions: *select_all_that_apply_or_none
+      steps_miam_exemptions_adr_form:
+        adr_exemptions: *select_all_that_apply_or_none
       steps_postcode_screen_children_postcodes_form:
         children_postcodes: Please enter one postcode per line. Only include postcodes that you are sure of - if you don't know any postcodes, leave this box blank. Please only enter full postcodes (like "SW1H 9AJ").
 
