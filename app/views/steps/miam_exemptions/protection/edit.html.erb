@@ -1,0 +1,20 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+    <p class="app__section_heading"><%=t '.section' %></p>
+
+    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.check_box_fieldset :protection_exemptions, ProtectionExemptions::AUTHORITY_INVOLVEMENT %>
+
+      <p class="form-block or-block"><%=t '.or' %></p>
+
+      <%= f.check_box_fieldset :exemptions_group, [ProtectionExemptions::PROTECTION_NONE] %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

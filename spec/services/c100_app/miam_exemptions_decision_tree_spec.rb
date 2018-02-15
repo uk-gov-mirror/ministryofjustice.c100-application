@@ -12,6 +12,11 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
 
   context 'when the step is `domestic`' do
     let(:step_params) { { domestic: 'anything' } }
+    it { is_expected.to have_destination(:protection, :edit) }
+  end
+
+  context 'when the step is `protection`' do
+    let(:step_params) { { protection: 'anything' } }
     it { is_expected.to have_destination(:urgency, :edit) }
   end
 

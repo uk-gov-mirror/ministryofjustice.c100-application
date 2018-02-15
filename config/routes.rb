@@ -80,6 +80,7 @@ Rails.application.routes.draw do
     end
     namespace :miam_exemptions do
       edit_step :domestic
+      edit_step :protection
       edit_step :urgency
     end
     namespace :abduction do

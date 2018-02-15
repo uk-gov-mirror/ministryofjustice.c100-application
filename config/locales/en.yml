@@ -641,6 +641,12 @@ en:
           heading: Providing evidence of domestic abuse concerns
           lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have to support your claim.
           or: or
+      protection:
+        edit:
+          page_title: Evidence of child protection concerns
+          section: *miam_exemptions
+          heading: Providing evidence of child protection concerns
+          or: or
       urgency:
         edit:
           page_title: Evidence that your application is urgent
@@ -792,6 +798,9 @@ en:
         miam_certification_html: ""
       steps_miam_exemptions_domestic_form:
         domestic_exemptions_html: "Do you have any of the following evidence of domestic abuse?"
+        exemptions_group_html: ""
+      steps_miam_exemptions_protection_form:
+        protection_exemptions_html: "Do you have any of the following evidence of child protection concerns?"
         exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
         urgency_exemptions_html: "Do you have any of the following evidence that your application is urgent?"
@@ -1112,6 +1121,8 @@ en:
         concerns_contact_other: For example, by phone, text or email
       steps_miam_exemptions_domestic_form:
         domestic_exemptions: *select_all_that_apply_or_none
+      steps_miam_exemptions_protection_form:
+        protection_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_urgency_form:
         urgency_exemptions: *select_all_that_apply_or_none
       steps_postcode_screen_children_postcodes_form:
