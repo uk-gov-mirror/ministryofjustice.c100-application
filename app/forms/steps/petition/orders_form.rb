@@ -2,11 +2,10 @@ module Steps
   module Petition
     class OrdersForm < BaseForm
       include HasOneAssociationForm
-      include OrderAttributes
-
       has_one_association :asking_order
 
-      attribute :other_details, String
+      attributes PetitionOrder.values, Boolean
+      attribute  :other_details, String
 
       validates_presence_of :other_details, if: :other?
 

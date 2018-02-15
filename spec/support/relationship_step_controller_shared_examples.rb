@@ -5,6 +5,7 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
   let(:minors)        { double('minors').as_null_object }
   let(:person)        { double('Person') }
   let(:child)         { double('Child') }
+  let(:relationship)  { Relationship.new }
 
   let(:existing_case) { instance_double(C100Application, relationships: relationships, minors: minors) }
 
@@ -87,7 +88,10 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
       before do
         allow(controller).to receive(:current_record).and_return(person)
         allow(minors).to receive(:find).with('123').and_return(child)
-        expect(relationships).to receive(:find_or_initialize_by).with(person: person, minor: child)
+
+        allow(relationships).to receive(:find_or_initialize_by).with(
+          person: person, minor: child
+        ).and_return(relationship)
       end
 
       it 'responds with HTTP success' do
