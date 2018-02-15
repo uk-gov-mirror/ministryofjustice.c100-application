@@ -12,10 +12,6 @@ RSpec.describe Steps::MiamExemptions::DomesticForm do
 
   subject { described_class.new(arguments) }
 
-  describe '#group_name' do
-    it { expect(subject.group_name).to eq(:domestic) }
-  end
-
   describe 'custom getters override' do
     it 'returns true if the exemption is in the list' do
       expect(subject.police_conviction).to eq(true)

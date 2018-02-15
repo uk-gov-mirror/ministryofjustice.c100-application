@@ -1,13 +1,9 @@
 module Steps
   module MiamExemptions
-    class UrgencyForm < ExemptionsBaseForm
-      setup_form_attributes_for(
-        UrgencyExemptions
-      )
+    class UrgencyForm < BaseForm
+      include MiamExemptionsForm
 
-      def group_name
-        :urgency
-      end
+      setup_attributes_for UrgencyExemptions, group_name: :urgency
     end
   end
 end

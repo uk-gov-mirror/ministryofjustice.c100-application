@@ -1,13 +1,9 @@
 module Steps
   module MiamExemptions
-    class DomesticForm < ExemptionsBaseForm
-      setup_form_attributes_for(
-        DomesticExemptions
-      )
+    class DomesticForm < BaseForm
+      include MiamExemptionsForm
 
-      def group_name
-        :domestic
-      end
+      setup_attributes_for DomesticExemptions, group_name: :domestic
     end
   end
 end
