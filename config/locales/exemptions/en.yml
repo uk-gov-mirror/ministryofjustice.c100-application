@@ -87,8 +87,8 @@ en:
           <li>emails, text messages or a diary kept by the victim</li>
         </ul>
         </span>
-      ## SAFETY NONE ##
-      safety_none: *none_of_these
+      ## DOMESTIC NONE ##
+      domestic_none: *none_of_these
 
     PROTECTION_EXEMPTIONS: &PROTECTION_EXEMPTIONS
       authority_enquiring: A local authority is currently enquiring about any of your children
@@ -96,20 +96,18 @@ en:
       protection_none: *none_of_these
 
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
+      risk_applicant: There is risk to the life, liberty or physical safety of the prospective applicant or his or her family or his or her home
+      unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship to the prospective applicant
       ## GROUP RISK ##
       group_risk_html: |
-        <span class="heading-small gv-u-heading-small">There’s an immediate risk of harm</span><br/>
+        <span class="gv-u-heading-small">Risk to the children</span><br/>
         <span class="form-hint">This includes if you, your children or home are at immediate risk of harm</span>
-      risk_applicant: There is risk to the life, liberty or physical safety of the prospective applicant or his or her family or his or her home
-      risk_unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship to the prospective applicant
       risk_children: Any delay caused by attending a MIAM would cause a risk of harm to a child
       risk_unlawful_removal_retention: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently outside England and Wales
-      ## GROUP MISCARRIAGE ##
-      group_miscarriage_html:
-        <span class="heading-small gv-u-heading-small">There’s a risk of a miscarriage of justice</span><br/>
-        <span class="form-hint">For example, there could be a loss of evidence relating to your dispute.</span>
+      ## END GROUP ##
       miscarriage_justice: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
-      miscarriage_irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
+      irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
+      international_proceedings: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
       ## URGENCY NONE ##
       urgency_none: *none_of_these
 

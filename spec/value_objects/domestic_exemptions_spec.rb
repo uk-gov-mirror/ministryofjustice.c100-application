@@ -110,9 +110,9 @@ RSpec.describe DomesticExemptions do
     end
   end
 
-  context 'SAFETY_NONE' do
+  context 'DOMESTIC_NONE' do
     it 'returns the expected values' do
-      expect(described_class::SAFETY_NONE.to_s).to eq('safety_none')
+      expect(described_class::DOMESTIC_NONE.to_s).to eq('domestic_none')
     end
   end
 end

@@ -10,15 +10,21 @@
     <%= step_form @form_object do |f| %>
       <%=
         f.check_box_fieldset :urgency_exemptions, [
+          UrgencyExemptions::RISK_APPLICANT,
+          UrgencyExemptions::UNREASONABLE_HARDSHIP,
           UrgencyExemptions::GROUP_RISK,
-          UrgencyExemptions::GROUP_MISCARRIAGE
+          UrgencyExemptions::MISCARRIAGE_JUSTICE,
+          UrgencyExemptions::IRRETRIEVABLE_PROBLEMS,
+          UrgencyExemptions::INTERNATIONAL_PROCEEDINGS
         ] do |fieldset|
+          fieldset.check_box_input(UrgencyExemptions::RISK_APPLICANT)
+          fieldset.check_box_input(UrgencyExemptions::UNREASONABLE_HARDSHIP)
           fieldset.check_box_input(UrgencyExemptions::GROUP_RISK) {
             f.check_box_fieldset :exemptions_group, UrgencyExemptions::RISK
           }
-          fieldset.check_box_input(UrgencyExemptions::GROUP_MISCARRIAGE) {
-            f.check_box_fieldset :exemptions_group, UrgencyExemptions::MISCARRIAGE
-          }
+          fieldset.check_box_input(UrgencyExemptions::MISCARRIAGE_JUSTICE)
+          fieldset.check_box_input(UrgencyExemptions::IRRETRIEVABLE_PROBLEMS)
+          fieldset.check_box_input(UrgencyExemptions::INTERNATIONAL_PROCEEDINGS)
         end
       %>
 
