@@ -1,5 +1,6 @@
 module C100App
   class MiamDecisionTree < BaseDecisionTree
+    # rubocop:disable Metrics/MethodLength
     def destination
       return next_step if next_step
 
@@ -12,6 +13,8 @@ module C100App
         edit(:attended)
       when :miam_attended
         after_miam_attended
+      when :miam_exemption_claim
+        after_miam_exemption_claim
       when :miam_certification
         after_miam_certification
       when :miam_certification_date
@@ -22,6 +25,7 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 
@@ -41,11 +45,19 @@ module C100App
       end
     end
 
+    def after_miam_exemption_claim
+      if question(:miam_exemption_claim).yes?
+        start_miam_exemptions_journey
+      else
+        start_safety_questions_journey
+      end
+    end
+
     def after_miam_attended
       if question(:miam_attended).yes?
         edit(:certification)
       else
-        show(:not_attended_info)
+        edit(:exemption_claim)
       end
     end
 
@@ -53,7 +65,7 @@ module C100App
       if question(:miam_certification).yes?
         edit(:certification_date)
       else
-        show('/steps/safety_questions/start')
+        edit(:exemption_claim)
       end
     end
 
@@ -73,6 +85,14 @@ module C100App
 
     def certification_expired?
       c100_application.miam_certification_date < 4.months.ago.to_date
+    end
+
+    def start_miam_exemptions_journey
+      edit('/steps/miam_exemptions/domestic')
+    end
+
+    def start_safety_questions_journey
+      show('/steps/safety_questions/start')
     end
   end
 end

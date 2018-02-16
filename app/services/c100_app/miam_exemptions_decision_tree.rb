@@ -13,7 +13,7 @@ module C100App
       when :adr
         edit(:misc)
       when :misc
-        edit('/steps/petition/orders')
+        show('/steps/safety_questions/start')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

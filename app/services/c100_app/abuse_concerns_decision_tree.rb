@@ -7,7 +7,7 @@ module C100App
       when :details
         after_details_step
       when :contact
-        edit('/steps/miam_exemptions/safety')
+        edit('/steps/petition/orders') # TODO: insert here the MIAM playback steps
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
       end

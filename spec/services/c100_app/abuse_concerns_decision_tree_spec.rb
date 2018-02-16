@@ -302,7 +302,7 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
 
   describe 'when the step is `contact`' do
     let(:as) { 'contact' }
-    it { is_expected.to have_destination('/steps/miam_exemptions/safety', :edit) }
+    it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 
   describe 'when the step is not known' do

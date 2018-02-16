@@ -32,6 +32,6 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
 
   context 'when the step is `misc`' do
     let(:step_params) { { misc: 'anything' } }
-    it { is_expected.to have_destination('/steps/petition/orders', :edit) }
+    it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
   end
 end
