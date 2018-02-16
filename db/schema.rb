@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215112031) do
+ActiveRecord::Schema.define(version: 20180216115445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20180215112031) do
     t.text "intermediary_help_details"
     t.string "miam_certification_service_name"
     t.string "miam_certification_sole_trader_name"
+    t.string "miam_exemption_claim"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 

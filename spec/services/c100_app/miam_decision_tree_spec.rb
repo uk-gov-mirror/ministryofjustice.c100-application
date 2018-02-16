@@ -58,7 +58,22 @@ RSpec.describe C100App::MiamDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination(:not_attended_info, :show) }
+      it { is_expected.to have_destination(:exemption_claim, :edit) }
+    end
+  end
+
+  context 'when the step is `miam_exemption_claim`' do
+    let(:c100_application) { instance_double(C100Application, miam_exemption_claim: value) }
+    let(:step_params) { { miam_exemption_claim: 'anything' } }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination('/steps/miam_exemptions/domestic', :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+      it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
     end
   end
 
@@ -73,7 +88,7 @@ RSpec.describe C100App::MiamDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+      it { is_expected.to have_destination(:exemption_claim, :edit) }
     end
   end
 
