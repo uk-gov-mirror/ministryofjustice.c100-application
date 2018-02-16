@@ -84,6 +84,9 @@ Rails.application.routes.draw do
       edit_step :urgency
       edit_step :adr
       edit_step :misc
+      show_step :reasons_playback
+      show_step :safety_playback
+      show_step :exit_page
     end
     namespace :abduction do
       edit_step :international

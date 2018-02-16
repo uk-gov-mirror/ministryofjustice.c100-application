@@ -676,6 +676,30 @@ en:
           heading: Providing evidence of other valid reasons for not attending
           section: *miam_exemptions
           or: or
+      reasons_playback:
+        show:
+          page_title: You don’t have to attend a MIAM
+          heading: You’ve said you have a valid reason for not attending a MIAM
+          lead_text: "The reasons you’ve given are:"
+          info_notice_html: |
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>You will need to provide evidence to support your claim. If you can’t you may be found in contempt of court.</p>
+            </div>
+          continue: Continue
+      safety_playback:
+        show:
+          page_title: You don’t have to attend a MIAM
+          heading: You don’t have to attend a MIAM
+          lead_text: You have safety concerns.
+          you_told_us_html: |
+            <div class=" govuk-govspeak gv-s-prose">
+              <p>You’ve told us:</p>
+            </div>
+          info_notice_html: |
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>A legal advisor will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM, pending the legal advisor’s decision.</p>
+            </div>
+          continue: Continue
     screener:
       postcode:
         edit:
