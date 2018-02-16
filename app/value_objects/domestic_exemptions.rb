@@ -41,7 +41,7 @@ class DomesticExemptions < ValueObject
 
     RIGHT_TO_REMAIN = new(:right_to_remain),
     FINANCIAL_ABUSE = new(:financial_abuse),
-    SAFETY_NONE = new(:safety_none)
+    DOMESTIC_NONE = new(:domestic_none)
   ].flatten.freeze
 
   # :nocov:
