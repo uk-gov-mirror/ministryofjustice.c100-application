@@ -71,7 +71,7 @@ Rails.application.routes.draw do
       show_step :child_protection_info
       edit_step :acknowledgement
       edit_step :attended
-      show_step :not_attended_info
+      edit_step :exemption_claim
       edit_step :certification
       edit_step :certification_date
       show_step :certification_expired_info

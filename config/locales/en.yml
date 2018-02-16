@@ -438,6 +438,17 @@ en:
               <li>taken place within the past 4 months</li>
               <li>been about the same child arrangements issue</li>
             </ul>
+      exemption_claim:
+        edit:
+          page_title: Exemption claim
+          heading: Do you have a valid reason for not attending a MIAM?
+          lead_text_html: |
+            <p>If you’re unsure you can <a href="/miam_exemptions" target="_blank">check the list of valid reasons</a>.</p>
+          info_notice_html: |
+            <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+              <p>If you think you don’t have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> you’ll
+              need to tell us what evidence you have to support your claim. You must also bring this evidence to your first hearing.</p>
+            </div>
       certification:
         edit:
           page_title: MIAM certification
@@ -806,6 +817,8 @@ en:
         miam_acknowledgement_html: ""
       steps_miam_attended_form:
         miam_attended_html: ""
+      steps_miam_exemption_claim_form:
+        miam_exemption_claim_html: ""
       steps_miam_certification_form:
         miam_certification_html: ""
       steps_miam_exemptions_domestic_form:
