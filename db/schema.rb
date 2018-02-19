@@ -9,13 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180216115445) do
-=======
-ActiveRecord::Schema.define(version: 20180206155341) do
->>>>>>> 682310a... add urgent hearing question screener step after postcodes
-
+ActiveRecord::Schema.define(version: 20180219114253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -142,10 +136,7 @@ ActiveRecord::Schema.define(version: 20180206155341) do
     t.text "intermediary_help_details"
     t.string "miam_certification_service_name"
     t.string "miam_certification_sole_trader_name"
-<<<<<<< HEAD
     t.string "miam_exemption_claim"
-=======
->>>>>>> 682310a... add urgent hearing question screener step after postcodes
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 
@@ -263,6 +254,7 @@ ActiveRecord::Schema.define(version: 20180206155341) do
     t.datetime "updated_at", null: false
     t.uuid "c100_application_id"
     t.string "urgent"
+    t.json "local_court"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
   end
 

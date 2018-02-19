@@ -7,6 +7,10 @@ module Steps
       has_one_association :screener_answers
       yes_no_attribute :urgent
 
+      def local_court
+        self.class.associated_record(c100_application).local_court
+      end
+
       private
 
       def persist!

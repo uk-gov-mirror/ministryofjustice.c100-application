@@ -20,6 +20,10 @@ module C100App
       if courts.empty?
         show(:no_court_found)
       else
+        # store the first court in session so that if they choose "yes, it's urgent"
+        # we can render the court's contact details out to them in the next step
+        court = Court.new.from_courtfinder_data!(courts.first)
+        c100_application.screener_answers.update!(local_court: court)
         edit(:urgency)
       end
 
