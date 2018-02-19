@@ -36,6 +36,8 @@ module C100App
     def after_substance_abuse
       if question(:substance_abuse).yes?
         edit(:substance_abuse_details)
+      elsif question(:risk_of_abduction).yes?
+        start_abuse_concerns_journey
       else
         edit(:children_abuse)
       end
@@ -61,12 +63,18 @@ module C100App
       if question(:other_abuse).yes?
         start_abuse_concerns_journey
       else
-        edit('/steps/petition/orders') # TODO: insert here the MIAM playback steps
+        miam_exemptions_playback
       end
     end
 
     def start_abuse_concerns_journey
       show('/steps/abuse_concerns/start')
+    end
+
+    def miam_exemptions_playback
+      MiamExemptionsDecisionTree.new(
+        c100_application: c100_application
+      ).playback_destination
     end
   end
 end

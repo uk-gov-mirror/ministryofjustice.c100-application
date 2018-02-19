@@ -251,6 +251,18 @@ en:
         edit:
           page_title: Other party relationship
     abuse_concerns:
+      start:
+        show:
+          page_title: Concerns further questions
+          section: Safety concerns
+          heading: You and your children
+          you_told_us_html: |
+            <p>You told us:</p>
+          further_questions_info_html: |
+            <p>We’ll need to ask you some further questions about your concerns.</p>
+            <p>Your answers will help an advisor from the <a href="https://www.cafcass.gov.uk/" target="_blank">Children and Family Court Advisory and Support Service (Cafcass)</a> collect background information.</p>
+            <p>You may find some of the following questions difficult to answer. Please complete them as best you can.</p>
+          continue: Continue
       question:
         edit:
           page_title:
@@ -396,10 +408,11 @@ en:
             <p>Examples include:</p>
             <ul class="list list-bullet">
               <li>emotional or psychological abuse</li>
-              <li>a lack of love, care and attention</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
             </ul>
+          info_note_html: |
+            <p>Only include abuse by the other person (the respondent) or someone connected to the other person.</p>
       domestic_abuse:
         edit:
           page_title: Domestic abuse
@@ -408,16 +421,18 @@ en:
             <p>Domestic abuse is any type of controlling, threatening or violent behaviour between people in a relationship.</p>
             <p>Examples include:</p>
             <ul class="list list-bullet">
-              <li>financial abuse</li>
+              <li>financial abuse (withholding child maintenance payments isn't considered financial abuse)</li>
               <li>emotional or psychological abuse</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
             </ul>
+          info_note_html: |
+            <p>Only include abuse by the other person (the respondent) or someone connected to the other person.</p>
       other_abuse:
         edit:
           page_title: Other concerns
           section: Safety concerns
-          heading: Any other concerns?
+          heading: Do you have any other safety concerns about you or your children?
       address_confidentiality:
         edit:
           page_title: Address confidentiality
@@ -484,7 +499,7 @@ en:
       child_protection_cases:
         edit:
           page_title: Child protection cases
-          heading: Have the children ever been involved in any court cases about an emergency protection, care or supervision order?
+          heading: Have your children ever been involved in any court cases about an emergency protection, care or supervision order?
     petition:
       orders:
         edit:
@@ -598,8 +613,8 @@ en:
           lead_text: For example dyslexia or Attention deficit hyperactivity disorder (ADHD)
       litigation_capacity_details:
         edit:
-          page_title: Factors affecting ability to participate in proceedings
-          heading: Factors affecting ability to participate in proceedings
+          page_title: Conditions affecting ability to participate in proceedings
+          heading: Conditions affecting ability to participate in proceedings
       special_assistance:
         edit:
           page_title: Special Assistance
@@ -636,6 +651,15 @@ en:
           page_title: International resident
           heading: Does anyone significant to your children live in another country?
           lead_text: For example, a grandparent or other close relatives
+          why_we_ask_this_html: |
+            <details>
+              <summary>
+                <span class="summary">Why do we ask this?</span>
+              </summary>
+              <div class="panel panel-border-narrow">
+                <p>We need to know if your children have any close family who live in another country so we can assess whether there are grounds to start a court case there.</p>
+              </div>
+            </details>
       jurisdiction:
         edit:
           page_title: International jurisdiction
@@ -676,6 +700,30 @@ en:
           heading: Providing evidence of other valid reasons for not attending
           section: *miam_exemptions
           or: or
+      reasons_playback:
+        show:
+          page_title: You don’t have to attend a MIAM
+          heading: You’ve said you have a valid reason for not attending a MIAM
+          lead_text: "The reasons you’ve given are:"
+          info_notice_html: |
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>You will need to provide evidence to support your claim. If you can’t you may be found in contempt of court.</p>
+            </div>
+          continue: Continue
+      safety_playback:
+        show:
+          page_title: You don’t have to attend a MIAM
+          heading: You don’t have to attend a MIAM
+          lead_text: You have safety concerns.
+          you_told_us_html: |
+            <div class=" govuk-govspeak gv-s-prose">
+              <p>You’ve told us:</p>
+            </div>
+          info_notice_html: |
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>A legal advisor will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM, pending the legal advisor’s decision.</p>
+            </div>
+          continue: Continue
     screener:
       postcode:
         edit:
@@ -1197,6 +1245,16 @@ en:
       dob: Date of birth
       dob_hint_html: 'If party under 18 read section R of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>'
       order_issue: What date was it issued?
+    why_we_use_children_html: |
+      <details>
+        <summary>
+          <span class="summary">Why we use the term ‘children’</span>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <p>We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.</p>
+        </div>
+      </details>
+
   session:
     note:
       heading: Security time-out
