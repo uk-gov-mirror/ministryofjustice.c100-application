@@ -1,0 +1,25 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+    <%= t '.info_html' %>
+
+    <p>
+      <strong class=" bold-large gv-c-notice__text">
+        <%= t '.warning' %>
+      </strong>
+    </p>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.radio_button_fieldset :urgent, inline: true, choices: GenericYesNo.values %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

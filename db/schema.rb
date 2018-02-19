@@ -9,9 +9,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20180216115445) do
-
+ActiveRecord::Schema.define(version: 20180219114253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
@@ -255,6 +253,8 @@ ActiveRecord::Schema.define(version: 20180216115445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "c100_application_id"
+    t.string "urgent"
+    t.json "local_court"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
   end
 

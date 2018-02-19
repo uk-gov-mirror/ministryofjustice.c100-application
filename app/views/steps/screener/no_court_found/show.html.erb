@@ -8,14 +8,13 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
-    <section id="before-applying" class="moj-Section moj-Section--2" data-block-name="before-applying">    
+    <section id="before-applying" class="moj-Section moj-Section--2" data-block-name="before-applying">
       <h2 class="gv-u-heading-xlarge"><%= t '.what_to_do_now.heading' %></h2>
       <div class="Section__content govuk-govspeak gv-s-prose">
         <p><%= t '.what_to_do_now.copy' %></p>
       </div>
     </section>
-    <!-- TODO: Add the copy needed, and adapt the button linking to another step -->
-
+    
     <div class="xform-group form-submit">
       <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button', role: 'button' %>
     </div>
