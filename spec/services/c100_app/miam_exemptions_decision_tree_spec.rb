@@ -34,4 +34,40 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     let(:step_params) { { misc: 'anything' } }
     it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
   end
+
+  describe '#playback_destination' do
+    let(:c100_application) { double('Object', miam_exemption: miam_exemption) }
+    let(:miam_exemption) { MiamExemption.new(domestic: []) }
+
+    context 'when there are MIAM exemptions' do
+      let(:miam_exemption) { MiamExemption.new(domestic: ['anything']) }
+
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/miam_exemptions/reasons_playback', action: :show)
+      }
+    end
+
+    context 'when there are safety concerns' do
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/miam_exemptions/safety_playback', action: :show)
+      }
+    end
+
+    context 'when there are no exemptions or safety concerns' do
+      # TODO: add corresponding logic here once we have it
+      before do
+        allow(subject).to receive(:has_safety_concerns?).and_return(false)
+      end
+
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/miam_exemptions/exit_page', action: :show)
+      }
+    end
+  end
 end

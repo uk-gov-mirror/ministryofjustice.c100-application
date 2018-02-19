@@ -10,6 +10,8 @@ class MiamExemptionsPresenter < SimpleDelegator
   end
 
   def exemptions
+    return [] unless __getobj__
+
     exemption_groups.map do |group|
       Exemption.new(group, filtered(self[group]))
     end.select(&:show?)

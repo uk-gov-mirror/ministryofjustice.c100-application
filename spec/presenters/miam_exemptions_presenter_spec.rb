@@ -42,5 +42,11 @@ RSpec.describe MiamExemptionsPresenter do
         expect(exemptions.size).to eq(0)
       end
     end
+
+    context 'when there are no exemptions' do
+      let(:miam_exemption) { nil }
+
+      it { expect(exemptions).to eq([]) }
+    end
   end
 end
