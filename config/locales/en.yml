@@ -251,6 +251,18 @@ en:
         edit:
           page_title: Other party relationship
     abuse_concerns:
+      start:
+        show:
+          page_title: Concerns further questions
+          section: Safety concerns
+          heading: You and your children
+          you_told_us_html: |
+            <p>You told us:</p>
+          further_questions_info_html: |
+            <p>We’ll need to ask you some further questions about your concerns.</p>
+            <p>Your answers will help an advisor from the <a href="https://www.cafcass.gov.uk/" target="_blank">Children and Family Court Advisory and Support Service (Cafcass)</a> collect background information.</p>
+            <p>You may find some of the following questions difficult to answer. Please complete them as best you can.</p>
+          continue: Continue
       question:
         edit:
           page_title:
