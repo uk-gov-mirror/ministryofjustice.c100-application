@@ -10,7 +10,9 @@
 
     <%=t '.you_told_us_html' %>
 
-    <p>TODO: Add playback of safety concerns</p>
+    <ul class="list list-bullet">
+      <%= render @presenter.concerns %>
+    </ul>
 
     <%=t '.info_notice_html' %>
 

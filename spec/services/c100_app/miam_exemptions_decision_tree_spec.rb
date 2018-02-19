@@ -36,10 +36,8 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
   end
 
   describe '#playback_destination' do
-    let(:c100_application) { double('Object', miam_exemption: miam_exemption) }
-    let(:miam_exemption) { MiamExemption.new(domestic: []) }
-
     context 'when there are MIAM exemptions' do
+      let(:c100_application) { double('Object', miam_exemption: miam_exemption) }
       let(:miam_exemption) { MiamExemption.new(domestic: ['anything']) }
 
       it {
@@ -50,6 +48,8 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     end
 
     context 'when there are safety concerns' do
+      let(:c100_application) { C100Application.new(substance_abuse: 'yes') }
+
       it {
         expect(
           subject.playback_destination
@@ -58,10 +58,7 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     end
 
     context 'when there are no exemptions or safety concerns' do
-      # TODO: add corresponding logic here once we have it
-      before do
-        allow(subject).to receive(:has_safety_concerns?).and_return(false)
-      end
+      let(:c100_application) { C100Application.new }
 
       it {
         expect(
