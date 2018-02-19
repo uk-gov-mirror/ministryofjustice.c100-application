@@ -1,0 +1,46 @@
+require 'spec_helper'
+
+RSpec.describe MiamExemptionsPresenter do
+  subject { described_class.new(miam_exemption) }
+
+  let(:miam_exemption) { MiamExemption.new(domestic: domestic_exemptions) }
+  let(:domestic_exemptions) { %w(police_conviction specialist_examination) }
+
+  describe '#exemption_groups' do
+    it { expect(subject.exemption_groups).to eq([:domestic, :protection, :urgency, :adr, :misc]) }
+  end
+
+  describe '#exemptions' do
+    let(:exemptions) { subject.exemptions }
+
+    before do
+      # We mock just one group to simplify the tests, as the behaviour is identical
+      # for one or for five groups.
+      allow(subject).to receive(:exemption_groups).and_return([:domestic])
+    end
+
+    it 'retrieves the exemptions from the groups' do
+      expect(exemptions.size).to eq(1)
+
+      expect(exemptions[0].group_name).to eq(:domestic)
+      expect(exemptions[0].collection).to eq(domestic_exemptions)
+      expect(exemptions[0].to_partial_path).to eq('steps/miam_exemptions/shared/exemption')
+    end
+
+    context 'filter out `group_xxx` items' do
+      let(:domestic_exemptions) { %w(group_police police_conviction) }
+
+      it 'retrieves the exemptions from the groups' do
+        expect(exemptions[0].collection).to eq(['police_conviction'])
+      end
+    end
+
+    context 'filter out `xxx_none` items' do
+      let(:domestic_exemptions) { %w(domestic_none) }
+
+      it 'retrieves the exemptions from the groups' do
+        expect(exemptions.size).to eq(0)
+      end
+    end
+  end
+end

@@ -7,20 +7,20 @@ en:
       group_police_html: |
         <span class="heading-small gv-u-heading-small">The police have been involved</span><br/>
         <span class="form-hint">For example, you or the other person (the respondent) has been arrested or cautioned for domestic or child abuse offences.</span>
-      police_arrested: Evidence that a prospective party has been arrested for a relevant domestic violence offence
-      police_caution: Evidence of a relevant police caution for a domestic violence offence
-      police_ongoing_proceedings: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
-      police_conviction: Evidence of a relevant conviction for a domestic violence offence
-      police_dvpn: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
+      police_arrested_html: Evidence that a prospective party has been arrested for a relevant domestic violence offence
+      police_caution_html: Evidence of a relevant police caution for a domestic violence offence
+      police_ongoing_proceedings_html: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
+      police_conviction_html: Evidence of a relevant conviction for a domestic violence offence
+      police_dvpn_html: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
       ## GROUP COURT ##
       group_court_html: |
         <span class="heading-small gv-u-heading-small">You’ve already been to court</span><br/>
         <span class="form-hint">For example, a court has issued an order protecting someone in your family from risk of harm.</span>
-      court_bound_over: A court order binding a prospective party over in connection with a domestic violence offence
-      court_protective_injunction: A relevant protective injunction
-      court_undertaking: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
-      court_finding_of_fact: A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
-      court_expert_report: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
+      court_bound_over_html: A court order binding a prospective party over in connection with a domestic violence offence
+      court_protective_injunction_html: A relevant protective injunction
+      court_undertaking_html: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
+      court_finding_of_fact_html: A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
+      court_expert_report_html: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
       ## GROUP SPECIALIST ##
       group_specialist_html: |
         <span class="heading-small gv-u-heading-small">You’ve received a letter confirming you’re a victim of domestic abuse</span><br/>
@@ -40,20 +40,20 @@ en:
       group_local_authority_html: |
         <span class="heading-small gv-u-heading-small">You’ve received a letter confirming you or your children are at risk of harm</span><br/>
         <span class="form-hint">For example, a local authority or housing association has confirmed someone in your family is at risk of harm.</span>
-      local_authority_marac: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
+      local_authority_marac_html: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
       local_authority_la_ha_html: |
         <span class="labelLine">A letter from an officer employed by a local authority or housing association (or their equivalent in Scotland or Northern Ireland) for the purpose of supporting tenants containing-<p></p>
           <p>(i) a statement to the effect that, in their reasonable professional judgment, a person with whom a prospective party is or has been in a family relationship is, or is at risk of being, a victim of domestic violence by that prospective party;</p>
           <p>(ii) a description of the specific matters relied upon to support that judgment; and</p>
           <p>(iii) a description of the support they provided to the victim of domestic violence or the person at risk of domestic violence by that prospective party</p>
         </span>
-      local_authority_public_authority: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
+      local_authority_public_authority_html: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
       ## GROUP DA SERVICE ##
       group_da_service_html: |
         <span class="heading-small gv-u-heading-small">You’ve received a letter from a domestic abuse support service or specialist</span><br/>
         <span class="form-hint">An independent domestic abuse advisor has confirmed they’re providing someone in your family with support.</span>
-      da_service_idva: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
-      da_service_isva: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
+      da_service_idva_html: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
+      da_service_isva_html: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
       da_service_organisation_html: |
         <span class="labelLine">a letter which-<p></p>
           <p>(i) is from an organisation providing domestic violence support services, or a registered charity, which letter confirms that it-</p>
@@ -91,23 +91,23 @@ en:
       domestic_none: *none_of_these
 
     PROTECTION_EXEMPTIONS: &PROTECTION_EXEMPTIONS
-      authority_enquiring: A local authority is currently enquiring about any of your children
-      authority_protection_order: A local authority has made a child protection order for any of your children that is still in effect
+      authority_enquiring_html: A local authority is currently enquiring about any of your children
+      authority_protection_order_html: A local authority has made a child protection order for any of your children that is still in effect
       protection_none: *none_of_these
 
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
-      risk_applicant: There is risk to the life, liberty or physical safety of the prospective applicant or his or her family or his or her home
-      unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship to the prospective applicant
+      risk_applicant_html: There is risk to the life, liberty or physical safety of the prospective applicant or his or her family or his or her home
+      unreasonable_hardship_html: Any delay caused by attending a MIAM would cause unreasonable hardship to the prospective applicant
       ## GROUP RISK ##
       group_risk_html: |
         <span class="gv-u-heading-small">Risk to the children</span><br/>
         <span class="form-hint">This includes if you, your children or home are at immediate risk of harm</span>
-      risk_children: Any delay caused by attending a MIAM would cause a risk of harm to a child
-      risk_unlawful_removal_retention: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently outside England and Wales
+      risk_children_html: Any delay caused by attending a MIAM would cause a risk of harm to a child
+      risk_unlawful_removal_retention_html: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently outside England and Wales
       ## END GROUP ##
-      miscarriage_justice: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
-      irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
-      international_proceedings: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
+      miscarriage_justice_html: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
+      irretrievable_problems_html: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
+      international_proceedings_html: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
       ## URGENCY NONE ##
       urgency_none: *none_of_these
 
@@ -116,9 +116,9 @@ en:
       group_previous_adr_html: |
         <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or another type of non-court resolution</span><br/>
         <span class="form-hint">This must have taken place within the past 4 months (or ongoing if it’s another type of non-court resolution) and be about the same child arrangements issue.</span>
-      previous_attendance: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or substantially the same dispute
-      ongoing_attendance: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
-      existing_proceedings_attendance: The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings
+      previous_attendance_html: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      ongoing_attendance_html: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      existing_proceedings_attendance_html: The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings
       ## GROUP PREVIOUS MIAM ##
       group_previous_miam_html:
         <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or had a valid reason for not attending one</span><br/>
@@ -128,8 +128,8 @@ en:
             <li>a previous court application took place within the past 4 months and must have been about the same issue</li>
           </ul>
         </span>
-      previous_exemption: In the 4 months prior to making the application, the person filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
-      existing_proceedings_exemption: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
+      previous_exemption_html: In the 4 months prior to making the application, the person filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
+      existing_proceedings_exemption_html: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
       ## ADR NONE ##
       adr_none: *none_of_these
 
@@ -166,7 +166,7 @@ en:
             <li>names and contact details of the mediators, including dates of contact</li>
           </ul>
         </span>
-      no_mediator_nearby: There is no authorised family mediator with an office within 15 miles of your home
+      no_mediator_nearby_html: There is no authorised family mediator with an office within 15 miles of your home
       ## END GROUP ##
       access_prohibited_html: |
         <span class="gv-u-heading-small">You or the other person can’t attend a MIAM because one of you is:</span><br/>
@@ -196,4 +196,26 @@ en:
       steps_miam_exemptions_adr_form:
         <<: *ADR_EXEMPTIONS
       steps_miam_exemptions_misc_form:
+        <<: *MISC_EXEMPTIONS
+
+  playback:
+    domestic:
+      header: Domestic abuse evidence
+      exemptions:
+        <<: *DOMESTIC_EXEMPTIONS
+    protection:
+      header: Child protection concerns
+      exemptions:
+        <<: *PROTECTION_EXEMPTIONS
+    urgency:
+      header: Urgency
+      exemptions:
+        <<: *URGENCY_EXEMPTIONS
+    adr:
+      header: Previous MIAM attendance or MIAM exemption
+      exemptions:
+        <<: *ADR_EXEMPTIONS
+    misc:
+      header: Other exemptions
+      exemptions:
         <<: *MISC_EXEMPTIONS
