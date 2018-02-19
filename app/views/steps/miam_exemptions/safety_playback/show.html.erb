@@ -1,0 +1,21 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede"><%=t '.lead_text' %></p>
+
+    <%=t '.you_told_us_html' %>
+
+    <p>TODO: Add playback of safety concerns</p>
+
+    <%=t '.info_notice_html' %>
+
+    <div class="xform-group form-submit">
+      <%= link_to t('.continue'), edit_steps_petition_orders_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

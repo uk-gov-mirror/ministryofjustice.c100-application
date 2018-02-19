@@ -9,7 +9,6 @@ module C100App
       when :jurisdiction
         edit(:request)
       when :request
-        # TODO: add here MIAM exemptions steps when they are finished
         edit('/steps/application/details')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
