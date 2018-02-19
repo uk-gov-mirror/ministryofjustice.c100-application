@@ -37,9 +37,10 @@ module C100App
       ).exemptions.any?
     end
 
-    # TODO: add corresponding logic here once we have it
     def has_safety_concerns?
-      true
+      SafetyConcernsPresenter.new(
+        c100_application
+      ).concerns.any?
     end
   end
 end

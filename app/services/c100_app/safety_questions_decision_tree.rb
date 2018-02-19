@@ -36,6 +36,8 @@ module C100App
     def after_substance_abuse
       if question(:substance_abuse).yes?
         edit(:substance_abuse_details)
+      elsif question(:risk_of_abduction).yes?
+        start_abuse_concerns_journey
       else
         edit(:children_abuse)
       end
