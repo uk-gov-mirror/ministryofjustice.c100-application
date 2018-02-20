@@ -156,8 +156,10 @@ en:
       help_paying:
         edit:
           page_title: Help paying
-          heading: Do you need help paying the court fee?
-          lead_text: You may be able to get help paying the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.
+          heading: Help with fees
+          body_html: |
+            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
+            <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
           hwf_reference_number_help_html: '<p>You’ll need to get a <a href="https://www.gov.uk/get-help-with-court-fees">reference number</a> before you can continue with this service.</p>'
     respondent:
       names:
@@ -468,7 +470,8 @@ en:
         edit:
           page_title: MIAM certification
           heading: Have you got a signed certificate from the mediator?
-          lead_text: Your mediator should have signed a certificate confirming your MIAM attendance
+          body_html: |
+            <p>Your mediator should have signed a certificate confirming your MIAM attendance</p>
       certification_date:
         edit:
           page_title: MIAM certification date
