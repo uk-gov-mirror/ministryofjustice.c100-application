@@ -956,7 +956,7 @@ en:
         undertaking: Undertaking in place of an order
         undertaking_is_current: *order_current
       steps_abuse_concerns_details_form:
-        behaviour_ongoing_html: Are you concerned the issue is still affecting your children?
+        behaviour_ongoing_html: Are you concerned the issue is still ongoing?
         asked_for_help_html: Have you ever asked for help?
         help_provided_html: Did they help you?
       steps_alternatives_negotiation_tools_form:
@@ -1123,8 +1123,8 @@ en:
         substance_abuse_details:
       steps_abuse_concerns_details_form:
         behaviour_description: Give a short description
-        behaviour_start: When did your concerns about your children start?
-        behaviour_stop: When did you stop being concerned about the issue affecting your children?
+        behaviour_start: When did your concerns start?
+        behaviour_stop: When did you stop being concerned about the issue?
         help_party: Who did you ask for help?
         help_description: What did they do?
         behaviour_ongoing:
