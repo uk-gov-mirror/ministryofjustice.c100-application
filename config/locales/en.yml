@@ -122,6 +122,11 @@ en:
       kickout_feedback: Give your feedback. Help improve this service
       relationship_step:
         heading: "How is %{person_name} related to %{child_name}"
+      screener_exit_actions:
+        what_to_do_now:
+          heading: What to do now
+          copy: To submit your application, you should download the C100 form, print it, complete it, and submit it by post.
+        download_c100_link: Download the form (PDF)
     applicant:
       user_type:
         edit:
@@ -745,10 +750,6 @@ en:
           page_title: Sorry, you're not eligible for this service
           heading: Sorry, you're not eligible for this service
           lead_text: This is a new service we are trying out at a limited number of courts. Unfortunately the appropriate court for your request is not yet taking part in this trial.
-          what_to_do_now:
-            heading: What to do now
-            copy: To submit your application, you should download the C100 form, print it, complete it, and submit it by post.
-          download_c100_link: Download the form (PDF)
       urgency:
         edit:
           page_title: Urgent hearing
@@ -777,10 +778,16 @@ en:
           page_title: Sorry, you're not eligible for this service
           heading: Sorry, you're not eligible for this service
           lead_text: You can only use this service if you a parent of the children you’re making this application for
-          what_to_do_now:
-            heading: What to do now
-            copy: To submit your application, you should download the C100 form, print it, complete it, and submit it by post.
-          download_c100_link: Download the form (PDF)
+      over18:
+        edit:
+          page_title: Are you and the respondent both over 18?
+          heading: Are you and the respondent both over 18?
+          lead_text: The other person who will receive this application is known as the respondent. You can only use this service if you and the respondent are both over 18.
+      over18_exit:
+        show:
+          page_title: Sorry, you're not eligible for this service
+          heading: Sorry, you're not eligible for this service
+          lead_text: You can only use this service if you and the respondent are both over 18
     completion:
       summary:
         show:
