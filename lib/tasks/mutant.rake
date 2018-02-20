@@ -25,7 +25,7 @@ def classes_to_mutate
     when nil
       # Quicker run, reduced testing scope (random sample), default option
       puts '> running quick sample mutant testing'
-      form_objects.sample(10) + decision_trees_and_services.sample(5) + models
+      form_objects.sample(5) + decision_trees_and_services.sample(3) + models
     when 'all'
       # Complete coverage, very long run time
       puts '> running complete mutant testing'
@@ -42,7 +42,7 @@ end
 # Only include in this collection the models that matter and have specs.
 #
 def models
-  %w(C100Application User Court).freeze
+  %w(C100Application Court).freeze
 end
 
 # Everything inheriting from `BaseForm` and inside namespace `Steps`
