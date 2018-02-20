@@ -122,7 +122,7 @@ en:
     shared:
       kickout_feedback: Give your feedback. Help improve this service
       relationship_step:
-        heading: "How is %{person_name} related to %{child_name}"
+        heading: "How is %{person_name} related to %{child_name}?"
       screener_exit_actions:
         what_to_do_now:
           heading: What to do now

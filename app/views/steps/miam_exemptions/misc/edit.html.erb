@@ -7,6 +7,7 @@
 
     <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
+    <div class="miam_exemptions">
     <%= step_form @form_object do |f| %>
       <%=
         f.check_box_fieldset :misc_exemptions, [
@@ -34,5 +35,6 @@
 
       <%= f.submit class: 'button' %>
     <% end %>
+    </div>
   </div>
 </div>

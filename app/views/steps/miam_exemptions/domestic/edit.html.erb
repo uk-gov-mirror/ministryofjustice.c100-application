@@ -11,6 +11,7 @@
       <p><%= t '.lead_text' %></p>
     </div>
 
+    <div class="miam_exemptions or-block__shift">
     <%= step_form @form_object do |f| %>
       <%=
         f.check_box_fieldset :domestic_exemptions, [
@@ -48,5 +49,6 @@
 
       <%= f.submit class: 'button' %>
     <% end %>
+    </div>
   </div>
 </div>

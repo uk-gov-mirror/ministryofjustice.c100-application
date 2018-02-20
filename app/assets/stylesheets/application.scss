@@ -177,4 +177,29 @@ label[for="steps_abduction_risk_details_form_risk_details"]
   }
 }
 
+.miam_exemptions form {
+  & > .form-group > fieldset {
+    & > legend {
+      margin-bottom: 2rem;
+    }
+
+    & > .multiple-choice {
+      min-height: 5rem;
+    }
+  }
+
+  & label .heading-small {
+    font-weight: normal;
+  }
+}
+
+.form-block.or-block {
+  float: none;
+  margin: -3rem 0 -1rem;
+
+  .or-block__shift & {
+    margin-top: -5rem;
+  }
+}
+
 /* */
