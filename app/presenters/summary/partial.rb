@@ -1,9 +1,10 @@
 module Summary
   class Partial
-    attr_reader :name
+    attr_reader :name, :ivar
 
-    def initialize(name)
+    def initialize(name, ivar = nil)
       @name = name
+      @ivar = ivar
     end
 
     class << self

@@ -30,6 +30,8 @@ module Summary
           Sections::SectionHeader,
           Sections::MiamRequirement,
           Sections::SectionHeader,
+          Sections::MiamExemptions,
+          Sections::SectionHeader,
           Sections::MediatorCertification,
           Sections::SectionHeader,
           Sections::ApplicationReasons,

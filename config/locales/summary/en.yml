@@ -46,6 +46,7 @@ en:
     admin_date_issued: Date issued
     admin_orders_applied_for: Order(s) applied for
     c8_confidential_answer: < See C8 attached >
+    miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
     relationship_to_child:
       show_person: "%{person_name} - %{relation} to %{child_name}"
       hide_person: "%{relation} to %{child_name}"
@@ -61,6 +62,7 @@ en:
     section_headers:
       children: 1. The Child(ren)
       miam_requirement: 2. Requirement to attend a Mediation, Information and Assessment Meeting (MIAM)
+      miam_exemptions: 3. Applicant claims exemption(s) from attendance at a Mediation, Information and Assessment Meeting (MIAM)
       mediator_certification: 4. Mediator certifies that the prospective applicant is exempt from attendance at Mediation Information and Assessment Meeting (MIAM) or confirms MIAM attendance
       application_reasons: 5. Why are you making this application?
       urgent_and_without_notice: 6. Urgent and without notice hearings
