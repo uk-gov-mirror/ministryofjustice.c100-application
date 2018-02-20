@@ -769,6 +769,20 @@ en:
           heading: Sorry, you're not eligible for this service
           lead_text: If your application is urgent, you should contact your local court directly
           warning: Call 999 if you or your children are in immediate danger
+      parent:
+        edit:
+          page_title: Are you a parent of the child?
+          heading: Are you a parent of the child?
+          lead_text: You can only use this service if you a parent of the children you’re making this application for
+      parent_exit:
+        show:
+          page_title: Sorry, you're not eligible for this service
+          heading: Sorry, you're not eligible for this service
+          lead_text: You can only use this service if you a parent of the children you’re making this application for
+          what_to_do_now:
+            heading: What to do now
+            copy: To submit your application, you should download the C100 form, print it, complete it, and submit it by post.
+          download_c100_link: Download the form (PDF)
     completion:
       summary:
         show:

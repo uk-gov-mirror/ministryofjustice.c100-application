@@ -48,6 +48,8 @@ Rails.application.routes.draw do
       show_step :no_court_found
       edit_step :urgency
       show_step :urgent_exit
+      edit_step :parent
+      show_step :parent_exit
     end
     namespace :application do
       edit_step :previous_proceedings

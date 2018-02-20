@@ -1,11 +1,11 @@
 module Steps
   module Screener
-    class UrgencyForm < BaseForm
+    class ParentForm < BaseForm
       include SingleQuestionForm
       include HasOneAssociationForm
 
       has_one_association :screener_answers
-      yes_no_attribute :urgent
+      yes_no_attribute :parent
 
       private
 
@@ -13,7 +13,7 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         record_to_persist.update(
-          urgent: urgent
+          parent: parent
         )
       end
     end

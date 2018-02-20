@@ -8,6 +8,8 @@ module C100App
         check_if_court_is_valid
       when :urgency
         after_urgency
+      when :parent
+        after_parent
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -36,7 +38,15 @@ module C100App
       if question(:urgent, c100_application.screener_answers).yes?
         show(:urgent_exit)
       else
+        edit(:parent)
+      end
+    end
+
+    def after_parent
+      if question(:parent, c100_application.screener_answers).yes?
         edit('/steps/miam/consent_order')
+      else
+        show(:parent_exit)
       end
     end
   end
