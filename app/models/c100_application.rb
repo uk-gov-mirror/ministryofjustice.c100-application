@@ -22,7 +22,6 @@ class C100Application < ApplicationRecord
   has_many :other_parties,  -> { order(created_at: :asc) }, dependent: :destroy
 
   has_value_object :user_type
-  has_value_object :help_paying
   has_value_object :concerns_contact_type
 
   def confidentiality_enabled?

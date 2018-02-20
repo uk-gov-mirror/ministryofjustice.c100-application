@@ -21,20 +21,6 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `user_type`' do
-    let(:step_params) {{'user_type' => 'anything'}}
-
-    context 'and the user is a themself' do
-      let(:c100_application) {instance_double(C100Application, user_type: UserType::THEMSELF)}
-      it {is_expected.to have_destination('/steps/help_with_fees/help_paying', :edit)}
-    end
-
-    context 'and the user is a representative' do
-      let(:c100_application) {instance_double(C100Application, user_type: UserType::REPRESENTATIVE)}
-      it {is_expected.to have_destination('/steps/help_with_fees/help_paying', :edit)}
-    end
-  end
-
   context 'when the step is `add_another_name`' do
     let(:step_params) {{'add_another_name' => 'anything'}}
     it {is_expected.to have_destination(:names, :edit)}

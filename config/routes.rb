@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       edit_step :details
       edit_step :language
       edit_step :intermediary
+      edit_step :help_paying
     end
     namespace :petition do
       edit_step :orders
@@ -178,9 +179,6 @@ Rails.application.routes.draw do
       edit_step :resident
       edit_step :jurisdiction
       edit_step :request
-    end
-    namespace :help_with_fees do
-      edit_step :help_paying
     end
     namespace :completion do
       show_step :summary
