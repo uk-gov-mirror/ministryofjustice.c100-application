@@ -1,6 +1,6 @@
 module C100App
   class ApplicationDecisionTree < BaseDecisionTree
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     def destination
       return next_step if next_step
 
@@ -33,7 +33,7 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     private
 

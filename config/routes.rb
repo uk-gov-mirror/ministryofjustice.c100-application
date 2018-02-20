@@ -180,9 +180,6 @@ Rails.application.routes.draw do
       edit_step :jurisdiction
       edit_step :request
     end
-    namespace :help_with_fees do
-      edit_step :help_paying
-    end
     namespace :completion do
       show_step :summary
       show_step :download

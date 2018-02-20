@@ -4,8 +4,6 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :user_type
-        edit('/steps/help_with_fees/help_paying')
       when :add_another_name
         edit(:names)
       when :names_finished
