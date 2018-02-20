@@ -26,6 +26,8 @@ module C100App
       when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
+        edit(:help_paying)
+      when :help_paying
         show('/steps/completion/summary') # TODO: change when we have 'statement of truth'
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"

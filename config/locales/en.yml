@@ -152,15 +152,6 @@ en:
           heading: The applicant is (or may be) less than 18 years old
           lead_text: CB1 text to go here
           continue: Continue
-    help_with_fees:
-      help_paying:
-        edit:
-          page_title: Help paying
-          heading: Help with fees
-          body_html: |
-            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
-            <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
-          hwf_reference_number_help_html: '<p>You’ll need to get a <a href="https://www.gov.uk/get-help-with-court-fees">reference number</a> before you can continue with this service.</p>'
     respondent:
       names:
         edit:
@@ -648,6 +639,13 @@ en:
           page_title: Intermediary help
           heading: Does anyone in this application need a person to help them in court?
           lead_text: You may need a person (also known as an intermediary) to help if you have condition that affects your ability to participate in the court process.
+      help_paying:
+        edit:
+          page_title: Help paying
+          heading: Help with fees
+          body_html: |
+            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="_blank">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
+            <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
     international:
       resident:
         edit:
@@ -838,12 +836,6 @@ en:
           attributes:
             user_type:
               inclusion: Select who is making this application
-        steps/help_with_fees/help_paying_form:
-          attributes:
-            help_paying:
-              inclusion: Select if you need help paying the court fee
-            hwf_reference_number:
-              blank: Please enter your reference number
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -890,6 +882,8 @@ en:
         language_help_html: ""
       steps_application_intermediary_form:
         intermediary_help_html: ""
+      steps_application_help_paying_form:
+        help_paying_html: "Do you have a ‘Help with fees’ reference number?"
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_consent_order_form:
@@ -921,8 +915,6 @@ en:
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
-      steps_help_with_fees_help_paying_form:
-        help_paying_html: ""
       steps_safety_questions_address_confidentiality_form:
         address_confidentiality_html: "Do you want to keep your contact details private from the other person?"
       steps_safety_questions_risk_of_abduction_form:
@@ -1060,6 +1052,8 @@ en:
         language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
+      steps_application_help_paying_form:
+        hwf_reference_number: Enter your reference number
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
@@ -1072,12 +1066,6 @@ en:
         miam_certification_number: FMC registration number
         miam_certification_service_name: Family mediation service name
         miam_certification_sole_trader_name: Sole trader name
-      steps_help_with_fees_help_paying_form:
-        help_paying:
-          yes_with_ref_number: Yes, I have a Help with Fees reference number
-          yes_without_ref_number: Yes, but I don’t have a Help with Fees reference number
-          not_needed: 'No'
-        hwf_reference_number: Enter your reference number
       steps_petition_orders_form:
         <<: *PETITION_ORDERS
         child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)

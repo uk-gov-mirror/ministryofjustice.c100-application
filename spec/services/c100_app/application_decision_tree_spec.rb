@@ -92,6 +92,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `special_arrangements`' do
     let(:step_params) { { special_arrangements: 'anything' } }
+    it { is_expected.to have_destination(:help_paying, :edit) }
+  end
+
+  context 'when the step is `help_paying`' do
+    let(:step_params) { { help_paying: 'anything' } }
     it { is_expected.to have_destination('/steps/completion/summary', :show) }
   end
 end
