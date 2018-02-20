@@ -232,6 +232,10 @@ en:
       question: Other parties
     children_residence:
       question: Who do the children currently live with?
+      answers:
+        Applicant: Applicant
+        Respondent: Respondent
+        OtherParty: Other
     miam_child_protection:
       question: "Current or previous proceedings: are/were any of those cases about an emergency protection, care or supervision order?"
       answers:

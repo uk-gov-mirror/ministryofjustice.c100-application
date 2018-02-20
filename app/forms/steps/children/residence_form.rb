@@ -2,10 +2,6 @@ module Steps
   module Children
     class ResidenceForm < BaseForm
       attribute :person_ids, Array[String]
-      attribute :other, Boolean
-      attribute :other_full_name, StrippedString
-
-      validates_presence_of :other_full_name, if: :other?
 
       # These are all the parties available to choose from
       def people
@@ -23,8 +19,6 @@ module Steps
 
         record.update(
           person_ids: person_ids,
-          other: other,
-          other_full_name: (other_full_name if other)
         )
       end
     end

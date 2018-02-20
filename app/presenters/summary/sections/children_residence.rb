@@ -11,28 +11,26 @@ module Summary
 
       def answers
         [
-          FreeTextAnswer.new(:children_residence, children_residence),
+          MultiAnswer.new(:children_residence, children_residence),
         ].select(&:show?)
       end
 
       private
 
+      # This will return an array of type of people, for example it may be
+      # ["OtherParty", "OtherParty", "Applicant", "Respondent", "Applicant"]
+      # We remove duplicates, and sort alphabetically.
       def children_residence
-        ChildResidence.where(child: c100.children).map do |residence|
-          residence_full_names(residence)
-        end.join('; ')
+        host_people.pluck(:type).uniq.sort
       end
 
-      # TODO: we might need to separate which child lives with each of the parties
-      # For now it is not clear in the PDF mockup, so this is just a simple solution.
-      # Also we will need to handle somehow the C8 for `other parties`. Awaiting design.
-      # :nocov:
-      def residence_full_names(residence)
-        names = c100.people.where(id: residence.person_ids).pluck(:full_name)
-        names << residence.other_full_name if residence.other?
-        names
+      def host_people
+        Person.where(id: host_person_ids)
       end
-      # :nocov:
+
+      def host_person_ids
+        ChildResidence.where(child: c100.children).pluck(:person_ids).flatten
+      end
     end
   end
 end

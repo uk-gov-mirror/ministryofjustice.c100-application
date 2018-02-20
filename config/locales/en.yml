@@ -1119,9 +1119,6 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
-      steps_children_residence_form:
-        other: Other
-        other_full_name: Enter full name
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details:
       steps_abuse_concerns_details_form:

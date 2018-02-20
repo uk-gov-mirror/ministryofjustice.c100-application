@@ -11,14 +11,6 @@
     <%= step_form @form_object do |f| %>
       <%= f.collection_check_boxes :person_ids, @form_object.people, :id, :full_name %>
 
-      <p class="form-block or-block"><%=t '.or' %></p>
-
-      <%=
-        f.check_box_fieldset :other, [:other] do |fieldset|
-          fieldset.check_box_input(:other) { f.text_field :other_full_name }
-        end
-      %>
-
       <%= f.submit class: 'button' %>
     <% end %>
   </div>
