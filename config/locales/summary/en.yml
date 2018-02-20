@@ -243,7 +243,7 @@ en:
       question: "Current or previous proceedings: are/were any of those cases about an emergency protection, care or supervision order?"
       answers:
         <<: *YESNO
-    miam_exemption_claimed:
+    miam_exemption_claim:
       question: Are you claiming exemption from the requirement to attend a MIAM?
       answers:
         <<: *YESNO
