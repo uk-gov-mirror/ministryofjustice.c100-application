@@ -28,12 +28,6 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
 
   subject { described_class.new(arguments) }
 
-  describe '.gender_choices' do
-    it 'returns the relevant choices' do
-      expect(described_class.gender_choices).to eq(%w(female male))
-    end
-  end
-
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }

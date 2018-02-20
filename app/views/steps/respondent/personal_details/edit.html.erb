@@ -16,8 +16,7 @@
         end
       %>
 
-      <%= f.radio_button_fieldset :gender, inline: true,
-        choices: Steps::Respondent::PersonalDetailsForm.gender_choices %>
+      <%= f.radio_button_fieldset :gender, choices: Gender.values %>
 
       <div class="form-group">
         <%= f.gov_uk_date_field :dob,

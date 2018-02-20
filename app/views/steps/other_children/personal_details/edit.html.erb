@@ -23,8 +23,7 @@
         end
       %>
 
-      <%= f.radio_button_fieldset :gender, inline: true,
-        choices: Steps::Children::PersonalDetailsForm.gender_choices %>
+      <%= f.radio_button_fieldset :gender, choices: Gender.values %>
 
       <%= f.submit class: 'button' %>
     <% end %>
