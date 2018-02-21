@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Summary
-  describe C8Form do
+  describe C1aForm do
     let(:c100_application) { instance_double(C100Application) }
     subject { described_class.new(c100_application) }
 
@@ -17,10 +17,7 @@ module Summary
       it 'has the right sections in the right order' do
         expect(subject.sections).to match_instances_array([
           Sections::FormHeader,
-          Sections::C8CourtDetails,
-          Partial,
-          Sections::C8ApplicantsDetails,
-          Sections::C8OtherPartiesDetails,
+          Sections::C1aCourtDetails,
         ])
       end
     end
