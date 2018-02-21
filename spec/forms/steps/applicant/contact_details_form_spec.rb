@@ -20,7 +20,7 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
   let(:address) { 'address' }
   let(:home_phone) { nil }
   let(:mobile_phone) { nil }
-  let(:email) { nil }
+  let(:email) { 'test@test.com' }
   let(:residence_requirement_met) { 'no' }
   let(:residence_history) { 'history' }
 
@@ -69,13 +69,28 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
       end
     end
 
+    context 'email validation' do
+      context 'email is not validated if not present' do
+        let(:email) { nil }
+        it { expect(subject).to be_valid }
+      end
+
+      context 'email is validated if present' do
+        let(:email) { 'xxx' }
+        it {
+          expect(subject).not_to be_valid
+          expect(subject.errors[:email]).to_not be_empty
+        }
+      end
+    end
+
     context 'for valid details' do
       let(:expected_attributes) {
         {
           address: 'address',
           home_phone: '',
           mobile_phone: '',
-          email: '',
+          email: 'test@test.com',
           residence_requirement_met: GenericYesNo::NO,
           residence_history: 'history'
         }

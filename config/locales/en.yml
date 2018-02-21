@@ -3,6 +3,7 @@ en:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
     birthplace_hint: &birthplace_hint "For example, town or city"
+    address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
     name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Please answer if the order is current"
@@ -65,7 +66,7 @@ en:
     # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
     PERSONAL_CONTACT_FIELDS: &PERSONAL_CONTACT_FIELDS
       address: Address
-      address_unknown: *dont_know
+      address_unknown: I don’t know where they currently live
       home_phone: Home phone
       mobile_phone: Mobile phone
       mobile_phone_unknown: *dont_know
@@ -176,6 +177,7 @@ en:
         edit:
           page_title: Respondent contact details
           heading: "Contact details of %{name}"
+          body_info: Include as much detail as you can. This will help us process your application more quickly.
       has_other_parties:
         edit:
           page_title: Other parties required
@@ -1235,9 +1237,9 @@ en:
       steps_respondent_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
-        address: Documents for this application will be sent here. Include the postcode
+        address: *address_hint
       steps_other_parties_contact_details_form:
-        address: Enter the full address including postcode
+        address: *address_hint
       steps_children_names_form:
         new_name_html: *name_instructions
       steps_children_additional_details_form:

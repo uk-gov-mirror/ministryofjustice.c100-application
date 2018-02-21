@@ -8,9 +8,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
     address_unknown: address_unknown,
     home_phone: home_phone,
     mobile_phone: mobile_phone,
-    mobile_phone_unknown: mobile_phone_unknown,
     email: email,
-    email_unknown: email_unknown,
     residence_requirement_met: residence_requirement_met,
     residence_history: residence_history
   } }
@@ -24,9 +22,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
   let(:address_unknown) { false }
   let(:home_phone) { nil }
   let(:mobile_phone) { nil }
-  let(:mobile_phone_unknown) { true }
-  let(:email) { nil }
-  let(:email_unknown) { true }
+  let(:email) { 'test@test.com' }
   let(:residence_requirement_met) { 'no' }
   let(:residence_history) { 'history' }
 
@@ -77,8 +73,21 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
 
     context 'validations on field presence unless `unknown`' do
       it { should validate_presence_unless_unknown_of(:address) }
-      it { should validate_presence_unless_unknown_of(:mobile_phone) }
-      it { should validate_presence_unless_unknown_of(:email) }
+    end
+
+    context 'email validation' do
+      context 'email is not validated if not present' do
+        let(:email) { nil }
+        it { expect(subject).to be_valid }
+      end
+
+      context 'email is validated if present' do
+        let(:email) { 'xxx' }
+        it {
+          expect(subject).not_to be_valid
+          expect(subject.errors[:email]).to_not be_empty
+        }
+      end
     end
 
     context 'for valid details' do
@@ -88,9 +97,7 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
           address_unknown: false,
           home_phone: '',
           mobile_phone: '',
-          mobile_phone_unknown: true,
-          email: '',
-          email_unknown: true,
+          email: 'test@test.com',
           residence_requirement_met: GenericYesNoUnknown::NO,
           residence_history: 'history'
         }
