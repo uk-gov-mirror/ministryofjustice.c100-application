@@ -5,6 +5,13 @@ describe Summary::Partial do
 
   subject { described_class.new(name) }
 
+  describe '#ivar' do
+    context 'it can be initialized with an optional instance variable' do
+      subject { described_class.new(name, 'test') }
+      it { expect(subject.ivar).to eq('test') }
+    end
+  end
+
   describe '#to_partial_path' do
     it { expect(subject.to_partial_path).to eq('steps/completion/shared/anything') }
   end
