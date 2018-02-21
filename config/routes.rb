@@ -52,6 +52,8 @@ Rails.application.routes.draw do
       show_step :parent_exit
       edit_step :over18
       show_step :over18_exit
+      edit_step :legal_representation
+      show_step :legal_representation_exit
     end
     namespace :application do
       edit_step :previous_proceedings

@@ -789,6 +789,16 @@ en:
           page_title: Sorry, you're not eligible for this service
           heading: Sorry, you're not eligible for this service
           lead_text: You can only use this service if you and the respondent are both over 18
+      legal_representation:
+        edit:
+          page_title: Do you have legal representation?
+          heading: Do you have legal representation?
+          lead_text: You can only use this service if you are not being represented by a solicitor
+      legal_representation_exit:
+        show:
+          page_title: Sorry, you're not eligible for this service
+          heading: Sorry, you're not eligible for this service
+          lead_text: You can only use this service if you are not being represented by a solicitor
     completion:
       summary:
         show:
