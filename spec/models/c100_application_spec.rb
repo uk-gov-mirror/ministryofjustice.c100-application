@@ -33,6 +33,16 @@ RSpec.describe C100Application, type: :model do
     context 'there are no concerns' do
       let(:domestic_abuse) { 'no' }
       it { expect(subject.has_safety_concerns?).to eq(false) }
+
+      it 'checks all the neccessary attributes' do
+        expect(subject).to receive(:domestic_abuse)
+        expect(subject).to receive(:risk_of_abduction)
+        expect(subject).to receive(:children_abuse)
+        expect(subject).to receive(:substance_abuse)
+        expect(subject).to receive(:other_abuse)
+
+        subject.has_safety_concerns?
+      end
     end
   end
 end
