@@ -13,6 +13,8 @@ module Steps
       validates_inclusion_of :residence_requirement_met, in: GenericYesNo.values
       validates_presence_of  :residence_history, if: -> { residence_requirement_met&.no? }
 
+      validates :email, email: true, allow_blank: true
+
       private
 
       def persist!

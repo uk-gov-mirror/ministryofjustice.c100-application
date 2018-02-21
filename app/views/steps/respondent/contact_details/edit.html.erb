@@ -6,6 +6,10 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
+    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+      <p><%=t '.body_info' %></p>
+    </div>
+
     <%= step_form @form_object do |f| %>
       <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
       <%= f.check_box_fieldset :address_unknown, [:address_unknown] %>
@@ -20,12 +24,8 @@
       %>
 
       <%= f.text_field :home_phone %>
-
       <%= f.text_field :mobile_phone %>
-      <%= f.check_box_fieldset :mobile_phone_unknown, [:mobile_phone_unknown] %>
-
       <%= f.text_field :email %>
-      <%= f.check_box_fieldset :email_unknown, [:email_unknown] %>
 
       <%= f.submit class: 'button' %>
     <% end %>

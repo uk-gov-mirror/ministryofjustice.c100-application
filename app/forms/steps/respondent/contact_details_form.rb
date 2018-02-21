@@ -5,18 +5,16 @@ module Steps
       attribute :address_unknown, Boolean
       attribute :home_phone, StrippedString
       attribute :mobile_phone, StrippedString
-      attribute :mobile_phone_unknown, Boolean
       attribute :email, NormalisedEmail
-      attribute :email_unknown, Boolean
       attribute :residence_requirement_met, YesNoUnknown
       attribute :residence_history, String
 
-      validates_presence_of :address,      unless: :address_unknown?
-      validates_presence_of :mobile_phone, unless: :mobile_phone_unknown?
-      validates_presence_of :email,        unless: :email_unknown?
+      validates_presence_of :address, unless: :address_unknown?
 
       validates_inclusion_of :residence_requirement_met, in: GenericYesNoUnknown.values
       validates_presence_of  :residence_history, if: -> { residence_requirement_met&.no? }
+
+      validates :email, email: true, allow_blank: true
 
       private
 
