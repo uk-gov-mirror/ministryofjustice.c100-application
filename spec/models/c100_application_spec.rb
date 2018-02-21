@@ -15,4 +15,24 @@ RSpec.describe C100Application, type: :model do
       it { expect(subject.confidentiality_enabled?).to eq(false) }
     end
   end
+
+  describe '#has_safety_concerns?' do
+    let(:attributes) { {
+      domestic_abuse: domestic_abuse,
+      risk_of_abduction: 'no',
+      children_abuse: 'no',
+      substance_abuse: 'no',
+      other_abuse: 'no'
+    } }
+
+    context 'at least one concern was answered as `YES`' do
+      let(:domestic_abuse) { 'yes' }
+      it { expect(subject.has_safety_concerns?).to eq(true) }
+    end
+
+    context 'there are no concerns' do
+      let(:domestic_abuse) { 'no' }
+      it { expect(subject.has_safety_concerns?).to eq(false) }
+    end
+  end
 end

@@ -46,30 +46,9 @@ module Summary
     end
 
     describe '#any?' do
-      let(:c100_application) {
-        instance_double(C100Application,
-          domestic_abuse: domestic_abuse,
-          risk_of_abduction: 'no',
-          children_abuse: 'no',
-          substance_abuse: 'no',
-          other_abuse: 'no'
-        )
-      }
-
-      context 'at least one concern was answered as `YES`' do
-        let(:domestic_abuse) { 'yes' }
-
-        it 'returns true' do
-          expect(subject.any?).to eq(true)
-        end
-      end
-
-      context 'there are no concerns' do
-        let(:domestic_abuse) { 'no' }
-
-        it 'returns false' do
-          expect(subject.any?).to eq(false)
-        end
+      it 'delegates the implementation to the c100 application' do
+        expect(c100_application).to receive(:has_safety_concerns?).and_return(true)
+        expect(subject.any?).to eq(true)
       end
     end
   end

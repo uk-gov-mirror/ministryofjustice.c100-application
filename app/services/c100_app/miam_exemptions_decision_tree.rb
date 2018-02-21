@@ -38,9 +38,7 @@ module C100App
     end
 
     def has_safety_concerns?
-      SafetyConcernsPresenter.new(
-        c100_application
-      ).concerns.any?
+      c100_application.has_safety_concerns?
     end
   end
 end
