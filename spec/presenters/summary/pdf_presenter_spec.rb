@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe Summary::PdfPresenter do
-  let(:c100_application) { C100Application.new(address_confidentiality: address_confidentiality) }
+  let(:c100_application) { C100Application.new(address_confidentiality: address_confidentiality, domestic_abuse: domestic_abuse) }
   let(:generator) { double('Generator') }
 
   let(:address_confidentiality) { 'no' }
+  let(:domestic_abuse) { 'no' }
 
   subject { described_class.new(c100_application, generator) }
 
@@ -15,6 +16,22 @@ describe Summary::PdfPresenter do
       )
 
       subject.generate
+    end
+
+    context 'when C1A is triggered' do
+      let(:domestic_abuse) { 'yes' }
+
+      it 'generates the C100 form and the C1A' do
+        expect(generator).to receive(:generate).with(
+          an_instance_of(Summary::C100Form), copies: 3
+        )
+
+        expect(generator).to receive(:generate).with(
+          an_instance_of(Summary::C1aForm), copies: 3
+        )
+
+        subject.generate
+      end
     end
 
     context 'when C8 is triggered' do
