@@ -15,16 +15,13 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(3)
+        expect(answers.count).to eq(2)
 
         expect(answers[0]).to be_an_instance_of(Partial)
         expect(answers[0].name).to eq(:admin_court_and_case_number)
 
         expect(answers[1]).to be_an_instance_of(Partial)
         expect(answers[1].name).to eq(:admin_date_issued)
-
-        expect(answers[2]).to be_an_instance_of(Partial)
-        expect(answers[2].name).to eq(:admin_orders_applied_for)
       end
     end
   end

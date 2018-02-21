@@ -9,7 +9,6 @@ module Summary
         [
           Partial.new(:admin_court_and_case_number),
           Partial.new(:admin_date_issued),
-          Partial.new(:admin_orders_applied_for),
         ]
       end
     end
