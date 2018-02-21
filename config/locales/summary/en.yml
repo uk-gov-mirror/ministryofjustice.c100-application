@@ -1,5 +1,6 @@
 en:
   dictionary:
+    to_be_completed: &to_be_completed "To be completed by the court"
     not_applicable: &not_applicable "Not applicable"
     unknown: &unknown "Don't know"
 
@@ -57,6 +58,9 @@ en:
       c100_form:
         title: C100
         details: Application under section 8 of the Children Act 1989 for a child arrangements, prohibited steps, specific issue order or to vary or discharge or ask permission to make a section 8 order
+      c1a_form:
+        title: C1A
+        details: Allegations of harm and domestic violence (Supplemental information form)
       c8_form:
         title: C8
         details: Confidential contact details - Family Procedure Rules 2010 Rule 29.1
@@ -78,7 +82,7 @@ en:
       statement_of_truth: 16. Statement of truth
     sections:
       ### C100 ###
-      c100_court_details: To be completed by the court
+      c100_court_details: *to_be_completed
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
       nature_of_application: Nature of application
@@ -89,8 +93,10 @@ en:
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       other_children_details: Other children not part of the application
+      ### C1A ###
+      c1a_court_details: *to_be_completed
       ### C8 ###
-      c8_court_details: To be completed by the court
+      c8_court_details: *to_be_completed
       c8_applicants_details: Applicant contact details to be kept private
       c8_other_parties_details: Other parties contact details to be kept private
     descriptions:

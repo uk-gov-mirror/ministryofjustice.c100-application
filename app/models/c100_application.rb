@@ -27,4 +27,14 @@ class C100Application < ApplicationRecord
   def confidentiality_enabled?
     address_confidentiality.eql?(GenericYesNo::YES.to_s)
   end
+
+  def has_safety_concerns?
+    [
+      domestic_abuse,
+      risk_of_abduction,
+      children_abuse,
+      substance_abuse,
+      other_abuse
+    ].any? { |concern| concern.eql?(GenericYesNo::YES.to_s) }
+  end
 end

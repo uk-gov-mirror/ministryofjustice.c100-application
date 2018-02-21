@@ -20,13 +20,7 @@ module Summary
       end
 
       def any?
-        [
-          c100.domestic_abuse,
-          c100.risk_of_abduction,
-          c100.children_abuse,
-          c100.substance_abuse,
-          c100.other_abuse
-        ].any? { |abuse| abuse.eql?(GenericYesNo::YES.to_s) }
+        c100.has_safety_concerns?
       end
 
       private
