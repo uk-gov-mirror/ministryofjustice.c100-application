@@ -6,7 +6,9 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+    <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice">
+      <p><%=t '.body_info' %></p>
+    </div>
 
     <%= step_form @form_object do |f| %>
       <% @existing_records.each.with_index do |applicant, index| %>
@@ -19,7 +21,7 @@
 
       <%= f.text_field :new_name %>
 
-      <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: 'link-button' %>
+      <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: ['button-add', 'link-button'] %>
 
       <% if @existing_records.any? %>
         <%= link_to t('.btn_remove'), steps_applicant_names_path(@existing_records.last), method: :delete, class: 'link-button' %>

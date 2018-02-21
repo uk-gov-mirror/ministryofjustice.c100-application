@@ -3,6 +3,7 @@ en:
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
     birthplace_hint: &birthplace_hint "For example, town or city"
+    name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Please answer if the order is current"
     order_length: &order_length "How long is the order for?"
@@ -137,7 +138,7 @@ en:
         edit:
           page_title: Applicant names
           heading: Enter the applicant’s name
-          lead_text: Anyone who is making this application is known as the applicant.
+          body_info: You and anyone else making this application are known as the applicant.
           record_index: "Applicant %{index}"
           btn_add_another: Add another applicant
           btn_remove: Remove last applicant
@@ -163,7 +164,7 @@ en:
         edit:
           page_title: Respondent names
           heading: Enter the respondent’s name
-          lead_text: The other person who will receive this application is known as the respondent.
+          body_info: The other person who will receive this application is known as the respondent.
           record_index: "Respondent %{index}"
           btn_add_another: Add another respondent
           btn_remove: Remove last respondent
@@ -193,7 +194,7 @@ en:
         edit:
           page_title: Enter the names of your children
           heading: Enter the names of your children
-          lead_text: Only include the children you’re making this application for
+          body_info: Only include the children you’re making this application for
           record_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
@@ -1044,6 +1045,10 @@ en:
         relation_other_value: *provide_details
         relation:
           <<: *RELATIONS
+      steps_applicant_names_form:
+        new_name: Full name of applicant
+      steps_applicant_names_form[names_attributes]:
+        full_name: Full name of applicant
       steps_application_court_proceedings_form:
         children_names: Names of children involved
         court_name: Name of court
@@ -1182,6 +1187,10 @@ en:
         international_jurisdiction_details: *provide_details
       steps_international_request_form:
         international_request_details: *provide_details
+      steps_respondent_names_form:
+        new_name: Full name of respondent
+      steps_respondent_names_form[names_attributes]:
+        full_name: Full name of respondent
       steps_screener_postcode_form:
         children_postcodes: Postcodes of the children you're making this application for
       user:
@@ -1199,6 +1208,8 @@ en:
       user:
         password: Must be at least 8 characters
         current_password: We need your current password to confirm your changes
+      steps_applicant_names_form:
+        new_name_html: *name_instructions
       steps_application_court_proceedings_form:
         proceedings_date: Enter an approximate date if unsure
         case_number: Leave blank if you don’t know
@@ -1219,17 +1230,25 @@ en:
       steps_applicant_contact_details_form:
         address: Enter your full address including postcode
         residence_history: Start with the most recent
+      steps_respondent_names_form:
+        new_name_html: *name_instructions
       steps_respondent_personal_details_form:
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
         address: Documents for this application will be sent here. Include the postcode
       steps_other_parties_contact_details_form:
         address: Enter the full address including postcode
+      steps_children_names_form:
+        new_name_html: *name_instructions
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
       steps_children_residence_form:
         person_ids_html: Select all that apply
+      steps_other_children_names_form:
+        new_name_html: *name_instructions
+      steps_other_parties_names_form:
+        new_name_html: *name_instructions
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
