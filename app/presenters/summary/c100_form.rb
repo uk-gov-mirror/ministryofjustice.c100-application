@@ -9,9 +9,9 @@ module Summary
         urgent_and_without_notice_sections,
         other_court_cases_section,
         international_element_sections,
-        litigation_capacity_sections,
-        attending_court_sections,
+        litigation_and_assistance_sections,
         people_sections,
+        statement_of_truth,
       ].flatten.select(&:show?)
     end
 
@@ -78,15 +78,10 @@ module Summary
       ]
     end
 
-    def litigation_capacity_sections
+    def litigation_and_assistance_sections
       [
         Sections::SectionHeader.new(c100_application, name: :litigation_capacity),
         Sections::LitigationCapacity.new(c100_application),
-      ]
-    end
-
-    def attending_court_sections
-      [
         Sections::SectionHeader.new(c100_application, name: :attending_court),
         Sections::AttendingCourt.new(c100_application),
       ]
@@ -103,6 +98,13 @@ module Summary
         Sections::OtherChildrenDetails.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :solicitor_details),
         Sections::SolicitorDetails.new(c100_application),
+      ]
+    end
+
+    def statement_of_truth
+      [
+        Sections::SectionHeader.new(c100_application, name: :statement_of_truth),
+        Sections::StatementOfTruth.new(c100_application),
       ]
     end
   end

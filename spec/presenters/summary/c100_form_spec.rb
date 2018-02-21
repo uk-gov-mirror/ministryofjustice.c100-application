@@ -55,6 +55,8 @@ module Summary
           Sections::OtherChildrenDetails,
           Sections::SectionHeader,
           Sections::SolicitorDetails,
+          Sections::SectionHeader,
+          Sections::StatementOfTruth,
         ])
       end
     end

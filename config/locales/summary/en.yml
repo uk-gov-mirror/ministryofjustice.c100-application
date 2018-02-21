@@ -47,6 +47,7 @@ en:
     admin_orders_applied_for: Order(s) applied for
     c8_confidential_answer: < See C8 attached >
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
+    statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
     relationship_to_child:
       show_person: "%{person_name} - %{relation} to %{child_name}"
       hide_person: "%{relation} to %{child_name}"
@@ -74,6 +75,7 @@ en:
       respondents_details: 12. The respondent(s)
       other_parties_details: 13. Others who should be given notice
       solicitor_details: 14. Solicitor’s details
+      statement_of_truth: 16. Statement of truth
     sections:
       ### C100 ###
       c100_court_details: To be completed by the court
