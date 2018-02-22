@@ -10,8 +10,9 @@ RSpec.describe C100App::PdfGenerator do
   end
 
   describe '#generate' do
-    let(:presenter) { double('Presenter', template: 'path/to/template') }
+    let(:presenter) { double('Presenter', template: 'path/to/template', raw_file_path: raw_file_path) }
     let(:document)  { 'a form document' }
+    let(:raw_file_path) { nil }
 
     it 'renders a form using a presenter' do
       expect(ApplicationController).to receive(:render).with(
@@ -34,6 +35,20 @@ RSpec.describe C100App::PdfGenerator do
       subject.generate(presenter, copies: 2)
 
       expect(combiner).to match_array([document, document])
+    end
+
+    context 'appends a raw document if there is one specified in the presenter' do
+      let(:raw_file_path) { 'test/path.pdf' }
+
+      it 'generates the PDF' do
+        expect(subject).to receive(:pdf_from_presenter).with(presenter).and_return(document)
+        expect(CombinePDF).to receive(:parse).with(document).and_return(document)
+        expect(CombinePDF).to receive(:load).with('test/path.pdf').and_return(document)
+
+        subject.generate(presenter, copies: 1)
+
+        expect(combiner).to match_array([document, document])
+      end
     end
   end
 

@@ -12,7 +12,7 @@ describe Summary::PdfPresenter do
   describe '#generate' do
     it 'generates the C100 form' do
       expect(generator).to receive(:generate).with(
-        an_instance_of(Summary::C100Form), copies: 3
+        an_instance_of(Summary::C100Form), copies: 1
       )
 
       subject.generate
@@ -23,11 +23,11 @@ describe Summary::PdfPresenter do
 
       it 'generates the C100 form and the C1A' do
         expect(generator).to receive(:generate).with(
-          an_instance_of(Summary::C100Form), copies: 3
+          an_instance_of(Summary::C100Form), copies: 1
         )
 
         expect(generator).to receive(:generate).with(
-          an_instance_of(Summary::C1aForm), copies: 3
+          an_instance_of(Summary::C1aForm), copies: 1
         )
 
         subject.generate
@@ -39,7 +39,7 @@ describe Summary::PdfPresenter do
 
       it 'generates the C100 form and the C8' do
         expect(generator).to receive(:generate).with(
-          an_instance_of(Summary::C100Form), copies: 3
+          an_instance_of(Summary::C100Form), copies: 1
         )
 
         expect(generator).to receive(:generate).with(

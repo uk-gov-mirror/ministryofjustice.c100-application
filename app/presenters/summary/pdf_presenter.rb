@@ -10,9 +10,10 @@ module Summary
       @pdf_generator = generator
     end
 
+    # The number of copies might change for the pilot
     def generate
-      pdf_generator.generate(c100_form, copies: 3)
-      pdf_generator.generate(c1a_form,  copies: 3) if c100_application.has_safety_concerns?
+      pdf_generator.generate(c100_form, copies: 1)
+      pdf_generator.generate(c1a_form,  copies: 1) if c100_application.has_safety_concerns?
       pdf_generator.generate(c8_form,   copies: 1) if c100_application.confidentiality_enabled?
     end
 
