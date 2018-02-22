@@ -5,10 +5,8 @@ task :mutant => :environment do
   vars = 'NOCOVERAGE=true'
   flags = '--use rspec --fail-fast'
 
-  classes_to_mutate.each do |klass|
-    unless system("#{vars} mutant #{flags} #{klass}")
-      raise 'Mutation testing failed'
-    end
+  unless system("#{vars} mutant #{flags} #{classes_to_mutate.join(' ')}")
+    raise 'Mutation testing failed'
   end
 
   exit
