@@ -4,6 +4,8 @@ module Summary
       [
         Sections::FormHeader.new(c100_application, name: :c1a_form),
         Sections::C1aCourtDetails.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :c1a_applicants_details),
+        Sections::C1aApplicantDetails.new(c100_application),
       ].flatten.select(&:show?)
     end
 
