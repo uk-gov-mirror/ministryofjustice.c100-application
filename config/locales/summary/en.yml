@@ -80,6 +80,8 @@ en:
       other_parties_details: 13. Others who should be given notice
       solicitor_details: 14. Solicitor’s details
       statement_of_truth: 16. Statement of truth
+      ### C1A ###
+      c1a_applicants_details: Section 1 - About you (the person completing this form)
     sections:
       ### C100 ###
       c100_court_details: *to_be_completed
@@ -105,6 +107,7 @@ en:
     separators:
       c8_attached: See C8 attached
       not_applicable: Not applicable
+      contact_details: Contact details
       language_assistance: Language assistance
       intermediary: Intermediary
       special_assistance: Special assistance / facilities
@@ -396,6 +399,20 @@ en:
       question: Type of proceedings - if known
     court_proceeding_previous_details:
       question: Details of any other previous family case
+
+    ### C1A questions/answers ###
+    #
+    c1a_full_name:
+      question: Your full name
+    c1a_person_type:
+      question: Are you the
+      answers:
+        applicant: Applicant
+    c1a_address_confidentiality:
+      question: C8 form completed?
+      answers:
+        'yes': 'Yes'
+        'no': *not_applicable
 
     ### C8 questions/answers ###
     #

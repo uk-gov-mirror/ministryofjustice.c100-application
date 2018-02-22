@@ -22,6 +22,8 @@ module Summary
         expect(subject.sections).to match_instances_array([
           Sections::FormHeader,
           Sections::C1aCourtDetails,
+          Sections::SectionHeader,
+          Sections::C1aApplicantDetails,
         ])
       end
     end
