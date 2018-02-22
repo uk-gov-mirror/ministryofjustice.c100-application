@@ -3,10 +3,12 @@ module C100App
     delegate :to_pdf, to: :combiner
 
     def generate(presenter, copies:)
-      doc = pdf_from_presenter(presenter)
+      main_doc = pdf_from_presenter(presenter)
+      raw_file = presenter.raw_file_path
 
       copies.times do
-        combiner << CombinePDF.parse(doc)
+        combiner << CombinePDF.parse(main_doc)
+        combiner << CombinePDF.load(raw_file) if raw_file
       end
     end
 
