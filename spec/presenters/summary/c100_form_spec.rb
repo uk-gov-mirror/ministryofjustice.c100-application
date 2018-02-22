@@ -9,6 +9,10 @@ module Summary
       it { expect(subject.template).to eq('steps/completion/summary/show.pdf') }
     end
 
+    describe '#raw_file_path' do
+      it { expect(subject.raw_file_path).to be_nil }
+    end
+
     describe '#sections' do
       before do
         allow_any_instance_of(Summary::Sections::BaseSectionPresenter).to receive(:show?).and_return(true)

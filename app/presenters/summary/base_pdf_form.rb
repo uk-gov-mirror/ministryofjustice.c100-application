@@ -15,5 +15,11 @@ module Summary
       raise 'implement in subclasses'
     end
     # :nocov:
+
+    # If needed, specify in subclasses a PDF file to be used 'as it is', appended
+    # at the end of the generated PDF (this file will go after the `#sections` call).
+    def raw_file_path
+      nil
+    end
   end
 end
