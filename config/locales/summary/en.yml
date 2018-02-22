@@ -97,6 +97,8 @@ en:
       other_children_details: Other children not part of the application
       ### C1A ###
       c1a_court_details: *to_be_completed
+      c1a_children_details: Summary of children’s details
+      c1a_solicitor_details: Your solicitor’s details
       ### C8 ###
       c8_court_details: *to_be_completed
       c8_applicants_details: Applicant contact details to be kept private
@@ -413,6 +415,10 @@ en:
       answers:
         'yes': 'Yes'
         'no': *not_applicable
+    c1a_has_solicitor:
+      question: Is a solicitor acting for you?
+      answers:
+        <<: *YESNO
 
     ### C8 questions/answers ###
     #

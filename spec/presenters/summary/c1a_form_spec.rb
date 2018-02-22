@@ -24,6 +24,8 @@ module Summary
           Sections::C1aCourtDetails,
           Sections::SectionHeader,
           Sections::C1aApplicantDetails,
+          Sections::C1aChildrenDetails,
+          Sections::C1aSolicitorDetails,
         ])
       end
     end
