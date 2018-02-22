@@ -8,6 +8,9 @@ module Summary
         Sections::C1aApplicantDetails.new(c100_application),
         Sections::C1aChildrenDetails.new(c100_application),
         Sections::C1aSolicitorDetails.new(c100_application),
+        Sections::SectionHeader.new(c100_application, name: :c1a_abuse_details),
+        Sections::C1aApplicantAbuseDetails.new(c100_application),
+        Sections::C1aChildrenAbuseDetails.new(c100_application),
       ].flatten.select(&:show?)
     end
 
