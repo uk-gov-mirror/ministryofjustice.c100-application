@@ -9,9 +9,9 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <% Steps::CourtOrders::DetailsForm::ORDER_NAMES.each do |order_name| %>
+      <% CourtOrderType.values.each do |order_name| %>
         <%=
-          f.radio_button_fieldset order_name, inline: true do |fieldset|
+          f.radio_button_fieldset order_name.to_sym, inline: true do |fieldset|
             fieldset.radio_input(GenericYesNo::YES, panel_id: "#{order_name}_panel")
             fieldset.radio_input(GenericYesNo::NO)
             fieldset.revealing_panel("#{order_name}_panel") do |panel|

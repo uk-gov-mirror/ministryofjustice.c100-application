@@ -29,6 +29,7 @@ module Summary
           Sections::SectionHeader,
           Sections::C1aApplicantAbuseDetails,
           Sections::C1aChildrenAbuseDetails,
+          Sections::C1aCourtOrders,
         ])
       end
     end

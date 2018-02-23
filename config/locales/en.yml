@@ -49,6 +49,17 @@ en:
       other: Another issue
       other_details: *provide_details
 
+    # Note: this is duplicated in `locales/summary/en.yml`, due to the way locales work
+    # (they don't see each other when they are in different files). If you change copy here,
+    # remember to also update it in `locales/summary/en.yml`
+    COURT_ORDER_TYPES: &COURT_ORDER_TYPES
+      non_molestation: Non-molestation order
+      occupation: Occupation order
+      forced_marriage_protection: Forced marriage protection order
+      restraining: Restraining order
+      injunctive: Other injunctive order
+      undertaking: Undertaking in place of an order
+
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
       full_name: Full name
@@ -970,17 +981,12 @@ en:
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
       steps_court_orders_details_form:
-        non_molestation: Non-molestation order
+        <<: *COURT_ORDER_TYPES
         non_molestation_is_current: *order_current
-        occupation: Occupation order
         occupation_is_current: *order_current
-        forced_marriage_protection: Forced marriage protection order
         forced_marriage_protection_is_current: *order_current
-        restraining: Restraining order
         restraining_is_current: *order_current
-        injunctive: Other injunctive order
         injunctive_is_current: *order_current
-        undertaking: Undertaking in place of an order
         undertaking_is_current: *order_current
       steps_abuse_concerns_details_form:
         behaviour_ongoing_html: Are you concerned the issue is still ongoing?
