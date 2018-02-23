@@ -3,15 +3,6 @@ module Steps
     class DetailsForm < BaseForm
       include GovUkDateFields::ActsAsGovUkDate
 
-      ORDER_NAMES = [
-        :non_molestation,
-        :occupation,
-        :forced_marriage_protection,
-        :restraining,
-        :injunctive,
-        :undertaking
-      ].freeze
-
       NON_MOLESTATION_ATTRIBUTES = {
         non_molestation: YesNo,
         non_molestation_issue_date: Date,
@@ -61,9 +52,9 @@ module Steps
       }.freeze.each { |name, type| attribute(name, type) }
 
       # rubocop:disable AmbiguousOperator
-      acts_as_gov_uk_date *ORDER_NAMES.map { |name| "#{name}_issue_date" }
+      acts_as_gov_uk_date *CourtOrderType.string_values.map { |name| "#{name}_issue_date" }
 
-      validates_inclusion_of *ORDER_NAMES, in: GenericYesNo.values
+      validates_inclusion_of *CourtOrderType.string_values, in: GenericYesNo.values
 
       validates_presence_of  *NON_MOLESTATION_ATTRIBUTES.keys, if: -> { non_molestation&.yes? }
       validates_inclusion_of :non_molestation_is_current, in: GenericYesNo.values, if: -> { non_molestation&.yes? }
