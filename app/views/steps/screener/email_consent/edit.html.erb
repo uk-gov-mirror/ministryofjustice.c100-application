@@ -1,0 +1,24 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+    <%= step_form @form_object do |f| %>
+    <%= f.radio_button_fieldset :email_consent, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :email_address_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:email_address_panel) do |panel|
+            panel.text_field :email_address, type: :email
+          end
+        end
+        %>
+
+      <%= f.submit class: 'button' %>
+    <% end %>
+  </div>
+</div>

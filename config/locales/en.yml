@@ -835,6 +835,11 @@ en:
           page_title: Sorry, you're not eligible for this service
           heading: Sorry, you're not eligible for this service
           lead_text: You can only use this service if you are not asking to make a written agreement legally binding
+      email_consent:
+        edit:
+          page_title: Contact by email
+          heading: Are you willing to be contacted by email about your experience using this service?
+          lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service
     completion:
       summary:
         show:
@@ -1070,6 +1075,9 @@ en:
         international_request_html: ""
       steps_screener_urgency_form:
         urgent: Are you asking for an urgent hearing?
+
+      steps_screener_email_consent_form:
+        email_consent: May we contact you by email?
     label:
       steps_shared_relationship_form:
         relation_other_value: *provide_details

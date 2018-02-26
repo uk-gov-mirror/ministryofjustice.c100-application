@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       show_step :legal_representation_exit
       edit_step :written_agreement
       show_step :written_agreement_exit
+      edit_step :email_consent
     end
     namespace :application do
       edit_step :previous_proceedings

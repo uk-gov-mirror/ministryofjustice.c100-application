@@ -139,21 +139,39 @@ RSpec.describe C100App::ScreenerDecisionTree do
     end
   end
 
-    context 'when the step is `written_agreement`' do
-      let(:step_params){ {written_agreement: written_agreement} }
-      let(:screener_answers) { double('screener_answers', written_agreement: written_agreement) }
+  context 'when the step is `written_agreement`' do
+    let(:step_params){ {written_agreement: written_agreement} }
+    let(:screener_answers) { double('screener_answers', written_agreement: written_agreement) }
 
 
-      context 'and written_agreement is "no"' do
-        let(:written_agreement){ GenericYesNo::NO }
+    context 'and written_agreement is "no"' do
+      let(:written_agreement){ GenericYesNo::NO }
 
-        it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
-      end
-
-      context 'and written_agreement is "yes"' do
-        let(:written_agreement){ GenericYesNo::YES }
-
-        it { is_expected.to have_destination(:written_agreement_exit, :show) }
-      end
+      it { is_expected.to have_destination(:email_consent, :edit) }
     end
+
+    context 'and written_agreement is "yes"' do
+      let(:written_agreement){ GenericYesNo::YES }
+
+      it { is_expected.to have_destination(:written_agreement_exit, :show) }
+    end
+  end
+
+  context 'when the step is `email_consent`' do
+    let(:step_params){ {email_consent: email_consent} }
+    let(:screener_answers) { double('screener_answers', email_consent: email_consent) }
+
+
+    context 'and email_consent is "no"' do
+      let(:email_consent){ GenericYesNo::NO }
+
+      it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
+    end
+
+    context 'and email_consent is "yes"' do
+      let(:email_consent){ GenericYesNo::YES }
+
+      it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
+    end
+  end
 end
