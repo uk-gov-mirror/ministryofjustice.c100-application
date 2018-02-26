@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 module Summary
-  describe Sections::C1aApplicantAbuseDetails do
+  describe Sections::C1aApplicantAbuseSummary do
     let(:c100_application) { instance_double(C100Application, abuse_concerns: abuse_concerns_resultset) }
     let(:abuse_concerns_resultset) { double('abuse_concerns_resultset').as_null_object }
 
@@ -11,7 +11,7 @@ module Summary
 
     describe '#name' do
       it 'is expected to be correct' do
-        expect(subject.name).to eq(:c1a_applicant_abuse_details)
+        expect(subject.name).to eq(:c1a_applicant_abuse_summary)
       end
     end
 

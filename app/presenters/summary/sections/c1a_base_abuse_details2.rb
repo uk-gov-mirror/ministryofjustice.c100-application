@@ -1,7 +1,16 @@
 module Summary
   module Sections
-    class C1aBaseAbuseDetails < BaseSectionPresenter
+    class C1aBaseAbuseSummary < BaseSectionPresenter
+      attr_reader :verbose
+
+      def initialize(c100_application, verbose: false)
+        @verbose = verbose
+        super(c100_application)
+      end
+
       def answers
+        return details_of_abuse if verbose
+
         [
           Answer.new(:c1a_abuse_physical,      answer_for(AbuseType::PHYSICAL)),
           Answer.new(:c1a_abuse_emotional,     answer_for(AbuseType::EMOTIONAL)),
@@ -13,11 +22,26 @@ module Summary
 
       private
 
+      def details_of_abuse
+        abuses_suffered.each do |abuse|
+          [
+            Answer.new(:c1a_abuse_type, abuse.kind),
+          ]
+        end.flatten
+      end
+
       def answer_for(kind)
         c100.abuse_concerns.find_by(
           subject: subject,
           kind: kind,
         )&.answer || default_value
+      end
+
+      def abuses_suffered
+        c100.abuse_concerns.where(
+          answer: GenericYesNo::YES,
+          subject: subject,
+        )
       end
 
       def default_value

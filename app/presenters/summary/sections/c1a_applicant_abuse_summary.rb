@@ -1,8 +1,8 @@
 module Summary
   module Sections
-    class C1aApplicantAbuseDetails < C1aBaseAbuseDetails
+    class C1aApplicantAbuseSummary < C1aBaseAbuseSummary
       def name
-        :c1a_applicant_abuse_details
+        :c1a_applicant_abuse_summary
       end
 
       def subject

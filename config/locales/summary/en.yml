@@ -111,9 +111,10 @@ en:
       c1a_court_details: *to_be_completed
       c1a_children_details: Summary of children’s details
       c1a_solicitor_details: Your solicitor’s details
-      c1a_applicant_abuse_details: Abuse experienced by applicant
-      c1a_children_abuse_details: Abuse experienced by children
+      c1a_applicant_abuse_summary: Abuse experienced by applicant
+      c1a_children_abuse_summary: Abuse experienced by children
       c1a_court_orders: Previous or current orders
+      c1a_concerns_details: Short description of concerns and any relevant information
       ### C8 ###
       c8_court_details: *to_be_completed
       c8_applicants_details: Applicant contact details to be kept private
@@ -454,6 +455,14 @@ en:
       question: Financial
       answers:
         <<: *YESNO
+
+    c1a_abuse_type:
+      question: Abuse type
+      answers:
+        substance_abuse: Drug, alcohol or substance abuse
+    c1a_abuse_details:
+      question: Details
+
     c1a_order_name:
       question: Order
       answers:
