@@ -111,9 +111,10 @@ en:
       c1a_court_details: *to_be_completed
       c1a_children_details: Summary of children’s details
       c1a_solicitor_details: Your solicitor’s details
-      c1a_applicant_abuse_details: Abuse experienced by applicant
-      c1a_children_abuse_details: Abuse experienced by children
+      c1a_applicant_abuse_summary: Abuse experienced by applicant
+      c1a_children_abuse_summary: Abuse experienced by children
       c1a_court_orders: Previous or current orders
+      c1a_concerns_details: Short description of concerns and any relevant information
       ### C8 ###
       c8_court_details: *to_be_completed
       c8_applicants_details: Applicant contact details to be kept private
@@ -454,6 +455,50 @@ en:
       question: Financial
       answers:
         <<: *YESNO
+
+    c1a_abuse_type:
+      question: Abuse type
+      answers:
+        substance_abuse: Drug, alcohol or substance abuse
+        children:
+          physical: Children - Physical
+          emotional: Children - Emotional
+          psychological: Children - Psychological
+          sexual: Children - Sexual
+          financial: Children - Financial
+        applicant:
+          physical: Applicant - Physical
+          emotional: Applicant - Emotional
+          psychological: Applicant - Psychological
+          sexual: Applicant - Sexual
+          financial: Applicant - Financial
+          other: Applicant - Other
+    c1a_abuse_details:
+      question: Details
+    c1a_abuse_behaviour_description:
+      question: Nature of behaviour / what happened
+    c1a_abuse_behaviour_start:
+      question: When did behaviour start?
+    c1a_abuse_behaviour_ongoing:
+      question: Behaviour ongoing?
+      answers:
+        <<: *YESNO
+    c1a_abuse_behaviour_stop:
+      question: How long did it continue?
+    c1a_abuse_asked_for_help:
+      question: Did you seek help?
+      answers:
+        <<: *YESNO
+    c1a_abuse_help_party:
+      question: "Help from:"
+    c1a_abuse_help_provided:
+      question: Did they help you?
+      answers:
+        'yes': They helped me
+        'no': They did not help
+    c1a_abuse_help_description:
+      question: What did they do?
+
     c1a_order_name:
       question: Order
       answers:

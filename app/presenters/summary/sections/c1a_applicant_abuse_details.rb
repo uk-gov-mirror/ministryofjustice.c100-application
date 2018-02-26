@@ -5,6 +5,10 @@ module Summary
         :c1a_applicant_abuse_details
       end
 
+      def show_header?
+        false
+      end
+
       def subject
         AbuseSubject::APPLICANT
       end
