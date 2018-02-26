@@ -129,7 +129,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and legal_representation is "no"' do
       let(:legal_representation){ GenericYesNo::NO }
 
-      it { is_expected.to have_destination('/steps/miam/consent_order', :edit) }
+      it { is_expected.to have_destination(:written_agreement, :edit) }
     end
 
     context 'and legal_representation is "yes"' do
@@ -138,4 +138,22 @@ RSpec.describe C100App::ScreenerDecisionTree do
       it { is_expected.to have_destination(:legal_representation_exit, :show) }
     end
   end
+
+    context 'when the step is `written_agreement`' do
+      let(:step_params){ {written_agreement: written_agreement} }
+      let(:screener_answers) { double('screener_answers', written_agreement: written_agreement) }
+
+
+      context 'and written_agreement is "no"' do
+        let(:written_agreement){ GenericYesNo::NO }
+
+        it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
+      end
+
+      context 'and written_agreement is "yes"' do
+        let(:written_agreement){ GenericYesNo::YES }
+
+        it { is_expected.to have_destination(:written_agreement_exit, :show) }
+      end
+    end
 end

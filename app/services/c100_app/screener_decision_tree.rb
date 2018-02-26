@@ -14,6 +14,8 @@ module C100App
         after_over18
       when :legal_representation
         after_legal_representation
+      when :written_agreement
+        after_written_agreement
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -64,9 +66,17 @@ module C100App
 
     def after_legal_representation
       if question(:legal_representation, c100_application.screener_answers).no?
-        edit('/steps/miam/consent_order')
+        edit(:written_agreement)
       else
         show(:legal_representation_exit)
+      end
+    end
+
+    def after_written_agreement
+      if question(:written_agreement, c100_application.screener_answers).no?
+        edit('/steps/miam/child_protection_cases')
+      else
+        show(:written_agreement_exit)
       end
     end
   end
