@@ -21,7 +21,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(2)
+        expect(answers.count).to eq(3)
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:c1a_abuse_type)
@@ -30,6 +30,9 @@ module Summary
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[1].question).to eq(:c1a_abuse_details)
         expect(answers[1].value).to eq('details')
+
+        expect(answers[2]).to be_an_instance_of(Partial)
+        expect(answers[2].name).to eq(:row_blank_space)
       end
 
       context 'when there is no substance abuse' do

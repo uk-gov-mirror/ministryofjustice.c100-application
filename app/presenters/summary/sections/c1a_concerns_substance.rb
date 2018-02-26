@@ -11,6 +11,7 @@ module Summary
         [
           Answer.new(:c1a_abuse_type, :substance_abuse),
           FreeTextAnswer.new(:c1a_abuse_details, c100.substance_abuse_details),
+          Partial.row_blank_space,
         ]
       end
     end

@@ -460,8 +460,44 @@ en:
       question: Abuse type
       answers:
         substance_abuse: Drug, alcohol or substance abuse
+        children:
+          physical: Children - Physical
+          emotional: Children - Emotional
+          psychological: Children - Psychological
+          sexual: Children - Sexual
+          financial: Children - Financial
+        applicant:
+          physical: Applicant - Physical
+          emotional: Applicant - Emotional
+          psychological: Applicant - Psychological
+          sexual: Applicant - Sexual
+          financial: Applicant - Financial
+          other: Applicant - Other
     c1a_abuse_details:
       question: Details
+    c1a_abuse_behaviour_description:
+      question: Nature of behaviour / what happened
+    c1a_abuse_behaviour_start:
+      question: When did behaviour start?
+    c1a_abuse_behaviour_ongoing:
+      question: Behaviour ongoing?
+      answers:
+        <<: *YESNO
+    c1a_abuse_behaviour_stop:
+      question: How long did it continue?
+    c1a_abuse_asked_for_help:
+      question: Did you seek help?
+      answers:
+        <<: *YESNO
+    c1a_abuse_help_party:
+      question: "Help from:"
+    c1a_abuse_help_provided:
+      question: Did they help you?
+      answers:
+        'yes': They helped me
+        'no': They did not help
+    c1a_abuse_help_description:
+      question: What did they do?
 
     c1a_order_name:
       question: Order

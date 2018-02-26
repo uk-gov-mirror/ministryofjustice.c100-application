@@ -27,10 +27,12 @@ module Summary
           Sections::C1aChildrenDetails,
           Sections::C1aSolicitorDetails,
           Sections::SectionHeader,
-          Sections::C1aApplicantAbuseSummary,
           Sections::C1aChildrenAbuseSummary,
+          Sections::C1aApplicantAbuseSummary,
           Sections::C1aCourtOrders,
           Sections::C1aConcernsSubstance,
+          Sections::C1aChildrenAbuseDetails,
+          Sections::C1aApplicantAbuseDetails,
         ])
       end
     end
