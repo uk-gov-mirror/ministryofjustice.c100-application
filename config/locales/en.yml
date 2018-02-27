@@ -867,6 +867,10 @@ en:
     back_link: Back
 
   errors:
+    attributes:
+      email_address:
+        invalid: Please enter a valid email address
+        blank: Please enter an email address
     format: "%{message}"
     messages:
       blank: Please enter an answer
