@@ -94,6 +94,7 @@ en:
       ### C1A ###
       c1a_applicants_details: Section 1 - About you (the person completing this form)
       c1a_abuse_details: Section 2 - Details of domestic violence / abuse
+      c1a_abduction: Section 3 - Abduction
       c1a_statement_of_truth: Section 6 - Statement of truth
     sections:
       ### C100 ###
@@ -499,6 +500,43 @@ en:
         'no': They did not help
     c1a_abuse_help_description:
       question: What did they do?
+
+    c1a_abduction_risk:
+      question: Do you believe that the children are at risk of being abducted?
+      answers:
+        <<: *YESNO
+    c1a_abduction_details:
+      question: Why do you believe the child(ren) may be abducted?
+    c1a_abduction_previous_attempt:
+      question: Have there been any previous threats, attempts to abduct or actual abduction of the child(ren)?
+      answers:
+        <<: *YESNO
+    c1a_abduction_previous_attempt_details:
+      question: 'Details:'
+    c1a_abduction_children_current_location:
+      question: Where is/are the child(ren) now?
+    c1a_abduction_passport_office_notified:
+      question: Has the passport office been notified?
+      answers:
+        <<: *YESNO
+    c1a_abduction_children_multiple_passports:
+      question: Do(es) the child(ren) have more than one passport?
+      answers:
+        <<: *YESNO
+    c1a_abduction_passport_possession:
+      question: Who is in possession of the child(ren)’s passport(s)?
+      answers:
+        passport_possession_mother: Mother
+        passport_possession_father: Father
+        passport_possession_other: Other
+    c1a_abduction_passport_possession_other:
+      question: 'If "Other", details:'
+    c1a_abduction_previous_attempt_agency_involved:
+      question: Were the police in this and/ or another country or any organisation or agency including any private investigators involved in any previous incident of attempted abduction or abduction.
+      answers:
+        <<: *YESNO
+    c1a_abduction_previous_attempt_agency_details:
+      question: 'Details:'
 
     c1a_order_name:
       question: Order
