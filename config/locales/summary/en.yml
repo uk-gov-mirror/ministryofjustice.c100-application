@@ -95,6 +95,7 @@ en:
       c1a_applicants_details: Section 1 - About you (the person completing this form)
       c1a_abuse_details: Section 2 - Details of domestic violence / abuse
       c1a_abduction: Section 3 - Abduction
+      c1a_statement_of_truth: Section 6 - Statement of truth
     sections:
       ### C100 ###
       c100_court_details: *to_be_completed
@@ -211,7 +212,7 @@ en:
     international_resident_details:
       question: ''
     international_jurisdiction:
-      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)? 
+      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)?
       answers:
         <<: *YESNO
     international_jurisdiction_details:
