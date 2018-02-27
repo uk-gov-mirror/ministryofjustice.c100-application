@@ -97,6 +97,7 @@ en:
       c1a_abduction: Section 3 - Abduction
       c1a_children_other_abuse: Section 4 - Other concerns about your child(ren)
       c1a_statement_of_truth: Section 6 - Statement of truth
+      c1a_attending_court: Section 7 - Attending the court
     sections:
       ### C100 ###
       c100_court_details: *to_be_completed
