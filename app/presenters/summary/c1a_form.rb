@@ -8,6 +8,7 @@ module Summary
         *abuse_summary,
         *abuse_details,
         *abduction_details,
+        *children_other_abuse,
         *statement_of_truth,
       ].flatten.select(&:show?)
     end
@@ -50,6 +51,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :c1a_abduction),
         Sections::C1aAbductionDetails.new(c100_application),
+      ]
+    end
+
+    def children_other_abuse
+      [
+        Sections::SectionHeader.new(c100_application, name: :c1a_children_other_abuse),
+        Sections::C1aChildrenOtherAbuseDetails.new(c100_application),
       ]
     end
 

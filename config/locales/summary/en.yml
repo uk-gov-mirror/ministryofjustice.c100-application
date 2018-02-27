@@ -95,6 +95,7 @@ en:
       c1a_applicants_details: Section 1 - About you (the person completing this form)
       c1a_abuse_details: Section 2 - Details of domestic violence / abuse
       c1a_abduction: Section 3 - Abduction
+      c1a_children_other_abuse: Section 4 - Other concerns about your child(ren)
       c1a_statement_of_truth: Section 6 - Statement of truth
     sections:
       ### C100 ###
@@ -468,6 +469,7 @@ en:
           psychological: Children - Psychological
           sexual: Children - Sexual
           financial: Children - Financial
+          other: Children - Other
         applicant:
           physical: Applicant - Physical
           emotional: Applicant - Emotional
