@@ -33,6 +33,8 @@ module Summary
           Sections::C1aConcernsSubstance,
           Sections::C1aChildrenAbuseDetails,
           Sections::C1aApplicantAbuseDetails,
+          Sections::SectionHeader,
+          Sections::C1aAbductionDetails,
         ])
       end
     end
