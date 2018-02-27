@@ -36,6 +36,8 @@ module Summary
           Sections::SectionHeader,
           Sections::C1aAbductionDetails,
           Sections::SectionHeader,
+          Sections::C1aChildrenOtherAbuseDetails,
+          Sections::SectionHeader,
           Sections::StatementOfTruth,
         ])
       end
