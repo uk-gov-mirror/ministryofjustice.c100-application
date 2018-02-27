@@ -52,7 +52,7 @@ module Summary
         Sections::C1aAbductionDetails.new(c100_application),
       ]
     end
-    
+
     def statement_of_truth
       [
         Sections::SectionHeader.new(c100_application, name: :c1a_statement_of_truth),
