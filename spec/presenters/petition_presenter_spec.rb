@@ -1,82 +1,115 @@
 require 'spec_helper'
 
 RSpec.describe PetitionPresenter do
-  subject { described_class.new(asking_order) }
+  subject { described_class.new(c100_application) }
 
-  let(:asking_order) { AskingOrder.new(asking_order_attributes) }
-  let(:asking_order_attributes) {
-    {
-      child_home: true,
-      child_times: false,
-      child_contact: nil,
-      child_return: nil,
-      child_abduction: false,
-      child_flight: true,
-      child_specific_issue_school: false,
-      child_specific_issue_religion: true,
-      child_specific_issue_name: nil,
-      child_specific_issue_medical: true,
-      child_specific_issue_abroad: false,
-      other: true,
-      other_details: 'details'
-    }
+  let(:c100_application) {
+    instance_double(C100Application, orders: orders, orders_additional_details: orders_additional_details)
   }
+
+  let(:orders) { PetitionOrder.string_values }
+  let(:orders_additional_details) { 'details' }
 
   describe '#child_arrangements_orders' do
     it 'only returns the orders set to true' do
-      expect(subject.child_arrangements_orders).to eq(
-        [
-          PetitionOrder.new(:child_home)
-        ]
-      )
-    end
-  end
-
-  describe '#specific_issues_orders' do
-    it 'only returns the orders set to true' do
-      expect(subject.specific_issues_orders).to eq(
-        [
-          PetitionOrder.new(:child_specific_issue_religion),
-          PetitionOrder.new(:child_specific_issue_medical)
-        ]
-      )
+      expect(subject.child_arrangements_orders).to eq(%w(
+        child_arrangements_home
+        child_arrangements_time
+        child_arrangements_contact
+        child_arrangements_event
+        child_arrangements_access
+      ))
     end
   end
 
   describe '#prohibited_steps_orders' do
     it 'only returns the orders set to true' do
-      expect(subject.prohibited_steps_orders).to eq(
-        [
-          PetitionOrder.new(:child_flight)
-        ]
-      )
+      expect(subject.prohibited_steps_orders).to eq(%w(
+        prohibited_steps_moving
+        prohibited_steps_moving_abroad
+        prohibited_steps_moving_abduction
+        prohibited_steps_moving_names
+        prohibited_steps_moving_medical
+        prohibited_steps_moving_holiday
+      ))
+    end
+  end
+
+  describe '#specific_issues_orders' do
+    it 'only returns the orders set to true' do
+      expect(subject.specific_issues_orders).to eq(%w(
+        specific_issues_return
+        specific_issues_school
+        specific_issues_religion
+        specific_issues_names
+        specific_issues_medical
+        specific_issues_moving
+        specific_issues_moving_abroad
+      ))
     end
   end
 
   describe '#all_selected_orders' do
     it 'only returns the orders set to true' do
-      expect(subject.all_selected_orders).to eq(
-       [
-         PetitionOrder.new(:child_home),
-         PetitionOrder.new(:child_flight),
-         PetitionOrder.new(:child_specific_issue_religion),
-         PetitionOrder.new(:child_specific_issue_medical),
-         PetitionOrder.new(:other)
-       ]
-      )
+      expect(subject.all_selected_orders).to eq(%w(
+        child_arrangements_home
+        child_arrangements_time
+        child_arrangements_contact
+        child_arrangements_event
+        child_arrangements_access
+        prohibited_steps_moving
+        prohibited_steps_moving_abroad
+        prohibited_steps_moving_abduction
+        prohibited_steps_moving_names
+        prohibited_steps_moving_medical
+        prohibited_steps_moving_holiday
+        specific_issues_return
+        specific_issues_school
+        specific_issues_religion
+        specific_issues_names
+        specific_issues_medical
+        specific_issues_moving
+        specific_issues_moving_abroad
+        other_issue
+      ))
+    end
+
+    context 'filter `group_xxx` values' do
+      let(:orders) {
+        %w(
+          group_prohibited_steps
+          prohibited_steps_moving_abroad
+          group_specific_issues
+          specific_issues_religion
+        )
+      }
+
+      it {
+        expect(
+          subject.all_selected_orders
+        ).to eq(%w(
+          prohibited_steps_moving_abroad
+          specific_issues_religion
+        ))
+      }
     end
   end
 
-  describe '#other_details' do
-    context 'when there is an asking order' do
-      it { expect(subject.other_details).to eq('details') }
+  describe 'Other issue' do
+    context 'when there is `other` issue' do
+      let(:orders) { ['other_issue'] }
+      let(:orders_additional_details) { 'details' }
+
+      it { expect(subject.other_issue?).to eq(true) }
+      it { expect(subject.other_issue_details).to eq('details') }
     end
 
-    context 'when the asking order is nil' do
-      let(:asking_order) { nil }
+    context 'when there is no `other` issue' do
+      let(:orders) { ['prohibited_steps_moving'] }
+      let(:orders_additional_details) { nil }
 
-      it { expect { subject.other_details }.not_to raise_error(NoMethodError) }
-      it { expect(subject.other_details).to be_nil }
+      it { expect(subject.other_issue?).to eq(false) }
+      it { expect(subject.other_issue_details).to eq(nil) }
     end
   end
 end

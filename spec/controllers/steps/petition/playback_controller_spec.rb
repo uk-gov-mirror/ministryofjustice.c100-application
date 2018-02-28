@@ -4,8 +4,7 @@ RSpec.describe Steps::Petition::PlaybackController, type: :controller do
   it_behaves_like 'a show step controller'
 
   describe '#show' do
-    let(:c100_application) { instance_double(C100Application, asking_order: asking_order) }
-    let(:asking_order) { double('asking_order').as_null_object }
+    let(:c100_application) { instance_double(C100Application) }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(c100_application)
@@ -13,7 +12,7 @@ RSpec.describe Steps::Petition::PlaybackController, type: :controller do
     end
 
     it 'assigns the presenter' do
-      expect(PetitionPresenter).to receive(:new).with(asking_order).and_call_original
+      expect(PetitionPresenter).to receive(:new).with(c100_application).and_call_original
 
       get :show
 

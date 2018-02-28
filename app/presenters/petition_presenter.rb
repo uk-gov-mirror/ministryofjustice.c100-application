@@ -15,14 +15,24 @@ class PetitionPresenter < SimpleDelegator
     selected_orders_from(PetitionOrder.values)
   end
 
-  def other_details
-    __getobj__&.other_details
+  def other_issue?
+    orders.include?(PetitionOrder::OTHER_ISSUE.to_s)
+  end
+
+  def other_issue_details
+    orders_additional_details
   end
 
   private
 
   def selected_orders_from(collection)
-    return [] if __getobj__.nil?
-    collection.select { |attrib| self[attrib] }
+    filtered(collection.map(&:to_s)) & orders
+  end
+
+  # We filter out `group_xxx` items, as the purpose of these are to present the orders
+  # in groups for the user to show/hide them, and are not really an order by itself.
+  #
+  def filtered(collection)
+    collection.grep_v(/^group_/)
   end
 end

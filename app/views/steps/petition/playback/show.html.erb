@@ -36,10 +36,10 @@
       <p><%= t('.aka.prohibited_steps_order') %></p>
     <% end %>
 
-    <% if @petition.other? %>
+    <% if @petition.other_issue? %>
       <p class="lede"><%=t '.lead_text_other', count: @petition.child_arrangements_orders.count + @petition.specific_issues_orders.count %></p>
       <div class="panel">
-        <%= @petition.other_details %>
+        <%= @petition.other_issue_details %>
       </div>
     <% end %>
 

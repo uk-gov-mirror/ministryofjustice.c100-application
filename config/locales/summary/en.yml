@@ -25,21 +25,28 @@ en:
       other: Other
 
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
-      child_home: Arrange where they live
-      child_times: Arrange how much time they spend with each parent
-      child_contact: Confirm when and what other types of contact will take place with them
-      child_return: Return them to your care
-    SPECIFIC_ISSUE_ORDERS: &SPECIFIC_ISSUE_ORDERS
-      child_specific_issue_school: Which school they go to
-      child_specific_issue_religion: A religious issue
-      child_specific_issue_name: Changing their names
-      child_specific_issue_medical: Medical treatment
-      child_specific_issue_abroad: Moving location
+      child_arrangements_home: Decide where they live
+      child_arrangements_time: Decide how much time they spend with each person
+      child_arrangements_contact: Decide what types of contact will take place and when
+      child_arrangements_event: Decide on a specific holiday or arrangement
+      child_arrangements_access: Make the other person grant you access to them
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
-      child_abduction: Stop the other parent abducting them
-      child_flight: Stop the other parent taking them abroad or moving location without your permission
+      prohibited_steps_moving: Moving them to a different area
+      prohibited_steps_moving_abroad: Moving abroad
+      prohibited_steps_moving_abduction: Abducting them
+      prohibited_steps_moving_names: Changing their names
+      prohibited_steps_moving_medical: Having medical treatment carried out on them
+      prohibited_steps_moving_holiday: Taking them on holiday
+    SPECIFIC_ISSUE_ORDERS: &SPECIFIC_ISSUE_ORDERS
+      specific_issues_return: Make the other person return them to your care
+      specific_issues_school: What school they go to
+      specific_issues_religion: A religious issue
+      specific_issues_names: Changing their names
+      specific_issues_medical: Medical treatment
+      specific_issues_moving: Moving them to a different area
+      specific_issues_moving_abroad: Moving abroad
     OTHER_ORDER: &OTHER_ORDER
-      other: Other
+      other_issue: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/en.yml`, due to the way locales work
     # (they don't see each other when they are in different files). If you change copy here,

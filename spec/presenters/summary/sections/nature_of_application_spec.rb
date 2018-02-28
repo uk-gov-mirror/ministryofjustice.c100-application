@@ -2,10 +2,14 @@ require 'spec_helper'
 
 module Summary
   describe Sections::NatureOfApplication do
-    let(:c100_application) { instance_double(C100Application, asking_order: asking_order) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        orders: %w(child_arrangements_home prohibited_steps_moving specific_issues_school other_issue),
+        orders_additional_details: 'details'
+      )
+    }
     subject { described_class.new(c100_application) }
-
-    let(:asking_order) { double('asking_order').as_null_object }
 
     let(:answers) { subject.answers }
 
@@ -16,10 +20,6 @@ module Summary
     end
 
     describe '#answers' do
-      before do
-        allow(asking_order).to receive(:other_details).and_return('description')
-      end
-
       it 'has the correct number of rows' do
         expect(answers.count).to eq(4)
       end
