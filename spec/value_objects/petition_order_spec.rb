@@ -7,18 +7,27 @@ RSpec.describe PetitionOrder do
   describe '.values' do
     it 'returns all possible values' do
       expect(described_class.values.map(&:to_s)).to eq(%w(
-        child_home
-        child_times
-        child_contact
-        child_return
-        child_abduction
-        child_flight
-        child_specific_issue_school
-        child_specific_issue_religion
-        child_specific_issue_name
-        child_specific_issue_medical
-        child_specific_issue_abroad
-        other
+        child_arrangements_home
+        child_arrangements_time
+        child_arrangements_contact
+        child_arrangements_event
+        child_arrangements_access
+        group_prohibited_steps
+        prohibited_steps_moving
+        prohibited_steps_moving_abroad
+        prohibited_steps_moving_abduction
+        prohibited_steps_moving_names
+        prohibited_steps_moving_medical
+        prohibited_steps_moving_holiday
+        group_specific_issues
+        specific_issues_return
+        specific_issues_school
+        specific_issues_religion
+        specific_issues_names
+        specific_issues_medical
+        specific_issues_moving
+        specific_issues_moving_abroad
+        other_issue
       ))
     end
   end
@@ -26,22 +35,11 @@ RSpec.describe PetitionOrder do
   describe 'CHILD_ARRANGEMENTS' do
     it 'returns the expected values' do
       expect(described_class::CHILD_ARRANGEMENTS.map(&:to_s)).to eq(%w(
-        child_home
-        child_times
-        child_contact
-        child_return
-      ))
-    end
-  end
-
-  describe 'SPECIFIC_ISSUES' do
-    it 'returns the expected values' do
-      expect(described_class::SPECIFIC_ISSUES.map(&:to_s)).to eq(%w(
-        child_specific_issue_school
-        child_specific_issue_religion
-        child_specific_issue_name
-        child_specific_issue_medical
-        child_specific_issue_abroad
+        child_arrangements_home
+        child_arrangements_time
+        child_arrangements_contact
+        child_arrangements_event
+        child_arrangements_access
       ))
     end
   end
@@ -49,17 +47,33 @@ RSpec.describe PetitionOrder do
   describe 'PROHIBITED_STEPS' do
     it 'returns the expected values' do
       expect(described_class::PROHIBITED_STEPS.map(&:to_s)).to eq(%w(
-        child_abduction
-        child_flight
+        prohibited_steps_moving
+        prohibited_steps_moving_abroad
+        prohibited_steps_moving_abduction
+        prohibited_steps_moving_names
+        prohibited_steps_moving_medical
+        prohibited_steps_moving_holiday
       ))
     end
   end
 
-  describe 'OTHER' do
+  describe 'SPECIFIC_ISSUES' do
     it 'returns the expected values' do
-      expect(described_class::OTHER.map(&:to_s)).to eq(%w(
-        other
+      expect(described_class::SPECIFIC_ISSUES.map(&:to_s)).to eq(%w(
+        specific_issues_return
+        specific_issues_school
+        specific_issues_religion
+        specific_issues_names
+        specific_issues_medical
+        specific_issues_moving
+        specific_issues_moving_abroad
       ))
+    end
+  end
+
+  describe 'OTHER_ISSUE' do
+    it 'returns the expected values' do
+      expect(described_class::OTHER_ISSUE.to_s).to eq('other_issue')
     end
   end
 end

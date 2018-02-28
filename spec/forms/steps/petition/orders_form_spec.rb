@@ -3,64 +3,63 @@ require 'spec_helper'
 RSpec.describe Steps::Petition::OrdersForm do
   let(:arguments) { {
     c100_application: c100_application,
-    child_home: '1',
-    child_times: '1',
-    child_contact: '1',
-    child_specific_issue_school: '0',
-    child_specific_issue_religion: '0',
-    child_specific_issue_name: '0',
-    child_specific_issue_medical: '0',
-    child_specific_issue_abroad: '0',
-    child_return: '0',
-    child_abduction: '0',
-    child_flight: '0',
-    other: other,
-    other_details: other_details
+    child_arrangements_home: '1',
+    specific_issues_school: '0',
+    specific_issues_medical: '1',
+    prohibited_steps_moving_abduction: '0',
+    orders_additional_details: orders_additional_details,
   } }
 
-  let(:c100_application) { instance_double(C100Application) }
+  let(:c100_application) {
+    instance_double(C100Application, orders: orders)
+  }
 
-  let(:other) { '1' }
-  let(:other_details) { 'details' }
+  let(:orders) { [] }
+  let(:orders_additional_details) { nil }
 
   subject { described_class.new(arguments) }
 
+  describe 'custom getters override' do
+    let(:orders) { ['child_arrangements_home'] }
+
+    it 'returns true if the order is in the list' do
+      expect(subject.child_arrangements_home).to eq(true)
+    end
+
+    it 'returns false if the order is not in the list' do
+      expect(subject.specific_issues_school).to eq(false)
+    end
+  end
+
   describe '#save' do
-    it_behaves_like 'a has-one-association form',
-                    association_name: :asking_order,
-                    expected_attributes: {
-                      child_home: true,
-                      child_times: true,
-                      child_contact: true,
-                      child_return: false,
-                      child_abduction: false,
-                      child_flight: false,
-                      child_specific_issue_school: false,
-                      child_specific_issue_religion: false,
-                      child_specific_issue_name: false,
-                      child_specific_issue_medical: false,
-                      child_specific_issue_abroad: false,
-                      other: true,
-                      other_details: 'details'
-                    }
+    context 'when no c100_application is associated with the form' do
+      let(:c100_application) { nil }
 
-    context 'validations' do
-      context '`other_details` when `other` is true' do
-        let(:other) { '1' }
-        let(:other_details) { nil }
+      it 'raises an error' do
+        expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
+      end
+    end
 
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:other_details]).to_not be_empty
-        end
+    context 'for valid details' do
+      it 'updates the record' do
+        expect(c100_application).to receive(:update).with(
+          orders: [:child_arrangements_home, :specific_issues_medical],
+          orders_additional_details: nil,
+        ).and_return(true)
+
+        expect(subject.save).to be(true)
       end
 
-      context '`other_details` when `other` is false' do
-        let(:other) { '0' }
-        let(:other_details) { nil }
+      context 'for other issue details' do
+        let(:orders_additional_details) { 'details' }
 
-        it 'has no validation errors' do
-          expect(subject).to be_valid
+        it 'updates the record' do
+          expect(c100_application).to receive(:update).with(
+            orders: [:child_arrangements_home, :specific_issues_medical],
+            orders_additional_details: 'details',
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
         end
       end
     end

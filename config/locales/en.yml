@@ -34,20 +34,25 @@ en:
       other: Other
 
     PETITION_ORDERS: &PETITION_ORDERS
-      child_home: Arrange where they live
-      child_times: Arrange how much time they spend with each parent
-      child_contact: Confirm when and what other types of contact will take place with them
-      child_specific_issue: Resolve a dispute over a specific issue (For example, what school they’ll go to)
-      child_specific_issue_school: Which school they go to
-      child_specific_issue_religion: A religious issue
-      child_specific_issue_name: Changing their names
-      child_specific_issue_medical: Medical treatment
-      child_specific_issue_abroad: Moving location
-      child_return: Return them to your care
-      child_abduction: Stop the other parent abducting them
-      child_flight: Stop the other parent taking them abroad or moving location without your permission
-      other: Another issue
-      other_details: *provide_details
+      child_arrangements_home: Decide where they live
+      child_arrangements_time: Decide how much time they spend with each person
+      child_arrangements_contact: Decide what types of contact will take place and when
+      child_arrangements_event: Decide on a specific holiday or arrangement
+      child_arrangements_access: Make the other person grant you access to them
+      prohibited_steps_moving: Moving them to a different area
+      prohibited_steps_moving_abroad: Moving abroad
+      prohibited_steps_moving_abduction: Abducting them
+      prohibited_steps_moving_names: Changing their names
+      prohibited_steps_moving_medical: Having medical treatment carried out on them
+      prohibited_steps_moving_holiday: Taking them on holiday
+      specific_issues_return: Make the other person return them to your care
+      specific_issues_school: What school they go to
+      specific_issues_religion: A religious issue
+      specific_issues_names: Changing their names
+      specific_issues_medical: Medical treatment
+      specific_issues_moving: Moving them to a different area
+      specific_issues_moving_abroad: Moving abroad
+      other_issue: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/summary/en.yml`, due to the way locales work
     # (they don't see each other when they are in different files). If you change copy here,
@@ -978,6 +983,8 @@ en:
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
+        orders_prohibited_steps_html: ""
+        orders_specific_issues_html: ""
       steps_safety_questions_address_confidentiality_form:
         address_confidentiality_html: "Do you want to keep your contact details private from the other person?"
       steps_safety_questions_risk_of_abduction_form:
@@ -1132,9 +1139,40 @@ en:
         miam_certification_service_name: Family mediation service name
         miam_certification_sole_trader_name: Sole trader name
       steps_petition_orders_form:
-        <<: *PETITION_ORDERS
-        child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
-        child_specific_issue_abroad: Moving location (including moving abroad)
+        child_arrangements_home_html: Decide where they live
+        child_arrangements_time_html: Decide how much time they spend with each person
+        child_arrangements_contact_html: |
+          <span class="gv-u-heading-small">Decide what types of contact will take place and when</span><br>
+          <span class="form-hint">For example, phone calls</span>
+        child_arrangements_event_html: |
+          <span class="gv-u-heading-small">Decide on a specific holiday or arrangement</span><br>
+          <span class="form-hint">For example, you’re in dispute over a one-off event</span>
+        child_arrangements_access_html: |
+          <span class="gv-u-heading-small">Make the other person grant you access to them</span><br>
+          <span class="form-hint">If you’re currently not being allowed to see your children</span>
+        group_prohibited_steps_html: |
+          <span class="gv-u-heading-small">Stop the other person doing something</span><br>
+          <span class="form-hint">For example, moving abroad or abducting your children</span>
+        prohibited_steps_moving_html: Moving them to a different area
+        prohibited_steps_moving_abroad_html: Moving abroad
+        prohibited_steps_moving_abduction_html: Abducting them
+        prohibited_steps_moving_names_html: Changing their names
+        prohibited_steps_moving_medical_html: Having medical treatment carried out on them
+        prohibited_steps_moving_holiday_html: Taking them on holiday
+        group_specific_issues_html: |
+          <span class="gv-u-heading-small">Resolve any other dispute</span><br>
+          <span class="form-hint">For example, what school they’ll go to</span>
+        specific_issues_return_html: |
+          <span class="gv-u-heading-small">Make the other person return them to your care</span><br>
+          <span class="form-hint">If your children have been abducted</span>
+        specific_issues_school_html: What school they go to
+        specific_issues_religion_html: A religious issue
+        specific_issues_names_html: Changing their names
+        specific_issues_medical_html: Medical treatment
+        specific_issues_moving_html: Moving them to a different area
+        specific_issues_moving_abroad_html: Moving abroad
+        other_issue_html: Deal with another issue not listed
+        orders_additional_details: Briefly provide more details
       steps_abduction_passport_details_form:
         passport_possession_mother: Mother
         passport_possession_father: Father
@@ -1267,6 +1305,10 @@ en:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
+      steps_petition_orders_form:
+        orders_prohibited_steps: Select all that apply
+        orders_specific_issues: Select all that apply
+        orders_additional_details: No more than 2 sentences
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
       steps_applicant_contact_details_form:

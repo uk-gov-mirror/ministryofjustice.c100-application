@@ -10,13 +10,31 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.check_box_fieldset :orders, PetitionOrder::CHILD_ARRANGEMENTS %>
-      <%= f.check_box_fieldset :orders, PetitionOrder::PROHIBITED_STEPS %>
-      <%= f.check_box_fieldset :orders, PetitionOrder::SPECIFIC_ISSUES %>
 
       <%=
-        f.check_box_fieldset :orders, [:other] do |fieldset|
-          fieldset.check_box_input(:other) {
-            f.text_area :other_details, size: '40x4', class: 'form-control-3-4'
+        f.check_box_fieldset :orders, [
+          PetitionOrder::PROHIBITED_STEPS,
+        ] do |fieldset|
+          fieldset.check_box_input(PetitionOrder::GROUP_PROHIBITED_STEPS) {
+            f.check_box_fieldset :orders_prohibited_steps, PetitionOrder::PROHIBITED_STEPS
+          }
+        end
+      %>
+
+      <%=
+        f.check_box_fieldset :orders, [
+          PetitionOrder::SPECIFIC_ISSUES,
+        ] do |fieldset|
+          fieldset.check_box_input(PetitionOrder::GROUP_SPECIFIC_ISSUES) {
+            f.check_box_fieldset :orders_specific_issues, PetitionOrder::SPECIFIC_ISSUES
+          }
+        end
+      %>
+
+      <%=
+        f.check_box_fieldset :orders, [PetitionOrder::OTHER_ISSUE] do |fieldset|
+          fieldset.check_box_input(:other_issue) {
+            f.text_area :orders_additional_details, size: '40x4', class: 'form-control-3-4'
           }
         end
       %>
