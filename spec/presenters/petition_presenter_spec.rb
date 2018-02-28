@@ -16,7 +16,6 @@ RSpec.describe PetitionPresenter do
         child_arrangements_home
         child_arrangements_time
         child_arrangements_contact
-        child_arrangements_event
         child_arrangements_access
       ))
     end
@@ -27,10 +26,9 @@ RSpec.describe PetitionPresenter do
       expect(subject.prohibited_steps_orders).to eq(%w(
         prohibited_steps_moving
         prohibited_steps_moving_abroad
-        prohibited_steps_moving_abduction
-        prohibited_steps_moving_names
-        prohibited_steps_moving_medical
-        prohibited_steps_moving_holiday
+        prohibited_steps_names
+        prohibited_steps_medical
+        prohibited_steps_holiday
       ))
     end
   end
@@ -38,7 +36,7 @@ RSpec.describe PetitionPresenter do
   describe '#specific_issues_orders' do
     it 'only returns the orders set to true' do
       expect(subject.specific_issues_orders).to eq(%w(
-        specific_issues_return
+        specific_issues_holiday
         specific_issues_school
         specific_issues_religion
         specific_issues_names
@@ -55,15 +53,13 @@ RSpec.describe PetitionPresenter do
         child_arrangements_home
         child_arrangements_time
         child_arrangements_contact
-        child_arrangements_event
         child_arrangements_access
         prohibited_steps_moving
         prohibited_steps_moving_abroad
-        prohibited_steps_moving_abduction
-        prohibited_steps_moving_names
-        prohibited_steps_moving_medical
-        prohibited_steps_moving_holiday
-        specific_issues_return
+        prohibited_steps_names
+        prohibited_steps_medical
+        prohibited_steps_holiday
+        specific_issues_holiday
         specific_issues_school
         specific_issues_religion
         specific_issues_names

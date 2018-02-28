@@ -25,26 +25,24 @@ en:
       other: Other
 
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
-      child_arrangements_home: Decide where they live
+      child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
-      child_arrangements_contact: Decide what types of contact will take place and when
-      child_arrangements_event: Decide on a specific holiday or arrangement
-      child_arrangements_access: Make the other person grant you access to them
+      child_arrangements_contact: Decide how and when each person can spend time with the children
+      child_arrangements_access: Allow you to spend time with the children
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
-      prohibited_steps_moving: Moving them to a different area
-      prohibited_steps_moving_abroad: Moving abroad
-      prohibited_steps_moving_abduction: Abducting them
-      prohibited_steps_moving_names: Changing their names
-      prohibited_steps_moving_medical: Having medical treatment carried out on them
-      prohibited_steps_moving_holiday: Taking them on holiday
+      prohibited_steps_moving: Relocating the children to a different area in England and Wales
+      prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+      prohibited_steps_names: Changing their names or surname
+      prohibited_steps_medical: Allowing medical treatment to be carried out on them
+      prohibited_steps_holiday: Taking them on holiday
     SPECIFIC_ISSUE_ORDERS: &SPECIFIC_ISSUE_ORDERS
-      specific_issues_return: Make the other person return them to your care
-      specific_issues_school: What school they go to
+      specific_issues_holiday: A specific holiday or arrangement
+      specific_issues_school: What school they’ll go to
       specific_issues_religion: A religious issue
-      specific_issues_names: Changing their names
+      specific_issues_names: Changing their names or surname
       specific_issues_medical: Medical treatment
-      specific_issues_moving: Moving them to a different area
-      specific_issues_moving_abroad: Moving abroad
+      specific_issues_moving: Relocating the children to a different area in England and Wales
+      specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
     OTHER_ORDER: &OTHER_ORDER
       other_issue: Deal with another issue not listed
 

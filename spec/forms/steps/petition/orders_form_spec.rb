@@ -6,7 +6,6 @@ RSpec.describe Steps::Petition::OrdersForm do
     child_arrangements_home: '1',
     specific_issues_school: '0',
     specific_issues_medical: '1',
-    prohibited_steps_moving_abduction: '0',
     orders_additional_details: orders_additional_details,
   } }
 
