@@ -10,6 +10,7 @@ module Summary
         *abduction_details,
         *children_other_abuse,
         *statement_of_truth,
+        *attending_court,
       ].flatten.select(&:show?)
     end
 
@@ -65,6 +66,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :c1a_statement_of_truth),
         Sections::StatementOfTruth.new(c100_application),
+      ]
+    end
+
+    def attending_court
+      [
+        Sections::SectionHeader.new(c100_application, name: :c1a_attending_court),
+        Sections::AttendingCourt.new(c100_application),
       ]
     end
   end
