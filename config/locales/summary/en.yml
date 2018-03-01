@@ -144,6 +144,7 @@ en:
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Person %{index}
+      hmcts_instructions: Certificate to be provided at first court hearing
       ### C8 ###
       c8_applicants_details_index_title: Applicant %{index}
       c8_other_parties_details_index_title: Person %{index}
@@ -300,11 +301,6 @@ en:
       question: Have you attended a MIAM?
       answers:
         <<: *YESNO
-    miam_certification_details:
-      question: 'Details:'
-      answers:
-        'yes': ''
-        'no': *not_applicable
     miam_certification_number:
       question: FMC registration no
     miam_certification_service_name:
