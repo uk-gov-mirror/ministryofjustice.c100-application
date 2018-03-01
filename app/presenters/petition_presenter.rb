@@ -11,6 +11,10 @@ class PetitionPresenter < SimpleDelegator
     selected_orders_from(PetitionOrder::PROHIBITED_STEPS)
   end
 
+  def orders_with_no_name
+    selected_orders_from(PetitionOrder::ORDERS_WITH_NO_NAME)
+  end
+
   def all_selected_orders
     selected_orders_from(PetitionOrder.values)
   end
@@ -21,6 +25,12 @@ class PetitionPresenter < SimpleDelegator
 
   def other_issue_details
     orders_additional_details
+  end
+
+  # This is just a little helper for the view to customise the copy based
+  # on number of orders selected (to know when to say 'you also want to...')
+  def count_for(*order_groups)
+    order_groups.sum { |group| public_send(group).count }
   end
 
   private

@@ -47,6 +47,14 @@ RSpec.describe PetitionPresenter do
     end
   end
 
+  describe '#orders_with_no_name' do
+    it 'only returns the orders set to true' do
+      expect(subject.orders_with_no_name).to eq(%w(
+        no_name_child_return
+      ))
+    end
+  end
+
   describe '#all_selected_orders' do
     it 'only returns the orders set to true' do
       expect(subject.all_selected_orders).to eq(%w(
@@ -66,6 +74,7 @@ RSpec.describe PetitionPresenter do
         specific_issues_medical
         specific_issues_moving
         specific_issues_moving_abroad
+        no_name_child_return
         other_issue
       ))
     end
@@ -106,6 +115,22 @@ RSpec.describe PetitionPresenter do
 
       it { expect(subject.other_issue?).to eq(false) }
       it { expect(subject.other_issue_details).to eq(nil) }
+    end
+  end
+
+  describe '#count_for' do
+    context 'for a single group' do
+      let(:orders) { ['child_arrangements_home'] }
+      let(:count)  { subject.count_for(:child_arrangements_orders) }
+
+      it { expect(count).to eq(1) }
+    end
+
+    context 'for multiple groups' do
+      let(:orders) {%w(child_arrangements_home specific_issues_religion)}
+      let(:count)  { subject.count_for(:child_arrangements_orders, :specific_issues_orders) }
+
+      it { expect(count).to eq(2) }
     end
   end
 end

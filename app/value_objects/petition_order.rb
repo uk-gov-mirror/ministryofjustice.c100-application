@@ -27,6 +27,12 @@ class PetitionOrder < ValueObject
       new(:specific_issues_moving_abroad),
     ].freeze,
 
+    # This is the exception to the rule. The values here (one for now),
+    # don't have a corresponding order name.
+    ORDERS_WITH_NO_NAME = [
+      new(:no_name_child_return),
+    ].freeze,
+
     OTHER_ISSUE = new(:other_issue),
   ].flatten.freeze
 

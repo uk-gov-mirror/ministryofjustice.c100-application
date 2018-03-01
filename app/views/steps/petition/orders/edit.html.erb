@@ -9,7 +9,8 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.check_box_fieldset :orders, PetitionOrder::CHILD_ARRANGEMENTS %>
+      <%= f.check_box_fieldset :orders,
+          PetitionOrder::CHILD_ARRANGEMENTS + PetitionOrder::ORDERS_WITH_NO_NAME %>
 
       <%=
         f.check_box_fieldset :orders, [

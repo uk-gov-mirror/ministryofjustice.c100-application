@@ -16,8 +16,20 @@
       <p><%= t('.aka.child_arrangements_order') %></p>
     <% end %>
 
+    <% @petition.orders_with_no_name.each do |order| %>
+      <p class="lede">
+        <%=t ".orders_with_no_name.#{order}", count: @petition.count_for(
+          :child_arrangements_orders
+        ) %>
+      </p>
+    <% end %>
+
     <% if @petition.prohibited_steps_orders.any? %>
-      <p class="lede"><%=t '.lead_text_stop', count: @petition.child_arrangements_orders.count %></p>
+      <p class="lede">
+        <%=t '.lead_text_stop', count: @petition.count_for(
+          :child_arrangements_orders, :orders_with_no_name
+        ) %>
+      </p>
       <ul class="list list-bullet">
         <% @petition.prohibited_steps_orders.each do |order| %>
           <%= content_tag :li, t(".#{order}_html") %>
@@ -27,7 +39,11 @@
     <% end %>
 
     <% if @petition.specific_issues_orders.any? %>
-        <p class="lede"><%=t '.lead_text_issues', count: @petition.child_arrangements_orders.count + @petition.prohibited_steps_orders.count %></p>
+        <p class="lede">
+          <%=t '.lead_text_issues', count: @petition.count_for(
+            :child_arrangements_orders, :orders_with_no_name, :prohibited_steps_orders
+          ) %>
+        </p>
         <ul class="list list-bullet">
           <% @petition.specific_issues_orders.each do |order| %>
               <%= content_tag :li, t(".#{order}_html") %>
@@ -37,7 +53,11 @@
     <% end %>
 
     <% if @petition.other_issue? %>
-      <p class="lede"><%=t '.lead_text_other', count: @petition.child_arrangements_orders.count + @petition.specific_issues_orders.count %></p>
+      <p class="lede">
+        <%=t '.lead_text_other', count: @petition.count_for(
+          :child_arrangements_orders, :orders_with_no_name, :prohibited_steps_orders, :specific_issues_orders
+        ) %>
+      </p>
       <div class="panel">
         <%= @petition.other_issue_details %>
       </div>

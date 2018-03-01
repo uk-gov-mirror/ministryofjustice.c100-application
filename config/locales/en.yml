@@ -38,6 +38,7 @@ en:
       child_arrangements_time_html: Decide how much time they spend with each person
       child_arrangements_contact_html: Decide how and when each person can spend time with the children
       child_arrangements_access_html: Allow you to spend time with the children
+      no_name_child_return_html: Return the children to your care
       prohibited_steps_moving_html: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       prohibited_steps_names_html: Changing their names or surname
@@ -545,6 +546,11 @@ en:
             zero: "You told us that you need help with this dispute:"
             one: "You also told us that you need help with this dispute:"
             other: "You also told us that you need help with this dispute:"
+          orders_with_no_name:
+            no_name_child_return:
+              zero: 'You would like the children to be returned to your care.'
+              one: 'You would also like the children to be returned to your care.'
+              other: 'You would also like the children to be returned to your care.'
           continue: Continue
           <<: *PETITION_ORDERS
           aka:
@@ -1147,6 +1153,9 @@ en:
         child_arrangements_access_html: |
           <span class="gv-u-heading-small">Allow you to spend time with the children</span><br>
           <span class="form-hint">If you’re currently not being allowed to</span>
+        no_name_child_return_html: |
+          <span class="gv-u-heading-small">Return the children to your care</span><br>
+          <span class="form-hint">If your children have been abducted, unlawfully removed or unlawfully retained</span>
         group_prohibited_steps_html: |
           <span class="gv-u-heading-small">Stop the other person doing something</span><br>
           <span class="form-hint">For example, moving abroad or abducting your children</span>

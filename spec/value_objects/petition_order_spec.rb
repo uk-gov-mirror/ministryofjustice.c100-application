@@ -25,6 +25,7 @@ RSpec.describe PetitionOrder do
         specific_issues_medical
         specific_issues_moving
         specific_issues_moving_abroad
+        no_name_child_return
         other_issue
       ))
     end
@@ -63,6 +64,14 @@ RSpec.describe PetitionOrder do
         specific_issues_medical
         specific_issues_moving
         specific_issues_moving_abroad
+      ))
+    end
+  end
+
+  describe 'ORDERS_WITH_NO_NAME' do
+    it 'returns the expected values' do
+      expect(described_class::ORDERS_WITH_NO_NAME.map(&:to_s)).to eq(%w(
+        no_name_child_return
       ))
     end
   end

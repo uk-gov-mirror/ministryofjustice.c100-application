@@ -43,6 +43,8 @@ en:
       specific_issues_medical: Medical treatment
       specific_issues_moving: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+    ORDERS_WITH_NO_NAME: &ORDERS_WITH_NO_NAME
+      no_name_child_return: Return the children to your care
     OTHER_ORDER: &OTHER_ORDER
       other_issue: Deal with another issue not listed
 
@@ -164,8 +166,12 @@ en:
       question: 'Prohibited steps order(s):'
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
-    other_details:
-      question: 'Other:'
+    orders_with_no_name:
+      question: ""
+      answers:
+        <<: *ORDERS_WITH_NO_NAME
+    other_issue_details:
+      question: 'Other issue:'
     domestic_abuse:
       question: Any form of domestic abuse?
       answers:
@@ -254,6 +260,7 @@ en:
         <<: *ARRANGEMENT_ORDERS
         <<: *SPECIFIC_ISSUE_ORDERS
         <<: *PROHIBITED_STEPS_ORDERS
+        <<: *ORDERS_WITH_NO_NAME
         <<: *OTHER_ORDER
     children_known_to_authorities:
       question: Are any of the children known to the local authority children’s services?
