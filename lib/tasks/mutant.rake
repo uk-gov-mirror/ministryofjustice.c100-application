@@ -2,7 +2,7 @@
 # on classes that match. Example: `rake mutant TaxTribs::ZendeskSender`
 #
 task :mutant => :environment do
-  vars = 'NOCOVERAGE=true'
+  vars = 'RAILS_ENV=test NOCOVERAGE=true'
   flags = '--use rspec --fail-fast'
 
   unless system("#{vars} mutant #{flags} #{classes_to_mutate.join(' ')}")
@@ -40,7 +40,7 @@ end
 # Only include in this collection the models that matter and have specs.
 #
 def models
-  %w(C100Application Court).freeze
+  %w(C100Application Court User).freeze
 end
 
 # Everything inheriting from `BaseForm` and inside namespace `Steps`

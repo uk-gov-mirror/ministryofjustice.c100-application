@@ -6,7 +6,7 @@ module Steps
 
       has_one_association   :screener_answers
       yes_no_attribute      :email_consent, reset_when_no: [:email_address]
-      attribute             :email_address, String
+      attribute             :email_address, NormalisedEmailType
       validates             :email_address, email: true, if: -> { email_consent&.yes? }
 
       private

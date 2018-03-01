@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
 
     it 'picks records equal to or older than the passed-in date' do
       expect(described_class).to receive(:where).with(
-        ["last_sign_in_at <= :date OR (created_at <= :date AND last_sign_in_at IS NULL)", date: 30.days.ago]
+        'last_sign_in_at <= :date OR (created_at <= :date AND last_sign_in_at IS NULL)', date: 30.days.ago
       ).and_return(user_class.as_null_object)
 
       described_class.purge!(30.days.ago)
