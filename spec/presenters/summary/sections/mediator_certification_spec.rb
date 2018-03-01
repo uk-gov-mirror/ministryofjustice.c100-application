@@ -33,40 +33,34 @@ module Summary
       it 'has the correct rows' do
         expect(answers.count).to eq(5)
 
-        expect(answers[0]).to be_an_instance_of(Answer)
-        expect(answers[0].question).to eq(:miam_certification_details)
-        expect(c100_application).to have_received(:miam_certification)
-
-        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[1].question).to eq(:miam_certification_number)
+        expect(answers[0]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[0].question).to eq(:miam_certification_number)
         expect(c100_application).to have_received(:miam_certification_number)
 
-        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[2].question).to eq(:miam_certification_service_name)
+        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[1].question).to eq(:miam_certification_service_name)
         expect(c100_application).to have_received(:miam_certification_service_name)
 
-        expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[3].question).to eq(:miam_certification_sole_trader_name)
+        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[2].question).to eq(:miam_certification_sole_trader_name)
         expect(c100_application).to have_received(:miam_certification_sole_trader_name)
 
-        expect(answers[4]).to be_an_instance_of(DateAnswer)
-        expect(answers[4].question).to eq(:miam_certification_date)
+        expect(answers[3]).to be_an_instance_of(DateAnswer)
+        expect(answers[3].question).to eq(:miam_certification_date)
         expect(c100_application).to have_received(:miam_certification_date)
+
+        expect(answers[4]).to be_an_instance_of(Separator)
+        expect(answers[4].title).to eq(:hmcts_instructions)
       end
 
       context 'when no certification received' do
-        let(:miam_certification) { nil }
-        let(:miam_certification_number) { nil }
-        let(:miam_certification_service_name) { nil }
-        let(:miam_certification_sole_trader_name) { nil }
-        let(:miam_certification_date) { nil }
+        let(:miam_certification) { 'no' }
 
         it 'has the correct rows' do
           expect(answers.count).to eq(1)
 
-          expect(answers[0]).to be_an_instance_of(Answer)
-          expect(answers[0].question).to eq(:miam_certification_details)
-          expect(answers[0].value).to eq(GenericYesNo::NO)
+          expect(answers[0]).to be_an_instance_of(Separator)
+          expect(answers[0].title).to eq(:not_applicable)
         end
       end
     end
