@@ -7,17 +7,18 @@ module Summary
 
       def answers
         [
+          MultiAnswer.new(:orders_with_no_name, petition.orders_with_no_name),
           MultiAnswer.new(:child_arrangements_orders, petition.child_arrangements_orders),
-          MultiAnswer.new(:specific_issues_orders, petition.specific_issues_orders),
           MultiAnswer.new(:prohibited_steps_orders, petition.prohibited_steps_orders),
-          FreeTextAnswer.new(:other_details, petition.other_details),
+          MultiAnswer.new(:specific_issues_orders, petition.specific_issues_orders),
+          FreeTextAnswer.new(:other_issue_details, petition.other_issue_details),
         ].select(&:show?)
       end
 
       private
 
       def petition
-        @_petition ||= PetitionPresenter.new(c100.asking_order)
+        @_petition ||= PetitionPresenter.new(c100)
       end
     end
   end

@@ -1,28 +1,39 @@
 class PetitionOrder < ValueObject
   VALUES = [
     CHILD_ARRANGEMENTS = [
-      new(:child_home),
-      new(:child_times),
-      new(:child_contact),
-      new(:child_return)
+      new(:child_arrangements_home),
+      new(:child_arrangements_time),
+      new(:child_arrangements_contact),
+      new(:child_arrangements_access),
     ].freeze,
 
+    GROUP_PROHIBITED_STEPS = new(:group_prohibited_steps),
     PROHIBITED_STEPS = [
-      new(:child_abduction),
-      new(:child_flight)
+      new(:prohibited_steps_moving),
+      new(:prohibited_steps_moving_abroad),
+      new(:prohibited_steps_names),
+      new(:prohibited_steps_medical),
+      new(:prohibited_steps_holiday),
     ].freeze,
 
+    GROUP_SPECIFIC_ISSUES = new(:group_specific_issues),
     SPECIFIC_ISSUES = [
-      new(:child_specific_issue_school),
-      new(:child_specific_issue_religion),
-      new(:child_specific_issue_name),
-      new(:child_specific_issue_medical),
-      new(:child_specific_issue_abroad),
+      new(:specific_issues_holiday),
+      new(:specific_issues_school),
+      new(:specific_issues_religion),
+      new(:specific_issues_names),
+      new(:specific_issues_medical),
+      new(:specific_issues_moving),
+      new(:specific_issues_moving_abroad),
     ].freeze,
 
-    OTHER = [
-      new(:other)
-    ].freeze
+    # This is the exception to the rule. The values here (one for now),
+    # don't have a corresponding order name.
+    ORDERS_WITH_NO_NAME = [
+      new(:no_name_child_return),
+    ].freeze,
+
+    OTHER_ISSUE = new(:other_issue),
   ].flatten.freeze
 
   def self.values

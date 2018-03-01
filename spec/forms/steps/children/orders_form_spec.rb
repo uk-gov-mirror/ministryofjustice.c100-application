@@ -4,10 +4,9 @@ RSpec.describe Steps::Children::OrdersForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: child,
-    child_home: '1',
-    child_specific_issue_school: '0',
-    child_specific_issue_medical: '1',
-    child_abduction: '0'
+    child_arrangements_home: '1',
+    specific_issues_school: '0',
+    specific_issues_medical: '1',
   } }
 
   let(:c100_application) { instance_double(C100Application) }
@@ -17,14 +16,14 @@ RSpec.describe Steps::Children::OrdersForm do
   subject { described_class.new(arguments) }
 
   describe 'custom getters override' do
-    let(:child_order) { double('child_order', orders: ['child_home']) }
+    let(:child_order) { double('child_order', orders: ['child_arrangements_home']) }
 
-    it 'returns true if the exemption is in the list' do
-      expect(subject.child_home).to eq(true)
+    it 'returns true if the order is in the list' do
+      expect(subject.child_arrangements_home).to eq(true)
     end
 
-    it 'returns false if the exemption is not in the list' do
-      expect(subject.child_specific_issue_school).to eq(false)
+    it 'returns false if the order is not in the list' do
+      expect(subject.specific_issues_school).to eq(false)
     end
   end
 
@@ -38,7 +37,7 @@ RSpec.describe Steps::Children::OrdersForm do
     end
 
     context 'for valid details' do
-      let(:expected_attributes) { { orders: [:child_home, :child_specific_issue_medical] } }
+      let(:expected_attributes) { { orders: [:child_arrangements_home, :specific_issues_medical] } }
 
       context 'when child_order does not exist' do
         let(:child_order) { nil }

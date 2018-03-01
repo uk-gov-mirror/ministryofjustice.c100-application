@@ -34,20 +34,24 @@ en:
       other: Other
 
     PETITION_ORDERS: &PETITION_ORDERS
-      child_home: Arrange where they live
-      child_times: Arrange how much time they spend with each parent
-      child_contact: Confirm when and what other types of contact will take place with them
-      child_specific_issue: Resolve a dispute over a specific issue (For example, what school they’ll go to)
-      child_specific_issue_school: Which school they go to
-      child_specific_issue_religion: A religious issue
-      child_specific_issue_name: Changing their names
-      child_specific_issue_medical: Medical treatment
-      child_specific_issue_abroad: Moving location
-      child_return: Return them to your care
-      child_abduction: Stop the other parent abducting them
-      child_flight: Stop the other parent taking them abroad or moving location without your permission
-      other: Another issue
-      other_details: *provide_details
+      child_arrangements_home_html: Decide who they live with and when
+      child_arrangements_time_html: Decide how much time they spend with each person
+      child_arrangements_contact_html: Decide how and when each person can spend time with the children
+      child_arrangements_access_html: Allow you to spend time with the children
+      no_name_child_return_html: Return the children to your care
+      prohibited_steps_moving_html: Relocating the children to a different area in England and Wales
+      prohibited_steps_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+      prohibited_steps_names_html: Changing their names or surname
+      prohibited_steps_medical_html: Allowing medical treatment to be carried out on them
+      prohibited_steps_holiday_html: Taking them on holiday
+      specific_issues_holiday_html: A specific holiday or arrangement
+      specific_issues_school_html: What school they’ll go to
+      specific_issues_religion_html: A religious issue
+      specific_issues_names_html: Changing their names or surname
+      specific_issues_medical_html: Medical treatment
+      specific_issues_moving_html: Relocating the children to a different area in England and Wales
+      specific_issues_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+      other_issue_html: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/summary/en.yml`, due to the way locales work
     # (they don't see each other when they are in different files). If you change copy here,
@@ -529,17 +533,24 @@ en:
           page_title: What you are asking the court to do
           heading: What you’re asking the court to do about your children
           lead_text:
-            zero: You’d like the court to
-            one: You’d also like the court to
-            other: You’d also like the court to
+            zero: 'You would like the court to:'
+          lead_text_stop:
+            zero: 'You would like the court to stop the other person:'
+            one: 'You would also like the court to stop the other person:'
+            other: 'You would also like the court to stop the other person:'
           lead_text_issues:
-            zero: You’d like the court to resolve a dispute about
-            one: You’d also like the court to resolve a dispute about
-            other: You’d also like the court to resolve a dispute about
+            zero: 'You would like the court to resolve an issue about:'
+            one: 'You would also like the court to resolve an issue about:'
+            other: 'You would also like the court to resolve an issue about:'
           lead_text_other:
-            zero: "You told us that you need help with this issue:"
-            one: "You also told us that you need help with this issue:"
-            other: "You also told us that you need help with this issue:"
+            zero: "You told us that you need help with this dispute:"
+            one: "You also told us that you need help with this dispute:"
+            other: "You also told us that you need help with this dispute:"
+          orders_with_no_name:
+            no_name_child_return:
+              zero: 'You would like the children to be returned to your care.'
+              one: 'You would also like the children to be returned to your care.'
+              other: 'You would also like the children to be returned to your care.'
           continue: Continue
           <<: *PETITION_ORDERS
           aka:
@@ -978,6 +989,8 @@ en:
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
+        orders_prohibited_steps_html: ""
+        orders_specific_issues_html: ""
       steps_safety_questions_address_confidentiality_form:
         address_confidentiality_html: "Do you want to keep your contact details private from the other person?"
       steps_safety_questions_risk_of_abduction_form:
@@ -1133,8 +1146,23 @@ en:
         miam_certification_sole_trader_name: Sole trader name
       steps_petition_orders_form:
         <<: *PETITION_ORDERS
-        child_contact: Confirm when and what other types of contact will take place with them (for example, phone calls)
-        child_specific_issue_abroad: Moving location (including moving abroad)
+        # We override only those that have hint text or are different to the playback here.
+        child_arrangements_contact_html: |
+          <span class="gv-u-heading-small">Decide how and when each person can spend time with the children</span><br>
+          <span class="form-hint">For example, in person, or phone calls and emails</span>
+        child_arrangements_access_html: |
+          <span class="gv-u-heading-small">Allow you to spend time with the children</span><br>
+          <span class="form-hint">If you’re currently not being allowed to</span>
+        no_name_child_return_html: |
+          <span class="gv-u-heading-small">Return the children to your care</span><br>
+          <span class="form-hint">If your children have been abducted, unlawfully removed or unlawfully retained</span>
+        group_prohibited_steps_html: |
+          <span class="gv-u-heading-small">Stop the other person doing something</span><br>
+          <span class="form-hint">For example, moving abroad or abducting your children</span>
+        group_specific_issues_html: |
+          <span class="gv-u-heading-small">Resolve a specific issue</span><br>
+          <span class="form-hint">For example, what school they’ll go to</span>
+        orders_additional_details: Briefly provide more details
       steps_abduction_passport_details_form:
         passport_possession_mother: Mother
         passport_possession_father: Father
@@ -1267,6 +1295,9 @@ en:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
+      steps_petition_orders_form:
+        orders_prohibited_steps: Select all that apply
+        orders_specific_issues: Select all that apply
       steps_applicant_personal_details_form:
         birthplace: *birthplace_hint
       steps_applicant_contact_details_form:

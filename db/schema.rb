@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226132148) do
+ActiveRecord::Schema.define(version: 20180228111024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,28 +50,6 @@ ActiveRecord::Schema.define(version: 20180226132148) do
     t.text "help_description"
     t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id"
-  end
-
-  create_table "asking_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
-    t.boolean "child_home"
-    t.boolean "child_times"
-    t.boolean "child_contact"
-    t.boolean "child_specific_issue"
-    t.boolean "child_specific_issue_school"
-    t.boolean "child_specific_issue_religion"
-    t.boolean "child_specific_issue_name"
-    t.boolean "child_specific_issue_medical"
-    t.boolean "child_specific_issue_abroad"
-    t.boolean "child_return"
-    t.boolean "child_abduction"
-    t.boolean "child_flight"
-    t.boolean "other"
-    t.text "other_details"
-    t.boolean "child_arrangements_order"
-    t.boolean "prohibited_steps_order"
-    t.boolean "specific_issue_order"
-    t.uuid "c100_application_id"
-    t.index ["c100_application_id"], name: "index_asking_orders_on_c100_application_id"
   end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -139,6 +117,8 @@ ActiveRecord::Schema.define(version: 20180226132148) do
     t.string "miam_certification_service_name"
     t.string "miam_certification_sole_trader_name"
     t.string "miam_exemption_claim"
+    t.string "orders", default: [], array: true
+    t.text "orders_additional_details"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 
@@ -282,7 +262,6 @@ ActiveRecord::Schema.define(version: 20180226132148) do
 
   add_foreign_key "abduction_details", "c100_applications"
   add_foreign_key "abuse_concerns", "c100_applications"
-  add_foreign_key "asking_orders", "c100_applications"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "child_residences", "people", column: "child_id"

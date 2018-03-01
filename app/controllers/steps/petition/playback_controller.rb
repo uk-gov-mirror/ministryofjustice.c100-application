@@ -3,7 +3,7 @@ module Steps
     class PlaybackController < Steps::PetitionStepController
       def show
         @petition = PetitionPresenter.new(
-          current_c100_application.asking_order
+          current_c100_application
         )
       end
     end

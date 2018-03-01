@@ -25,21 +25,28 @@ en:
       other: Other
 
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
-      child_home: Arrange where they live
-      child_times: Arrange how much time they spend with each parent
-      child_contact: Confirm when and what other types of contact will take place with them
-      child_return: Return them to your care
-    SPECIFIC_ISSUE_ORDERS: &SPECIFIC_ISSUE_ORDERS
-      child_specific_issue_school: Which school they go to
-      child_specific_issue_religion: A religious issue
-      child_specific_issue_name: Changing their names
-      child_specific_issue_medical: Medical treatment
-      child_specific_issue_abroad: Moving location
+      child_arrangements_home: Decide who they live with and when
+      child_arrangements_time: Decide how much time they spend with each person
+      child_arrangements_contact: Decide how and when each person can spend time with the children
+      child_arrangements_access: Allow you to spend time with the children
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
-      child_abduction: Stop the other parent abducting them
-      child_flight: Stop the other parent taking them abroad or moving location without your permission
+      prohibited_steps_moving: Relocating the children to a different area in England and Wales
+      prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+      prohibited_steps_names: Changing their names or surname
+      prohibited_steps_medical: Allowing medical treatment to be carried out on them
+      prohibited_steps_holiday: Taking them on holiday
+    SPECIFIC_ISSUE_ORDERS: &SPECIFIC_ISSUE_ORDERS
+      specific_issues_holiday: A specific holiday or arrangement
+      specific_issues_school: What school they’ll go to
+      specific_issues_religion: A religious issue
+      specific_issues_names: Changing their names or surname
+      specific_issues_medical: Medical treatment
+      specific_issues_moving: Relocating the children to a different area in England and Wales
+      specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+    ORDERS_WITH_NO_NAME: &ORDERS_WITH_NO_NAME
+      no_name_child_return: Return the children to your care
     OTHER_ORDER: &OTHER_ORDER
-      other: Other
+      other_issue: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/en.yml`, due to the way locales work
     # (they don't see each other when they are in different files). If you change copy here,
@@ -159,8 +166,12 @@ en:
       question: 'Prohibited steps order(s):'
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
-    other_details:
-      question: 'Other:'
+    orders_with_no_name:
+      question: ""
+      answers:
+        <<: *ORDERS_WITH_NO_NAME
+    other_issue_details:
+      question: 'Other issue:'
     domestic_abuse:
       question: Any form of domestic abuse?
       answers:
@@ -249,6 +260,7 @@ en:
         <<: *ARRANGEMENT_ORDERS
         <<: *SPECIFIC_ISSUE_ORDERS
         <<: *PROHIBITED_STEPS_ORDERS
+        <<: *ORDERS_WITH_NO_NAME
         <<: *OTHER_ORDER
     children_known_to_authorities:
       question: Are any of the children known to the local authority children’s services?
