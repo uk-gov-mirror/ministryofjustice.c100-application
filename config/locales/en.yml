@@ -873,6 +873,10 @@ en:
     phase_banner:
       phase_info_email_html: |
         This is a new service. <a href="mailto:family_justice_helpdesk@digital.justice.gov.uk?subject=Feedback">Report a problem</a> and help improve it for others.
+    current_user_menu:
+      logout: Sign out
+      change_password: Change password
+      your_drafts: Your drafts
 
   generic:
     page_title: *default_service_title
@@ -894,7 +898,7 @@ en:
     invalid_session:
       heading: Sorry, you'll have to start again
       <<: *START_FINISH
-      lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes or after you submit your case.
+      lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes or after you complete your application.
       more_text: We do this for your security. Any unsaved details will be deleted.
       page_title: Invalid session
     unhandled:
@@ -935,6 +939,28 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: Please enter your email address
+              invalid: Please enter a valid email address
+              taken: You already have a draft saved with this email address. Try signing in.
+            password:
+              blank: Please enter a password
+              too_short: Your password must be at least %{count} characters
+              too_long: Your password must be no longer than %{count} characters
+            password_confirmation:
+              blank: Please enter the password again
+              too_short: Your password must be at least %{count} characters
+              too_long: Your password must be no longer than %{count} characters
+              confirmation: The password confirmation doesn't match
+            current_password:
+              blank: Please enter your current password
+              invalid: The password is not valid
 
   helpers:
     fieldset:
@@ -1366,11 +1392,13 @@ en:
       short: '%d/%m/%Y'
       long: '%e %B %Y'
   time:
-    case_expires_in:
+    draft_expires_in:
       zero: Today
       one: '%{count} day'
       other: '%{count} days'
+
   shared:
+    <<: *START_FINISH
     password_toggle:
       show_password: Show password
       hide_password: Hide password
@@ -1404,13 +1432,12 @@ en:
       destroy: No, end session
     expired:
       title: Session expired
-      heading: Your case has been cancelled
-      description: For your security, the information you’ve entered has automatically
-        been deleted.
+      heading: Your application has been cancelled
+      description: For your security, the information you’ve entered has automatically been deleted.
       restart: You can start again below.
       restart_button: Start again
-    canceled_message: Your case has been deleted. Please start again.
-    expired_message: You've been inactive for 30 minutes. Your case has been
+    canceled_message: Your application has been deleted. Please start again.
+    expired_message: You've been inactive for 30 minutes. Your application has been
       automatically deleted. Please start again.
     minute_single: minute
     second_single: second
@@ -1453,18 +1480,19 @@ en:
         page_title: Sign in
       logged_out:
         heading: You have signed out
-        lead_text: You can return to a saved case using the link sent in the email or by returning to the start of the service.
+        lead_text: You can return to a saved draft using the link sent in the email or by returning to the start of the service.
+        more_text_html: A draft expires %{expire_in_days} days after it was created or when you complete the application.
         page_title: Signed out
       save_confirmation:
-        heading: Your case has been saved
-        your_cases: Go to your saved cases
-        page_title: Case saved
+        heading: Your application has been saved
+        your_drafts: Go to your saved drafts
+        page_title: Application draft saved
     registrations:
       new:
         heading: Save your application
         existing_account: Sign into an existing account
         account_warning_html: |
-          <p>Choose an email address and password so you can sign in and complete your case later.</p>
+          <p>Choose an email address and password so you can sign in and complete your application later.</p>
         email_confirmation: "An email will be sent to:"
         page_title: Sign up
       save_confirmation:
@@ -1475,9 +1503,9 @@ en:
         heading: Change your password
         page_title: Update password
       update_confirmation:
-        heading: "Your password has been changed"
+        heading: Your password has been changed
         lead_text: Your password has been updated successfully.
-        your_cases: Return to your saved cases
+        your_drafts: Return to your saved drafts
         page_title: Password updated
     passwords:
       new:
@@ -1497,8 +1525,18 @@ en:
       reset_confirmation:
         heading: Your password has been changed
         lead_text: You have set a new password successfully.
-        sign_in: Sign in to see your saved cases
+        sign_in: Sign in to see your saved drafts
         page_title: Password changed
+    drafts:
+      index:
+        page_title: Draft applications
+    shared:
+      application_saved:
+        lead_text_html: A confirmation email has been sent to:<br><strong>%{email_address}</strong>
+        expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong> or until
+          you complete your application. Any information will be automatically deleted for your security after this time.
+        return_info: You can return to continue entering details at any time.
+
   surveys:
     feedback:
       new:

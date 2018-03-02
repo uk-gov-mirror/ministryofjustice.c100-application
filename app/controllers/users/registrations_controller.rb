@@ -1,6 +1,6 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    # We are allowing to create new accounts only as part of saving a case in progress
+    # We are allowing to create new accounts only as part of saving an application in progress
     before_action :check_c100_application_presence, only: [:new, :create, :save_confirmation]
 
     # Using an after filter so we maintain the session for analytics purposes when rendering the view
@@ -16,7 +16,7 @@ module Users
 
     # We want, on purpose, to not sign in the user after registration, so not calling `super` here.
     def sign_up(_resource_name, user)
-      TaxTribs::SaveCaseForLater.new(current_c100_application, user).save
+      C100App::SaveApplicationForLater.new(current_c100_application, user).save
     end
 
     # Devise will not give an error when leaving blank the new password, it will just ignore the update,
