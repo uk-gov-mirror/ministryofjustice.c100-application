@@ -109,12 +109,12 @@ RSpec.describe ApplicationHelper do
 
     context 'for a blank value' do
       let(:value) { '' }
-      it { expect(title).to eq('C100 Children and the Family Courts - GOV.UK') }
+      it { expect(title).to eq('Apply to court about child arrangements - GOV.UK') }
     end
 
     context 'for a provided value' do
       let(:value) { 'Test page' }
-      it { expect(title).to eq('Test page - C100 Children and the Family Courts - GOV.UK') }
+      it { expect(title).to eq('Test page - Apply to court about child arrangements - GOV.UK') }
     end
   end
 
