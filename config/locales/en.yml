@@ -1,5 +1,6 @@
 en:
   dictionary:
+    service_name: &service_name "Apply to court about child arrangements"
     default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
     birthplace_hint: &birthplace_hint "For example, town or city"

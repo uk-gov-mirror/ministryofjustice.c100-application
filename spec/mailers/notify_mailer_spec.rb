@@ -1,0 +1,97 @@
+require 'spec_helper'
+
+RSpec.describe NotifyMailer, type: :mailer do
+  let(:c100_application) {
+    C100Application.new(
+      id: '4a362e1c-48eb-40e3-9458-a31ead3f30a4',
+    )
+  }
+  let(:user) { instance_double(User, email: 'test@example.com') }
+
+  before do
+    allow(c100_application).to receive(:user).and_return(user)
+
+    allow(
+      Rails.configuration
+    ).to receive(:govuk_notify_templates).and_return(
+      reset_password: 'reset_password_template_id',
+      change_password: 'change_password_template_id',
+      application_saved: 'application_saved_template_id',
+    )
+  end
+
+  describe '#application_saved_confirmation' do
+    let(:mail) { described_class.application_saved_confirmation(c100_application) }
+
+    it_behaves_like 'a Notify mail', template_id: 'application_saved_template_id'
+
+    it { expect(mail.to).to eq(['test@example.com']) }
+
+    it 'has the right personalisation' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        service_name: 'Apply to court about child arrangements',
+        resume_draft_link: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
+        draft_expire_in_days: 14,
+      })
+    end
+  end
+
+  describe '#reset_password_instructions' do
+    let(:mail)  { described_class.reset_password_instructions(user, token) }
+    let(:token) { '0xDEADBEEF' }
+
+    it_behaves_like 'a Notify mail', template_id: 'reset_password_template_id'
+
+    it { expect(mail.to).to eq(['test@example.com']) }
+
+    it 'has the right keys' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        service_name: 'Apply to court about child arrangements',
+        reset_password_url: 'https://c100.justice.uk/users/password/edit?reset_password_token=0xDEADBEEF',
+      })
+    end
+  end
+
+  describe '#password_change' do
+    let(:mail) { described_class.password_change(user) }
+
+    it_behaves_like 'a Notify mail', template_id: 'change_password_template_id'
+
+    it { expect(mail.to).to eq(['test@example.com']) }
+
+    it 'has the right keys' do
+      expect(mail.govuk_notify_personalisation).to eq({
+        service_name: 'Apply to court about child arrangements',
+        drafts_url: 'https://c100.justice.uk/users/drafts',
+      })
+    end
+  end
+
+  context 'capturing unexpected errors' do
+    let(:mail) { described_class.reset_password_instructions(nil, 'token') }
+
+    it 'should report the exception' do
+      expect(Rails.logger).to receive(:info)
+      expect(Raven).to receive(:capture_exception)
+      expect(Raven).to receive(:extra_context).with(
+        {
+          template_id: 'reset_password_template_id',
+          personalisation: {
+            service_name: 'Apply to court about child arrangements',
+            reset_password_url: '[FILTERED]',
+          }
+        }
+      )
+
+      mail.deliver_now
+    end
+  end
+
+  describe 'personalisation logging filter' do
+    it {
+      expect(
+        described_class::PERSONALISATION_ERROR_FILTER
+      ).to match_array([:reset_password_url])
+    }
+  end
+end
