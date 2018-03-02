@@ -41,6 +41,23 @@ Rails.application.routes.draw do
                sign_out: 'logout'
              }
 
+  namespace :users do
+    devise_scope :user do
+      get 'login/logged_out',        to: 'logins#logged_out'
+      get 'login/save_confirmation', to: 'logins#save_confirmation'
+
+      get 'password/reset_sent',         to: 'passwords#reset_sent'
+      get 'password/reset_confirmation', to: 'passwords#reset_confirmation'
+
+      get 'registration/save_confirmation',   to: 'registrations#save_confirmation'
+      get 'registration/update_confirmation', to: 'registrations#update_confirmation'
+    end
+
+    resources :drafts, only: [:index, :destroy] do
+      get :resume, on: :member
+    end
+  end
+
   namespace :steps do
     namespace :screener do
       edit_step :postcode

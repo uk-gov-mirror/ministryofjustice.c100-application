@@ -37,10 +37,15 @@ class Application < Rails::Application
   # This is the GDS-hosted homepage for our service, and the one with a `start` button
   config.gds_service_homepage_url = '/'.freeze  # TODO: replace this with the correct gov.uk URL, when we have one
 
+  # Load the templates set (refer to `config/govuk_notify_templates.yml` for details)
+  config.govuk_notify_templates = config_for(
+    :govuk_notify_templates, env: ENV.fetch('GOVUK_NOTIFY_ENV', 'integration')
+  ).symbolize_keys
+
   config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
-  config.x.cases.expire_in_days = ENV.fetch('EXPIRE_AFTER', 14).to_i
+  config.x.drafts.expire_in_days = ENV.fetch('EXPIRE_AFTER', 14).to_i
   config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
 
   config.action_mailer.default_url_options = {host: ENV.fetch('EXTERNAL_URL')}
