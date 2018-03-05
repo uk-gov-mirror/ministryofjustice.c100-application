@@ -1,0 +1,35 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-large">
+      <%=t '.heading' %>
+    </h1>
+    <p class="lede"><%=t '.drafts_intro' %></p>
+  </div>
+</div>
+
+<table class="saved-drafts">
+  <caption class="visuallyhidden"><%=t '.table.caption' %></caption>
+  <thead>
+  <tr>
+    <th><%=t '.table.heading.expires_in' %></th>
+    <th><%=t '.table.heading.applicant_name' %></th>
+    <th width="25%"><span class="visuallyhidden"><%=t '.table.heading.actions' %></span>&nbsp;</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @drafts.present_each(DraftPresenter) do |draft| %>
+      <%= render partial: 'draft_row', locals: {draft: draft} %>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <p>
+      <%= link_to t('.new_application'), root_path %>
+    </p>
+  </div>
+</div>

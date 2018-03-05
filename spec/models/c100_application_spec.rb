@@ -4,6 +4,20 @@ RSpec.describe C100Application, type: :model do
   subject { described_class.new(attributes) }
   let(:attributes) { {} }
 
+  describe 'status enum' do
+    it 'has the right values' do
+      expect(
+        described_class.statuses
+      ).to eq(
+        'screening' => 0,
+        'in_progress' => 1,
+        'first_reminder_sent' => 5,
+        'last_reminder_sent' => 6,
+        'completed' => 10,
+      )
+    end
+  end
+
   describe '#confidentiality_enabled?' do
     context 'for `yes` values' do
       let(:attributes) { {address_confidentiality: 'yes'} }
