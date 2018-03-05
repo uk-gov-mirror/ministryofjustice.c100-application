@@ -21,6 +21,8 @@ class ApplicationController < ActionController::Base
     case exception
     when Errors::InvalidSession, ActionController::InvalidAuthenticityToken
       redirect_to invalid_session_errors_path
+    when Errors::ApplicationNotFound
+      redirect_to application_not_found_errors_path
     else
       raise if Rails.application.config.consider_all_requests_local
 

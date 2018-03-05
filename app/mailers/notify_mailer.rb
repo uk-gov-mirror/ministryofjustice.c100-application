@@ -40,7 +40,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
     set_template(:application_saved)
 
     set_personalisation(
-      resume_draft_link: resume_users_draft_url(c100_application),
+      resume_draft_url: resume_users_draft_url(c100_application),
       draft_expire_in_days: Rails.configuration.x.drafts.expire_in_days,
     )
 

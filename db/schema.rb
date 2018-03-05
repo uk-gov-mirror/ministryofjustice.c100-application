@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228111024) do
+ActiveRecord::Schema.define(version: 20180305101934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 20180228111024) do
     t.string "miam_exemption_claim"
     t.string "orders", default: [], array: true
     t.text "orders_additional_details"
+    t.integer "status", default: 0
+    t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
 

@@ -113,50 +113,83 @@ RSpec.shared_examples 'a starting point step controller' do
         expect(existing_case.navigation_stack).to eq([controller.request.fullpath])
       end
     end
+  end
+end
 
-    # context 'saving the case for later on `edit`' do
-    #   context 'for a signed in user' do
-    #     let(:user) { instance_double(User) }
-    #
-    #     before do
-    #       sign_in(user)
-    #     end
-    #
-    #     it 'does not save the case for later' do
-    #       expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
-    #       get :edit
-    #     end
-    #   end
-    # end
+RSpec.shared_examples 'a savepoint step controller' do
+  describe '#edit' do
+    let!(:existing_c100) { C100Application.create(navigation_stack: ['/not', '/empty']) }
+
+    before do
+      allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+    end
+
+    it 'clears the navigation stack in the session' do
+      get :edit
+      expect(existing_c100.reload.navigation_stack).to eq([controller.request.fullpath])
+    end
+
+    it 'does not change the status on edit' do
+      expect {
+        get :edit
+      }.to_not change { existing_c100.status }
+    end
+
+    context 'saving the application for later on `edit`' do
+      context 'for a signed in user' do
+        let(:user) { instance_double(User) }
+
+        before do
+          sign_in(user)
+        end
+
+        it 'does not save the case for later' do
+          expect(C100App::SaveApplicationForLater).not_to receive(:new)
+          get :edit
+        end
+      end
+    end
   end
 
-  # describe '#update' do
-  #   context 'saving the case for later on `update`' do
-  #     context 'for a signed in user' do
-  #       let(:user) { instance_double(User) }
-  #
-  #       before do
-  #         sign_in(user)
-  #       end
-  #
-  #       it 'saves the case for later' do
-  #         expect(TaxTribs::SaveCaseForLater).to receive(:new).with(
-  #           an_instance_of(C100Application),
-  #           user
-  #         ).and_return(double.as_null_object)
-  #
-  #         put :update, params: {}
-  #       end
-  #     end
-  #
-  #     context 'for a signed out user' do
-  #       it 'does not save the case for later' do
-  #         expect(TaxTribs::SaveCaseForLater).not_to receive(:new)
-  #         put :update, params: {}
-  #       end
-  #     end
-  #   end
-  # end
+  describe '#update' do
+    let!(:existing_c100) { C100Application.create(navigation_stack: ['/not', '/empty']) }
+
+    before do
+      allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+    end
+
+    it 'changes the status to `in_progress`' do
+      expect {
+        put :update, params: {}
+      }.to change { existing_c100.status }.from('screening').to('in_progress')
+    end
+
+    context 'saving the case for later on `update`' do
+      context 'for a signed in user' do
+        let(:user) { instance_double(User) }
+
+        before do
+          sign_in(user)
+        end
+
+        it 'saves the case for later' do
+          expect(C100App::SaveApplicationForLater).to receive(:new).with(
+            an_instance_of(C100Application),
+            user
+          ).and_return(double.as_null_object)
+
+          put :update, params: {}
+        end
+      end
+
+      context 'for a signed out user' do
+        it 'does not save the case for later' do
+          expect(C100App::SaveApplicationForLater).not_to receive(:new)
+          put :update, params: {}
+        end
+      end
+    end
+  end
 end
 
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
