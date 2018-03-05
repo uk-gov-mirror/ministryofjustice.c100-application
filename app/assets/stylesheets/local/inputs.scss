@@ -10,3 +10,9 @@ textarea.form-control-large {
 .block-label:last-of-type {
   margin-bottom: 10px;
 }
+
+// Maintain the width when toggling between input password and input text.
+// Otherwise the input text override the width, making it bigger.
+.js-toggleable-password {
+  width: 50% !important;
+}
