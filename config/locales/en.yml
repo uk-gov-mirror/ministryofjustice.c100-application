@@ -1,7 +1,8 @@
 en:
+  service:
+    name: Apply to court about child arrangements
+
   dictionary:
-    service_name: &service_name "Apply to court about child arrangements"
-    default_service_title: &default_service_title "C100 Children and the Family Courts - GOV.UK"
     dont_know: &dont_know "Don't know"
     birthplace_hint: &birthplace_hint "For example, town or city"
     address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
@@ -878,10 +879,6 @@ en:
       change_password: Change password
       your_drafts: Your drafts
 
-  generic:
-    page_title: *default_service_title
-    back_link: Back
-
   errors:
     attributes:
       email_address:
@@ -1399,6 +1396,7 @@ en:
 
   shared:
     <<: *START_FINISH
+    back_link: Back
     password_toggle:
       show_password: Show password
       hide_password: Hide password

@@ -2,7 +2,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
   rescue_from Exception, with: :log_errors
 
   before_action do
-    @service_name = I18n.translate!(:service_name, scope: 'dictionary')
+    @service_name = I18n.translate!('service.name')
     @template_ids = Rails.configuration.govuk_notify_templates
   end
 

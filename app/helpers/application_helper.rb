@@ -39,8 +39,12 @@ module ApplicationHelper
     ENV['GA_TRACKING_ID']
   end
 
+  def service_name
+    t('service.name')
+  end
+
   def title(page_title)
-    content_for :page_title, [page_title.presence, t('generic.page_title')].compact.join(' - ')
+    content_for :page_title, [page_title.presence, service_name, 'GOV.UK'].compact.join(' - ')
   end
 
   # We send a notification to Sentry to be alerted about any missing page titles.
