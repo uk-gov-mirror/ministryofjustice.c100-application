@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ApplicationController do
   controller do
     def invalid_session; raise Errors::InvalidSession; end
+    def application_not_found; raise Errors::ApplicationNotFound; end
     def another_exception; raise Exception; end
   end
 
@@ -19,6 +20,17 @@ RSpec.describe ApplicationController do
 
         get :invalid_session
         expect(response).to redirect_to(invalid_session_errors_path)
+      end
+    end
+
+    context 'Errors::ApplicationNotFound' do
+      it 'should not report the exception, and redirect to the error page' do
+        routes.draw { get 'application_not_found' => 'anonymous#application_not_found' }
+
+        expect(Raven).not_to receive(:capture_exception)
+
+        get :application_not_found
+        expect(response).to redirect_to(application_not_found_errors_path)
       end
     end
 

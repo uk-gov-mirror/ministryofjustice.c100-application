@@ -904,6 +904,12 @@ en:
       lead_text: To keep this service secure, any information you have entered hasn't been saved.
       more_text: You'll need to start again.
       page_title: Unexpected error
+    application_not_found:
+      page_title: Application not found
+      heading: Sorry, this application can't be found
+      lead_text: If you copied a web address, please check it’s correct.
+      more_text: "Please note: a draft application expires %{expire_in_days} days after it was created or when you complete it."
+      <<: *START_FINISH
 
   activemodel:
     errors:
