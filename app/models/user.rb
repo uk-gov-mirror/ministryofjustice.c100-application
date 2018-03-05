@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :recoverable, :registerable, :validatable, :trackable
 
-  has_many :c100_application, dependent: :destroy
+  has_many :c100_applications, dependent: :destroy
+  has_many :drafts, -> { not_completed }, class_name: 'C100Application'
 
   attribute :email, NormalisedEmailType.new
 
