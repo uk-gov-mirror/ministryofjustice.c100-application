@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.2'
 
-gem 'devise'
+gem 'devise', '~> 4.4.1'
 gem 'email_validator'
 gem 'govuk_elements_form_builder', '~> 1.2.0'
 gem 'govuk_elements_rails', '~> 3.0'
@@ -11,7 +11,6 @@ gem 'govuk_template'
 gem 'gov_uk_date_fields', '~> 2.0.0'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
-gem 'pry-rails'
 gem 'puma', '~> 3.0'
 gem 'rails', '~> 5.1'
 gem 'responders'
@@ -47,6 +46,7 @@ group :development, :test do
   gem 'launchy'
   gem 'mutant-rspec'
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
 end
 
