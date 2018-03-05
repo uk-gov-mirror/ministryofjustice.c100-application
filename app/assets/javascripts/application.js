@@ -25,4 +25,7 @@
 $(document).ready(function() {
   // Show and hide toggled content
   new GOVUK.ShowHideContent().init();
+
+  // Initialize JS in /modules
+  window.moj.init();
 });
