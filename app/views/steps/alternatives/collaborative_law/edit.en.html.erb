@@ -50,7 +50,7 @@
 
         <%= step_form @form_object do |f| %>
             <%= f.radio_button_fieldset :alternative_collaborative_law, inline: true, choices: GenericYesNo.values %>
-            <%= f.submit class: 'button' %>
+            <%= f.continue_button %>
         <% end %>
       </div>
     </div>

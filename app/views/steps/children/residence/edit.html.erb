@@ -11,7 +11,7 @@
     <%= step_form @form_object do |f| %>
       <%= f.collection_check_boxes :person_ids, @form_object.people, :id, :full_name %>
 
-      <%= f.submit class: 'button' %>
+      <%= f.continue_button %>
     <% end %>
   </div>
 </div>

@@ -9,7 +9,7 @@
     <%= step_form @form_object do |f| %>
       <%= f.radio_button_fieldset :child_protection_cases, inline: true, choices: GenericYesNo.values %>
 
-      <%= f.submit class: 'button' %>
+      <%= f.continue_button %>
     <% end %>
 
     <%=t 'shared.why_we_use_children_html' %>
