@@ -17,7 +17,7 @@ module C100App
       when :written_agreement
         after_written_agreement
       when :email_consent
-        after_email_consent
+        start_application_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -82,8 +82,14 @@ module C100App
       end
     end
 
-    def after_email_consent
-      edit('/steps/miam/child_protection_cases')
+    # This is the very first step of the C100 application, once the screener
+    # has been successfully completed and the user is eligible.
+    #
+    # We might need to change it, but for now using this one. Whatever is the first
+    # step, make sure their controller includes the concern `SavepointStep`.
+    #
+    def start_application_journey
+      edit('/steps/miam/consent_order')
     end
   end
 end
