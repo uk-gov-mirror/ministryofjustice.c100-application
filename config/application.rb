@@ -22,8 +22,6 @@ end
 Bundler.require *Rails.groups(assets: %w(development test))
 
 class Application < Rails::Application
-  ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
-
   # This automatically adds id: :uuid to create_table in all future migrations
   config.generators do |g|
     g.orm :active_record, primary_key_type: :uuid

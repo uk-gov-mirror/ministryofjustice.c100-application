@@ -13,7 +13,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-
   context 'when the step is `children_postcodes`' do
     let(:step_params) { { children_postcodes: postcodes } }
 
@@ -71,7 +70,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
     let(:step_params){ {urgent: urgent} }
     let(:screener_answers) { double('screener_answers', urgent: urgent) }
 
-
     context 'and urgent is "yes"' do
       let(:urgent){ GenericYesNo::YES }
 
@@ -88,7 +86,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
   context 'when the step is `parent`' do
     let(:step_params){ {parent: parent} }
     let(:screener_answers) { double('screener_answers', parent: parent) }
-
 
     context 'and parent is "yes"' do
       let(:parent){ GenericYesNo::YES }
@@ -107,7 +104,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
     let(:step_params){ {over18: over18} }
     let(:screener_answers) { double('screener_answers', over18: over18) }
 
-
     context 'and over18 is "yes"' do
       let(:over18){ GenericYesNo::YES }
 
@@ -124,7 +120,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
   context 'when the step is `legal_representation`' do
     let(:step_params){ {legal_representation: legal_representation} }
     let(:screener_answers) { double('screener_answers', legal_representation: legal_representation) }
-
 
     context 'and legal_representation is "no"' do
       let(:legal_representation){ GenericYesNo::NO }
@@ -143,7 +138,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
     let(:step_params){ {written_agreement: written_agreement} }
     let(:screener_answers) { double('screener_answers', written_agreement: written_agreement) }
 
-
     context 'and written_agreement is "no"' do
       let(:written_agreement){ GenericYesNo::NO }
 
@@ -158,20 +152,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
   end
 
   context 'when the step is `email_consent`' do
-    let(:step_params){ {email_consent: email_consent} }
-    let(:screener_answers) { double('screener_answers', email_consent: email_consent) }
-
-
-    context 'and email_consent is "no"' do
-      let(:email_consent){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
-    end
-
-    context 'and email_consent is "yes"' do
-      let(:email_consent){ GenericYesNo::YES }
-
-      it { is_expected.to have_destination('/steps/miam/child_protection_cases', :edit) }
-    end
+    let(:step_params) { { email_consent: 'anything' } }
+    it { is_expected.to have_destination('/steps/miam/consent_order', :edit) }
   end
 end

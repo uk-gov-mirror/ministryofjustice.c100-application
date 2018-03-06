@@ -1374,6 +1374,7 @@ en:
         children_postcodes: Please enter one postcode per line. Only include postcodes that you are sure of - if you don't know any postcodes, leave this box blank. Please only enter full postcodes (like "SW1H 9AJ").
 
     submit:
+      continue: Continue
       create: Continue
       update: Continue
       cancel: Cancel
@@ -1382,7 +1383,7 @@ en:
       sign_in: Sign in
       reset_password: Reset password
       change_password: Change my password
-      save_and_continue: "Save and continue"
+      save_and_continue: Save and continue
 
   number:
     currency:
