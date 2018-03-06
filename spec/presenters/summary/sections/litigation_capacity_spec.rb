@@ -6,8 +6,8 @@ module Summary
       instance_double(C100Application,
         reduced_litigation_capacity: 'yes',
         participation_capacity_details: 'details',
-        participation_referral_or_assessment_details: 'details',
         participation_other_factors_details: 'details',
+        participation_referral_or_assessment_details: 'details',
     ) }
 
     subject { described_class.new(c100_application) }
@@ -35,12 +35,12 @@ module Summary
         expect(c100_application).to have_received(:participation_capacity_details)
 
         expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[2].question).to eq(:participation_referral_or_assessment_details)
-        expect(c100_application).to have_received(:participation_referral_or_assessment_details)
+        expect(answers[2].question).to eq(:participation_other_factors_details)
+        expect(c100_application).to have_received(:participation_other_factors_details)
 
         expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[3].question).to eq(:participation_other_factors_details)
-        expect(c100_application).to have_received(:participation_other_factors_details)
+        expect(answers[3].question).to eq(:participation_referral_or_assessment_details)
+        expect(c100_application).to have_received(:participation_referral_or_assessment_details)
       end
     end
   end

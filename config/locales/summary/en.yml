@@ -347,11 +347,11 @@ en:
         'yes': ''
         'no': *not_applicable
     participation_capacity_details:
-      question: Details of any factors affecting litigation capacity
-    participation_referral_or_assessment_details:
-      question: Details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
+      question: Details of any adult in this application who lacks the mental capacity to conduct these court proceedings
     participation_other_factors_details:
-      question: Other factors which may affect the ability of the person concerned to take part in the proceedings?
+      question: Details of anything else that could affect any adult in this application taking part in these court proceedings
+    participation_referral_or_assessment_details:
+      question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team and what the outcome was
 
     language_help:
       question: Does anyone in this application require any language help?
