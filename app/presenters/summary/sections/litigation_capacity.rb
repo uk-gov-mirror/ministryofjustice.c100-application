@@ -13,8 +13,8 @@ module Summary
         [
           Answer.new(:reduced_litigation_capacity, c100.reduced_litigation_capacity),
           FreeTextAnswer.new(:participation_capacity_details, c100.participation_capacity_details),
-          FreeTextAnswer.new(:participation_referral_or_assessment_details, c100.participation_referral_or_assessment_details),
           FreeTextAnswer.new(:participation_other_factors_details, c100.participation_other_factors_details),
+          FreeTextAnswer.new(:participation_referral_or_assessment_details, c100.participation_referral_or_assessment_details),
         ].select(&:show?)
       end
     end

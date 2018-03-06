@@ -636,12 +636,12 @@ en:
       litigation_capacity:
         edit:
           page_title: Litigation capacity
-          heading: Does anyone in this application have a condition that may affect their understanding of the court process?
-          lead_text: For example dyslexia or Attention deficit hyperactivity disorder (ADHD)
+          heading: Does any adult in this application have a condition or are there other factors that may affect them taking part in the court proceedings?
+          lead_text: For example a mental or physical impairment or health problem
       litigation_capacity_details:
         edit:
-          page_title: Conditions affecting ability to participate in proceedings
-          heading: Conditions affecting ability to participate in proceedings
+          page_title: Factors affecting ability to participate
+          heading: Factors affecting ability to participate
       special_assistance:
         edit:
           page_title: Special Assistance
@@ -1147,9 +1147,9 @@ en:
         without_notice_frustrate_details: *provide_details
         without_notice_impossible_details: *provide_details
       steps_application_litigation_capacity_details_form:
-        participation_capacity_details: Please give details of any factors affecting litigation capacity
-        participation_referral_or_assessment_details: Provide details of any referral to or assessment by the Adult Learning Disability team, and/or any adult health service, where known, together with the outcome
-        participation_other_factors_details: Are you aware of any other factors which may affect the ability of the person concerned to take part in the proceedings?
+        participation_capacity_details: Details of any adult in this application who lacks the mental capacity to conduct these court proceedings (if applicable)
+        participation_other_factors_details: Details of anything else that could affect any adult in this application taking part in these court proceedings (if applicable)
+        participation_referral_or_assessment_details: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team and what the outcome was (if you know)
       steps_application_special_assistance_form:
         special_assistance_details: *provide_details
       steps_application_special_arrangements_form:
@@ -1321,6 +1321,9 @@ en:
       steps_application_language_form:
         language_help: Including British Sign Language
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
+      steps_application_litigation_capacity_details_form:
+        participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain
+        participation_other_factors_details: For example, a learning disability or other mental or physical health problem
       steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
