@@ -403,15 +403,14 @@ en:
         edit:
           page_title: Risk of abduction
           section: Safety concerns
-          heading: Are your children at risk of being abducted?
-          lead_text: For example, by someone who is connected to the child such as the other parent or grandparent.
-          info_notice: Child abduction is when a person takes or sends a child under 16 away from the care of the person they normally live with. A child can be abducted both in the UK and abroad.
+          heading: Are the children at risk of being abducted?
+          lead_text: For example, there is a chance they may be taken or kept outside the UK without your consent.
       substance_abuse:
         edit:
           page_title: Substance abuse
           section: Safety concerns
           heading: Do you have any concerns about drug, alcohol or substance abuse?
-          lead_text: For example, you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
+          lead_text: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       substance_abuse_details:
         edit:
           page_title: Substance abuse details
@@ -421,7 +420,7 @@ en:
         edit:
           page_title: Children abuse
           section: Safety concerns
-          heading: Have your children ever been abused?
+          heading: Have the children ever experienced or been at risk of experiencing child abuse?
           info_html: |
             <p>Child abuse is any action that causes significant harm to a child.</p>
             <p>Examples include:</p>
@@ -431,13 +430,14 @@ en:
               <li>sexual abuse</li>
             </ul>
           info_note_html: |
-            <p>Only include abuse by the other person (the respondent) or someone connected to the other person.</p>
+            <p>Only include abuse by the other person (the respondent) or someone connected to the other person who has contact with the children.</p>
       domestic_abuse:
         edit:
           page_title: Domestic abuse
-          heading: Have you ever been abused?
+          section: Safety concerns
+          heading: Have you ever experienced or been at risk of experiencing domestic abuse?
           info_html: |
-            <p>Domestic abuse is any type of controlling, threatening or violent behaviour between people in a relationship.</p>
+            <p>Domestic abuse is any type of controlling, threatening or violent behaviour between people aged over 16 in a relationship.</p>
             <p>Examples include:</p>
             <ul class="list list-bullet">
               <li>financial abuse (withholding child maintenance payments isn't considered financial abuse)</li>
@@ -445,6 +445,7 @@ en:
               <li>physical abuse</li>
               <li>sexual abuse</li>
             </ul>
+          additional_info: It also includes culturally specific forms of abuse including, but not limited to, forced marriage, honour-based violence, dowry-related abuse and transnational marriage abandonment.
           info_note_html: |
             <p>Only include abuse by the other person (the respondent) or someone connected to the other person.</p>
       other_abuse:
@@ -458,8 +459,8 @@ en:
           section: Safety concerns
           heading: Keeping your contact details private
           lead_text_html: |
-            <p>A copy of your court application will be sent to the other person. This will include your contact details.</p>
-            <p>If you think the other person poses a threat to the safety of you or your children you can keep your contact details private.</p>
+            <p>A copy of your court application will be sent to all the other people named in the application (the respondents). This will include your contact details.</p>
+            <p>If you think the other people pose a threat to the safety of you or the children, you can ask the court to keep your contact details private.</p>
 
     miam:
       attended:
@@ -1022,7 +1023,7 @@ en:
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
       steps_safety_questions_address_confidentiality_form:
-        address_confidentiality_html: "Do you want to keep your contact details private from the other person?"
+        address_confidentiality_html: "Do you want to keep your contact details private?"
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
       steps_safety_questions_substance_abuse_form:
