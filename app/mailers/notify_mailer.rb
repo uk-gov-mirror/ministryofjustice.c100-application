@@ -47,6 +47,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
     mail(to: c100_application.user.email)
   end
 
+  def draft_expire_reminder(c100_application, template_name)
+    set_template(template_name)
+
+    set_personalisation(
+      resume_draft_url: resume_users_draft_url(c100_application)
+    )
+
+    mail(to: c100_application.user.email)
+  end
+
   protected
 
   # rubocop:disable Naming/AccessorMethodName

@@ -17,6 +17,8 @@ RSpec.describe NotifyMailer, type: :mailer do
       reset_password: 'reset_password_template_id',
       change_password: 'change_password_template_id',
       application_saved: 'application_saved_template_id',
+      draft_first_reminder: 'draft_first_reminder_template_id',
+      draft_last_reminder: 'draft_last_reminder_template_id',
     )
   end
 
@@ -33,6 +35,40 @@ RSpec.describe NotifyMailer, type: :mailer do
         resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
         draft_expire_in_days: 14,
       })
+    end
+  end
+
+  describe 'draft_first_reminder' do
+    let(:mail) { described_class.draft_expire_reminder(c100_application, :draft_first_reminder) }
+
+    it_behaves_like 'a Notify mail', template_id: 'draft_first_reminder_template_id'
+
+    it { expect(mail.to).to eq(['test@example.com']) }
+
+    context 'personalisation' do
+      it 'sets the personalisation' do
+        expect(mail.govuk_notify_personalisation).to eq({
+          service_name: 'Apply to court about child arrangements',
+          resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
+        })
+      end
+    end
+  end
+
+  describe 'draft_last_reminder' do
+    let(:mail) { described_class.draft_expire_reminder(c100_application, :draft_last_reminder) }
+
+    it_behaves_like 'a Notify mail', template_id: 'draft_last_reminder_template_id'
+
+    it { expect(mail.to).to eq(['test@example.com']) }
+
+    context 'personalisation' do
+      it 'sets the personalisation' do
+        expect(mail.govuk_notify_personalisation).to eq({
+          service_name: 'Apply to court about child arrangements',
+          resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
+        })
+      end
     end
   end
 
