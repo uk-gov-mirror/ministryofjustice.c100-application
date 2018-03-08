@@ -5,6 +5,12 @@ module Summary
         :c1a_concerns_details
       end
 
+      # Always show, even if there are no substance abuse, as this will
+      # render the concerns section header
+      def show?
+        true
+      end
+
       def answers
         return [] unless c100.substance_abuse.eql?(GenericYesNo::YES.to_s)
 
