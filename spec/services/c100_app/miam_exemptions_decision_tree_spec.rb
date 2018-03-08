@@ -36,9 +36,38 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
   end
 
   describe '#playback_destination' do
+    let(:c100_application) { C100Application.new(attributes) }
+    let(:attributes) {
+      {
+        child_protection_cases: 'no',
+        miam_certification_number: nil,
+        substance_abuse: 'no',
+        miam_exemption: nil,
+      }
+    }
+
+    context 'when children have been involved in court cases' do
+      let(:attributes) { super().merge(child_protection_cases: 'yes') }
+
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/petition/orders', action: :edit)
+      }
+    end
+
+    context 'when MIAM certification is present' do
+      let(:attributes) { super().merge(miam_certification_number: '1234X') }
+
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/petition/orders', action: :edit)
+      }
+    end
+
     context 'when there are MIAM exemptions' do
-      let(:c100_application) { double('Object', miam_exemption: miam_exemption) }
-      let(:miam_exemption) { MiamExemption.new(domestic: ['anything']) }
+      let(:attributes) { super().merge(miam_exemption: MiamExemption.new(domestic: ['anything'])) }
 
       it {
         expect(
@@ -48,7 +77,7 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     end
 
     context 'when there are safety concerns' do
-      let(:c100_application) { C100Application.new(substance_abuse: 'yes') }
+      let(:attributes) { super().merge(substance_abuse: 'yes') }
 
       it {
         expect(
