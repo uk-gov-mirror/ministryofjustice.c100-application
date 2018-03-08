@@ -20,7 +20,9 @@ module C100App
     end
 
     def playback_destination
-      if has_miam_exemptions?
+      if has_child_protection_cases? || has_mediator_details?
+        edit('/steps/petition/orders')
+      elsif has_miam_exemptions?
         show('/steps/miam_exemptions/reasons_playback')
       elsif has_safety_concerns?
         show('/steps/miam_exemptions/safety_playback')
@@ -39,6 +41,14 @@ module C100App
 
     def has_safety_concerns?
       c100_application.has_safety_concerns?
+    end
+
+    def has_child_protection_cases?
+      c100_application.child_protection_cases.eql?(GenericYesNo::YES.to_s)
+    end
+
+    def has_mediator_details?
+      c100_application.miam_certification_number
     end
   end
 end
