@@ -3,6 +3,7 @@ en:
     to_be_completed: &to_be_completed "To be completed by the court"
     not_applicable: &not_applicable "Not applicable"
     unknown: &unknown "Don't know"
+    details: &details "Details:"
 
     YESNO: &YESNO
       'yes': 'Yes'
@@ -64,7 +65,7 @@ en:
     admin_case_number: Case number
     admin_date_issued: Date issued
     admin_orders_applied_for: Order(s) applied for
-    c8_confidential_answer: < See C8 attached >
+    c8_confidential_answer: See C8 attached
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
     statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
     relationship_to_child:
@@ -317,12 +318,12 @@ en:
     application_details:
       question: Why are you making this application?
     urgent_hearing_details:
-      question: 'Details:'
+      question: *details
       answers:
         'yes': ''
         'no': *not_applicable
     without_notice_hearing_details:
-      question: 'Details:'
+      question: *details
       answers:
         'yes': ''
         'no': *not_applicable
@@ -342,7 +343,7 @@ en:
       question: ''
 
     reduced_litigation_capacity:
-      question: 'Details:'
+      question: *details
       answers:
         'yes': ''
         'no': *not_applicable
@@ -358,25 +359,25 @@ en:
       answers:
         <<: *YESNO
     language_help_details:
-      question: 'Details:'
+      question: *details
     intermediary_help:
       question: Are you aware of whether an intermediary will be required?
       answers:
         <<: *YESNO
     intermediary_help_details:
-      question: 'Details:'
+      question: *details
     special_assistance:
       question: Special assistance or special facilities required for any of the parties
       answers:
         <<: *YESNO
     special_assistance_details:
-      question: 'Details:'
+      question: *details
     special_arrangements:
       question: Special arrangements for applicant or relevant children to attend court
       answers:
         <<: *YESNO
     special_arrangements_details:
-      question: 'Details:'
+      question: *details
 
     person_full_name:
       question: Full name
@@ -523,7 +524,7 @@ en:
       answers:
         <<: *YESNO
     c1a_abduction_previous_attempt_details:
-      question: 'Details:'
+      question: *details
     c1a_abduction_children_current_location:
       question: Where is/are the child(ren) now?
     c1a_abduction_passport_office_notified:
@@ -541,13 +542,13 @@ en:
         passport_possession_father: Father
         passport_possession_other: Other
     c1a_abduction_passport_possession_other:
-      question: 'If "Other", details:'
+      question: 'Details of other:'
     c1a_abduction_previous_attempt_agency_involved:
-      question: Were the police in this and/ or another country or any organisation or agency including any private investigators involved in any previous incident of attempted abduction or abduction.
+      question: Were the police in this and/or another country or any organisation or agency including any private investigators involved in any previous incident of attempted abduction or abduction.
       answers:
         <<: *YESNO
     c1a_abduction_previous_attempt_agency_details:
-      question: 'Details:'
+      question: *details
 
     c1a_order_name:
       question: Order

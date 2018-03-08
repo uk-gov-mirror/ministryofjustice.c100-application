@@ -19,6 +19,10 @@ module Summary
       it { expect(subject.name).to eq(:c1a_concerns_details) }
     end
 
+    describe '#show?' do
+      it { expect(subject.show?).to eq(true) }
+    end
+
     describe '#answers' do
       it 'has the correct rows' do
         expect(answers.count).to eq(3)

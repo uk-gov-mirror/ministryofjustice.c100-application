@@ -11,6 +11,10 @@ module Summary
     end
 
     # :nocov:
+    def name
+      raise 'implement in subclasses'
+    end
+
     def sections
       raise 'implement in subclasses'
     end
