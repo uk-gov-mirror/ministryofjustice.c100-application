@@ -8,7 +8,10 @@
   margin: 0 auto;
 
   p, ul {
-    font-size: 70%;
+    font-size: 10px;
+  }
+  ul.list:last-child {
+    margin-bottom: 10px;
   }
 
   .form-header {
