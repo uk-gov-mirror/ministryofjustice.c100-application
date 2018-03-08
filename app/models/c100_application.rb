@@ -18,21 +18,23 @@ class C100Application < ApplicationRecord
   has_many :abuse_concerns,   dependent: :destroy
   has_many :relationships,    dependent: :destroy
 
-  # Remember, we are using UUIDs as the record IDs, we can't rely on ID sequential ordering
-  has_many :people,      -> { order(created_at: :asc) }
-  has_many :minors,      -> { order(created_at: :asc) }
-  has_many :children,    -> { order(created_at: :asc) }, dependent: :destroy
-  has_many :applicants,  -> { order(created_at: :asc) }, dependent: :destroy
-  has_many :respondents, -> { order(created_at: :asc) }, dependent: :destroy
-
-  has_many :other_children, -> { order(created_at: :asc) }, dependent: :destroy
-  has_many :other_parties,  -> { order(created_at: :asc) }, dependent: :destroy
+  has_many :people,           dependent: :destroy
+  has_many :minors
+  has_many :children
+  has_many :applicants
+  has_many :respondents
+  has_many :other_children
+  has_many :other_parties
 
   scope :not_completed, -> { where.not(status: :completed) }
   scope :with_owner,    -> { where.not(user: nil) }
 
   has_value_object :user_type
   has_value_object :concerns_contact_type
+
+  def self.purge!(date)
+    where('created_at <= :date', date: date).destroy_all
+  end
 
   def confidentiality_enabled?
     address_confidentiality.eql?(GenericYesNo::YES.to_s)
