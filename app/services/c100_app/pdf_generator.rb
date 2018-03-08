@@ -15,7 +15,10 @@ module C100App
     private
 
     def pdf_from_presenter(presenter)
-      WickedPdf.new.pdf_from_string(render(presenter), pdf_options)
+      WickedPdf.new.pdf_from_string(
+        render(presenter),
+        footer: { right: "#{presenter.name}  [page]/[topage]" }
+      )
     end
 
     def render(presenter)
@@ -27,10 +30,6 @@ module C100App
 
     def combiner
       @_combiner ||= CombinePDF.new
-    end
-
-    def pdf_options
-      { footer: { right: '[page]/[topage]' } }
     end
   end
 end

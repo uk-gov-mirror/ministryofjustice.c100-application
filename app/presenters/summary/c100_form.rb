@@ -1,5 +1,9 @@
 module Summary
   class C100Form < BasePdfForm
+    def name
+      'C100'
+    end
+
     def sections
       [
         summary_sections,

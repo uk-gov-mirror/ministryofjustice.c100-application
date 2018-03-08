@@ -1,5 +1,9 @@
 module Summary
   class C8Form < BasePdfForm
+    def name
+      'C8'
+    end
+
     def sections
       [
         Sections::FormHeader.new(c100_application, name: :c8_form),

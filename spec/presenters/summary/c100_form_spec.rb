@@ -5,6 +5,10 @@ module Summary
     let(:c100_application) { instance_double(C100Application) }
     subject { described_class.new(c100_application) }
 
+    describe '#name' do
+      it { expect(subject.name).to eq('C100') }
+    end
+
     describe '#template' do
       it { expect(subject.template).to eq('steps/completion/summary/show.pdf') }
     end

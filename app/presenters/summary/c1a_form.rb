@@ -1,5 +1,9 @@
 module Summary
   class C1aForm < BasePdfForm
+    def name
+      'C1A'
+    end
+
     def sections
       [
         Sections::FormHeader.new(c100_application, name: :c1a_form),
