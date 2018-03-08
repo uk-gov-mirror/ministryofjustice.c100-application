@@ -29,6 +29,8 @@ class Application < Rails::Application
 
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
 
+  config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
+
   config.survey_link = 'https://www.gov.uk/done/c100'.freeze
   config.kickout_survey_link = 'REPLACEME'.freeze
 
@@ -43,8 +45,12 @@ class Application < Rails::Application
   config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
-  config.x.drafts.expire_in_days = ENV.fetch('EXPIRE_AFTER', 14).to_i
-  config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
+  # We maintain C100 applications for this number of days, regardless of their status,
+  # and if it has an owner (it was saved for later), we send up to two email reminders
+  # before we delete the application. If you change this number make sure to also update
+  # `app/services/c100_app/reminder_rule_set.rb` and the Notify email templates.
+  config.x.drafts.expire_in_days = ENV.fetch('DRAFTS_EXPIRE_AFTER', 14).to_i
 
-  config.action_mailer.default_url_options = {host: ENV.fetch('EXTERNAL_URL')}
+  # When a user is purged, any saved C100 applications belonging to them, are also purged.
+  config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
 end
