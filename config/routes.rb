@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   namespace :steps do
     namespace :screener do
+      show_step :start
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
@@ -224,7 +225,7 @@ Rails.application.routes.draw do
     get :unhandled
   end
 
-  root to: 'entrypoint#v1'
+  root 'steps/screener/start#show'
 
   get 'entrypoint/v1'
   get 'entrypoint/v2'
