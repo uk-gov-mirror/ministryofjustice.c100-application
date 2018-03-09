@@ -7,8 +7,10 @@ class RelationshipsPresenter
     @c100_application = c100_application
   end
 
-  def relationship_to_children(person_or_people, show_person_name: true)
-    return C8ConfidentialityPresenter.replacement_answer if under_c8?(person_or_people)
+  def relationship_to_children(person_or_people, show_person_name: true, bypass_c8: false)
+    unless bypass_c8
+      return C8ConfidentialityPresenter.replacement_answer if under_c8?(person_or_people)
+    end
 
     relationships.where(minor: minors, person: person_or_people).map do |relationship|
       show_person_name ? present_relation_with_person(relationship) : present_relation_without_person(relationship)

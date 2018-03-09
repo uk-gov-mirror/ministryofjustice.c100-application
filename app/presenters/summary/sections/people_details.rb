@@ -11,6 +11,12 @@ module Summary
       end
       # :nocov:
 
+      # Override in subclasses to disable the hiding of relationships.
+      # Right now, this is only needed in `sections/c8_other_parties_details.rb`
+      def bypass_relationships_c8?
+        false
+      end
+
       # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def answers
         record_collection.map.with_index(1) do |person, index|
@@ -30,7 +36,9 @@ module Summary
             FreeTextAnswer.new(:person_email, person.email),
             FreeTextAnswer.new(
               :person_relationship_to_children,
-              RelationshipsPresenter.new(c100_application).relationship_to_children(person, show_person_name: false)
+              RelationshipsPresenter.new(c100_application).relationship_to_children(
+                person, show_person_name: false, bypass_c8: bypass_relationships_c8?
+              )
             ),
             Partial.row_blank_space,
           ]
