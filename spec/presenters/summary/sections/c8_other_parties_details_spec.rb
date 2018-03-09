@@ -44,6 +44,10 @@ module Summary
       it { expect(subject.show_header?).to eq(true) }
     end
 
+    describe '#bypass_relationships_c8?' do
+      it { expect(subject.bypass_relationships_c8?).to eq(true) }
+    end
+
     describe '#record_collection' do
       it {
         expect(c100_application).to receive(:other_parties)
@@ -55,7 +59,9 @@ module Summary
       before do
         allow_any_instance_of(
           RelationshipsPresenter
-        ).to receive(:relationship_to_children).with(other_party, show_person_name: false).and_return('relationships')
+        ).to receive(:relationship_to_children).with(
+          other_party, show_person_name: false, bypass_c8: true
+        ).and_return('relationships')
       end
 
       it 'has the correct number of rows' do

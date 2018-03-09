@@ -39,6 +39,10 @@ module Summary
       }
     end
 
+    describe '#bypass_relationships_c8?' do
+      it { expect(subject.bypass_relationships_c8?).to eq(false) }
+    end
+
     describe '#answers' do
       it 'has the correct number of rows' do
         expect(answers.count).to eq(8)

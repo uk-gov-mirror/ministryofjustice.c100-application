@@ -58,6 +58,10 @@ module Summary
       }
     end
 
+    describe '#bypass_relationships_c8?' do
+      it { expect(subject.bypass_relationships_c8?).to eq(false) }
+    end
+
     # The following tests can be fragile, but on purpose. During the development phase
     # we have to update the tests each time we introduce a new row or remove another.
     # But once it is finished and stable, it will raise a red flag if it ever gets out
@@ -67,7 +71,9 @@ module Summary
       before do
         allow_any_instance_of(
           RelationshipsPresenter
-        ).to receive(:relationship_to_children).with(other_party, show_person_name: false).and_return('relationships')
+        ).to receive(:relationship_to_children).with(
+          other_party, show_person_name: false, bypass_c8: false
+        ).and_return('relationships')
       end
 
       it 'has the correct number of rows' do

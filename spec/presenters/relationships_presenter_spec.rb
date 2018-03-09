@@ -69,12 +69,18 @@ RSpec.describe RelationshipsPresenter do
         it 'returns the C8 replacement string' do
           expect(subject.relationship_to_children(person)).to eq('See C8 attached')
         end
+
+        context 'but the bypass is activated' do
+          it 'returns the relationship details' do
+            expect(subject.relationship_to_children(person, bypass_c8: true)).to eq('Person name - Father to Child name')
+          end
+        end
       end
 
       context 'and confidentiality is disabled' do
         let(:confidentiality_enabled) { false }
 
-        it 'returns the C8 replacement string' do
+        it 'returns the relationship details' do
           expect(subject.relationship_to_children(person)).to eq('Person name - Father to Child name')
         end
       end
