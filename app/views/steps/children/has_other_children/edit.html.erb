@@ -11,5 +11,18 @@
 
       <%= f.continue_button %>
     <% end %>
+
+    <div class="extraBlocks  govuk-govspeak gv-s-prose">
+      <div>
+        <details role="group" data-block-name="has_other_children">
+          <summary role="button">
+            <span class="summary"><%=t '.block_title' %></span>
+          </summary>
+          <div class=" panel panel-border-narrow undefined">
+            <%=t '.block_content_html' %>
+          </div>
+        </details>
+      </div>
+    </div>
   </div>
 </div>

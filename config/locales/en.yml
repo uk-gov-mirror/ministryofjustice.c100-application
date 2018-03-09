@@ -15,6 +15,7 @@ en:
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
+      attending_court: &attending_court "Attending court"
 
     YESNO: &YESNO
       'yes': 'Yes'
@@ -71,7 +72,7 @@ en:
       full_name: Full name
       has_previous_name:
         <<: *YESNO
-      previous_name: What was their previous name?
+      previous_name: Enter their previous name
       gender:
         female: Female
         male: Male
@@ -141,7 +142,7 @@ en:
     shared:
       kickout_feedback: Give your feedback. Help improve this service
       relationship_step:
-        heading: "How is %{person_name} related to %{child_name}?"
+        heading: "What is %{person_name}'s relationship to %{child_name}?"
       screener_exit_actions:
         what_to_do_now:
           heading: What to do now
@@ -156,7 +157,7 @@ en:
         edit:
           page_title: Applicant names
           heading: Enter the applicant’s name
-          body_info: You and anyone else making this application are known as the applicant.
+          body_info: You and anyone else making this application are known as the applicants.
           record_index: "Applicant %{index}"
           btn_add_another: Add another applicant
           btn_remove: Remove last applicant
@@ -182,7 +183,7 @@ en:
         edit:
           page_title: Respondent names
           heading: Enter the respondent’s name
-          body_info: The other person who will receive this application is known as the respondent.
+          body_info: The other people who will receive this application are known as the respondents.
           record_index: "Respondent %{index}"
           btn_add_another: Add another respondent
           btn_remove: Remove last respondent
@@ -198,7 +199,14 @@ en:
       has_other_parties:
         edit:
           page_title: Other parties required
-          heading: Are there any other people who should be given notice of the hearing?
+          heading: Is there anyone else who should know about your application?
+          info_html: |
+            <p>For example, you should tell everyone who:</p>
+            <ul class="list list-bullet">
+              <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as a children's home)</li>
+              <li>is currently involved in another court case or named in a current court order that concerns the children and is relevant to this application</li>
+              <li>the child has lived with for at least 3 years prior to this application</li>
+            </ul>
       relationship:
         edit:
           page_title: Respondent relationship
@@ -228,7 +236,11 @@ en:
       has_other_children:
         edit:
           page_title: Other children required
-          heading: Do you have other children that aren’t part of this application?
+          heading: Do you or the other person (the respondent) have other children (separately or together) who aren’t part of this application?
+          block_title: Why do we need to ask this?
+          block_content_html: |
+            <p>The <a href="https://www.cafcass.gov.uk/">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
+            <p>They will contact the police and local authorities to see if they have any relevant information about your other children.</p>
       orders:
         edit:
           page_title: Which orders apply to the child
@@ -237,7 +249,7 @@ en:
       residence:
         edit:
           page_title: Child residence
-          heading: "Who does %{name} live with?"
+          heading: "Who does %{name} currently live with?"
           or: or
     other_children:
       names:
@@ -638,20 +650,24 @@ en:
       litigation_capacity:
         edit:
           page_title: Litigation capacity
+          section: *attending_court
           heading: Does any adult in this application have a condition or are there other factors that may affect them taking part in the court proceedings?
           lead_text: For example a mental or physical impairment or health problem
       litigation_capacity_details:
         edit:
           page_title: Factors affecting ability to participate
+          section: *attending_court
           heading: Factors affecting ability to participate
       special_assistance:
         edit:
           page_title: Special Assistance
+          section: *attending_court
           heading: Does anyone in this application need assistance or special facilities when attending court?
-          lead_text: For example you need a hearing loop or your documents in braille
+          lead_text: For example you need support to use British Sign Language, a hearing loop or your documents in braille
       special_arrangements:
         edit:
           page_title: Special Arrangements
+          section: *attending_court
           heading: Do you or your children need specific arrangements when you attend court?
           lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns
       details:
@@ -669,10 +685,13 @@ en:
       language:
         edit:
           page_title: Language help
-          heading: Does anyone in this application require help with any language?
+          section: *attending_court
+          heading: Does anyone in this application need help with language?
+          info_html: You can ask for an interpreter. In Wales you have the right to speak Welsh at any court hearing
       intermediary:
         edit:
           page_title: Intermediary help
+          section: *attending_court
           heading: Does anyone in this application need someone to help them communicate in court?
           lead_text: They may need a person (also known as an intermediary) to help them understand and participate in the court process
       help_paying:
@@ -815,7 +834,7 @@ en:
         edit:
           page_title: Are you and the respondent both over 18?
           heading: Are you and the respondent both over 18?
-          lead_text: The other person who will receive this application is known as the respondent. You can only use this service if you and the respondent are both over 18.
+          lead_text: The other people who will receive this application are known as the respondents. You can only use this service if you and the respondent are both over 18.
       over18_exit:
         show:
           page_title: Sorry, you're not eligible for this service
@@ -1082,7 +1101,7 @@ en:
       steps_alternatives_court_form:
         court_acknowledgement_html: ""
       steps_applicant_personal_details_form:
-        has_previous_name: Previous name?
+        has_previous_name: Have they changed their name?
         gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
@@ -1223,7 +1242,7 @@ en:
         full_name: Full name of other party
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-        previous_name: Please enter previous name
+        previous_name: Enter their previous name
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_applicant_contact_details_form:
@@ -1325,7 +1344,6 @@ en:
         without_notice_details: A court will only accept your request if you provide good reason why you need one
         without_notice_impossible: Either by telephone, text, email or another way because of exceptional urgency
       steps_application_language_form:
-        language_help: Including British Sign Language
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain
@@ -1340,6 +1358,7 @@ en:
         orders_prohibited_steps: Select all that apply
         orders_specific_issues: Select all that apply
       steps_applicant_personal_details_form:
+        has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         birthplace: *birthplace_hint
       steps_applicant_contact_details_form:
         address: Enter your full address including postcode
@@ -1347,6 +1366,7 @@ en:
       steps_respondent_names_form:
         new_name_html: *name_instructions
       steps_respondent_personal_details_form:
+        has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
         address: *address_hint
@@ -1420,7 +1440,6 @@ en:
       hide_password: Hide password
     form_elements:
       dob: Date of birth
-      dob_hint_html: 'If party under 18 read section R of <a href="http://formfinder.hmctsformfinder.justice.gov.uk/cb1-eng.pdf">leaflet CB1</a>'
       order_issue: What date was it issued?
     why_we_use_children_html: |
       <details>
