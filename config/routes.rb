@@ -75,6 +75,7 @@ Rails.application.routes.draw do
       edit_step :written_agreement
       show_step :written_agreement_exit
       edit_step :email_consent
+      show_step :done
     end
     namespace :application do
       edit_step :previous_proceedings
