@@ -211,9 +211,9 @@ en:
     children:
       names:
         edit:
-          page_title: Enter the names of your children
-          heading: Enter the names of your children
-          body_info: Only include the children you’re making this application for
+          page_title: Enter the names of the children
+          heading: Enter the names of the children
+          body_info: Only include the children you’re making this application about
           record_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
@@ -232,7 +232,8 @@ en:
       orders:
         edit:
           page_title: Which orders apply to the child
-          heading: "Which of the requested orders relate to %{name}?"
+          heading: "Which of the orders applied for relate to %{name}?"
+          info_html: Select all that apply
       residence:
         edit:
           page_title: Child residence
@@ -525,8 +526,8 @@ en:
     petition:
       orders:
         edit:
-          page_title: What are you asking the court to do?
-          heading: What are you asking the court to do about your children?
+          page_title: What are you asking the court to decide?
+          heading: What are you asking the court to decide about the children involved?
           lead_text: Select all that apply
       other_issue:
         edit:
@@ -534,8 +535,8 @@ en:
           heading: Provide details of the issue you’re asking the court to resolve
       playback:
         show:
-          page_title: What you are asking the court to do
-          heading: What you’re asking the court to do about your children
+          page_title: What you are asking the court to decide
+          heading: What you’re asking the court to decide about the children
           lead_text:
             zero: 'You would like the court to:'
           lead_text_stop:
@@ -1355,7 +1356,7 @@ en:
         new_name_html: *name_instructions
       steps_children_additional_details_form:
         children_protection_plan_html: |
-          A child protection plan sets out how a child can be kept safe and is usually drawn up by a local authority
+          A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
       steps_children_residence_form:
         person_ids_html: Select all that apply
       steps_other_children_names_form:
