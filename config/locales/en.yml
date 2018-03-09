@@ -622,12 +622,11 @@ en:
           heading: Are you asking for a without notice hearing?
           lead_text_html: |
             <div class=" govuk-govspeak gv-s-prose">
-              <p>A without notice hearing is when your case is urgent and you don’t want to tell the other person about your application.</p>
-              <p>You can only apply for a without notice hearing if you can show that:</p>
+              <p>A without notice hearing is when your case is urgent and there is good reason not to tell the other person about your application.</p>
+              <p>You can only apply for a without notice hearing if you show that:</p>
               <ul class="list list-bullet">
-                <li>telling the other person would allow them to interfere with your application</li>
-                <li>you or your children wouldn’t be safe if the other person knows</li>
-                <li>you don’t have time to tell the other person</li>
+                <li>telling the other person would allow them to obstruct your application</li>
+                <li>you or the children would not be safe if the other person knows there is literally no time to tell the other person</li>
               </ul>
             </div>
       without_notice_details:
@@ -652,7 +651,7 @@ en:
         edit:
           page_title: Special Arrangements
           heading: Do you or your children need specific arrangements when you attend court?
-          lead_text: For example you need a separate waiting room to the other person due to safety concerns
+          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns
       details:
         edit:
           page_title: Application details
@@ -661,9 +660,10 @@ en:
             <p>You should include details of any of the following (if they apply):</p>
             <ul class="list list-bullet">
               <li>your reasons for bringing this application to court</li>
-              <li>any previous parenting plans or agreements (formal or informal), and why they broke down</li>
+              <li>what you want the court to decide (what outcome you want)</li>
+              <li>why the other person disagrees</li>
+              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
-            <p>You don’t have to give a full statement although you may be asked to provide one later.</p>
       language:
         edit:
           page_title: Language help
@@ -671,8 +671,8 @@ en:
       intermediary:
         edit:
           page_title: Intermediary help
-          heading: Does anyone in this application need a person to help them in court?
-          lead_text: You may need a person (also known as an intermediary) to help if you have condition that affects your ability to participate in the court process.
+          heading: Does anyone in this application need someone to help them communicate in court?
+          lead_text: They may need a person (also known as an intermediary) to help them understand and participate in the court process
       help_paying:
         edit:
           page_title: Help paying
@@ -684,8 +684,8 @@ en:
       resident:
         edit:
           page_title: International resident
-          heading: Does anyone significant to your children live in another country?
-          lead_text: For example, a grandparent or other close relatives
+          heading: Is the life of anyone significant to the children mainly based in a country outside England or Wales?
+          lead_text: For example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
           why_we_ask_this_html: |
             <details>
               <summary>
@@ -698,11 +698,13 @@ en:
       jurisdiction:
         edit:
           page_title: International jurisdiction
-          heading: Do you think the other person may have grounds to apply for a similar order in another country?
+          heading: Do you think the other person may be able to apply for a similar order in a country outside England or Wales?
+          info_html: For example, because a court in another country has the power to act (has jurisdiction)
       request:
         edit:
           page_title: International request
-          heading: Has a court case about your children already started in another country?
+          heading: Has a local authority in England or Wales requested information about your children from another country, or has another country requested information?
+          info_html: This may be due to child protection concerns
     miam_exemptions:
       domestic:
         edit:
@@ -786,9 +788,9 @@ en:
           lead_text: "You can only apply for an urgent hearing if you can show that:"
           info_html: |
             <ul class="list list-bullet">
-              <li>you or your children are at immediate risk of harm</li>
-              <li>your children are at risk of abduction</li>
-              <li>proceedings for your family dispute may start in another country</li>
+              <li>you or the children are at risk of immediate harm</li>
+              <li>the children are at risk of abduction</li>
+              <li>proceedings for this family dispute may start in another country</li>
             </ul>
           warning: Call 999 if you or your children are in immediate danger
       urgent_exit:
@@ -975,8 +977,8 @@ en:
       steps_application_without_notice_form:
         without_notice_html: ""
       steps_application_without_notice_details_form:
-        without_notice_frustrate_html: Do you require a without notice hearing because notice to a respondent will frustrate the order that is being applied for?
-        without_notice_impossible_html: Do you require a without notice hearing because it is not possible to give notice including abridged or informal notice?
+        without_notice_frustrate_html: Are you asking for a without notice hearing because the other person may do something that obstructs this application if they knew about it?
+        without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice to the other person?
       steps_application_litigation_capacity_form:
         reduced_litigation_capacity_html: ""
       steps_application_special_assistance_form:
@@ -1140,11 +1142,11 @@ en:
         court_name: Name of court
         case_number: Case number
         proceedings_date: Date/year
-        cafcass_details: Name and office of Cafcass/CAFCASS CYMRU officer
+        cafcass_details: Name and office of Cafcass/Cafcass Cymru officer
         order_types: Type of proceedings
         previous_details: Add details of any other previous family case
       steps_application_without_notice_details_form:
-        without_notice_details: Give as much information as you can
+        without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
         without_notice_impossible_details: *provide_details
       steps_application_litigation_capacity_details_form:
@@ -1312,19 +1314,22 @@ en:
       steps_applicant_names_form:
         new_name_html: *name_instructions
       steps_application_court_proceedings_form:
-        proceedings_date: Enter an approximate date if unsure
+        proceedings_date: Add approximate date if unsure
         case_number: Leave blank if you don’t know
         cafcass_details: Leave blank if you don’t know
         order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
         previous_details: Try and include as many details as possible, for example case number, date and name of court
       steps_application_without_notice_details_form:
-        without_notice_details: A court will only accept an order without notice if you give a full account of the evidence
+        without_notice_details: A court will only accept your request if you provide good reason why you need one
+        without_notice_impossible: Either by telephone, text, email or another way because of exceptional urgency
       steps_application_language_form:
         language_help: Including British Sign Language
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem
+      steps_application_details_form:
+        application_details: You do not have to give a full statement although you may be asked to provide one later.
       steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_previous_attempt_details_form:
