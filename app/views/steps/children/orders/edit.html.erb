@@ -6,6 +6,8 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
+    <p><%=t '.info_html' %></p>
+
     <%= step_form @form_object do |f| %>
       <%= f.check_box_fieldset :orders, @petition.all_selected_orders %>
 
