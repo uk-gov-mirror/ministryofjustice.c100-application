@@ -471,7 +471,7 @@ en:
             <p>The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
             <ul class="list list-bullet">
               <li>taken place within the past 4 months</li>
-              <li>been about the same child arrangements issue</li>
+              <li>been about the same or a very similar child arrangements issue</li>
             </ul>
       exemption_claim:
         edit:
@@ -520,7 +520,8 @@ en:
       child_protection_cases:
         edit:
           page_title: Child protection cases
-          heading: Have your children ever been involved in any court cases about an emergency protection, care or supervision order?
+          heading: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
+          info_html: These will involve a local authority.
     petition:
       orders:
         edit:
@@ -711,30 +712,30 @@ en:
           page_title: Evidence of domestic abuse concerns
           section: *miam_exemptions
           heading: Providing evidence of domestic abuse concerns
-          lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have to support your claim.
+          lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have in support of this.
           or: or
       protection:
         edit:
-          page_title: Evidence of child protection concerns
+          page_title: Child protection concerns
           section: *miam_exemptions
-          heading: Providing evidence of child protection concerns
+          heading: Confirming child protection concerns
           or: or
       urgency:
         edit:
-          page_title: Evidence that your application is urgent
+          page_title: Urgent application
           section: *miam_exemptions
-          heading: Providing evidence that your application is urgent
+          heading: Confirming why your application is urgent
           or: or
       adr:
         edit:
-          page_title: Evidence of a previous valid reason or non-court resolution attendance
-          heading: Providing evidence of a previous valid reason or non-court resolution attendance
+          page_title: Previous valid reason or non-court resolution attendance
+          heading: Confirming a previous valid reason or non-court resolution attendance
           section: *miam_exemptions
           or: or
       misc:
         edit:
-          page_title: Evidence of other valid reasons for not attending
-          heading: Providing evidence of other valid reasons for not attending
+          page_title: Other valid reasons for not attending
+          heading: Confirming other valid reasons for not attending
           section: *miam_exemptions
           or: or
       reasons_playback:
@@ -1009,16 +1010,16 @@ en:
         domestic_exemptions_html: "Do you have any of the following evidence of domestic abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_protection_form:
-        protection_exemptions_html: "Do you have any of the following evidence of child protection concerns?"
+        protection_exemptions_html: "Do any of the following apply?"
         exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
-        urgency_exemptions_html: "Do you have any of the following evidence that your application is urgent?"
+        urgency_exemptions_html: "Do any of the following apply?"
         exemptions_group_html: ""
       steps_miam_exemptions_adr_form:
-        adr_exemptions_html: "Do you have any of the following evidence of a previous valid reason or non-court resolution attendance?"
+        adr_exemptions_html: "Do any of the following apply?"
         exemptions_group_html: ""
       steps_miam_exemptions_misc_form:
-        misc_exemptions_html: "Do you have any of the following evidence of other valid reasons for not attending?"
+        misc_exemptions_html: "Do any of the following apply?"
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
