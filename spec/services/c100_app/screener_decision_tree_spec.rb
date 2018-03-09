@@ -153,6 +153,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
   context 'when the step is `email_consent`' do
     let(:step_params) { { email_consent: 'anything' } }
-    it { is_expected.to have_destination('/steps/miam/consent_order', :edit) }
+    it { is_expected.to have_destination(:done, :show) }
   end
 end

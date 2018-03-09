@@ -9,9 +9,9 @@ module SavepointStep
   private
 
   def update_navigation_stack
-    # Reset the navigation_stack to clear the screening steps as these
-    # are no longer needed.
-    current_c100_application.navigation_stack = []
+    # Points the navigation stack to the first page after the screener, so if the user
+    # clicks the `back` link, they are not taken to start of the screener again.
+    current_c100_application.navigation_stack = [entrypoint_v1_path]
     super
   end
 

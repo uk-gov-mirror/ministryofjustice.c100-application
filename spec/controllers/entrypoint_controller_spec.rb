@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe EntrypointController do
-  before do
-    expect(subject).to receive(:reset_c100_application_session)
-  end
-
   describe '#v1' do
     it 'renders the expected page' do
       get :v1

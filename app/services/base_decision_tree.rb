@@ -28,11 +28,6 @@ class BaseDecisionTree
     step_params.fetch(attribute_name).eql?(value)
   end
 
-  # Enable again when needed. Coverage complains otherwise.
-  # def root_path
-  #   { controller: '/entrypoint', action: :v1 }
-  # end
-
   def show(step_controller)
     {controller: step_controller, action: :show}
   end
