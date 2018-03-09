@@ -70,4 +70,8 @@
   <%= render partial: 'layouts/footer_links' %>
 <% end %>
 
+<% if Rails.env.development? || ENV['DEV_TOOLS_ENABLED'] %>
+  <%= render partial: 'developer_tools' %>
+<% end %>
+
 <%= render template: "layouts/govuk_template" %>

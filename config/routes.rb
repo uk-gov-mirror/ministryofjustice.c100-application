@@ -215,6 +215,7 @@ Rails.application.routes.draw do
   resource :session, only: [:destroy] do
     member do
       get :ping
+      post :bypass_screener
     end
   end
 

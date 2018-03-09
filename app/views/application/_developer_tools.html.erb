@@ -1,0 +1,22 @@
+<% content_for(:footer_top) do %>
+  <details class="developer_tools">
+    <summary><span class="summary">Developer Tools</span></summary>
+
+    <div class="panel panel-border-narrow">
+      <% if current_c100_application %>
+        <h4 class="heading-small">Current Application ID</h4>
+        <p><%= current_c100_application.id %></p>
+      <% end %>
+
+      <h4>Destroy session</h4>
+      <p class="details">Deletes all data entered in this session and lets you start a new application from scratch.</p>
+      <p><%= link_to 'Destroy session', session_path, method: :delete, class: 'button button-destroy_session', data: { confirm: 'Are you sure?' } %></p>
+
+      <h4>Bypass screener</h4>
+      <p class="details">Bypass the screener and starts from the first application step.</p>
+      <p>
+        <%= link_to 'Bypass screener', bypass_screener_session_path, method: :post, class: 'button button-create_session' %>
+      </p>
+    </div>
+  </details>
+<% end %>
