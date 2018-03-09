@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 
   namespace :steps do
     namespace :screener do
+      show_step :start
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
@@ -74,6 +75,7 @@ Rails.application.routes.draw do
       edit_step :written_agreement
       show_step :written_agreement_exit
       edit_step :email_consent
+      show_step :done
     end
     namespace :application do
       edit_step :previous_proceedings
@@ -213,6 +215,7 @@ Rails.application.routes.draw do
   resource :session, only: [:destroy] do
     member do
       get :ping
+      post :bypass_screener
     end
   end
 
@@ -224,7 +227,7 @@ Rails.application.routes.draw do
     get :unhandled
   end
 
-  root to: 'entrypoint#v1'
+  root 'steps/screener/start#show'
 
   get 'entrypoint/v1'
   get 'entrypoint/v2'

@@ -1,0 +1,24 @@
+<% title 'Screener' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">
+      You’ll need to meet the following criteria to try our new service:
+    </h1>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <ul class="list list-bullet">
+        <li>Your child must live in the [jurisdiction] court area (you’ll be able to check this on the next page)</li>
+        <li>You are not making an urgent application</li>
+        <li>You are a parent of the child</li>
+        <li>You and the respondent are both over 18</li>
+        <li>You do not have a written agreement you want the court to make legally binding</li>
+        <li>You do not have legal representation</li>
+      </ul>
+    </div>
+
+    <div class="xform-group form-submit">
+      <%= link_to 'Start now', edit_steps_screener_postcode_path, class: 'button', role: 'button' %>
+    </div>
+  </div>
+</div>

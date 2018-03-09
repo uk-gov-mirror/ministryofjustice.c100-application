@@ -14,4 +14,23 @@ class SessionsController < ApplicationController
       format.json { render json: {} }
     end
   end
+
+  # :nocov:
+  def bypass_screener
+    raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
+
+    c100_application.update(status: 1)
+    redirect_to edit_steps_miam_child_protection_cases_path
+  end
+  # :nocov:
+
+  private
+
+  # :nocov:
+  def c100_application
+    @_c100_application ||= C100Application.create.tap do |c100_application|
+      session[:c100_application_id] = c100_application.id
+    end
+  end
+  # :nocov:
 end
