@@ -11,8 +11,8 @@ RSpec.describe C100App::AbductionDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `international_risk`' do
-    let(:step_params) { { international_risk: 'anything' } }
+  context 'when the step is `international`' do
+    let(:step_params) { { international: 'anything' } }
     it { is_expected.to have_destination(:children_have_passport, :edit) }
   end
 

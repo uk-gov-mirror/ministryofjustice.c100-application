@@ -600,13 +600,10 @@ en:
           heading: Do any of your children have a passport?
       international:
         edit:
-          page_title: International abduction risk
+          page_title: Have the police been notified?
           section: Safety concerns
-          heading: Are you worried your children will be taken out of the country?
-          contact_info_html: |
-            If you think your children are at risk of being abducted abroad you must
-            <a href="https://www.gov.uk/government/organisations/hm-passport-office" target="external_link">contact
-            the passport office</a> immediately.
+          heading: Have the police been notified?
+          contact_info_html: If you think your children are at risk of being abducted abroad you should contact the police immediately.
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
@@ -1083,8 +1080,7 @@ en:
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_international_form:
-        international_risk_html: ""
-        passport_office_notified_html: "Has the passport office been notified?"
+        passport_office_notified_html: ""
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_previous_attempt_form:

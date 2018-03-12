@@ -4,7 +4,7 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :international_risk
+      when :international
         edit(:children_have_passport)
       when :children_have_passport
         after_children_have_passport
