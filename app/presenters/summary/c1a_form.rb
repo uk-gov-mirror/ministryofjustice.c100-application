@@ -16,6 +16,7 @@ module Summary
         *protection_orders,
         *statement_of_truth,
         *attending_court,
+        Sections::C1aGettingSupport.new(c100_application),
       ].flatten.select(&:show?)
     end
 

@@ -47,6 +47,7 @@ module Summary
           Sections::StatementOfTruth,
           Sections::SectionHeader,
           Sections::AttendingCourt,
+          Sections::C1aGettingSupport,
         ])
       end
     end
