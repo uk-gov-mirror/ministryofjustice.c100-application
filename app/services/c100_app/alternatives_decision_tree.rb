@@ -22,25 +22,15 @@ module C100App
     private
 
     def after_court_acknowledgement
-      if has_any_concern?
-        show(:start)
-      else
+      if c100_application.has_safety_concerns?
         start_children_journey
+      else
+        show(:start)
       end
     end
 
     def start_children_journey
       edit('/steps/children/names')
-    end
-
-    def has_any_concern?
-      [
-        :risk_of_abduction,
-        :substance_abuse,
-        :children_abuse,
-        :domestic_abuse,
-        :other_abuse
-      ].any? { |concern| question(concern)&.yes? }
     end
   end
 end
