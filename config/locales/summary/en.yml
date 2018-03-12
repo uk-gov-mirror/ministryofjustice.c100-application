@@ -104,6 +104,7 @@ en:
       c1a_abuse_details: Section 2 - Details of domestic violence / abuse
       c1a_abduction: Section 3 - Abduction
       c1a_children_other_abuse: Section 4 - Other concerns about your child(ren)
+      c1a_protection_orders: Section 5 - Steps or orders required to protect the safety and wellbeing
       c1a_statement_of_truth: Section 6 - Statement of truth
       c1a_attending_court: Section 7 - Attending the court
     sections:
@@ -564,6 +565,19 @@ en:
         <<: *YESNO
     c1a_order_court_name:
       question: Name of court
+    c1a_protection_orders:
+      question: Steps or orders requested to protect child(ren) and/or applicant
+      absence_answer: Not required
+    c1a_contact_type:
+      question: Do you agree to the child(ren) spending time with the other person in this form?
+      answers:
+        unsupervised: 'Yes'
+        supervised: Yes, but it must be supervised
+        none: 'No'
+    c1a_contact_other:
+      question: Do you agree to the child having other forms of contact with the other person in receipt of this form?
+      answers:
+        <<: *YESNO
 
     ### C8 questions/answers ###
     #
