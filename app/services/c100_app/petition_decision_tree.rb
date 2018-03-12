@@ -6,6 +6,8 @@ module C100App
       case step_name
       when :orders
         show(:playback)
+      when :protection
+        edit('/steps/alternatives/court')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
