@@ -4,19 +4,15 @@
   <div class="column-two-thirds">
     <%= step_header %>
     <p class="app__section_heading"><%=t '.section' %></p>
+
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%=
-        f.radio_button_fieldset :international_risk, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES, panel_id: :international_risk_panel)
-          fieldset.radio_input(GenericYesNo::NO)
-          fieldset.revealing_panel(:international_risk_panel) do |panel|
-            panel.radio_button_fieldset(:passport_office_notified, inline: true, choices: GenericYesNo.values)
-            panel.content_tag(:p, t('.contact_info_html'))
-          end
-        end
-      %>
+      <%= f.radio_button_fieldset :passport_office_notified, inline: true, choices: GenericYesNo.values %>
+
+      <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+        <p><%=t '.contact_info_html' %></p>
+      </div>
 
       <%= f.continue_button %>
     <% end %>

@@ -529,7 +529,7 @@ en:
     c1a_abduction_children_current_location:
       question: Where is/are the child(ren) now?
     c1a_abduction_passport_office_notified:
-      question: Has the passport office been notified?
+      question: Have the police been notified?
       answers:
         <<: *YESNO
     c1a_abduction_children_multiple_passports:

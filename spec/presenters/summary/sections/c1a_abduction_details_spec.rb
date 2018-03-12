@@ -13,9 +13,8 @@ module Summary
 
     let(:abduction_detail) {
       AbductionDetail.new(
-        children_have_passport: 'yes',
-        international_risk: 'yes',
         passport_office_notified: 'yes',
+        children_have_passport: 'yes',
         children_multiple_passports: 'yes',
         passport_possession_mother: true,
         passport_possession_father: false,
