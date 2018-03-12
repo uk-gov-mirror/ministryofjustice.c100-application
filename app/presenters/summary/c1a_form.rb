@@ -13,6 +13,7 @@ module Summary
         *abuse_details,
         *abduction_details,
         *children_other_abuse,
+        *protection_orders,
         *statement_of_truth,
         *attending_court,
       ].flatten.select(&:show?)
@@ -63,6 +64,13 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :c1a_children_other_abuse),
         Sections::C1aChildrenOtherAbuseDetails.new(c100_application),
+      ]
+    end
+
+    def protection_orders
+      [
+        Sections::SectionHeader.new(c100_application, name: :c1a_protection_orders),
+        Sections::C1aProtectionOrders.new(c100_application),
       ]
     end
 
