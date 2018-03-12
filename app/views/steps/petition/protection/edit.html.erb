@@ -1,0 +1,25 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%=t '.lead_text_html' %>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.radio_button_fieldset :protection_orders, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :protection_orders_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:protection_orders_panel) do |panel|
+            panel.text_area :protection_orders_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
+
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>

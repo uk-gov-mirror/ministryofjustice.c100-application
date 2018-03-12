@@ -14,4 +14,9 @@ RSpec.describe C100App::PetitionDecisionTree do
     let(:step_params) { {orders: 'anything'} }
     it {is_expected.to have_destination(:playback, :show)}
   end
+
+  context 'when the step is `protection`' do
+    let(:step_params) { {protection: 'anything'} }
+    it {is_expected.to have_destination('/steps/alternatives/court', :edit)}
+  end
 end
