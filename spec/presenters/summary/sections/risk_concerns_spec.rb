@@ -45,10 +45,10 @@ module Summary
       end
     end
 
-    describe '#any?' do
-      it 'delegates the implementation to the c100 application' do
+    describe '#c1a_triggered?' do
+      it 'uses the implementation in the c100 application' do
         expect(c100_application).to receive(:has_safety_concerns?).and_return(true)
-        expect(subject.any?).to eq(true)
+        expect(subject.c1a_triggered?).to eq(true)
       end
     end
   end
