@@ -136,6 +136,10 @@ en:
           <li>stopping someone saving their own money</li>
           <li>withholding money or credit cards</li>
         </ul>
+        <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
+          <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+        </div>
+
       other_html: ""
 
   steps:
@@ -287,13 +291,13 @@ en:
         show:
           page_title: Concerns further questions
           section: Safety concerns
-          heading: You and your children
+          heading: You and the children
           you_told_us_html: |
             <p>You told us:</p>
           further_questions_info_html: |
             <p>We’ll need to ask you some further questions about your concerns.</p>
-            <p>Your answers will help an advisor from the <a href="https://www.cafcass.gov.uk/" target="_blank">Children and Family Court Advisory and Support Service (Cafcass)</a> collect background information.</p>
-            <p>You may find some of the following questions difficult to answer. Please complete them as best you can.</p>
+            <p>Your answers will help the court consider any risks to you or the children.</p>
+            <p>You may find some of the following questions difficult or upsetting to answer. Please complete them as best you can.</p>
           continue: Continue
       question:
         edit:
@@ -306,27 +310,27 @@ en:
               financial: Concerns about financial abuse
               other: Other concerns about your welfare
             children:
-              physical: Concerns about your children’s physical abuse
-              emotional: Concerns about your children’s emotional abuse
-              psychological: Concerns about your children’s psychological abuse
-              sexual: Concerns about your children’s sexual abuse
-              financial: Concerns about your children’s financial abuse
-              other: Other concerns about your children’s welfare
+              physical: Concerns about the children’s physical abuse
+              emotional: Concerns about the children’s emotional abuse
+              psychological: Concerns about the children’s psychological abuse
+              sexual: Concerns about the children’s sexual abuse
+              financial: Concerns about the children’s financial abuse
+              other: Other concerns about the children’s welfare
           heading:
             applicant:
               physical: Have you ever been physically abused?
               emotional: Have you ever been emotionally abused?
               psychological: Have you ever been psychologically abused?
               sexual: Have you ever been sexually abused?
-              financial: Has the other person ever financially abused you?
+              financial: Have you ever been financially abused?
               other: Do you have any other concerns about your welfare?
             children:
-              physical: Have your children ever been physically abused?
-              emotional: Have your children ever been emotionally abused?
-              psychological: Have your children ever been psychologically abused?
-              sexual: Have your children ever been sexually abused?
-              financial: Have your children ever been financially abused?
-              other: Do you have any other safety or welfare concerns about your children?
+              physical: Have the children ever been physically abused?
+              emotional: Have the children ever been emotionally abused?
+              psychological: Have the children ever been psychologically abused?
+              sexual: Have the children ever been sexually abused?
+              financial: Have the children ever been financially abused?
+              other: Do you have any other safety or welfare concerns about the children?
           lead_text:
             applicant:
               <<: *ABUSE_CONCERNS
@@ -343,13 +347,14 @@ en:
                 <ul class="list list-bullet">
                   <li>name calling</li>
                   <li>constant criticism</li>
-                  <li>ignoring someone</li>
+                  <li>controlling behaviour</li>
                   <li>not letting them have an opinion</li>
                 </ul>
             children:
               <<: *ABUSE_CONCERNS
               sexual_html: |
-                <p>A child is sexually abused when they are forced or persuaded to take part in sexual activities. There are 2 types of child sexual abuse:</p>
+                <p>A child is sexually abused when they are forced or persuaded to take part in sexual activities. It may not necessarily involve a high level of violence, and the child may or may not be aware of what's happening.</p>
+                <p>There are 2 types of child sexual abuse:</p>
                 <ul class="list list-bullet">
                   <li>contact abuse (where an abuser makes physical contact)</li>
                   <li>non-contact abuse (for example grooming or exploitation)</li>
@@ -373,12 +378,12 @@ en:
               financial: Details of the financial abuse
               other: Details of your other concerns
             children:
-              physical: Details of your children’s physical abuse
-              emotional: Details of your children’s emotional abuse
-              psychological: Details of your children’s psychological abuse
-              sexual: Details of your children’s sexual abuse
-              financial: Details of your children’s financial abuse
-              other: Details of other concerns about your children
+              physical: Details of the children’s physical abuse
+              emotional: Details of the children’s emotional abuse
+              psychological: Details of the children’s psychological abuse
+              sexual: Details of the children’s sexual abuse
+              financial: Details of the children’s financial abuse
+              other: Details of other concerns about the children
           heading:
             applicant:
               physical: Provide details of the physical abuse
@@ -388,24 +393,24 @@ en:
               financial: Provide details of the financial abuse
               other: Provide details of your other concerns
             children:
-              physical: Provide details of your children’s physical abuse
-              emotional: Provide details of your children’s emotional abuse
-              psychological: Provide details of your children’s psychological abuse
-              sexual: Provide details of your children’s sexual abuse
-              financial: Provide details of your children’s financial abuse
-              other: Provide details of your other concerns about your children
+              physical: Provide details of the children’s physical abuse
+              emotional: Provide details of the children’s emotional abuse
+              psychological: Provide details of the children’s psychological abuse
+              sexual: Provide details of the children’s sexual abuse
+              financial: Provide details of the children’s financial abuse
+              other: Provide details of the other concerns about your children
       contact:
         edit:
           page_title: Concerns contact
-          heading: Contact between your children and the other person
-          lead_text: The court needs to know if you will allow your children to have contact with the other person while you wait for a court date.
-          info_notice: If you have no safety concerns it’s better for your children to have regular contact with both parents.
+          heading: Contact between the children and the other people in this application
+          lead_text: The court needs to know if you will allow your children to have contact with the other people in this application while you wait for a court date.
+          info_notice: The court will presume it's better for the children to have regular contact with both parents, unless there are valid reasons not to.
     court_orders:
       has_orders:
         edit:
           page_title: Have you had court orders made?
-          heading: Have you had any court orders made for your protection?
-          lead_text: For example, a restraining order. Include any orders that are still valid.
+          heading: Have you had or do you currently have any court orders made for your protection?
+          lead_text: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order.
       details:
         edit:
           page_title: Orders details
@@ -606,7 +611,7 @@ en:
         edit:
           page_title: Previous abduction attempts
           section: Safety concerns
-          heading: Have your children been abducted before?
+          heading: Have your children been abducted or kept outside the UK without your consent before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
@@ -617,12 +622,12 @@ en:
         edit:
           page_title: Abduction risk details
           section: Safety concerns
-          heading: Why do you think your children may be abducted?
+          heading: Why do you think your children may be abducted or kept outside the UK without your consent?
           info_html: |
             <p>Briefly explain your concerns, including:</p>
             <ul class="list list-bullet">
               <li>who might take them</li>
-              <li>where they might be taken</li>
+              <li>where they might be taken or kept</li>
             </ul>
           children_location: Where are the children now?
       passport_details:
@@ -1089,8 +1094,8 @@ en:
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
-        concerns_contact_type_html: "Do you agree to your children spending time with the other person?"
-        concerns_contact_other_html: "Do you agree to your children having other forms of contact with the other person?"
+        concerns_contact_type_html: "Do you agree to your children spending time with the other people in this application?"
+        concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
       steps_court_orders_details_form:
@@ -1244,7 +1249,7 @@ en:
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Give a short description
-        current_location: If they're outside England or Wales, include what country they're in and how long they've been there. You don't need to include any addresses.
+        current_location: Where are the children now?
       steps_children_names_form[names_attributes]:
         full_name: Full name of child
       steps_children_names_form:
@@ -1303,7 +1308,7 @@ en:
         concerns_contact_type:
           unsupervised: 'Yes'
           supervised: Yes, but it must be supervised
-          none: No, I don’t want the other person to spend time with my children
+          none: No, I do not want the other person to spend time with the children
         concerns_contact_other:
           <<: *YESNO
       steps_court_orders_has_orders_form:
@@ -1369,6 +1374,8 @@ en:
         application_details: You do not have to give a full statement although you may be asked to provide one later.
       steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
+      steps_abduction_risk_details_form:
+        current_location: If they're outside England or Wales, include what country they're in and how long they've been there. You don't need to include any addresses.
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
       steps_petition_orders_form:
