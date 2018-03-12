@@ -223,7 +223,7 @@ en:
 
     safety_concerns_claimed:
       domestic_abuse_html: you have been abused
-      risk_of_abduction_html: your children are at risk of being abducted
-      children_abuse_html: your children have been abused
-      substance_abuse_html: you think your children are affected by being in contact with someone who may have a drug, alcohol or substance problem
-      other_abuse_html: you have concerns about you or your children’s safety or welfare
+      risk_of_abduction_html: the children are at risk of being abducted
+      children_abuse_html: the children have been abused
+      substance_abuse_html: you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem
+      other_abuse_html: you have concerns about you or the children’s safety or welfare
