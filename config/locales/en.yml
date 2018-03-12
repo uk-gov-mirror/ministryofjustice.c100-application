@@ -637,7 +637,7 @@ en:
         edit:
           page_title: Previous proceedings
           section: Previous proceedings
-          heading: Have any of the children in this application been involved in another family court case?
+          heading: Have any of the children in this application been involved in other family court proceedings?
           lead_text: For example an emergency protection order or supervision order. Include any ongoing cases.
       court_proceedings:
         edit:
@@ -776,11 +776,12 @@ en:
       reasons_playback:
         show:
           page_title: You don’t have to attend a MIAM
-          heading: You’ve said you have a valid reason for not attending a MIAM
-          lead_text: "The reasons you’ve given are:"
+          heading: You don’t have to attend a MIAM
+          lead_text: "You’ve said you have a valid reason for not attending a MIAM."
+          info_text_html: "The reasons you’ve given are:"
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>You will need to provide evidence to support your claim. If you can’t you may be found in contempt of court.</p>
+              <p>You will need to provide evidence to support these reasons at your first court hearing. If you don't, you will be directed to attend a MIAM.</p>
             </div>
           continue: Continue
       safety_playback:
@@ -1403,6 +1404,8 @@ en:
         new_name_html: *name_instructions
       steps_other_parties_names_form:
         new_name_html: *name_instructions
+      steps_other_parties_personal_details_form:
+        has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
