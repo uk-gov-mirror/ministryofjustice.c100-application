@@ -7,122 +7,25 @@ RSpec.describe C100App::AlternativesDecisionTree do
 
   subject { described_class.new(c100_application: c100_application, step_params: step_params, as: as, next_step: next_step) }
 
-  let(:c100_application) do
-    instance_double(
-      C100Application,
-      risk_of_abduction: risk_of_abduction,
-      substance_abuse: substance_abuse,
-      children_abuse: children_abuse,
-      domestic_abuse: domestic_abuse,
-      other_abuse: other_abuse,
-    )
-  end
-
-  let(:risk_of_abduction) { nil }
-  let(:substance_abuse) { nil }
-  let(:children_abuse) { nil }
-  let(:domestic_abuse) { nil }
-  let(:other_abuse) { nil }
+  let(:c100_application) { instance_double(C100Application) }
 
   it_behaves_like 'a decision tree'
 
-  # Ok this the following scenarios are a bit annoying and verbose, but... MUTANT...
   context 'when the step is `court_acknowledgement`' do
     let(:step_params) {{court_acknowledgement: 'anything'}}
 
-    context '`risk_of_abduction` concerns' do
-      let(:risk_of_abduction) { value }
-
-      context 'there are concerns' do
-        let(:value) { 'yes' }
-        it {is_expected.to have_destination(:start, :show)}
-      end
-
-      context 'there are not concerns' do
-        let(:value) { 'no' }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-
-      context 'the question was not answered' do
-        let(:value) { nil }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
+    before do
+      allow(c100_application).to receive(:has_safety_concerns?).and_return(safety_concerns)
     end
 
-    context '`substance_abuse` concerns' do
-      let(:substance_abuse) { value }
-
-      context 'there are concerns' do
-        let(:value) { 'yes' }
-        it {is_expected.to have_destination(:start, :show)}
-      end
-
-      context 'there are not concerns' do
-        let(:value) { 'no' }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-
-      context 'the question was not answered' do
-        let(:value) { nil }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
+    context 'and there are safety concerns' do
+      let(:safety_concerns) { true }
+      it { is_expected.to have_destination('/steps/children/names', :edit) }
     end
 
-    context '`children_abuse` concerns' do
-      let(:children_abuse) { value }
-
-      context 'there are concerns' do
-        let(:value) { 'yes' }
-        it {is_expected.to have_destination(:start, :show)}
-      end
-
-      context 'there are not concerns' do
-        let(:value) { 'no' }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-
-      context 'the question was not answered' do
-        let(:value) { nil }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-    end
-
-    context '`domestic_abuse` concerns' do
-      let(:domestic_abuse) { value }
-
-      context 'there are concerns' do
-        let(:value) { 'yes' }
-        it {is_expected.to have_destination(:start, :show)}
-      end
-
-      context 'there are not concerns' do
-        let(:value) { 'no' }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-
-      context 'the question was not answered' do
-        let(:value) { nil }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-    end
-
-    context '`other_abuse` concerns' do
-      let(:other_abuse) { value }
-
-      context 'there are concerns' do
-        let(:value) { 'yes' }
-        it {is_expected.to have_destination(:start, :show)}
-      end
-
-      context 'there are not concerns' do
-        let(:value) { 'no' }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
-
-      context 'the question was not answered' do
-        let(:value) { nil }
-        it {is_expected.to have_destination('/steps/children/names', :edit)}
-      end
+    context 'and there are no safety concerns' do
+      let(:safety_concerns) { false }
+      it { is_expected.to have_destination(:start, :show) }
     end
   end
 

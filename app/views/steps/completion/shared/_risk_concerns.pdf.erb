@@ -10,7 +10,7 @@
       <table class="no-borders subtable">
         <%= render risk_concerns.answers %>
 
-        <% if risk_concerns.any? %>
+        <% if risk_concerns.c1a_triggered? %>
           <tr>
             <td class="question">
               <%=t "check_answers.descriptions.c1a_attached_html" %>
