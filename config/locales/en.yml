@@ -574,6 +574,19 @@ en:
             child_arrangements_order: This is known as a Child Arrangements Order.
             specific_issues_order: This is known as a Specific Issue Order.
             prohibited_steps_order: This is known as a Prohibited Steps Order.
+      protection:
+        edit:
+          page_title: Protection orders
+          heading: Is there anything else you are asking the court to decide, specifically to protect the safety of you or your children?
+          lead_text_html: |
+            <div class="govuk-govspeak gv-s-prose">
+              <p>This can include:</p>
+              <ul class="list list-bullet">
+                <li>that the person must not be violent or threaten or harass by any means (Non-Molestation Order)</li>
+                <li>preventing a person doing a particular action (Prohibited Steps Order)</li>
+                <li>making a decision about a specific issue on which you and the other person can’t decide (Specific Issue Order)</li>
+              </ul>
+            </div>
     abduction:
       children_have_passport:
         edit:
@@ -1045,6 +1058,8 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
+      steps_petition_protection_form:
+        protection_orders_html: ""
       steps_safety_questions_address_confidentiality_form:
         address_confidentiality_html: "Do you want to keep your contact details private?"
       steps_safety_questions_risk_of_abduction_form:
@@ -1217,6 +1232,8 @@ en:
           <span class="gv-u-heading-small">Resolve a specific issue</span><br>
           <span class="form-hint">For example, what school they’ll go to</span>
         orders_additional_details: Briefly provide more details
+      steps_petition_protection_form:
+        protection_orders_details: Please give details
       steps_abduction_passport_details_form:
         passport_possession_mother: Mother
         passport_possession_father: Father

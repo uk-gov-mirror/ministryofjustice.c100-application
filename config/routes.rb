@@ -94,6 +94,7 @@ Rails.application.routes.draw do
     namespace :petition do
       edit_step :orders
       show_step :playback
+      edit_step :protection
     end
     namespace :miam do
       edit_step :consent_order
