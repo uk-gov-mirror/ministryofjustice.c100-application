@@ -62,7 +62,7 @@
         </div>
 
         <%= step_form @form_object do |f| %>
-          <%= f.check_box_fieldset :court_acknowledgement, [:court_acknowledgement] %>
+          <%= f.single_check_box :court_acknowledgement, class: 'util_mt-large' %>
           <%= f.continue_button %>
         <% end %>
       </div>

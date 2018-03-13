@@ -10,8 +10,8 @@
     </div>
 
     <div class="govuk-govspeak gv-s-prose">
-      <p>A <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> is an initial meeting where you'll be given information about <a href="https://helpwithchildarrangements.service.justice.gov.uk/professional-mediation target="_blank"">mediation</a> and alternative ways of reaching an agreement without going to court. A mediator will consider with you whether these other ways are suitable in your case.</p>
-      <p><a href="https://www.gov.uk/check-legal-aid target="_blank"">Check if you’re eligible for legal aid during mediation</a></p>
+      <p>A <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> is an initial meeting where you'll be given information about <a href="https://helpwithchildarrangements.service.justice.gov.uk/professional-mediation" target="_blank">mediation</a> and alternative ways of reaching an agreement without going to court. A mediator will consider with you whether these other ways are suitable in your case.</p>
+      <p><a href="https://www.gov.uk/check-legal-aid" target="_blank">Check if you’re eligible for legal aid during mediation</a></p>
 
       <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
         <p>A <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> is a one-off meeting and not the same as mediation.</p>
@@ -27,7 +27,7 @@
         <li>if you may qualify for help with the costs of mediation and legal advice</li>
         <li>other options available to you</li>
       </ul>
-      <p><a href="https://www.familymediationcouncil.org.uk/find-local-mediator/ target="_blank"">Find a mediator to book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></a></p>
+      <p><a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" target="_blank">Find a mediator to book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></a></p>
 
       <h2 class="gv-u-heading-xlarge">If you’ve already attended a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></h2>
       <p>If you have attended a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> it must have taken place within the past 4 months. It must also have been about the same or a very similar child arrangements issue. You should have a certificate signed by the mediator confirming this (which you should bring to your first hearing).</p>
@@ -38,7 +38,7 @@
     </div>
 
     <%= step_form @form_object do |f| %>
-      <%= f.check_box_fieldset :miam_acknowledgement, [:miam_acknowledgement] %>
+      <%= f.single_check_box :miam_acknowledgement %>
       <%= f.continue_button %>
     <% end %>
   </div>

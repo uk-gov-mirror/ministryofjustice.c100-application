@@ -25,7 +25,7 @@
 
       <p class="form-block or-block"><%=t '.or' %></p>
 
-      <%= f.check_box_fieldset :exemptions_group, [AdrExemptions::ADR_NONE] %>
+      <%= f.single_check_box AdrExemptions::ADR_NONE %>
 
       <%= f.continue_button %>
     <% end %>

@@ -20,7 +20,7 @@
     <p>&nbsp;</p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.check_box_fieldset :declaration_made, [:declaration_made] %>
+      <%= f.single_check_box :declaration_made %>
       <%= f.continue_button %>
     <% end %>
   </div>

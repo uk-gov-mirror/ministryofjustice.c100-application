@@ -998,6 +998,18 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/miam/acknowledgement_form:
+          attributes:
+            miam_acknowledgement:
+              blank: Confirm you understand
+        steps/alternatives/court_form:
+          attributes:
+            court_acknowledgement:
+              blank: Confirm you understand
+        steps/application/declaration_form:
+          attributes:
+            declaration_made:
+              blank: You must accept the declaration
 
   activerecord:
     errors:
