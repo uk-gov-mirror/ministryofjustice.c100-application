@@ -9,7 +9,7 @@ en:
     name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Please answer if the order is current"
-    order_length: &order_length "How long is the order for?"
+    order_length: &order_length "How long was the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
@@ -111,8 +111,8 @@ en:
         invalid: Please enter a valid email
         blank: Please enter an email
 
-    # This are all the kind of abuse concerns, for applicant and for children. For now they
-    # are the same for both, but we might need to customize some of these later on.
+    # This is common abuse concerns `lead_text` copy, for applicant and for children.
+    # The specific copy is in their corresponding sections.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
       physical_html: |
         <p>Physical abuse includes actions such as:</p>
@@ -129,18 +129,6 @@ en:
           <li>depression</li>
           <li>post-traumatic stress disorder</li>
         </ul>
-      financial_html: |
-        <p>Examples of financial abuse include:</p>
-        <ul class="list list-bullet">
-          <li>not allowing a person to work</li>
-          <li>stopping someone saving their own money</li>
-          <li>withholding money or credit cards</li>
-        </ul>
-        <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-          <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
-        </div>
-
-      other_html: ""
 
   steps:
     shared:
@@ -350,6 +338,18 @@ en:
                   <li>controlling behaviour</li>
                   <li>not letting them have an opinion</li>
                 </ul>
+              financial_html: |
+                <p>Examples of financial abuse include:</p>
+                <ul class="list list-bullet">
+                  <li>not allowing a person to work</li>
+                  <li>stopping someone saving their own money</li>
+                  <li>withholding money or credit cards</li>
+                </ul>
+                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                </div>
+              other_html: ""
+
             children:
               <<: *ABUSE_CONCERNS
               sexual_html: |
@@ -367,6 +367,12 @@ en:
                   <li>humiliated</li>
                   <li>ignored</li>
                 </ul>
+              financial_html: |
+                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                </div>
+              other_html: |
+                <p>For example, their basic needs are not being met (known as child neglect) or you’re worried about someone they may have contact with.</p>
       details:
         edit:
           page_title:
@@ -1290,7 +1296,7 @@ en:
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details:
       steps_abuse_concerns_details_form:
-        behaviour_description: Give a short description
+        behaviour_description: Give a short description of what happened and who was involved. You’ll have further opportunities to make a detailed statement
         behaviour_start: When did your concerns start?
         behaviour_stop: When did you stop being concerned about the issue?
         help_party: Who did you ask for help?
@@ -1414,6 +1420,8 @@ en:
         asked_for_help: For example, your GP
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
+      steps_court_orders_details_form:
+        restraining: Under the Protection from Harassment Act 1997
       steps_miam_exemptions_domestic_form:
         domestic_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_protection_form:
@@ -1463,7 +1471,7 @@ en:
       hide_password: Hide password
     form_elements:
       dob: Date of birth
-      order_issue: What date was it issued?
+      order_issue: What date was it made?
     why_we_use_children_html: |
       <details>
         <summary>
