@@ -19,6 +19,15 @@ module CustomFormHelpers
     end
   end
 
+  def single_check_box(attribute, options = {})
+    content_tag(:div, merge_attributes(options, default: {class: 'multiple-choice single-cb', id: form_group_id(attribute)})) do
+      safe_concat [
+        check_box(attribute),
+        label(attribute) { localized_label(attribute) }
+      ].join
+    end
+  end
+
   private
 
   def save_and_return_disabled?
@@ -26,6 +35,6 @@ module CustomFormHelpers
   end
 
   def submit_button(i18n_key)
-    submit t("helpers.submit.#{i18n_key}"), class: 'button'
+    submit t("helpers.submit.#{i18n_key}"), class: 'button form-submit'
   end
 end

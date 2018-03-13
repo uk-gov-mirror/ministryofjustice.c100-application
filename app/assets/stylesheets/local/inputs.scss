@@ -11,6 +11,11 @@ textarea.form-control-large {
   margin-bottom: 10px;
 }
 
+// Individual checkboxes
+.single-cb {
+  width: $full-width;
+}
+
 // Maintain the width when toggling between input password and input text.
 // Otherwise the input text override the width, making it bigger.
 .js-toggleable-password {

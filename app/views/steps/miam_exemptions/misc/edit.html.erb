@@ -31,7 +31,7 @@
 
       <p class="form-block or-block"><%=t '.or' %></p>
 
-      <%= f.check_box_fieldset :exemptions_group, [MiscExemptions::MISC_NONE] %>
+      <%= f.single_check_box MiscExemptions::MISC_NONE %>
 
       <%= f.continue_button %>
     <% end %>

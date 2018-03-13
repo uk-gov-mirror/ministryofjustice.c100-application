@@ -8,7 +8,7 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.check_box_fieldset :address_unknown, [:address_unknown] %>
+      <%= f.single_check_box :address_unknown %>
 
       <%= f.continue_button %>
     <% end %>
