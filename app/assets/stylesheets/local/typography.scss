@@ -61,14 +61,18 @@ address {
 }
 
 .actions {
-
   a, input {
     vertical-align: middle;
     display: inline-block;
   }
 
   a {
-    margin-left: 3em;
+    margin-top: 1em;
+
+    @media (min-width: 641px) {
+      margin-left: 3em;
+      margin-top: 1.6em;
+    }
   }
 
   form {
