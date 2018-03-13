@@ -9,7 +9,7 @@ en:
     name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Please answer if the order is current"
-    order_length: &order_length "How long is the order for?"
+    order_length: &order_length "How long was the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
@@ -111,8 +111,8 @@ en:
         invalid: Please enter a valid email
         blank: Please enter an email
 
-    # This are all the kind of abuse concerns, for applicant and for children. For now they
-    # are the same for both, but we might need to customize some of these later on.
+    # This is common abuse concerns `lead_text` copy, for applicant and for children.
+    # The specific copy is in their corresponding sections.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
       physical_html: |
         <p>Physical abuse includes actions such as:</p>
@@ -129,18 +129,6 @@ en:
           <li>depression</li>
           <li>post-traumatic stress disorder</li>
         </ul>
-      financial_html: |
-        <p>Examples of financial abuse include:</p>
-        <ul class="list list-bullet">
-          <li>not allowing a person to work</li>
-          <li>stopping someone saving their own money</li>
-          <li>withholding money or credit cards</li>
-        </ul>
-        <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-          <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
-        </div>
-
-      other_html: ""
 
   steps:
     shared:
@@ -350,6 +338,18 @@ en:
                   <li>controlling behaviour</li>
                   <li>not letting them have an opinion</li>
                 </ul>
+              financial_html: |
+                <p>Examples of financial abuse include:</p>
+                <ul class="list list-bullet">
+                  <li>not allowing a person to work</li>
+                  <li>stopping someone saving their own money</li>
+                  <li>withholding money or credit cards</li>
+                </ul>
+                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                </div>
+              other_html: ""
+
             children:
               <<: *ABUSE_CONCERNS
               sexual_html: |
@@ -367,6 +367,12 @@ en:
                   <li>humiliated</li>
                   <li>ignored</li>
                 </ul>
+              financial_html: |
+                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                </div>
+              other_html: |
+                <p>For example, their basic needs are not being met (known as child neglect) or you’re worried about someone they may have contact with.</p>
       details:
         edit:
           page_title:
@@ -498,9 +504,11 @@ en:
           lead_text_html: |
             <p>If you’re unsure you can <a href="/miam_exemptions" target="_blank">check the list of valid reasons</a>.</p>
           info_notice_html: |
-            <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-              <p>If you think you don’t have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> you’ll
-              need to tell us what evidence you have to support your claim. You must also bring this evidence to your first hearing.</p>
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>
+                If you're claiming that you do not have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
+                before making this application, you will need to provide evidence or confirmation of this.
+              </p>
             </div>
       certification:
         edit:
@@ -521,15 +529,15 @@ en:
       consent_order:
         edit:
           page_title: Consent order
-          heading: Do you have a written agreement you want the court to make legally binding?
+          heading: Do you have a written agreement you want the court to consider making legally binding?
           lead_text_html: |
             <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to make it legally binding.</p>
-              <p>This is known as a consent order.</p>
+              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
+              <p>This is known as a Consent Order.</p>
               <p>You can only ask for a consent order if:</p>
               <ul class="list list-bullet">
-                <li>you have your agreement in writing (you’ll need to attach the agreement to your application)</li>
-                <li>you’re not in dispute with the other person</li>
+                <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
+                <li>you are not in dispute with the other person</li>
                 <li>the court has no concerns about the safety or welfare of anyone involved</li>
               </ul>
             </div>
@@ -795,7 +803,8 @@ en:
             </div>
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>A legal advisor will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM, pending the legal advisor’s decision.</p>
+              <p>The court will review your situation and may contact you to discuss your concerns.
+              You may still need to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> if valid reasons aren’t provided.</p>
             </div>
           continue: Continue
     screener:
@@ -868,16 +877,16 @@ en:
           lead_text: You can only use this service if you are not being represented by a solicitor
       written_agreement:
         edit:
-          page_title: Do you have a written agreement?
-          heading: Do you have a written agreement you want the court to make legally binding?
+          page_title: Consent order
+          heading: Do you have a written agreement you want the court to consider making legally binding?
           lead_text_html: |
             <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to make it legally binding.</p>
-              <p>This is known as a consent order.</p>
+              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
+              <p>This is known as a Consent Order.</p>
               <p>You can only ask for a consent order if:</p>
               <ul class="list list-bullet">
-                <li>you have your agreement in writing (you’ll need to attach the agreement to your application)</li>
-                <li>you’re not in dispute with the other person</li>
+                <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
+                <li>you are not in dispute with the other person</li>
                 <li>the court has no concerns about the safety or welfare of anyone involved</li>
               </ul>
             </div>
@@ -1290,7 +1299,7 @@ en:
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details:
       steps_abuse_concerns_details_form:
-        behaviour_description: Give a short description
+        behaviour_description: Give a short description of what happened and who was involved. You’ll have further opportunities to make a detailed statement
         behaviour_start: When did your concerns start?
         behaviour_stop: When did you stop being concerned about the issue?
         help_party: Who did you ask for help?
@@ -1414,6 +1423,8 @@ en:
         asked_for_help: For example, your GP
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
+      steps_court_orders_details_form:
+        restraining: Under the Protection from Harassment Act 1997
       steps_miam_exemptions_domestic_form:
         domestic_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_protection_form:
@@ -1463,7 +1474,7 @@ en:
       hide_password: Hide password
     form_elements:
       dob: Date of birth
-      order_issue: What date was it issued?
+      order_issue: What date was it made?
     why_we_use_children_html: |
       <details>
         <summary>
