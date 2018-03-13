@@ -504,9 +504,11 @@ en:
           lead_text_html: |
             <p>If you’re unsure you can <a href="/miam_exemptions" target="_blank">check the list of valid reasons</a>.</p>
           info_notice_html: |
-            <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-              <p>If you think you don’t have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> you’ll
-              need to tell us what evidence you have to support your claim. You must also bring this evidence to your first hearing.</p>
+            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+              <p>
+                If you're claiming that you do not have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
+                before making this application, you will need to provide evidence or confirmation of this.
+              </p>
             </div>
       certification:
         edit:
@@ -801,7 +803,8 @@ en:
             </div>
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>A legal advisor will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM, pending the legal advisor’s decision.</p>
+              <p>The court will review your situation and may contact you to discuss your concerns.
+              You may still need to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> if valid reasons aren’t provided.</p>
             </div>
           continue: Continue
     screener:
