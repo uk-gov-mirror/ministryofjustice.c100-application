@@ -724,6 +724,13 @@ en:
           body_html: |
             <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="_blank">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
             <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
+      declaration:
+        edit:
+          page_title: Declaration
+          heading: Declaration
+          lead_text: By submitting your application you confirm the information you’ve provided is true.
+          warning_title: Warning
+          warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
     international:
       resident:
         edit:
@@ -1037,6 +1044,8 @@ en:
         intermediary_help_html: ""
       steps_application_help_paying_form:
         help_paying_html: "Do you have a ‘Help with fees’ reference number?"
+      steps_application_declaration_form:
+        declaration_made_html: ""
       steps_applicant_user_type_form:
         user_type_html: ""
       steps_miam_consent_order_form:
@@ -1212,6 +1221,8 @@ en:
         intermediary_help_details: *provide_details
       steps_application_help_paying_form:
         hwf_reference_number: Enter your reference number
+      steps_application_declaration_form:
+        declaration_made: I confirm that I believe that the facts stated in this application are true
       steps_applicant_user_type_form:
         user_type:
           themself: Yes, I am the person making the application
