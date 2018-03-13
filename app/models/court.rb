@@ -64,6 +64,9 @@ class Court
     # 2. anything mentioning 'family'
     # 3. a general 'enquiries' address
     # 4. just take the first
+
+    emails = Array(emails).compact
+
     best =  emails.find { |e| e['description'] =~ /children/i }             || \
             emails.find { |e| e['description'] =~ /family/i }               || \
             emails.find { |e| e['description'].casecmp('enquiries').zero? } || \

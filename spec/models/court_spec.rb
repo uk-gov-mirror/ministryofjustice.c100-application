@@ -242,15 +242,6 @@ describe Court do
 
   describe '#best_enquiries_email' do
     context 'given an array of email hashes' do
-      let(:emails){
-        [
-          {
-            'description' => 'Enquiries',
-            'address' => 'my@email',
-          },
-        ]
-      }
-
       context 'containing a nil entry' do
         let(:emails){
           [
