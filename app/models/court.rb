@@ -51,25 +51,24 @@ class Court
 
   def merge_from_full_json_dump!
     this_court = Court.all.find { |c| c['slug'] == slug }
-    if this_court
-      self.email = best_enquiries_email(this_court['emails'])
-      self.opening_times = this_court['opening_times'].map { |e| e['opening_time'] }
-    end
+    return unless this_court
+    self.email = best_enquiries_email(this_court['emails'])
+    self.opening_times = this_court['opening_times'].map { |e| e['opening_time'] }
   end
 
-  def best_enquiries_email(emails = [])
-    candidates = emails.to_a
+  def best_enquiries_email(emails)
+    # return unless emails
     # There's no consistency to how courts list their email address descriptions
     # So the order of priority is:
     # 1. anything mentioning 'children'
     # 2. anything mentioning 'family'
     # 3. a general 'enquiries' address
     # 4. just take the first
-    best =  candidates.find { |e| e['description'] =~ /children/i }             || \
-            candidates.find { |e| e['description'] =~ /family/i }               || \
-            candidates.find { |e| e['description'].casecmp('enquiries').zero? } || \
-            candidates.first
+    best =  emails.find { |e| e['description'] =~ /children/i }             || \
+            emails.find { |e| e['description'] =~ /family/i }               || \
+            emails.find { |e| e['description'].casecmp('enquiries').zero? } || \
+            emails.first
 
-    best['address']
+    best.to_h['address']
   end
 end
