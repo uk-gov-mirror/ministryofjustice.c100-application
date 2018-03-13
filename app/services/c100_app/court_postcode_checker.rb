@@ -4,8 +4,10 @@ module C100App
   class CourtPostcodeChecker
     AREA_OF_LAW = "Children".freeze
     COURT_SLUGS_USING_THIS_APP = [
-      "central-family-court",
-      "east-london-family-court"
+      "reading-county-court-and-family-court",
+      "guildford-county-court-and-family-court",
+      "milton-keynes-county-court-and-family-court",
+      "watford-county-court-and-family-court"
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"

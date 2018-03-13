@@ -916,7 +916,31 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before submitting your application
           confirm: Confirm and continue
-
+      what_next:
+        show:
+          page_title: What to do next
+          heading: What you need to do next
+          lead_text: You've finished the application. However it won't be processed until you complete the following steps.
+          next_steps:
+            download:
+              header: Download your application
+              copy: Download your application before you continue
+              link_text: Save or print your application
+            email:
+              header: Email your application
+              copy: You need to attach your downloaded PDF to an email, put 'child arrangements application' in the subject line and send it to
+            payment:
+              header: Pay the application fee
+              copy: It costs £215 to apply. Only the person applying to court (the applicant) needs to pay. When your application has been received, someone from the court will telephone you to take payment using a credit or debit card.
+              callout: You don’t need to pay if you have a "Help with fees" reference.
+          help:
+            header: If you need help
+            copy: You can contact the court if you need help with your application. Court staff can't give legal advice so you’ll need to find a legal advisor if you have any issues.
+            court:
+              email: Email
+              more_info: More information about %{court}
+              opening_times: Opening times
+              phone: Phone number
   home:
     index:
       heading: Start here

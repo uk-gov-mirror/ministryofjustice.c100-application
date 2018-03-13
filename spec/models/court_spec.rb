@@ -32,6 +32,9 @@ describe Court do
   end
 
   describe '#from_courtfinder_data!' do
+    before do
+      allow(court).to receive(:merge_from_full_json_dump!)
+    end
     context 'given a hash' do
       let(:args){
         {}
@@ -149,6 +152,223 @@ describe Court do
 
       it 'removes the blank lines' do
         expect(subject.address).to eq(['line 1', 'town', 'postcode'])
+      end
+    end
+  end
+
+  describe '.all' do
+    let(:courts){ [] }
+    before do
+      allow_any_instance_of(C100App::CourtfinderAPI).to receive(:all).and_return(courts)
+    end
+
+    it 'calls all on the CourtfinderAPI' do
+      expect_any_instance_of(C100App::CourtfinderAPI).to receive(:all)
+      Court.all
+    end
+
+    it 'returns the CourtfinderAPI result' do
+      expect(Court.all).to eq(courts)
+    end
+
+    context 'given a :cache_ttl' do
+      it 'passes it to the CourtfinderAPI call' do
+        expect_any_instance_of(C100App::CourtfinderAPI).to receive(:all).with(cache_ttl: 1234)
+        Court.all(cache_ttl: 1234)
+      end
+    end
+    context 'given no :cache_ttl' do
+      it 'passes 86400 to the CourtfinderAPI call' do
+        expect_any_instance_of(C100App::CourtfinderAPI).to receive(:all).with(cache_ttl: 86400)
+        Court.all
+      end
+    end
+  end
+
+  describe '#merge_from_full_json_dump!' do
+    let(:emails){
+      [
+        {
+          'description' => 'Enquiries',
+          'address' => 'my@email',
+        },
+      ]
+    }
+    let(:courts){
+      [
+        { 'slug' => 'my-slug',
+          'emails' => emails,
+          'opening_times' => [
+            {
+              'sort' => 0,
+              'opening_time' => '9:00-5pm'
+            }
+          ]
+        }
+      ]
+    }
+    before do
+      allow(Court).to receive(:all).and_return(courts)
+    end
+
+    it 'gets all Courts' do
+      expect(Court).to receive(:all).and_return(courts)
+      subject.send(:merge_from_full_json_dump!)
+    end
+
+    context 'when the all-courts data includes a Court with a matching slug' do
+      before do
+        subject.slug = 'my-slug'
+        allow(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
+
+      end
+
+      it 'sets opening_times to the opening_time keys from the court data' do
+        subject.send(:merge_from_full_json_dump!)
+        expect(subject.opening_times).to eq(['9:00-5pm'])
+      end
+
+      it 'gets the best_enquiries_email' do
+        expect(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
+        subject.send(:merge_from_full_json_dump!)
+      end
+
+      it 'sets email to the best_enquiries_email' do
+        subject.send(:merge_from_full_json_dump!)
+        expect(subject.email).to eq('test@email')
+      end
+    end
+  end
+
+  describe '#best_enquiries_email' do
+    context 'given an array of email hashes' do
+      context 'containing a nil entry' do
+        let(:emails){
+          [
+            nil,
+            {
+              'description' => 'Enquiries',
+              'address' => 'my@email',
+            }
+          ]
+        }
+
+        it 'returns the enquiries email' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('my@email')
+        end
+      end
+      context 'containing an email with description matching "children"' do
+        let(:emails){
+          [
+            {
+              'description' => 'Enquiries',
+              'address' => 'my@email',
+            },
+            {
+              'description' => 'All children enquiries',
+              'address' => 'children@email'
+            }
+          ]
+        }
+
+        it 'returns the email address of the matching description' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('children@email')
+        end
+
+        context 'and containing an email with description matching "family"' do
+          let(:emails){
+            [
+              {
+                'description' => 'All children enquiries',
+                'address' => 'children@email'
+              },
+              {
+                'description' => 'All family enquiries',
+                'address' => 'family@email'
+              }
+            ]
+          }
+          it 'returns the email address of the description matching children' do
+            expect(subject.send(:best_enquiries_email, emails)).to eq('children@email')
+          end
+        end
+      end
+
+      context 'containing an email with description matching "family"' do
+        let(:emails){
+          [
+            {
+              'description' => 'Enquiries',
+              'address' => 'my@email',
+            },
+            {
+              'description' => 'All family enquiries',
+              'address' => 'family@email'
+            }
+          ]
+        }
+
+        it 'returns the email address of the matching description' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('family@email')
+        end
+
+        context 'and containing an email with description matching "enquiries"' do
+          let(:emails){
+            [
+              {
+                'description' => 'Enquiries',
+                'address' => 'my@email',
+              },
+              {
+                'description' => 'All family things',
+                'address' => 'family@email'
+              }
+            ]
+          }
+
+          it 'returns the email address of the description matching family' do
+            expect(subject.send(:best_enquiries_email, emails)).to eq('family@email')
+          end
+        end
+      end
+
+      context 'containing an email with description matching "enquiries"' do
+        let(:emails){
+          [
+            {
+              'description' => 'All other things',
+              'address' => 'other@email'
+            },
+            {
+              'description' => 'Enquiries',
+              'address' => 'my@email',
+            },
+          ]
+        }
+
+        it 'returns the email address of the matching description' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('my@email')
+        end
+      end
+
+      context 'that is empty' do
+        let(:emails){ [] }
+        it 'returns nil' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq(nil)
+        end
+      end
+      context 'that is not empty but matches no other criterion' do
+        let(:emails){
+          [
+            {
+              'description' => 'Should not match anything',
+              'address' => 'my@email',
+            },
+          ]
+        }
+        it 'returns the first email' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('my@email')
+        end
       end
     end
   end
