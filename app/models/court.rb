@@ -51,8 +51,10 @@ class Court
 
   def merge_from_full_json_dump!
     this_court = Court.all.find { |c| c['slug'] == slug }
-    self.email = best_enquiries_email(this_court['emails'])
-    self.opening_times = this_court['opening_times'].map { |e| e['opening_time'] }
+    if this_court
+      self.email = best_enquiries_email(this_court['emails'])
+      self.opening_times = this_court['opening_times'].map { |e| e['opening_time'] }
+    end
   end
 
   def best_enquiries_email(emails = [])
