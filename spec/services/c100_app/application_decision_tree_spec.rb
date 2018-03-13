@@ -102,6 +102,6 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `declaration`' do
     let(:step_params) { { declaration: 'anything' } }
-    it { is_expected.to have_destination('/steps/completion/summary', :show) }
+    it { is_expected.to have_destination('/steps/completion/what_next', :show) }
   end
 end

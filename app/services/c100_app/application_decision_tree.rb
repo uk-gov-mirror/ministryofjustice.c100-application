@@ -30,7 +30,7 @@ module C100App
       when :help_paying
         edit(:declaration)
       when :declaration
-        show('/steps/completion/summary')
+        show('/steps/completion/what_next')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

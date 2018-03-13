@@ -231,7 +231,7 @@ en:
           heading: Do you or the other person (the respondent) have other children (separately or together) who aren’t part of this application?
           block_title: Why do we need to ask this?
           block_content_html: |
-            <p>The <a href="https://www.cafcass.gov.uk/">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
+            <p>The <a href="https://www.cafcass.gov.uk/" target="_blank">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/" target="_blank">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
             <p>They will contact the police and local authorities to see if they have any relevant information about your other children.</p>
       orders:
         edit:
@@ -925,23 +925,32 @@ en:
           next_steps:
             download:
               header: Download your application
-              copy: Download your application before you continue
+              copy_html: |
+                You need to download your application as a PDF. If you can’t open the PDF after downloading,
+                try using <a href="https://get.adobe.com/uk/reader/" target="_blank">Adobe Acrobat Reader</a>.
               link_text: Save or print your application
             email:
               header: Email your application
-              copy: You need to attach your downloaded PDF to an email, put 'child arrangements application' in the subject line and send it to
+              copy: You need to attach your downloaded PDF to an email, put 'C100 New application - Child arrangements' in the subject line and send it to
             payment:
               header: Pay the application fee
               copy: It costs £215 to apply. Only the person applying to court (the applicant) needs to pay. When your application has been received, someone from the court will telephone you to take payment using a credit or debit card.
               callout: You don’t need to pay if you have a "Help with fees" reference.
           help:
             header: If you need help
-            copy: You can contact the court if you need help with your application. Court staff can't give legal advice so you’ll need to find a legal advisor if you have any issues.
+            copy_html: |
+              You can contact the court if you need help with your application. Court staff can't give legal advice so you’ll need to
+              find a <a href="http://solicitors.lawsociety.org.uk/" target="_blank">legal advisor</a> if you have any issues.
             court:
               email: Email
               more_info: More information about %{court}
               opening_times: Opening times
               phone: Phone number
+          survey:
+            header: "We would like your feedback"
+            copy_html: |
+              Would you like to complete a 5 minute <a href="https://www.surveymonkey.co.uk/r/NN8FJZ6" target="_blank">survey</a> to give us feedback about the website you’ve just used?
+              This will help us to improve the service, and your feedback will not affect your application in any way.
   home:
     index:
       heading: Start here
