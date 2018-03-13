@@ -90,6 +90,7 @@ Rails.application.routes.draw do
       edit_step :language
       edit_step :intermediary
       edit_step :help_paying
+      edit_step :declaration
     end
     namespace :petition do
       edit_step :orders

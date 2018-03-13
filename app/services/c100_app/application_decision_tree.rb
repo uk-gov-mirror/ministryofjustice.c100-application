@@ -1,6 +1,6 @@
 module C100App
   class ApplicationDecisionTree < BaseDecisionTree
-    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
     def destination
       return next_step if next_step
 
@@ -28,12 +28,14 @@ module C100App
       when :special_arrangements
         edit(:help_paying)
       when :help_paying
-        show('/steps/completion/summary') # TODO: change when we have 'statement of truth'
+        edit(:declaration)
+      when :declaration
+        show('/steps/completion/summary')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
 
     private
 
