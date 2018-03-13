@@ -209,6 +209,7 @@ Rails.application.routes.draw do
       edit_step :request
     end
     namespace :completion do
+      show_step :what_next
       show_step :summary
       show_step :download
     end

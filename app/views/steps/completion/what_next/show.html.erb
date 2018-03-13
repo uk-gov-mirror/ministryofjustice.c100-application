@@ -1,0 +1,60 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p class="lede"><%=t '.lead_text' %></p>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <ol class="list list-number">
+        <li>
+          <h2 class="heading-medium"><%= t '.next_steps.download.header' %></h2>
+          <p><%= t '.next_steps.download.copy' %></p>
+          <p><%= link_to( t('.next_steps.download.link_text'), steps_completion_summary_path(format: :pdf), target: '_blank', class: 'button') %></p>
+        </li>
+        <li>
+          <h2 class="heading-medium"><%= t '.next_steps.email.header' %></h2>
+          <p><%= t '.next_steps.email.copy' %> <%= link_to @court.email, "mailto:#{@court.email}?subject=Child+arrangements+application"%></p>
+        </li>
+        <li>
+          <h2 class="heading-medium"><%= t '.next_steps.payment.header' %></h2>
+          <p><%= t '.next_steps.payment.copy' %></p>
+          <div role="note" aria-label="Warning" class=" notice gv-c-notice">
+            <i class=" icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
+              <span class=" visually-hidden gv-c-notice__icon-fallback-text">Warning</span>
+            </i>
+            <strong class=" bold-small gv-c-notice__text">
+              <%= t '.next_steps.payment.callout' %>
+            </strong>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class=" govuk-govspeak gv-s-prose">
+      <h2 class="heading-large"><%= t '.help.header' %></h2>
+      <p><%= t '.help.copy' %></p>
+      <dl>
+        <%- unless @court.email.blank? %>
+          <dt><%= t '.help.court.email' %></dt>
+          <dd><%= link_to @court.email, "mailto:#{@court.email}" %></dd>
+        <%- end %>
+        <%- unless @court.phone_number.blank? %>
+          <dt><%= t '.help.court.phone' %></dt>
+          <dd><%= @court.phone_number %></dd>
+        <%- end %>
+        <dt><%= t '.help.court.opening_times' %></dt>
+        <%- for opening_time in @court.opening_times %>
+          <dd><%= opening_time %></dd>
+        <%- end %>
+      </dl>
+      <p>
+        <%= link_to t('.help.court.more_info', court: @court.name), C100App::CourtfinderAPI.new.court_url(@court.slug) %>
+      </p>
+    </div>
+
+  </div>
+</div>
