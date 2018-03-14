@@ -4,20 +4,21 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
-
-    <p class="lede"><%=t '.lead_text' %></p>
+    <div class="grid_content_header govuk-box-highlight">
+      <h1 class="app__heading  heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+      <p class="app__lede  lede gv-u-text-lede"><%=t '.lead_text' %></p>
+    </div>
 
     <div class=" govuk-govspeak gv-s-prose">
       <ol class="list list-number">
         <li>
           <h2 class="heading-medium"><%= t '.next_steps.download.header' %></h2>
-          <p><%= t '.next_steps.download.copy' %></p>
+          <p><%= t '.next_steps.download.copy_html' %></p>
           <p><%= link_to( t('.next_steps.download.link_text'), steps_completion_summary_path(format: :pdf), target: '_blank', class: 'button') %></p>
         </li>
         <li>
           <h2 class="heading-medium"><%= t '.next_steps.email.header' %></h2>
-          <p><%= t '.next_steps.email.copy' %> <%= link_to @court.email, "mailto:#{@court.email}?subject=Child+arrangements+application"%></p>
+          <p><%= t '.next_steps.email.copy' %> <%= link_to @court.email, "mailto:#{@court.email}?subject=C100+New+application+-+Child+arrangements"%></p>
         </li>
         <li>
           <h2 class="heading-medium"><%= t '.next_steps.payment.header' %></h2>
@@ -34,9 +35,14 @@
       </ol>
     </div>
 
+    <div class="govuk-govspeak gv-s-prose">
+      <h2 class="heading-medium"><%= t '.survey.header' %></h2>
+      <p><%= t '.survey.copy_html' %></p>
+    </div>
+
     <div class=" govuk-govspeak gv-s-prose">
-      <h2 class="heading-large"><%= t '.help.header' %></h2>
-      <p><%= t '.help.copy' %></p>
+      <h2 class="heading-medium"><%= t '.help.header' %></h2>
+      <p><%= t '.help.copy_html' %></p>
       <dl>
         <%- unless @court.email.blank? %>
           <dt><%= t '.help.court.email' %></dt>
@@ -55,6 +61,5 @@
         <%= link_to t('.help.court.more_info', court: @court.name), C100App::CourtfinderAPI.new.court_url(@court.slug) %>
       </p>
     </div>
-
   </div>
 </div>
