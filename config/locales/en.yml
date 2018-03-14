@@ -228,7 +228,7 @@ en:
           heading: Do you or the other person (the respondent) have other children (separately or together) who aren’t part of this application?
           block_title: Why do we need to ask this?
           block_content_html: |
-            <p>The <a href="https://www.cafcass.gov.uk/" target="_blank">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/" target="_blank">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
+            <p>The <a href="https://www.cafcass.gov.uk/" target="external_link" rel="external">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/" target="external_link" rel="external">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
             <p>They will contact the police and local authorities to see if they have any relevant information about your other children.</p>
       orders:
         edit:
@@ -512,7 +512,8 @@ en:
           page_title: MIAM certification
           heading: Have you got a signed certificate from the mediator?
           body_html: |
-            <p>Your mediator should have signed a certificate confirming your MIAM attendance</p>
+            <p>Your mediator should have signed a certificate confirming your MIAM attendance.
+            You may need to go back to the mediator and ask for a certificate if you don't have one.</p>
       certification_date:
         edit:
           page_title: MIAM certification date
@@ -700,7 +701,7 @@ en:
               <li>your reasons for bringing this application to court</li>
               <li>what you want the court to decide (what outcome you want)</li>
               <li>why the other person disagrees</li>
-              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
+              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" target="external_link" rel="external">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
       language:
         edit:
@@ -719,7 +720,7 @@ en:
           page_title: Help paying
           heading: Help with fees
           body_html: |
-            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="_blank">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
+            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
             <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
       declaration:
         edit:
@@ -924,8 +925,8 @@ en:
               header: Download your application
               copy_html: |
                 You need to download your application as a PDF. If you can’t open the PDF after downloading,
-                try using <a href="https://get.adobe.com/uk/reader/" target="_blank">Adobe Acrobat Reader</a>.
-              link_text: Save or print your application
+                try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
+              link_text: Download your application
             email:
               header: Email your application
               copy: You need to attach your downloaded PDF to an email, put 'C100 New application - Child arrangements' in the subject line and send it to
@@ -937,7 +938,7 @@ en:
             header: If you need help
             copy_html: |
               You can contact the court if you need help with your application. Court staff can't give legal advice so you’ll need to
-              find a <a href="http://solicitors.lawsociety.org.uk/" target="_blank">legal advisor</a> if you have any issues.
+              find a <a href="http://solicitors.lawsociety.org.uk/" target="external_link" rel="external">legal advisor</a> if you have any issues.
             court:
               email: Email
               more_info: More information about %{court}
@@ -946,7 +947,7 @@ en:
           survey:
             header: "We would like your feedback"
             copy_html: |
-              Would you like to complete a 5 minute <a href="https://www.surveymonkey.co.uk/r/NN8FJZ6" target="_blank">survey</a> to give us feedback about the website you’ve just used?
+              Would you like to complete a 5 minute <a href="https://www.surveymonkey.co.uk/r/NN8FJZ6" target="external_link" rel="external">survey</a> to give us feedback about the website you’ve just used?
               This will help us to improve the service, and your feedback will not affect your application in any way.
   home:
     index:
