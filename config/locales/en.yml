@@ -8,7 +8,7 @@ en:
     address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
     name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     order_current: &order_current "Is the order current?"
-    order_current_error: &order_current_error "Please answer if the order is current"
+    order_current_error: &order_current_error "Answer if the order is current"
     order_length: &order_length "How long was the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
@@ -96,20 +96,17 @@ en:
     # This is a compilation of all possible errors shared between different parties
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
       full_name:
-        blank: Please enter the full name
+        blank: Enter the full name
       previous_name:
-        blank: Please enter the previous name
+        blank: Enter the previous name
       dob:
-        blank: Please enter the date of birth
+        blank: Enter the date of birth
       birthplace:
-        blank: Please enter the place of birth
+        blank: Enter the place of birth
       address:
-        blank: Please enter the address
+        blank: Enter the address
       mobile_phone:
-        blank: Please enter the mobile phone
-      email:
-        invalid: Please enter a valid email
-        blank: Please enter an email
+        blank: Enter the mobile phone
 
     # This is common abuse concerns `lead_text` copy, for applicant and for children.
     # The specific copy is in their corresponding sections.
@@ -971,14 +968,17 @@ en:
 
   errors:
     attributes:
+      email:
+        invalid: Enter a valid email address
+        blank: Enter an email address
       email_address:
-        invalid: Please enter a valid email address
-        blank: Please enter an email address
+        invalid: Enter a valid email address
+        blank: Enter an email address
     format: "%{message}"
     messages:
-      blank: Please enter an answer
-      present: Please leave empty
-      inclusion: Please select an option
+      blank: Enter an answer
+      present: Leave empty
+      inclusion: Select an option
     error_summary:
       heading: There was a problem on the page
       text: ''
@@ -1051,20 +1051,20 @@ en:
         user:
           attributes:
             email:
-              blank: Please enter your email address
-              invalid: Please enter a valid email address
+              blank: Enter your email address
+              invalid: Enter a valid email address
               taken: You already have a draft saved with this email address. Try signing in.
             password:
-              blank: Please enter a password
+              blank: Enter a password
               too_short: Your password must be at least %{count} characters
               too_long: Your password must be no longer than %{count} characters
             password_confirmation:
-              blank: Please enter the password again
+              blank: Enter the password again
               too_short: Your password must be at least %{count} characters
               too_long: Your password must be no longer than %{count} characters
               confirmation: The password confirmation doesn't match
             current_password:
-              blank: Please enter your current password
+              blank: Enter your current password
               invalid: The password is not valid
 
   helpers:
