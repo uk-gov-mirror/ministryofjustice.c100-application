@@ -50,10 +50,10 @@ class Court
   protected
 
   def merge_from_full_json_dump!
-    this_court = Court.all.find { |c| c['slug'] == slug }
+    this_court = Court.all.find { |c| c.respond_to?(:fetch) && c.fetch('slug') == slug }
     return unless this_court
     self.email = best_enquiries_email(this_court['emails'])
-    self.opening_times = this_court['opening_times'].map { |e| e['opening_time'] }
+    self.opening_times = this_court['opening_times'].to_a.map { |e| e['opening_time'] }
   end
 
   def best_enquiries_email(emails)
@@ -67,11 +67,11 @@ class Court
 
     emails = Array(emails).compact
 
-    best =  emails.find { |e| e['description'] =~ /children/i }             || \
-            emails.find { |e| e['description'] =~ /family/i }               || \
-            emails.find { |e| e['description'].casecmp('enquiries').zero? } || \
+    best =  emails.find { |e| e['description'] =~ /children/i }                  || \
+            emails.find { |e| e['description'] =~ /family/i }                    || \
+            emails.find { |e| e['description'].to_s.casecmp('enquiries').zero? } || \
             emails.first
 
-    best.to_h['address']
+    best.fetch('address') if best.respond_to?(:fetch)
   end
 end

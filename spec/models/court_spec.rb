@@ -32,6 +32,7 @@ describe Court do
   end
 
   describe '#from_courtfinder_data!' do
+    let(:court){ Court.new }
     before do
       allow(court).to receive(:merge_from_full_json_dump!)
     end
@@ -43,6 +44,11 @@ describe Court do
 
       it 'calls parse_basic_attributes! with the given hash' do
         expect(court).to receive(:parse_basic_attributes!).with(args)
+        court.from_courtfinder_data!(args)
+      end
+
+      it 'calls merge_from_full_json_dump!' do
+        expect(court).to receive(:merge_from_full_json_dump!)
         court.from_courtfinder_data!(args)
       end
 
@@ -59,6 +65,12 @@ describe Court do
           expect(court).to receive(:parse_given_address!).with('my address')
           court.from_courtfinder_data!(args)
         end
+      end
+    end
+
+    context 'given nil' do
+      it 'returns itself' do
+        expect(court.from_courtfinder_data!(nil)).to eq(court)
       end
     end
   end
@@ -209,6 +221,7 @@ describe Court do
     }
     before do
       allow(Court).to receive(:all).and_return(courts)
+      allow(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
     end
 
     it 'gets all Courts' do
@@ -216,31 +229,177 @@ describe Court do
       subject.send(:merge_from_full_json_dump!)
     end
 
-    context 'when the all-courts data includes a Court with a matching slug' do
-      before do
-        subject.slug = 'my-slug'
-        allow(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
+    describe 'the all-courts data' do
+      context 'when it includes a Court with a matching slug' do
+        before do
+          subject.slug = 'my-slug'
+        end
 
+        it 'sets opening_times to the opening_time keys from the court data' do
+          subject.send(:merge_from_full_json_dump!)
+          expect(subject.opening_times).to eq(['9:00-5pm'])
+        end
+
+        it 'gets the best_enquiries_email' do
+          expect(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
+          subject.send(:merge_from_full_json_dump!)
+        end
+
+        it 'sets email to the best_enquiries_email' do
+          subject.send(:merge_from_full_json_dump!)
+          expect(subject.email).to eq('test@email')
+        end
+      end
+      context 'when it does not include a Court with a matching slug' do
+        before do
+          subject.slug = 'non-existent-slug'
+        end
+
+        it 'does not change the email' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to_not change(subject, :email)
+        end
+        it 'does not change the opening_times' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to_not change(subject, :opening_times)
+        end
       end
 
-      it 'sets opening_times to the opening_time keys from the court data' do
-        subject.send(:merge_from_full_json_dump!)
-        expect(subject.opening_times).to eq(['9:00-5pm'])
+      # "this would never happen" in real life, but Mutant likes to replace == with .eql?
+      # in mutation testing, so we need to add a test that will fail under that mutation
+      context 'when it includes a Court with a slug that would match if type-converted' do
+        let(:courts){
+          [
+            { 'slug' => 1.0,
+              'emails' => emails,
+              'opening_times' => [
+                {
+                  'sort' => 0,
+                  'opening_time' => '9:00-5pm'
+                }
+              ]
+            }
+          ]
+        }
+        before do
+          subject.slug = 1
+        end
+
+        it 'sets opening_times to the opening_time keys from the court data' do
+          subject.send(:merge_from_full_json_dump!)
+          expect(subject.opening_times).to eq(['9:00-5pm'])
+        end
       end
 
-      it 'gets the best_enquiries_email' do
-        expect(subject).to receive(:best_enquiries_email).with(emails).and_return( 'test@email' )
-        subject.send(:merge_from_full_json_dump!)
+      # similarly, mutating [] to fetch
+      context 'when it includes a Court without an "emails" key' do
+        let(:courts){
+          [
+            { 'slug' => 'my-slug',
+              'opening_times' => [
+                {
+                  'sort' => 0,
+                  'opening_time' => '9:00-5pm'
+                }
+              ]
+            }
+          ]
+        }
+        before do
+          subject.email = 'my@email'
+          subject.slug = 'my-slug'
+          allow(subject).to receive(:best_enquiries_email).with(nil).and_return( nil )
+        end
+
+        it 'sets opening_times to the opening_time keys from the court data' do
+          subject.send(:merge_from_full_json_dump!)
+          expect(subject.opening_times).to eq(['9:00-5pm'])
+        end
+
+        it 'sets the court email to nil' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to change(subject, :email).to(nil)
+        end
+      end
+      context 'when it includes a Court without an "opening_times" key' do
+        let(:courts){
+          [
+            { 'slug' => 'my-slug' }
+          ]
+        }
+        before do
+          subject.slug = 'my-slug'
+          allow(subject).to receive(:best_enquiries_email).with(nil).and_return( nil )
+        end
+
+        it 'sets the court opening_times to []' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to change(subject, :opening_times).to([])
+        end
       end
 
-      it 'sets email to the best_enquiries_email' do
-        subject.send(:merge_from_full_json_dump!)
-        expect(subject.email).to eq('test@email')
+      describe 'the court opening_times array' do
+        context 'when it includes an entry without an "opening_time" key' do
+          let(:courts){
+            [
+              { 'slug' => 'my-slug',
+                'emails' => emails,
+                'opening_times' => [
+                  {
+                    'sort' => 0,
+                    'from' => '9:00am'
+                  }
+                ]
+              }
+            ]
+          }
+          before do
+            subject.slug = 'my-slug'
+            allow(subject).to receive(:best_enquiries_email).with(nil).and_return( nil )
+          end
+
+          it 'does not raise an error' do
+            expect{ subject.send(:merge_from_full_json_dump!) }.to_not raise_error
+          end
+        end
+      end
+
+      context 'when it includes a nil value' do
+        let(:courts){
+          [
+            nil,
+            { 'slug' => 'my-slug',
+              'emails' => emails,
+              'opening_times' => [
+                {
+                  'sort' => 0,
+                  'opening_time' => '9:00-5pm'
+                }
+              ]
+            }
+          ]
+        }
+        it 'does not raise an error' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to_not raise_error
+        end
+      end
+      context 'when it includes a value that is not a hash' do
+        let(:courts){
+          [
+            'foo'
+          ]
+        }
+        it 'does not raise an error' do
+          expect{ subject.send(:merge_from_full_json_dump!) }.to_not raise_error
+        end
       end
     end
   end
 
   describe '#best_enquiries_email' do
+    context 'given emails which are not an array' do
+      let(:emails){ 'foo' }
+      it 'returns nil' do
+        expect(subject.send(:best_enquiries_email, emails)).to eq(nil)
+      end
+    end
+
     context 'given an array of email hashes' do
       context 'containing a nil entry' do
         let(:emails){
@@ -265,7 +424,7 @@ describe Court do
               'address' => 'my@email',
             },
             {
-              'description' => 'All children enquiries',
+              'description' => 'All Children Enquiries',
               'address' => 'children@email'
             }
           ]
@@ -283,11 +442,30 @@ describe Court do
                 'address' => 'children@email'
               },
               {
-                'description' => 'All family enquiries',
+                'description' => 'All Family Enquiries',
                 'address' => 'family@email'
               }
             ]
           }
+          it 'returns the email address of the description matching children' do
+            expect(subject.send(:best_enquiries_email, emails)).to eq('children@email')
+          end
+        end
+
+        context 'and containing an email with description matching "enquiries"' do
+          let(:emails){
+            [
+              {
+                'description' => 'All children things',
+                'address' => 'children@email'
+              },
+              {
+                'description' => 'Enquiries',
+                'address' => 'my@email',
+              },
+            ]
+          }
+
           it 'returns the email address of the description matching children' do
             expect(subject.send(:best_enquiries_email, emails)).to eq('children@email')
           end
@@ -302,7 +480,7 @@ describe Court do
               'address' => 'my@email',
             },
             {
-              'description' => 'All family enquiries',
+              'description' => 'All Family Enquiries',
               'address' => 'family@email'
             }
           ]
@@ -364,6 +542,10 @@ describe Court do
               'description' => 'Should not match anything',
               'address' => 'my@email',
             },
+            {
+              'description' => 'Another non-matching email',
+              'address' => 'not@this.one'
+            }
           ]
         }
         it 'returns the first email' do

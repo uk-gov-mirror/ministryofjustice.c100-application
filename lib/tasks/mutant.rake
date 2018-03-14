@@ -40,7 +40,7 @@ end
 # Only include in this collection the models that matter and have specs.
 #
 def models
-  %w(C100Application User).freeze
+  %w(C100Application User Court).freeze
 end
 
 # Everything inheriting from `BaseForm` and inside namespace `Steps`
