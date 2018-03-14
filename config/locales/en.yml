@@ -1545,7 +1545,7 @@ en:
       dob: Date of birth
       order_issue: What date was it made?
     why_we_use_children_html: |
-      <details>
+      <details style="margin-top: 0;">
         <summary>
           <span class="summary">Why we use the term ‘children’</span>
         </summary>
