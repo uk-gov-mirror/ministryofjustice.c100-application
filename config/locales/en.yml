@@ -1225,11 +1225,22 @@ en:
         international_jurisdiction_html: ""
       steps_international_request_form:
         international_request_html: ""
-      steps_screener_urgency_form:
-        urgent: Are you asking for an urgent hearing?
 
+      ### SCREENER ###
+      #
+      steps_screener_urgency_form:
+        urgent_html: ""
+      steps_screener_parent_form:
+        parent_html: ""
+      steps_screener_over18_form:
+        over18_html: ""
+      steps_screener_legal_representation_form:
+        legal_representation_html: ""
+      steps_screener_written_agreement_form:
+        written_agreement_html: ""
       steps_screener_email_consent_form:
-        email_consent: May we contact you by email?
+        email_consent_html: ""
+
     label:
       steps_shared_relationship_form:
         relation_other_value: *provide_details
@@ -1402,6 +1413,8 @@ en:
         full_name: Full name of respondent
       steps_screener_postcode_form:
         children_postcodes: Postcode
+      steps_screener_email_consent_form:
+        email_address: Email address
       user:
         email: Your email address
         password: Choose password
@@ -1413,6 +1426,7 @@ en:
       surveys_feedback_form:
         comment: Describe any service improvement or problems you are having
         email: Email (optional)
+
     hint:
       user:
         password: Must be at least 8 characters
@@ -1492,8 +1506,6 @@ en:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
-      steps_postcode_screen_children_postcodes_form:
-        children_postcodes: Please enter one postcode per line. Only include postcodes that you are sure of - if you don't know any postcodes, leave this box blank. Please only enter full postcodes (like "SW1H 9AJ").
 
     submit:
       continue: Continue
@@ -1533,7 +1545,7 @@ en:
       dob: Date of birth
       order_issue: What date was it made?
     why_we_use_children_html: |
-      <details>
+      <details style="margin-top: 0;">
         <summary>
           <span class="summary">Why we use the term ‘children’</span>
         </summary>
