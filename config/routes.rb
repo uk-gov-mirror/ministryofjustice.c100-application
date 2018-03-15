@@ -211,7 +211,6 @@ Rails.application.routes.draw do
     namespace :completion do
       show_step :what_next
       show_step :summary
-      show_step :download
     end
   end
 
