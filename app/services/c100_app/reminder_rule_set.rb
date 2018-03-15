@@ -16,7 +16,7 @@ module C100App
 
     def self.first_reminder
       new(
-        created_days_ago: 9,
+        created_days_ago: 23,
         status: :in_progress,
         status_transition_to: :first_reminder_sent,
         email_template_name: :draft_first_reminder
@@ -25,7 +25,7 @@ module C100App
 
     def self.last_reminder
       new(
-        created_days_ago: 13,
+        created_days_ago: 27,
         status: :first_reminder_sent,
         status_transition_to: :last_reminder_sent,
         email_template_name: :draft_last_reminder

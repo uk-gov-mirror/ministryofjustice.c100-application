@@ -20,28 +20,28 @@ RSpec.describe DraftPresenter do
   describe '#expires_in' do
     context 'draft created today' do
       let(:created_at) { DateTime.now }
-      it { expect(subject.expires_in).to eq('14 days') }
+      it { expect(subject.expires_in).to eq('28 days') }
     end
 
-    context 'draft created 7 days ago' do
-      let(:created_at) { 7.days.ago }
-      it { expect(subject.expires_in).to eq('7 days') }
+    context 'draft created 15 days ago' do
+      let(:created_at) { 15.days.ago }
+      it { expect(subject.expires_in).to eq('13 days') }
     end
 
-    context 'draft created 13 days ago' do
-      let(:created_at) { 13.days.ago }
+    context 'draft created 27 days ago' do
+      let(:created_at) { 27.days.ago }
       it { expect(subject.expires_in).to eq('1 day') }
     end
 
-    context 'draft created 14 days ago' do
-      let(:created_at) { 14.days.ago }
+    context 'draft created 28 days ago' do
+      let(:created_at) { 28.days.ago }
       it { expect(subject.expires_in).to eq('Today') }
     end
 
     # This is to ensure even if we don't purge the draft on time for whatever reason,
     # the user will not see weird data (better to continue saying 'Today').
-    context 'draft created 15 days ago' do
-      let(:created_at) { 15.days.ago }
+    context 'draft created 29 days ago' do
+      let(:created_at) { 29.days.ago }
       it { expect(subject.expires_in).to eq('Today') }
     end
   end
@@ -52,18 +52,18 @@ RSpec.describe DraftPresenter do
       it { expect(subject.expires_in_class).to eq('') }
     end
 
-    context 'draft created 7 days ago' do
-      let(:created_at) { 7.days.ago }
+    context 'draft created 15 days ago' do
+      let(:created_at) { 15.days.ago }
       it { expect(subject.expires_in_class).to eq('') }
     end
 
-    context 'draft created 9 days ago' do
-      let(:created_at) { 9.days.ago }
+    context 'draft created 25 days ago' do
+      let(:created_at) { 25.days.ago }
       it { expect(subject.expires_in_class).to eq('expires-soon') }
     end
 
-    context 'draft created 14 days ago' do
-      let(:created_at) { 14.days.ago }
+    context 'draft created 28 days ago' do
+      let(:created_at) { 28.days.ago }
       it { expect(subject.expires_in_class).to eq('expires-today') }
     end
   end

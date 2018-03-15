@@ -16,7 +16,7 @@
         <h2 class="gv-u-heading-xlarge">Saving your progress</h2>
         <p>You can save your application and return at any time. You just need your email address and a
           password of your choice.</p>
-        <p>We’ll save your draft for 30 days or until you submit your application. For security reasons, we’ll delete
+        <p>We’ll save your draft for <%= Rails.configuration.x.drafts.expire_in_days %> days or until you submit your application. For security reasons, we’ll delete
           any information after this time.</p>
         <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
           <p>You won’t be able to check your answers at the end of the service so we recommend doing so as you progress.</p>
