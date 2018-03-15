@@ -15,9 +15,9 @@ integration:
   draft_first_reminder: 'fcd87b1c-a3a0-4a2a-9b4e-524857e3bf8c'
   draft_last_reminder: '8e622f55-4be8-49cc-8a94-0ab3fd868067'
 
-live:
-  reset_password: 'tbc'
-  change_password: 'tbc'
-  application_saved: 'tbc'
-  draft_first_reminder: 'tbc'
-  draft_last_reminder: 'tbc'
+production:
+  reset_password: '0f55e48a-ae27-464c-b30f-272fd3850296'
+  change_password: 'c6be1e37-feee-4d18-9552-ed4e4772ad16'
+  application_saved: '267ace56-230f-4b07-902f-b993dfc69143'
+  draft_first_reminder: 'bf271379-6158-407d-b09a-cc6d8b275f1e'
+  draft_last_reminder: '30dedd21-e7da-4794-b66c-94729cfa3180'
