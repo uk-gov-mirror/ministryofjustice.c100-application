@@ -9,7 +9,7 @@ to complete the C100 form. It is based on software patterns developed for the
 
 ## Heroku demo.
 
-There is a demo app. running on Heroku at [this url][heroku-demo]
+There is a demo app. running on Heroku at [this url][heroku-staging]
 
 The demo. app. uses http basic auth. to restrict access. The username and
 password should be available from the MoJ Rattic server, in the Family Justice group.
@@ -47,4 +47,4 @@ However it is still possible to have full flexibility of what mutant runs in you
 `bundle exec rake mutant`
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
-[heroku-demo]: https://c100-demo.herokuapp.com
+[heroku-staging]: https://c100-staging.herokuapp.com

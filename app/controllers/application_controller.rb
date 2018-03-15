@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # Heroku demo app requires basic auth to restrict access
   # :nocov:
-  if ENV.fetch('HEROKU_APP_NAME', false)
+  if ENV.fetch('HTTP_AUTH_ENABLED', false)
     http_basic_authenticate_with name: ENV.fetch('HTTP_AUTH_USER'), password: ENV.fetch('HTTP_AUTH_PASSWORD')
   end
   # :nocov:
