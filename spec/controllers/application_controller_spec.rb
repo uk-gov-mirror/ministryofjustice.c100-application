@@ -4,6 +4,8 @@ RSpec.describe ApplicationController do
   controller do
     def invalid_session; raise Errors::InvalidSession; end
     def application_not_found; raise Errors::ApplicationNotFound; end
+    def application_completed; raise Errors::ApplicationCompleted; end
+    def application_screening; raise Errors::ApplicationScreening; end
     def another_exception; raise Exception; end
   end
 
@@ -31,6 +33,28 @@ RSpec.describe ApplicationController do
 
         get :application_not_found
         expect(response).to redirect_to(application_not_found_errors_path)
+      end
+    end
+
+    context 'Errors::ApplicationScreening' do
+      it 'should not report the exception, and redirect to the error page' do
+        routes.draw { get 'application_screening' => 'anonymous#application_screening' }
+
+        expect(Raven).not_to receive(:capture_exception)
+
+        get :application_screening
+        expect(response).to redirect_to(application_screening_errors_path)
+      end
+    end
+
+    context 'Errors::ApplicationCompleted' do
+      it 'should not report the exception, and redirect to the error page' do
+        routes.draw { get 'application_completed' => 'anonymous#application_completed' }
+
+        expect(Raven).not_to receive(:capture_exception)
+
+        get :application_completed
+        expect(response).to redirect_to(application_completed_errors_path)
       end
     end
 

@@ -226,6 +226,8 @@ Rails.application.routes.draw do
   resource :errors, only: [] do
     get :invalid_session
     get :application_not_found
+    get :application_screening
+    get :application_completed
     get :unhandled
   end
 
