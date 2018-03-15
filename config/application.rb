@@ -49,8 +49,8 @@ class Application < Rails::Application
   # and if it has an owner (it was saved for later), we send up to two email reminders
   # before we delete the application. If you change this number make sure to also update
   # `app/services/c100_app/reminder_rule_set.rb` and the Notify email templates.
-  config.x.drafts.expire_in_days = ENV.fetch('DRAFTS_EXPIRE_AFTER', 14).to_i
+  config.x.drafts.expire_in_days = 28
 
   # When a user is purged, any saved C100 applications belonging to them, are also purged.
-  config.x.users.expire_in_days = ENV.fetch('USERS_EXPIRE_AFTER', 30).to_i
+  config.x.users.expire_in_days = 30
 end

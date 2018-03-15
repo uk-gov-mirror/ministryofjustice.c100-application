@@ -33,7 +33,7 @@ RSpec.describe NotifyMailer, type: :mailer do
       expect(mail.govuk_notify_personalisation).to eq({
         service_name: 'Apply to court about child arrangements',
         resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
-        draft_expire_in_days: 14,
+        draft_expire_in_days: 28,
       })
     end
   end
@@ -50,6 +50,7 @@ RSpec.describe NotifyMailer, type: :mailer do
         expect(mail.govuk_notify_personalisation).to eq({
           service_name: 'Apply to court about child arrangements',
           resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
+          user_expire_in_days: 30,
         })
       end
     end
@@ -67,6 +68,7 @@ RSpec.describe NotifyMailer, type: :mailer do
         expect(mail.govuk_notify_personalisation).to eq({
           service_name: 'Apply to court about child arrangements',
           resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
+          user_expire_in_days: 30,
         })
       end
     end

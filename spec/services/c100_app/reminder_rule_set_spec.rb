@@ -4,7 +4,7 @@ RSpec.describe C100App::ReminderRuleSet do
   describe '.first_reminder' do
     subject { described_class.first_reminder }
 
-    it { expect(subject.created_days_ago).to eq(9) }
+    it { expect(subject.created_days_ago).to eq(23) }
     it { expect(subject.status).to eq(:in_progress) }
     it { expect(subject.status_transition_to).to eq(:first_reminder_sent) }
     it { expect(subject.email_template_name).to eq(:draft_first_reminder) }
@@ -13,7 +13,7 @@ RSpec.describe C100App::ReminderRuleSet do
   describe '.last_reminder' do
     subject { described_class.last_reminder }
 
-    it { expect(subject.created_days_ago).to eq(13) }
+    it { expect(subject.created_days_ago).to eq(27) }
     it { expect(subject.status).to eq(:first_reminder_sent) }
     it { expect(subject.status_transition_to).to eq(:last_reminder_sent) }
     it { expect(subject.email_template_name).to eq(:draft_last_reminder) }

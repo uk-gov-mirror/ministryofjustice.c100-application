@@ -51,7 +51,8 @@ class NotifyMailer < GovukNotifyRails::Mailer
     set_template(template_name)
 
     set_personalisation(
-      resume_draft_url: resume_users_draft_url(c100_application)
+      resume_draft_url: resume_users_draft_url(c100_application),
+      user_expire_in_days: Rails.configuration.x.users.expire_in_days,
     )
 
     mail(to: c100_application.user.email)
