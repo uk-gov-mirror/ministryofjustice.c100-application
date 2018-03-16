@@ -297,4 +297,77 @@ describe C100App::CourtfinderAPI do
       end
     end
   end
+
+  describe 'status' do
+    let(:mock_response){ double(code: 'foo') }
+    let(:http_object){ instance_double(Net::HTTP, request: mock_response) }
+    let(:get_request){ instance_double(Net::HTTP::Get) }
+    before do
+      allow(subject).to receive(:http_object).and_return(http_object)
+      allow(Net::HTTP::Get).to receive(:new).with('/healthcheck.json').and_return(get_request)
+    end
+
+    it 'makes a Net::HTTP::Get object passing /healthcheck.json' do
+      expect(Net::HTTP::Get).to receive(:new).with('/healthcheck.json').and_return(get_request)
+      subject.status
+    end
+
+    it 'makes a request on the http_object passing the healthcheck GET object' do
+      expect(http_object).to receive(:request).with(get_request).and_return(mock_response)
+      subject.status
+    end
+
+    it 'returns the status of the response' do
+      expect(subject.status).to eq('foo')
+    end
+  end
+
+  describe 'http_object' do
+    let(:uri_port){ 80 }
+    let(:uri){ double(URI, host: 'myhost', port: uri_port) }
+    before do
+      allow(subject).to receive(:api_root_uri).and_return(uri)
+    end
+    describe 'returned value' do
+      let(:returned_value){ subject.send(:http_object) }
+
+      it 'has address set to the host of api_root_uri' do
+        expect( returned_value.address ).to eq( 'myhost' )
+      end
+
+      context 'when api_root_uri has port set to 443' do
+        let(:uri_port){ 443 }
+
+        it 'has use_ssl? set to true' do
+          expect( returned_value.use_ssl? ).to eq(true)
+        end
+      end
+
+      context 'when api_root_uri has port not set to 443' do
+        let(:uri_port){ 80 }
+
+        it 'has use_ssl? set to false' do
+          expect( returned_value.use_ssl? ).to eq(false)
+        end
+      end
+    end
+  end
+
+  describe 'api_root_uri' do
+    describe 'returned value' do
+      let(:returned_value) { subject.send(:api_root_uri) }
+
+      it 'is a URI' do
+        expect(returned_value).to be_a(URI)
+      end
+
+      it 'has host set to the host of API_ROOT' do
+        expect(returned_value.host).to eq(URI.parse(described_class::API_ROOT).host)
+      end
+
+      it 'has port set to 443' do
+        expect(returned_value.port).to eq(443)
+      end
+    end
+  end
 end

@@ -7,6 +7,7 @@ RSpec.describe C100App::Status do
       version: 'ABC123',
       dependencies: {
         database_status: database_status,
+        courtfinder_status: courtfinder_status,
       }
     }
   end
@@ -14,10 +15,13 @@ RSpec.describe C100App::Status do
   # Default is everything is fine
   let(:service_status) { 'ok' }
   let(:database_status) { 'ok' }
+  let(:courtfinder_status) { 'ok' }
+  let(:courtfinder_api_status_code) { "200" }
 
   before do
     allow(ActiveRecord::Base).to receive(:connection).and_return(double)
     allow_any_instance_of(described_class).to receive(:`).with('git rev-parse HEAD').and_return('ABC123')
+    allow_any_instance_of(C100App::CourtfinderAPI).to receive(:status).and_return(courtfinder_api_status_code)
   end
 
   describe '.version' do
@@ -50,6 +54,21 @@ RSpec.describe C100App::Status do
       end
 
       specify { expect(described_class.check).to eq(status) }
+    end
+
+    describe 'Courtfinder API status' do
+      context 'when it is OK' do
+        let(:courtfinder_api_status_code){ "200" }
+
+        specify { expect(described_class.check).to eq(status) }
+      end
+      context 'when it is not OK' do
+        let(:courtfinder_api_status_code){ "501" }
+        let(:service_status) { 'failed' }
+        let(:courtfinder_status) { 'failed' }
+
+        specify { expect(described_class.check).to eq(status) }
+      end
     end
   end
 end

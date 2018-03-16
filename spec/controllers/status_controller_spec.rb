@@ -7,17 +7,13 @@ RSpec.describe StatusController, type: :controller do
       version: 'ABC123',
       dependencies: {
           database_status: 'ok',
+          courtfinder_status: 'ok'
       }
     }.to_json
   end
 
   before do
-    # Stubbing GlimrApiClient does not work here for some reason Stubbing
-    # GlimrApiClient does not work here for some reason that isn't clear.
-    stub_request(:get, /status/).
-      to_return(status: 200, body: { service_status: 'ok' }.to_json)
-    expect(ActiveRecord::Base).to receive(:connection).and_return(double)
-    allow_any_instance_of(C100App::Status).to receive(:version).and_return('ABC123')
+    allow_any_instance_of(C100App::Status).to receive(:check).and_return(status)
   end
 
   # This is very-happy-path to ensure the controller responds.  The bulk of the

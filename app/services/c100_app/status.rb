@@ -9,7 +9,8 @@ module C100App
         service_status: service_status,
         version: version,
         dependencies: {
-          database_status: database_status
+          database_status: database_status,
+          courtfinder_status: courtfinder_status
         }
       }
     end
@@ -35,8 +36,12 @@ module C100App
                            end
     end
 
+    def courtfinder_status
+      @courtfinder_status ||= (C100App::CourtfinderAPI.new.status.to_i == 200 ? 'ok' : 'failed')
+    end
+
     def service_status
-      if database_status.eql?('ok')
+      if [database_status, courtfinder_status].all? { |status| status == 'ok' }
         'ok'
       else
         'failed'
