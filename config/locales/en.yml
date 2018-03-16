@@ -1005,12 +1005,13 @@ en:
       page_title: Application screening
       heading: You need to complete the criteria process
       lead_text: We’re trialling a new online service and you need to meet some criteria in order to continue.
-      more_info_text: It seems like you've not completed yet this process or is missing some information. You will need to start again.
+      more_info_text: It seems you've not completed yet this process or some information is missing. You will need to start again.
       <<: *START_FINISH
     application_completed:
       page_title: Application completed
       heading: You have already completed this application
-      lead_text: If you want to make changes or create a new application, you can start a new application.
+      lead_text: Your application won’t be processed until you complete a few more steps. If you want to make changes you can start a new application.
+      what_next: What you need to do next
       <<: *START_FINISH
 
   activemodel:
