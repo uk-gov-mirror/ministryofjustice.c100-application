@@ -2,6 +2,7 @@ module SavepointStep
   extend ActiveSupport::Concern
 
   included do
+    skip_before_action :check_application_not_screening
     before_action :mark_in_progress, only: [:update]
     before_action :save_application_for_later, if: :user_signed_in?, only: [:update]
   end

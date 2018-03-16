@@ -4,9 +4,9 @@
   <div class="column-two-thirds">
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%= t '.heading' %></h1>
 
-    <p class="lede"><%=t('.lead_text', session_timeout: Rails.configuration.x.session.expires_in_minutes) %></p>
+    <p class="lede"><%=t '.lead_text' %></p>
 
-    <p class="lede"><%=t('.more_text', expire_in_days: Rails.configuration.x.drafts.expire_in_days) %></p>
+    <p class="lede"><%=t '.more_info_text' %></p>
 
     <div class="form-group">
       <%= link_to t('.start_again'), root_path, class: 'button' %>

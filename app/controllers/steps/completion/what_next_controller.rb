@@ -1,6 +1,8 @@
 module Steps
   module Completion
     class WhatNextController < Steps::CompletionStepController
+      include CompletionStep
+
       def show
         @court = court_from_screener_answers
       end

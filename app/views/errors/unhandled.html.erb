@@ -8,6 +8,8 @@
 
     <p class="lede"><%=t '.more_text' %></p>
 
-    <%= render partial: 'steps/shared/finish_button', locals: {name: t('.start_again'), show_survey: false} %>
+    <div class="form-group">
+      <%= link_to t('.start_again'), root_path, class: 'button' %>
+    </div>
   </div>
 </div>

@@ -12,6 +12,8 @@ RSpec.shared_examples 'a relationship step controller' do |form_class, decision_
   # This is a side effect of everything being a double, we have to do a lot of 'setup', but all this
   # is not part of these tests and we don't need to test the functionality, just trust it.
   before do
+    allow(existing_case).to receive(:completed?).and_return(false)
+    allow(existing_case).to receive(:screening?).and_return(false)
     allow(controller).to receive(:current_c100_application).and_return(existing_case)
     allow(controller).to receive(:update_navigation_stack)
   end

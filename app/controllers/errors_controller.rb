@@ -9,6 +9,14 @@ class ErrorsController < ApplicationController
     respond_with_status(:not_found)
   end
 
+  def application_screening
+    respond_with_status(:unprocessable_entity)
+  end
+
+  def application_completed
+    respond_with_status(:unprocessable_entity)
+  end
+
   def unhandled
     respond_with_status(:internal_server_error)
   end
