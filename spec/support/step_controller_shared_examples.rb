@@ -35,7 +35,7 @@ RSpec.shared_examples 'a generic step controller' do |form_class, decision_tree_
     # end
 
     context 'when a case in progress is in the session' do
-      let(:existing_case) { C100Application.create }
+      let(:existing_case) { C100Application.create(status: :in_progress) }
 
       before do
         allow(form_class).to receive(:new).and_return(form_object)
@@ -118,7 +118,7 @@ end
 
 RSpec.shared_examples 'a savepoint step controller' do
   describe '#edit' do
-    let!(:existing_c100) { C100Application.create(navigation_stack: ['/not', '/empty']) }
+    let!(:existing_c100) { C100Application.create(status: :screening, navigation_stack: ['/not', '/empty']) }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
@@ -152,7 +152,7 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#update' do
-    let!(:existing_c100) { C100Application.create(navigation_stack: ['/not', '/empty']) }
+    let!(:existing_c100) { C100Application.create(status: :screening, navigation_stack: ['/not', '/empty']) }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
@@ -192,6 +192,24 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 end
 
+RSpec.shared_examples 'a completion step controller' do
+  describe '#show' do
+    context 'when a case exists in the session' do
+      let!(:existing_c100) { C100Application.create(status: :in_progress) }
+
+      before do
+        allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+      end
+
+      it 'changes the status to `completed`' do
+        expect {
+          get :show, session: { c100_application_id: existing_c100.id }
+        }.to change { existing_c100.status }.to('completed')
+      end
+    end
+  end
+end
+
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
   include_examples 'a generic step controller', form_class, decision_tree_class
 
@@ -210,7 +228,7 @@ RSpec.shared_examples 'an intermediate step controller' do |form_class, decision
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { C100Application.create }
+      let!(:existing_case) { C100Application.create(status: :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { c100_application_id: existing_case.id }
@@ -235,7 +253,7 @@ RSpec.shared_examples 'an intermediate step controller without update' do
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) { C100Application.create }
+      let!(:existing_case) { C100Application.create(status: :in_progress) }
 
       it 'responds with HTTP success' do
         get :edit, session: { c100_application_id: existing_case.id }
@@ -263,7 +281,7 @@ RSpec.shared_examples 'an names CRUD step controller' do |form_class, decision_t
     end
 
     context 'when a case exists in the session' do
-      let!(:existing_case) {C100Application.create}
+      let!(:existing_case) { C100Application.create(status: :in_progress) }
       let!(:existing_resource) { resource_class.create(c100_application: existing_case) }
 
       before do
