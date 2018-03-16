@@ -49,6 +49,71 @@ form.button_to {
   }
 }
 
+label[for="steps_safety_questions_substance_abuse_details_form_substance_abuse_details"]
+{
+  color: transparent;
+}
+label[for="steps_abduction_risk_details_form_risk_details"]
+{
+  display: none;
+}
+.button-add {
+  padding-left: 0;
+}
+
+.miam_exemptions form {
+  & > .form-group > fieldset {
+    & > legend {
+      margin-bottom: 2rem;
+    }
+
+    & > .multiple-choice {
+      min-height: 5rem;
+
+      & + .panel {
+        margin-top: -2rem;
+        margin-bottom: 3rem;
+      }
+    }
+
+    & .list:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & label .heading-small {
+    font-weight: normal;
+  }
+}
+
+.form-block.or-block {
+  float: none;
+
+  .or-block__shift & {
+    margin-top: -5rem;
+  }
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+fieldset + .form-group {
+  margin-bottom: 15px;
+}
+@media (min-width: 641px) {
+  fieldset + .form-group {
+    margin-bottom: 30px;
+  }
+  fieldset + .form-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form-hint:empty {
+  display: none;
+}
+
 // This is a workaround to make the fieldset legends visually hidden, as `govuk_elements_form_builder`
 // doesn't support this in their current version.
 //

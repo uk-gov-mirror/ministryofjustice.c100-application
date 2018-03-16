@@ -9,7 +9,7 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text_html' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.text_field :children_postcodes %>
+      <%= f.text_field :children_postcodes, class: 'narrow' %>
 
       <%= f.continue_button %>
     <% end %>
