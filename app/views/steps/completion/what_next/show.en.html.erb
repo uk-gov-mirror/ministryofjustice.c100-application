@@ -1,0 +1,100 @@
+<% title 'Send your application' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Send your application</h1>
+
+    <p class="lede gv-u-text-lede">
+      Your application won’t be processed until you complete these steps.
+    </p>
+
+    <section class="numbered-list">
+      <div class="govuk-govspeak gv-s-prose">
+        <ol class="list list-number">
+          <li>
+            <span class="heading-medium">Download your application</span>
+            <p>
+              This will be a PDF. If you can’t open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
+            </p>
+            <p>
+              <%= link_to 'Download your application', steps_completion_summary_path(format: :pdf), target: '_blank', class: 'button' %>
+            </p>
+          </li>
+
+          <li>
+            <span class="heading-medium">Send your application</span>
+            <p>
+              Attach your PDF to an email. Put ‘C100 new application - child arrangements’ in the subject line and send it to: <%= link_to @court.email, "mailto:#{@court.email}?subject=C100+New+application+-+Child+arrangements" %>
+            </p>
+            <p>The court will email you to confirm they have received your application.</p>
+            <details>
+              <summary>
+                <span class="summary">You can also print it and send by post</span>
+              </summary>
+              <div class="panel panel-border-narrow">
+                <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
+                  the other person, keep one copy, and return one copy to you. Post them to:</p>
+                <p>[TODO]</p>
+              </div>
+            </details>
+          </li>
+
+          <li>
+            <span class="heading-medium">Pay the application fee</span>
+            <p>
+              It costs £215 to apply. Someone from the court will telephone you within 3 working days of receiving your application to take payment using a credit or debit card.
+            </p>
+            <p>
+              You don’t need to pay if you have a <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">‘Help with fees’</a> reference.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <hr/>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">If you need help</h1>
+      <p>
+        You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
+        need to
+        <a href="http://solicitors.lawsociety.org.uk/" target="external_link" rel="external">find a legal advisor</a> if
+        you have any issues.
+      </p>
+
+      <dl id="court-contact-details">
+        <%- unless @court.email.blank? %>
+          <dt><strong>Email</strong></dt>
+          <dd><%= mail_to @court.email %></dd>
+        <%- end %>
+
+        <%- unless @court.phone_number.blank? %>
+          <dt><strong>Phone number</strong></dt>
+          <dd><%= @court.phone_number %></dd>
+        <%- end %>
+
+        <%- unless @court.opening_times&.empty? %>
+          <dt><strong>Opening times</strong></dt>
+          <%- @court.opening_times.each do |opening_time| %>
+            <dd><%= opening_time %></dd>
+          <%- end %>
+        <%- end %>
+      </dl>
+
+      <p>
+        <%= link_to "More information about #{@court.name}", C100App::CourtfinderAPI.new.court_url(@court.slug) %>
+      </p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose util_mt-large">
+      <h1 class="heading-xlarge gv-u-heading-xxlarge">We’d like your feedback</h1>
+      <p>
+        Would you like to <%= link_to 'complete a 5-minute survey', Rails.configuration.survey_link, target: 'external_link', rel: 'external' %> to give us your feedback about the online service you have just used?
+      </p>
+      <p>
+        This will help us to improve it. Your feedback won’t affect your application in any way.
+      </p>
+    </div>
+  </div>
+</div>

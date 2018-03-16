@@ -726,7 +726,7 @@ en:
         edit:
           page_title: Declaration
           heading: Declaration
-          lead_text: By submitting your application you confirm the information you’ve provided is true.
+          lead_text: You must confirm that the information you’ve provided in your application is true.
           warning_title: Warning
           warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
     international:
@@ -915,40 +915,6 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before submitting your application
           confirm: Confirm and continue
-      what_next:
-        show:
-          page_title: What to do next
-          heading: What you need to do next
-          lead_text: You've finished the application. However it won't be processed until you complete the following steps.
-          next_steps:
-            download:
-              header: Download your application
-              copy_html: |
-                You need to download your application as a PDF. If you can’t open the PDF after downloading,
-                try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
-              link_text: Download your application
-            email:
-              header: Email your application
-              copy: You need to attach your downloaded PDF to an email, put 'C100 New application - Child arrangements' in the subject line and send it to
-            payment:
-              header: Pay the application fee
-              copy: It costs £215 to apply. Only the person applying to court (the applicant) needs to pay. When your application has been received, someone from the court will telephone you to take payment using a credit or debit card.
-              callout: You don’t need to pay if you have a "Help with fees" reference.
-          help:
-            header: If you need help
-            copy_html: |
-              You can contact the court if you need help with your application. Court staff can't give legal advice so you’ll need to
-              find a <a href="http://solicitors.lawsociety.org.uk/" target="external_link" rel="external">legal advisor</a> if you have any issues.
-            court:
-              email: Email
-              more_info: More information about %{court}
-              opening_times: Opening times
-              phone: Phone number
-          survey:
-            header: "We would like your feedback"
-            copy_html: |
-              Would you like to complete a 5 minute <a href="https://www.surveymonkey.co.uk/r/NN8FJZ6" target="external_link" rel="external">survey</a> to give us feedback about the website you’ve just used?
-              This will help us to improve the service, and your feedback will not affect your application in any way.
   home:
     index:
       heading: Start here
@@ -961,7 +927,7 @@ en:
       terms_and_conditions: Terms and conditions
     phase_banner:
       phase_info_email_html: |
-        This is a new service. <a href="mailto:family_justice_helpdesk@digital.justice.gov.uk?subject=Feedback">Report a problem</a> and help improve it for others.
+        This is a new service. <a href="mailto:c100helpdesk@digital.justice.gov.uk?subject=Feedback">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password

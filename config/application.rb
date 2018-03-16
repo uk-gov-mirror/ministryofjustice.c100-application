@@ -31,7 +31,7 @@ class Application < Rails::Application
 
   config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
 
-  config.survey_link = 'https://www.gov.uk/done/c100'.freeze
+  config.survey_link = 'https://www.surveymonkey.co.uk/r/NN8FJZ6'.freeze
   config.kickout_survey_link = 'REPLACEME'.freeze
 
   # This is the GDS-hosted homepage for our service, and the one with a `start` button

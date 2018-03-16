@@ -76,28 +76,29 @@ li.no-js-only {
   margin-bottom: 0.41667em;
 }
 
-#before-applying ol{
+section.numbered-list ol{
   padding-left:0;
 }
-#before-applying ol > li{
+section.numbered-list ol > li{
   background-position:0 0.87em;
   background-repeat:no-repeat;
   list-style-type:none;
   margin-left:0;
   padding:0.75em 0 0.75em 2.2em;
 }
-#before-applying ol > li:nth-child(1){
+section.numbered-list ol > li:nth-child(1){
   background-image:url('icon-step-1.png');
 }
-#before-applying ol > li:nth-child(2){
+section.numbered-list ol > li:nth-child(2){
   background-image:url('icon-step-2.png');
 }
-#before-applying ol > li:nth-child(3){
+section.numbered-list ol > li:nth-child(3){
   background-image:url('icon-step-3.png');
 }
-#before-applying ol > li:nth-child(4){
+section.numbered-list ol > li:nth-child(4){
   background-image:url('icon-step-4.png');
 }
+
 #miam-requirement_acknowledgement{
   padding-top:96px;
   padding-top:6rem;
@@ -119,5 +120,15 @@ li.no-js-only {
   & .panel-border-wide p {
     font-size: 1.6rem;
     font-weight: 700;
+  }
+}
+
+#court-contact-details {
+  dt {
+    margin-top: 15px;
+  }
+
+  dd {
+    margin-bottom: 5px;
   }
 }
