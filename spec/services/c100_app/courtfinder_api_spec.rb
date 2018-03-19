@@ -298,6 +298,40 @@ describe C100App::CourtfinderAPI do
     end
   end
 
+  describe '#is_ok?' do
+    context 'when status is "200"' do
+      before do
+        allow(subject).to receive(:status).and_return('200')
+      end
+
+      it 'returns true' do
+        expect(subject.is_ok?).to eq(true)
+      end
+    end
+
+    context 'when status is not "200"' do
+      before do
+        allow(subject).to receive(:status).and_return('400')
+      end
+
+      it 'returns false' do
+        expect(subject.is_ok?).to eq(false)
+      end
+
+      context 'when status is not a string' do
+        before do
+          allow(subject).to receive(:status).and_return(200)
+        end
+
+        it 'returns false' do
+          expect(subject.is_ok?).to eq(false)
+        end
+      end
+
+    end
+
+  end
+
   describe 'status' do
     let(:mock_response){ double(code: 'foo') }
     let(:http_object){ instance_double(Net::HTTP, request: mock_response) }
@@ -309,16 +343,16 @@ describe C100App::CourtfinderAPI do
 
     it 'makes a Net::HTTP::Get object passing /healthcheck.json' do
       expect(Net::HTTP::Get).to receive(:new).with('/healthcheck.json').and_return(get_request)
-      subject.status
+      subject.send(:status)
     end
 
     it 'makes a request on the http_object passing the healthcheck GET object' do
       expect(http_object).to receive(:request).with(get_request).and_return(mock_response)
-      subject.status
+      subject.send(:status)
     end
 
     it 'returns the status of the response' do
-      expect(subject.status).to eq('foo')
+      expect(subject.send(:status)).to eq('foo')
     end
   end
 
@@ -337,6 +371,13 @@ describe C100App::CourtfinderAPI do
 
       context 'when api_root_uri has port set to 443' do
         let(:uri_port){ 443 }
+
+        it 'has use_ssl? set to true' do
+          expect( returned_value.use_ssl? ).to eq(true)
+        end
+      end
+      context 'when api_root_uri has port set to a non-integer' do
+        let(:uri_port){ 443.0 }
 
         it 'has use_ssl? set to true' do
           expect( returned_value.use_ssl? ).to eq(true)
