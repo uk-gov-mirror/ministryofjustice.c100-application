@@ -6,6 +6,7 @@ module Steps
       has_one_association :screener_answers
 
       attribute :children_postcodes, String
+      validates :children_postcodes, presence: true, full_uk_postcode: true
 
       private
 

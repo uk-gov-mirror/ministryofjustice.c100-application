@@ -18,6 +18,7 @@ gem 'sanitize'
 gem 'sass-rails'
 gem 'sentry-raven'
 gem 'uglifier'
+gem 'uk_postcode'
 gem 'virtus'
 
 # PDF generation

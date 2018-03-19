@@ -942,6 +942,9 @@ en:
       email_address:
         invalid: Enter a valid email address
         blank: Enter an email address
+      children_postcodes:
+        invalid: Please enter a valid full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'sw1h9aj')
+        blank: Please enter a full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'SW1h9AJ')
     format: "%{message}"
     messages:
       blank: Enter an answer

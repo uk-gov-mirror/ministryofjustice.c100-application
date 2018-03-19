@@ -9,7 +9,7 @@ RSpec.describe Steps::Screener::PostcodeForm do
 
   let(:screener_answers){ instance_double(ScreenerAnswers, children_postcodes: '') }
 
-  let(:c100_application) { 
+  let(:c100_application) {
     instance_double(C100Application, screener_answers: screener_answers)
   }
   let(:children_postcodes)  { 'E3 6AA' }
@@ -24,14 +24,58 @@ RSpec.describe Steps::Screener::PostcodeForm do
                     }
 
     context 'when the attribute is not given' do
-      it 'does not have a validation error' do
-        expect(subject).to be_valid
+      let(:children_postcodes){ nil }
+      it 'is not valid' do
+        expect(subject).to_not be_valid
       end
-      it 'saves ok' do
-        allow(screener_answers).to receive(:update).and_return(true)
-        expect(subject.save).to eq(true)
+
+      it 'adds an error on the children_postcodes attribute' do
+        subject.valid?
+        expect(subject.errors[:children_postcodes]).to_not be_empty
       end
     end
+
+    context 'when the attribute is given' do
+      context 'but not a valid full postcode' do
+        let(:children_postcodes){ 'SE1' }
+
+        it 'is not valid' do
+          expect(subject).to_not be_valid
+        end
+
+        it 'adds an error on the children_postcodes attribute' do
+          subject.valid?
+          expect(subject.errors[:children_postcodes]).to_not be_empty
+        end
+      end
+      context 'and is a valid postcode' do
+        context 'without a space, upper case' do
+          let(:children_postcodes){ 'SW1H9AJ' }
+          it 'is valid' do
+            expect(subject).to be_valid
+          end
+        end
+        context 'without a space, mixed case' do
+          let(:children_postcodes){ 'SW1h9aj' }
+          it 'is valid' do
+            expect(subject).to be_valid
+          end
+        end
+        context 'with a space, upper case' do
+          let(:children_postcodes){ 'SW1H 9AJ' }
+          it 'is valid' do
+            expect(subject).to be_valid
+          end
+        end
+        context 'with a space, mixed case' do
+          let(:children_postcodes){ 'SW1h 9aj' }
+          it 'is valid' do
+            expect(subject).to be_valid
+          end
+        end
+      end
+    end
+
     context 'when form is valid' do
       it 'saves the record' do
         expect(screener_answers).to receive(:update).with(
