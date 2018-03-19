@@ -6,8 +6,6 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
-
     <%= step_form @form_object do |f| %>
       <%= f.radio_button_fieldset :parent, inline: true, choices: GenericYesNo.values %>
 

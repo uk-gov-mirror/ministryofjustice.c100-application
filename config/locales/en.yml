@@ -821,7 +821,6 @@ en:
           lead_text_html: |
             <p>Please tell us the postcode of the children you’re making this application about.</p>
             <p>This will allow us to check if you can use this online service, based on which courts are taking part in this trial at the moment.</p>
-            <p>It will also allow us to tell you where to send your application.</p>
       error_but_continue:
         show:
           page_title: Where your children live
@@ -856,7 +855,6 @@ en:
         edit:
           page_title: Are you a parent of the children?
           heading: Are you a parent of the children?
-          lead_text: You can only use this online service if you’re a parent of the children you’re making this application about.
       parent_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -866,7 +864,6 @@ en:
         edit:
           page_title: Are you and the other person (the respondent) both over 18?
           heading: Are you and the other person (the respondent) both over 18?
-          lead_text: You can only use this online service if both you and the other person (the respondent) are over 18.
       over18_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -876,7 +873,6 @@ en:
         edit:
           page_title: Do you have a solicitor?
           heading: Do you have a solicitor?
-          lead_text: You can only use this online service if you do not have a solicitor representing you or filling this form on your behalf.
       legal_representation_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -890,12 +886,6 @@ en:
             <div class="govuk-govspeak gv-s-prose">
               <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
               <p>This is known as a Consent Order.</p>
-              <p>The court will only agree a consent order if:</p>
-              <ul class="list list-bullet">
-                <li>you have a draft court order and it is signed by everyone</li>
-                <li>you are not in dispute with the other person</li>
-                <li>the court has no concerns about the safety or welfare of anyone involved</li>
-              </ul>
             </div>
           info_notice: |
             This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.
@@ -908,7 +898,7 @@ en:
         edit:
           page_title: Contact by email
           heading: Are you willing to be contacted by email about your experience using this service?
-          lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service
+          lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
     completion:
       summary:
         show:
