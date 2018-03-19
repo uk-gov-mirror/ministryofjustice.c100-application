@@ -8,3 +8,7 @@
 <div class="xform-group form-submit">
   <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button', role: 'button' %>
 </div>
+
+<% unless local_assigns.fetch(:hide_cait_info, false) %>
+  <p class="util_mt-large"><%=t '.cait_info_html' %></p>
+<% end %>
