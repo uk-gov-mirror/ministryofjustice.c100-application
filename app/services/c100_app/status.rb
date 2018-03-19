@@ -37,11 +37,11 @@ module C100App
     end
 
     def courtfinder_status
-      @courtfinder_status ||= (C100App::CourtfinderAPI.new.status.to_i == 200 ? 'ok' : 'failed')
+      @courtfinder_status ||= (CourtfinderAPI.new.is_ok? ? 'ok' : 'failed')
     end
 
     def service_status
-      if [database_status, courtfinder_status].all? { |status| status == 'ok' }
+      if [database_status, courtfinder_status].all? { |status| status.eql? 'ok' }
         'ok'
       else
         'failed'

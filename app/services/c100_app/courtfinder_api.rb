@@ -44,12 +44,16 @@ module C100App
       URI.join(API_ROOT, '/courts/', slug).to_s
     end
 
+    def is_ok?
+      status.eql? '200'
+    end
+
+    private
+
     def status
       request = Net::HTTP::Get.new('/healthcheck.json')
       http_object.request(request).code
     end
-
-    private
 
     def http_object
       uri = api_root_uri

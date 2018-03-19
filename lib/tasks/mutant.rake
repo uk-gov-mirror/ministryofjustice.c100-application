@@ -30,7 +30,9 @@ def classes_to_mutate
       form_objects + decision_trees_and_services + models
     else
       # Individual class testing, very quick
-      Array(ARGV[1])
+      # we'll take all arguments after the first (which is 'mutant')
+      _foo, *classes = ARGV
+      classes
   end
 end
 

@@ -16,12 +16,12 @@ RSpec.describe C100App::Status do
   let(:service_status) { 'ok' }
   let(:database_status) { 'ok' }
   let(:courtfinder_status) { 'ok' }
-  let(:courtfinder_api_status_code) { "200" }
+  let(:courtfinder_api_is_ok) { true }
 
   before do
     allow(ActiveRecord::Base).to receive(:connection).and_return(double)
     allow_any_instance_of(described_class).to receive(:`).with('git rev-parse HEAD').and_return('ABC123')
-    allow_any_instance_of(C100App::CourtfinderAPI).to receive(:status).and_return(courtfinder_api_status_code)
+    allow_any_instance_of(C100App::CourtfinderAPI).to receive(:is_ok?).and_return(courtfinder_api_is_ok)
   end
 
   describe '.version' do
@@ -36,8 +36,46 @@ RSpec.describe C100App::Status do
     end
   end
 
+  describe '#service_status' do
+    before do
+      allow(subject).to receive(:database_status).and_return(database_status)
+      allow(subject).to receive(:courtfinder_status).and_return(courtfinder_status)
+    end
+    context 'when database_status is "ok"' do
+      let(:database_status) { 'ok' }
+
+      context 'when courtfinder_status is "ok"' do
+        let(:courtfinder_status) { 'ok' }
+
+        it 'returns ok' do
+          expect(subject.send(:service_status)).to eq('ok')
+        end
+      end
+
+      context 'when courtfinder_status is not "ok"' do
+        let(:courtfinder_status) { 'foo' }
+
+        it 'returns failed' do
+          expect(subject.send(:service_status)).to eq('failed')
+        end
+      end
+    end
+    context 'when courtfinder_status is "ok"' do
+      let(:courtfinder_status) { 'ok' }
+
+      context 'when database_status is not "ok"' do
+        let(:database_status) { 'foo' }
+
+        it 'returns failed' do
+          expect(subject.send(:service_status)).to eq('failed')
+        end
+      end
+    end
+  end
+
   describe '#check' do
     context 'database available' do
+      let(:courtfinder_api_is_ok){ true }
       before do
         expect(ActiveRecord::Base).to receive(:connection).and_call_original
       end
@@ -57,13 +95,13 @@ RSpec.describe C100App::Status do
     end
 
     describe 'Courtfinder API status' do
-      context 'when it is OK' do
-        let(:courtfinder_api_status_code){ "200" }
+      context 'when CourtfinderAPI.status.is_ok?' do
+        let(:courtfinder_api_is_ok){ true }
 
         specify { expect(described_class.check).to eq(status) }
       end
       context 'when it is not OK' do
-        let(:courtfinder_api_status_code){ "501" }
+        let(:courtfinder_api_is_ok){ false }
         let(:service_status) { 'failed' }
         let(:courtfinder_status) { 'failed' }
 
