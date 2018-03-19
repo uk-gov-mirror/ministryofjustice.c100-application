@@ -34,7 +34,7 @@
               <div class="panel panel-border-narrow">
                 <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
                   the other person, keep one copy, and return one copy to you. Post them to:</p>
-                <p>[TODO]</p>
+                <p><%= simple_format(@local_court.address.join("\n")) %></p>
               </div>
             </details>
           </li>
