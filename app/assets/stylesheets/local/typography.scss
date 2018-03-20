@@ -72,6 +72,10 @@ address {
     @media (min-width: 641px) {
       margin-left: 3em;
       margin-top: 1.6em;
+
+      &.return-application {
+        margin-top: 2.2em;
+      }
     }
   }
 
