@@ -43,6 +43,10 @@ class Court
     addr.reject(&:blank?).uniq
   end
 
+  def opening_times?
+    opening_times.instance_of?(Array) && opening_times.any?
+  end
+
   def self.all(params = {})
     C100App::CourtfinderAPI.new.all(cache_ttl: params[:cache_ttl] || 86_400)
   end
