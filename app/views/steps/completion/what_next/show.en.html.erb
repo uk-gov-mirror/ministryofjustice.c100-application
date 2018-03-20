@@ -74,7 +74,7 @@
           <dd><%= @court.phone_number %></dd>
         <%- end %>
 
-        <%- unless @court.opening_times&.empty? %>
+        <%- if @court.opening_times? %>
           <dt><strong>Opening times</strong></dt>
           <%- @court.opening_times.each do |opening_time| %>
             <dd><%= opening_time %></dd>

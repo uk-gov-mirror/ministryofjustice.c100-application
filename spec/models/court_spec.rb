@@ -168,6 +168,30 @@ describe Court do
     end
   end
 
+  describe '#opening_times?' do
+    subject { described_class.new(opening_times: opening_times) }
+
+    context 'the attribute is nil' do
+      let(:opening_times) { nil }
+      it { expect(subject.opening_times?).to eq(false) }
+    end
+
+    context 'the attribute is a string' do
+      let(:opening_times) { 'blah' }
+      it { expect(subject.opening_times?).to eq(false) }
+    end
+
+    context 'the attribute is an empty array' do
+      let(:opening_times) { [] }
+      it { expect(subject.opening_times?).to eq(false) }
+    end
+
+    context 'the attribute is a not empty array' do
+      let(:opening_times) { ['blah'] }
+      it { expect(subject.opening_times?).to eq(true) }
+    end
+  end
+
   describe '.all' do
     let(:courts){ [] }
     before do
