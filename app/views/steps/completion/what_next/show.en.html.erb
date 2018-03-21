@@ -90,7 +90,7 @@
     <div class="govuk-govspeak gv-s-prose util_mt-large">
       <h1 class="heading-xlarge gv-u-heading-xxlarge">We’d like your feedback</h1>
       <p>
-        Would you like to <%= link_to 'complete a 5-minute survey', Rails.configuration.survey_link, target: 'external_link', rel: 'external' %> to give us your feedback about the online service you have just used?
+        Would you like to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], target: 'external_link', rel: 'external' %> to give us your feedback about the online service you have just used?
       </p>
       <p>
         This will help us to improve it. Your feedback won’t affect your application in any way.

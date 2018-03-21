@@ -244,6 +244,9 @@ Rails.application.routes.draw do
   get :cookies, to: 'home#cookies', as: :cookies_page
   get :miam_exemptions, to: 'home#miam_exemptions', as: :miam_exemptions_page
 
+  # This route is used in court emails to point users to the survey
+  get :survey, to: redirect(Rails.configuration.surveys[:success], status: 302)
+
   # catch-all route
   # :nocov:
   match '*path', to: 'errors#not_found', via: :all, constraints:

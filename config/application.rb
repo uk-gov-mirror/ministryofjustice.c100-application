@@ -31,8 +31,10 @@ class Application < Rails::Application
 
   config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
 
-  config.survey_link = 'https://www.surveymonkey.co.uk/r/NN8FJZ6'.freeze
-  config.kickout_survey_link = 'REPLACEME'.freeze
+  config.surveys = {
+    success: 'https://www.surveymonkey.co.uk/r/FHWYXHX',
+    kickout: 'https://www.surveymonkey.co.uk/r/NN8FJZ6',
+  }
 
   # This is the GDS-hosted homepage for our service, and the one with a `start` button
   config.gds_service_homepage_url = '/'.freeze  # TODO: replace this with the correct gov.uk URL, when we have one

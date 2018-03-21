@@ -87,16 +87,16 @@ section.numbered-list ol > li{
   padding:0.75em 0 0.75em 2.2em;
 }
 section.numbered-list ol > li:nth-child(1){
-  background-image:url('icon-step-1.png');
+  background-image: image-url('icon-step-1.png');
 }
 section.numbered-list ol > li:nth-child(2){
-  background-image:url('icon-step-2.png');
+  background-image: image-url('icon-step-2.png');
 }
 section.numbered-list ol > li:nth-child(3){
-  background-image:url('icon-step-3.png');
+  background-image: image-url('icon-step-3.png');
 }
 section.numbered-list ol > li:nth-child(4){
-  background-image:url('icon-step-4.png');
+  background-image: image-url('icon-step-4.png');
 }
 
 #miam-requirement_acknowledgement{
