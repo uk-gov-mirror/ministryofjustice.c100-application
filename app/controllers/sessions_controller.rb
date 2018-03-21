@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     show_survey ? reset_session : reset_c100_application_session
 
     respond_to do |format|
-      format.html { redirect_to show_survey ? Rails.configuration.survey_link : root_path }
+      format.html { redirect_to show_survey ? Rails.configuration.surveys[:success] : root_path }
       format.json { render json: {} }
     end
   end

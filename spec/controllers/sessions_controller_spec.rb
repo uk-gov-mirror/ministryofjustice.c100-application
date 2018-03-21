@@ -30,7 +30,7 @@ RSpec.describe SessionsController, type: :controller do
 
         it 'redirects to the survey page' do
           get :destroy, params: {survey: true}
-          expect(response.location).to match(/surveymonkey.co.uk\/r\/NN8FJZ6$/)
+          expect(response.location).to match(/surveymonkey.co.uk\/r\/FHWYXHX$/)
         end
       end
 
