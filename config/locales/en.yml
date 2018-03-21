@@ -29,11 +29,6 @@ en:
     RELATIONS: &RELATIONS
       mother: Mother
       father: Father
-      legal_guardian: Legal guardian
-      grandparent: Grandparent
-      relative: Relative
-      family_friend: Family friend
-      social_worker: Social worker
       other: Other
 
     PETITION_ORDERS: &PETITION_ORDERS
@@ -256,22 +251,22 @@ en:
     other_parties:
       names:
         edit:
-          page_title: Other parties
-          heading: Enter the other party’s name
-          record_index: "Party %{index}"
-          btn_add_another: Add another party
-          btn_remove: Remove last party
+          page_title: Other people
+          heading: Enter the other person’s name
+          record_index: "Person %{index}"
+          btn_add_another: Add another person
+          btn_remove: Remove last person
       personal_details:
         edit:
-          page_title: Other party personal details
+          page_title: Other person personal details
           heading: "Provide details for %{name}"
       contact_details:
         edit:
-          page_title: Other party contact details
+          page_title: Other person contact details
           heading: "Contact details of %{name}"
       relationship:
         edit:
-          page_title: Other party relationship
+          page_title: Other person relationship
     abuse_concerns:
       start:
         show:
@@ -1306,9 +1301,9 @@ en:
       steps_other_children_names_form[names_attributes]:
         full_name: Full name of child
       steps_other_parties_names_form:
-        new_name: Full name of other party
+        new_name: Full name of other person
       steps_other_parties_names_form[names_attributes]:
-        full_name: Full name of other party
+        full_name: Full name of other person
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
         previous_name: Enter their previous name

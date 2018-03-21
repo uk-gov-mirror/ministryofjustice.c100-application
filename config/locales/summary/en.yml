@@ -18,11 +18,6 @@ en:
     RELATIONS: &RELATIONS
       mother: Mother
       father: Father
-      legal_guardian: Legal guardian
-      grandparent: Grandparent
-      relative: Relative
-      family_friend: Family friend
-      social_worker: Social worker
       other: Other
 
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
