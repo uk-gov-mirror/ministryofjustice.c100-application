@@ -16,20 +16,15 @@ RSpec.describe UrgencyExemptions do
     end
   end
 
-  describe 'Risk exemptions' do
-    context 'GROUP_RISK' do
-      it 'returns the expected values' do
-        expect(described_class::GROUP_RISK.to_s).to eq('group_risk')
-      end
+  context 'RISK_CHILDREN' do
+    it 'returns the expected values' do
+      expect(described_class::RISK_CHILDREN.to_s).to eq('risk_children')
     end
+  end
 
-    context 'RISK' do
-      it 'returns the expected values' do
-        expect(described_class::RISK.map(&:to_s)).to eq(%w(
-          risk_children
-          risk_unlawful_removal_retention
-        ))
-      end
+  context 'RISK_UNLAWFUL_REMOVAL_RETENTION' do
+    it 'returns the expected values' do
+      expect(described_class::RISK_UNLAWFUL_REMOVAL_RETENTION.to_s).to eq('risk_unlawful_removal_retention')
     end
   end
 
