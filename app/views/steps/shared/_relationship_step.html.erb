@@ -9,11 +9,6 @@
     f.radio_button_fieldset :relation do |fieldset|
       fieldset.radio_input Relation::MOTHER
       fieldset.radio_input Relation::FATHER
-      fieldset.radio_input Relation::LEGAL_GUARDIAN
-      fieldset.radio_input Relation::GRANDPARENT
-      fieldset.radio_input Relation::RELATIVE
-      fieldset.radio_input Relation::FAMILY_FRIEND
-      fieldset.radio_input Relation::SOCIAL_WORKER
       fieldset.radio_input(Relation::OTHER) { f.text_field :relation_other_value }
     end
   %>
