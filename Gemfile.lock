@@ -249,8 +249,6 @@ GEM
     no_proxy_fix (0.1.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    nokogumbo (1.5.0)
-      nokogiri
     notifications-ruby-client (2.6.0)
       jwt (>= 1.5, < 3)
     octokit (4.8.0)
@@ -349,10 +347,6 @@ GEM
     ruby-rc4 (0.1.5)
     ruby_dep (1.5.0)
     safe_yaml (1.0.4)
-    sanitize (4.6.0)
-      crass (~> 1.0.2)
-      nokogiri (>= 1.4.4)
-      nokogumbo (~> 1.4)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -467,7 +461,6 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rspec
-  sanitize
   sass-rails
   sentry-raven
   simplecov
