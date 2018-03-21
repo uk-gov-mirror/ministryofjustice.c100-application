@@ -6,7 +6,7 @@ RSpec.describe Gender do
 
   describe '.values' do
     it 'returns all possible values' do
-      expect(described_class.values.map(&:to_s)).to eq(%w(female male intersex))
+      expect(described_class.values.map(&:to_s)).to eq(%w(female male unspecified))
     end
   end
 end
