@@ -16,18 +16,10 @@
       <p><%= t('.aka.child_arrangements_order') %></p>
     <% end %>
 
-    <% @petition.orders_with_no_name.each do |order| %>
-      <p class="lede">
-        <%=t ".orders_with_no_name.#{order}", count: @petition.count_for(
-          :child_arrangements_orders
-        ) %>
-      </p>
-    <% end %>
-
     <% if @petition.prohibited_steps_orders.any? %>
       <p class="lede">
         <%=t '.lead_text_stop', count: @petition.count_for(
-          :child_arrangements_orders, :orders_with_no_name
+          :child_arrangements_orders
         ) %>
       </p>
       <ul class="list list-bullet">
@@ -41,7 +33,7 @@
     <% if @petition.specific_issues_orders.any? %>
         <p class="lede">
           <%=t '.lead_text_issues', count: @petition.count_for(
-            :child_arrangements_orders, :orders_with_no_name, :prohibited_steps_orders
+            :child_arrangements_orders, :prohibited_steps_orders
           ) %>
         </p>
         <ul class="list list-bullet">
@@ -55,7 +47,7 @@
     <% if @petition.other_issue? %>
       <p class="lede">
         <%=t '.lead_text_other', count: @petition.count_for(
-          :child_arrangements_orders, :orders_with_no_name, :prohibited_steps_orders, :specific_issues_orders
+          :child_arrangements_orders, :prohibited_steps_orders, :specific_issues_orders
         ) %>
       </p>
       <div class="panel">

@@ -11,10 +11,6 @@ class PetitionPresenter < SimpleDelegator
     selected_orders_from(PetitionOrder::PROHIBITED_STEPS)
   end
 
-  def orders_with_no_name
-    selected_orders_from(PetitionOrder::ORDERS_WITH_NO_NAME)
-  end
-
   def all_selected_orders
     selected_orders_from(PetitionOrder.values)
   end

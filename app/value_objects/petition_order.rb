@@ -9,11 +9,11 @@ class PetitionOrder < ValueObject
 
     GROUP_PROHIBITED_STEPS = new(:group_prohibited_steps),
     PROHIBITED_STEPS = [
-      new(:prohibited_steps_moving),
-      new(:prohibited_steps_moving_abroad),
       new(:prohibited_steps_names),
       new(:prohibited_steps_medical),
       new(:prohibited_steps_holiday),
+      new(:prohibited_steps_moving),
+      new(:prohibited_steps_moving_abroad),
     ].freeze,
 
     GROUP_SPECIFIC_ISSUES = new(:group_specific_issues),
@@ -25,12 +25,7 @@ class PetitionOrder < ValueObject
       new(:specific_issues_medical),
       new(:specific_issues_moving),
       new(:specific_issues_moving_abroad),
-    ].freeze,
-
-    # This is the exception to the rule. The values here (one for now),
-    # don't have a corresponding order name.
-    ORDERS_WITH_NO_NAME = [
-      new(:no_name_child_return),
+      new(:specific_issues_child_return),
     ].freeze,
 
     OTHER_ISSUE = new(:other_issue),

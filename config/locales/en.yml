@@ -34,9 +34,8 @@ en:
     PETITION_ORDERS: &PETITION_ORDERS
       child_arrangements_home_html: Decide who they live with and when
       child_arrangements_time_html: Decide how much time they spend with each person
-      child_arrangements_contact_html: Decide how and when each person can spend time with the children
-      child_arrangements_access_html: Allow you to spend time with the children
-      no_name_child_return_html: Return the children to your care
+      child_arrangements_contact_html: Decide how and when the children are involved with each person
+      child_arrangements_access_html: Allow the children to spend time with you
       prohibited_steps_moving_html: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       prohibited_steps_names_html: Changing their names or surname
@@ -49,6 +48,7 @@ en:
       specific_issues_medical_html: Medical treatment
       specific_issues_moving_html: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
+      specific_issues_child_return_html: Returning the children to your care
       other_issue_html: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/summary/en.yml`, due to the way locales work
@@ -570,11 +570,6 @@ en:
             zero: "You told us that you need help with this dispute:"
             one: "You also told us that you need help with this dispute:"
             other: "You also told us that you need help with this dispute:"
-          orders_with_no_name:
-            no_name_child_return:
-              zero: 'You would like the children to be returned to your care.'
-              one: 'You would also like the children to be returned to your care.'
-              other: 'You would also like the children to be returned to your care.'
           continue: Continue
           <<: *PETITION_ORDERS
           aka:
@@ -1264,13 +1259,13 @@ en:
         <<: *PETITION_ORDERS
         # We override only those that have hint text or are different to the playback here.
         child_arrangements_contact_html: |
-          <span class="gv-u-heading-small">Decide how and when each person can spend time with the children</span><br>
+          <span class="gv-u-heading-small">Decide how and when the children are involved with each person</span><br>
           <span class="form-hint">For example, in person, or phone calls and emails</span>
         child_arrangements_access_html: |
-          <span class="gv-u-heading-small">Allow you to spend time with the children</span><br>
-          <span class="form-hint">If you’re currently not being allowed to</span>
-        no_name_child_return_html: |
-          <span class="gv-u-heading-small">Return the children to your care</span><br>
+          <span class="gv-u-heading-small">Allow the children to spend time with you</span><br>
+          <span class="form-hint">If they’re currently not being allowed to</span>
+        specific_issues_child_return_html: |
+          <span class="gv-u-heading-small">Returning the children to your care</span><br>
           <span class="form-hint">If your children have been abducted, unlawfully removed or unlawfully retained</span>
         group_prohibited_steps_html: |
           <span class="gv-u-heading-small">Stop the other person doing something</span><br>

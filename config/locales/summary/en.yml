@@ -23,8 +23,8 @@ en:
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
-      child_arrangements_contact: Decide how and when each person can spend time with the children
-      child_arrangements_access: Allow you to spend time with the children
+      child_arrangements_contact: Decide how and when the children are involved with each person
+      child_arrangements_access: Allow the children to spend time with you
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
       prohibited_steps_moving: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
@@ -39,8 +39,7 @@ en:
       specific_issues_medical: Medical treatment
       specific_issues_moving: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
-    ORDERS_WITH_NO_NAME: &ORDERS_WITH_NO_NAME
-      no_name_child_return: Return the children to your care
+      specific_issues_child_return: Returning the children to your care
     OTHER_ORDER: &OTHER_ORDER
       other_issue: Deal with another issue not listed
 
@@ -164,10 +163,6 @@ en:
       question: 'Prohibited steps order(s):'
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
-    orders_with_no_name:
-      question: ""
-      answers:
-        <<: *ORDERS_WITH_NO_NAME
     other_issue_details:
       question: 'Other issue:'
     domestic_abuse:
@@ -258,7 +253,6 @@ en:
         <<: *ARRANGEMENT_ORDERS
         <<: *SPECIFIC_ISSUE_ORDERS
         <<: *PROHIBITED_STEPS_ORDERS
-        <<: *ORDERS_WITH_NO_NAME
         <<: *OTHER_ORDER
     children_known_to_authorities:
       question: Are any of the children known to the local authority children’s services?

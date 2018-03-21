@@ -9,7 +9,6 @@ module Summary
           child_arrangements_home
           prohibited_steps_moving
           specific_issues_school
-          no_name_child_return
           other_issue
         ),
         orders_additional_details: 'details'
@@ -27,24 +26,21 @@ module Summary
 
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(4)
       end
 
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(MultiAnswer)
-        expect(answers[0].question).to eq(:orders_with_no_name)
+        expect(answers[0].question).to eq(:child_arrangements_orders)
 
         expect(answers[1]).to be_an_instance_of(MultiAnswer)
-        expect(answers[1].question).to eq(:child_arrangements_orders)
+        expect(answers[1].question).to eq(:prohibited_steps_orders)
 
         expect(answers[2]).to be_an_instance_of(MultiAnswer)
-        expect(answers[2].question).to eq(:prohibited_steps_orders)
+        expect(answers[2].question).to eq(:specific_issues_orders)
 
-        expect(answers[3]).to be_an_instance_of(MultiAnswer)
-        expect(answers[3].question).to eq(:specific_issues_orders)
-
-        expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[4].question).to eq(:other_issue_details)
+        expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[3].question).to eq(:other_issue_details)
       end
     end
   end
