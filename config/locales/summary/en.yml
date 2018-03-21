@@ -13,7 +13,7 @@ en:
     SEX_OPTIONS: &SEX_OPTIONS
       female: Female
       male: Male
-      intersex: Intersex
+      unspecified: Unspecified
 
     RELATIONS: &RELATIONS
       mother: Mother

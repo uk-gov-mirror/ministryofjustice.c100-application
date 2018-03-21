@@ -76,7 +76,7 @@ en:
       gender:
         female: Female
         male: Male
-        intersex: Intersex
+        unspecified: Unspecified
       dob_unknown: *dont_know
       age_estimate: Approximate age or year born
       birthplace: Place of birth

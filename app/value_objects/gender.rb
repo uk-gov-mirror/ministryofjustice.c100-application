@@ -1,8 +1,8 @@
 class Gender < ValueObject
   VALUES = [
-    FEMALE   = new(:female),
-    MALE     = new(:male),
-    INTERSEX = new(:intersex),
+    FEMALE      = new(:female),
+    MALE        = new(:male),
+    UNSPECIFIED = new(:unspecified),
   ].freeze
 
   def self.values
