@@ -815,10 +815,14 @@ en:
         show:
           page_title: Where your children live
           heading: Something went wrong
-          lead_text: This might be a temporary problem with our court postcode checker, or there could be a problem with us recognising your postcode.
-          go_back_or_continue: You can go back and try again, or continue with your application anyway
+          lead_text:
+            courtfinder_ok: Although the postcode you entered looks like it's in the right format, our checker didn't recognize it. This can happen sometimes if it's a very new or old postcode.
+            courtfinder_not_ok: We're having some trouble connecting to our postcode checker at the moment - this could be a temporary problem, and it might work if you try again.
+          what_to_do_now:
+            heading: What to do now
+            copy: You can go back and try again, or download the paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
           go_back: Go back and try again
-          continue: Continue
+          download_c100_link: Download the paper form (PDF)
       no_court_found:
         show:
           page_title: Not eligible

@@ -1,7 +1,9 @@
 module Steps
   module Screener
     class ErrorButContinueController < Steps::ScreenerStepController
-      def show; end
+      def show
+        @courtfinder_ok = C100App::CourtfinderAPI.new.is_ok?
+      end
     end
   end
 end
