@@ -763,12 +763,12 @@ en:
         edit:
           page_title: Urgent application
           section: *miam_exemptions
-          heading: Confirming why your application is urgent
+          heading: Confirming why you’re asking for an urgent hearing
           or: or
       adr:
         edit:
           page_title: Previous valid reason or non-court resolution attendance
-          heading: Confirming a previous valid reason or non-court resolution attendance
+          heading: Confirming that you’ve previously been to a MIAM or had a valid reason for not attending one
           section: *miam_exemptions
           or: or
       misc:
