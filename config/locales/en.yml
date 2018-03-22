@@ -188,7 +188,7 @@ en:
           info_html: |
             <p>For example, you should tell everyone who:</p>
             <ul class="list list-bullet">
-              <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as a children's home)</li>
+              <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as foster care or a children's home)</li>
               <li>is currently involved in another court case or named in a current court order that concerns the children and is relevant to this application</li>
               <li>the child has lived with for at least 3 years prior to this application</li>
             </ul>
@@ -240,7 +240,7 @@ en:
       names:
         edit:
           page_title: Other children
-          heading: Enter your other child’s name
+          heading: Enter the other child’s name
           record_index: "Child %{index}"
           btn_add_another: Add another child
           btn_remove: Remove last child
@@ -651,12 +651,7 @@ en:
           heading: Are you asking for a without notice hearing?
           lead_text_html: |
             <div class=" govuk-govspeak gv-s-prose">
-              <p>A without notice hearing is when your case is urgent and there is good reason not to tell the other person about your application.</p>
-              <p>You can only apply for a without notice hearing if you show that:</p>
-              <ul class="list list-bullet">
-                <li>telling the other person would allow them to obstruct your application</li>
-                <li>you or the children would not be safe if the other person knows there is literally no time to tell the other person</li>
-              </ul>
+              <p>Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent, or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</p>
             </div>
       without_notice_details:
         edit:
@@ -666,8 +661,8 @@ en:
         edit:
           page_title: Litigation capacity
           section: *attending_court
-          heading: Does any adult in this application have a condition or are there other factors that may affect them taking part in the court proceedings?
-          lead_text: For example a mental or physical impairment or health problem
+          heading: Are there any factors that may affect any adult in this application taking part in the court proceedings?
+          lead_text: For example, they may lack the capacity to conduct legal proceedings, or suffer from a mental or physical impairment or other health problem
       litigation_capacity_details:
         edit:
           page_title: Factors affecting ability to participate
@@ -678,13 +673,13 @@ en:
           page_title: Special Assistance
           section: *attending_court
           heading: Does anyone in this application need assistance or special facilities when attending court?
-          lead_text: For example you need support to use British Sign Language, a hearing loop or your documents in braille
+          lead_text: For example they need to use British Sign Language, a hearing loop or documents in braille
       special_arrangements:
         edit:
           page_title: Special Arrangements
           section: *attending_court
-          heading: Do you or your children need specific arrangements when you attend court?
-          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns
+          heading: Do you or the children need specific arrangements when you attend court?
+          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns. The court may contact you to discuss your requirements.
       details:
         edit:
           page_title: Application details
@@ -835,8 +830,9 @@ en:
         edit:
           page_title: Urgent hearing
           heading: Are you asking for an urgent hearing?
-          lead_text: "You can only apply for an urgent hearing if you can show that:"
+          lead_text: A court will only consider an urgent hearing where it’s satisfied that there is good reason for the urgency.
           info_html: |
+            <p>Reasons include:</p>
             <ul class="list list-bullet">
               <li>you or the children are at risk of immediate harm</li>
               <li>the children are at risk of abduction</li>
@@ -1235,7 +1231,7 @@ en:
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: Details of any adult in this application who lacks the mental capacity to conduct these court proceedings (if applicable)
         participation_other_factors_details: Details of anything else that could affect any adult in this application taking part in these court proceedings (if applicable)
-        participation_referral_or_assessment_details: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team and what the outcome was (if you know)
+        participation_referral_or_assessment_details: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was (if you know)
       steps_application_special_assistance_form:
         special_assistance_details: *provide_details
       steps_application_special_arrangements_form:
@@ -1415,7 +1411,7 @@ en:
       steps_application_language_form:
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
-        participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain
+        participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain (within the meaning of the Mental Capacity Act 2005)
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem
       steps_application_details_form:
         application_details: You do not have to give a full statement although you may be asked to provide one later.
