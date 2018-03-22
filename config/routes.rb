@@ -218,6 +218,7 @@ Rails.application.routes.draw do
     member do
       get :ping
       post :bypass_screener
+      post :bypass_to_completion
     end
   end
 

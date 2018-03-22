@@ -12,10 +12,11 @@
       <p class="details">Deletes all data entered in this session and lets you start a new application from scratch.</p>
       <p><%= link_to 'Destroy session', session_path, method: :delete, class: 'button button-destroy_session', data: { confirm: 'Are you sure?' } %></p>
 
-      <h4>Bypass screener</h4>
-      <p class="details">Bypass the screener and starts from the first application step.</p>
+      <h4>Bypass steps</h4>
+      <p class="details">Bypass the screener or go to the completion page.</p>
       <p>
         <%= link_to 'Bypass screener', bypass_screener_session_path, method: :post, class: 'button button-create_session' %>
+        <%= link_to 'Bypass to completion', bypass_to_completion_session_path, method: :post, class: 'button button-create_session' %>
       </p>
     </div>
   </details>

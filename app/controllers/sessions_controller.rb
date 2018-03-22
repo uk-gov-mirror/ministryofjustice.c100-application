@@ -22,6 +22,15 @@ class SessionsController < ApplicationController
     c100_application.update(status: 1)
     redirect_to edit_steps_miam_child_protection_cases_path
   end
+
+  def bypass_to_completion
+    raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
+
+    c100_application.create_screener_answers(local_court: local_court_fixture)
+    c100_application.update(status: 1)
+
+    redirect_to steps_completion_what_next_path
+  end
   # :nocov:
 
   private
@@ -31,6 +40,25 @@ class SessionsController < ApplicationController
     current_c100_application || C100Application.create.tap do |c100_application|
       session[:c100_application_id] = c100_application.id
     end
+  end
+
+  def local_court_fixture
+    {
+      "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
+      "town" => "Central Milton Keynes",
+      "postcode" => "MK9 2DT",
+      "name" => "Milton Keynes County Court and Family Court",
+      "slug" => "milton-keynes-county-court-and-family-court",
+      "phone_number" => 388,
+      "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
+      "opening_times" =>
+        [
+          "Bailiff telephone service: For payments only Tel: 01865 264200 (option 1 then option 7)",
+          "Court counter open: by prior appointment only",
+          "Court building open: Monday to Friday 8:30am to 4pm",
+          "Telephone Enquiries from: 9am to 5pm"
+        ]
+    }
   end
   # :nocov:
 end
