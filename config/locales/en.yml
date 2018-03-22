@@ -397,13 +397,13 @@ en:
               psychological: Provide details of the children’s psychological abuse
               sexual: Provide details of the children’s sexual abuse
               financial: Provide details of the children’s financial abuse
-              other: Provide details of the other concerns about your children
+              other: Provide details of the other concerns about the children
       contact:
         edit:
           page_title: Concerns contact
           section: Safety concerns
           heading: Contact between the children and the other people in this application
-          lead_text: The court needs to know if you will allow your children to have contact with the other people in this application while you wait for a court date.
+          lead_text: The court needs to know if you will allow the children to have contact with the other people in this application while you wait for a court date.
           info_notice: The court will presume it's better for the children to have regular contact with both parents, unless there are valid reasons not to.
     court_orders:
       has_orders:
@@ -473,7 +473,7 @@ en:
         edit:
           page_title: Other concerns
           section: Safety concerns
-          heading: Do you have any other safety concerns about you or your children?
+          heading: Do you have any other safety concerns about you or the children?
       address_confidentiality:
         edit:
           page_title: Address confidentiality
@@ -582,7 +582,7 @@ en:
       protection:
         edit:
           page_title: Protection orders
-          heading: Is there anything else you are asking the court to decide, specifically to protect the safety of you or your children?
+          heading: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
           lead_text_html: |
             <div class="govuk-govspeak gv-s-prose">
               <p>This can include:</p>
@@ -597,18 +597,18 @@ en:
         edit:
           page_title: Children have passport
           section: Safety concerns
-          heading: Do any of your children have a passport?
+          heading: Do any of the children have a passport?
       international:
         edit:
           page_title: Have the police been notified?
           section: Safety concerns
           heading: Have the police been notified?
-          contact_info_html: If you think your children are at risk of being abducted abroad you should contact the police immediately.
+          contact_info_html: If you think the children are at risk of being abducted abroad you should contact the police immediately.
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
           section: Safety concerns
-          heading: Have your children been abducted or kept outside the UK without your consent before?
+          heading: Have the children been abducted or kept outside the UK without your consent before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
@@ -619,7 +619,7 @@ en:
         edit:
           page_title: Abduction risk details
           section: Safety concerns
-          heading: Why do you think your children may be abducted or kept outside the UK without your consent?
+          heading: Why do you think the children may be abducted or kept outside the UK without your consent?
           info_html: |
             <p>Briefly explain your concerns, including:</p>
             <ul class="list list-bullet">
@@ -730,7 +730,7 @@ en:
                 <span class="summary">Why do we ask this?</span>
               </summary>
               <div class="panel panel-border-narrow">
-                <p>We need to know if your children have any close family who live in another country so we can assess whether there are grounds to start a court case there.</p>
+                <p>We need to know if the children have any close family who live in another country so we can assess whether there are grounds to start a court case there.</p>
               </div>
             </details>
       jurisdiction:
@@ -811,7 +811,7 @@ en:
             <p>This will allow us to check if you can use this online service, based on which courts are taking part in this trial at the moment.</p>
       error_but_continue:
         show:
-          page_title: Where your children live
+          page_title: Where the children live
           heading: Something went wrong
           lead_text:
             courtfinder_ok: Although the postcode you entered looks like it's in the right format, our checker didn't recognize it. This can happen sometimes if it's a very new or old postcode.
@@ -1121,7 +1121,7 @@ en:
       steps_abuse_concerns_question_form:
         answer_html: ""
       steps_abuse_concerns_contact_form:
-        concerns_contact_type_html: "Do you agree to your children spending time with the other people in this application?"
+        concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
         concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
       steps_court_orders_has_orders_form:
         has_court_orders_html: ""
@@ -1269,10 +1269,10 @@ en:
           <span class="form-hint">If they’re currently not being allowed to</span>
         specific_issues_child_return_html: |
           <span class="gv-u-heading-small">Returning the children to your care</span><br>
-          <span class="form-hint">If your children have been abducted, unlawfully removed or unlawfully retained</span>
+          <span class="form-hint">If the children have been abducted, unlawfully removed or unlawfully retained</span>
         group_prohibited_steps_html: |
           <span class="gv-u-heading-small">Stop the other person doing something</span><br>
-          <span class="form-hint">For example, moving abroad or abducting your children</span>
+          <span class="form-hint">For example, moving abroad or abducting the children</span>
         group_specific_issues_html: |
           <span class="gv-u-heading-small">Resolve a specific issue</span><br>
           <span class="form-hint">For example, what school they’ll go to</span>
