@@ -6,7 +6,7 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
-    <p><%=t '.deleted_account' %></p>
+    <p><%=t '.deleted_account', expire_in_days: Rails.configuration.x.users.expire_in_days %></p>
 
     <%= render partial: 'steps/shared/finish_button', locals: {name: t('shared.start_again'), show_survey: false} %>
   </div>
