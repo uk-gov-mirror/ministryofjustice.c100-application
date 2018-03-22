@@ -44,7 +44,7 @@ class Application < Rails::Application
     :govuk_notify_templates, env: ENV.fetch('GOVUK_NOTIFY_ENV', 'integration')
   ).symbolize_keys
 
-  config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 30).to_i
+  config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 60).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
   # We maintain C100 applications for this number of days, regardless of their status,

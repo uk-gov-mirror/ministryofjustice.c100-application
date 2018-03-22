@@ -502,8 +502,7 @@ en:
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
               <p>
-                If you're claiming that you do not have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
-                before making this application, you will need to provide evidence or confirmation of this.
+                If you're claiming that you do not have to attend a MIAM before making this application, you may need to provide evidence in support of this.
               </p>
             </div>
       certification:
@@ -727,8 +726,8 @@ en:
       resident:
         edit:
           page_title: International resident
-          heading: Is the life of anyone significant to the children mainly based in a country outside England or Wales?
-          lead_text: For example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
+          heading: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+          lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
           why_we_ask_this_html: |
             <details>
               <summary>
@@ -746,8 +745,8 @@ en:
       request:
         edit:
           page_title: International request
-          heading: Has a local authority in England or Wales requested information about your children from another country, or has another country requested information?
-          info_html: This may be due to child protection concerns
+          heading: Has a request for information or other assistance involving the children been made to or by another country
+          info_html: This may be due to child protection concerns, needing to enforce an order abroad, to return a child to England or Wales or to assist with a request from a court in other family proceedings.
     miam_exemptions:
       domestic:
         edit:
@@ -1544,9 +1543,6 @@ en:
       description: For your security, the information you’ve entered has automatically been deleted.
       restart: You can start again below.
       restart_button: Start again
-    canceled_message: Your application has been deleted. Please start again.
-    expired_message: You've been inactive for 30 minutes. Your application has been
-      automatically deleted. Please start again.
     minute_single: minute
     second_single: second
     minutes_plural: minutes
@@ -1620,7 +1616,7 @@ en:
         heading: Forgot your password
         sign_in: Go back and sign in
         lead_text: Enter your email address and we'll send you a link to reset your password.
-        account_text: Remember, if you haven't signed in for 30 days we delete your account for security reasons.
+        account_text: Remember, if you haven't signed in for %{expire_in_days} days we delete your account for security reasons.
         page_title: Forgot password
       edit:
         heading: Change your password
@@ -1628,7 +1624,7 @@ en:
       reset_sent:
         heading: Please check your email
         lead_text: We have sent you an email with a link to reset your password. Please check your inbox and spam folder.
-        deleted_account: If you haven't signed in for 30 days we delete your account for security reasons.
+        deleted_account: If you haven't signed in for %{expire_in_days} days we delete your account for security reasons.
         page_title: Reset link sent
       reset_confirmation:
         heading: Your password has been changed
