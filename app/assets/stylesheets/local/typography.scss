@@ -11,11 +11,6 @@ form {
   padding-bottom: $gutter;
 }
 
-fieldset + .form-group {
-  margin-bottom: 0;
-  margin-top: $gutter;
-}
-
 .step-info {
   @include core-19;
   color: $grey-1;
@@ -121,5 +116,30 @@ h2.notice {
 }
 
 h1.gv-u-heading-xxlarge {
-  font-size: 36px;
+  font-size: 24px;
+  @media (min-width: 641px) {
+    font-size: 36px;
+  }
+
+  a.link-back + &,
+  a.link-back + .grid_content_header > &,
+  a.link-back + .app__section_heading + & {
+    margin: 0.25rem 0 3rem;
+  }
+}
+
+.start-page h2 {
+  margin-top: 1.25em;
+  margin-bottom: 0.55556em;
+  @media (min-width: 641px) {
+    font-size: 36px;
+    line-height: 1.11111;
+  }
+}
+
+h1.heading-start {
+  font-size: 32px;
+  @media (min-width: 641px) {
+    font-size: 48px;
+  }
 }

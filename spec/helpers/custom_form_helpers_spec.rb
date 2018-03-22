@@ -31,7 +31,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button' do
         expect(
           html_output
-        ).to eq('<p class="actions"><input type="submit" name="commit" value="Continue" class="button form-submit" data-disable-with="Continue" /></p>')
+        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /></div>')
       end
     end
 
@@ -41,7 +41,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button' do
         expect(
           html_output
-        ).to eq('<p class="actions"><input type="submit" name="commit" value="Continue" class="button form-submit" data-disable-with="Continue" /></p>')
+        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /></div>')
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the save and continue button' do
         expect(
           html_output
-        ).to eq('<p class="actions"><input type="submit" name="commit" value="Save and continue" class="button form-submit" data-disable-with="Save and continue" /></p>')
+        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Save and continue" class="button" data-disable-with="Save and continue" /></div>')
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button with a link to sign-up' do
         expect(
           html_output
-        ).to eq('<p class="actions"><input type="submit" name="commit" value="Continue" class="button form-submit" data-disable-with="Continue" /><a href="/test/sign_up">Save and come back later</a></p>')
+        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /><a href="/test/sign_up" class="button button-secondary button-save-return">Save and come back later</a></div>')
       end
     end
   end

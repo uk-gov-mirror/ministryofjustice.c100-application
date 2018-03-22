@@ -88,9 +88,9 @@ label[for="steps_abduction_risk_details_form_risk_details"]
 
 .form-block.or-block {
   float: none;
-
+  margin-top: -4rem;
   .or-block__shift & {
-    margin-top: -5rem;
+    margin-top: -4rem;
   }
 }
 
@@ -99,6 +99,7 @@ label[for="steps_abduction_risk_details_form_risk_details"]
 }
 
 fieldset + .form-group {
+  margin-top: 30px;
   margin-bottom: 15px;
 }
 @media (min-width: 641px) {

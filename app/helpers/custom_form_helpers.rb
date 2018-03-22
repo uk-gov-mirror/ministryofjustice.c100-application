@@ -5,7 +5,7 @@ module CustomFormHelpers
            :new_user_registration_path, to: :@template
 
   def continue_button
-    content_tag(:p, class: 'actions') do
+    content_tag(:div, class: 'form-submit') do
       if save_and_return_disabled?
         submit_button(:continue)
       elsif user_signed_in?
@@ -13,7 +13,7 @@ module CustomFormHelpers
       else
         safe_concat [
           submit_button(:continue),
-          content_tag(:a, t('helpers.submit.save_and_come_back_later'), href: new_user_registration_path)
+          content_tag(:a, t('helpers.submit.save_and_come_back_later'), href: new_user_registration_path, class: 'button button-secondary button-save-return')
         ].join
       end
     end
@@ -35,6 +35,6 @@ module CustomFormHelpers
   end
 
   def submit_button(i18n_key)
-    submit t("helpers.submit.#{i18n_key}"), class: 'button form-submit'
+    submit t("helpers.submit.#{i18n_key}"), class: 'button'
   end
 end

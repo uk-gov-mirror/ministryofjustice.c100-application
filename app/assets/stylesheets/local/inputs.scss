@@ -28,6 +28,10 @@ textarea.form-control-large {
 .single-cb {
   width: 90%;
 }
+.multiple-choice.single-cb {
+  float: none;
+  display: table;
+}
 
 // Maintain the width when toggling between input password and input text.
 // Otherwise the input text override the width, making it bigger.

@@ -401,6 +401,7 @@ en:
       contact:
         edit:
           page_title: Concerns contact
+          section: Safety concerns
           heading: Contact between the children and the other people in this application
           lead_text: The court needs to know if you will allow your children to have contact with the other people in this application while you wait for a court date.
           info_notice: The court will presume it's better for the children to have regular contact with both parents, unless there are valid reasons not to.
@@ -408,11 +409,13 @@ en:
       has_orders:
         edit:
           page_title: Have you had court orders made?
+          section: Safety concerns
           heading: Have you had or do you currently have any court orders made for your protection?
           lead_text: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order.
       details:
         edit:
           page_title: Orders details
+          section: Safety concerns
           heading: What orders have been made?
           lead_text: Select all that apply
     safety_questions:

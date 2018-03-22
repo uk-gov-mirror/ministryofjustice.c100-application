@@ -12,7 +12,7 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.single_check_box :address_unknown, class: 'util_mb-large' %>
+      <%= f.single_check_box :address_unknown, class: 'util_mb-large dont-know' %>
 
       <%=
         f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|

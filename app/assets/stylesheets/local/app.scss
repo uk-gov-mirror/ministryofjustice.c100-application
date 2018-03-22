@@ -1,3 +1,11 @@
+#content {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+}
+.start-page a.button.button-start {
+  margin-bottom: 3rem;
+}
+
 .panel-border-wide {
   padding: 16px 32px;
   padding: 1rem 2rem;
@@ -20,6 +28,9 @@
   line-height: 1.25;
   margin-top: 0.625em;
   margin-bottom: 0.3125em;
+  a.link-back + & {
+    margin-top: 0;
+  }
 }
 
 @media (min-width: 641px) {
@@ -103,24 +114,104 @@ section.numbered-list ol > li:nth-child(4){
   padding-top:96px;
   padding-top:6rem;
 }
-#content [data-block-name="route:application-requirements"] {
-  background-color: #0053a5;
+#content .flash-card {
+  background-color: #005ea5;
   color: #fff;
   padding: 3rem;
+  @media (min-width: 641px) {
+    padding: 5rem;
+    margin-bottom: -1rem;
+  }
   margin-top: 1rem;
 }
-#content [data-block-name="route:application-requirements"] {
+#content .flash-card {
+  & .grid_content_header {
+    @media (min-width: 641px) {
+      width: 150%;
+    }
+  }
+  & p.app__section_heading {
+    margin-top: 0;
+  }
+  & h1.app__heading {
+    margin-bottom: 3rem;
+  }
+  & h2 {
+    font-size: 19px;
+    @media (min-width: 641px) {
+      font-size: 28px;
+    }
+  }
   & .button {
     background-color: #fff;
-    color: #0053a5;
+    color: #005ea5;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-weight: bold;
+    &:hover {
+      background-color: #dee0e2;
+    }
   }
   & .panel-border-wide {
     border-color: #fff;
   }
   & .panel-border-wide p {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: bold;
   }
+}
+
+.button.button-secondary{
+  background:transparent;
+  color:#005ea5;
+  border-bottom-color:#fff;
+  box-shadow:none;
+  text-decoration:underline;
+  padding-left:0;
+  padding-right:0;
+  margin-left:96px;
+  margin-left:6rem
+}
+.button.button-secondary:hover{
+  background:transparent;
+  color:#2b8cc4;
+}
+.button.button-secondary:first-child{
+  margin-left:0;
+}
+
+#new_steps_miam_acknowledgement_form,
+#new_steps_alternatives_court_form {
+  margin-top: 6rem;
+}
+
+#new_steps_petition_orders_form > .form-group {
+  margin-bottom: 0;
+  & > fieldset {
+    & > .multiple-choice {
+      min-height: 6rem;
+    }
+    & > .panel {
+      margin-top: -2rem;
+      margin-bottom: 3rem;
+    }
+  }
+}
+
+.dont-know {
+  margin-top: -5px;
+    @media (min-width: 641px) {
+      margin-top: -20px;
+    }
+}
+
+[data-target="dob_unknown_panel"] {
+  margin-top: -15px;
+    @media (min-width: 641px) {
+      margin-top: -30px;
+    }
+}
+.form-date .form-hint {
+  margin-bottom: 0;
 }
 
 #court-contact-details {
@@ -131,6 +222,18 @@ section.numbered-list ol > li:nth-child(4){
   dd {
     margin-bottom: 5px;
   }
+}
+
+.gv-c-notice .gv-c-notice__icon {
+  top: 0;
+  margin-top: 0;
+}
+
+.miam_exemptions > form > .form-group > fieldset > .multiple-choice > label > span.form-hint {
+  margin-top: 0.5rem;
+}
+.miam_exemptions > form p:empty {
+  display: none;
 }
 
 @import 'app/pros_cons';
