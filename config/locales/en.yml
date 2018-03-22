@@ -830,13 +830,21 @@ en:
         edit:
           page_title: Urgent hearing
           heading: Are you asking for an urgent hearing?
-          lead_text: A court will only consider an urgent hearing where it’s satisfied that there is good reason for the urgency.
-          info_html: |
-            <p>Reasons include:</p>
+          lead_text: A court will only consider an urgent hearing where it’s satisfied that there is good reason for the urgency. The court will ask you questions about this at the first hearing.
+          reasons_title: What reasons are accepted
+          reasons_content_html: |
+            <p>There is:</p>
             <ul class="list list-bullet">
-              <li>you or the children are at risk of immediate harm</li>
-              <li>the children are at risk of abduction</li>
-              <li>proceedings for this family dispute may start in another country</li>
+              <li>risk to the life, liberty or physical safety of you, your family or your home</li>
+              <li>significant risk that in the period needed to arrange and attend a Mediation Information and Assessment Meeting (MIAM), proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other state would be seized of the dispute before a court in England and Wales</li>
+            </ul>
+            <p>Any delay caused by attending a MIAM would cause:</p>
+            <ul class="list list-bullet">
+              <li>unreasonable hardship for you</li>
+              <li>a risk of harm to the children</li>
+              <li>a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales</li>
+              <li>a significant risk of a miscarriage of justice</li>
+              <li>irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)</li>
             </ul>
           warning: Contact the police if you or the children are in immediate danger.
       urgent_exit:
@@ -846,8 +854,8 @@ en:
           lead_text: If your application is urgent, you should contact your local court directly
       parent:
         edit:
-          page_title: Are you a parent of the children?
-          heading: Are you a parent of the children?
+          page_title: Are you a parent of the child or children?
+          heading: Are you a parent of the child or children?
       parent_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -855,8 +863,8 @@ en:
           lead_text: You can only use this online service if you’re a parent of the children you’re making this application about.
       over18:
         edit:
-          page_title: Are you and the other person (the respondent) both over 18?
-          heading: Are you and the other person (the respondent) both over 18?
+          page_title: Are you and the other parent both over 18?
+          heading: Are you and the other parent both over 18?
       over18_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -866,6 +874,7 @@ en:
         edit:
           page_title: Do you have a solicitor?
           heading: Do you have a solicitor?
+          lead_text: You can only use this online service if you do not have a solicitor representing you in these proceedings.
       legal_representation_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -874,11 +883,11 @@ en:
       written_agreement:
         edit:
           page_title: Consent order
-          heading: Do you have a written agreement you want the court to consider making legally binding?
+          heading: Do you have a signed draft court order you want the court to consider making legally binding?
           lead_text_html: |
             <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
-              <p>This is known as a Consent Order.</p>
+              <p>If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding.</p>
+              <p>This is known as a consent order.</p>
             </div>
           info_notice: |
             This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.

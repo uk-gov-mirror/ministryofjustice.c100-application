@@ -6,12 +6,19 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
-
-    <%= t '.info_html' %>
-
     <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-      <%= t '.warning' %>
+      <p><%= t '.warning' %></p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <details>
+        <summary>
+          <span class="summary"><%=t '.reasons_title' %></span>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <%=t '.reasons_content_html' %>
+        </div>
+      </details>
     </div>
 
     <%= step_form @form_object do |f| %>
