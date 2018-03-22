@@ -17,6 +17,10 @@ module Summary
       pdf_generator.generate(c8_form,   copies: 1) if c100_application.confidentiality_enabled?
     end
 
+    def filename
+      'C100 child arrangements application.pdf'.freeze
+    end
+
     private
 
     def c100_form

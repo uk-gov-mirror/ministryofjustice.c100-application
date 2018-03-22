@@ -57,4 +57,8 @@ describe Summary::PdfPresenter do
       subject.to_pdf
     end
   end
+
+  describe '#filename' do
+    it { expect(subject.filename).to eq('C100 child arrangements application.pdf') }
+  end
 end
