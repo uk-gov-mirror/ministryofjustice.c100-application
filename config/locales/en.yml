@@ -453,11 +453,11 @@ en:
             <p>Only include abuse by the other person (the respondent) or someone connected to the other person who has contact with the children.</p>
       domestic_abuse:
         edit:
-          page_title: Domestic abuse
+          page_title: Domestic violence or abuse
           section: Safety concerns
-          heading: Have you or the children ever suffered or been at risk of suffering domestic abuse?
+          heading: Have you or the children ever suffered or been at risk of suffering domestic violence or abuse?
           info_html: |
-            <p>Domestic abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
+            <p>Domestic violence or abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
             <p>Examples include, but are not limited to:</p>
             <ul class="list list-bullet">
               <li>psychological abuse</li>
@@ -746,9 +746,9 @@ en:
     miam_exemptions:
       domestic:
         edit:
-          page_title: Evidence of domestic abuse concerns
+          page_title: Evidence of domestic violence or abuse concerns
           section: *miam_exemptions
-          heading: Providing evidence of domestic abuse concerns
+          heading: Providing evidence of domestic violence or abuse concerns
           lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have in support of this.
           or: or
       protection:
@@ -1073,7 +1073,7 @@ en:
       steps_miam_certification_form:
         miam_certification_html: ""
       steps_miam_exemptions_domestic_form:
-        domestic_exemptions_html: "Do you have any of the following evidence of domestic abuse?"
+        domestic_exemptions_html: "Do you have any of the following evidence of domestic violence or abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_protection_form:
         protection_exemptions_html: "Do any of the following apply?"
