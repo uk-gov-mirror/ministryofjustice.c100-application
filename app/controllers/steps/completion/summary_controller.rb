@@ -11,9 +11,8 @@ module Steps
             presenter = Summary::PdfPresenter.new(current_c100_application)
             presenter.generate
 
-            # If we want to trigger a file download, instead of showing the PDF
-            # in the browser, we can use `send_data presenter.to_pdf`
-            render plain: presenter.to_pdf
+            # render plain: presenter.to_pdf
+            send_data(presenter.to_pdf, filename: presenter.filename)
           end
         end
       end

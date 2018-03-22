@@ -350,7 +350,9 @@ RSpec.shared_examples 'a summary step controller' do
       end
 
       context 'PDF format' do
-        let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: nil, to_pdf: 'a majestic pdf') }
+        let(:pdf_presenter) {
+          instance_double(Summary::PdfPresenter, generate: nil, to_pdf: 'a majestic pdf', filename: 'test.pdf')
+        }
 
         before do
           allow(Summary::PdfPresenter).to receive(:new).and_return(pdf_presenter)
@@ -360,6 +362,7 @@ RSpec.shared_examples 'a summary step controller' do
           get :show, format: :pdf, session: { c100_application_id: existing_case.id }
 
           expect(response.body).to eq('a majestic pdf')
+          expect(response.headers['Content-Disposition']).to eq('attachment; filename="test.pdf"')
         end
       end
     end
