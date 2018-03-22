@@ -15,7 +15,7 @@ en:
       ## GROUP COURT ##
       group_court_html: |
         <span class="heading-small gv-u-heading-small">A court has already been involved</span><br/>
-        <span class="form-hint">For example, a court has made an order relating to you, the other people in this application (the respondents) or somebody close to you or them in connection with domestic abuse.</span>
+        <span class="form-hint">For example, a court has made an order relating to you, the other people in this application (the respondents) or somebody close to you or them in connection with domestic violence or abuse.</span>
       court_bound_over_html: A court order binding a prospective party over in connection with a domestic violence offence
       court_protective_injunction_html: A relevant protective injunction
       court_undertaking_html: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
@@ -23,8 +23,8 @@ en:
       court_expert_report_html: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
       ## GROUP SPECIALIST ##
       group_specialist_html: |
-        <span class="heading-small gv-u-heading-small">A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic abuse</span><br/>
-        <span class="form-hint">For example, a health professional or specialist has confirmed injuries that are or were a result of domestic abuse.</span>
+        <span class="heading-small gv-u-heading-small">A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic violence or abuse</span><br/>
+        <span class="form-hint">For example, a health professional or specialist has confirmed injuries that are or were a result of domestic violence or abuse.</span>
       specialist_examination_html: |
         <span class="labelLine">A letter or report from an appropriate health professional confirming that-<p></p>
           <p>(i) that professional, or another appropriate health professional, has examined a prospective party in person; and</p>
@@ -39,7 +39,7 @@ en:
       ## GROUP LOCAL AUTHORITY ##
       group_local_authority_html: |
         <span class="heading-small gv-u-heading-small">A letter from a local authority or other agency confirms a risk of harm</span><br/>
-        <span class="form-hint">For example, a local authority or housing association has confirmed there is or has been a risk of domestic abuse.</span>
+        <span class="form-hint">For example, a local authority or housing association has confirmed there is or has been a risk of domestic violence or abuse.</span>
       local_authority_marac_html: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
       local_authority_la_ha_html: |
         <span class="labelLine">A letter from an officer employed by a local authority or housing association (or their equivalent in Scotland or Northern Ireland) for the purpose of supporting tenants containing-<p></p>
@@ -50,8 +50,8 @@ en:
       local_authority_public_authority_html: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
       ## GROUP DA SERVICE ##
       group_da_service_html: |
-        <span class="heading-small gv-u-heading-small">You have a letter from a domestic abuse support service, specialist or organisation</span><br/>
-        <span class="form-hint">For example, an independent domestic abuse adviser has confirmed support to you or the other people in this application (the respondents).</span>
+        <span class="heading-small gv-u-heading-small">You have a letter from a domestic violence or abuse support service, specialist or organisation</span><br/>
+        <span class="form-hint">For example, an independent domestic violence or abuse adviser has confirmed support to you or the other people in this application (the respondents).</span>
       da_service_idva_html: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
       da_service_isva_html: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
       da_service_organisation_html: |
@@ -74,7 +74,7 @@ en:
         </span>
       ## RIGHT TO REMAIN ##
       right_to_remain_html: |
-        <span class="heading-small gv-u-heading-small">You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic abuse</span><br/>
+        <span class="heading-small gv-u-heading-small">You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic violence or abuse</span><br/>
         <span class="form-hint">A letter from the Home Office will have confirmed that the leave was granted under paragraph 289B of the Immigration Rules.</span>
       ## FINANCIAL ABUSE ##
       financial_abuse_html: |
@@ -196,7 +196,7 @@ en:
   playback:
     exemptions_claimed:
       domestic:
-        header: Domestic abuse evidence
+        header: Domestic violence or abuse evidence
         exemptions:
           <<: *DOMESTIC_EXEMPTIONS
       protection:
