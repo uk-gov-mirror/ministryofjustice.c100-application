@@ -952,21 +952,21 @@ en:
       more_text: We do this for your security. Any unsaved details will be deleted.
       page_title: Invalid session
     unhandled:
-      heading: Sorry, something went wrong
+      heading: Sorry, something went wrong with our service
       <<: *START_FINISH
       lead_text: To keep this service secure, any information you have entered hasn't been saved.
       more_text: You'll need to start again.
       page_title: Unexpected error
     application_not_found:
       page_title: Application not found
-      heading: Sorry, this application can't be found
+      heading: Sorry, this application no longer exists
       lead_text: If you copied a web address, please check it’s correct.
       more_text: "Please note: a draft application expires %{expire_in_days} days after it was created or when you complete it."
       <<: *START_FINISH
     application_screening:
       page_title: Application screening
-      heading: You need to complete the criteria process
-      lead_text: We’re trialling a new online service and you need to meet some criteria in order to continue.
+      heading: You need to complete the eligibility criteria process
+      lead_text: We’re trialling a new online service and you need to meet some criteria to be able to apply online.
       more_info_text: It seems you've not completed yet this process or some information is missing. You will need to start again.
       <<: *START_FINISH
     application_completed:
