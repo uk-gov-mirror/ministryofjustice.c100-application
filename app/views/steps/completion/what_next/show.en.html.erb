@@ -9,10 +9,11 @@
     </p>
 
     <section class="numbered-list">
+      <h2 class="visuallyhidden">Steps</h2>
       <div class="govuk-govspeak gv-s-prose">
         <ol class="list list-number">
           <li>
-            <span class="heading-medium">Download your application</span>
+            <h3 class="heading-medium">Download your application</h3>
             <p>
               This will be a PDF. If you can’t open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
             </p>
@@ -34,13 +35,13 @@
               <div class="panel panel-border-narrow">
                 <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
                   the other person, keep one copy, and return one copy to you. Post them to:</p>
-                <p><%= simple_format(@local_court.address.join("\n")) %></p>
+                <div class="court-address"><%= simple_format(@local_court.address.join("\n")) %></div>
               </div>
             </details>
           </li>
 
           <li>
-            <span class="heading-medium">Pay the application fee</span>
+            <h3 class="heading-medium">Pay the application fee</h3>
             <p>
               It costs £215 to apply. Someone from the court will telephone you within 3 working days of receiving your application to take payment using a credit or debit card.
             </p>
@@ -55,7 +56,7 @@
     <hr/>
 
     <div class="govuk-govspeak gv-s-prose">
-      <h1 class="heading-xlarge gv-u-heading-xxlarge">If you need help</h1>
+      <h2 class="heading-large gv-u-heading-large">If you need help</h2>
       <p>
         You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
         need to
@@ -88,7 +89,7 @@
     </div>
 
     <div class="govuk-govspeak gv-s-prose util_mt-large">
-      <h1 class="heading-xlarge gv-u-heading-xxlarge">We’d like your feedback</h1>
+      <h2 class="heading-large gv-u-heading-large">We’d like your feedback</h2>
       <p>
         Would you like to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], target: 'external_link', rel: 'external' %> to give us your feedback about the online service you have just used?
       </p>

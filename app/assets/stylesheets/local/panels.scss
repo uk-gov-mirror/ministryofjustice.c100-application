@@ -34,3 +34,15 @@
     @include core-24;
   }
 }
+
+.panel-border-wide {
+  padding: 16px 32px;
+  padding: 1rem 2rem;
+  border-left: solid 10px #bfc1c3;
+  margin: 16px 0 32px;
+  margin: 1rem 0 2rem;
+}
+
+.panel-border-wide > p:last-child {
+  margin-bottom: 0;
+}

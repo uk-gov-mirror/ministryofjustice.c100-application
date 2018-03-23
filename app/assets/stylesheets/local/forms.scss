@@ -111,6 +111,10 @@ fieldset + .form-group {
   }
 }
 
+.form-date .form-hint {
+  margin-bottom: 0;
+}
+
 .form-hint:empty {
   display: none;
 }

@@ -2,13 +2,13 @@ strong {
   font-weight: bold;
 }
 
-details {
-  margin-top: $gutter;
-  margin-bottom: $gutter;
-}
-
 form {
   padding-bottom: $gutter;
+}
+
+.form-submit + details,
+details + form {
+  margin-top: $gutter;
 }
 
 .step-info {
@@ -128,6 +128,24 @@ h1.gv-u-heading-xxlarge {
   }
 }
 
+.gv-u-heading-xlarge {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.04167;
+  text-transform: none;
+  font-size-adjust: 0.525;
+  margin-top: 1.04167em;
+  margin-bottom: 0.41667em;
+}
+
+h2.gv-u-heading-large {
+  font-size: 19px;
+  @media (min-width: 641px) {
+    font-size: 28px;
+  }
+}
+
 .start-page h2 {
   margin-top: 1.25em;
   margin-bottom: 0.55556em;
@@ -142,4 +160,32 @@ h1.heading-start {
   @media (min-width: 641px) {
     font-size: 48px;
   }
+}
+
+.app__section_heading {
+  font-family: "nta", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  font-size-adjust: 0.525;
+  font-size: 25.6px;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  margin-top: 0.625em;
+  margin-bottom: 0.3125em;
+  a.link-back + & {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 641px) {
+  .app__section_heading {
+    font-size: 1.9rem;
+    line-height: 1.31579;
+    margin-top: 1.05263em;
+  }
+}
+
+.app__section_heading + .app__heading {
+  margin-top: 16px;
+  margin-top: 1rem;
 }

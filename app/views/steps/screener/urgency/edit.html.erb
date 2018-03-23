@@ -10,16 +10,14 @@
       <p><%= t '.warning' %></p>
     </div>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <details>
-        <summary>
-          <span class="summary"><%=t '.reasons_title' %></span>
-        </summary>
-        <div class="panel panel-border-narrow">
-          <%=t '.reasons_content_html' %>
-        </div>
-      </details>
-    </div>
+    <details>
+      <summary>
+        <span class="summary"><%=t '.reasons_title' %></span>
+      </summary>
+      <div class="panel panel-border-narrow">
+        <%=t '.reasons_content_html' %>
+      </div>
+    </details>
 
     <%= step_form @form_object do |f| %>
       <%= f.radio_button_fieldset :urgent, inline: true, choices: GenericYesNo.values %>

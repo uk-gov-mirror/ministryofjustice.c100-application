@@ -2,181 +2,14 @@
   margin-bottom: 3rem;
   padding-bottom: 1rem;
 }
+
 .start-page a.button.button-start {
   margin-bottom: 3rem;
-}
-
-.panel-border-wide {
-  padding: 16px 32px;
-  padding: 1rem 2rem;
-  border-left: solid 10px #bfc1c3;
-  margin: 16px 0 32px;
-  margin: 1rem 0 2rem;
-}
-
-.panel-border-wide > p:last-child {
-  margin-bottom: 0;
-}
-
-.app__section_heading {
-  font-family: "nta", Arial, sans-serif;
-  font-weight: 700;
-  text-transform: none;
-  font-size-adjust: 0.525;
-  font-size: 25.6px;
-  font-size: 1.6rem;
-  line-height: 1.25;
-  margin-top: 0.625em;
-  margin-bottom: 0.3125em;
-  a.link-back + & {
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 641px) {
-  .app__section_heading {
-    font-size: 1.9rem;
-    line-height: 1.31579;
-    margin-top: 1.05263em;
-  }
-}
-
-.app__section_heading + .app__heading {
-  margin-top: 16px;
-  margin-top: 1rem;
-}
-
-.js-enabled {
-  .js-hidden {
-    display: none !important;
-  }
-}
-
-.no-js-only {
-  display: block;
-
-  .js-enabled & {
-    display: none !important;
-  }
-}
-
-li.no-js-only {
-  display: list-item;
-}
-
-.js-only {
-  display: none !important;
-
-  .js-enabled & {
-    display: block !important;
-  }
-}
-
-.js-enabled li.js-only {
-  display: list-item !important;
-}
-
-.gv-u-heading-xlarge {
-  font-family: "nta", Arial, sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.04167;
-  text-transform: none;
-  font-size-adjust: 0.525;
-  margin-top: 1.04167em;
-  margin-bottom: 0.41667em;
-}
-
-section.numbered-list ol{
-  padding-left:0;
-}
-section.numbered-list ol > li{
-  background-position:0 0.87em;
-  background-repeat:no-repeat;
-  list-style-type:none;
-  margin-left:0;
-  padding:0.75em 0 0.75em 2.2em;
-}
-section.numbered-list ol > li:nth-child(1){
-  background-image: image-url('icon-step-1.png');
-}
-section.numbered-list ol > li:nth-child(2){
-  background-image: image-url('icon-step-2.png');
-}
-section.numbered-list ol > li:nth-child(3){
-  background-image: image-url('icon-step-3.png');
-}
-section.numbered-list ol > li:nth-child(4){
-  background-image: image-url('icon-step-4.png');
 }
 
 #miam-requirement_acknowledgement{
   padding-top:96px;
   padding-top:6rem;
-}
-#content .flash-card {
-  background-color: #005ea5;
-  color: #fff;
-  padding: 3rem;
-  @media (min-width: 641px) {
-    padding: 5rem;
-    margin-bottom: -1rem;
-  }
-  margin-top: 1rem;
-}
-#content .flash-card {
-  & .grid_content_header {
-    @media (min-width: 641px) {
-      width: 150%;
-    }
-  }
-  & p.app__section_heading {
-    margin-top: 0;
-  }
-  & h1.app__heading {
-    margin-bottom: 3rem;
-  }
-  & h2 {
-    font-size: 19px;
-    @media (min-width: 641px) {
-      font-size: 28px;
-    }
-  }
-  & .button {
-    background-color: #fff;
-    color: #005ea5;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    font-weight: bold;
-    &:hover {
-      background-color: #dee0e2;
-    }
-  }
-  & .panel-border-wide {
-    border-color: #fff;
-  }
-  & .panel-border-wide p {
-    font-weight: bold;
-  }
-}
-
-.button.button-secondary{
-  background:transparent;
-  color:#005ea5;
-  border-bottom-color:#fff;
-  box-shadow:none;
-  text-decoration:underline;
-  padding-left:0;
-  padding-right:0;
-  margin-left:96px;
-  margin-left:6rem
-}
-.button.button-secondary:hover{
-  background:transparent;
-  color:#2b8cc4;
-}
-.button.button-secondary:first-child{
-  margin-left:0;
 }
 
 #new_steps_miam_acknowledgement_form,
@@ -210,9 +43,6 @@ section.numbered-list ol > li:nth-child(4){
       margin-top: -30px;
     }
 }
-.form-date .form-hint {
-  margin-bottom: 0;
-}
 
 #court-contact-details {
   dt {
@@ -232,8 +62,14 @@ section.numbered-list ol > li:nth-child(4){
 .miam_exemptions > form > .form-group > fieldset > .multiple-choice > label > span.form-hint {
   margin-top: 0.5rem;
 }
+
 .miam_exemptions > form p:empty {
   display: none;
 }
 
+.miam_exemptions_list details {
+  margin: -1rem 0 2rem;
+}
+
+@import 'app/flash_card';
 @import 'app/pros_cons';
