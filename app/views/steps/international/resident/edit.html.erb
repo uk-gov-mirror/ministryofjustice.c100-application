@@ -6,7 +6,9 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%=t '.lead_text' %></p>
+    </div>
 
     <%= step_form @form_object do |f| %>
       <%=
