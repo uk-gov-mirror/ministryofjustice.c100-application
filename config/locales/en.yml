@@ -221,11 +221,12 @@ en:
       has_other_children:
         edit:
           page_title: Other children required
-          heading: Do you or the other person (the respondent) have other children (separately or together) who aren’t part of this application?
+          heading: Do you or the other people in this application (the respondents) have other children (separately or together) who aren’t part of this application?
           block_title: Why do we need to ask this?
           block_content_html: |
-            <p>The <a href="https://www.cafcass.gov.uk/" target="external_link" rel="external">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/" target="external_link" rel="external">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They do this by working with children and families and by providing advice to the court. They need to know about other children so they can complete their background checks.</p>
-            <p>They will contact the police and local authorities to see if they have any relevant information about your other children.</p>
+            <p>The <a href="https://www.cafcass.gov.uk/" target="external_link" rel="external">Children and Family Court Advisory and Support Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or <a href="http://cafcass.gov.wales/" target="external_link" rel="external">Cafcass Cymru</a> protects and promotes the interests of children who are involved in family court cases. They will look at your answers as part of their safeguarding checks.</p>
+            <p>As part of their enquiries, they will contact the police and local authorities for any relevant information about the other children. They will also speak with you and the other people involved in the application (the respondents) before the first hearing.</p>
+            <p>They will submit information to the court before your first hearing. Their assessment helps the judge make a decision that is in the best interests of the children.</p>
       orders:
         edit:
           page_title: Which orders apply to the child
@@ -450,7 +451,7 @@ en:
               <li>sexual abuse</li>
             </ul>
           info_note_html: |
-            <p>Only include abuse by the other person (the respondent) or someone connected to the other person who has contact with the children.</p>
+            <p>Only include abuse by the other people in this application (the respondents) or someone connected to the other person who has contact with the children.</p>
       domestic_abuse:
         edit:
           page_title: Domestic violence or abuse
@@ -492,7 +493,7 @@ en:
             <p>The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
             <ul class="list list-bullet">
               <li>taken place within the past 4 months</li>
-              <li>been about the same or a very similar child arrangements issue</li>
+              <li>been about the same or a very similar issue about the children</li>
             </ul>
       exemption_claim:
         edit:
@@ -509,10 +510,10 @@ en:
       certification:
         edit:
           page_title: MIAM certification
-          heading: Have you got a signed certificate from the mediator?
+          heading: Have you got a document signed by the mediator?
           body_html: |
-            <p>Your mediator should have signed a certificate confirming your MIAM attendance.
-            You may need to go back to the mediator and ask for a certificate if you don't have one.</p>
+            <p>Your mediator should have signed a document confirming your MIAM attendance.
+            You may need to go back to the mediator and ask for a signed document if you don't have one.</p>
       certification_date:
         edit:
           page_title: MIAM certification date
@@ -544,7 +545,7 @@ en:
         edit:
           page_title: Child protection cases
           heading: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
-          info_html: These will involve a local authority.
+          info_html: These will often involve a local authority.
     petition:
       orders:
         edit:
@@ -736,7 +737,7 @@ en:
       jurisdiction:
         edit:
           page_title: International jurisdiction
-          heading: Do you think the other person may be able to apply for a similar order in a country outside England or Wales?
+          heading: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
           info_html: For example, because a court in another country has the power to act (has jurisdiction)
       request:
         edit:
