@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     http_basic_authenticate_with name: ENV.fetch('HTTP_AUTH_USER'), password: ENV.fetch('HTTP_AUTH_PASSWORD')
   end
 
+  before_action :drop_dangerous_headers!
   after_action :set_security_headers
   # :nocov:
 
@@ -34,6 +35,10 @@ class ApplicationController < ActionController::Base
     C100Application.create(attributes).tap do |c100_application|
       session[:c100_application_id] = c100_application.id
     end
+  end
+
+  def drop_dangerous_headers!
+    request.env.except!('HTTP_X_FORWARDED_HOST') # just drop the variable
   end
 
   def set_security_headers

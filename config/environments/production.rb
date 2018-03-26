@@ -44,4 +44,12 @@ Rails.application.configure do
   # missing translations of model attribute names. The form will
   # get the constantized attribute name itself, in form labels.
   config.action_view.raise_on_missing_translations = false
+
+  # Prevent host header poisoning by enforcing absolute redirects
+  if ENV['EXTERNAL_URL'].present?
+    uri = URI.parse(ENV['EXTERNAL_URL'])
+    config.action_controller.default_url_options = {
+      host: uri.host, protocol: uri.scheme, port: uri.port
+    }
+  end
 end
