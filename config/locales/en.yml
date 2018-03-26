@@ -1051,8 +1051,8 @@ en:
       steps_application_without_notice_form:
         without_notice_html: ""
       steps_application_without_notice_details_form:
-        without_notice_frustrate_html: Are you asking for a without notice hearing because the other person may do something that obstructs this application if they knew about it?
-        without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice to the other person?
+        without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
+        without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
       steps_application_litigation_capacity_form:
         reduced_litigation_capacity_html: ""
       steps_application_special_assistance_form:
@@ -1415,8 +1415,8 @@ en:
         order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
         previous_details: Try and include as many details as possible, for example case number, date and name of court
       steps_application_without_notice_details_form:
-        without_notice_details: A court will only accept your request if you provide good reason why you need one
-        without_notice_impossible: Either by telephone, text, email or another way because of exceptional urgency
+        without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
+        without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.
       steps_application_language_form:
         language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
