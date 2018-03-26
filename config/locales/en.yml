@@ -34,8 +34,6 @@ en:
     PETITION_ORDERS: &PETITION_ORDERS
       child_arrangements_home_html: Decide who they live with and when
       child_arrangements_time_html: Decide how much time they spend with each person
-      child_arrangements_contact_html: Decide how and when the children are involved with each person
-      child_arrangements_access_html: Allow the children to spend time with you
       prohibited_steps_moving_html: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad_html: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       prohibited_steps_names_html: Changing their names or surname

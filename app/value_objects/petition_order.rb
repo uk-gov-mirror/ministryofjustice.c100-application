@@ -3,8 +3,6 @@ class PetitionOrder < ValueObject
     CHILD_ARRANGEMENTS = [
       new(:child_arrangements_home),
       new(:child_arrangements_time),
-      new(:child_arrangements_contact),
-      new(:child_arrangements_access),
     ].freeze,
 
     GROUP_PROHIBITED_STEPS = new(:group_prohibited_steps),

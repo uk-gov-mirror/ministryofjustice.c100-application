@@ -15,8 +15,6 @@ RSpec.describe PetitionPresenter do
       expect(subject.child_arrangements_orders).to eq(%w(
         child_arrangements_home
         child_arrangements_time
-        child_arrangements_contact
-        child_arrangements_access
       ))
     end
   end
@@ -53,8 +51,6 @@ RSpec.describe PetitionPresenter do
       expect(subject.all_selected_orders).to eq(%w(
         child_arrangements_home
         child_arrangements_time
-        child_arrangements_contact
-        child_arrangements_access
         prohibited_steps_names
         prohibited_steps_medical
         prohibited_steps_holiday

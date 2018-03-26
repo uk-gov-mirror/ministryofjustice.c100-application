@@ -9,8 +9,6 @@ RSpec.describe PetitionOrder do
       expect(described_class.values.map(&:to_s)).to eq(%w(
         child_arrangements_home
         child_arrangements_time
-        child_arrangements_contact
-        child_arrangements_access
         group_prohibited_steps
         prohibited_steps_names
         prohibited_steps_medical
@@ -36,8 +34,6 @@ RSpec.describe PetitionOrder do
       expect(described_class::CHILD_ARRANGEMENTS.map(&:to_s)).to eq(%w(
         child_arrangements_home
         child_arrangements_time
-        child_arrangements_contact
-        child_arrangements_access
       ))
     end
   end
