@@ -45,6 +45,9 @@ Rails.application.configure do
   # get the constantized attribute name itself, in form labels.
   config.action_view.raise_on_missing_translations = false
 
+  # Enforce SSl-only
+  config.force_ssl = true
+  
   # Prevent host header poisoning by enforcing absolute redirects
   if ENV['EXTERNAL_URL'].present?
     uri = URI.parse(ENV['EXTERNAL_URL'])
