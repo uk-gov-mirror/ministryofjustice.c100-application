@@ -759,7 +759,7 @@ en:
         edit:
           page_title: Urgent application
           section: *miam_exemptions
-          heading: Confirming why you’re asking for an urgent hearing
+          heading: Confirming why your application is urgent
           or: or
       adr:
         edit:
