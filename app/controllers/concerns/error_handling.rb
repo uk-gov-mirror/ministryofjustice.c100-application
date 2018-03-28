@@ -2,7 +2,7 @@ module ErrorHandling
   extend ActiveSupport::Concern
 
   included do
-    protect_from_forgery with: :exception
+    protect_from_forgery with: :exception, prepend: true
 
     rescue_from Exception do |exception|
       case exception
