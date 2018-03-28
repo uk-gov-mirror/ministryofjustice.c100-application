@@ -227,7 +227,7 @@ en:
       orders:
         edit:
           page_title: Which orders apply to the child
-          heading: "Which of the orders applied for relate to %{name}?"
+          heading: "Which of the decisions you’re asking the court to resolve relate to %{name}?"
           info_html: Select all that apply
       residence:
         edit:
