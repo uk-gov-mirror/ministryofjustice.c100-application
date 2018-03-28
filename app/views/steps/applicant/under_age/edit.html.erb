@@ -8,10 +8,6 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
-    <!-- TODO: prototype still needs to finish this view -->
-
-    <%= step_form @form_object do |f| %>
-      <%= f.continue_button %>
-    <% end %>
+    <%= render partial: '/steps/shared/screener_exit_actions' %>
   </div>
 </div>
