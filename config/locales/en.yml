@@ -722,15 +722,6 @@ en:
           page_title: International resident
           heading: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
           lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
-          why_we_ask_this_html: |
-            <details>
-              <summary>
-                <span class="summary">Why do we ask this?</span>
-              </summary>
-              <div class="panel panel-border-narrow">
-                <p>We need to know if the children have any close family who live in another country so we can assess whether there are grounds to start a court case there.</p>
-              </div>
-            </details>
       jurisdiction:
         edit:
           page_title: International jurisdiction

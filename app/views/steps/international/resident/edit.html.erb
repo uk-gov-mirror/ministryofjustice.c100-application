@@ -15,15 +15,11 @@
         f.radio_button_fieldset :international_resident, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES, panel_id: :international_resident_panel)
           fieldset.radio_input(GenericYesNo::NO)
-          fieldset.revealing_panel(:international_resident_panel) do |panel|
-            panel.text_area :international_resident_details, size: '40x4', class: 'form-control-3-4'
-          end
         end
       %>
 
       <%= f.continue_button %>
     <% end %>
 
-    <%=t '.why_we_ask_this_html' %>
   </div>
 </div>
