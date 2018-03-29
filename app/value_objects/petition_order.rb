@@ -32,4 +32,13 @@ class PetitionOrder < ValueObject
   def self.values
     VALUES
   end
+
+  def self.type_for(sub_type)
+    case sub_type.to_s
+    when /^child_arrangements_.*/ then 'child_arrangements'
+    when /^prohibited_steps_.*/ then 'prohibited_steps'
+    when /^specific_issues_.*/ then 'specific_issues'
+    else 'other_issue'
+    end
+  end
 end

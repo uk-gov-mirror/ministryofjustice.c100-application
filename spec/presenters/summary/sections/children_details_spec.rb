@@ -82,7 +82,7 @@ module Summary
 
         expect(answers[6]).to be_an_instance_of(MultiAnswer)
         expect(answers[6].question).to eq(:child_orders)
-        expect(answers[6].value).to eq(['an_order'])
+        expect(answers[6].value).to eq(['other_issue'])
 
         expect(answers[7]).to be_an_instance_of(Partial)
         expect(answers[7].name).to eq(:row_blank_space)

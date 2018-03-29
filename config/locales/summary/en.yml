@@ -43,6 +43,12 @@ en:
     OTHER_ORDER: &OTHER_ORDER
       other_issue: Deal with another issue not listed
 
+    PETITION_ORDER_TYPES: &PETITION_ORDER_TYPES
+      child_arrangements: Child Arrangements Order
+      prohibited_steps: Prohibited Steps Order
+      specific_issues: Specific Issue Order
+      other_issue: Other issue
+
     # Note: this is duplicated in `locales/en.yml`, due to the way locales work
     # (they don't see each other when they are in different files). If you change copy here,
     # remember to also update it in `locales/en.yml`
@@ -250,10 +256,7 @@ en:
     child_orders:
       question: Order(s) applied for
       answers:
-        <<: *ARRANGEMENT_ORDERS
-        <<: *SPECIFIC_ISSUE_ORDERS
-        <<: *PROHIBITED_STEPS_ORDERS
-        <<: *OTHER_ORDER
+        <<: *PETITION_ORDER_TYPES
     children_known_to_authorities:
       question: Are any of the children known to the local authority children’s services?
       answers:

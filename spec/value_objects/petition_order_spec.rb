@@ -70,4 +70,32 @@ RSpec.describe PetitionOrder do
       expect(described_class::OTHER_ISSUE.to_s).to eq('other_issue')
     end
   end
+
+  describe '.type_for' do
+    context 'given a sub_type' do
+      context 'starting with child_arrangements_' do
+        it 'returns "child_arrangements"' do
+          expect(described_class.type_for('child_arrangements_foo')).to eq("child_arrangements")
+        end
+      end
+
+      context 'starting with prohibited_steps_' do
+        it 'returns "prohibited_steps"' do
+          expect(described_class.type_for('prohibited_steps_foo')).to eq("prohibited_steps")
+        end
+      end
+
+      context 'starting with specific_issues_' do
+        it 'returns "specific_issues"' do
+          expect(described_class.type_for('specific_issues_foo')).to eq("specific_issues")
+        end
+      end
+
+      context 'starting with anything else' do
+        it 'returns "other_issue"' do
+          expect(described_class.type_for('foo')).to eq("other_issue")
+        end
+      end
+    end
+  end
 end
