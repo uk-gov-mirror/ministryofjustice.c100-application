@@ -36,7 +36,7 @@
       "required": true
     },
     "HTTP_AUTH_ENABLED": {
-      "required": true
+      "required": false
     },
     "HTTP_AUTH_PASSWORD": {
       "required": true
