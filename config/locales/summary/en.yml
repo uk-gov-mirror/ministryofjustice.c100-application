@@ -221,8 +221,6 @@ en:
       question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
       answers:
         <<: *YESNO
-    international_resident_details:
-      question: ''
     international_jurisdiction:
       question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)?
       answers:

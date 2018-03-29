@@ -12,7 +12,6 @@ module Summary
       def answers
         [
           Answer.new(:international_resident, c100.international_resident, default: GenericYesNo::NO),
-          FreeTextAnswer.new(:international_resident_details, c100.international_resident_details),
           Answer.new(:international_jurisdiction, c100.international_jurisdiction, default: GenericYesNo::NO),
           FreeTextAnswer.new(:international_jurisdiction_details, c100.international_jurisdiction_details),
           Answer.new(:international_request, c100.international_request, default: GenericYesNo::NO),

@@ -1365,8 +1365,6 @@ en:
         injunctive_court_name: *order_court_name
         undertaking_length: *order_length
         undertaking_court_name: *order_court_name
-      steps_international_resident_form:
-        international_resident_details: *provide_details
       steps_international_jurisdiction_form:
         international_jurisdiction_details: *provide_details
       steps_international_request_form:
