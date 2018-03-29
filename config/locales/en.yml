@@ -772,7 +772,7 @@ en:
           info_text_html: "The reasons you’ve given are:"
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>You will need to provide evidence to support these reasons at your first court hearing. If you don't, you will be directed to attend a MIAM.</p>
+              <p>You will need to confirm these reasons at your first court hearing. If the court is not satisfied, you may be directed to attend a MIAM.</p>
             </div>
           continue: Continue
       safety_playback:
