@@ -20,6 +20,11 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
+        # if the user un-checks 'other issue', it must clear out the details
+        # field, otherwise any previously-entered value still shows up in
+        # the PDF
+        self.orders_additional_details = nil unless selected_options.include?(:other_issue)
+
         c100_application.update(
           orders: selected_options,
           orders_additional_details: orders_additional_details,

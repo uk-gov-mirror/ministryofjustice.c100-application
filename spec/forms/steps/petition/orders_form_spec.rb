@@ -51,14 +51,51 @@ RSpec.describe Steps::Petition::OrdersForm do
 
       context 'for other issue details' do
         let(:orders_additional_details) { 'details' }
+        let(:orders){ [:specific_issues_medical, :other_issue] }
+
+        let(:arguments) { {
+          c100_application: c100_application,
+          other_issue: '1',
+          specific_issues_school: '0',
+          specific_issues_medical: '1',
+          orders_additional_details: orders_additional_details,
+        } }
 
         it 'updates the record' do
           expect(c100_application).to receive(:update).with(
-            orders: [:child_arrangements_home, :specific_issues_medical],
+            orders: [:specific_issues_medical, :other_issue],
             orders_additional_details: 'details',
           ).and_return(true)
 
           expect(subject.save).to be(true)
+        end
+      end
+
+      context 'when other issue details are already set' do
+        let(:existing_details){ 'existing details' }
+        let(:c100_application) {
+          instance_double(C100Application,
+              orders: existing_orders,
+              orders_additional_details: existing_details
+          )
+        }
+
+        context 'and the other issue checkbox is un-checked' do
+          let(:existing_orders){ [:other_issue, :specific_issues_medical] }
+          let(:existing_details){ 'existing details' }
+          let(:arguments) { {
+            c100_application: c100_application,
+            specific_issues_medical: '1',
+            orders_additional_details: existing_details,
+          } }
+
+          it 'updates the record with orders_additional_details set to nil' do
+            expect(c100_application).to receive(:update).with(
+              orders: [:specific_issues_medical],
+              orders_additional_details: nil,
+            ).and_return(true)
+            subject.save
+          end
         end
       end
     end
