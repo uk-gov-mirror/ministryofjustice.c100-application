@@ -5,6 +5,10 @@ class ErrorsController < ApplicationController
     respond_with_status(:not_found)
   end
 
+  def not_found
+    respond_with_status(:not_found)
+  end
+
   def application_not_found
     respond_with_status(:not_found)
   end

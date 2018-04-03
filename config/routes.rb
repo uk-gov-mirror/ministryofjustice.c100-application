@@ -230,6 +230,7 @@ Rails.application.routes.draw do
     get :application_screening
     get :application_completed
     get :unhandled
+    get :not_found
   end
 
   root 'steps/screener/start#show'

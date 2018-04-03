@@ -964,6 +964,15 @@ en:
       lead_text: Your application won’t be processed until you complete a few more steps. If you want to make changes you can start a new application.
       what_next: What you need to do next
       <<: *START_FINISH
+    not_found:
+      page_title: Page not found
+      heading: Page not found
+      lead_text: If you copied a web address, please check it’s correct.
+      paper_form_html: |
+        <p>You can also try starting again from the homepage.</p>
+        <p>If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" target="external_link" rel="external">download and
+        complete a C100 paper application form</a>, print it and send it by post.</p>
+      <<: *START_FINISH
 
   activemodel:
     errors:

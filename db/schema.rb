@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 20180329160337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pgcrypto"
   enable_extension "uuid-ossp"
+  enable_extension "pgcrypto"
 
   create_table "abduction_details", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "children_have_passport"
