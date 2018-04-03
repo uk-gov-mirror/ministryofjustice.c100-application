@@ -103,8 +103,9 @@ RSpec.shared_examples 'a yes-no question form' do |options|
       let(:additional_attributes) { attributes_to_reset(reset_when_no) }
 
       it 'saves the record' do
-        expect(c100_application).to receive(:update).with(
-          { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes)
+        expect(c100_application).to receive(:update).with( hash_including(
+            { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes)
+          )
         ).and_return(true)
         expect(described_class.new(arguments).save).to be(true)
       end
