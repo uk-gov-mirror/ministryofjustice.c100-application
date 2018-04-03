@@ -9,6 +9,4 @@ RSpec.describe Steps::Miam::AttendedForm do
       :miam_certification_service_name,
       :miam_certification_sole_trader_name
     ]
-
-
 end
