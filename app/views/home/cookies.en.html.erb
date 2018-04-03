@@ -48,7 +48,7 @@
     <p><strong>Remembering your progress</strong></p>
 
     <p>We will store a cookie to remember your application progress in this computer and to expire your session
-      after <%= Rails.configuration.x.session.expires_in_minutes %> minutes of inactivity or when you close your browser.</p>
+      after <%= session_expire_in_minutes %> minutes of inactivity or when you close your browser.</p>
 
     <table>
       <thead>
@@ -62,7 +62,7 @@
       <tr>
         <td>_c100_application_session</td>
         <td>Saves your current progress in this computer and tracks inactivity periods</td>
-        <td>After <%= Rails.configuration.x.session.expires_in_minutes %> minutes of inactivity or when you close your browser</td>
+        <td>After <%= session_expire_in_minutes %> minutes of inactivity or when you close your browser</td>
       </tr>
       </tbody>
     </table>

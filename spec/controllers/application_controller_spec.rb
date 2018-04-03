@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ApplicationController do
   controller do
+    def my_url; true; end
     def invalid_session; raise Errors::InvalidSession; end
     def application_not_found; raise Errors::ApplicationNotFound; end
     def application_completed; raise Errors::ApplicationCompleted; end
@@ -9,11 +10,77 @@ RSpec.describe ApplicationController do
     def another_exception; raise Exception; end
   end
 
-  context 'Exceptions handling' do
-    before do
-      allow(Rails).to receive_message_chain(:application, :config, :consider_all_requests_local).and_return(false)
-    end
+  before do
+    allow(Rails.application).to receive_message_chain(:config, :consider_all_requests_local).and_return(false)
+    allow(Rails.configuration).to receive_message_chain(:x, :session, :expires_in_minutes).and_return(1)
+  end
 
+  context 'Security handling' do
+    context 'ensure_session_validity' do
+      before do
+        travel_to Time.at(555555)
+      end
+
+      context 'when cookie is not present' do
+        it 'sets the `last_seen` value' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          get :my_url
+          expect(session[:last_seen]).to eq(555555)
+        end
+
+        it 'does not reset the session' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          expect(controller).not_to receive(:reset_session)
+          get :my_url
+        end
+      end
+
+      context 'when cookie is present but not expired' do
+        before do
+          session[:last_seen] = Time.now.to_i
+        end
+
+        it 'sets the `last_seen` value' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          get :my_url
+          expect(session[:last_seen]).to eq(555555)
+        end
+
+        it 'does not reset the session' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          expect(controller).not_to receive(:reset_session)
+          get :my_url
+        end
+      end
+
+      context 'when cookie is present but expired' do
+        before do
+          session[:last_seen] = Time.now.to_i - 155
+        end
+
+        it 'sets the `last_seen` value' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          expect(session[:last_seen]).to eq(555400)
+          get :my_url
+          expect(session[:last_seen]).to eq(555555)
+        end
+
+        it 'resets the session' do
+          routes.draw { get 'my_url' => 'anonymous#my_url' }
+
+          expect(controller).to receive(:reset_session)
+          get :my_url
+        end
+      end
+    end
+  end
+
+  context 'Exceptions handling' do
     context 'Errors::InvalidSession' do
       it 'should not report the exception, and redirect to the error page' do
         routes.draw { get 'invalid_session' => 'anonymous#invalid_session' }

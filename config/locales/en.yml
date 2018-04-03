@@ -937,7 +937,7 @@ en:
     invalid_session:
       heading: Sorry, you'll have to start again
       <<: *START_FINISH
-      lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes or after you complete your application.
+      lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes.
       more_text: We do this for your security. Any unsaved details will be deleted.
       page_title: Invalid session
     unhandled:

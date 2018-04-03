@@ -37,9 +37,7 @@ class SessionsController < ApplicationController
 
   # :nocov:
   def c100_application
-    current_c100_application || C100Application.create.tap do |c100_application|
-      session[:c100_application_id] = c100_application.id
-    end
+    current_c100_application || initialize_c100_application
   end
 
   def local_court_fixture
