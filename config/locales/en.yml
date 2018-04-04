@@ -772,7 +772,9 @@ en:
           info_text_html: "The reasons you’ve given are:"
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>You will need to confirm these reasons at your first court hearing. If the court is not satisfied, you may be directed to attend a MIAM.</p>
+              <p>You’ll be asked to provide more information about your circumstances at the first court hearing.
+              Where evidence is needed to support an exemption, this should be taken to the hearing. If the court is
+              not satisfied that you’re exempt, you may be directed to attend a MIAM.</p>
             </div>
           continue: Continue
       safety_playback:
