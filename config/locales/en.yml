@@ -811,7 +811,7 @@ en:
             heading: What to do now
             copy: You can go back and try again, or download the paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
           go_back: Go back and try again
-          download_c100_link: Download the paper form (PDF)
+          download_c100_link: Download the form (PDF)
       no_court_found:
         show:
           page_title: Not eligible

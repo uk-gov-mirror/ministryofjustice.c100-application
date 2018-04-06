@@ -29,6 +29,21 @@ password should be available from the MoJ Rattic server, in the Family Justice g
 * `RAILS_ENV=test bundle exec rails db:migrate`
 * `RAILS_ENV=test bundle exec rake`
 
+## Cucumber features
+
+The features can be run manually (these are not part of the default rake task) in any of these forms:
+
+* `bundle exec cucumber features`
+* `bundle exec cucumber features/screener.feature`
+* `bundle exec cucumber features/screener.feature -t @happy_path`
+* `bundle exec cucumber features/screener.feature -t @unhappy_path`
+
+By default features will run against the URL defined in `EXTERNAL_URL` (check your local `.env` file) which should be the URL where your local rails server is accessible and running.
+
+If you want to point the features to another server (WARNING: NEVER PRODUCTION!) without editing your local `.env` file, then just pass the value when calling cucumber:
+
+* `EXTERNAL_URL=http://server.com bundle exec cucumber features`
+
 ## Mutation testing
 
 This project uses extensive mutation coverage, which makes the (mutation) tests take a long time to run, and can end up with the CI killing the build due to excessive job work time.
