@@ -1,14 +1,14 @@
 <ul>
   <li>
-    <%= link_to t('.help'), 'https://www.gov.uk/help' %>
+    <%= link_to t('.help'), 'https://www.gov.uk/help', class: 'ga-pageLink', data: {ga_category: 'footer', ga_label: 'help'} %>
   </li>
   <!--<li>-->
-    <!--<%# link_to t('.contact'), contact_page_path %>-->
+    <!--<%# link_to t('.contact'), contact_page_path, class: 'ga-pageLink', data: {ga_category: 'footer', ga_label: 'contact'} %>-->
   <!--</li>-->
   <li>
-    <%= link_to t('.cookies'), cookies_page_path %>
+    <%= link_to t('.cookies'), cookies_page_path, class: 'ga-pageLink', data: {ga_category: 'footer', ga_label: 'cookies'} %>
   </li>
   <li>
-    <%= link_to t('.terms_and_conditions'), 'https://www.gov.uk/help/terms-conditions' %>
+    <%= link_to t('.terms_and_conditions'), 'https://www.gov.uk/help/terms-conditions', class: 'ga-pageLink', data: {ga_category: 'footer', ga_label: 'terms-conditions'} %>
   </li>
 </ul>

@@ -23,6 +23,10 @@ moj.Modules.gaEvents = {
             if ($(self.submitFormClass).length) {
                 self.trackSubmitForms();
             }
+            // External links, tracked as GA outbound events
+            if ($("a[rel^=external]").length) {
+                self.trackExternalLinks();
+            }
         }
     },
 
@@ -115,6 +119,26 @@ moj.Modules.gaEvents = {
             };
 
             self.sendAnalyticsEvent(eventData, options);
+        });
+    },
+
+    trackExternalLinks: function() {
+        $("a[rel^=external]").on('click', function(e) {
+            var url = $(this).attr('href'),
+                target = $(this).attr('target');
+
+            e.preventDefault();
+
+            ga('send', 'event', 'outbound', 'click', url, {
+                'transport': 'beacon',
+                'hitCallback': function() {
+                    if (target) {
+                      window.open(url, target);
+                    } else {
+                      document.location = url;
+                    }
+                }
+            });
         });
     },
 
