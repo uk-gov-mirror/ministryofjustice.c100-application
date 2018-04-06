@@ -325,7 +325,7 @@ en:
       answers:
         <<: *YESNO
     without_notice_impossible_details:
-      question: 'This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example  by telephone, text or email'
+      question: ''
     without_notice_frustrate:
       question: Are you asking for a without notice hearing because the other person may do something that obstructs this application if they knew about it?
       answers:

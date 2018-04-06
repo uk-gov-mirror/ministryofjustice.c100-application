@@ -6,8 +6,8 @@ module Steps
       has_one_association :court_proceeding
 
       attribute :children_names, String
-      attribute :court_name, String
-      attribute :case_number, String
+      attribute :court_name, StrippedString
+      attribute :case_number, StrippedString
       attribute :proceedings_date, String
       attribute :cafcass_details, String
       attribute :order_types, String

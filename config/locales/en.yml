@@ -730,7 +730,7 @@ en:
       request:
         edit:
           page_title: International request
-          heading: Has a request for information or other assistance involving the children been made to or by another country
+          heading: Has a request for information or other assistance involving the children been made to or by another country?
           info_html: This may be due to child protection concerns, needing to enforce an order abroad, to return a child to England or Wales or to assist with a request from a court in other family proceedings.
     miam_exemptions:
       domestic:
