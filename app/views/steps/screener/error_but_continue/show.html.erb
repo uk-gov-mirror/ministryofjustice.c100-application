@@ -22,7 +22,7 @@
     </section>
 
     <div class="xform-group form-submit">
-      <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button', role: 'button' %>
+      <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button ga-pageLink', role: 'button', data: {ga_category: 'postcode error', ga_label: 'paper form'} %>
       <%= link_to t('.go_back'), '/steps/screener/postcode', class: 'button button-secondary', role: 'button' %>
     </div>
   </div>

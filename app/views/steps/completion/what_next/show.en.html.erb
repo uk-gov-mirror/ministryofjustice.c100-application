@@ -18,14 +18,15 @@
               This will be a PDF. If you can’t open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
             </p>
             <p>
-              <%= link_to 'Download your application', steps_completion_summary_path(format: :pdf), target: '_blank', class: 'button' %>
+              <%= link_to 'Download your application', steps_completion_summary_path(format: :pdf), target: '_blank', class: 'button ga-pageLink', data: {ga_category: 'completion', ga_label: 'download application'} %>
             </p>
           </li>
 
           <li>
             <span class="heading-medium">Send your application</span>
             <p>
-              Attach your PDF to an email. Put ‘C100 new application - child arrangements’ in the subject line and send it to: <%= link_to @court.email, "mailto:#{@court.email}?subject=C100+New+application+-+Child+arrangements" %>
+              Attach your PDF to an email. Put ‘C100 New application - Child arrangements’ in the subject line and send it to:
+              <%= mail_to @court.email, @court.email, subject: 'C100 New application - Child arrangements', class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email application'} %>
             </p>
             <p>The court will email you to confirm they have received your application.</p>
             <details>
@@ -68,7 +69,7 @@
       <dl id="court-contact-details">
         <%- unless @court.email.blank? %>
           <dt><strong>Email</strong></dt>
-          <dd><%= mail_to @court.email %></dd>
+          <dd><%= mail_to @court.email, @court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
         <%- end %>
 
         <%- unless @court.phone_number.blank? %>
@@ -85,7 +86,7 @@
       </dl>
 
       <p>
-        <%= link_to "More information about #{@court.name}", C100App::CourtfinderAPI.new.court_url(@court.slug) %>
+        <%= link_to "More information about #{@court.name}", C100App::CourtfinderAPI.new.court_url(@court.slug), target: 'external_link', rel: 'external' %>
       </p>
     </div>
 

@@ -6,7 +6,7 @@
 </section>
 
 <div class="xform-group form-submit">
-  <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button', role: 'button' %>
+  <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button ga-pageLink', role: 'button', data: {ga_category: 'screener kickout', ga_label: 'paper form'} %>
 </div>
 
 <% unless local_assigns.fetch(:hide_cait_info, false) %>
