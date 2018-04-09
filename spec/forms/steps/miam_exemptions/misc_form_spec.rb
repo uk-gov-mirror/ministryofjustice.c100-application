@@ -40,5 +40,21 @@ RSpec.describe Steps::MiamExemptions::MiscForm do
         expect(subject.save).to be(true)
       end
     end
+
+    context 'when no checkboxes are selected' do
+      let(:arguments) { {
+        c100_application: c100_application,
+      } }
+
+      it 'does not save the record' do
+        expect(miam_exemption_record).not_to receive(:update)
+        expect(subject.save).to be(false)
+      end
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors[:misc_none]).to_not be_empty
+      end
+    end
   end
 end

@@ -19,8 +19,9 @@ module CustomFormHelpers
     end
   end
 
+  # Note: `#form_group_id` must receive a symbol (not a value-object)
   def single_check_box(attribute, options = {})
-    content_tag(:div, merge_attributes(options, default: {class: 'multiple-choice single-cb', id: form_group_id(attribute)})) do
+    content_tag(:div, merge_attributes(options, default: {class: 'multiple-choice single-cb', id: form_group_id(attribute.to_sym)})) do
       safe_concat [
         check_box(attribute),
         label(attribute) { localized_label(attribute) }

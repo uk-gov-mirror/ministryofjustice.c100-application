@@ -13,6 +13,7 @@ en:
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
+    blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these‘"
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
       attending_court: &attending_court "Attending court"
@@ -1015,6 +1016,26 @@ en:
           attributes:
             court_acknowledgement:
               blank: Confirm you understand
+        steps/miam_exemptions/domestic_form:
+          attributes:
+            domestic_none:
+              blank: *blank_exemptions_error
+        steps/miam_exemptions/protection_form:
+          attributes:
+            protection_none:
+              blank: *blank_exemptions_error
+        steps/miam_exemptions/urgency_form:
+          attributes:
+            urgency_none:
+              blank: *blank_exemptions_error
+        steps/miam_exemptions/adr_form:
+          attributes:
+            adr_none:
+              blank: *blank_exemptions_error
+        steps/miam_exemptions/misc_form:
+          attributes:
+            misc_none:
+              blank: *blank_exemptions_error
         steps/application/declaration_form:
           attributes:
             declaration_made:
