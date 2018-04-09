@@ -76,5 +76,17 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
         html_output
       ).to eq('<div class="multiple-choice single-cb"><input name="c100_application[declaration_made]" type="hidden" value="0" /><input type="checkbox" value="1" name="c100_application[declaration_made]" id="c100_application_declaration_made" /><label for="c100_application_declaration_made">Declaration made</label></div>')
     end
+
+    context 'when there are errors' do
+      before do
+        c100_application.errors.add(:declaration_made, :blank)
+      end
+
+      it 'outputs the check box with the error markup' do
+        expect(
+          html_output
+        ).to eq('<div class="multiple-choice single-cb" id="error_c100_application_declaration_made"><input name="c100_application[declaration_made]" type="hidden" value="0" /><input aria-describedby="error_message_c100_application_declaration_made" type="checkbox" value="1" name="c100_application[declaration_made]" id="c100_application_declaration_made" /><label for="c100_application_declaration_made">Declaration made<span class="error-message" id="error_message_c100_application_declaration_made">Enter an answer</span></label></div>')
+      end
+    end
   end
 end

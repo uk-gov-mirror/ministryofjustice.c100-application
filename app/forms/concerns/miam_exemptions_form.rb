@@ -4,13 +4,15 @@ module MiamExemptionsForm
 
   included do
     has_one_association :miam_exemption
+    validate :checkboxes_validation
   end
 
   class_methods do
-    attr_accessor :group_name
+    attr_accessor :group_name, :none_name
 
-    def setup_attributes_for(value_object, group_name:)
+    def setup_attributes_for(value_object, group_name:, none_name: nil)
       self.group_name = group_name
+      self.none_name  = none_name || :"#{group_name}_none"
 
       attributes value_object.values, Axiom::Types::Boolean
 
@@ -23,6 +25,17 @@ module MiamExemptionsForm
   end
 
   private
+
+  # We filter out `group_xxx` items, as the purpose of these are to present the exemptions
+  # in groups for the user to show/hide them, and are not really an exemption by itself.
+  #
+  def valid_exemption_options
+    selected_options.grep_v(/^group_/)
+  end
+
+  def checkboxes_validation
+    errors.add(self.class.none_name, :blank) unless valid_exemption_options.any?
+  end
 
   def persist!
     raise BaseForm::C100ApplicationNotFound unless c100_application
