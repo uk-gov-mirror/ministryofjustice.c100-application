@@ -920,6 +920,8 @@ en:
 
   errors:
     attributes:
+      base:
+        blank_orders: You must select at least one option
       email:
         invalid: Enter a valid email address
         blank: Enter an email address

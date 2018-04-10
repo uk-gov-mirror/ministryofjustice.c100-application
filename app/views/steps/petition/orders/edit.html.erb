@@ -33,7 +33,7 @@
 
       <%=
         f.check_box_fieldset :orders, [PetitionOrder::OTHER_ISSUE] do |fieldset|
-          fieldset.check_box_input(:other_issue) {
+          fieldset.check_box_input(PetitionOrder::OTHER_ISSUE) {
             f.text_area :orders_additional_details, size: '40x4', class: 'form-control-3-4'
           }
         end
