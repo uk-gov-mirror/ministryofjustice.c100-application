@@ -4,7 +4,7 @@ module MiamExemptionsForm
 
   included do
     has_one_association :miam_exemption
-    validate :checkboxes_validation
+    validate :at_least_one_checkbox_validation
   end
 
   class_methods do
@@ -29,12 +29,12 @@ module MiamExemptionsForm
   # We filter out `group_xxx` items, as the purpose of these are to present the exemptions
   # in groups for the user to show/hide them, and are not really an exemption by itself.
   #
-  def valid_exemption_options
-    selected_options.grep_v(/^group_/)
+  def valid_options
+    selected_options.grep_v(/\Agroup_/)
   end
 
-  def checkboxes_validation
-    errors.add(self.class.none_name, :blank) unless valid_exemption_options.any?
+  def at_least_one_checkbox_validation
+    errors.add(self.class.none_name, :blank) unless valid_options.any?
   end
 
   def persist!
