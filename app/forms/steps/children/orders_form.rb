@@ -9,7 +9,13 @@ module Steps
         define_method(name) { child_order.orders.include?(name.to_s) }
       end
 
+      validate :at_least_one_checkbox_validation
+
       private
+
+      def at_least_one_checkbox_validation
+        errors.add(:base, :blank_orders) unless selected_options.any?
+      end
 
       def persist!
         raise C100ApplicationNotFound unless c100_application

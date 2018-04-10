@@ -1,14 +1,12 @@
 module Steps
   module Children
     class OrdersController < Steps::ChildrenStepController
+      before_action :set_petition_orders, only: [:edit, :update]
+
       def edit
         @form_object = OrdersForm.new(
           c100_application: current_c100_application,
           record: current_record
-        )
-
-        @petition = PetitionPresenter.new(
-          current_c100_application
         )
       end
 
@@ -18,6 +16,12 @@ module Steps
           record: current_record,
           as: :orders
         )
+      end
+
+      private
+
+      def set_petition_orders
+        @petition = PetitionPresenter.new(current_c100_application)
       end
     end
   end

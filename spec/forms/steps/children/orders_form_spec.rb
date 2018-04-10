@@ -27,6 +27,17 @@ RSpec.describe Steps::Children::OrdersForm do
     end
   end
 
+  context 'validations' do
+    context 'no orders selected' do
+      let(:arguments) { { c100_application: c100_application, record: child } }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
+      end
+    end
+  end
+
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
