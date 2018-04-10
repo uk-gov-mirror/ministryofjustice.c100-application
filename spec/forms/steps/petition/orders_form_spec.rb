@@ -6,20 +6,22 @@ RSpec.describe Steps::Petition::OrdersForm do
     child_arrangements_home: '1',
     specific_issues_school: '0',
     specific_issues_medical: '1',
+    other_issue: other_issue,
     orders_additional_details: orders_additional_details,
   } }
 
   let(:c100_application) {
-    instance_double(C100Application, orders: orders)
+    instance_double(C100Application, orders: orders, orders_additional_details: orders_additional_details)
   }
 
-  let(:orders) { [] }
+  let(:orders) {%w(child_arrangements_home specific_issues_medical)}
+  let(:other_issue) { nil }
   let(:orders_additional_details) { nil }
 
   subject { described_class.new(arguments) }
 
-  describe 'custom getters override' do
-    let(:orders) { ['child_arrangements_home'] }
+  describe 'custom build, loading of attributes' do
+    subject { described_class.build(c100_application) } # NOTE: Using custom build
 
     it 'returns true if the order is in the list' do
       expect(subject.child_arrangements_home).to eq(true)
@@ -27,6 +29,43 @@ RSpec.describe Steps::Petition::OrdersForm do
 
     it 'returns false if the order is not in the list' do
       expect(subject.specific_issues_school).to eq(false)
+    end
+
+    context 'other attributes explicitly set' do
+      let(:orders_additional_details) { 'additional details' }
+
+      it { expect(subject.orders_additional_details).to eq('additional details') }
+      it { expect(subject.c100_application).to eq(c100_application) }
+    end
+  end
+
+  context 'validations' do
+    context 'no orders selected' do
+      let(:arguments) { { c100_application: c100_application } }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
+      end
+    end
+
+    context 'only a group top-level checkbox was selected' do
+      let(:arguments) { { c100_application: c100_application, group_specific_issues: '1' } }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
+      end
+    end
+
+    context '`other_issue` is checked' do
+      let(:other_issue) { '1' }
+      it { should validate_presence_of(:orders_additional_details, :blank) }
+    end
+
+    context '`other_issue` is not checked' do
+      let(:other_issue) { '0' }
+      it { should_not validate_presence_of(:orders_additional_details, :blank) }
     end
   end
 
