@@ -11,9 +11,15 @@ module SingleQuestionForm
       validates_inclusion_of name, in: GenericYesNo.values
 
       self.reset_attributes = {
-        GenericYesNo::YES => reset_when_yes,
-        GenericYesNo::NO  => reset_when_no
+        GenericYesNo::YES => expand_attributes(reset_when_yes),
+        GenericYesNo::NO  => expand_attributes(reset_when_no)
       }
+    end
+
+    def expand_attributes(attributes)
+      attributes.map do |obj|
+        obj.is_a?(Symbol) ? obj : obj.attribute_names
+      end.flatten.uniq
     end
   end
 
