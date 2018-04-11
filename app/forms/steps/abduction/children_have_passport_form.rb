@@ -6,7 +6,8 @@ module Steps
 
       has_one_association :abduction_detail
 
-      yes_no_attribute :children_have_passport
+      yes_no_attribute :children_have_passport,
+                       reset_when_no: [Steps::Abduction::PassportDetailsForm]
     end
   end
 end

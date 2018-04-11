@@ -6,7 +6,8 @@ module Steps
 
       has_one_association :abduction_detail
 
-      yes_no_attribute :previous_attempt
+      yes_no_attribute :previous_attempt,
+                       reset_when_no: [Steps::Abduction::PreviousAttemptDetailsForm]
     end
   end
 end
