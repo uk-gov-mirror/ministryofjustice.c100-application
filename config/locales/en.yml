@@ -1543,7 +1543,7 @@ en:
     why_we_use_children_html: |
       <details style="margin-top: 0;">
         <summary>
-          <span class="summary">Why we use the term ‘children’</span>
+          <span class="summary" data-ga-category="explanations" data-ga-label="children term">Why we use the term ‘children’</span>
         </summary>
         <div class="panel panel-border-narrow">
           <p>We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.</p>

@@ -4,6 +4,7 @@ moj.Modules.gaEvents = {
     radioFormClass: '.multiple-choice input[type="radio"]',
     checkboxClass:  '.multiple-choice input[type="checkbox"]',
     linkClass: '.ga-pageLink',
+    revealingLinkClass: 'summary span.summary',
     submitFormClass: '.ga-submitForm',
 
     init: function () {
@@ -19,6 +20,9 @@ moj.Modules.gaEvents = {
             }
             if ($(self.linkClass).length) {
                 self.trackLinks();
+            }
+            if ($(self.revealingLinkClass).length) {
+                self.trackRevealingLinks();
             }
             if ($(self.submitFormClass).length) {
                 self.trackSubmitForms();
@@ -119,6 +123,28 @@ moj.Modules.gaEvents = {
             };
 
             self.sendAnalyticsEvent(eventData, options);
+        });
+    },
+
+    trackRevealingLinks: function() {
+        var self = this,
+            $links = $(self.revealingLinkClass);
+
+        $links.on('click', function() {
+            var $link = $(this),
+                eventData,
+                options;
+
+            eventData = self.getLinkData($link);
+            options = {
+                actionType: 'revealing_link',
+                actionValue: $link
+            };
+
+            // Only track when opening the details, not on close
+            if ($link.closest('details:not([open])').length && eventData.eventCategory) {
+                self.sendAnalyticsEvent(eventData, options);
+            }
         });
     },
 
