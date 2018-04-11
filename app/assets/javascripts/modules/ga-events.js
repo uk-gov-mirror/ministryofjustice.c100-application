@@ -262,7 +262,7 @@ moj.Modules.gaEvents = {
         var self = this,
             opts = opts || {};
 
-        console.log(eventData);
+        //console.log(eventData);
 
         ga('send', 'event', eventData.eventCategory, eventData.eventAction, eventData.eventLabel, {
             hitCallback: self.createFunctionWithTimeout(function () {
