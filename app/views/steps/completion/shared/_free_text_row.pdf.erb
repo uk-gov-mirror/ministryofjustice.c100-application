@@ -4,6 +4,8 @@
   </td>
 
   <td class="answer answer-value">
-    <%= free_text_row.value.presence || t("check_answers.#{free_text_row.question}.absence_answer") %>
+    <%= simple_format(
+      free_text_row.value.presence || t("check_answers.#{free_text_row.question}.absence_answer")
+    ) %>
   </td>
 </tr>
