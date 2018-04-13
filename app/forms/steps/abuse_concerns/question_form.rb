@@ -10,16 +10,9 @@ module Steps
       def persist!
         abuse_attributes = { answer: answer }
 
-        # The following are dependent attributes that need to be reset
+        # If answer is no, reset all detail attributes for this question
         abuse_attributes.merge!(
-          behaviour_description: nil,
-          behaviour_start: nil,
-          behaviour_ongoing: nil,
-          behaviour_stop: nil,
-          asked_for_help: nil,
-          help_party: nil,
-          help_provided: nil,
-          help_description: nil
+          Hash[Steps::AbuseConcerns::DetailsForm.attribute_names.zip]
         ) if answer.no?
 
         super(abuse_attributes)

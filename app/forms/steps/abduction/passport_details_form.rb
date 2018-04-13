@@ -21,7 +21,7 @@ module Steps
 
         record_to_persist.update(
           attributes_map.merge(
-            passport_possession_other_details: (passport_possession_other_details if passport_possession_other)
+            passport_possession_other_details: (passport_possession_other_details if passport_possession_other?)
           )
         )
       end

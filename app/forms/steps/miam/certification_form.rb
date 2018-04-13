@@ -3,11 +3,10 @@ module Steps
     class CertificationForm < BaseForm
       include SingleQuestionForm
 
-      yes_no_attribute :miam_certification,
-                       reset_when_no: [
-                         Steps::Miam::CertificationDateForm,
-                         Steps::Miam::CertificationDetailsForm,
-                       ]
+      yes_no_attribute :miam_certification, reset_when_no: [
+        Steps::Miam::CertificationDateForm,
+        Steps::Miam::CertificationDetailsForm,
+      ]
     end
   end
 end
