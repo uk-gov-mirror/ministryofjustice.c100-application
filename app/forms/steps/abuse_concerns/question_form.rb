@@ -12,7 +12,7 @@ module Steps
 
         # If answer is no, reset all detail attributes for this question
         abuse_attributes.merge!(
-          Hash[Steps::AbuseConcerns::DetailsForm.attribute_names.zip]
+          Hash[DetailsForm.attribute_names.zip]
         ) if answer.no?
 
         super(abuse_attributes)
