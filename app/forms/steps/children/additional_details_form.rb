@@ -16,7 +16,9 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         c100_application.update(
-          attributes_map
+          attributes_map.merge(
+            children_known_to_authorities_details: (children_known_to_authorities_details if children_known_to_authorities.yes?)
+          )
         )
       end
     end

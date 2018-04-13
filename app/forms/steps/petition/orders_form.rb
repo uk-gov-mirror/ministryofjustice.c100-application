@@ -21,7 +21,7 @@ module Steps
       end
 
       validate :at_least_one_checkbox_validation
-      validates_presence_of :orders_additional_details, if: -> { other_issue? }
+      validates_presence_of :orders_additional_details, if: :other_issue?
 
       private
 

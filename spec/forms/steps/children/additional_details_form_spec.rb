@@ -19,14 +19,6 @@ RSpec.describe Steps::Children::AdditionalDetailsForm do
   describe '#save' do
     it_behaves_like 'a value object form', attribute_name: :children_protection_plan, example_value: 'yes'
 
-    let(:expected_attributes) {
-      {
-        children_known_to_authorities: GenericYesNoUnknown::UNKNOWN,
-        children_known_to_authorities_details: nil,
-        children_protection_plan: GenericYesNoUnknown::YES
-      }
-    }
-
     context 'validations on field presence' do
       it {should validate_presence_of(:children_known_to_authorities, :inclusion)}
       it {should validate_presence_of(:children_protection_plan, :inclusion)}
@@ -45,12 +37,38 @@ RSpec.describe Steps::Children::AdditionalDetailsForm do
     end
 
     context 'when form object is valid' do
-      it 'saves the record' do
-        expect(c100_application).to receive(:update).with(
-          expected_attributes
-        ).and_return(true)
+      context 'when `children_known_to_authorities` is YES' do
+        let(:children_known_to_authorities) { 'yes' }
+        let(:children_known_to_authorities_details) { 'details' }
 
-        expect(subject.save).to be(true)
+        it 'saves the record, with the details' do
+          expect(c100_application).to receive(:update).with(
+            {
+              children_known_to_authorities: GenericYesNoUnknown::YES,
+              children_known_to_authorities_details: 'details',
+              children_protection_plan: GenericYesNoUnknown::YES,
+            }
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'when `children_known_to_authorities` is NO' do
+        let(:children_known_to_authorities) { 'no' }
+        let(:children_known_to_authorities_details) { 'details' }
+
+        it 'saves the record, resetting the details' do
+          expect(c100_application).to receive(:update).with(
+            {
+              children_known_to_authorities: GenericYesNoUnknown::NO,
+              children_known_to_authorities_details: nil,
+              children_protection_plan: GenericYesNoUnknown::YES,
+            }
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
       end
     end
   end
