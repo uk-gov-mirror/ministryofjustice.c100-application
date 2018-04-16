@@ -24,6 +24,17 @@ RSpec.describe Steps::Children::ResidenceForm do
     end
   end
 
+  describe 'validations' do
+    context 'no people selected, filtering out blanks' do
+      let(:person_ids) { [nil, ''] }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:person_ids, :blank)).to eq(true)
+      end
+    end
+  end
+
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }

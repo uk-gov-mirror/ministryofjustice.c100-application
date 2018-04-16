@@ -1010,6 +1010,10 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/children/residence_form:
+          attributes:
+            person_ids:
+              blank: You must select at least one person
         steps/miam/acknowledgement_form:
           attributes:
             miam_acknowledgement:
