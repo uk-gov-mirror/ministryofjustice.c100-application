@@ -3,7 +3,8 @@ module Steps
     class RiskOfAbductionForm < BaseForm
       include SingleQuestionForm
 
-      yes_no_attribute :risk_of_abduction
+      # The reset will delete the row from the `abduction_details` table
+      yes_no_attribute :risk_of_abduction, reset_when_no: [:abduction_detail]
     end
   end
 end

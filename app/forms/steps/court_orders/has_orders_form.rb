@@ -3,7 +3,8 @@ module Steps
     class HasOrdersForm < BaseForm
       include SingleQuestionForm
 
-      yes_no_attribute :has_court_orders
+      # The reset will delete the row from the `court_orders` table
+      yes_no_attribute :has_court_orders, reset_when_no: [:court_order]
     end
   end
 end
