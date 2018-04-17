@@ -2,6 +2,9 @@ module Steps
   module CourtOrders
     class DetailsForm < BaseForm
       include GovUkDateFields::ActsAsGovUkDate
+      include HasOneAssociationForm
+
+      has_one_association :court_order
 
       NON_MOLESTATION_ATTRIBUTES = {
         non_molestation: YesNo,
@@ -80,8 +83,7 @@ module Steps
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
-        orders_record = c100_application.court_order || c100_application.build_court_order
-        orders_record.update(
+        record_to_persist.update(
           attributes_map
         )
       end
