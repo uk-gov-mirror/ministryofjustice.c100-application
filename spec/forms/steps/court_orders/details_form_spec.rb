@@ -221,77 +221,45 @@ RSpec.describe Steps::CourtOrders::DetailsForm do
     end
 
     context 'for valid details' do
-      let(:expected_attributes) {
-        {
-          non_molestation: GenericYesNo::NO,
-          non_molestation_issue_date: nil,
-          non_molestation_length: nil,
-          non_molestation_is_current: nil,
-          non_molestation_court_name: nil,
+      it_behaves_like 'a has-one-association form',
+                      association_name: :court_order,
+                      expected_attributes: {
+                        non_molestation: GenericYesNo::NO,
+                        non_molestation_issue_date: nil,
+                        non_molestation_length: nil,
+                        non_molestation_is_current: nil,
+                        non_molestation_court_name: nil,
 
-          occupation: GenericYesNo::NO,
-          occupation_issue_date: nil,
-          occupation_length: nil,
-          occupation_is_current: nil,
-          occupation_court_name: nil,
+                        occupation: GenericYesNo::NO,
+                        occupation_issue_date: nil,
+                        occupation_length: nil,
+                        occupation_is_current: nil,
+                        occupation_court_name: nil,
 
-          forced_marriage_protection: GenericYesNo::NO,
-          forced_marriage_protection_issue_date: nil,
-          forced_marriage_protection_length: nil,
-          forced_marriage_protection_is_current: nil,
-          forced_marriage_protection_court_name: nil,
+                        forced_marriage_protection: GenericYesNo::NO,
+                        forced_marriage_protection_issue_date: nil,
+                        forced_marriage_protection_length: nil,
+                        forced_marriage_protection_is_current: nil,
+                        forced_marriage_protection_court_name: nil,
 
-          restraining: GenericYesNo::NO,
-          restraining_issue_date: nil,
-          restraining_length: nil,
-          restraining_is_current: nil,
-          restraining_court_name: nil,
+                        restraining: GenericYesNo::NO,
+                        restraining_issue_date: nil,
+                        restraining_length: nil,
+                        restraining_is_current: nil,
+                        restraining_court_name: nil,
 
-          injunctive: GenericYesNo::NO,
-          injunctive_issue_date: nil,
-          injunctive_length: nil,
-          injunctive_is_current: nil,
-          injunctive_court_name: nil,
+                        injunctive: GenericYesNo::NO,
+                        injunctive_issue_date: nil,
+                        injunctive_length: nil,
+                        injunctive_is_current: nil,
+                        injunctive_court_name: nil,
 
-          undertaking: GenericYesNo::NO,
-          undertaking_issue_date: nil,
-          undertaking_length: nil,
-          undertaking_is_current: nil,
-          undertaking_court_name: nil
-        }
-      }
-
-      context 'when record does not exist' do
-        before do
-          allow(c100_application).to receive(:court_order).and_return(nil)
-        end
-
-        it 'creates the record if it does not exist' do
-          expect(c100_application).to receive(:build_court_order).and_return(court_order)
-
-          expect(court_order).to receive(:update).with(
-            expected_attributes
-          ).and_return(true)
-
-          expect(subject.save).to be(true)
-        end
-      end
-
-      context 'when record already exists' do
-        before do
-          allow(c100_application).to receive(:court_order).and_return(court_order)
-        end
-
-        it 'updates the record if it already exists' do
-          expect(c100_application).not_to receive(:build_court_order)
-
-          expect(court_order).to receive(:update).with(
-            expected_attributes
-          ).and_return(true)
-
-          expect(subject.save).to be(true)
-        end
-      end
+                        undertaking: GenericYesNo::NO,
+                        undertaking_issue_date: nil,
+                        undertaking_length: nil,
+                        undertaking_is_current: nil,
+                        undertaking_court_name: nil,
+                      }
     end
   end
 end
