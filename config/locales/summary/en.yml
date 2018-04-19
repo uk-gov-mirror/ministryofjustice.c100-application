@@ -574,3 +574,36 @@ en:
       question: Child(ren)’s names
       answers:
         c8_children_numbers: Child(ren)’s numbers
+
+  check_answers_html:
+    change_link: Change
+    sections:
+      child_protection_cases: Emergency protection, care or supervision proceedings
+      miam_requirement: Attending a Mediation Information and Assessment Meeting (MIAM)
+    groups:
+      miam_certification_details: Certification details
+
+    child_protection_cases:
+      question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
+      answers:
+        <<: *YESNO
+    miam_attended:
+      question: Have you attended a MIAM?
+      answers:
+        <<: *YESNO
+    miam_exemption_claim:
+      question: Do you have a valid reason for not attending a MIAM?
+      answers:
+        <<: *YESNO
+    miam_certification:
+      question: Have you got a document signed by the mediator?
+      answers:
+        <<: *YESNO
+    miam_certification_date:
+      question: When did you attend the MIAM?
+    miam_certification_number:
+      question: FMC registration number
+    miam_certification_service_name:
+      question: Family mediation service name
+    miam_certification_sole_trader_name:
+      question: Sole trader name

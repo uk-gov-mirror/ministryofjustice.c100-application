@@ -7,7 +7,10 @@ module Summary
     end
 
     def sections
-      [] # If we were to have a check your answers page, add here the sections
+      [
+        HtmlSections::ChildProtectionCases.new(c100_application),
+        HtmlSections::MiamRequirement.new(c100_application),
+      ].flatten.select(&:show?)
     end
   end
 end
