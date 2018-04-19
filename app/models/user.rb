@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :c100_applications, dependent: :destroy
   has_many :drafts, -> { not_completed }, class_name: 'C100Application'
+  has_many :completed_applications, -> { completed }, class_name: 'C100Application'
 
   attribute :email, NormalisedEmailType.new
 

@@ -955,7 +955,7 @@ en:
       page_title: Application not found
       heading: Sorry, this application no longer exists
       lead_text: If you copied a web address, please check it’s correct.
-      more_text: "Please note: a draft application expires %{expire_in_days} days after it was created or when you complete it."
+      more_text: "Please note: a draft application expires %{expire_in_days} days after it was created, and is automatically removed from the service."
       <<: *START_FINISH
     application_screening:
       page_title: Application screening
@@ -966,7 +966,7 @@ en:
     application_completed:
       page_title: Application completed
       heading: You have already completed this application
-      lead_text: Your application won’t be processed until you complete a few more steps. If you want to make changes you can start a new application.
+      lead_text: Your application won’t be processed until you complete a few more steps. If you want to make changes you will need to start a new application.
       what_next: What you need to do next
       <<: *START_FINISH
     not_found:
@@ -1667,6 +1667,7 @@ en:
         page_title: Draft applications
         heading: Your saved drafts
         drafts_intro: Resume an application you haven't yet completed.
+        completed_info: Completed applications will not show here, but you can still use the link in the confirmation email to download the PDF.
         new_application: Start a new application
         table:
           caption: Table of saved drafts

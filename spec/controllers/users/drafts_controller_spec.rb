@@ -56,20 +56,40 @@ RSpec.describe Users::DraftsController, type: :controller do
         let!(:c100_application) { C100Application.create(navigation_stack: %w(/step/1 /step/2)) }
         let(:scoped_result) { double('result') }
 
-        before do
-          expect(user).to receive(:drafts).and_return(scoped_result)
-          expect(scoped_result).to receive(:find_by).with(id: c100_application.id).and_return(c100_application)
+        context 'for a completed application' do
+          before do
+            expect(user).to receive(:completed_applications).and_return(scoped_result)
+            expect(scoped_result).to receive(:find_by).with(id: c100_application.id).and_return(c100_application)
+          end
+
+          it 'assigns the chosen c100 application to the current session' do
+            expect(session[:c100_application_id]).to be_nil
+            get :resume, params: {id: c100_application.id}
+            expect(session[:c100_application_id]).to eq(c100_application.id)
+          end
+
+          it 'redirects to the completion step' do
+            get :resume, params: {id: c100_application.id}
+            expect(response).to redirect_to('/steps/completion/what_next')
+          end
         end
 
-        it 'assigns the chosen c100 application to the current session' do
-          expect(session[:c100_application_id]).to be_nil
-          get :resume, params: { id: c100_application.id }
-          expect(session[:c100_application_id]).to eq(c100_application.id)
-        end
+        context 'for a draft application' do
+          before do
+            expect(user).to receive(:drafts).and_return(scoped_result)
+            expect(scoped_result).to receive(:find_by).with(id: c100_application.id).and_return(c100_application)
+          end
 
-        it 'redirects to the last recorded step' do
-          get :resume, params: { id: c100_application.id }
-          expect(response).to redirect_to('/step/2')
+          it 'assigns the chosen c100 application to the current session' do
+            expect(session[:c100_application_id]).to be_nil
+            get :resume, params: {id: c100_application.id}
+            expect(session[:c100_application_id]).to eq(c100_application.id)
+          end
+
+          it 'redirects to the last recorded step' do
+            get :resume, params: {id: c100_application.id}
+            expect(response).to redirect_to('/step/2')
+          end
         end
       end
     end
