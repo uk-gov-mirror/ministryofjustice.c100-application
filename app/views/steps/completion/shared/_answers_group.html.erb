@@ -1,0 +1,15 @@
+<div class="answers-group" id="<%= answers_group.name %>">
+  <dt class="question">
+    <%=t "check_answers_html.groups.#{answers_group.name}" %>
+  </dt>
+  <dd class="answer">
+    <dl class="answers-group-inner">
+      <%= render answers_group.answers %>
+    </dl>
+  </dd>
+  <dd class="change">
+    <% if answers_group.show_change_link? %>
+      <%= link_to t('check_answers_html.change_link'), answers_group.change_path %>
+    <% end %>
+  </dd>
+</div>

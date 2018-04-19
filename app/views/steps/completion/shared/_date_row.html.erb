@@ -1,2 +1,13 @@
-<!-- HTML version to be implemented when needed for check your answers -->
-<p>Not implemented: <%= __FILE__ %></p>
+<div id="<%= date_row.question %>">
+  <dt class="question">
+    <%=t "check_answers_html.#{date_row.question}.question" %>
+  </dt>
+  <dd class="answer">
+    <%= l(date_row.value) %>
+  </dd>
+  <dd class="change">
+    <% if date_row.show_change_link? %>
+      <%= link_to t('check_answers_html.change_link'), date_row.change_path %>
+    <% end %>
+  </dd>
+</div>

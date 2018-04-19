@@ -898,7 +898,7 @@ en:
         show:
           page_title: Check your answers
           heading: Check your answers
-          lead_text: Please review your answers before submitting your application
+          lead_text: Please review your answers before you continue
           confirm: Confirm and continue
   home:
     index:

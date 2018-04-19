@@ -1,2 +1,15 @@
-<!-- HTML version to be implemented when needed for check your answers -->
-<p>Not implemented: <%= __FILE__ %></p>
+<div id="<%= free_text_row.question %>">
+  <dt class="question">
+    <%=t "check_answers_html.#{free_text_row.question}.question" %>
+  </dt>
+  <dd class="answer">
+    <%= simple_format(
+      free_text_row.value.presence || t("check_answers.#{free_text_row.question}.absence_answer"), {}, wrapper_tag: 'div'
+    ) %>
+  </dd>
+  <dd class="change">
+    <% if free_text_row.show_change_link? %>
+      <%= link_to t('check_answers_html.change_link'), free_text_row.change_path %>
+    <% end %>
+  </dd>
+</div>
