@@ -26,8 +26,9 @@ class C100Application < ApplicationRecord
   has_many :other_children
   has_many :other_parties
 
-  scope :not_completed, -> { where.not(status: :completed) }
   scope :with_owner,    -> { where.not(user: nil) }
+  scope :completed,     -> { where(status: :completed) }
+  scope :not_completed, -> { where.not(status: :completed) }
 
   has_value_object :user_type
   has_value_object :concerns_contact_type
