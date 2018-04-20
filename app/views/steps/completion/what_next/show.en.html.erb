@@ -2,33 +2,46 @@
 
 <div class="grid-row">
   <div class="column-two-thirds">
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Send your application</h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">How to submit your application</h1>
 
-    <p class="lede gv-u-text-lede">
-      Your application won’t be processed until you complete these steps.
-    </p>
+    <div role="note" aria-label="Warning" class="notice gv-c-notice">
+      <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
+        <span class="visually-hidden gv-c-notice__icon-fallback-text">Warning</span>
+      </i>
+      <strong class="bold-small gv-c-notice__text">
+        The court will not receive your application until you complete the steps below.
+      </strong>
+    </div>
 
     <section class="numbered-list">
       <h2 class="visuallyhidden">Steps</h2>
       <div class="govuk-govspeak gv-s-prose">
         <ol class="list list-number">
-          <li>
+          <li class="util_mt-medium">
             <h3 class="heading-medium">Download your application</h3>
             <p>
-              This will be a PDF. If you can’t open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
+              This will be a PDF. If you cannot open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
             </p>
+            <div class="panel panel-border-narrow">
+              <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
+            </div>
             <p>
-              <%= link_to 'Download your application', steps_completion_summary_path(format: :pdf), class: 'button ga-pageLink', data: {ga_category: 'completion', ga_label: 'download application'} %>
+              <%= link_to 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'button ga-pageLink', data: {ga_category: 'completion', ga_label: 'download application'} %>
             </p>
           </li>
 
           <li>
             <span class="heading-medium">Send your application</span>
-            <p>
-              Attach your PDF to an email. Put ‘C100 New application - Child arrangements’ in the subject line and send it to:
-              <%= mail_to @court.email, @court.email, subject: 'C100 New application - Child arrangements', class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email application'} %>
-            </p>
+            <p>To send by email:</p>
+
+            <ul class="list list-bullet force-disc-style">
+              <li>attach your downloaded PDF application to an email</li>
+              <li>put ‘C100 New application - Child arrangements’ in the subject line</li>
+              <li>send it to: <%= mail_to @court.email, @court.email, subject: 'C100 New application - Child arrangements', class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email application'} %></li>
+            </ul>
+
             <p>The court will email you to confirm they have received your application.</p>
+
             <details>
               <summary>
                 <span class="summary" data-ga-category="completion" data-ga-label="print instructions">You can also print it and send by post</span>
