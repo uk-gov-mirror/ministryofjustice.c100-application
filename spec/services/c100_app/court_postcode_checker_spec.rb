@@ -97,92 +97,28 @@ describe C100App::CourtPostcodeChecker do
   end
 
   describe '#choose_from' do
-    let(:result){ subject.send(:choose_from,arg) }
-    let(:valid_slug){ C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first }
-
     context 'given an array of hashes' do
-      context 'with at least one hash that has a :slug key' do
-        context 'when the first slug is in the COURT_SLUGS_USING_THIS_APP' do
-          let(:arg){
-            [
-              {key: 'value'},
-              {slug: valid_slug},
-              {slug: 'slug-1'},
-            ]
-          }
+      let(:arg){
+        [
+          {key: 'value'},
+          {slug: 'slug-1'},
+          {slug: C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first}
+        ]
+      }
 
-          it 'returns the hash' do
-            expect(result).to eq({slug: valid_slug})
-          end
-        end
-
-        context 'when the first slug is not in the COURT_SLUGS_USING_THIS_APP' do
-          let(:arg){
-            [
-              {key: 'value'},
-              {slug: 'slug-1'},
-              {slug: valid_slug},
-            ]
-          }
-          it 'returns nil' do
-            expect(result).to eq(nil)
-          end
-        end
+      it 'returns the first hash whose :slug is in the COURT_SLUGS_USING_THIS_APP' do
+        expect(subject.send(:choose_from,arg)).to eq({slug: C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
       end
 
-
-      context 'with no hash that has a :slug key, but at least one that has a "slug" key' do
-        context 'when the first slug is in the COURT_SLUGS_USING_THIS_APP' do
-          let(:arg){
-            [
-              {key: 'value'},
-              {'slug' => valid_slug},
-              {'slug' => 'slug-1'},
-            ]
-          }
-
-          it 'returns the hash' do
-            expect(result).to eq({'slug' => valid_slug})
-          end
-        end
-
-        context 'when the first slug is not in the COURT_SLUGS_USING_THIS_APP' do
-          let(:arg){
-            [
-              {key: 'value'},
-              {'slug' => 'slug-1'},
-              {'slug' => valid_slug},
-            ]
-          }
-
-          it 'returns nil' do
-            expect(result).to eq(nil)
-          end
-        end
-      end
-
-      context 'with a hash that has a :slug key, and one that has a "slug" key' do
-        context 'when the string key is first' do
-          let(:arg){
-            [
-              {'slug' => valid_slug},
-              {slug: 'slug-1'},
-            ]
-          }
-          it 'only considers the first value' do
-            expect(result).to eq({'slug' => valid_slug})
-          end
-        end
-        context 'when the string key is first' do
-          let(:arg){
-            [
-              {slug: valid_slug},
-              {'slug' => 'slug-1'},
-            ]
-          }
-          it 'only considers the first value' do
-            expect(result).to eq({slug: valid_slug})
-          end
+      context 'with a string key' do
+        let(:arg){
+          [
+            {'slug' => 'my slug'},
+            {'slug' => C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first}
+          ]
+        }
+        it 'returns the first hash whose :slug is in the COURT_SLUGS_USING_THIS_APP' do
+          expect(subject.send(:choose_from,arg)).to eq({'slug'=> C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first})
         end
       end
     end
