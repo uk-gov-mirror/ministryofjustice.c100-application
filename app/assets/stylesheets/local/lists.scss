@@ -42,6 +42,11 @@ li li li {
   list-style: square;
 }
 
+// Allow overriding the bullets style
+ul.force-disc-style li {
+  list-style-type: disc !important;
+}
+
 section.numbered-list h3 {
   margin-top: 0;
 }
