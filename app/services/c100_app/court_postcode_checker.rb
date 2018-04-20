@@ -7,8 +7,7 @@ module C100App
       "reading-county-court-and-family-court",
       "guildford-county-court-and-family-court",
       "milton-keynes-county-court-and-family-court",
-      "watford-county-court-and-family-court",
-      "slough-county-court-and-family-court",
+      "watford-county-court-and-family-court"
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
@@ -30,11 +29,9 @@ module C100App
     private
 
     def choose_from(possible_courts)
-      slug = nil
-      first_with_slug = possible_courts.find do |court|
-        slug = court[:slug] || court['slug']
+      possible_courts.find do |court|
+        COURT_SLUGS_USING_THIS_APP.include?(court['slug'] || court[:slug])
       end
-      first_with_slug if COURT_SLUGS_USING_THIS_APP.include?(slug)
     end
   end
 end
