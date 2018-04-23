@@ -10,6 +10,7 @@ module Summary
       [
         HtmlSections::ChildProtectionCases.new(c100_application),
         HtmlSections::MiamRequirement.new(c100_application),
+        HtmlSections::MiamExemptions.new(c100_application),
       ].flatten.select(&:show?)
     end
   end

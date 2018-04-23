@@ -13,6 +13,7 @@ describe Summary::HtmlPresenter do
       expect(subject.sections).to match_instances_array([
         Summary::HtmlSections::ChildProtectionCases,
         Summary::HtmlSections::MiamRequirement,
+        Summary::HtmlSections::MiamExemptions,
       ])
     end
   end
