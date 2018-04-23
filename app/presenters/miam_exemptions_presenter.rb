@@ -1,4 +1,9 @@
 class MiamExemptionsPresenter < SimpleDelegator
+  FILTERS = {
+    default: /^group_|_none$/,
+    groups:  /^group_/,
+  }.freeze
+
   Exemption = Struct.new(:group_name, :collection) do
     def show?
       collection.any?
@@ -13,8 +18,13 @@ class MiamExemptionsPresenter < SimpleDelegator
     return [] unless __getobj__
 
     exemption_groups.map do |group|
-      Exemption.new(group, filtered(self[group]))
+      Exemption.new(group, selection_for(group))
     end.select(&:show?)
+  end
+
+  def selection_for(group, filter: nil)
+    return [] unless __getobj__
+    filtered(self[group], filter)
   end
 
   def exemption_groups
@@ -29,7 +39,7 @@ class MiamExemptionsPresenter < SimpleDelegator
   # Also we filter out the `xxx_none` because it means this exemptions group doesn't apply
   # to the user (none of the exemptions were selected, so nothing to playback).
   #
-  def filtered(collection)
-    collection.grep_v(/^group_|_none$/)
+  def filtered(collection, filter)
+    collection.grep_v(FILTERS.fetch(filter, FILTERS[:default]))
   end
 end
