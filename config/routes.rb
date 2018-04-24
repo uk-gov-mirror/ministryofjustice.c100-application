@@ -211,6 +211,8 @@ Rails.application.routes.draw do
     namespace :completion do
       show_step :what_next
       show_step :summary
+      # The following is an alias of the `what_next` route, for analytics tracking
+      get :how_to_submit, to: 'what_next#show'
     end
   end
 
