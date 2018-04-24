@@ -1614,10 +1614,12 @@ en:
         forgot_password: "Forgot your password?"
         page_title: Sign in
       logged_out:
+        page_title: Signed out
         heading: You have signed out
         lead_text: You can return to a saved draft using the link sent in the email or by returning to the start of the service.
         more_text_html: A draft expires %{expire_in_days} days after it was created.
-        page_title: Signed out
+        sign_in: Sign in
+        new_application: Start a new application
       save_confirmation:
         heading: Your application has been saved
         your_drafts: Go to your saved drafts
@@ -1640,7 +1642,7 @@ en:
       update_confirmation:
         heading: Your password has been changed
         lead_text: Your password has been updated successfully.
-        your_drafts: Return to your saved drafts
+        your_drafts: Return to your drafts
         page_title: Password updated
     passwords:
       new:
