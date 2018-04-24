@@ -49,4 +49,25 @@ RSpec.describe MiamExemptionsPresenter do
       it { expect(exemptions).to eq([]) }
     end
   end
+
+  describe '#selection_for' do
+    let(:domestic_exemptions) { %w(group_police police_conviction domestic_none) }
+
+    context 'when there are no exemptions' do
+      let(:miam_exemption) { nil }
+      it { expect(subject.selection_for(:domestic)).to eq([]) }
+    end
+
+    context 'when a filter is not provided' do
+      it 'retrieves the exemptions from the given group, using the default filter' do
+        expect(subject.selection_for(:domestic)).to eq(['police_conviction'])
+      end
+    end
+
+    context 'when a filter is provided' do
+      it 'retrieves the exemptions from the given group, using the default filter' do
+        expect(subject.selection_for(:domestic, filter: :groups)).to eq(%w(police_conviction domestic_none))
+      end
+    end
+  end
 end
