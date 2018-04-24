@@ -3,7 +3,7 @@ module Users
     before_action :authenticate_user!
 
     def index
-      @drafts = current_user.drafts.order(created_at: :asc)
+      @drafts = current_user.c100_applications.order(created_at: :asc)
     end
 
     def resume
@@ -13,7 +13,7 @@ module Users
       if completed_application_from_params
         set_session_and_redirect(
           completed_application_from_params,
-          steps_completion_what_next_path
+          steps_completion_how_to_submit_path
         )
       elsif draft_from_params
         set_session_and_redirect(

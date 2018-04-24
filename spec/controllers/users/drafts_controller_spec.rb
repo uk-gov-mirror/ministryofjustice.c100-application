@@ -16,7 +16,7 @@ RSpec.describe Users::DraftsController, type: :controller do
 
       before do
         sign_in(user)
-        expect(user).to receive(:drafts).and_return(finder_double)
+        expect(user).to receive(:c100_applications).and_return(finder_double)
       end
 
       it 'renders the drafts page' do
@@ -25,7 +25,7 @@ RSpec.describe Users::DraftsController, type: :controller do
         expect(response).to render_template(:index)
       end
 
-      it 'sorts the resulting drafts by ascending `created_at`' do
+      it 'sorts the result by ascending `created_at`' do
         expect(finder_double).to receive(:order).with(created_at: :asc)
         get :index
       end
@@ -70,7 +70,7 @@ RSpec.describe Users::DraftsController, type: :controller do
 
           it 'redirects to the completion step' do
             get :resume, params: {id: c100_application.id}
-            expect(response).to redirect_to('/steps/completion/what_next')
+            expect(response).to redirect_to('/steps/completion/how_to_submit')
           end
         end
 

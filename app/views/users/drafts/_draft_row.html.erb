@@ -11,8 +11,12 @@
 
   <td class="right">
     <span class="right actions actions-tight">
-      <%= button_to t('.delete'), users_draft_path(draft), method: :delete, data: {confirm: t('.delete_confirmation')}, class: 'button button-secondary' %>
-      <%= link_to t('.resume'), resume_users_draft_path(draft), class: 'button ga-pageLink', data: {ga_category: 'save and return', ga_label: 'resume application'} %>
+      <% if draft.completed? %>
+        <%= link_to t('.how_to_submit'), resume_users_draft_path(draft), class: 'ga-pageLink', data: {ga_category: 'save and return', ga_label: 'how to submit'} %>
+      <% else %>
+        <%= button_to t('.delete'), users_draft_path(draft), method: :delete, data: {confirm: t('.delete_confirmation')}, class: 'button button-secondary' %>
+        <%= link_to t('.resume'), resume_users_draft_path(draft), class: 'button ga-pageLink', data: {ga_category: 'save and return', ga_label: 'resume application'} %>
+      <% end %>
     </span>
   </td>
 </tr>

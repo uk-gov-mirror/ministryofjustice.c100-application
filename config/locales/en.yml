@@ -966,8 +966,8 @@ en:
     application_completed:
       page_title: Application completed
       heading: You have already completed this application
-      lead_text: Your application won’t be processed until you complete a few more steps. If you want to make changes you will need to start a new application.
-      what_next: What you need to do next
+      lead_text: The court will not receive your application until you submit it. If you want to make changes you will need to start a new application.
+      how_to_submit: How to submit your application
       <<: *START_FINISH
     not_found:
       page_title: Page not found
@@ -1616,7 +1616,7 @@ en:
       logged_out:
         heading: You have signed out
         lead_text: You can return to a saved draft using the link sent in the email or by returning to the start of the service.
-        more_text_html: A draft expires %{expire_in_days} days after it was created or when you complete the application.
+        more_text_html: A draft expires %{expire_in_days} days after it was created.
         page_title: Signed out
       save_confirmation:
         heading: Your application has been saved
@@ -1666,8 +1666,7 @@ en:
       index:
         page_title: Draft applications
         heading: Your saved drafts
-        drafts_intro: Resume an application you haven't yet completed.
-        completed_info: Completed applications will not show here, but you can still use the link in the confirmation email to download the PDF.
+        submit_info: The court will not receive your application until you submit it.
         new_application: Start a new application
         table:
           caption: Table of saved drafts
@@ -1680,11 +1679,12 @@ en:
         resume: Resume
         delete: Delete
         delete_confirmation: Are you sure you want to delete this draft?
+        how_to_submit: How to submit
     shared:
       application_saved:
         lead_text_html: A confirmation email has been sent to:<br><strong>%{email_address}</strong>
-        expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong> or until
-          you complete your application. Any information will be automatically deleted for your security after this time.
+        expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong>.
+          Any information will be automatically deleted for your security after this time.
         return_info: You can return to continue entering details at any time.
 
   surveys:
