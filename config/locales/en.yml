@@ -1614,10 +1614,12 @@ en:
         forgot_password: "Forgot your password?"
         page_title: Sign in
       logged_out:
-        heading: You have signed out
-        lead_text: You can return to a saved draft using the link sent in the email or by returning to the start of the service.
-        more_text_html: A draft expires %{expire_in_days} days after it was created.
         page_title: Signed out
+        heading: You have signed out
+        lead_text: You can return to a saved draft using the link sent in the email.
+        more_text_html: A draft expires %{expire_in_days} days after it was created.
+        sign_in: Sign in
+        new_application: Start a new application
       save_confirmation:
         heading: Your application has been saved
         your_drafts: Go to your saved drafts
@@ -1625,7 +1627,7 @@ en:
     registrations:
       new:
         heading: Save your application
-        existing_account: Sign into an existing account
+        existing_account: Sign in to an existing account
         account_warning_html: |
           <p>Choose an email address and password so you can sign in and complete your application later.</p>
         email_confirmation: "An email will be sent to:"
@@ -1640,7 +1642,7 @@ en:
       update_confirmation:
         heading: Your password has been changed
         lead_text: Your password has been updated successfully.
-        your_drafts: Return to your saved drafts
+        your_drafts: Return to your drafts
         page_title: Password updated
     passwords:
       new:
@@ -1685,7 +1687,7 @@ en:
         lead_text_html: A confirmation email has been sent to:<br><strong>%{email_address}</strong>
         expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong>.
           Any information will be automatically deleted for your security after this time.
-        return_info: You can return to continue entering details at any time.
+        return_info: You can return to continue your application at any time.
 
   surveys:
     feedback:

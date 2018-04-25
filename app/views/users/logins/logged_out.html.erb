@@ -8,7 +8,9 @@
 
     <p class="lede"><%= t('.more_text_html', expire_in_days: Rails.configuration.x.drafts.expire_in_days) %></p>
 
-    <%= render partial: 'steps/shared/finish_button', locals: {name: t('shared.start_again'), show_survey: false} %>
-
+    <div class="form-submit">
+      <%= link_to t('.sign_in'), user_session_path, class: 'button' %>
+      <%= link_to t('.new_application'), root_path, class: 'button button-secondary' %>
+    </div>
   </div>
 </div>
