@@ -14,6 +14,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::ChildProtectionCases,
         Summary::HtmlSections::MiamRequirement,
         Summary::HtmlSections::MiamExemptions,
+        Summary::HtmlSections::NatureOfApplication,
       ])
     end
   end

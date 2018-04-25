@@ -582,6 +582,7 @@ en:
       child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: Attending a MIAM
       miam_exemptions: Exemptions from attending a MIAM
+      nature_of_application: What you're asking the court to decide about the children
     groups:
       miam_certification_details: Certification details
 
@@ -681,3 +682,18 @@ en:
         non_resident: You or the other people in this application (the respondents) don’t live in England and Wales
         applicant_under_age: The applicant or any of the other people in this application (the respondents) are under 18 years old
         misc_none: *none_selected
+
+    child_arrangements_orders:
+      question: 'You would like the court to:'
+      answers:
+        <<: *ARRANGEMENT_ORDERS
+    specific_issues_orders:
+      question: 'You would like the court to resolve an issue about:'
+      answers:
+        <<: *SPECIFIC_ISSUE_ORDERS
+    prohibited_steps_orders:
+      question: 'You would like the court to stop the other person:'
+      answers:
+        <<: *PROHIBITED_STEPS_ORDERS
+    other_issue_details:
+      question: 'You told us that you need help with this dispute:'
