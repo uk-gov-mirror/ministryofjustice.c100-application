@@ -583,6 +583,7 @@ en:
       miam_requirement: Attending a MIAM
       miam_exemptions: Exemptions from attending a MIAM
       nature_of_application: What you're asking the court to decide about the children
+      alternatives: Alternative ways to reach an agreement
     groups:
       miam_certification_details: Certification details
 
@@ -610,6 +611,23 @@ en:
       question: Family mediation service name
     miam_certification_sole_trader_name:
       question: Sole trader name
+
+    alternative_negotiation_tools:
+      question: Have you tried any negotiation tools or services?
+      answers:
+        <<: *YESNO
+    alternative_mediation:
+      question: Have you tried professional mediation?
+      answers:
+        <<: *YESNO
+    alternative_lawyer_negotiation:
+      question: Have you tried lawyer negotiation?
+      answers:
+        <<: *YESNO
+    alternative_collaborative_law:
+      question: Have you tried collaborative law?
+      answers:
+        <<: *YESNO
 
     # TODO: Review the copy for each of the MIAM exemptions and make it concise
     # enough for Check your answers, as it does not need to be as verbose as in
@@ -697,3 +715,5 @@ en:
         <<: *PROHIBITED_STEPS_ORDERS
     other_issue_details:
       question: 'You told us that you need help with this dispute:'
+    alternatives:
+      question: Alternative ways to reach an agreement

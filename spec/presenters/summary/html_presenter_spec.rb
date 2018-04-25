@@ -15,6 +15,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::MiamRequirement,
         Summary::HtmlSections::MiamExemptions,
         Summary::HtmlSections::NatureOfApplication,
+        Summary::HtmlSections::Alternatives,
       ])
     end
   end
