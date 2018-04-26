@@ -491,11 +491,11 @@ AccessModifierIndentation:
 
 MethodLength:
   Enabled: true
-  Max: 20
+  Max: 21
 
 AbcSize:
   Enabled: true
-  Max: 22
+  Max: 23
 
 CyclomaticComplexity:
   Enabled: true

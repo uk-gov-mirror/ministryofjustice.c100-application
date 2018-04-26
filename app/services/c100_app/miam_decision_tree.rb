@@ -1,6 +1,5 @@
 module C100App
   class MiamDecisionTree < BaseDecisionTree
-    # rubocop:disable Metrics/MethodLength
     def destination
       return next_step if next_step
 
@@ -25,7 +24,6 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable Metrics/MethodLength
 
     private
 
