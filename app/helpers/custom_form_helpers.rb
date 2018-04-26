@@ -1,8 +1,7 @@
 module CustomFormHelpers
   delegate :t,
            :current_c100_application,
-           :user_signed_in?,
-           :new_user_registration_path, to: :@template
+           :user_signed_in?, to: :@template
 
   def continue_button
     content_tag(:div, class: 'form-submit') do
@@ -13,7 +12,7 @@ module CustomFormHelpers
       else
         safe_concat [
           submit_button(:continue),
-          content_tag(:a, t('helpers.submit.save_and_come_back_later'), href: new_user_registration_path, class: 'button button-secondary button-save-return')
+          submit_button(:save_and_come_back_later, name: :commit_draft, class: %w[button button-secondary commit-draft-link])
         ].join
       end
     end
@@ -35,7 +34,7 @@ module CustomFormHelpers
     current_c100_application.nil? || current_c100_application.screening?
   end
 
-  def submit_button(i18n_key)
-    submit t("helpers.submit.#{i18n_key}"), class: 'button'
+  def submit_button(i18n_key, opts = {})
+    submit t("helpers.submit.#{i18n_key}"), {class: 'button'}.merge(opts)
   end
 end

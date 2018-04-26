@@ -4,10 +4,6 @@ class TestHelper < ActionView::Base
   def user_signed_in?
     false
   end
-
-  def new_user_registration_path
-    '/test/sign_up'
-  end
 end
 
 # The module `CustomFormHelpers` gets mixed in and extends the helpers already
@@ -61,7 +57,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button with a link to sign-up' do
         expect(
           html_output
-        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /><a href="/test/sign_up" class="button button-secondary button-save-return">Save and come back later</a></div>')
+        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="button button-secondary commit-draft-link" data-disable-with="Save and come back later" /></div>')
       end
     end
   end
