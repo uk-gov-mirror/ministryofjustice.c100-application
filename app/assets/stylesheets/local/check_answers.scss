@@ -34,6 +34,13 @@
     right: 0;
   }
 
+  .subsection-header {
+    border-bottom-width: 1px;
+    display: table-row;
+    > * {
+      
+    }
+  }
 
   @include media(desktop) {
     display: table;

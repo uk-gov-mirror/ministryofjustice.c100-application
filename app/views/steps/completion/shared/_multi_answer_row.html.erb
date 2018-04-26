@@ -1,4 +1,4 @@
-<div id="<%= multi_answer_row.question %>">
+<dl id="<%= multi_answer_row.question %>">
   <dt class="question">
     <%=t "check_answers_html.#{multi_answer_row.question}.question" %>
   </dt>
@@ -16,4 +16,4 @@
       <%= link_to t('check_answers_html.change_link'), multi_answer_row.change_path %>
     <% end %>
   </dd>
-</div>
+</dl>

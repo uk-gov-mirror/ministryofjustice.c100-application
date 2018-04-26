@@ -1,6 +1,6 @@
-<div class="answers-group" id="<%= answers_group.name %>">
+<dl class="answers-group" id="<%= answers_group.name %>">
   <dt class="question">
-    <%=t "check_answers_html.groups.#{answers_group.name}" %>
+    <%=t "check_answers_html.groups.#{answers_group.name}", answers_group.name_args || {} %>
   </dt>
   <dd class="answer">
     <dl class="answers-group-inner">
@@ -12,4 +12,4 @@
       <%= link_to t('check_answers_html.change_link'), answers_group.change_path %>
     <% end %>
   </dd>
-</div>
+</dl>

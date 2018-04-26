@@ -584,9 +584,10 @@ en:
       miam_exemptions: Exemptions from attending a MIAM
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
+      children_details: About the children
     groups:
       miam_certification_details: Certification details
-
+      child_details: Child %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       answers:
@@ -626,6 +627,40 @@ en:
         <<: *YESNO
     alternative_collaborative_law:
       question: Have you tried collaborative law?
+      answers:
+        <<: *YESNO
+
+    child_full_name:
+      question: Full name
+    child_dob:
+      question: Date of birth
+    child_age_estimate:
+      question: Approximate age or year born
+    child_sex:
+      question: Sex
+      answers:
+        <<: *SEX_OPTIONS
+    child_applicants_relationship:
+      question: Applicant(s) relationship to child
+      answers:
+        <<: *RELATIONS
+    child_respondents_relationship:
+      question: Respondent(s) relationship to child
+      answers:
+        <<: *RELATIONS
+    child_orders:
+      question: Order(s) applied for
+      answers:
+        <<: *PETITION_ORDER_TYPES
+
+    children_known_to_authorities:
+      question: Are any of the children known to the local authority children’s services?
+      answers:
+        <<: *YESNO
+    children_known_to_authorities_details:
+      question: Child name and local authority worker
+    children_protection_plan:
+      question: Are any of the children the subject of a child protection plan?
       answers:
         <<: *YESNO
 

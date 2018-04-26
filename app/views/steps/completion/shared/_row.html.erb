@@ -1,4 +1,4 @@
-<div id="<%= row.question %>">
+<dl id="<%= row.question %>">
   <dt class="question">
     <%=t "check_answers_html.#{row.question}.question" %>
   </dt>
@@ -10,4 +10,4 @@
       <%= link_to t('check_answers_html.change_link'), row.change_path %>
     <% end %>
   </dd>
-</div>
+</dl>

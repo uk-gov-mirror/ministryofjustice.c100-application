@@ -2,6 +2,6 @@
   <h2 class="heading-medium heading-bottom-border section-header"><%=t "check_answers_html.sections.#{section.name}" %></h2>
 <% end %>
 
-<dl class="check-your-answers multiple-sections" id="<%= section.name %>">
+<div class="check-your-answers multiple-sections" id="<%= section.name %>">
   <%= render section.answers %>
-</dl>
+</div>
