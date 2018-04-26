@@ -39,6 +39,13 @@ class BaseForm
     end
   end
 
+  # This is a `save if you can, but it's fine if not` method, bypassing validations
+  def save!
+    persist!
+  rescue StandardError
+    false
+  end
+
   def to_key
     # Intentionally returns nil so the form builder picks up _only_
     # the class name to generate the HTML attributes.

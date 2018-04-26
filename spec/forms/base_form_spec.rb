@@ -19,6 +19,22 @@ RSpec.describe BaseForm do
     end
   end
 
+  describe '#save!' do
+    context 'when raising exceptions' do
+      it {
+        expect(subject).to receive(:persist!).and_raise(NoMethodError)
+        expect(subject.save!).to eq(false)
+      }
+    end
+
+    context 'when there are no exceptions' do
+      it {
+        expect(subject).to receive(:persist!).and_return(true)
+        expect(subject.save!).to eq(true)
+      }
+    end
+  end
+
   describe '[]' do
     let(:c100_application) { instance_double(C100Application) }
 

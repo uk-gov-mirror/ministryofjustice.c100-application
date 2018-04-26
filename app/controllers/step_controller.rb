@@ -20,7 +20,12 @@ class StepController < ApplicationController
       hash.merge(c100_application: current_c100_application, record: record)
     )
 
-    if @form_object.save
+    if save_draft?
+      # Validations will not be run when saving a draft, and because there is
+      # only a possible destination, we can also bypass the decision tree code.
+      @form_object.save!
+      redirect_to new_user_registration_path
+    elsif @form_object.save
       destination = decision_tree_class.new(
         c100_application: current_c100_application,
         record:        record,
@@ -47,6 +52,10 @@ class StepController < ApplicationController
   # Override in subclasses to declare any additional parameters that should be permitted.
   def additional_permitted_params
     []
+  end
+
+  def save_draft?
+    params[:commit_draft].present?
   end
 
   def form_attribute_names(form_class)
