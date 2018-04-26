@@ -6,12 +6,22 @@ moj.Modules.gaEvents = {
     linkClass: '.ga-pageLink',
     revealingLinkClass: 'summary span.summary',
     submitFormClass: '.ga-submitForm',
+    submitButtons: 'button[type="submit"], input[type="submit"]',
 
     init: function () {
         var self = this;
 
         // don't bind anything if the GA object isn't defined
         if (typeof window.ga !== 'undefined') {
+            // Some pesky side effect of unbinding/triggering the submit event in some of
+            // the following functions, is the submit button value is lost from the params.
+            // We use this value to know when the `Save and come back later` submit button
+            // was used, instead of the normal `Continue` button.
+            // Non-javascript browsers have no issues, will always send the submit value.
+            if ($(self.submitButtons).length) {
+                self.addSubmitValueParamOnClick();
+            }
+
             if ($(self.radioFormClass).length) {
                 self.trackRadioForms();
             }
@@ -32,6 +42,14 @@ moj.Modules.gaEvents = {
                 self.trackExternalLinks();
             }
         }
+    },
+
+    addSubmitValueParamOnClick: function() {
+        $(this.submitButtons).on('click', function() {
+            $('<input>',
+                { type: 'hidden', name: $(this).attr('name'), value: $(this).attr('value') }
+            ).appendTo($(this).closest('form'));
+        });
     },
 
     trackRadioForms: function () {
