@@ -19,14 +19,15 @@ class SessionsController < ApplicationController
   def bypass_screener
     raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
 
-    c100_application.update(status: 1)
-    redirect_to edit_steps_miam_child_protection_cases_path
+    find_or_create_screener_answers
+
+    redirect_to entrypoint_v1_path
   end
 
   def bypass_to_completion
     raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
 
-    c100_application.create_screener_answers(local_court: local_court_fixture)
+    find_or_create_screener_answers
     c100_application.update(status: 1)
 
     redirect_to steps_completion_what_next_path
@@ -38,6 +39,12 @@ class SessionsController < ApplicationController
   # :nocov:
   def c100_application
     current_c100_application || initialize_c100_application
+  end
+
+  def find_or_create_screener_answers
+    ScreenerAnswers.find_or_initialize_by(c100_application_id: c100_application.id).tap do |screener|
+      screener.update(children_postcodes: 'MK9 2DT', local_court: local_court_fixture)
+    end
   end
 
   def local_court_fixture
