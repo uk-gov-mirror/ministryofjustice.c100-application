@@ -22,9 +22,13 @@
             <p>
               This will be a PDF. If you cannot open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
             </p>
-            <div class="panel panel-border-narrow">
-              <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
-            </div>
+
+            <% unless user_signed_in? %>
+              <div class="panel panel-border-narrow">
+                <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
+              </div>
+            <% end %>
+
             <p>
               <%= link_to 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'button ga-pageLink', data: {ga_category: 'completion', ga_label: 'download application'} %>
             </p>
