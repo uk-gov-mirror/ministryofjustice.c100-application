@@ -147,7 +147,7 @@ en:
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Person %{index}
-      hmcts_instructions: Certificate to be provided at first court hearing
+      hmcts_instructions: Document to be provided at first court hearing
       ### C8 ###
       c8_applicants_details_index_title: Applicant %{index}
       c8_other_parties_details_index_title: Person %{index}
@@ -287,7 +287,7 @@ en:
       answers:
         <<: *YESNO
     miam_certificate_received:
-      question: Have you got a signed certificate from the mediator?
+      question: Have you got a signed document from the mediator?
       answers:
         <<: *YESNO
     miam_attended:

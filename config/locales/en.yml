@@ -517,12 +517,12 @@ en:
         edit:
           page_title: MIAM certification date
           heading: When did you attend the MIAM?
-          body_html: <p>You can find the date at the bottom of the certificate your mediator signed.</p>
+          body_html: <p>You can find the date at the bottom of the document your mediator signed.</p>
       certification_details:
         edit:
           page_title: MIAM certification details
           heading: Enter details of MIAM certification
-          lead_text: You can find this information at the bottom of the certificate your mediator signed.
+          lead_text: You can find this information at the bottom of the document your mediator signed.
       consent_order:
         edit:
           page_title: Consent order
