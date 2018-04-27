@@ -14,6 +14,7 @@ en:
     provide_details: &provide_details "Provide details"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these‘"
+    account_purge_info: &account_purge_info "If you have not signed in for %{expire_in_days} days we delete your account for security reasons."
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
       attending_court: &attending_court "Attending court"
@@ -1610,9 +1611,10 @@ en:
   users:
     logins:
       new:
-        heading: Sign in
-        forgot_password: "Forgot your password?"
         page_title: Sign in
+        heading: Sign in
+        forgot_password: Forgot your password?
+        account_purge_info: *account_purge_info
       logged_out:
         page_title: Signed out
         heading: You have signed out
@@ -1649,16 +1651,17 @@ en:
         heading: Forgot your password
         sign_in: Go back and sign in
         lead_text: Enter your email address and we'll send you a link to reset your password.
-        account_text: Remember, if you haven't signed in for %{expire_in_days} days we delete your account for security reasons.
+        account_text: Remember, if you have not signed in for %{expire_in_days} days we delete your account for security reasons.
         page_title: Forgot password
       edit:
         heading: Change your password
         page_title: Change password
       reset_sent:
         heading: Please check your email
-        lead_text: We have sent you an email with a link to reset your password. Please check your inbox and spam folder.
-        deleted_account: If you haven't signed in for %{expire_in_days} days we delete your account for security reasons.
+        lead_text: We’ve sent you an email with a link to reset your password. Please check your inbox and spam folder.
+        account_purge_info: *account_purge_info
         page_title: Reset link sent
+        <<: *START_FINISH
       reset_confirmation:
         heading: Your password has been changed
         lead_text: You have set a new password successfully.
