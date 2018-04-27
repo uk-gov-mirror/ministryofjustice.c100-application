@@ -27,11 +27,7 @@ class C100Application < ApplicationRecord
   has_many :other_parties
 
   scope :with_owner,    -> { where.not(user: nil) }
-  scope :completed,     -> { where(status: :completed) }
   scope :not_completed, -> { where.not(status: :completed) }
-
-  has_value_object :user_type
-  has_value_object :concerns_contact_type
 
   def self.purge!(date)
     where('created_at <= :date', date: date).destroy_all

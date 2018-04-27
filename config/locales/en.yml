@@ -134,10 +134,6 @@ en:
         download_c100_link: Download the form (PDF)
         cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" target="external_link" rel="external">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
     applicant:
-      user_type:
-        edit:
-          page_title: Who is applying
-          heading: Are you the person making this application?
       names:
         edit:
           page_title: Applicant names
@@ -983,10 +979,6 @@ en:
   activemodel:
     errors:
       models:
-        steps/applicant/user_type_form:
-          attributes:
-            user_type:
-              inclusion: Select who is making this application
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -1095,8 +1087,6 @@ en:
         help_paying_html: "Do you have a ‘Help with fees’ reference number?"
       steps_application_declaration_form:
         declaration_made_html: ""
-      steps_applicant_user_type_form:
-        user_type_html: ""
       steps_miam_consent_order_form:
         consent_order_html: ""
       steps_miam_child_protection_cases_form:
@@ -1283,10 +1273,6 @@ en:
         hwf_reference_number: Enter your reference number
       steps_application_declaration_form:
         declaration_made: I confirm that I believe that the facts stated in this application are true
-      steps_applicant_user_type_form:
-        user_type:
-          themself: Yes, I am the person making the application
-          representative: No, I am a legal representative of the applicant
       steps_alternatives_court_form:
         court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
