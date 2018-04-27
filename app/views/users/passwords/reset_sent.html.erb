@@ -6,6 +6,10 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
-    <p><%=t '.deleted_account', expire_in_days: Rails.configuration.x.users.expire_in_days %></p>
+    <p><%=t '.account_purge_info', expire_in_days: Rails.configuration.x.users.expire_in_days %></p>
+
+    <div class="form-group">
+      <%= link_to t('.start_again'), root_path, class: 'button' %>
+    </div>
   </div>
 </div>

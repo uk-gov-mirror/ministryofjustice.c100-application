@@ -3,6 +3,9 @@
 <div class="grid-row">
   <div class="column-two-thirds">
     <h2 class="heading-large"><%=t '.heading' %></h2>
+
+    <p><%=t '.account_purge_info', expire_in_days: Rails.configuration.x.users.expire_in_days %></p>
+
     <%#
       Using `as: 'user_signin'` so we can customise the i18n labels (and password hint),
       to be different in this form. Because of this, we also need to specify the `name`,
