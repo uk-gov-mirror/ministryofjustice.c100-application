@@ -584,6 +584,7 @@ en:
       miam_exemptions: Exemptions from attending a MIAM
       safety_concerns: Safety concerns
       abduction: 'Safety concerns: abduction'
+      children_abuse_details: Children safety
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
@@ -592,6 +593,7 @@ en:
       abduction_passport_possession: Details of the children’s passports
       abduction_previous_attempt: Details of the previous abductions
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
+      abuse_details: Details
       child_details: Child %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
@@ -806,6 +808,56 @@ en:
       question: Brief explanation
     abduction_current_location:
       question: Where are the children now?
+
+    ### Concerns of abuse ###
+    abuse_physical:
+      question: Physical abuse
+      answers:
+        <<: *YESNO
+    abuse_emotional:
+      question: Emotional abuse
+      answers:
+        <<: *YESNO
+    abuse_psychological:
+      question: Psychological abuse
+      answers:
+        <<: *YESNO
+    abuse_sexual:
+      question: Sexual abuse
+      answers:
+        <<: *YESNO
+    abuse_financial:
+      question: Financial abuse
+      answers:
+        <<: *YESNO
+    abuse_other:
+      question: Other abuse
+      answers:
+        <<: *YESNO
+
+    abuse_behaviour_description:
+      question: Nature of behaviour / what happened
+    abuse_behaviour_start:
+      question: When did behaviour start?
+    abuse_behaviour_ongoing:
+      question: Behaviour ongoing?
+      answers:
+        <<: *YESNO
+    abuse_behaviour_stop:
+      question: How long did it continue?
+    abuse_asked_for_help:
+      question: Did you seek help?
+      answers:
+        <<: *YESNO
+    abuse_help_party:
+      question: "Help from:"
+    abuse_help_provided:
+      question: Did they help you?
+      answers:
+        'yes': They helped me
+        'no': They did not help
+    abuse_help_description:
+      question: What did they do?
 
     child_arrangements_orders:
       question: 'You would like the court to:'

@@ -19,6 +19,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::MiamExemptions,
         Summary::HtmlSections::SafetyConcerns,
         Summary::HtmlSections::Abduction,
+        Summary::HtmlSections::ChildrenAbuseDetails,
         Summary::HtmlSections::NatureOfApplication,
         Summary::HtmlSections::Alternatives,
         Summary::HtmlSections::ChildrenDetails,
