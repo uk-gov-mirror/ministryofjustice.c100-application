@@ -22,11 +22,23 @@ describe Summary::AnswersGroup do
     end
   end
 
-  describe '#show?' do
-    it 'calls `show?` on the questions and return true if any question should be shown' do
+  describe '#answers' do
+    it 'selects the answers that should be shown' do
       expect(question1).to receive(:show?).and_return(false)
       expect(question2).to receive(:show?).and_return(true)
+      expect(subject.answers).to eq([question2])
+    end
+  end
+
+  describe '#show?' do
+    it 'returns true if there are answers to show' do
+      expect(subject).to receive(:answers).and_return([question2])
       expect(subject.show?).to eq(true)
+    end
+
+    it 'returns true if there are no answers to show' do
+      expect(subject).to receive(:answers).and_return([])
+      expect(subject.show?).to eq(false)
     end
   end
 
