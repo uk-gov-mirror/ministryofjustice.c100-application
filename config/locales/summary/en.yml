@@ -582,6 +582,7 @@ en:
       child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: Attending a MIAM
       miam_exemptions: Exemptions from attending a MIAM
+      safety_concerns: Safety concerns
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
@@ -735,6 +736,34 @@ en:
         non_resident: You or the other people in this application (the respondents) don’t live in England and Wales
         applicant_under_age: The applicant or any of the other people in this application (the respondents) are under 18 years old
         misc_none: *none_selected
+
+    ### Safety concerns ###
+    address_confidentiality:
+      question: Do you want to keep your contact details private?
+      answers:
+        <<: *YESNO
+    risk_of_abduction:
+      question: Are the children at risk of being abducted?
+      answers:
+        <<: *YESNO
+    substance_abuse:
+      question: Do you have any concerns about drug, alcohol or substance abuse?
+      answers:
+        <<: *YESNO
+    substance_abuse_details:
+      question: Details of the drug, alcohol or substance abuse
+    children_abuse:
+      question: Have the children ever suffered or been at risk of suffering domestic or child abuse?
+      answers:
+        <<: *YESNO
+    domestic_abuse:
+      question: Have you or the children ever suffered or been at risk of suffering domestic violence or abuse?
+      answers:
+        <<: *YESNO
+    other_abuse:
+      question: Do you have any other safety concerns about you or the children?
+      answers:
+        <<: *YESNO
 
     child_arrangements_orders:
       question: 'You would like the court to:'
