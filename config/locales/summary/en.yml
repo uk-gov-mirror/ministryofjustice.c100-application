@@ -583,11 +583,15 @@ en:
       miam_requirement: Attending a MIAM
       miam_exemptions: Exemptions from attending a MIAM
       safety_concerns: Safety concerns
+      abduction: 'Safety concerns: abduction'
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
     groups:
       miam_certification_details: Certification details
+      abduction_passport_possession: Details of the children’s passports
+      abduction_previous_attempt: Details of the previous abductions
+      abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
       child_details: Child %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
@@ -764,6 +768,44 @@ en:
       question: Do you have any other safety concerns about you or the children?
       answers:
         <<: *YESNO
+
+    ### Abduction ###
+    abduction_passport_office_notified:
+      question: Have the police been notified?
+      answers:
+        <<: *YESNO
+    abduction_children_have_passport:
+      question: Do any of the children have a passport?
+      answers:
+        <<: *YESNO
+    abduction_children_multiple_passports:
+      question: Do they have more than one passport?
+      answers:
+        <<: *YESNO
+    abduction_passport_possession:
+      question: Who is in possession of the passports?
+      answers:
+        passport_possession_mother: Mother
+        passport_possession_father: Father
+        passport_possession_other: Other
+    abduction_passport_possession_other:
+      question: ''
+    abduction_previous_attempt:
+      question: Have the children been abducted or kept outside the UK without your consent before?
+      answers:
+        <<: *YESNO
+    abduction_previous_attempt_details:
+      question: Short description
+    abduction_previous_attempt_agency_involved:
+      question: Were the police, private investigators or any other organisation involved?
+      answers:
+        <<: *YESNO
+    abduction_previous_attempt_agency_details:
+      question: More details
+    abduction_risk_details:
+      question: Brief explanation
+    abduction_current_location:
+      question: Where are the children now?
 
     child_arrangements_orders:
       question: 'You would like the court to:'

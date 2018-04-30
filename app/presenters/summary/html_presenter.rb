@@ -12,6 +12,7 @@ module Summary
         HtmlSections::MiamRequirement.new(c100_application),
         HtmlSections::MiamExemptions.new(c100_application),
         HtmlSections::SafetyConcerns.new(c100_application),
+        HtmlSections::Abduction.new(c100_application),
         HtmlSections::NatureOfApplication.new(c100_application),
         HtmlSections::Alternatives.new(c100_application),
         HtmlSections::ChildrenDetails.new(c100_application),

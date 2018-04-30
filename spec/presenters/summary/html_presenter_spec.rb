@@ -7,6 +7,9 @@ describe Summary::HtmlPresenter do
   describe '#sections' do
     before do
       allow_any_instance_of(Summary::Sections::BaseSectionPresenter).to receive(:show?).and_return(true)
+
+      # Abduction section
+      allow(c100_application).to receive(:abduction_detail).and_return(AbductionDetail.new)
     end
 
     it 'has the right sections in the right order' do
@@ -15,6 +18,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::MiamRequirement,
         Summary::HtmlSections::MiamExemptions,
         Summary::HtmlSections::SafetyConcerns,
+        Summary::HtmlSections::Abduction,
         Summary::HtmlSections::NatureOfApplication,
         Summary::HtmlSections::Alternatives,
         Summary::HtmlSections::ChildrenDetails,
