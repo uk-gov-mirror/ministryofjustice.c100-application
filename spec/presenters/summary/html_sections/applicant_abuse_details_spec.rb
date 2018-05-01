@@ -58,6 +58,7 @@ module Summary
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:abuse_emotional)
+        expect(answers[0].change_path).to eq('/steps/abuse_concerns/question?kind=emotional&subject=applicant')
         expect(answers[0].value).to eq('yes')
 
         expect(answers[1]).to be_an_instance_of(AnswersGroup)
