@@ -585,6 +585,7 @@ en:
       safety_concerns: Safety concerns
       abduction: 'Safety concerns: abduction'
       children_abuse_details: Children safety
+      applicant_abuse_details: Applicant safety
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
@@ -836,7 +837,7 @@ en:
         <<: *YESNO
 
     abuse_behaviour_description:
-      question: Nature of behaviour / what happened
+      question: What happened?
     abuse_behaviour_start:
       question: When did behaviour start?
     abuse_behaviour_ongoing:
@@ -850,12 +851,11 @@ en:
       answers:
         <<: *YESNO
     abuse_help_party:
-      question: "Help from:"
+      question: Who did you ask for help?
     abuse_help_provided:
       question: Did they help you?
       answers:
-        'yes': They helped me
-        'no': They did not help
+        <<: *YESNO
     abuse_help_description:
       question: What did they do?
 

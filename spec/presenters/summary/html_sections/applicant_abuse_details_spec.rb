@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 module Summary
-  describe HtmlSections::ChildrenAbuseDetails do
+  describe HtmlSections::ApplicantAbuseDetails do
     let(:c100_application) { instance_double(C100Application, abuse_concerns: abuse_concerns_resultset) }
     let(:abuse_concerns_resultset) { double('abuse_concerns_resultset') }
 
     let(:abuse_concern) {
       instance_double(
         AbuseConcern,
-        subject: 'children',
+        subject: 'applicant',
         kind: 'emotional',
         answer: 'yes',
         behaviour_description: 'behaviour_description',
@@ -28,7 +28,7 @@ module Summary
 
     describe '#name' do
       it 'is expected to be correct' do
-        expect(subject.name).to eq(:children_abuse_details)
+        expect(subject.name).to eq(:applicant_abuse_details)
       end
     end
 
@@ -45,7 +45,7 @@ module Summary
         allow(
           abuse_concerns_resultset
         ).to receive(:where).with(
-          subject: AbuseSubject::CHILDREN
+          subject: AbuseSubject::APPLICANT
         ).and_return(found_abuses_resultset)
 
         allow(found_abuses_resultset).to receive(:reverse).and_return(final_resultset)
@@ -58,12 +58,12 @@ module Summary
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:abuse_emotional)
-        expect(answers[0].change_path).to eq('/steps/abuse_concerns/question?kind=emotional&subject=children')
+        expect(answers[0].change_path).to eq('/steps/abuse_concerns/question?kind=emotional&subject=applicant')
         expect(answers[0].value).to eq('yes')
 
         expect(answers[1]).to be_an_instance_of(AnswersGroup)
         expect(answers[1].name).to eq(:abuse_details)
-        expect(answers[1].change_path).to eq('/steps/abuse_concerns/details?kind=emotional&subject=children')
+        expect(answers[1].change_path).to eq('/steps/abuse_concerns/details?kind=emotional&subject=applicant')
         expect(answers[1].answers.count).to eq(8)
 
           ## abuse_details group answers ###
