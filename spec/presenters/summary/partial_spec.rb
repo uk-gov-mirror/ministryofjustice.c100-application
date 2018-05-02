@@ -33,4 +33,11 @@ describe Summary::Partial do
       expect(partial.name).to eq(:row_blank_space)
     end
   end
+
+  describe '.horizontal_rule' do
+    it 'instantiate a Partial object with a specific partial name' do
+      partial = described_class.horizontal_rule
+      expect(partial.name).to eq(:horizontal_rule)
+    end
+  end
 end

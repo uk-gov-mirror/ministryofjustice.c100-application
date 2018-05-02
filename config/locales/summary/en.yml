@@ -584,9 +584,10 @@ en:
       miam_requirement: Attending a MIAM
       miam_exemptions: Exemptions from attending a MIAM
       safety_concerns: Safety concerns
-      abduction: 'Safety concerns: abduction'
-      children_abuse_details: Children safety
-      applicant_abuse_details: Applicant safety
+      abduction: 'Safety concerns: Abduction'
+      children_abuse_details: 'Safety concerns: Child(ren)'
+      applicant_abuse_details: 'Safety concerns: Applicant(s)'
+      court_orders: 'Safety concerns: Protection orders'
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
@@ -596,6 +597,7 @@ en:
       abduction_previous_attempt: Details of the previous abductions
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
       abuse_details: Details
+      court_orders_details: What orders have been made?
       child_details: Child %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
@@ -859,6 +861,39 @@ en:
         <<: *YESNO
     abuse_help_description:
       question: What did they do?
+
+    ### Court orders ###
+    has_court_orders:
+      question: Have you had or do you currently have any court orders made for your protection?
+      answers:
+        <<: *YESNO
+    order_name:
+      question: Order
+      answers:
+        <<: *COURT_ORDER_TYPES
+    order_issue_date:
+      question: Date issued
+    order_length:
+      question: Length of order
+    order_is_current:
+      question: Current
+      answers:
+        <<: *YESNO
+    order_court_name:
+      question: Name of court
+    protection_orders:
+      question: Steps or orders requested to protect child(ren) and/or applicant
+      absence_answer: Not required
+    contact_type:
+      question: Do you agree to the child(ren) spending time with the other person in this form?
+      answers:
+        unsupervised: 'Yes'
+        supervised: Yes, but it must be supervised
+        none: 'No'
+    contact_other:
+      question: Do you agree to the child having other forms of contact with the other person in receipt of this form?
+      answers:
+        <<: *YESNO
 
     child_arrangements_orders:
       question: 'You would like the court to:'

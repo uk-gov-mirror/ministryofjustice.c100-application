@@ -15,6 +15,10 @@ module Summary
       def row_blank_space
         new(:row_blank_space)
       end
+
+      def horizontal_rule
+        new(:horizontal_rule)
+      end
     end
 
     def show?
