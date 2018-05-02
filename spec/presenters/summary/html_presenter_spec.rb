@@ -21,6 +21,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::Abduction,
         Summary::HtmlSections::ChildrenAbuseDetails,
         Summary::HtmlSections::ApplicantAbuseDetails,
+        Summary::HtmlSections::CourtOrders,
         Summary::HtmlSections::NatureOfApplication,
         Summary::HtmlSections::Alternatives,
         Summary::HtmlSections::ChildrenDetails,
