@@ -588,6 +588,7 @@ en:
       children_abuse_details: 'Safety concerns: Child(ren)'
       applicant_abuse_details: 'Safety concerns: Applicant(s)'
       court_orders: 'Safety concerns: Protection orders'
+      safety_contact: 'Safety concerns: contact'
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
       children_details: About the children
@@ -884,14 +885,14 @@ en:
     protection_orders:
       question: Steps or orders requested to protect child(ren) and/or applicant
       absence_answer: Not required
-    contact_type:
-      question: Do you agree to the child(ren) spending time with the other person in this form?
+    concerns_contact_type:
+      question: Do you agree to the child(ren) spending time with the other person in this application?
       answers:
         unsupervised: 'Yes'
         supervised: Yes, but it must be supervised
-        none: 'No'
-    contact_other:
-      question: Do you agree to the child having other forms of contact with the other person in receipt of this form?
+        none: No, I do not want the other person to spend time with the children
+    concerns_contact_other:
+      question: Do you agree to the other people in this application being in touch with the child(ren) in other ways?
       answers:
         <<: *YESNO
 
