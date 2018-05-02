@@ -27,6 +27,7 @@ module Summary
         HtmlSections::ChildrenAbuseDetails.new(c100_application),
         HtmlSections::ApplicantAbuseDetails.new(c100_application),
         HtmlSections::CourtOrders.new(c100_application),
+        HtmlSections::SafetyContact.new(c100_application),
       ]
     end
   end
