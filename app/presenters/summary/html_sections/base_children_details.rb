@@ -1,3 +1,7 @@
+# Subclasses must implement these methods:
+# edit_child_details_path(child, field_stub)
+# edit_children_names_path
+# anchor(child, field_stub)
 module Summary
   module HtmlSections
     class BaseChildrenDetails < Sections::BaseSectionPresenter
@@ -9,7 +13,7 @@ module Summary
           FreeTextAnswer.new(
             :child_full_name,
             child.full_name,
-            change_path: edit_steps_children_names_path(child)
+            change_path: edit_children_names_path
           ),
           DateAnswer.new(
             :child_dob,
@@ -32,25 +36,30 @@ module Summary
 
       def relationships(child)
         [
-          MultiAnswer.new(:child_applicants_relationship,  relation_to_child(child, c100.applicants), change_path: edit_relation_path(child, c100.applicants)),
-          MultiAnswer.new(:child_respondents_relationship, relation_to_child(child, c100.respondents), change_path: edit_relation_path(child, c100.applicants)),
+          MultiAnswer.new(:child_applicants_relationship,
+                          relation_to_child(child, c100.applicants),
+                          change_path: edit_relation_path(child,
+                                                          'applicant',
+                                                          c100.applicants)),
+          MultiAnswer.new(:child_respondents_relationship,
+                          relation_to_child(child, c100.respondents),
+                          change_path: edit_relation_path(child,
+                                                          'respondent',
+                                                          c100.respondents)),
         ]
       end
 
       private
 
-      def edit_relation_path(child, people)
-        format("/steps/applicant/relationship/%<id>s/child/%<child_id>s",
-               id: relationship(child, people).pluck(:id),
+      def edit_relation_path(child, type, people)
+        format("/steps/%<type>s/relationship/%<id>s/child/%<child_id>s",
+               id: first_related_person_id(child, people),
+               type: type,
                child_id: child.id)
       end
 
-      def edit_child_details_path(child, field_stub)
-        edit_steps_children_personal_details_path(
-          child,
-          anchor: format('steps_children_personal_details_form_%<field_stub>s',
-                         field_stub: field_stub)
-        )
+      def first_related_person_id(child, people)
+        relationship(child, people).pluck(:person_id).first
       end
 
       def relation_to_child(child, people)
