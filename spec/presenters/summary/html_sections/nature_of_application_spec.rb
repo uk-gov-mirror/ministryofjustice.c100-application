@@ -5,7 +5,9 @@ module Summary
     let(:c100_application) {
       instance_double(C100Application,
         orders: orders,
-        orders_additional_details: orders_additional_details
+        orders_additional_details: orders_additional_details,
+        protection_orders: 'yes',
+        protection_orders_details: 'protection orders details',
       )
     }
 
@@ -37,7 +39,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(4)
+        expect(answers.count).to eq(5)
 
         expect(answers[0]).to be_an_instance_of(MultiAnswer)
         expect(answers[0].question).to eq(:child_arrangements_orders)
@@ -70,6 +72,22 @@ module Summary
         expect(answers[3].question).to eq(:other_issue_details)
         expect(answers[3].value).to eq('orders detail')
         expect(answers[3].change_path).to eq('/steps/petition/orders#steps_petition_orders_form_other_issue')
+
+        expect(answers[4]).to be_an_instance_of(AnswersGroup)
+        expect(answers[4].name).to eq(:protection_orders)
+        expect(answers[4].change_path).to eq('/steps/petition/protection')
+        expect(answers[4].answers.count).to eq(2)
+
+        ## protection_orders group answers ###
+        protection = answers[4].answers
+
+        expect(protection[0]).to be_an_instance_of(Answer)
+        expect(protection[0].question).to eq(:protection_orders)
+        expect(protection[0].value).to eq('yes')
+
+        expect(protection[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(protection[1].question).to eq(:protection_orders_details)
+        expect(protection[1].value).to eq('protection orders details')
       end
     end
   end

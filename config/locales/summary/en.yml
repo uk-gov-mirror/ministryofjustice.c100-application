@@ -601,6 +601,7 @@ en:
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
       abuse_details: Details
       court_orders_details: What orders have been made?
+      protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
       child_details: Child %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
@@ -915,5 +916,12 @@ en:
         <<: *PROHIBITED_STEPS_ORDERS
     other_issue_details:
       question: 'You told us that you need help with this dispute:'
+    protection_orders:
+      question: ''
+      answers:
+        <<: *YESNO
+    protection_orders_details:
+      question: ''
+
     alternatives:
       question: Alternative ways to reach an agreement
