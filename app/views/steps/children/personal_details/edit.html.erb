@@ -7,13 +7,10 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
     <%= step_form @form_object do |f| %>
-      <div class="form-group">
-        <%= f.gov_uk_date_field :dob,
-          placeholders: true,
-          legend_text: t('shared.form_elements.dob'),
-          legend_class: 'form-label-bold',
-          form_hint_text: '' %>
-      </div>
+      <%= f.gov_uk_date_field :dob,
+        placeholders: true,
+        legend_text: t('shared.form_elements.dob'),
+        form_hint_text: '' %>
 
       <%=
         f.check_box_fieldset :dob_unknown, [:dob_unknown] do |fieldset|
