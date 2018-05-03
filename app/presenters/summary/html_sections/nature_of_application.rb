@@ -5,7 +5,7 @@ module Summary
         :nature_of_application
       end
 
-      # rubocop:disable Metrics/MethodLength
+      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       def answers
         [
           MultiAnswer.new(:child_arrangements_orders,
@@ -28,9 +28,17 @@ module Summary
                              change_path: edit_steps_petition_orders_path(
                                anchor: 'steps_petition_orders_form_other_issue'
                              )),
+          AnswersGroup.new(
+            :protection_orders,
+            [
+              Answer.new(:protection_orders, c100.protection_orders),
+              FreeTextAnswer.new(:protection_orders_details, c100.protection_orders_details),
+            ],
+            change_path: edit_steps_petition_protection_path
+          ),
         ].select(&:show?)
       end
-      # rubocop:enable Metrics/MethodLength
+      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
       private
 
