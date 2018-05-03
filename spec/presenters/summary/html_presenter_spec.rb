@@ -27,6 +27,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::Alternatives,
         Summary::HtmlSections::ChildrenDetails,
         Summary::HtmlSections::OtherChildrenDetails,
+        Summary::HtmlSections::ApplicantsDetails,
       ])
     end
   end
