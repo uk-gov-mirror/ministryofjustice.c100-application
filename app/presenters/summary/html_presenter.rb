@@ -14,8 +14,8 @@ module Summary
         *safety_and_abuse_questions,
         HtmlSections::NatureOfApplication.new(c100_application),
         HtmlSections::Alternatives.new(c100_application),
-        HtmlSections::ChildrenDetails.new(c100_application),
-        HtmlSections::OtherChildrenDetails.new(c100_application),
+        *children_sections,
+        HtmlSections::ApplicantsDetails.new(c100_application),
       ].flatten.select(&:show?)
     end
 
@@ -29,6 +29,13 @@ module Summary
         HtmlSections::ApplicantAbuseDetails.new(c100_application),
         HtmlSections::CourtOrders.new(c100_application),
         HtmlSections::SafetyContact.new(c100_application),
+      ]
+    end
+
+    def children_sections
+      [
+        HtmlSections::ChildrenDetails.new(c100_application),
+        HtmlSections::OtherChildrenDetails.new(c100_application),
       ]
     end
   end
