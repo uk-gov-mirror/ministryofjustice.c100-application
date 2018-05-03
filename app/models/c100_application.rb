@@ -23,8 +23,8 @@ class C100Application < ApplicationRecord
   has_many :children
   has_many :applicants
   has_many :respondents
-  has_many :other_children
-  has_many :other_parties
+  has_many :other_children,   dependent: :destroy
+  has_many :other_parties,    dependent: :destroy
 
   scope :with_owner,    -> { where.not(user: nil) }
   scope :not_completed, -> { where.not(status: :completed) }
