@@ -26,6 +26,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::NatureOfApplication,
         Summary::HtmlSections::Alternatives,
         Summary::HtmlSections::ChildrenDetails,
+        Summary::HtmlSections::ChildrenFurtherInformation,
         Summary::HtmlSections::OtherChildrenDetails,
         Summary::HtmlSections::ApplicantsDetails,
         Summary::HtmlSections::RespondentsDetails,

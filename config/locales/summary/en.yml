@@ -592,6 +592,7 @@ en:
       safety_contact: 'Safety concerns: contact'
       nature_of_application: What you're asking the court to decide about the children
       alternatives: Alternative ways to reach an agreement
+      children_further_information: Further information about the child(ren)
       children_details: Child(ren)
       other_children_details: Other child(ren)
       applicants_details: Applicant(s)
@@ -681,11 +682,11 @@ en:
         <<: *PETITION_ORDER_TYPES
 
     children_known_to_authorities:
-      question: Are any of the children known to the local authority children’s services?
+      question: Are any of the children known to social services?
       answers:
         <<: *YESNO
     children_known_to_authorities_details:
-      question: Child name and local authority worker
+      question: Child and the name of the local authority and social worker (if known)
     children_protection_plan:
       question: Are any of the children the subject of a child protection plan?
       answers:
