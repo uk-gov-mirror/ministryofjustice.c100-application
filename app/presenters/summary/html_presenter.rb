@@ -35,6 +35,7 @@ module Summary
     def children_sections
       [
         HtmlSections::ChildrenDetails.new(c100_application),
+        HtmlSections::ChildrenFurtherInformation.new(c100_application),
         HtmlSections::OtherChildrenDetails.new(c100_application),
       ]
     end

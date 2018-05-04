@@ -8,9 +8,6 @@ module Summary
         other_children: [],
         applicants: [],
         respondents: [],
-        children_known_to_authorities: 'yes',
-        children_known_to_authorities_details: 'details',
-        children_protection_plan: 'no',
         has_other_children: 'yes',
       )
     }
@@ -58,7 +55,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(11)
+        expect(answers.count).to eq(8)
       end
 
       it 'has the correct rows in the right order' do
@@ -99,26 +96,9 @@ module Summary
         expect(answers[6].change_path).to eq('/steps/children/orders/1234')
 
         expect(answers[7]).to be_an_instance_of(Answer)
-        expect(answers[7].question).to eq(:children_known_to_authorities)
-        expect(c100_application).to have_received(:children_known_to_authorities)
-        expect(answers[7].change_path).to eq('/steps/children/additional_details')
-
-
-        expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[8].question).to eq(:children_known_to_authorities_details)
-        expect(c100_application).to have_received(:children_known_to_authorities_details)
-        expect(answers[8].change_path).to eq('/steps/children/additional_details')
-
-        expect(answers[9]).to be_an_instance_of(Answer)
-        expect(answers[9].question).to eq(:children_protection_plan)
-        expect(c100_application).to have_received(:children_protection_plan)
-        expect(answers[9].change_path).to eq('/steps/children/additional_details')
-
-
-        expect(answers[10]).to be_an_instance_of(Answer)
-        expect(answers[10].question).to eq(:has_other_children)
+        expect(answers[7].question).to eq(:has_other_children)
         expect(c100_application).to have_received(:has_other_children)
-        expect(answers[10].change_path).to eq('/steps/children/has_other_children')
+        expect(answers[7].change_path).to eq('/steps/children/has_other_children')
 
       end
 
