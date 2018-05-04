@@ -1,0 +1,38 @@
+module Summary
+  module HtmlSections
+    class OtherPartiesDetails < PeopleDetails
+      def name
+        :other_parties_details
+      end
+
+      def record_collection
+        c100.other_parties
+      end
+
+      def answers
+        [
+          Answer.new(
+            :has_other_parties,
+            c100.has_other_parties,
+            change_path: edit_steps_respondent_has_other_parties_path
+          ),
+          super,
+        ].flatten.select(&:show?)
+      end
+
+      protected
+
+      def names_path
+        edit_steps_other_parties_names_path(id: '')
+      end
+
+      def personal_details_path(person)
+        edit_steps_other_parties_personal_details_path(person)
+      end
+
+      def contact_details_path(person)
+        edit_steps_other_parties_contact_details_path(person)
+      end
+    end
+  end
+end

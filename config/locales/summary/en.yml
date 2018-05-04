@@ -596,6 +596,7 @@ en:
       other_children_details: Other child(ren)
       applicants_details: Applicant(s)
       respondents_details: Respondent(s)
+      other_parties_details: Other parties
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -613,6 +614,7 @@ en:
       other_child_index_title: Other child %{index}
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
+      other_parties_details_index_title: Other party %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       answers:
@@ -688,10 +690,7 @@ en:
       question: Are any of the children the subject of a child protection plan?
       answers:
         <<: *YESNO
-    has_other_children:
-      question: Do you or the respondent(s) have other children who aren't part of this application?
-      answers:
-        <<: *YESNO
+
     # TODO: Review the copy for each of the MIAM exemptions and make it concise
     # enough for Check your answers, as it does not need to be as verbose as in
     # the steps or in the PDF. It is intended to be a quick check for the user.
@@ -934,6 +933,15 @@ en:
 
     alternatives:
       question: Alternative ways to reach an agreement
+
+    has_other_children:
+      question: Do you or the respondent(s) have other children who aren't part of this application?
+      answers:
+        <<: *YESNO
+    has_other_parties:
+      question: Is there anyone else who should know about your application?
+      answers:
+        <<: *YESNO
 
     person_full_name:
       question: Full name
