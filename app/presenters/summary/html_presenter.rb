@@ -15,7 +15,7 @@ module Summary
         HtmlSections::NatureOfApplication.new(c100_application),
         HtmlSections::Alternatives.new(c100_application),
         *children_sections,
-        HtmlSections::ApplicantsDetails.new(c100_application),
+        *people_sections,
       ].flatten.select(&:show?)
     end
 
@@ -36,6 +36,13 @@ module Summary
       [
         HtmlSections::ChildrenDetails.new(c100_application),
         HtmlSections::OtherChildrenDetails.new(c100_application),
+      ]
+    end
+
+    def people_sections
+      [
+        HtmlSections::ApplicantsDetails.new(c100_application),
+        HtmlSections::RespondentsDetails.new(c100_application),
       ]
     end
   end
