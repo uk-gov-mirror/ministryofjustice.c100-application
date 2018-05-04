@@ -52,7 +52,7 @@ module Summary
 
       def contact_details_questions(person)
         [
-          FreeTextAnswer.new(:person_address, person.address),
+          FreeTextAnswer.new(:person_address, person.address, show: true),
           Answer.new(:person_residence_requirement_met, person.residence_requirement_met),
           FreeTextAnswer.new(:person_residence_history, person.residence_history),
           FreeTextAnswer.new(:person_home_phone, person.home_phone),

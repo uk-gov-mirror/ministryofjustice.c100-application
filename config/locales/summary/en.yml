@@ -595,6 +595,7 @@ en:
       children_details: Child(ren)
       other_children_details: Other child(ren)
       applicants_details: Applicant(s)
+      respondents_details: Respondent(s)
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -607,9 +608,11 @@ en:
       person_personal_details: Personal details
       person_contact_details: Contact details
     separators:
+      not_applicable: Not applicable
       child_index_title: Child %{index}
       other_child_index_title: Other child %{index}
       applicants_details_index_title: Applicant %{index}
+      respondents_details_index_title: Respondent %{index}
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       answers:
@@ -897,7 +900,6 @@ en:
       question: Name of court
     protection_orders:
       question: Steps or orders requested to protect child(ren) and/or applicant
-      absence_answer: Not required
     concerns_contact_type:
       question: Do you agree to the child(ren) spending time with the other person in this application?
       answers:
