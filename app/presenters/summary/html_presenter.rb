@@ -43,6 +43,7 @@ module Summary
       [
         HtmlSections::ApplicantsDetails.new(c100_application),
         HtmlSections::RespondentsDetails.new(c100_application),
+        HtmlSections::OtherPartiesDetails.new(c100_application),
       ]
     end
   end

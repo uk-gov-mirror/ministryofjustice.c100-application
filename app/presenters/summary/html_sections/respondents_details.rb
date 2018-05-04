@@ -9,6 +9,8 @@ module Summary
         c100.respondents
       end
 
+      protected
+
       def names_path
         edit_steps_respondent_names_path(id: '')
       end

@@ -9,6 +9,8 @@ module Summary
         c100.applicants
       end
 
+      protected
+
       def names_path
         edit_steps_applicant_names_path(id: '')
       end
