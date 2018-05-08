@@ -16,6 +16,7 @@ module Summary
         HtmlSections::Alternatives.new(c100_application),
         *children_sections,
         *people_sections,
+        other_court_cases,
       ].flatten.select(&:show?)
     end
 
@@ -45,6 +46,12 @@ module Summary
         HtmlSections::ApplicantsDetails.new(c100_application),
         HtmlSections::RespondentsDetails.new(c100_application),
         HtmlSections::OtherPartiesDetails.new(c100_application),
+      ]
+    end
+
+    def other_court_cases
+      [
+        HtmlSections::OtherCourtCases.new(c100_application),
       ]
     end
   end
