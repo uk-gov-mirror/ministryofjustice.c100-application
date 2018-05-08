@@ -88,13 +88,12 @@ en:
       abuse_details: Details
       court_orders_details: What orders have been made?
       protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
-      child_details: Child %{index}
       person_personal_details: Personal details
       person_contact_details: Contact details
     separators:
       not_applicable: Not applicable
-      child_index_title: Child %{index}
-      other_child_index_title: Other child %{index}
+      children_details_index_title: Child %{index}
+      other_children_details_index_title: Other child %{index}
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Other party %{index}
@@ -140,16 +139,6 @@ en:
       answers:
         <<: *YESNO
 
-    child_full_name:
-      question: Full name
-    child_dob:
-      question: Date of birth
-    child_age_estimate:
-      question: Approximate age or year born
-    child_sex:
-      question: Sex
-      answers:
-        <<: *SEX_OPTIONS
     child_applicants_relationship:
       question: Applicant(s) relationship to child
       answers:
@@ -162,7 +151,6 @@ en:
       question: Order(s) applied for
       answers:
         <<: *PETITION_ORDER_TYPES
-
     children_known_to_authorities:
       question: Are any of the children known to social services?
       answers:
