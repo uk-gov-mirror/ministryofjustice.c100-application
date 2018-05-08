@@ -2,82 +2,73 @@ require 'spec_helper'
 
 module Summary
   describe HtmlSections::OtherChildrenDetails do
-    subject { described_class.new(c100_application) }
-
     let(:c100_application) {
       instance_double(C100Application,
-        other_children: [other_child],
-        applicants: [],
-        respondents: [],
         has_other_children: 'yes',
+        other_children: [other_child],
       )
     }
 
     let(:other_child) {
       instance_double(OtherChild,
-        id: '5678',
-        full_name: 'other name',
-        dob: dob,
-        age_estimate: age_estimate,
-        gender: 'male',
-        relationships: relationships,
+        to_param: 'uuid-123',
+        full_name: 'name',
+        dob: Date.new(2018, 1, 20),
+        age_estimate: nil,
+        gender: 'female',
       )
     }
 
-    let(:dob) { Date.new(2018, 1, 20) }
-    let(:age_estimate) { nil }
+    subject { described_class.new(c100_application) }
 
     let(:answers) { subject.answers }
-    let(:relationships) { double('relationships') }
 
     describe '#name' do
-      it 'is :other_children_details' do
+      it 'is expected to be correct' do
         expect(subject.name).to eq(:other_children_details)
       end
     end
 
+    # The following tests can be fragile, but on purpose. During the development phase
+    # we have to update the tests each time we introduce a new row or remove another.
+    # But once it is finished and stable, it will raise a red flag if it ever gets out
+    # of sync, which means a quite solid safety net for any maintainers in the future.
+    #
     describe '#answers' do
-      before do
-        allow(subject).to receive(:first_related_person_id).and_return('abcd')
-        allow(subject).to receive(:relation_to_child).and_return('mother')
-        allow(subject).to receive(:relationship).and_return(relationships)
-      end
-
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(4)
       end
 
       it 'has the correct rows in the right order' do
-        expect(answers[0]).to be_an_instance_of(Separator)
-        expect(answers[0].title).to eq(:other_child_index_title)
-        expect(answers[0].i18n_opts).to eq({index: 1})
+        expect(answers[0]).to be_an_instance_of(Answer)
+        expect(answers[0].question).to eq(:has_other_children)
+        expect(answers[0].change_path).to eq('/steps/children/has_other_children')
+        expect(answers[0].value).to eq('yes')
 
-        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[1].question).to eq(:child_full_name)
-        expect(answers[1].value).to eq('other name')
-        expect(answers[1].change_path).to eq('/steps/other_children/names')
+        expect(answers[1]).to be_an_instance_of(Separator)
+        expect(answers[1].title).to eq('other_children_details_index_title')
+        expect(answers[1].i18n_opts).to eq({index: 1})
 
-        expect(answers[2]).to be_an_instance_of(DateAnswer)
-        expect(answers[2].question).to eq(:child_dob)
-        expect(answers[2].value).to eq(Date.new(2018, 1, 20))
-        expect(answers[2].change_path).to eq('/steps/other_children/personal_details/5678#steps_children_personal_details_form_dob_dd')
+        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[2].question).to eq(:person_full_name)
+        expect(answers[2].value).to eq('name')
+        expect(answers[2].change_path).to eq('/steps/other_children/names/')
 
-        expect(answers[3]).to be_an_instance_of(Answer)
-        expect(answers[3].question).to eq(:child_sex)
-        expect(answers[3].value).to eq('male')
-        expect(answers[3].change_path).to eq('/steps/other_children/personal_details/5678#steps_children_personal_details_form_gender_female')
+        expect(answers[3]).to be_an_instance_of(AnswersGroup)
+        expect(answers[3].name).to eq(:person_personal_details)
+        expect(answers[3].change_path).to eq('/steps/other_children/personal_details/uuid-123')
+        expect(answers[3].answers.count).to eq(2)
 
-        expect(answers[4]).to be_an_instance_of(MultiAnswer)
-        expect(answers[4].question).to eq(:child_applicants_relationship)
-        expect(answers[4].value).to eq('mother')
-        expect(c100_application).to have_received(:applicants).at_least(:once)
-        expect(answers[4].change_path).to eq("/steps/applicant/relationship/abcd/child/5678")
+          # personal_details group answers ###
+          details = answers[3].answers
 
-        expect(answers[5]).to be_an_instance_of(MultiAnswer)
-        expect(answers[5].question).to eq(:child_respondents_relationship)
-        expect(answers[5].value).to eq('mother')
-        expect(c100_application).to have_received(:respondents).at_least(:once)
-        expect(answers[5].change_path).to eq("/steps/respondent/relationship/abcd/child/5678")
+          expect(details[0]).to be_an_instance_of(DateAnswer)
+          expect(details[0].question).to eq(:person_dob)
+          expect(details[0].value).to eq(Date.new(2018, 1, 20))
+
+          expect(details[1]).to be_an_instance_of(Answer)
+          expect(details[1].question).to eq(:person_sex)
+          expect(details[1].value).to eq('female')
       end
     end
   end

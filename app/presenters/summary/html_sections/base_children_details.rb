@@ -1,73 +1,55 @@
-# Subclasses must implement these methods:
-# edit_child_details_path(child, field_stub)
-# edit_children_names_path
-# anchor(child, field_stub)
 module Summary
   module HtmlSections
     class BaseChildrenDetails < Sections::BaseSectionPresenter
-      protected
-
-      # rubocop:disable Metrics/MethodLength
-      def personal_details(child)
-        [
-          FreeTextAnswer.new(
-            :child_full_name,
-            child.full_name,
-            change_path: edit_children_names_path
-          ),
-          DateAnswer.new(
-            :child_dob,
-            child.dob,
-            change_path: edit_child_details_path(child, 'dob_dd')
-          ),
-          FreeTextAnswer.new(
-            :child_age_estimate,
-            child.age_estimate,
-            change_path: edit_child_details_path(child, 'age_estimate')
-          ),
-          Answer.new(
-            :child_sex,
-            child.gender,
-            change_path: edit_child_details_path(child, 'gender_female')
-          ),
-        ]
+      # :nocov:
+      def record_collection
+        raise 'must be implemented in subclasses'
       end
-      # rubocop:enable Metrics/MethodLength
 
-      def relationships(child)
-        [
-          MultiAnswer.new(:child_applicants_relationship,
-                          relation_to_child(child, c100.applicants),
-                          change_path: edit_relation_path(child,
-                                                          'applicant',
-                                                          c100.applicants)),
-          MultiAnswer.new(:child_respondents_relationship,
-                          relation_to_child(child, c100.respondents),
-                          change_path: edit_relation_path(child,
-                                                          'respondent',
-                                                          c100.respondents)),
-        ]
+      def names_path
+        raise 'must be implemented in subclasses'
+      end
+
+      def personal_details_path(*)
+        raise 'must be implemented in subclasses'
+      end
+      # :nocov:
+
+      def answers
+        record_collection.map.with_index(1) do |child, index|
+          [
+            Separator.new("#{name}_index_title", index: index),
+            FreeTextAnswer.new(:person_full_name, child.full_name, change_path: names_path),
+            AnswersGroup.new(
+              :person_personal_details,
+              personal_details_questions(child),
+              change_path: personal_details_path(child)
+            ),
+            MultiAnswer.new(
+              :child_orders,
+              order_types(child),
+              change_path: edit_steps_children_orders_path(child)
+            ),
+          ]
+        end.flatten.select(&:show?)
       end
 
       private
 
-      def edit_relation_path(child, type, people)
-        format("/steps/%<type>s/relationship/%<id>s/child/%<child_id>s",
-               id: first_related_person_id(child, people),
-               type: type,
-               child_id: child.id)
+      def personal_details_questions(child)
+        [
+          DateAnswer.new(:person_dob, child.dob),
+          FreeTextAnswer.new(:person_age_estimate, child.age_estimate), # This shows only if a value is present
+          Answer.new(:person_sex, child.gender),
+        ]
       end
 
-      def first_related_person_id(child, people)
-        relationship(child, people).pluck(:person_id).first
-      end
+      def order_types(child)
+        return [] unless child.respond_to?(:child_order)
 
-      def relation_to_child(child, people)
-        relationship(child, people).pluck(:relation)
-      end
-
-      def relationship(child, people)
-        child.relationships.where(person: people)
+        child.child_order&.orders.to_a.map do |order|
+          PetitionOrder.type_for(order)
+        end.uniq
       end
     end
   end
