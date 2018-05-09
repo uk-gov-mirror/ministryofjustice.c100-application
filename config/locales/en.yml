@@ -436,22 +436,24 @@ en:
         edit:
           page_title: Children abuse
           section: Safety concerns
-          heading: Have the children ever suffered or been at risk of suffering domestic or child abuse?
+          heading: Have the children ever suffered or are they at risk of suffering domestic or child abuse?
           info_html: |
-            <p>Child abuse is any action that causes significant harm to a child. Harm includes seeing or hearing the ill-treatment of others.</p>
+            <p>This includes any action that causes harm to a child. Harm includes seeing or hearing the ill-treatment of others.</p>
             <p>Examples include:</p>
             <ul class="list list-bullet">
               <li>emotional or psychological abuse</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
+              <li>witnessing domestic violence or abuse</li>
             </ul>
+            <p><a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" target="external_link" rel="external">Find out about the signs of child abuse</a></p>
           info_note_html: |
-            <p>Only include abuse by the other people in this application (the respondents) or someone connected to the other person who has contact with the children.</p>
+            <p>Only include abuse by the people in this application or someone connected to them who has contact with the children.</p>
       domestic_abuse:
         edit:
           page_title: Domestic violence or abuse
           section: Safety concerns
-          heading: Have you or the children ever suffered or been at risk of suffering domestic violence or abuse?
+          heading: Have you ever suffered or are you at risk of suffering domestic violence or abuse?
           info_html: |
             <p>Domestic violence or abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
             <p>Examples include, but are not limited to:</p>
@@ -464,7 +466,7 @@ en:
             </ul>
           additional_info: It also includes culturally specific forms of abuse including, but not limited to, forced marriage, honour-based violence, dowry-related abuse and transnational marriage abandonment.
           info_note_html: |
-            <p>Only include abuse by the other people in this application (the respondents) or someone connected to them.</p>
+            <p>Only include abuse by the people in this application or someone connected to them.</p>
       other_abuse:
         edit:
           page_title: Other concerns
