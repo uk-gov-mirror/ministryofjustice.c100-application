@@ -25,6 +25,7 @@ module Summary
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
         email: 'email',
+        relationships: [relationships],
       )
     }
 
@@ -32,6 +33,16 @@ module Summary
 
     let(:has_previous_name) { 'no' }
     let(:previous_name) { nil }
+
+    let(:relationships) {
+      instance_double(
+        Relationship,
+        relation: 'mother',
+        relation_other_value: nil,
+        minor: child,
+      )
+    }
+    let(:child) { instance_double(Child, to_param: 'uuid-555', full_name: 'Child Test') }
 
     let(:answers) { subject.answers }
 
@@ -53,7 +64,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(4)
+        expect(answers.count).to eq(5)
       end
 
       it 'has the correct rows in the right order' do
@@ -121,6 +132,12 @@ module Summary
           expect(details[5]).to be_an_instance_of(FreeTextAnswer)
           expect(details[5].question).to eq(:person_email)
           expect(details[5].value).to eq('email')
+
+        expect(answers[4]).to be_an_instance_of(Answer)
+        expect(answers[4].question).to eq(:relationship_to_child)
+        expect(answers[4].change_path).to eq('/steps/respondent/relationship/uuid-123/child/uuid-555')
+        expect(answers[4].value).to eq('mother')
+        expect(answers[4].i18n_opts).to eq({child_name: 'Child Test'})
       end
 
       context 'for existing previous name' do
@@ -128,7 +145,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(4)
+          expect(answers.count).to eq(5)
         end
 
         it 'renders the previous name' do
@@ -138,6 +155,29 @@ module Summary
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
           expect(details[0].question).to eq(:person_previous_name)
           expect(details[0].value).to eq('previous_name')
+        end
+      end
+
+      context 'for `other` children relationship' do
+        let(:relationships) {
+          instance_double(
+            Relationship,
+            relation: 'other',
+            relation_other_value: 'Aunt',
+            minor: child,
+          )
+        }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(5)
+        end
+
+        it 'renders the correct relationship value' do
+          expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[4].question).to eq(:relationship_to_child)
+          expect(answers[4].change_path).to eq('/steps/respondent/relationship/uuid-123/child/uuid-555')
+          expect(answers[4].value).to eq('Aunt')
+          expect(answers[4].i18n_opts).to eq({child_name: 'Child Test'})
         end
       end
     end

@@ -17,6 +17,10 @@ module Summary
       def contact_details_path(*)
         raise 'must be implemented in subclasses'
       end
+
+      def children_relationships_path(*)
+        raise 'must be implemented in subclasses that support relationships'
+      end
       # :nocov:
 
       def answers
@@ -34,6 +38,7 @@ module Summary
               contact_details_questions(person),
               change_path: contact_details_path(person)
             ),
+            children_relationships(person),
           ]
         end.flatten.select(&:show?)
       end
@@ -67,6 +72,25 @@ module Summary
         else
           Answer.new(:person_previous_name, person.has_previous_name)
         end
+      end
+
+      def children_relationships(person)
+        person.relationships.map do |rel|
+          [
+            Answer.new(
+              :relationship_to_child,
+              (rel.relation unless rel.relation.eql?(Relation::OTHER.to_s)),
+              change_path: children_relationships_path(person, rel.minor),
+              i18n_opts: {child_name: rel.minor.full_name}
+            ),
+            FreeTextAnswer.new(
+              :relationship_to_child,
+              rel.relation_other_value,
+              change_path: children_relationships_path(person, rel.minor),
+              i18n_opts: {child_name: rel.minor.full_name}
+            ), # The free text value only shows when the relation is `other`
+          ]
+        end.flatten
       end
     end
   end
