@@ -1,6 +1,6 @@
 <dl id="<%= row.question %>">
   <dt class="question">
-    <%=t "check_answers_html.#{row.question}.question" %>
+    <%=t "check_answers_html.#{row.question}.question", row.i18n_opts %>
   </dt>
   <dd class="answer">
     <%=t "check_answers_html.#{row.question}.answers.#{row.value}" %>

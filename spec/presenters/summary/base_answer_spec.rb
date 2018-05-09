@@ -8,6 +8,14 @@ describe Summary::BaseAnswer do
 
   subject { described_class.new(question, value, default: default, change_path: change_path) }
 
+  describe 'validates the options' do
+    subject { described_class.new(question, value, test: true) }
+
+    it 'raises an exception' do
+      expect { subject.show? }.to raise_error(ArgumentError)
+    end
+  end
+
   describe '#show?' do
     it 'returns true' do
       expect(subject.show?).to eq(true)
@@ -60,6 +68,16 @@ describe Summary::BaseAnswer do
 
       it 'returns the original value' do
         expect(subject.value).to eq('yes')
+      end
+    end
+  end
+
+  describe 'can be given i18n options' do
+    context 'when value is nil' do
+      subject { described_class.new(question, value, i18n_opts: {name: 'John'}) }
+
+      it 'returns the options' do
+        expect(subject.i18n_opts).to eq({name: 'John'})
       end
     end
   end

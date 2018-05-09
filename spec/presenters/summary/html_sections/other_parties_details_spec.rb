@@ -26,10 +26,21 @@ module Summary
         home_phone: nil,
         mobile_phone: nil,
         email: nil,
+        relationships: [relationships],
       )
     }
 
     subject { described_class.new(c100_application) }
+
+    let(:relationships) {
+      instance_double(
+        Relationship,
+        relation: 'mother',
+        relation_other_value: nil,
+        minor: child,
+      )
+    }
+    let(:child) { instance_double(Child, to_param: 'uuid-555', full_name: 'Child Test') }
 
     let(:answers) { subject.answers }
 
@@ -51,7 +62,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(6)
       end
 
       it 'has the correct rows in the right order' do
@@ -100,6 +111,12 @@ module Summary
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
           expect(details[0].question).to eq(:person_address)
           expect(details[0].value).to eq('address')
+
+        expect(answers[5]).to be_an_instance_of(Answer)
+        expect(answers[5].question).to eq(:relationship_to_child)
+        expect(answers[5].change_path).to eq('/steps/other_parties/relationship/uuid-123/child/uuid-555')
+        expect(answers[5].value).to eq('mother')
+        expect(answers[5].i18n_opts).to eq({child_name: 'Child Test'})
       end
 
       context 'when there are no other parties' do
@@ -118,6 +135,29 @@ module Summary
           expect(answers[0].question).to eq(:has_other_parties)
           expect(answers[0].change_path).to eq('/steps/respondent/has_other_parties')
           expect(answers[0].value).to eq('no')
+        end
+      end
+
+      context 'for `other` children relationship' do
+        let(:relationships) {
+          instance_double(
+            Relationship,
+            relation: 'other',
+            relation_other_value: 'Aunt',
+            minor: child,
+          )
+        }
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(6)
+        end
+
+        it 'renders the correct relationship value' do
+          expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[5].question).to eq(:relationship_to_child)
+          expect(answers[5].change_path).to eq('/steps/other_parties/relationship/uuid-123/child/uuid-555')
+          expect(answers[5].value).to eq('Aunt')
+          expect(answers[5].i18n_opts).to eq({child_name: 'Child Test'})
         end
       end
     end

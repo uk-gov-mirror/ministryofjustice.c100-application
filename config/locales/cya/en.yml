@@ -145,13 +145,8 @@ en:
       question: Have you tried collaborative law?
       answers:
         <<: *YESNO
-
-    child_applicants_relationship:
-      question: Applicant(s) relationship to child
-      answers:
-        <<: *RELATIONS
-    child_respondents_relationship:
-      question: Respondent(s) relationship to child
+    relationship_to_child:
+      question: Relationship to %{child_name}
       answers:
         <<: *RELATIONS
     child_orders:
