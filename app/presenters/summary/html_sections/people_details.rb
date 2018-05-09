@@ -18,8 +18,8 @@ module Summary
         raise 'must be implemented in subclasses'
       end
 
-      def children_relationships_path(*)
-        raise 'must be implemented in subclasses that support relationships'
+      def child_relationship_path(*)
+        raise 'must be implemented in subclasses'
       end
       # :nocov:
 
@@ -80,13 +80,13 @@ module Summary
             Answer.new(
               :relationship_to_child,
               (rel.relation unless rel.relation.eql?(Relation::OTHER.to_s)),
-              change_path: children_relationships_path(person, rel.minor),
+              change_path: child_relationship_path(person, rel.minor),
               i18n_opts: {child_name: rel.minor.full_name}
             ),
             FreeTextAnswer.new(
               :relationship_to_child,
               rel.relation_other_value,
-              change_path: children_relationships_path(person, rel.minor),
+              change_path: child_relationship_path(person, rel.minor),
               i18n_opts: {child_name: rel.minor.full_name}
             ), # The free text value only shows when the relation is `other`
           ]

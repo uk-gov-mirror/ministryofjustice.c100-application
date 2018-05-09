@@ -23,7 +23,7 @@ module Summary
         edit_steps_applicant_contact_details_path(person)
       end
 
-      def children_relationships_path(person, child)
+      def child_relationship_path(person, child)
         "/steps/applicant/relationship/#{person.to_param}/child/#{child.to_param}"
       end
     end
