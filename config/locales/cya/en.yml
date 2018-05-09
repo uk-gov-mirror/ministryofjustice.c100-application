@@ -81,6 +81,7 @@ en:
       respondents_details: Respondent(s)
       other_parties_details: Other parties
       other_court_cases: Other court cases
+      without_notice_hearing: Without notice hearing
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -92,6 +93,7 @@ en:
       person_personal_details: Personal details
       person_contact_details: Contact details
       other_court_cases_details: Other proceedings details
+      without_notice_hearing_details: Without notice hearing details
     separators:
       not_applicable: Not applicable
       children_details_index_title: Child %{index}
@@ -467,3 +469,22 @@ en:
       question: Type of proceedings - if known
     court_proceeding_previous_details:
       question: Details of any other previous family case
+
+    without_notice_hearing:
+      question: Are you asking for a without notice hearing?
+      answers:
+        <<: *YESNO
+    without_notice_details:
+      question: Why you’re asking for a without notice hearing
+    without_notice_frustrate:
+      question: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
+      answers:
+        <<: *YESNO
+    without_notice_frustrate_details:
+      question: Details
+    without_notice_impossible:
+      question: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
+      answers:
+        <<: *YESNO
+    without_notice_impossible_details:
+      question: Details

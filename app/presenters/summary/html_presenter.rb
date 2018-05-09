@@ -17,6 +17,7 @@ module Summary
         *children_sections,
         *people_sections,
         other_court_cases,
+        without_notice_questions,
       ].flatten.select(&:show?)
     end
 
@@ -52,6 +53,12 @@ module Summary
     def other_court_cases
       [
         HtmlSections::OtherCourtCases.new(c100_application),
+      ]
+    end
+
+    def without_notice_questions
+      [
+        HtmlSections::WithoutNoticeDetails.new(c100_application),
       ]
     end
   end

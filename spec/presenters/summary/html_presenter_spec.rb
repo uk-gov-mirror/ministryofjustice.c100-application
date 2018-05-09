@@ -32,6 +32,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::RespondentsDetails,
         Summary::HtmlSections::OtherPartiesDetails,
         Summary::HtmlSections::OtherCourtCases,
+        Summary::HtmlSections::WithoutNoticeDetails,
       ])
     end
   end
