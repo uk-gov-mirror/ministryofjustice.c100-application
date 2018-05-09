@@ -1,12 +1,17 @@
 module Summary
   class BaseAnswer
-    attr_reader :question, :value, :show, :change_path
+    attr_reader :question, :value, :show, :change_path, :i18n_opts
 
-    def initialize(question, value, default: nil, show: nil, change_path: nil)
+    DEFAULT_OPTIONS = { default: nil, show: nil, change_path: nil, i18n_opts: {} }.freeze
+
+    def initialize(question, value, *args)
+      options = extract_supported_options!(args)
+
       @question = question
-      @value = value || default
-      @show = show
-      @change_path = change_path
+      @value = value || options[:default]
+      @show = options[:show]
+      @change_path = options[:change_path]
+      @i18n_opts = options[:i18n_opts]
     end
 
     def show?
@@ -27,5 +32,13 @@ module Summary
       raise 'implement in subclasses'
     end
     # :nocov:
+
+    private
+
+    def extract_supported_options!(args)
+      options = DEFAULT_OPTIONS.merge(args.extract_options!)
+      options.assert_valid_keys(DEFAULT_OPTIONS.keys)
+      options
+    end
   end
 end
