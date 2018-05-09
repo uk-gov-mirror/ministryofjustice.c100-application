@@ -33,6 +33,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::OtherPartiesDetails,
         Summary::HtmlSections::OtherCourtCases,
         Summary::HtmlSections::WithoutNoticeDetails,
+        Summary::HtmlSections::InternationalElement,
       ])
     end
   end
