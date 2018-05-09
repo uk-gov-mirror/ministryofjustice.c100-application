@@ -82,6 +82,7 @@ en:
       other_parties_details: Other parties
       other_court_cases: Other court cases
       without_notice_hearing: Without notice hearing
+      international_element: International elements
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -94,6 +95,8 @@ en:
       person_contact_details: Contact details
       other_court_cases_details: Other proceedings details
       without_notice_hearing_details: Without notice hearing details
+      international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
+      international_request: Has a request for information or other assistance involving the children been made to or by another country?
     separators:
       not_applicable: Not applicable
       children_details_index_title: Child %{index}
@@ -488,3 +491,19 @@ en:
         <<: *YESNO
     without_notice_impossible_details:
       question: Details
+    international_resident:
+      question: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+      answers:
+        <<: *YESNO
+    international_jurisdiction:
+      question: ''
+      answers:
+        <<: *YESNO
+    international_jurisdiction_details:
+      question: ''
+    international_request:
+      question: ''
+      answers:
+        <<: *YESNO
+    international_request_details:
+      question: ''
