@@ -6,6 +6,7 @@ module Summary
       @c100_application = c100_application
     end
 
+    # rubocop:disable Metrics/AbcSize
     def sections
       [
         HtmlSections::ChildProtectionCases.new(c100_application),
@@ -20,8 +21,10 @@ module Summary
         HtmlSections::WithoutNoticeDetails.new(c100_application),
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
+        HtmlSections::AttendingCourt.new(c100_application),
       ].flatten.select(&:show?)
     end
+    # rubocop:enable Metrics/AbcSize
 
     private
 
