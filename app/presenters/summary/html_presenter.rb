@@ -19,6 +19,7 @@ module Summary
         other_court_cases,
         without_notice_questions,
         HtmlSections::InternationalElement.new(c100_application),
+        HtmlSections::ApplicationReasons.new(c100_application),
       ].flatten.select(&:show?)
     end
 

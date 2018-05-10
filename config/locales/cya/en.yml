@@ -83,6 +83,7 @@ en:
       other_court_cases: Other court cases
       without_notice_hearing: Without notice hearing
       international_element: International elements
+      application_reasons: About your application
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -502,3 +503,6 @@ en:
         <<: *YESNO
     international_request_details:
       question: ''
+
+    application_details:
+      question: 'Why are you making this application?'

@@ -34,6 +34,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::OtherCourtCases,
         Summary::HtmlSections::WithoutNoticeDetails,
         Summary::HtmlSections::InternationalElement,
+        Summary::HtmlSections::ApplicationReasons,
       ])
     end
   end
