@@ -80,6 +80,7 @@ en:
       applicants_details: Applicant(s)
       respondents_details: Respondent(s)
       other_parties_details: Other parties
+      children_residence: Who the children currently live with?
       other_court_cases: Other court cases
       without_notice_hearing: Without notice hearing
       international_element: International elements
@@ -164,6 +165,8 @@ en:
       question: Are any of the children the subject of a child protection plan?
       answers:
         <<: *YESNO
+    child_residence:
+      question: '%{child_name}'
 
     # TODO: Review the copy for each of the MIAM exemptions and make it concise
     # enough for Check your answers, as it does not need to be as verbose as in
