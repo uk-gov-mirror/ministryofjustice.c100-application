@@ -31,6 +31,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::ApplicantsDetails,
         Summary::HtmlSections::RespondentsDetails,
         Summary::HtmlSections::OtherPartiesDetails,
+        Summary::HtmlSections::ChildrenResidence,
         Summary::HtmlSections::OtherCourtCases,
         Summary::HtmlSections::WithoutNoticeDetails,
         Summary::HtmlSections::InternationalElement,

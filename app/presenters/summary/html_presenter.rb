@@ -9,21 +9,28 @@ module Summary
     def sections
       [
         HtmlSections::ChildProtectionCases.new(c100_application),
-        HtmlSections::MiamRequirement.new(c100_application),
-        HtmlSections::MiamExemptions.new(c100_application),
+        *miam_questions,
         *safety_and_abuse_questions,
         HtmlSections::NatureOfApplication.new(c100_application),
         HtmlSections::Alternatives.new(c100_application),
         *children_sections,
         *people_sections,
-        other_court_cases,
-        without_notice_questions,
+        HtmlSections::ChildrenResidence.new(c100_application),
+        HtmlSections::OtherCourtCases.new(c100_application),
+        HtmlSections::WithoutNoticeDetails.new(c100_application),
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
       ].flatten.select(&:show?)
     end
 
     private
+
+    def miam_questions
+      [
+        HtmlSections::MiamRequirement.new(c100_application),
+        HtmlSections::MiamExemptions.new(c100_application),
+      ]
+    end
 
     def safety_and_abuse_questions
       [
@@ -49,18 +56,6 @@ module Summary
         HtmlSections::ApplicantsDetails.new(c100_application),
         HtmlSections::RespondentsDetails.new(c100_application),
         HtmlSections::OtherPartiesDetails.new(c100_application),
-      ]
-    end
-
-    def other_court_cases
-      [
-        HtmlSections::OtherCourtCases.new(c100_application),
-      ]
-    end
-
-    def without_notice_questions
-      [
-        HtmlSections::WithoutNoticeDetails.new(c100_application),
       ]
     end
   end
