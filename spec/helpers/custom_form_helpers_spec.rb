@@ -51,6 +51,16 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
           html_output
         ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Save and continue" class="button" data-disable-with="Save and continue" /></div>')
       end
+
+      context 'with button value customised' do
+        let(:html_output) { builder.continue_button save_and_continue: :confirm_and_finish }
+
+        it 'outputs the custom value' do
+          expect(
+            html_output
+          ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Confirm and finish" class="button" data-disable-with="Confirm and finish" /></div>')
+        end
+      end
     end
 
     context 'for a logged out user' do
@@ -58,6 +68,16 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
         expect(
           html_output
         ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="button button-secondary commit-draft-link" data-disable-with="Save and come back later" /></div>')
+      end
+
+      context 'with button value customised' do
+        let(:html_output) { builder.continue_button continue: :confirm_and_finish }
+
+        it 'outputs the custom value' do
+          expect(
+            html_output
+          ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Confirm and finish" class="button" data-disable-with="Confirm and finish" /><input type="submit" name="commit_draft" value="Save and come back later" class="button button-secondary commit-draft-link" data-disable-with="Save and come back later" /></div>')
+        end
       end
     end
   end
