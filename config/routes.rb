@@ -91,7 +91,9 @@ Rails.application.routes.draw do
       edit_step :intermediary
       edit_step :help_paying
       edit_step :declaration
-      edit_step :check_your_answers
+      edit_step :check_your_answers do
+        get :resume, action: :resume
+      end
     end
     namespace :petition do
       edit_step :orders

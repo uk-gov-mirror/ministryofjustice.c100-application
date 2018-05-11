@@ -86,9 +86,26 @@ RSpec.describe Users::DraftsController, type: :controller do
             expect(session[:c100_application_id]).to eq(c100_application.id)
           end
 
-          it 'redirects to the last recorded step' do
-            get :resume, params: {id: c100_application.id}
-            expect(response).to redirect_to('/step/2')
+          context 'when dev_tools flag is enabled' do
+            before do
+              allow(controller.helpers).to receive(:dev_tools_enabled?).and_return(true)
+            end
+
+            it 'redirects to the CYA resume application step' do
+              get :resume, params: {id: c100_application.id}
+              expect(response).to redirect_to('/steps/application/check_your_answers/resume')
+            end
+          end
+
+          context 'when dev_tools flag is disabled' do
+            before do
+              allow(controller.helpers).to receive(:dev_tools_enabled?).and_return(false)
+            end
+
+            it 'redirects to the last recorded step' do
+              get :resume, params: {id: c100_application.id}
+              expect(response).to redirect_to('/step/2')
+            end
           end
         end
       end
