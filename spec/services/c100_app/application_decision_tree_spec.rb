@@ -97,7 +97,22 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `help_paying`' do
     let(:step_params) { { help_paying: 'anything' } }
-    it { is_expected.to have_destination(:declaration, :edit) }
+
+    context 'when dev_tools flag is enabled' do
+      before do
+        allow(subject).to receive(:dev_tools_enabled?).and_return(true)
+      end
+
+      it { is_expected.to have_destination(:check_your_answers, :edit) }
+    end
+
+    context 'when dev_tools flag is disabled' do
+      before do
+        allow(subject).to receive(:dev_tools_enabled?).and_return(false)
+      end
+
+      it { is_expected.to have_destination(:declaration, :edit) }
+    end
   end
 
   context 'when the step is `declaration`' do

@@ -391,15 +391,6 @@ RSpec.shared_examples 'a summary step controller' do
     context 'when a case exists in the session' do
       let!(:existing_case) { C100Application.create }
 
-      context 'HTML format' do
-        it 'assigns the presenter' do
-          get :show, format: :html, session: { c100_application_id: existing_case.id }
-
-          expect(subject).to render_template(:show)
-          expect(assigns[:presenter]).to be_an_instance_of(Summary::HtmlPresenter)
-        end
-      end
-
       context 'PDF format' do
         let(:pdf_presenter) {
           instance_double(Summary::PdfPresenter, generate: nil, to_pdf: 'a majestic pdf', filename: 'test.pdf')

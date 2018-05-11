@@ -20,17 +20,18 @@ class SessionsController < ApplicationController
     raise 'For development use only' unless helpers.dev_tools_enabled?
 
     find_or_create_screener_answers
+    c100_application.update(status: 1)
 
     redirect_to entrypoint_v1_path
   end
 
-  def bypass_to_completion
+  def bypass_to_cya
     raise 'For development use only' unless helpers.dev_tools_enabled?
 
     find_or_create_screener_answers
     c100_application.update(status: 1)
 
-    redirect_to steps_completion_what_next_path
+    redirect_to edit_steps_application_check_your_answers_path
   end
   # :nocov:
 
