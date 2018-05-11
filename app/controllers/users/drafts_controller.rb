@@ -18,7 +18,7 @@ module Users
       elsif draft_from_params
         set_session_and_redirect(
           draft_from_params,
-          draft_from_params.navigation_stack.last
+          check_your_answers_or_last_step # temporary feature-flagged journey
         )
       end
     end
@@ -41,6 +41,14 @@ module Users
     def set_session_and_redirect(c100_application, path)
       session[:c100_application_id] = c100_application.id
       redirect_to path
+    end
+
+    def check_your_answers_or_last_step
+      if helpers.dev_tools_enabled?
+        resume_steps_application_check_your_answers_path
+      else
+        draft_from_params.navigation_stack.last
+      end
     end
   end
 end

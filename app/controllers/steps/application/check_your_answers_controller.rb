@@ -1,7 +1,7 @@
 module Steps
   module Application
     class CheckYourAnswersController < Steps::ApplicationStepController
-      before_action :set_presenter, only: [:edit, :update]
+      before_action :set_presenter
 
       def edit
         @form_object = DeclarationForm.build(current_c100_application)
@@ -10,6 +10,8 @@ module Steps
       def update
         update_and_advance(DeclarationForm, as: :declaration)
       end
+
+      def resume; end
 
       private
 
