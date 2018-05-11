@@ -50,6 +50,7 @@ module Summary
 
       context 'when there are no previous proceedings' do
         let(:children_previous_proceedings) { 'no' }
+        let(:court_proceeding) { nil }
 
         it 'has the correct rows' do
           expect(answers.count).to eq(1)

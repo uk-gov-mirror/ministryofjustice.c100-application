@@ -1,0 +1,31 @@
+<% title t('.page_title') %>
+
+<%= step_header %>
+
+<h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+<p class="lede"><%=t '.lead_text' %></p>
+
+<%= render @presenter.sections %>
+
+<br/>
+
+<div class="declaration-box">
+  <p class="lede gv-u-text-lede"><%= t '.declaration_lead_text' %></p>
+
+  <div role="note" aria-label="Warning" class="notice gv-c-notice">
+    <i class=" icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
+      <span class=" visually-hidden gv-c-notice__icon-fallback-text"><%= t '.warning_title' %></span>
+    </i>
+    <strong class=" bold-small gv-c-notice__text">
+      <%= t '.warning_text' %>
+    </strong>
+  </div>
+
+  <br/>
+
+  <%= step_form @form_object do |f| %>
+    <%= f.single_check_box :declaration_made %>
+    <%= f.continue_button continue: :confirm_and_finish, save_and_continue: :confirm_and_finish %>
+  <% end %>
+</div>

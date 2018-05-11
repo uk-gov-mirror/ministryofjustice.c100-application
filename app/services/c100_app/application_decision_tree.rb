@@ -28,7 +28,7 @@ module C100App
       when :special_arrangements
         edit(:help_paying)
       when :help_paying
-        edit(:declaration)
+        check_your_answers_or_declaration # temporary feature-flagged journey
       when :declaration
         show('/steps/completion/what_next')
       else
@@ -65,6 +65,14 @@ module C100App
 
     def start_international_journey
       edit('/steps/international/resident')
+    end
+
+    def check_your_answers_or_declaration
+      if dev_tools_enabled?
+        edit(:check_your_answers)
+      else
+        edit(:declaration)
+      end
     end
   end
 end

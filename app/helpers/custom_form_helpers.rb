@@ -3,15 +3,15 @@ module CustomFormHelpers
            :current_c100_application,
            :user_signed_in?, to: :@template
 
-  def continue_button
+  def continue_button(continue: :continue, save_and_continue: :save_and_continue)
     content_tag(:div, class: 'form-submit') do
       if save_and_return_disabled?
-        submit_button(:continue)
+        submit_button(continue)
       elsif user_signed_in?
-        submit_button(:save_and_continue)
+        submit_button(save_and_continue)
       else
         safe_concat [
-          submit_button(:continue),
+          submit_button(continue),
           submit_button(:save_and_come_back_later, name: :commit_draft, class: %w[button button-secondary commit-draft-link])
         ].join
       end

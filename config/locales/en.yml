@@ -716,6 +716,14 @@ en:
           lead_text: You must confirm that the information you’ve provided in your application is true.
           warning_title: Warning
           warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
+      check_your_answers:
+        edit:
+          page_title: Check your answers
+          heading: Check your answers
+          lead_text: Please review your answers before you finish your application
+          declaration_lead_text: You must confirm that the information you’ve provided in your application is true.
+          warning_title: Warning
+          warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
     international:
       resident:
         edit:
@@ -892,13 +900,6 @@ en:
           page_title: Contact by email
           heading: Are you willing to be contacted by email about your experience using this service?
           lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
-    completion:
-      summary:
-        show:
-          page_title: Check your answers
-          heading: Check your answers
-          lead_text: Please review your answers before you continue
-          confirm: Confirm and continue
   home:
     index:
       heading: Start here
@@ -1507,6 +1508,7 @@ en:
       reset_password: Reset password
       change_password: Change my password
       save_and_continue: Save and continue
+      confirm_and_finish: Confirm and finish
 
   number:
     currency:
