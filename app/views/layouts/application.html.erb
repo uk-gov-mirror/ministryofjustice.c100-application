@@ -71,7 +71,7 @@
   <%= render partial: 'layouts/footer_links' %>
 <% end %>
 
-<% if Rails.env.development? || ENV['DEV_TOOLS_ENABLED'] %>
+<% if dev_tools_enabled? %>
   <%= render partial: 'developer_tools' %>
 <% end %>
 

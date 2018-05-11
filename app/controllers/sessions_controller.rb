@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   # :nocov:
   def bypass_screener
-    raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
+    raise 'For development use only' unless helpers.dev_tools_enabled?
 
     find_or_create_screener_answers
 
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def bypass_to_completion
-    raise 'For development use only' unless Rails.env.development? || ENV['DEV_TOOLS_ENABLED']
+    raise 'For development use only' unless helpers.dev_tools_enabled?
 
     find_or_create_screener_answers
     c100_application.update(status: 1)
