@@ -22,6 +22,7 @@ module Summary
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
         HtmlSections::AttendingCourt.new(c100_application),
+        HtmlSections::HelpWithFees.new(c100_application),
       ].flatten.select(&:show?)
     end
     # rubocop:enable Metrics/AbcSize
