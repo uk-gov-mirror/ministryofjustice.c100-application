@@ -4,6 +4,7 @@ en:
 
   dictionary:
     dont_know: &dont_know "Don't know"
+    previous_name_hint: &previous_name_hint "This should be the full legal name (including any middle names)"
     birthplace_hint: &birthplace_hint "For example, town or city"
     address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
     name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
@@ -1245,7 +1246,7 @@ en:
 
     label:
       steps_shared_relationship_form:
-        relation_other_value: *provide_details
+        relation_other_value: Please specify
         relation:
           <<: *RELATIONS
       steps_applicant_names_form:
@@ -1365,7 +1366,7 @@ en:
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details:
       steps_abuse_concerns_details_form:
-        behaviour_description: Give a short description of what happened and who was involved. You’ll have further opportunities to make a detailed statement
+        behaviour_description: Give a short description of what happened and who was involved
         behaviour_start: When did your concerns start?
         behaviour_stop: When did you stop being concerned about the issue?
         help_party: Who did you ask for help?
@@ -1456,6 +1457,7 @@ en:
         orders_specific_issues: Select all that apply
       steps_applicant_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
+        previous_name: *previous_name_hint
         birthplace: *birthplace_hint
       steps_applicant_contact_details_form:
         address: Enter your full address including postcode
@@ -1464,6 +1466,7 @@ en:
         new_name_html: *name_instructions
       steps_respondent_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
+        previous_name: *previous_name_hint
         birthplace: *birthplace_hint
       steps_respondent_contact_details_form:
         address: *address_hint
@@ -1482,9 +1485,11 @@ en:
         new_name_html: *name_instructions
       steps_other_parties_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
+        previous_name: *previous_name_hint
       steps_safety_questions_substance_abuse_details_form:
         substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
+        behaviour_description: You’ll have further opportunities to make a detailed statement
         behaviour_start: Add an approximate date if you’re unsure
         behaviour_stop: Add an approximate date if you’re unsure
         asked_for_help: For example, your GP
