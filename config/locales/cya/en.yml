@@ -64,8 +64,9 @@ en:
     change_link: Change
     sections:
       child_protection_cases: Emergency protection, care or supervision proceedings
-      miam_requirement: Attending a MIAM
-      miam_exemptions: Exemptions from attending a MIAM
+      miam_requirement: MIAM requirement
+      miam_attendance: MIAM attendance
+      miam_exemptions: MIAM exemptions
       safety_concerns: Safety concerns
       abduction: 'Safety concerns: Abduction'
       children_abuse_details: 'Safety concerns: Child(ren)'

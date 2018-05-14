@@ -721,6 +721,7 @@ en:
           page_title: Check your answers
           heading: Check your answers
           lead_text: Please review your answers before you finish your application
+          declaration_heading: Declaration
           declaration_lead_text: You must confirm that the information you’ve provided in your application is true.
           warning_title: Warning
           warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.

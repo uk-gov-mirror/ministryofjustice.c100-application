@@ -9,7 +9,6 @@ module Summary
     # rubocop:disable Metrics/AbcSize
     def sections
       [
-        HtmlSections::ChildProtectionCases.new(c100_application),
         *miam_questions,
         *safety_and_abuse_questions,
         HtmlSections::NatureOfApplication.new(c100_application),
@@ -32,6 +31,7 @@ module Summary
     def miam_questions
       [
         HtmlSections::MiamRequirement.new(c100_application),
+        HtmlSections::MiamAttendance.new(c100_application),
         HtmlSections::MiamExemptions.new(c100_application),
       ]
     end
