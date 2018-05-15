@@ -60,6 +60,7 @@ RSpec.describe ApplicationController do
       context 'when cookie is present but expired' do
         before do
           session[:last_seen] = Time.now.to_i - 155
+          expect(controller).to receive(:sentry_debug_session_expire).with(555555) # Temporary for debug purposes
         end
 
         it 'sets the `last_seen` value' do

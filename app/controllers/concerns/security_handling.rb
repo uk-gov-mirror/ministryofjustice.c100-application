@@ -32,6 +32,7 @@ module SecurityHandling
     epoch = Time.now.to_i
 
     if epoch - session.fetch(:last_seen, epoch) > session_expire_in_seconds
+      sentry_debug_session_expire(epoch) # Temporary for debug purposes
       reset_session
     end
 
@@ -56,4 +57,22 @@ module SecurityHandling
       'Strict-Transport-Security' => 'max-age=15768000; includeSubDomains',
     }
   end
+
+  # :nocov:
+  def sentry_debug_session_expire(epoch)
+    return if Rails.application.config.consider_all_requests_local
+
+    exception = StandardError.new('ensure_session_validity')
+
+    Raven.extra_context(
+      epoch_time: epoch,
+      session_last_seen: session[:last_seen],
+      session_expire_in_seconds: session_expire_in_seconds,
+      session_id: session[:session_id],
+      c100_application_id: session[:c100_application_id],
+    )
+
+    Raven.capture_exception(exception)
+  end
+  # :nocov:
 end
