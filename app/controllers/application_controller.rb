@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
 
   def reset_c100_application_session
     session.delete(:c100_application_id)
+    session.delete(:last_seen)
   end
 
   def initialize_c100_application(attributes = {})
