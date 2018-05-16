@@ -1546,6 +1546,7 @@ en:
     form_elements:
       dob: Date of birth
       order_issue: What date was it made?
+      certification_date_hint: For example, 20 04 2018
     why_we_use_children_html: |
       <details style="margin-top: 0;">
         <summary>
