@@ -2,12 +2,16 @@
   $light-grey: #cccccc;
   $dark-grey: #6f777b;
 
+  $heading-font-size: 16px;
+  $sub-heading-font-size: 14px;
+  $questions-font-size: 12px;
+
   font-family: "nta", Arial, sans-serif;
-  width: 88%;
+  width: 95%;
   margin: 0 auto;
 
   p, ul {
-    font-size: 10px;
+    font-size: $questions-font-size;
   }
   ul.list:last-child {
     margin-bottom: 10px;
@@ -15,9 +19,12 @@
 
   .form-header {
     h1 {
-      font-size: 110%;
+      font-size: 20px;
       font-weight: bold;
       margin: 0;
+    }
+    .details {
+      font-size: 18px;
     }
   }
 
@@ -37,7 +44,7 @@
     div.box-to-fill {
       border: 1px solid $dark-grey;
       background-color: #fff;
-      color: $light-grey;
+      color: $dark-grey;
       padding: 3px;
     }
 
@@ -55,15 +62,15 @@
   }
 
   h2.main-section-header {
-    font-size: 90%;
-    font-weight: 700;
+    font-size: $heading-font-size;
+    font-weight: bold;
     border-bottom: 1px solid $dark-grey;
     padding: 2px 0 0 0;
   }
 
   h3.section-header {
-    font-size: 70%;
-    font-weight: 700;
+    font-size: $sub-heading-font-size;
+    font-weight: bold;
     border-bottom: 1px solid $dark-grey;
     padding: 2px 0 0 0;
   }
@@ -83,7 +90,7 @@
 
   td {
     vertical-align: top;
-    font-size: 70%;
+    font-size: $questions-font-size;
     border-bottom: 1px solid $light-grey;
     margin: 0;
   }
@@ -95,11 +102,11 @@
     padding-right: 10px;
     padding-bottom: 2px;
     padding-top: 2px;
-    font-size: 60%;
+    font-size: $questions-font-size;
   }
 
   td.separator {
-    font-weight: 700;
+    font-weight: bold;
   }
 
   table.subtable {
@@ -107,8 +114,7 @@
       padding: 0 0 5px;
     }
     td.question {
-      font-weight: 500;
-      font-size: 70%;
+      font-size: $questions-font-size;
       width: 100%;
     }
     td.answer {
@@ -149,7 +155,6 @@
       padding: 5px 0 0 0;
     }
     td.question {
-      font-weight: 500;
       width: 90%;
     }
     td.answer {
