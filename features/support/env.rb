@@ -3,10 +3,14 @@ require 'capybara'
 require 'capybara/dsl'
 require 'capybara/cucumber'
 require 'capybara/poltergeist'
+require 'cucumber/rails'
 require 'dotenv/load'
 
-Capybara.app_host = ENV.fetch('EXTERNAL_URL')
-Capybara.run_server = false
+if ENV['CUCUMBER_URL'].present?
+  Capybara.app_host = ENV.fetch('CUCUMBER_URL')
+  Capybara.run_server = false
+end
+
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 

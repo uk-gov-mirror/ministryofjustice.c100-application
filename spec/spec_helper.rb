@@ -9,6 +9,8 @@ unless ENV['NOCOVERAGE']
   SimpleCov.start do
     add_filter '.bundle'
     add_filter 'spec/support'
+    add_filter 'spec/rails_helper.rb'
+    add_filter 'config/initializers'
   end
 end
 

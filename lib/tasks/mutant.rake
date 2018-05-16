@@ -12,8 +12,6 @@ task :mutant => :environment do
   exit
 end
 
-task(:default).prerequisites << task(:mutant)
-
 private
 
 def classes_to_mutate

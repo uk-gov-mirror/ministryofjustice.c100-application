@@ -38,11 +38,11 @@ The features can be run manually (these are not part of the default rake task) i
 * `bundle exec cucumber features/screener.feature -t @happy_path`
 * `bundle exec cucumber features/screener.feature -t @unhappy_path`
 
-By default features will run against the URL defined in `EXTERNAL_URL` (check your local `.env` file) which should be the URL where your local rails server is accessible and running.
+By default cucumber will start a local server on a random port, run features against that server, and kill the server once the features have finished.
 
-If you want to point the features to another server (WARNING: NEVER PRODUCTION!) without editing your local `.env` file, then just pass the value when calling cucumber:
+If you want to point the features at another server (WARNING: NEVER PRODUCTION!), pass the environment variable CUCUMBER_URL (or set the value in your local `.env` file) when calling cucumber:
 
-* `EXTERNAL_URL=http://server.com bundle exec cucumber features`
+* `CUCUMBER_URL=http://server.com bundle exec cucumber features`
 
 ## Mutation testing
 

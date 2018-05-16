@@ -36,6 +36,10 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.before(:each, js: true) do
+    page.driver.browser.url_whitelist = ["127.0.0.1", "localhost"]
+  end
 end
 
 RSpec::Matchers.define_negated_matcher :not_change, :change
