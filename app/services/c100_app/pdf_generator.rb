@@ -17,7 +17,7 @@ module C100App
     def pdf_from_presenter(presenter)
       WickedPdf.new.pdf_from_string(
         render(presenter),
-        footer: { right: "#{presenter.name}  [page]/[topage]" }
+        footer: { right: "#{presenter.name}  #{presenter.page_number}" }
       )
     end
 
