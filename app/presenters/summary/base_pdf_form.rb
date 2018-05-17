@@ -18,6 +18,11 @@ module Summary
     def sections
       raise 'implement in subclasses'
     end
+
+    # If needed, override in subclasses to change the format or to hide it completely.
+    def page_number
+      '[page]/[topage]'
+    end
     # :nocov:
 
     # If needed, specify in subclasses a PDF file to be used 'as it is', appended

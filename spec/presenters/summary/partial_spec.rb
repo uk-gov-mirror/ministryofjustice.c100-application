@@ -27,6 +27,13 @@ describe Summary::Partial do
     end
   end
 
+  describe '.blank_page' do
+    it 'instantiate a Partial object with a specific partial name' do
+      partial = described_class.blank_page
+      expect(partial.name).to eq(:blank_page)
+    end
+  end
+
   describe '.row_blank_space' do
     it 'instantiate a Partial object with a specific partial name' do
       partial = described_class.row_blank_space

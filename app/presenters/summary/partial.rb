@@ -12,6 +12,10 @@ module Summary
         new(:page_break)
       end
 
+      def blank_page
+        new(:blank_page)
+      end
+
       def row_blank_space
         new(:row_blank_space)
       end

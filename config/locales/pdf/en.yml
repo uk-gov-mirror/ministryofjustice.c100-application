@@ -66,6 +66,7 @@ en:
     admin_case_number: Case number
     admin_date_issued: Date issued
     admin_orders_applied_for: Order(s) applied for
+    intentional_blank_page: This page is intentionally left blank
     c8_confidential_answer: See C8 attached
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
     statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
@@ -137,6 +138,7 @@ en:
     descriptions:
       risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
+      c8_attached_html: <strong>C8 is attached at the end of this form</strong>
     separators:
       c8_attached: See C8 attached
       not_applicable: Not applicable

@@ -23,6 +23,10 @@ module Summary
         c100.has_safety_concerns?
       end
 
+      def confidentiality_enabled?
+        c100.confidentiality_enabled?
+      end
+
       private
 
       def default_value

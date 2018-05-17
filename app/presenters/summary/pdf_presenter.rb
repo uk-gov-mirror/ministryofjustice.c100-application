@@ -10,11 +10,10 @@ module Summary
       @pdf_generator = generator
     end
 
-    # The number of copies might change for the pilot
     def generate
-      pdf_generator.generate(c100_form, copies: 1)
-      pdf_generator.generate(c1a_form,  copies: 1) if c100_application.has_safety_concerns?
-      pdf_generator.generate(c8_form,   copies: 1) if c100_application.confidentiality_enabled?
+      generate_c100_form
+      generate_c1a_form
+      generate_c8_form
     end
 
     def filename
@@ -23,20 +22,29 @@ module Summary
 
     private
 
-    def c100_form
-      Summary::C100Form.new(c100_application)
+    def generate_c100_form
+      pdf_generator.generate(
+        Summary::C100Form.new(c100_application), copies: 1
+      )
     end
 
-    def c1a_form
-      Summary::C1aForm.new(c100_application)
+    def generate_c1a_form
+      return unless c100_application.has_safety_concerns?
+
+      pdf_generator.generate(
+        Summary::C1aForm.new(c100_application), copies: 1
+      )
     end
 
-    def c8_form
-      Summary::C8Form.new(c100_application)
-    end
+    def generate_c8_form
+      return unless c100_application.confidentiality_enabled?
 
-    def cover_letter
-      # TODO
+      pdf_generator.generate(
+        Summary::BlankPage.new(c100_application), copies: 1
+      )
+      pdf_generator.generate(
+        Summary::C8Form.new(c100_application), copies: 1
+      )
     end
   end
 end

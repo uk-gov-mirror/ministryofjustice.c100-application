@@ -10,7 +10,15 @@ RSpec.describe C100App::PdfGenerator do
   end
 
   describe '#generate' do
-    let(:presenter) { double('Presenter', name: 'Test', template: 'path/to/template', raw_file_path: raw_file_path) }
+    let(:presenter) {
+      double(
+        'Presenter',
+        name: 'Test',
+        page_number: '[xx]/[yy]',
+        template: 'path/to/template',
+        raw_file_path: raw_file_path,
+      )
+    }
     let(:document)  { 'a form document' }
     let(:raw_file_path) { nil }
 
@@ -20,7 +28,7 @@ RSpec.describe C100App::PdfGenerator do
       ).and_return(document)
 
       expect(wicked_pdf).to receive(:pdf_from_string).with(
-        document, { footer: { right: 'Test  [page]/[topage]' } }
+        document, { footer: { right: 'Test  [xx]/[yy]' } }
       ).and_return(document)
 
       # Using 0 copies just to make this test scenario simpler to mock,
