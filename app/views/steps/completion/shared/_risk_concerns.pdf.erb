@@ -17,6 +17,14 @@
             </td>
           </tr>
         <% end %>
+
+        <% if risk_concerns.confidentiality_enabled? %>
+          <tr>
+            <td class="question">
+              <%=t "check_answers.descriptions.c8_attached_html" %>
+            </td>
+          </tr>
+        <% end %>
       </table>
     </td>
   </tr>

@@ -51,5 +51,12 @@ module Summary
         expect(subject.c1a_triggered?).to eq(true)
       end
     end
+
+    describe '#confidentiality_enabled?' do
+      it 'uses the implementation in the c100 application' do
+        expect(c100_application).to receive(:confidentiality_enabled?).and_return(true)
+        expect(subject.confidentiality_enabled?).to eq(true)
+      end
+    end
   end
 end
