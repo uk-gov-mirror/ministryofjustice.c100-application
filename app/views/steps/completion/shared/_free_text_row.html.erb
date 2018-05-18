@@ -8,8 +8,6 @@
     ) %>
   </dd>
   <dd class="change">
-    <% if free_text_row.show_change_link? %>
-      <%= link_to t('check_answers_html.change_link'), free_text_row.change_path %>
-    <% end %>
+    <%= render partial: 'steps/completion/shared/change_link', locals: { question: free_text_row } %>
   </dd>
 </dl>

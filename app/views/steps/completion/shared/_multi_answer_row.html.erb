@@ -12,8 +12,6 @@
     </ul>
   </dd>
   <dd class="change">
-    <% if multi_answer_row.show_change_link? %>
-      <%= link_to t('check_answers_html.change_link'), multi_answer_row.change_path %>
-    <% end %>
+    <%= render partial: 'steps/completion/shared/change_link', locals: { question: multi_answer_row } %>
   </dd>
 </dl>
