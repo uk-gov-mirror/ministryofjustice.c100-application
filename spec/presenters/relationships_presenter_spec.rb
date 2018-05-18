@@ -67,7 +67,7 @@ RSpec.describe RelationshipsPresenter do
         let(:confidentiality_enabled) { true }
 
         it 'returns the C8 replacement string' do
-          expect(subject.relationship_to_children(person)).to eq('See C8 attached')
+          expect(subject.relationship_to_children(person)).to eq('[See C8 attached at the end of this form]')
         end
 
         context 'but the bypass is activated' do

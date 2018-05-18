@@ -1,8 +1,10 @@
 en:
   dictionary:
     to_be_completed: &to_be_completed "To be completed by the court"
-    not_applicable: &not_applicable "Not applicable"
-    none_selected: &none_selected "None selected"
+    not_applicable: &not_applicable "[Not applicable in this case]"
+    not_required: &not_required "[Not required]"
+    c8_attached: &c8_attached "[See C8 attached at the end of this form]"
+    none_selected: &none_selected "[None selected]"
     unknown: &unknown "Don't know"
     details: &details "Details:"
 
@@ -67,7 +69,7 @@ en:
     admin_date_issued: Date issued
     admin_orders_applied_for: Order(s) applied for
     intentional_blank_page: This page is intentionally left blank
-    c8_confidential_answer: See C8 attached
+    c8_confidential_answer: *c8_attached
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
     statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
     statement_of_truth_hmcts_instructions: Statement of truth has been completed online - no signature required
@@ -140,8 +142,8 @@ en:
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
       c8_attached_html: <strong>C8 is attached at the end of this form</strong>
     separators:
-      c8_attached: See C8 attached
-      not_applicable: Not applicable
+      c8_attached: *c8_attached
+      not_applicable: *not_applicable
       contact_details: Contact details
       language_assistance: Language assistance
       intermediary: Intermediary
@@ -151,7 +153,7 @@ en:
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Person %{index}
-      hmcts_instructions: Document to be provided at first court hearing
+      hmcts_instructions: "[Document to be provided at first court hearing]"
       ### C8 ###
       c8_applicants_details_index_title: Applicant %{index}
       c8_other_parties_details_index_title: Person %{index}
@@ -561,7 +563,7 @@ en:
       question: Name of court
     c1a_protection_orders:
       question: Steps or orders requested to protect child(ren) and/or applicant
-      absence_answer: Not required
+      absence_answer: *not_required
     c1a_contact_type:
       question: Do you agree to the child(ren) spending time with the other person in this form?
       answers:
