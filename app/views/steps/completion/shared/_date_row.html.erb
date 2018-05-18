@@ -6,8 +6,6 @@
     <%= l(date_row.value) %>
   </dd>
   <dd class="change">
-    <% if date_row.show_change_link? %>
-      <%= link_to t('check_answers_html.change_link'), date_row.change_path %>
-    <% end %>
+    <%= render partial: 'steps/completion/shared/change_link', locals: { question: date_row } %>
   </dd>
 </dl>

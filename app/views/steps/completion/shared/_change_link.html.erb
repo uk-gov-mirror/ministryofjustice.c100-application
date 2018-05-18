@@ -1,0 +1,6 @@
+<% if question.show_change_link? %>
+  <%= link_to t('check_answers_html.change_link'),
+              question.change_path,
+              class: 'ga-pageLink',
+              data: {ga_category: 'check your answers', ga_label: 'change link'} %>
+<% end %>

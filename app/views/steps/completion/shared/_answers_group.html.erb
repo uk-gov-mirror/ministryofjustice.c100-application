@@ -8,8 +8,6 @@
     </dl>
   </dd>
   <dd class="change">
-    <% if answers_group.show_change_link? %>
-      <%= link_to t('check_answers_html.change_link'), answers_group.change_path %>
-    <% end %>
+    <%= render partial: 'steps/completion/shared/change_link', locals: { question: answers_group } %>
   </dd>
 </dl>
