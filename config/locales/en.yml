@@ -710,13 +710,6 @@ en:
           body_html: |
             <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
             <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
-      declaration:
-        edit:
-          page_title: Declaration
-          heading: Declaration
-          lead_text: You must confirm that the information you’ve provided in your application is true.
-          warning_title: Warning
-          warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
       check_your_answers:
         edit:
           page_title: Check your answers
