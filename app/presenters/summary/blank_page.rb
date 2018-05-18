@@ -10,7 +10,7 @@ module Summary
 
     def sections
       [
-        Partial.new(:blank_page)
+        Partial.blank_page
       ]
     end
   end
