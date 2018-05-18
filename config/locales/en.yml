@@ -726,6 +726,7 @@ en:
           declaration_lead_text: You must confirm that the information you’ve provided in your application is true.
           warning_title: Warning
           warning_text: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
+          no_more_changes_warning: Once you continue, you cannot make any further changes to your application.
         resume:
           page_title: Resume application
           heading: Resume application

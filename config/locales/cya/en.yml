@@ -1,6 +1,5 @@
 en:
   dictionary:
-    not_applicable: &not_applicable "Not applicable"
     none_selected: &none_selected "None selected"
     unknown: &unknown "Don't know"
     details: &details "Details:"
@@ -49,9 +48,6 @@ en:
       specific_issues: Specific Issue Order
       other_issue: Other issue
 
-    # Note: this is duplicated in `locales/en.yml`, due to the way locales work
-    # (they don't see each other when they are in different files). If you change copy here,
-    # remember to also update it in `locales/en.yml`
     COURT_ORDER_TYPES: &COURT_ORDER_TYPES
       non_molestation: Non-molestation order
       occupation: Occupation order
@@ -66,26 +62,26 @@ en:
       child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: MIAM requirement
       miam_attendance: MIAM attendance
-      miam_exemptions: MIAM exemptions
+      miam_exemptions: MIAM exemption
       safety_concerns: Safety concerns
       abduction: 'Safety concerns: Abduction'
-      children_abuse_details: 'Safety concerns: Child(ren)'
-      applicant_abuse_details: 'Safety concerns: Applicant(s)'
-      court_orders: 'Safety concerns: Protection orders'
-      safety_contact: 'Safety concerns: contact'
-      nature_of_application: What you're asking the court to decide about the children
-      alternatives: Alternative ways to reach an agreement
-      children_further_information: Further information about the child(ren)
-      children_details: Child(ren)
-      other_children_details: Other child(ren)
-      applicants_details: Applicant(s)
-      respondents_details: Respondent(s)
-      other_parties_details: Other parties
-      children_residence: Who the children currently live with?
-      other_court_cases: Other court cases
+      children_abuse_details: 'Safety concerns: the children'
+      applicant_abuse_details: 'Safety concerns: the applicants'
+      court_orders: 'Safety concerns: court orders for protection'
+      safety_contact: 'Safety concerns: contact with the children'
+      nature_of_application: What you're asking the court to decide
+      alternatives: Alternative ways to reach agreement
+      children_further_information: Further information about the children
+      children_details: Details of the children the application is about
+      other_children_details: Details of other children
+      applicants_details: Details of applicants
+      respondents_details: Details of respondents
+      other_parties_details: Details of any other people
+      children_residence: Where the children live
+      other_court_cases: Involvement in other proceedings
       without_notice_hearing: Without notice hearing
-      international_element: International elements
-      application_reasons: About your application
+      international_element: International information
+      application_reasons: Reasons for application
       attending_court: Attending court
       help_with_fees: Help with fees
     groups:
@@ -103,13 +99,12 @@ en:
       international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
       international_request: Has a request for information or other assistance involving the children been made to or by another country?
       language_help: Does anyone in this application need help with language?
-      litigation_capacity: Factors affecting ability to participate
+      litigation_capacity: Are there any factors that may affect any adult in this application taking part in the court proceedings?
       intermediary: Does anyone in this application need someone to help them communicate in court?
       special_assistance: Does anyone in this application need assistance or special facilities when attending court?
       special_arrangements: Do you or the children need specific arrangements when you attend court?
       help_with_fees: Do you have a ‘Help with fees’ reference number?
     separators:
-      not_applicable: Not applicable
       children_details_index_title: Child %{index}
       other_children_details_index_title: Other child %{index}
       applicants_details_index_title: Applicant %{index}
@@ -161,7 +156,7 @@ en:
       answers:
         <<: *RELATIONS
     child_orders:
-      question: Order(s) applied for
+      question: Orders applied for
       answers:
         <<: *PETITION_ORDER_TYPES
     children_known_to_authorities:
@@ -169,7 +164,7 @@ en:
       answers:
         <<: *YESNO
     children_known_to_authorities_details:
-      question: Child and the name of the local authority and social worker (if known)
+      question: Child and the name of the local authority and social worker
     children_protection_plan:
       question: Are any of the children the subject of a child protection plan?
       answers:
@@ -309,7 +304,7 @@ en:
       answers:
         <<: *YESNO
     abduction_previous_attempt_agency_details:
-      question: More details
+      question: Details
     abduction_risk_details:
       question: Brief explanation
     abduction_current_location:
@@ -344,15 +339,15 @@ en:
     abuse_behaviour_description:
       question: What happened?
     abuse_behaviour_start:
-      question: When did behaviour start?
+      question: When did your concerns start?
     abuse_behaviour_ongoing:
-      question: Behaviour ongoing?
+      question: Are you concerned the issue is still ongoing?
       answers:
         <<: *YESNO
     abuse_behaviour_stop:
-      question: How long did it continue?
+      question: When did you stop being concerned about the issue?
     abuse_asked_for_help:
-      question: Did you seek help?
+      question: Have you ever asked for help?
       answers:
         <<: *YESNO
     abuse_help_party:
@@ -378,21 +373,21 @@ en:
     order_length:
       question: Length of order
     order_is_current:
-      question: Current
+      question: Is the order current?
       answers:
         <<: *YESNO
     order_court_name:
       question: Name of court
     protection_orders:
-      question: Steps or orders requested to protect child(ren) and/or applicant
+      question: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
     concerns_contact_type:
-      question: Do you agree to the child(ren) spending time with the other person in this application?
+      question: Do you agree to the children spending time with the other people in this application?
       answers:
         unsupervised: 'Yes'
         supervised: Yes, but it must be supervised
         none: No, I do not want the other person to spend time with the children
     concerns_contact_other:
-      question: Do you agree to the other people in this application being in touch with the child(ren) in other ways?
+      question: Do you agree to the other people in this application being in touch with the children in other ways?
       answers:
         <<: *YESNO
 
@@ -421,7 +416,7 @@ en:
       question: Alternative ways to reach an agreement
 
     has_other_children:
-      question: Do you or the respondent(s) have other children who aren't part of this application?
+      question: Do you or the respondents have other children who aren't part of this application?
       answers:
         <<: *YESNO
     has_other_parties:
@@ -467,9 +462,9 @@ en:
         <<: *YESNO
 
     court_proceeding_children_names:
-      question: Name of child(ren)
+      question: Names of children involved
     court_proceeding_court_name:
-      question: Name of court where proceedings were heard
+      question: Name of court
     court_proceeding_case_number:
       question: Case number
     court_proceeding_proceedings_date:
@@ -477,7 +472,7 @@ en:
     court_proceeding_cafcass_details:
       question: Name and office of Cafcass/Cafcass Cymru officer
     court_proceeding_order_types:
-      question: Type of proceedings - if known
+      question: Type of proceedings
     court_proceeding_previous_details:
       question: Details of any other previous family case
 

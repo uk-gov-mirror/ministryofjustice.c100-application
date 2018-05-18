@@ -30,5 +30,10 @@
     <%= f.single_check_box :declaration_made %>
   </div>
 
-  <%= f.continue_button continue: :confirm_and_finish, save_and_continue: :confirm_and_finish %>
+  <br/>
+  <div class="panel panel-border-narrow">
+    <p><%=t '.no_more_changes_warning' %></p>
+  </div>
+
+  <%= f.continue_button %>
 <% end %>
