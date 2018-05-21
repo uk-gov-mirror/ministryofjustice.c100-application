@@ -10,6 +10,9 @@ describe Summary::HtmlPresenter do
 
       # Abduction section
       allow(c100_application).to receive(:abduction_detail).and_return(AbductionDetail.new)
+
+      # Help with fees or Payment section (temporary feature-flagged code)
+      allow(c100_application).to receive(:payment_type).and_return(nil)
     end
 
     it 'has the right sections in the right order' do
@@ -39,6 +42,18 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::AttendingCourt,
         Summary::HtmlSections::HelpWithFees,
       ])
+    end
+
+    # TODO: temporary feature-flagged code
+    context 'when the payment type question has been answered' do
+      before do
+        allow(c100_application).to receive(:payment_type).and_return('whatever')
+      end
+
+      it 'presents the Payment section instead of the HelpWithFees section' do
+        expect(subject.sections).not_to include(Summary::HtmlSections::HelpWithFees)
+        expect(subject.sections).to include(Summary::HtmlSections::Payment)
+      end
     end
   end
 end

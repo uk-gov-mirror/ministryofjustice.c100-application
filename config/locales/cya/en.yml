@@ -84,6 +84,7 @@ en:
       application_reasons: Reasons for application
       attending_court: Attending court
       help_with_fees: Help with fees
+      payment: How will you pay the application fee?
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -104,6 +105,7 @@ en:
       special_assistance: Does anyone in this application need assistance or special facilities when attending court?
       special_arrangements: Do you or the children need specific arrangements when you attend court?
       help_with_fees: Do you have a ‘Help with fees’ reference number?
+      payment_type: Payment type
     separators:
       children_details_index_title: Child %{index}
       other_children_details_index_title: Other child %{index}
@@ -548,3 +550,11 @@ en:
         <<: *YESNO
     hwf_reference_number:
       question: Reference number
+    solicitor_account_number:
+      question: Fee account number
+    payment_type:
+      question: ''
+      answers:
+        help_with_fees: Help with fees
+        solicitor: Solicitor payment
+        self_payment: I am paying myself
