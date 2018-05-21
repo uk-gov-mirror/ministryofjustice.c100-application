@@ -60,7 +60,7 @@ module SecurityHandling
 
   # :nocov:
   def sentry_debug_session_expire(epoch)
-    return if Rails.application.config.consider_all_requests_local
+    return if Rails.application.config.consider_all_requests_local || session[:c100_application_id].nil?
 
     exception = StandardError.new('ensure_session_validity')
 
