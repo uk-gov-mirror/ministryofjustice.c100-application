@@ -26,8 +26,8 @@ module C100App
       when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
-        edit(:help_paying)
-      when :help_paying
+        help_paying_or_payment
+      when :help_paying, :payment
         edit(:check_your_answers)
       when :declaration
         show('/steps/completion/what_next')
@@ -65,6 +65,15 @@ module C100App
 
     def start_international_journey
       edit('/steps/international/resident')
+    end
+
+    # TODO: temporary journey for user testing on staging
+    def help_paying_or_payment
+      if dev_tools_enabled?
+        edit(:payment)
+      else
+        edit(:help_paying)
+      end
     end
   end
 end
