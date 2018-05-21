@@ -6,7 +6,6 @@ module Summary
       @c100_application = c100_application
     end
 
-    # rubocop:disable Metrics/AbcSize
     def sections
       [
         *miam_questions,
@@ -21,10 +20,9 @@ module Summary
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
         HtmlSections::AttendingCourt.new(c100_application),
-        HtmlSections::HelpWithFees.new(c100_application),
+        payment_section,
       ].flatten.select(&:show?)
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 
@@ -61,6 +59,15 @@ module Summary
         HtmlSections::RespondentsDetails.new(c100_application),
         HtmlSections::OtherPartiesDetails.new(c100_application),
       ]
+    end
+
+    # TODO: temporary journey for user testing on staging
+    def payment_section
+      if c100_application.payment_type.present?
+        HtmlSections::Payment.new(c100_application)
+      else
+        HtmlSections::HelpWithFees.new(c100_application)
+      end
     end
   end
 end

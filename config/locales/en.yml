@@ -710,6 +710,11 @@ en:
           body_html: |
             <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
             <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
+      payment:
+        edit:
+          page_title: Payment type
+          heading: How will you pay the application fee?
+          lead_text: The court fee is £215. Only the person applying to court (the applicant) needs to pay.
       check_your_answers:
         edit:
           page_title: Check your answers
@@ -1227,6 +1232,8 @@ en:
         international_jurisdiction_html: ""
       steps_international_request_form:
         international_request_html: ""
+      steps_application_payment_form:
+        payment_type_html: ""
 
       ### SCREENER ###
       #
@@ -1278,8 +1285,17 @@ en:
         language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
+      # TODO: the `help_paying` is to be removed once we introduce
+      # the `payment_form` substitute (only visible in staging for now)
       steps_application_help_paying_form:
         hwf_reference_number: Enter your reference number
+      steps_application_payment_form:
+        payment_type:
+          help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
+          solicitor_html: '<strong>Solicitor payment</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
+          self_payment_html: '<strong>I am paying myself</strong><br>You can pay over the phone using a credit or debit card, by post with a cheque, or in person at the court by cheque, cash or card.'
+        hwf_reference_number: Enter your reference number
+        solicitor_account_number: Enter solicitor’s fee account number
       steps_application_declaration_form:
         declaration_made: I confirm that I believe that the facts stated in this application are true
       steps_alternatives_court_form:
