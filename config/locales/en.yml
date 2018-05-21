@@ -829,9 +829,14 @@ en:
       urgency:
         edit:
           page_title: Urgent hearing
-          heading: Are you asking for an urgent hearing?
-          lead_text: A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there is good reason for the urgency.
-          reasons_title: Examples of when a court will consider an urgent hearing
+          heading: Do you need an urgent hearing?
+          lead_text: 'A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there’s good reason for the urgency, for example:'
+          examples_html: |
+            <ul class="list list-bullet">
+              <li>there’s a risk of harm to you or the children</li>
+              <li>the children are at risk of abduction</li>
+            </ul>
+          reasons_title: Examples of when a court may consider an urgent hearing
           reasons_content_html: |
             <p>There is:</p>
             <ul class="list list-bullet">
