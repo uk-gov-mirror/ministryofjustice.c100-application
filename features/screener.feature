@@ -12,7 +12,7 @@ Feature: Screener
     And I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
 
-    Then I should see "Are you asking for an urgent hearing?"
+    Then I should see "Do you need an urgent hearing?"
     And I choose "No"
 
     Then I should see "Are you a parent of the child or children?"
