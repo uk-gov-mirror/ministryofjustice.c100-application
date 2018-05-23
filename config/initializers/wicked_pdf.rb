@@ -8,8 +8,7 @@
 #
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
 
-WickedPdf.config = {
+WickedPdf.config ||= {}
+WickedPdf.config.merge!({
   encoding: 'utf-8',
-  # Path to the wkhtmltopdf executable
-  exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')
-}
+})
