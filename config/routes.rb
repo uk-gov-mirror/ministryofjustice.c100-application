@@ -246,8 +246,11 @@ Rails.application.routes.draw do
   get 'entrypoint/what_is_needed'
   get 'entrypoint/how_long'
 
-  get :contact, to: 'home#contact', as: :contact_page
-  get :cookies, to: 'home#cookies', as: :cookies_page
+  get 'about/contact'
+  get 'about/cookies'
+  get 'about/privacy'
+  get 'about/terms_and_conditions'
+
   get :miam_exemptions, to: 'home#miam_exemptions', as: :miam_exemptions_page
 
   # This route is used in court emails to point users to the survey
