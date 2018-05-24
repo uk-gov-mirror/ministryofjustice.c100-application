@@ -920,6 +920,7 @@ en:
       help: Help
       contact: Contact
       cookies: Cookies
+      privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
       phase_info_email_html: |
