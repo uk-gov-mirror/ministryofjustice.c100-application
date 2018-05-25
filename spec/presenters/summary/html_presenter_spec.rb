@@ -50,9 +50,10 @@ describe Summary::HtmlPresenter do
         allow(c100_application).to receive(:payment_type).and_return('whatever')
       end
 
-      it 'presents the Payment section instead of the HelpWithFees section' do
+      it 'presents the Payment and Submission sections instead of the HelpWithFees section' do
         expect(subject.sections).not_to include(Summary::HtmlSections::HelpWithFees)
         expect(subject.sections).to include(Summary::HtmlSections::Payment)
+        expect(subject.sections).to include(Summary::HtmlSections::Submission)
       end
     end
   end
