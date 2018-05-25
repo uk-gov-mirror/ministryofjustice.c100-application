@@ -16,6 +16,8 @@ en:
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these‘"
     account_purge_info: &account_purge_info "If you have not signed in for %{expire_in_days} days we delete your account for security reasons."
+    invalid_email_error: &invalid_email_error "Enter a valid email address"
+    blank_email_error: &blank_email_error "Enter an email address"
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
       attending_court: &attending_court "Attending court"
@@ -715,6 +717,11 @@ en:
           page_title: Payment type
           heading: How will you pay the application fee?
           lead_text: The court fee is £215. Only the person applying to court (the applicant) needs to pay.
+      submission:
+        edit:
+          page_title: How would you submit your application?
+          heading: How would you like to submit your application to court?
+          lead_text: Your completed application can be sent straight to the court online, or you can print it and send it by post if you prefer.
       check_your_answers:
         edit:
           page_title: Check your answers
@@ -935,11 +942,14 @@ en:
       base:
         blank_orders: You must select at least one option
       email:
-        invalid: Enter a valid email address
-        blank: Enter an email address
+        invalid: *invalid_email_error
+        blank: *blank_email_error
       email_address:
-        invalid: Enter a valid email address
-        blank: Enter an email address
+        invalid: *invalid_email_error
+        blank: *blank_email_error
+      receipt_email:
+        invalid: *invalid_email_error
+        blank: *blank_email_error
       children_postcodes:
         invalid: Please enter a valid full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'sw1h9aj')
         blank: Please enter a full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'SW1h9AJ')
@@ -1235,6 +1245,8 @@ en:
         international_request_html: ""
       steps_application_payment_form:
         payment_type_html: ""
+      steps_application_submission_form:
+        submission_type_html: ""
 
       ### SCREENER ###
       #
@@ -1297,6 +1309,11 @@ en:
           self_payment_html: '<strong>I am paying myself</strong><br>You can pay over the phone using a credit or debit card, by post with a cheque, or in person at the court by cheque, cash or card.'
         hwf_reference_number: Enter your reference number
         solicitor_account_number: Enter solicitor’s fee account number
+      steps_application_submission_form:
+        submission_type:
+          online: Submit online
+          print_and_post: Print and send by post
+        receipt_email: Enter an email address if you would like to get a confirmation
       steps_application_declaration_form:
         declaration_made: I confirm that I believe that the facts stated in this application are true
       steps_alternatives_court_form:
@@ -1462,6 +1479,8 @@ en:
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem
       steps_application_details_form:
         application_details: You do not have to give a full statement although you may be asked to provide one later.
+      steps_application_submission_form:
+        receipt_email: We will send an copy of your application to this address
       steps_abduction_passport_details_form:
         passport_possesion: Select all that apply
       steps_abduction_risk_details_form:

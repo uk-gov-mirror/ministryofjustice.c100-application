@@ -20,7 +20,7 @@ module Summary
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
         HtmlSections::AttendingCourt.new(c100_application),
-        payment_section,
+        *payment_and_submission_sections,
       ].flatten.select(&:show?)
     end
 
@@ -62,11 +62,16 @@ module Summary
     end
 
     # TODO: temporary journey for user testing on staging
-    def payment_section
+    def payment_and_submission_sections
       if c100_application.payment_type.present?
-        HtmlSections::Payment.new(c100_application)
+        [
+          HtmlSections::Payment.new(c100_application),
+          HtmlSections::Submission.new(c100_application),
+        ]
       else
-        HtmlSections::HelpWithFees.new(c100_application)
+        [
+          HtmlSections::HelpWithFees.new(c100_application)
+        ]
       end
     end
   end

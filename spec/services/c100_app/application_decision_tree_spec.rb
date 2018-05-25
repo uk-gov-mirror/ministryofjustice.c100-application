@@ -115,6 +115,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `payment`' do
     let(:step_params) { { payment: 'anything' } }
+    it { is_expected.to have_destination(:submission, :edit) }
+  end
+
+  context 'when the step is `submission`' do
+    let(:step_params) { { submission: 'anything' } }
     it { is_expected.to have_destination(:check_your_answers, :edit) }
   end
 

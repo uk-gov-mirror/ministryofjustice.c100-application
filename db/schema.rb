@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180521113047) do
+ActiveRecord::Schema.define(version: 20180525105634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,8 @@ ActiveRecord::Schema.define(version: 20180521113047) do
     t.boolean "declaration_made"
     t.string "payment_type"
     t.string "solicitor_account_number"
+    t.string "submission_type"
+    t.string "receipt_email"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
