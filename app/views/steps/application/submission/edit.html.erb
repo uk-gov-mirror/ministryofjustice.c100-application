@@ -12,10 +12,12 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :payment_type do |fieldset|
-          fieldset.radio_input(PaymentType::HELP_WITH_FEES) { f.text_field :hwf_reference_number, class: 'narrow' }
-          fieldset.radio_input(PaymentType::SOLICITOR) { f.text_field :solicitor_account_number, class: 'narrow' }
-          fieldset.radio_input(PaymentType::SELF_PAYMENT)
+        f.radio_button_fieldset :submission_type, inline: true do |fieldset|
+          fieldset.radio_input(SubmissionType::ONLINE, panel_id: :receipt_email_panel)
+          fieldset.radio_input(SubmissionType::PRINT_AND_POST)
+          fieldset.revealing_panel(:receipt_email_panel) do |panel|
+            panel.text_field :receipt_email
+          end
         end
       %>
 

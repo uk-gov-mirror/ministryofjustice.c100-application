@@ -91,6 +91,7 @@ Rails.application.routes.draw do
       edit_step :intermediary
       edit_step :help_paying
       edit_step :payment
+      edit_step :submission
       edit_step :check_your_answers do
         get :resume, action: :resume
       end

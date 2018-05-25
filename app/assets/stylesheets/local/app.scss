@@ -75,6 +75,12 @@
   margin-top: 50px;
 }
 
+.prototype-step {
+  padding: 20px;
+  border: 1px solid #666666;
+  background-color: #dddddd;
+}
+
 // This will hide the Sentry user-feedback attribution. There is a setting
 // to hide it but currently it is not working, so this is an alternative.
 div.sentry-error-embed-wrapper p.powered-by {
