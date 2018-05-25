@@ -27,7 +27,9 @@ module C100App
         edit(:special_arrangements)
       when :special_arrangements
         help_paying_or_payment
-      when :help_paying, :payment
+      when :payment
+        edit(:submission)
+      when :help_paying, :submission
         edit(:check_your_answers)
       when :declaration
         show('/steps/completion/what_next')
