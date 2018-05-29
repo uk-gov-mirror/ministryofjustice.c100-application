@@ -1754,3 +1754,9 @@ en:
   miam:
     index:
       continue: Continue
+
+  email_submission_mailer:
+    submission_to_court:
+      subject: C100 New application - Child arrangements
+    copy_to_user:
+      subject: C100 New application - Child arrangements

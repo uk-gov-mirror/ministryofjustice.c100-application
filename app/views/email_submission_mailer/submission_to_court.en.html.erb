@@ -1,0 +1,13 @@
+<h1>"<%= @service_name %>" Submission</h1>
+<p>Someone has submitted the attached data through the "<%= link_to @service_name, '/' %>"
+service</p>
+
+<p>Please take the following steps:</p>
+
+<ul>
+  <li>Enter the data into your case management systems as appropriate</li>
+  <li>Contact the applicant to take their payment</li>
+</ul>
+
+<p>You can email the applicant by replying to this email</p>
+<p>For any technical questions about this email, please email <%= link_to @tech_email, "mailto:#{@tech_email}" %></p>
