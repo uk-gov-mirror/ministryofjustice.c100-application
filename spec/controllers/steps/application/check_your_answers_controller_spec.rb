@@ -28,4 +28,35 @@ RSpec.describe Steps::Application::CheckYourAnswersController, type: :controller
       end
     end
   end
+
+  context 'step name based on submission type' do
+    let(:existing_case) { C100Application.create(status: :in_progress, submission_type: submission_type) }
+
+    context 'when the submission type is online' do
+      let(:submission_type) { SubmissionType::ONLINE }
+
+      it 'asks the decision tree for the next destination and redirects there' do
+        expect(subject).to receive(:update_and_advance).with(Steps::Application::DeclarationForm, as: :online_submission)
+        put :update, params: {}, session: { c100_application_id: existing_case.id }
+      end
+    end
+
+    context 'when the submission type is print and post' do
+      let(:submission_type) { SubmissionType::PRINT_AND_POST }
+
+      it 'asks the decision tree for the next destination and redirects there' do
+        expect(subject).to receive(:update_and_advance).with(Steps::Application::DeclarationForm, as: :print_and_post_submission)
+        put :update, params: {}, session: { c100_application_id: existing_case.id }
+      end
+    end
+
+    context 'when the submission type is not present' do
+      let(:submission_type) { nil }
+
+      it 'asks the decision tree for the next destination and redirects there' do
+        expect(subject).to receive(:update_and_advance).with(Steps::Application::DeclarationForm, as: :print_and_post_submission)
+        put :update, params: {}, session: { c100_application_id: existing_case.id }
+      end
+    end
+  end
 end

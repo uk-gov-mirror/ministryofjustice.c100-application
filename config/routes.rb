@@ -212,6 +212,7 @@ Rails.application.routes.draw do
       edit_step :request
     end
     namespace :completion do
+      show_step :confirmation
       show_step :what_next
       show_step :summary
       # The following is an alias of the `what_next` route, for analytics tracking

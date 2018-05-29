@@ -19,19 +19,7 @@
         <ol class="list list-number">
           <li class="util_mt-medium">
             <h3 class="heading-medium">Download your application</h3>
-            <p>
-              This will be a PDF. If you cannot open the PDF after downloading, try using <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
-            </p>
-
-            <% unless user_signed_in? %>
-              <div class="panel panel-border-narrow">
-                <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
-              </div>
-            <% end %>
-
-            <p>
-              <%= link_to 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'button ga-pageLink', data: {ga_category: 'completion', ga_label: 'download application'} %>
-            </p>
+            <%= render partial: 'steps/shared/download_instructions' %>
           </li>
 
           <li>
@@ -60,13 +48,7 @@
 
           <li>
             <h3 class="heading-medium">Pay the application fee</h3>
-            <p>
-              It costs £215 to apply. Someone from the court will telephone you within 3 working days of receiving your application to take payment using a credit or debit card.
-            </p>
-            <p>You can also pay by post with a cheque made out to ‘HM Courts and Tribunals Service’, or in person at the court by cheque, cash or card.</p>
-            <p>
-              You don’t need to pay if you have a <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">‘Help with fees’</a> reference.
-            </p>
+            <%= render partial: 'steps/shared/payment_instructions' %>
           </li>
         </ol>
       </div>
@@ -74,47 +56,6 @@
 
     <hr/>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <h2 class="heading-large gv-u-heading-large">If you need help</h2>
-      <p>
-        You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
-        need to
-        <a href="https://solicitors.lawsociety.org.uk/" target="external_link" rel="external">find a legal advisor</a> if
-        you have any issues.
-      </p>
-
-      <dl id="court-contact-details">
-        <%- unless @court.email.blank? %>
-          <dt><strong>Email</strong></dt>
-          <dd><%= mail_to @court.email, @court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
-        <%- end %>
-
-        <%- unless @court.phone_number.blank? %>
-          <dt><strong>Phone number</strong></dt>
-          <dd><%= @court.phone_number %></dd>
-        <%- end %>
-
-        <%- if @court.opening_times? %>
-          <dt><strong>Opening times</strong></dt>
-          <%- @court.opening_times.each do |opening_time| %>
-            <dd><%= opening_time %></dd>
-          <%- end %>
-        <%- end %>
-      </dl>
-
-      <p>
-        <%= link_to "More information about #{@court.name}", C100App::CourtfinderAPI.new.court_url(@court.slug), target: 'external_link', rel: 'external' %>
-      </p>
-    </div>
-
-    <div class="govuk-govspeak gv-s-prose util_mt-large">
-      <h2 class="heading-large gv-u-heading-large">We’d like your feedback</h2>
-      <p>
-        Would you like to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], target: 'external_link', rel: 'external' %> to give us your feedback about the online service you have just used?
-      </p>
-      <p>
-        This will help us to improve it. Your feedback won’t affect your application in any way.
-      </p>
-    </div>
+    <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
   </div>
 </div>

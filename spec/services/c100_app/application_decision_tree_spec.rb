@@ -123,8 +123,13 @@ RSpec.describe C100App::ApplicationDecisionTree do
     it { is_expected.to have_destination(:check_your_answers, :edit) }
   end
 
-  context 'when the step is `declaration`' do
-    let(:step_params) { { declaration: 'anything' } }
+  context 'when the step is `print_and_post_submission`' do
+    let(:step_params) { { print_and_post_submission: 'anything' } }
     it { is_expected.to have_destination('/steps/completion/what_next', :show) }
+  end
+
+  context 'when the step is `online_submission`' do
+    let(:step_params) { { online_submission: 'anything' } }
+    it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
   end
 end
