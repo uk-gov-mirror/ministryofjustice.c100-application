@@ -33,6 +33,10 @@ class C100Application < ApplicationRecord
     where('created_at <= :date', date: date).destroy_all
   end
 
+  def online_submission?
+    submission_type.eql?(SubmissionType::ONLINE.to_s)
+  end
+
   def confidentiality_enabled?
     address_confidentiality.eql?(GenericYesNo::YES.to_s)
   end

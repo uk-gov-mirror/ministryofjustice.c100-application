@@ -21,7 +21,7 @@
         <span class="visually-hidden gv-c-notice__icon-fallback-text"><%= t '.warning_title' %></span>
       </i>
       <strong class=" bold-small gv-c-notice__text">
-        <%= t '.warning_text' %>
+        <%= t '.false_information_warning' %>
       </strong>
     </div>
 
@@ -32,8 +32,11 @@
 
   <br/>
   <div class="panel panel-border-narrow">
-    <p><%=t '.no_more_changes_warning' %></p>
+    <p><%=t @presenter.before_submit_warning %></p>
   </div>
 
-  <%= f.continue_button %>
+  <%= f.continue_button(
+    continue: @presenter.submit_button_label,
+    save_and_continue: @presenter.submit_button_label
+  ) %>
 <% end %>
