@@ -4,6 +4,44 @@ describe Summary::HtmlPresenter do
   let(:c100_application) { instance_double(C100Application) }
   subject { described_class.new(c100_application) }
 
+  describe '#before_submit_warning' do
+    let(:c100_application) { instance_double(C100Application, submission_type: submission_type) }
+
+    context 'for online submissions' do
+      let(:submission_type) { 'online' }
+      it { expect(subject.before_submit_warning).to eq('.submit_warning.online') }
+    end
+
+    context 'for print and post submissions' do
+      let(:submission_type) { 'print_and_post' }
+      it { expect(subject.before_submit_warning).to eq('.submit_warning.print_and_post') }
+    end
+
+    context 'defaults to print and post if `submission_type` is not present' do
+      let(:submission_type) { nil }
+      it { expect(subject.before_submit_warning).to eq('.submit_warning.print_and_post') }
+    end
+  end
+
+  describe '#submit_button_label' do
+    let(:c100_application) { instance_double(C100Application, submission_type: submission_type) }
+
+    context 'for online submissions' do
+      let(:submission_type) { 'online' }
+      it { expect(subject.submit_button_label).to eq('submit_application.online') }
+    end
+
+    context 'for print and post submissions' do
+      let(:submission_type) { 'print_and_post' }
+      it { expect(subject.submit_button_label).to eq('submit_application.print_and_post') }
+    end
+
+    context 'defaults to print and post if `submission_type` is not present' do
+      let(:submission_type) { nil }
+      it { expect(subject.submit_button_label).to eq('submit_application.print_and_post') }
+    end
+  end
+
   describe '#sections' do
     before do
       allow_any_instance_of(Summary::Sections::BaseSectionPresenter).to receive(:show?).and_return(true)

@@ -31,8 +31,10 @@ module C100App
         edit(:submission)
       when :help_paying, :submission
         edit(:check_your_answers)
-      when :declaration
+      when :print_and_post_submission
         show('/steps/completion/what_next')
+      when :online_submission
+        show('/steps/completion/confirmation')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

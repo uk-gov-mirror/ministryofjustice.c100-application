@@ -1,6 +1,6 @@
 module Steps
   module Completion
-    class WhatNextController < Steps::CompletionStepController
+    class ConfirmationController < Steps::CompletionStepController
       include CompletionStep
 
       def show

@@ -41,6 +41,18 @@ RSpec.describe C100Application, type: :model do
     end
   end
 
+  describe '#online_submission?' do
+    context 'for `online` values' do
+      let(:attributes) { {submission_type: 'online'} }
+      it { expect(subject.online_submission?).to eq(true) }
+    end
+
+    context 'for other values' do
+      let(:attributes) { {submission_type: 'whatever'} }
+      it { expect(subject.online_submission?).to eq(false) }
+    end
+  end
+
   describe '#confidentiality_enabled?' do
     context 'for `yes` values' do
       let(:attributes) { {address_confidentiality: 'yes'} }

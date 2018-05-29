@@ -243,24 +243,6 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 end
 
-RSpec.shared_examples 'a completion step controller' do
-  describe '#show' do
-    context 'when a case exists in the session' do
-      let!(:existing_c100) { C100Application.create(status: :in_progress) }
-
-      before do
-        allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-      end
-
-      it 'changes the status to `completed`' do
-        expect {
-          get :show, session: { c100_application_id: existing_c100.id }
-        }.to change { existing_c100.status }.to('completed')
-      end
-    end
-  end
-end
-
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
   include_examples 'a generic step controller', form_class, decision_tree_class
 
@@ -405,6 +387,59 @@ RSpec.shared_examples 'a summary step controller' do
 
           expect(response.body).to eq('a majestic pdf')
           expect(response.headers['Content-Disposition']).to eq('attachment; filename="test.pdf"')
+        end
+      end
+    end
+  end
+end
+
+RSpec.shared_examples 'a completion step controller' do
+  context 'in standard interactions' do
+    let(:court) {instance_double(Court)}
+    before do
+      allow(subject).to receive(:court_from_screener_answers).and_return(court)
+    end
+
+    it_behaves_like 'a show step controller'
+  end
+
+  describe '#court_from_screener_answers' do
+    let(:screener_answers) {instance_double(ScreenerAnswers, local_court: local_court)}
+    let(:c100_application) {instance_double(C100Application, screener_answers: screener_answers)}
+    before do
+      allow(subject).to receive(:current_c100_application).and_return(c100_application)
+    end
+
+    context 'when there is a local_court in screener_answers' do
+      let(:local_court) {{}}
+      let(:new_court) {instance_double(Court)}
+
+      before do
+        allow(c100_application).to receive(:screener_answers).and_return(screener_answers)
+        allow_any_instance_of(Court).to receive(:from_courtfinder_data!).with(local_court).and_return(new_court)
+
+      end
+
+      it 'creates a new Court from_court_finder_data passing the local_court' do
+        expect_any_instance_of(Court).to receive(:from_courtfinder_data!).with(local_court)
+        subject.send(:court_from_screener_answers)
+      end
+
+      it 'returns the new Court' do
+        expect(subject.send(:court_from_screener_answers)).to eq(new_court)
+      end
+    end
+
+    context 'when there is no local_court in screener_answers' do
+      let(:local_court) {nil}
+      it 'returns a new Court' do
+        expect(subject.send(:court_from_screener_answers)).to be_a(Court)
+      end
+
+      describe 'the returned Court' do
+        let(:returned_court) {subject.send(:court_from_screener_answers)}
+        it 'has nil instance_variables' do
+          expect(returned_court.instance_variables).to be_empty
         end
       end
     end

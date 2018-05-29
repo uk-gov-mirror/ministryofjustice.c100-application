@@ -24,6 +24,14 @@ module Summary
       ].flatten.select(&:show?)
     end
 
+    def before_submit_warning
+      ['.submit_warning', submission_type].join('.')
+    end
+
+    def submit_button_label
+      ['submit_application', submission_type].join('.')
+    end
+
     private
 
     def miam_questions
@@ -73,6 +81,10 @@ module Summary
           HtmlSections::HelpWithFees.new(c100_application)
         ]
       end
+    end
+
+    def submission_type
+      c100_application.submission_type || SubmissionType::PRINT_AND_POST
     end
   end
 end
