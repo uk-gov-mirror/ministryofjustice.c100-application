@@ -94,4 +94,35 @@ RSpec.describe C100Application, type: :model do
       end
     end
   end
+
+  describe '#court_from_screener_answers' do
+    let(:screener_answers){ ScreenerAnswers.new(local_court: local_court) }
+
+    before do
+      subject.screener_answers = screener_answers
+    end
+
+    context 'when there is a local_court in screener_answers' do
+      let(:local_court){ Court.new(name: 'my court') }
+      let(:new_court){ Court.new(name: 'my court') }
+
+      it 'returns a Court' do
+        expect(subject.send(:court_from_screener_answers)).to be_a(Court)
+      end
+
+      describe 'the returned Court' do
+        let(:returned_court){ subject.court_from_screener_answers }
+        it 'has the right attributes' do
+          expect(returned_court.name).to eq(new_court.name)
+        end
+      end
+    end
+
+    context 'when there is no local_court in screener_answers' do
+      let(:local_court){ nil }
+      it 'returns nil' do
+        expect(subject.send(:court_from_screener_answers)).to eq(nil)
+      end
+    end
+  end
 end

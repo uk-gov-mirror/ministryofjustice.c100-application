@@ -29,12 +29,9 @@ class EmailSubmissionMailer < ApplicationMailer
 
   private
 
+  # just for easier stubbing in specs
   def attachment_contents(attachment)
     File.read(attachment)
-  end
-
-  def c100_application
-    @c100_application ||= C100Application.find(params[:c100_application_id])
   end
 
   def log_errors(exception)
