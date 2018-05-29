@@ -17,7 +17,7 @@ module C100App
     def pdf_from_presenter(presenter)
       WickedPdf.new.pdf_from_string(
         render(presenter),
-        footer: { right: "#{presenter.name}  #{presenter.page_number}" }
+        footer: { right: footer_line(presenter) }
       )
     end
 
@@ -26,6 +26,14 @@ module C100App
         template: presenter.template,
         locals: { presenter: presenter }
       )
+    end
+
+    def footer_line(presenter)
+      [
+        presenter.c100_application.reference_code,
+        presenter.name,
+        presenter.page_number,
+      ].join('   ')
     end
 
     def combiner

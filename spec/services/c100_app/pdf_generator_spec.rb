@@ -10,6 +10,8 @@ RSpec.describe C100App::PdfGenerator do
   end
 
   describe '#generate' do
+    let(:c100_application) { double('c100_application') }
+
     let(:presenter) {
       double(
         'Presenter',
@@ -17,10 +19,15 @@ RSpec.describe C100App::PdfGenerator do
         page_number: '[xx]/[yy]',
         template: 'path/to/template',
         raw_file_path: raw_file_path,
+        c100_application: c100_application,
       )
     }
     let(:document)  { 'a form document' }
     let(:raw_file_path) { nil }
+
+    before do
+      allow(c100_application).to receive(:reference_code).and_return('12345/XYZ')
+    end
 
     it 'renders a form using a presenter' do
       expect(ApplicationController).to receive(:render).with(
@@ -28,7 +35,7 @@ RSpec.describe C100App::PdfGenerator do
       ).and_return(document)
 
       expect(wicked_pdf).to receive(:pdf_from_string).with(
-        document, { footer: { right: 'Test  [xx]/[yy]' } }
+        document, { footer: { right: '12345/XYZ   Test   [xx]/[yy]' } }
       ).and_return(document)
 
       # Using 0 copies just to make this test scenario simpler to mock,
