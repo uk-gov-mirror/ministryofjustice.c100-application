@@ -4,7 +4,7 @@ class EmailSubmission < ApplicationRecord
   def initialize(params = {})
     @c100_application = params[:c100_application]
     @email_copy_to = @c100_application.try(:receipt_email)
-    @reference_code = @c100_application.reference_code
+    @reference_code = @c100_application.try(:reference_code)
     @to_address = @c100_application.try(:court_from_screener_answers).try(:email)
     @from = ENV['SUBMISSION_EMAIL_FROM'] || 'from@example.com'
     super
@@ -36,8 +36,8 @@ class EmailSubmission < ApplicationRecord
         reply_to: @to_address,
         attachment: pdf_file_path
       ).deliver_now!
-      self.sent_at = Time.now.utc
-      self.message_id = response.message_id
+      self.user_copy_sent_at = Time.now.utc
+      self.user_copy_message_id = response.message_id
     end
 
     # save the timestamp & message id
