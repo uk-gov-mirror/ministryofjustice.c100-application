@@ -53,8 +53,9 @@ RSpec.describe Users::DraftsController, type: :controller do
       end
 
       context 'when c100 application exists' do
-        let!(:c100_application) { C100Application.create(navigation_stack: %w(/step/1 /step/2)) }
+        let!(:c100_application) { C100Application.create(navigation_stack: %w(/step/1 /step/2), submission_type: submission_type) }
         let(:scoped_result) { double('result') }
+        let(:submission_type) { nil }
 
         context 'for a completed application' do
           before do
@@ -68,9 +69,22 @@ RSpec.describe Users::DraftsController, type: :controller do
             expect(session[:c100_application_id]).to eq(c100_application.id)
           end
 
-          it 'redirects to the completion step' do
-            get :resume, params: {id: c100_application.id}
-            expect(response).to redirect_to('/steps/completion/how_to_submit')
+          context 'for a print and post submission' do
+            let(:submission_type) { SubmissionType::PRINT_AND_POST }
+
+            it 'redirects to the `how_to_submit` page' do
+              get :resume, params: {id: c100_application.id}
+              expect(response).to redirect_to('/steps/completion/how_to_submit')
+            end
+          end
+
+          context 'for an online submission' do
+            let(:submission_type) { SubmissionType::ONLINE }
+
+            it 'redirects to the `confirmation` page' do
+              get :resume, params: {id: c100_application.id}
+              expect(response).to redirect_to('/steps/completion/confirmation')
+            end
           end
         end
 

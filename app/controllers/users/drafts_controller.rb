@@ -13,7 +13,7 @@ module Users
       if completed_application_from_params
         set_session_and_redirect(
           completed_application_from_params,
-          steps_completion_how_to_submit_path
+          how_to_submit_or_confirmation_page
         )
       elsif draft_from_params
         set_session_and_redirect(
@@ -36,6 +36,14 @@ module Users
 
     def draft_from_params
       @_c100_application ||= current_user.drafts.find_by(id: params[:id]) || (raise Errors::ApplicationNotFound)
+    end
+
+    def how_to_submit_or_confirmation_page
+      if completed_application_from_params.online_submission?
+        steps_completion_confirmation_path
+      else
+        steps_completion_how_to_submit_path
+      end
     end
 
     def set_session_and_redirect(c100_application, path)
