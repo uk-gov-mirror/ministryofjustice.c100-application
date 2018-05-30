@@ -95,30 +95,14 @@ RSpec.describe C100Application, type: :model do
     end
   end
 
-  describe '#court_from_screener_answers' do
-    let(:screener_answers){ ScreenerAnswers.new(local_court: local_court) }
-    let(:court) {instance_double(Court)}
-
+  describe '#screener_answers_court' do
     before do
-      subject.screener_answers = screener_answers
+      allow(subject).to receive(:screener_answers).and_return(double)
     end
 
-    context 'when there is a local_court in screener_answers' do
-      let(:local_court){ Court.new(name: 'my court') }
-      let(:new_court){ Court.new(name: 'my court') }
-      before do
-        allow_any_instance_of(Court).to receive(:from_courtfinder_data!).and_return(court)
-      end
-      it 'returns a Court' do
-        expect(subject.send(:court_from_screener_answers)).to eq(court)
-      end
-    end
-
-    context 'when there is no local_court in screener_answers' do
-      let(:local_court){ nil }
-      it 'returns nil' do
-        expect(subject.send(:court_from_screener_answers)).to eq(nil)
-      end
+    it 'delegates the method to the `screener_answers`' do
+      expect(subject.screener_answers).to receive(:court)
+      subject.screener_answers_court
     end
   end
 end

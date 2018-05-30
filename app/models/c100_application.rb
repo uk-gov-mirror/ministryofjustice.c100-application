@@ -32,6 +32,8 @@ class C100Application < ApplicationRecord
   scope :with_owner,    -> { where.not(user: nil) }
   scope :not_completed, -> { where.not(status: :completed) }
 
+  delegate :court, to: :screener_answers, prefix: true, allow_nil: true
+
   def self.purge!(date)
     where('created_at <= :date', date: date).destroy_all
   end
@@ -52,10 +54,5 @@ class C100Application < ApplicationRecord
       substance_abuse,
       other_abuse
     ].any? { |concern| concern.eql?(GenericYesNo::YES.to_s) }
-  end
-
-  def court_from_screener_answers
-    cached_data = screener_answers.try(:local_court)
-    Court.new.from_courtfinder_data!(cached_data) if cached_data
   end
 end
