@@ -66,6 +66,19 @@ describe Court do
           court.from_courtfinder_data!(args)
         end
       end
+      context 'not including an address key but already-parsed address elements' do
+        let(:args){
+          {
+            'address_lines' => ['my address line 1', 'my address line 2'],
+            'town' => 'my town',
+            'postcode' => 'P05T C0D3'
+          }
+        }
+        it 'parses the whole lump for an address' do
+          expect(court).to receive(:parse_given_address!).with(args)
+          court.from_courtfinder_data!(args)
+        end
+      end
     end
 
     context 'given nil' do

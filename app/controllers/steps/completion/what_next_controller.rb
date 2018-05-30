@@ -5,14 +5,6 @@ module Steps
 
       def show
         @court = current_c100_application.court_from_screener_answers
-        @form_object = Steps::Completion::EmailSubmissionForm.build(
-          current_c100_application
-        )
-        @form_object.court_email = @court.try(:email)
-
-        if @form_object.email_copy_to.blank?
-          @form_object.email_copy_to = email_for_user
-        end
       end
 
       private

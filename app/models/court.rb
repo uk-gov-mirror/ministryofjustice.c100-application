@@ -20,6 +20,8 @@ class Court
     return self unless court_finder_data
     if (given_address = court_finder_data['address'])
       parse_given_address!(given_address)
+    elsif court_finder_data['address_lines']
+      parse_given_address!(court_finder_data)
     end
     parse_basic_attributes!(court_finder_data)
     merge_from_full_json_dump!

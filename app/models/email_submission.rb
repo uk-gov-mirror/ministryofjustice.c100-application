@@ -4,6 +4,7 @@ class EmailSubmission < ApplicationRecord
   def initialize(params = {})
     @c100_application = params[:c100_application]
     @email_copy_to = @c100_application.try(:receipt_email)
+    @reference_code = @c100_application.reference_code
     @to_address = @c100_application.try(:court_from_screener_answers).try(:email)
     @from = ENV['SUBMISSION_EMAIL_FROM'] || 'from@example.com'
     super

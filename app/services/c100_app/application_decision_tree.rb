@@ -88,7 +88,7 @@ module C100App
       case c100_application.submission_type
       when SubmissionType::ONLINE.to_s
         send_emails(c100_application)
-        show('/steps/completion/online_submission')
+        show('/steps/completion/confirmation')
       else
         show('/steps/completion/what_next')
       end

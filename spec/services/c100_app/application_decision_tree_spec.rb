@@ -127,9 +127,9 @@ RSpec.describe C100App::ApplicationDecisionTree do
         allow(subject).to receive(:send_emails)
       end
 
-      it 'sends the emails and has the online_submission destination' do
+      it 'sends the emails and has the confirmation destination' do
         expect(subject).to receive(:send_emails).with(c100_application)
-        expect(subject).to have_destination('/steps/completion/online_submission', :show)
+        expect(subject).to have_destination('/steps/completion/confirmation', :show)
       end
     end
   end
