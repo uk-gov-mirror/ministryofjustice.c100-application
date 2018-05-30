@@ -97,6 +97,7 @@ RSpec.describe C100Application, type: :model do
 
   describe '#court_from_screener_answers' do
     let(:screener_answers){ ScreenerAnswers.new(local_court: local_court) }
+    let(:court) {instance_double(Court)}
 
     before do
       subject.screener_answers = screener_answers
@@ -105,16 +106,11 @@ RSpec.describe C100Application, type: :model do
     context 'when there is a local_court in screener_answers' do
       let(:local_court){ Court.new(name: 'my court') }
       let(:new_court){ Court.new(name: 'my court') }
-
-      it 'returns a Court' do
-        expect(subject.send(:court_from_screener_answers)).to be_a(Court)
+      before do
+        allow_any_instance_of(Court).to receive(:from_courtfinder_data!).and_return(court)
       end
-
-      describe 'the returned Court' do
-        let(:returned_court){ subject.court_from_screener_answers }
-        it 'has the right attributes' do
-          expect(returned_court.name).to eq(new_court.name)
-        end
+      it 'returns a Court' do
+        expect(subject.send(:court_from_screener_answers)).to eq(court)
       end
     end
 

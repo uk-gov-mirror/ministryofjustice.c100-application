@@ -85,18 +85,21 @@ module C100App
     end
 
     def after_submission
-      byebug
       case c100_application.submission_type
       when SubmissionType::ONLINE.to_s
-        # TODO: switch to perform_later
-        SendApplicationToCourtJob.perform_now(
-          c100_application,
-          to: c100_application.court_from_screener_answers.email
-        )
-        show('/steps/completion/what_next')
+        send_emails(c100_application)
+        show('/steps/completion/online_submission')
       else
         show('/steps/completion/what_next')
       end
+    end
+
+    def send_emails(c100)
+      # TODO: switch to perform_later
+      SendApplicationToCourtJob.perform_now(
+        c100,
+        to: c100.court_from_screener_answers.email
+      )
     end
   end
 end

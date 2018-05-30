@@ -4,8 +4,7 @@ module Steps
       include CompletionStep
 
       def show
-        @court = court_from_screener_answers
-        @local_court = local_court
+        @court = current_c100_application.court_from_screener_answers
       end
     end
   end

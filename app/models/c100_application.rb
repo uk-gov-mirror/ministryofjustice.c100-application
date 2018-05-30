@@ -52,4 +52,9 @@ class C100Application < ApplicationRecord
       other_abuse
     ].any? { |concern| concern.eql?(GenericYesNo::YES.to_s) }
   end
+
+  def court_from_screener_answers
+    cached_data = screener_answers.try(:local_court)
+    Court.new.from_courtfinder_data!(cached_data) if cached_data
+  end
 end
