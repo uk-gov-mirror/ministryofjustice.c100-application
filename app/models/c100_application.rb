@@ -1,4 +1,6 @@
 class C100Application < ApplicationRecord
+  include ApplicationReference
+
   enum status: {
     screening: 0,
     in_progress: 1,
