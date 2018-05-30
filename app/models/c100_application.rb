@@ -16,6 +16,7 @@ class C100Application < ApplicationRecord
   has_one  :court_proceeding, dependent: :destroy
   has_one  :miam_exemption,   dependent: :destroy
   has_one  :screener_answers, dependent: :destroy
+  has_one  :email_submission, dependent: :destroy
 
   has_many :abuse_concerns,   dependent: :destroy
   has_many :relationships,    dependent: :destroy

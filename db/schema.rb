@@ -193,16 +193,10 @@ ActiveRecord::Schema.define(version: 20180530120103) do
     t.string "email_copy_to"
     t.datetime "sent_at"
     t.string "message_id"
-    t.uuid "c100_application_id"
     t.datetime "user_copy_sent_at"
-    t.datetime "user_copy_message_id"
-    t.boolean "email_me_a_copy", default: false
+    t.string "user_copy_message_id"
+    t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_email_submissions_on_c100_application_id"
-    t.index ["message_id"], name: "index_email_submissions_on_message_id"
-    t.index ["sent_at"], name: "index_email_submissions_on_sent_at"
-    t.index ["to_address"], name: "index_email_submissions_on_to_address"
-    t.index ["user_copy_message_id"], name: "index_email_submissions_on_user_copy_message_id"
-    t.index ["user_copy_sent_at"], name: "index_email_submissions_on_user_copy_sent_at"
   end
 
   create_table "miam_exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -291,6 +285,7 @@ ActiveRecord::Schema.define(version: 20180530120103) do
   add_foreign_key "child_residences", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "court_proceedings", "c100_applications"
+  add_foreign_key "email_submissions", "c100_applications"
   add_foreign_key "miam_exemptions", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"
