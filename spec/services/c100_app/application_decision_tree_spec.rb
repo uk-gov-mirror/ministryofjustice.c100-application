@@ -120,27 +120,37 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `submission`' do
     let(:step_params) { { submission: 'anything' } }
+    it { is_expected.to have_destination(:check_your_answers, :edit) }
+  end
+
+  context 'when the step is `declaration`' do
+    let(:step_params) { { declaration: 'anything' } }
+
+    before do
+      allow(c100_application).to receive(:online_submission?).and_return(online_submission)
+      allow(SendApplicationToCourtJob).to receive(:perform_now)
+    end
 
     context 'and the submission_type is online' do
-      let(:c100_application){ instance_double(C100Application, submission_type: SubmissionType::ONLINE.to_s) }
-      before do
-        allow(subject).to receive(:send_emails)
-      end
+      let(:online_submission) { true }
 
-      it 'sends the emails and has the confirmation destination' do
-        expect(subject).to receive(:send_emails).with(c100_application)
-        expect(subject).to have_destination('/steps/completion/confirmation', :show)
+      it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+
+      it 'sends the emails' do
+        expect(SendApplicationToCourtJob).to receive(:perform_now).with(c100_application)
+        subject.destination
       end
     end
-  end
 
-  context 'when the step is `print_and_post_submission`' do
-    let(:step_params) { { print_and_post_submission: 'anything' } }
-    it { is_expected.to have_destination('/steps/completion/what_next', :show) }
-  end
+    context 'and the submission_type is print and post' do
+      let(:online_submission) { false }
 
-  context 'when the step is `online_submission`' do
-    let(:step_params) { { online_submission: 'anything' } }
-    it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+      it { is_expected.to have_destination('/steps/completion/what_next', :show) }
+
+      it 'does not send any email' do
+        expect(SendApplicationToCourtJob).not_to receive(:perform_now)
+        subject.destination
+      end
+    end
   end
 end

@@ -2,12 +2,10 @@ class SendApplicationToCourtJob < ApplicationJob
   queue_as :default
 
   attr_reader :c100_application
-  attr_reader :to
   attr_reader :pdf_content
 
-  def perform(c100_application, to:)
+  def perform(c100_application)
     @c100_application = c100_application
-    @to = to
 
     generate_pdf && send_email
   end

@@ -29,16 +29,10 @@ module C100App
         help_paying_or_payment
       when :payment
         edit(:submission)
-      when :help_paying
+      when :help_paying, :submission
         edit(:check_your_answers)
-      when :print_and_post_submission
-        show('/steps/completion/what_next')
-      when :online_submission
-        show('/steps/completion/confirmation')
-      when :submission
-        after_submission
       when :declaration
-        show('/steps/completion/what_next')
+        after_declaration
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -71,6 +65,15 @@ module C100App
       end
     end
 
+    def after_declaration
+      if c100_application.online_submission?
+        send_application_to_court
+        show('/steps/completion/confirmation')
+      else
+        show('/steps/completion/what_next')
+      end
+    end
+
     def start_international_journey
       edit('/steps/international/resident')
     end
@@ -84,22 +87,8 @@ module C100App
       end
     end
 
-    def after_submission
-      case c100_application.submission_type
-      when SubmissionType::ONLINE.to_s
-        send_emails(c100_application)
-        show('/steps/completion/confirmation')
-      else
-        show('/steps/completion/what_next')
-      end
-    end
-
-    def send_emails(c100)
-      # TODO: switch to perform_later
-      SendApplicationToCourtJob.perform_now(
-        c100,
-        to: c100.court_from_screener_answers.email
-      )
+    def send_application_to_court
+      SendApplicationToCourtJob.perform_now(c100_application)
     end
   end
 end
