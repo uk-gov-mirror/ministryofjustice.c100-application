@@ -5,6 +5,10 @@ module CompletionStep
     before_action :mark_completed
   end
 
+  def show
+    @court = current_c100_application.screener_answers_court
+  end
+
   private
 
   def mark_completed

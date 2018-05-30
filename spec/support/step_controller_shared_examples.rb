@@ -394,11 +394,25 @@ RSpec.shared_examples 'a summary step controller' do
 end
 
 RSpec.shared_examples 'a completion step controller' do
-  context 'in standard interactions' do
+  it_behaves_like 'a show step controller'
+
+  describe '#show' do
+    let!(:existing_c100) { C100Application.create(status: :in_progress, navigation_stack: ['/not', '/empty']) }
+
     before do
-      # allow(c100_application).to receive(:court_from_screener_answers).and_return(court)
+      allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+      allow(existing_c100).to receive(:screener_answers_court).and_return('court data')
     end
 
-    it_behaves_like 'a show step controller'
+    it 'changes the status to `completed`' do
+      expect {
+        get :show, session: { c100_application_id: existing_c100.id }
+      }.to change { existing_c100.status }.from('in_progress').to('completed')
+    end
+
+    it 'assigns the court data' do
+      get :show, session: { c100_application_id: existing_c100.id }
+      expect(assigns[:court]).to eq('court data')
+    end
   end
 end
