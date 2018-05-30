@@ -1,6 +1,5 @@
-
 class EmailSubmissionMailerPreview < ActionMailer::Preview
-  DEFAULT_PDF_PATH='/tmp/c100-preview.pdf'.freeze
+  DEFAULT_PDF_PATH = '/tmp/c100-preview.pdf'.freeze
 
   def submission_to_court
     path = write_tmp_pdf
