@@ -85,6 +85,7 @@ module C100App
     end
 
     def after_submission
+      byebug
       case c100_application.submission_type
       when SubmissionType::ONLINE.to_s
         # TODO: switch to perform_later

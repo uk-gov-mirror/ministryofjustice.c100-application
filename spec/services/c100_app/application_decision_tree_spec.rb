@@ -120,7 +120,23 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `submission`' do
     let(:step_params) { { submission: 'anything' } }
-    it { is_expected.to have_destination(:check_your_answers, :edit) }
+
+    context 'and the submission_type is online' do
+      let(:c100_application){ instance_double(C100Application, submission_type: SubmissionType::ONLINE.to_s) }
+      before do
+        allow(SendApplicationToCourtJob).to receive(:perform_now)
+        allow(c100_application).to receive(:court_from_screener_answers).and_return(
+          double('court', email: 'courtemail@example.com')
+        )
+      end
+      it 'queues a job to send the current c100 to the right court' do
+        expect(SendApplicationToCourtJob).to receive(:perform_now).with(
+          c100_application,
+          to: 'courtemail@example.com'
+        )
+      end
+      it { is_expected.to have_destination('/steps/completion/what_next', :show) }
+    end
   end
 
   context 'when the step is `print_and_post_submission`' do
