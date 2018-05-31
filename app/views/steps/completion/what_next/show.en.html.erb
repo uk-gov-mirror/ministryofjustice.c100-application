@@ -25,12 +25,43 @@
           <li>
             <span class="heading-medium">Send your application</span>
 
-            <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
-              the other person, keep one copy, and return one copy to you. Post them to:</p>
-            <div class="court-address">
-              <%= @court.name %><br />
-              <%= simple_format(@court.address.join("\n")) %>
-            </div>
+            <!-- TODO: feature-flagged until we release the the online submission, then we can remove this condition -->
+            <% if current_c100_application.submission_type.present? %>
+
+              <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
+                the other person, keep one copy, and return one copy to you. Post them to:</p>
+              <div class="court-address">
+                <%= @court.name %><br/>
+                <%= simple_format(@court.address.join("\n")) %>
+              </div>
+
+            <% else %>
+
+              <p>To send by email:</p>
+
+              <ul class="list list-bullet force-disc-style">
+                <li>attach your downloaded PDF application to an email</li>
+                <li>put ‘C100 New application - Child arrangements’ in the subject line</li>
+                <li>send it to: <%= mail_to @court.email, @court.email, subject: 'C100 New application - Child arrangements', class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email application'} %></li>
+              </ul>
+
+              <p>The court will email you to confirm they have received your application.</p>
+
+              <details>
+                <summary>
+                  <span class="summary" data-ga-category="completion" data-ga-label="print instructions">You can also print it and send by post</span>
+                </summary>
+                <div class="panel panel-border-narrow">
+                  <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
+                    the other person, keep one copy, and return one copy to you. Post them to:</p>
+                  <div class="court-address">
+                    <%= @court.name %><br/>
+                    <%= simple_format(@court.address.join("\n")) %>
+                  </div>
+                </div>
+              </details>
+
+            <% end %>
           </li>
 
           <li>

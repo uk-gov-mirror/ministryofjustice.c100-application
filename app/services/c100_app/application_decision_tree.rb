@@ -67,7 +67,7 @@ module C100App
 
     def after_declaration
       if c100_application.online_submission?
-        send_application_to_court
+        SendApplicationToCourtJob.perform_later(c100_application)
         show('/steps/completion/confirmation')
       else
         show('/steps/completion/what_next')
@@ -85,10 +85,6 @@ module C100App
       else
         edit(:help_paying)
       end
-    end
-
-    def send_application_to_court
-      SendApplicationToCourtJob.perform_now(c100_application)
     end
   end
 end
