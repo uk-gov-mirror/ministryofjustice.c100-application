@@ -1,5 +1,5 @@
 module C100App
-  class SendApplicationToCourt
+  class OnlineSubmission
     attr_reader :c100_application
     attr_reader :pdf_content
 

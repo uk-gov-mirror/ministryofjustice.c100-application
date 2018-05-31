@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe C100App::SendApplicationToCourt do
+RSpec.describe C100App::OnlineSubmission do
   let(:c100_application) { instance_double(C100Application) }
 
   subject { described_class.new(c100_application) }

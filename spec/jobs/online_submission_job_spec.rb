@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SendApplicationToCourtJob, type: :job do
+RSpec.describe OnlineSubmissionJob, type: :job do
   let(:c100_application) { instance_double(C100Application) }
 
   before do
@@ -9,8 +9,8 @@ RSpec.describe SendApplicationToCourtJob, type: :job do
 
   describe '#perform' do
     it 'calls the `SendApplicationToCourt` service to process the application' do
-      expect_any_instance_of(C100App::SendApplicationToCourt).to receive(:process)
-      SendApplicationToCourtJob.perform_now(c100_application)
+      expect_any_instance_of(C100App::OnlineSubmission).to receive(:process)
+      OnlineSubmissionJob.perform_now(c100_application)
     end
   end
 end
