@@ -66,6 +66,7 @@ describe Court do
           court.from_courtfinder_data!(args)
         end
       end
+
       context 'not including an address key but already-parsed address elements' do
         let(:args){
           {
@@ -74,7 +75,14 @@ describe Court do
             'postcode' => 'P05T C0D3'
           }
         }
+
         it 'parses the whole lump for an address' do
+          # begin mutant killers
+          expect(args).to receive(:[]).with('address').and_call_original.ordered
+          expect(args).to receive(:[]).with('address_lines').and_call_original.ordered
+          expect(args).to receive(:[]).at_least(:once).and_call_original.ordered # any others
+          # end mutant killers
+
           expect(court).to receive(:parse_given_address!).with(args)
           court.from_courtfinder_data!(args)
         end
