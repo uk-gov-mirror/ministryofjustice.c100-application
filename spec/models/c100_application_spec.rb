@@ -94,4 +94,15 @@ RSpec.describe C100Application, type: :model do
       end
     end
   end
+
+  describe '#screener_answers_court' do
+    before do
+      allow(subject).to receive(:screener_answers).and_return(double)
+    end
+
+    it 'delegates the method to the `screener_answers`' do
+      expect(subject.screener_answers).to receive(:court)
+      subject.screener_answers_court
+    end
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180525105634) do
+ActiveRecord::Schema.define(version: 20180530120103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -188,6 +188,17 @@ ActiveRecord::Schema.define(version: 20180525105634) do
     t.index ["c100_application_id"], name: "index_court_proceedings_on_c100_application_id"
   end
 
+  create_table "email_submissions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "to_address"
+    t.string "email_copy_to"
+    t.datetime "sent_at"
+    t.string "message_id"
+    t.datetime "user_copy_sent_at"
+    t.string "user_copy_message_id"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_email_submissions_on_c100_application_id"
+  end
+
   create_table "miam_exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "domestic", default: [], array: true
     t.string "protection", default: [], array: true
@@ -274,6 +285,7 @@ ActiveRecord::Schema.define(version: 20180525105634) do
   add_foreign_key "child_residences", "people", column: "child_id"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "court_proceedings", "c100_applications"
+  add_foreign_key "email_submissions", "c100_applications"
   add_foreign_key "miam_exemptions", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"

@@ -31,10 +31,8 @@ module C100App
         edit(:submission)
       when :help_paying, :submission
         edit(:check_your_answers)
-      when :print_and_post_submission
-        show('/steps/completion/what_next')
-      when :online_submission
-        show('/steps/completion/confirmation')
+      when :declaration
+        after_declaration
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -64,6 +62,15 @@ module C100App
         edit(:litigation_capacity_details)
       else
         edit(:intermediary)
+      end
+    end
+
+    def after_declaration
+      if c100_application.online_submission?
+        OnlineSubmissionJob.perform_later(c100_application)
+        show('/steps/completion/confirmation')
+      else
+        show('/steps/completion/what_next')
       end
     end
 

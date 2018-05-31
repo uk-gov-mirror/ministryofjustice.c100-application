@@ -5,6 +5,7 @@ class CourtEmailInterceptor
   # Add here the delivery handlers allowed to bypass the interception.
   DELIVERY_WHITELIST = [
     NotifyMailer,
+    ReceiptMailer,
   ].freeze
 
   class << self

@@ -123,13 +123,36 @@ RSpec.describe C100App::ApplicationDecisionTree do
     it { is_expected.to have_destination(:check_your_answers, :edit) }
   end
 
-  context 'when the step is `print_and_post_submission`' do
-    let(:step_params) { { print_and_post_submission: 'anything' } }
-    it { is_expected.to have_destination('/steps/completion/what_next', :show) }
-  end
+  context 'when the step is `declaration`' do
+    let!(:c100_application) { C100Application.create(submission_type: submission_type) }
+    let(:step_params) { { declaration: 'anything' } }
 
-  context 'when the step is `online_submission`' do
-    let(:step_params) { { online_submission: 'anything' } }
-    it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+    before do
+      ActiveJob::Base.queue_adapter = :test
+    end
+
+    context 'and the submission_type is online' do
+      let(:submission_type) { SubmissionType::ONLINE }
+
+      it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+
+      it 'enqueues the application online submission' do
+        expect {
+          subject.destination
+        }.to have_enqueued_job.with(c100_application).on_queue('submissions')
+      end
+    end
+
+    context 'and the submission_type is print and post' do
+      let(:submission_type) { SubmissionType::PRINT_AND_POST }
+
+      it { is_expected.to have_destination('/steps/completion/what_next', :show) }
+
+      it 'does not enqueues the application online submission' do
+        expect {
+          subject.destination
+        }.not_to have_enqueued_job.on_queue('submissions')
+      end
+    end
   end
 end
