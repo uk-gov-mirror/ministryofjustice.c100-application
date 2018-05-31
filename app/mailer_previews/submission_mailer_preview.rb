@@ -1,14 +1,14 @@
-class EmailSubmissionMailerPreview < ActionMailer::Preview
+class SubmissionMailerPreview < ActionMailer::Preview
   DEFAULT_PDF_PATH = '/tmp/c100-preview.pdf'.freeze
 
   def submission_to_court
     path = write_tmp_pdf
-    EmailSubmissionMailer.submission_to_court(default_args(path))
+    CourtMailer.submission_to_court(default_args(path))
   end
 
   def copy_to_user
     path = write_tmp_pdf
-    EmailSubmissionMailer.copy_to_user(default_args(path))
+    ReceiptMailer.copy_to_user(default_args(path))
   end
 
   private

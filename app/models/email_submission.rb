@@ -16,7 +16,7 @@ class EmailSubmission < ApplicationRecord
     # or the default submission email address
     # (in case it bounces, and the bounce-back includes the
     # submitted user data)
-    response = EmailSubmissionMailer.submission_to_court(
+    response = CourtMailer.submission_to_court(
       c100_application: c100_application,
       from: @from,
       to: @to_address,
@@ -37,7 +37,7 @@ class EmailSubmission < ApplicationRecord
 
   def send_copy_to_user(pdf_file_path)
     # if the user hits reply, it should go to the court
-    response = EmailSubmissionMailer.copy_to_user(
+    response = ReceiptMailer.copy_to_user(
       c100_application: c100_application,
       from: @from,
       to: @email_copy_to,

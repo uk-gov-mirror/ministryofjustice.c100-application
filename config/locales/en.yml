@@ -1755,8 +1755,9 @@ en:
     index:
       continue: Continue
 
-  email_submission_mailer:
+  court_mailer:
     submission_to_court:
       subject: C100 New application - Child arrangements
+  receipt_mailer:
     copy_to_user:
       subject: C100 New application - Child arrangements
