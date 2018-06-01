@@ -7,7 +7,7 @@ RSpec.describe C100App::OnlineSubmission do
 
   describe '#process' do
     let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: true, to_pdf: 'pdf content') }
-    let(:email_submission) { instance_double(EmailSubmission) }
+    let(:pdf_email_submission) { instance_double(C100App::PdfEmailSubmission) }
 
     before do
       allow(Summary::PdfPresenter).to receive(:new).with(c100_application).and_return(pdf_presenter)
@@ -24,11 +24,11 @@ RSpec.describe C100App::OnlineSubmission do
     it 'sends the emails' do
       expect(File).to receive(:binwrite).with(kind_of(File), 'pdf content')
 
-      expect(EmailSubmission).to receive(:create!).with(
-        c100_application: c100_application
-      ).and_return(email_submission)
+      expect(C100App::PdfEmailSubmission).to receive(:new).with(
+        c100_application, pdf_file: kind_of(File)
+      ).and_return(pdf_email_submission)
 
-      expect(email_submission).to receive(:send!).with(kind_of(File))
+      expect(pdf_email_submission).to receive(:deliver!)
 
       subject.process
     end
