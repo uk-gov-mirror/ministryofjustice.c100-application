@@ -1,44 +1,40 @@
 class SubmissionMailerPreview < ActionMailer::Preview
-  DEFAULT_PDF_PATH = '/tmp/c100-preview.pdf'.freeze
+  MOCK_PDF_PATH = Rails.root.join('app', 'assets', 'docs', 'c100_mock.pdf').freeze
 
   def submission_to_court
-    path = write_tmp_pdf
-    CourtMailer.submission_to_court(default_args(path))
+    CourtMailer.with(
+      application_details
+    ).submission_to_court(recipients)
   end
 
   def copy_to_user
-    path = write_tmp_pdf
-    ReceiptMailer.copy_to_user(default_args(path))
+    ReceiptMailer.with(
+      application_details
+    ).copy_to_user(recipients)
   end
 
   private
 
-  def generate_pdf
-    presenter = Summary::PdfPresenter.new(c100_application)
-    presenter.generate
-
-    @pdf_content ||= presenter.to_pdf
-  end
-
-  def write_tmp_pdf
-    path = DEFAULT_PDF_PATH
-    File.open(path, 'wb') do |f|
-      f << generate_pdf
-    end
-    path
-  end
-
+  # We don't have a factory, so just building (not need to persist)
+  # a bare minimum C100 application for the purpose of the preview
   def c100_application
-    @c100 ||= C100Application.last
+    C100Application.new(
+      id: '35fe21a6-93f2-42e0-9189-22c99866ca89',
+      created_at: Time.now.utc,
+    )
   end
 
-  def default_args(pdf_file_path)
+  def application_details
     {
       c100_application: c100_application,
-      from: 'from-address-here@example.com',
-      to: 'to-address-here@example.com',
-      reply_to: 'reply-to-here@example.com',
-      attachment: pdf_file_path
+      c100_pdf: MOCK_PDF_PATH,
+    }
+  end
+
+  def recipients
+    {
+      to: 'to-address@example.com',
+      reply_to: 'reply-to@example.com',
     }
   end
 end
