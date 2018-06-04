@@ -15,7 +15,7 @@
     <p class="lede gv-u-text-lede">
       Your application has been sent to the court.
 
-      <% if current_c100_application.receipt_email.present? %>
+      <% if current_c100_application.receipt_email? %>
         We’ve emailed a confirmation of this with a copy of your application to
         <strong><%= current_c100_application.receipt_email %></strong>
       <% end %>
@@ -24,8 +24,10 @@
     <h3 class="heading-medium">Pay the application fee</h3>
     <%= render partial: 'steps/shared/payment_instructions' %>
 
-    <h3 class="heading-medium">Download a copy of your application</h3>
-    <%= render partial: 'steps/shared/download_instructions' %>
+    <% unless current_c100_application.receipt_email? %>
+      <h3 class="heading-medium">Download a copy of your application</h3>
+      <%= render partial: 'steps/shared/download_instructions' %>
+    <% end %>
 
     <hr>
 
