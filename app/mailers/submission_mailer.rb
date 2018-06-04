@@ -1,8 +1,10 @@
 class SubmissionMailer < ActionMailer::Base
   layout 'mailer'
 
-  default from: -> { ENV['SUBMISSION_EMAIL_FROM'] || 'from@example.com' }
   default template_path: ->(mailer) { "mailers/#{mailer.class.name.underscore}" }
+
+  default from: -> { ENV['SUBMISSION_EMAIL_FROM'] || 'from@example.com' }
+  default 'X-SES-CONFIGURATION-SET': 'ses-c100-config-set' # Amazon SES SMTP interface
 
   before_action do
     @service_name = I18n.translate!('service.name')

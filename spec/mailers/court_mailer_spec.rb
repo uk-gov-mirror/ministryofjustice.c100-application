@@ -72,6 +72,10 @@ RSpec.describe CourtMailer, type: :mailer do
           expect(mail.reply_to).to eq(['replyto@example.com'])
         end
 
+        it 'has the correct `X-SES-CONFIGURATION-SET` header' do
+          expect(mail.header['X-SES-CONFIGURATION-SET'].to_s).to eq('ses-c100-config-set')
+        end
+
         it 'has one attachment' do
           expect(mail.attachments.size).to eq(1)
         end
