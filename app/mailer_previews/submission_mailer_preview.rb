@@ -16,11 +16,11 @@ class SubmissionMailerPreview < ActionMailer::Preview
   private
 
   # We don't have a factory, so just building (not need to persist)
-  # a bare minimum C100 application for the purpose of the preview
+  # a bare minimum C100 application struct for the purpose of the preview
   def c100_application
-    C100Application.new(
-      id: '35fe21a6-93f2-42e0-9189-22c99866ca89',
-      created_at: Time.now.utc,
+    Struct.new(:reference_code, :screener_answers_court).new(
+      '12345',
+      local_court_fixture,
     )
   end
 
@@ -36,5 +36,24 @@ class SubmissionMailerPreview < ActionMailer::Preview
       to: 'to-address@example.com',
       reply_to: 'reply-to@example.com',
     }
+  end
+
+  def local_court_fixture
+    Court.new.from_courtfinder_data!(
+      "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
+      "town" => "Central Milton Keynes",
+      "postcode" => "MK9 2DT",
+      "name" => "Milton Keynes County Court and Family Court",
+      "slug" => "milton-keynes-county-court-and-family-court",
+      "phone_number" => 388,
+      "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
+      "opening_times" =>
+        [
+          "Bailiff telephone service: For payments only Tel: 01865 264200 (option 1 then option 7)",
+          "Court counter open: by prior appointment only",
+          "Court building open: Monday to Friday 8:30am to 4pm",
+          "Telephone Enquiries from: 9am to 5pm"
+        ]
+    )
   end
 end
