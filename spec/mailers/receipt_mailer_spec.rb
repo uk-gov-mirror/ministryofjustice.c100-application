@@ -1,35 +1,37 @@
 require "rails_helper"
 
 RSpec.describe ReceiptMailer, type: :mailer do
-  let(:c100_application) { C100Application.new(id: '449362af-0bc3-4953-82a7-1363d479b876') }
+  let(:c100_application) {
+    C100Application.new(
+      id: '449362af-0bc3-4953-82a7-1363d479b876',
+      created_at: Time.at(0)
+    )
+  }
 
-  let(:file){ '/my/test/file' }
+  let(:pdf_file) { '/my/test/file' }
 
-  let(:required_args) {
+  let(:recipient_args) {
     {
-      c100_application: c100_application,
-      from: 'testfrom@example.com',
       to: 'testto@example.com',
       reply_to: 'replyto@example.com',
-      attachment: file
     }
   }
 
   describe '#copy_to_user' do
     before do
-      allow_any_instance_of(described_class).to receive(:attachment_contents).with(file).and_return('file content')
+      allow(File).to receive(:read).with(pdf_file).and_return('file content')
     end
 
     context 'given all required arguments' do
-      let(:args){ required_args }
-
       describe 'the generated mail' do
         let(:mail) do
-          described_class.copy_to_user(args)
+          described_class.with(
+            c100_application: c100_application, c100_pdf: pdf_file
+          ).copy_to_user(recipient_args)
         end
 
         it 'is a MessageDelivery object' do
-          expect(mail.class.name).to eq('ActionMailer::MessageDelivery')
+          expect(mail).to be_kind_of(ActionMailer::MessageDelivery)
         end
 
         describe 'when delivered' do
@@ -42,8 +44,22 @@ RSpec.describe ReceiptMailer, type: :mailer do
           expect(mail.subject).to eq('C100 New application - Child arrangements')
         end
 
-        it 'has the given from address' do
-          expect(mail.from).to eq(['testfrom@example.com'])
+        describe '`from` address' do
+          context 'no ENV variable set' do
+            it 'uses the default `from` address' do
+              expect(mail.from).to eq(['from@example.com'])
+            end
+          end
+
+          context 'ENV variable is set' do
+            before do
+              allow(ENV).to receive(:[]).with('SUBMISSION_EMAIL_FROM').and_return('env@example.com')
+            end
+
+            it 'uses the ENV variable' do
+              expect(mail.from).to eq(['env@example.com'])
+            end
+          end
         end
 
         it 'has the given to address' do
@@ -66,7 +82,7 @@ RSpec.describe ReceiptMailer, type: :mailer do
           end
 
           it 'is the right file' do
-            expect(attachment.filename).to eq(c100_application.id + '.pdf')
+            expect(attachment.filename).to eq('1970/01/449362AF.pdf')
           end
         end
       end

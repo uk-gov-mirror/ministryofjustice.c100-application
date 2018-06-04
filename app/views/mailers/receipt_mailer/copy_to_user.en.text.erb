@@ -1,9 +1,11 @@
 "<%= @service_name %>" Submission
 
-Thankyou for submitting your application through the "<%= @service_name %>"
-service at <%= url_for root_url %>
+Thank you for submitting your application through the "<%= @service_name %>" service at <%= url_for root_url %>
+
+Your reference code is: <%= @reference_code %>
 
 The court will contact you soon to arrange payment
 
 You can email the court by replying to this email
-For any technical questions about this email, please email <%= @tech_email %>
+
+<%= render partial: 'mailers/shared/technical_help' %>

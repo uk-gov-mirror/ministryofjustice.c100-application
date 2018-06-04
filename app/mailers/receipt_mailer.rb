@@ -1,10 +1,9 @@
 class ReceiptMailer < SubmissionMailer
-  def copy_to_user(c100_application:, from:, to:, reply_to:, attachment:)
-    attachments[c100_application.id + '.pdf'] = attachment_contents(attachment)
+  def copy_to_user(to:, reply_to:)
+    attach_c100_pdf!
 
     mail(
       to: to,
-      from: from,
       reply_to: reply_to
     )
   end

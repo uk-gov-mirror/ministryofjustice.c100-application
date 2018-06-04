@@ -3,9 +3,9 @@
 #
 class CourtEmailInterceptor
   # Add here the delivery handlers allowed to bypass the interception.
-  DELIVERY_WHITELIST = [
-    NotifyMailer,
-    ReceiptMailer,
+  DELIVERY_WHITELIST = %w[
+    NotifyMailer
+    ReceiptMailer
   ].freeze
 
   class << self
@@ -17,7 +17,7 @@ class CourtEmailInterceptor
     private
 
     def whitelisted?(message)
-      DELIVERY_WHITELIST.include?(message.delivery_handler)
+      DELIVERY_WHITELIST.include?(message.delivery_handler.to_s)
     end
 
     def intercept_email!(message)

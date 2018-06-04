@@ -15,7 +15,7 @@ describe CourtEmailInterceptor do
   end
 
   context 'whitelisted handlers' do
-    it { expect(described_class::DELIVERY_WHITELIST).to eq([NotifyMailer, ReceiptMailer]) }
+    it { expect(described_class::DELIVERY_WHITELIST).to eq(%w[NotifyMailer ReceiptMailer]) }
   end
 
   context 'for a whitelisted delivery handler' do

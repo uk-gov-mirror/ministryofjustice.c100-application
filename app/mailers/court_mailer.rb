@@ -1,10 +1,9 @@
 class CourtMailer < SubmissionMailer
-  def submission_to_court(c100_application:, from:, to:, reply_to:, attachment:)
-    attachments[c100_application.id + '.pdf'] = attachment_contents(attachment)
+  def submission_to_court(to:, reply_to:)
+    attach_c100_pdf!
 
     mail(
       to: to,
-      from: from,
       reply_to: reply_to
     )
   end

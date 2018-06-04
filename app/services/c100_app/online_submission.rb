@@ -25,11 +25,9 @@ module C100App
         File.binwrite(tmpfile, pdf_content)
 
         # Now we have the PDF in the local filesystem, we can
-        # create an EmailSubmission record, and send! it
-        # to send PDF by email to the court, including
+        # send the PDF by email to the court, including
         # a user copy if they requested it.
-        email_submission = EmailSubmission.create!(c100_application: c100_application)
-        email_submission.send!(tmpfile)
+        PdfEmailSubmission.new(c100_application, pdf_file: tmpfile).deliver!
       end
     end
   end
