@@ -4,6 +4,7 @@ describe CourtEmailInterceptor do
   let(:message) {
     Mail::Message.new(
       subject: 'Test email',
+      from: ['from@example.com'],
       to: ['recipient@example.com'],
       reply_to: reply_to,
     )
@@ -34,30 +35,30 @@ describe CourtEmailInterceptor do
       message.delivery_handler = 'whatever'
     end
 
+    it 'should be intercepted and the subject changed' do
+      deliver_email!
+      expect(message.subject).to eq('Test email | (Original recipient: recipient@example.com)')
+    end
+
+    it 'should perform deliveries' do
+      expect(message.perform_deliveries).to eq(true)
+    end
+
     context 'message with reply-to' do
       let(:reply_to) { ['replies@example.com'] }
 
-      it 'should be intercepted and the subject changed' do
-        deliver_email!
-        expect(message.subject).to eq('Test email | (Original recipient: recipient@example.com)')
-      end
-
-      it 'should be intercepted and the recipient changed' do
+      it 'changes the recipient to be the `REPLY-TO` address' do
         deliver_email!
         expect(message.to).to eq(reply_to)
-      end
-
-      it 'should perform deliveries' do
-        expect(message.perform_deliveries).to eq(true)
       end
     end
 
     context 'message without reply-to' do
       let(:reply_to) { nil }
 
-      it 'should not perform deliveries' do
+      it 'changes the recipient to be the `FROM` address' do
         deliver_email!
-        expect(message.perform_deliveries).to eq(false)
+        expect(message.to).to eq(['from@example.com'])
       end
     end
   end
