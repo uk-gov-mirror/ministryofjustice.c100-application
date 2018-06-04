@@ -1,0 +1,25 @@
+If you need help:
+
+You can contact the court if you need help with your application. Court staff
+can’t give legal advice so you’ll need to find a legal advisor if you have any
+issues: https://solicitors.lawsociety.org.uk
+
+<% if court.present? -%>
+<%- unless court.email.blank? %>
+Email: <%= court.email -%>
+<%- end %>
+
+<%- unless court.phone_number.blank? %>
+Phone number: <%= court.phone_number -%>
+<%- end %>
+
+<%- if court.opening_times? %>
+Opening times:
+<%- court.opening_times.each do |opening_time| %>
+  <%= opening_time %>
+<%- end %>
+<%- end %>
+
+More information about <%= court.name -%>:
+<%= C100App::CourtfinderAPI.new.court_url(court.slug) %>
+<%- end %>

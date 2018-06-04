@@ -10,6 +10,7 @@ class SubmissionMailer < ActionMailer::Base
     @service_name = I18n.translate!('service.name')
     @c100_application = params[:c100_application]
     @reference_code = @c100_application.reference_code
+    @court = @c100_application.screener_answers_court
     @c100_pdf = params[:c100_pdf]
   end
 

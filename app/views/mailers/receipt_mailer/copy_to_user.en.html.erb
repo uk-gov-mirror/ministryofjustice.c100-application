@@ -9,4 +9,6 @@ service</p>
 
 <p>You can email the court by replying to this email</p>
 
-<%= render partial: 'mailers/shared/technical_help' %>
+<%= render partial: 'mailers/shared/court_help', locals: {court: @court} %>
+
+<%= render partial: 'mailers/shared/feedback' %>
