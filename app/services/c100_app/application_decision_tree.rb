@@ -26,10 +26,10 @@ module C100App
       when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
-        help_paying_or_payment
-      when :payment
-        edit(:submission)
-      when :help_paying, :submission
+        edit(:help_paying)
+      when :help_paying
+        submission_type_or_cya
+      when :submission
         edit(:check_your_answers)
       when :declaration
         after_declaration
@@ -79,11 +79,11 @@ module C100App
     end
 
     # TODO: temporary journey for user testing on staging
-    def help_paying_or_payment
+    def submission_type_or_cya
       if dev_tools_enabled?
-        edit(:payment)
+        edit(:submission)
       else
-        edit(:help_paying)
+        edit(:check_your_answers)
       end
     end
   end

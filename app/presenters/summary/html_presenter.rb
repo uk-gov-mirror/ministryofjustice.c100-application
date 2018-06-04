@@ -69,18 +69,11 @@ module Summary
       ]
     end
 
-    # TODO: temporary journey for user testing on staging
     def payment_and_submission_sections
-      if c100_application.payment_type.present?
-        [
-          HtmlSections::Payment.new(c100_application),
-          HtmlSections::Submission.new(c100_application),
-        ]
-      else
-        [
-          HtmlSections::HelpWithFees.new(c100_application)
-        ]
-      end
+      [
+        HtmlSections::HelpWithFees.new(c100_application),
+        HtmlSections::Submission.new(c100_application),
+      ]
     end
 
     def submission_type
