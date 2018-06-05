@@ -33,7 +33,7 @@ RSpec.describe ReceiptMailer, type: :mailer do
         it_behaves_like 'a Submission mailer'
 
         it 'has the right subject' do
-          expect(mail.subject).to eq('C100 New application - Child arrangements')
+          expect(mail.subject).to eq('C100 new application - child arrangements')
         end
       end
     end
