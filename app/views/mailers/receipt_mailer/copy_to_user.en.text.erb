@@ -1,12 +1,24 @@
-"<%= @service_name %>" Submission
-
-Thank you for submitting your application through the "<%= @service_name %>" service at <%= url_for root_url %>
+Your application has been submitted
 
 Your reference code is: <%= @reference_code %>
 
-The court will contact you soon to arrange payment
+Your completed application has been sent to the court. After your payment
+has been processed, the court will be in touch with what happens next.
 
-You can email the court by replying to this email
+A copy of your application is attached to this email.
+
+
+Pay the application fee:
+
+You need to pay the £215 court fee. The court will telephone you within
+3 working days of receiving your application to take payment using a
+credit or debit card.
+
+You can also pay by post with a cheque made out to ‘HM Courts and Tribunals
+Service’, or in person at the court by cheque, cash or card.
+
+You may not need to pay the full amount if you have a ‘Help with fees’
+reference.
 
 
 <%= render partial: 'mailers/shared/court_help', locals: {court: @court} %>

@@ -1,13 +1,21 @@
-<h1>"<%= @service_name %>" Submission</h1>
+<div class="grid_content_header govuk-box-highlight">
+  <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your application has been submitted</h1>
+  <p>Your reference code is:<br/><strong><%= @reference_code %></strong></p>
+</div>
 
-<p>Thank you for submitting your C100 application through the "<%= link_to @service_name, root_url %>"
-service</p>
+<p>Your completed application has been sent to the court. After your payment has been processed, the court will be in touch with what happens next.</p>
 
-<p>Your reference code is: <strong><%= @reference_code %></strong></p>
+<strong>A copy of your application is attached to this email.</strong>
 
-<p>The court will contact you soon to arrange payment</p>
+<h2>Pay the application fee</h2>
+<p>You need to pay the £215 court fee. The court will telephone you within 3 working days of receiving your
+  application to take payment using a credit or debit card.</p>
 
-<p>You can email the court by replying to this email</p>
+<p>You can also pay by post with a cheque made out to ‘HM Courts and Tribunals Service’, or in person at the court by
+  cheque, cash or card.</p>
+
+<p>You may not need to pay the full amount if you have a
+  <a href="https://www.gov.uk/get-help-with-court-fees">‘Help with fees’</a> reference.</p>
 
 <%= render partial: 'mailers/shared/court_help', locals: {court: @court} %>
 

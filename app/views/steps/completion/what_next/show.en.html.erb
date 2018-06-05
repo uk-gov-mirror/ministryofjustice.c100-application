@@ -19,52 +19,34 @@
         <ol class="list list-number">
           <li class="util_mt-medium">
             <h3 class="heading-medium">Download your application</h3>
-            <%= render partial: 'steps/shared/download_instructions' %>
-          </li>
+            <p>
+              This will be a PDF. If you cannot open the PDF after downloading, try using
+              <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
+            </p>
 
-          <li>
-            <span class="heading-medium">Send your application</span>
-
-            <!-- TODO: feature-flagged until we release the the online submission, then we can remove this condition -->
-            <% if current_c100_application.submission_type.present? %>
-
-              <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
-                the other person, keep one copy, and return one copy to you. Post them to:</p>
-              <div class="court-address">
-                <%= @court.name %><br/>
-                <%= simple_format(@court.address.join("\n")) %>
+            <% unless user_signed_in? %>
+              <div class="panel panel-border-narrow">
+                <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
               </div>
-
-            <% else %>
-
-              <p>To send by email:</p>
-
-              <ul class="list list-bullet force-disc-style">
-                <li>attach your downloaded PDF application to an email</li>
-                <li>put ‘C100 New application - Child arrangements’ in the subject line</li>
-                <li>send it to: <%= mail_to @court.email, @court.email, subject: 'C100 New application - Child arrangements', class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email application'} %></li>
-              </ul>
-
-              <p>The court will email you to confirm they have received your application.</p>
-
-              <details>
-                <summary>
-                  <span class="summary" data-ga-category="completion" data-ga-label="print instructions">You can also print it and send by post</span>
-                </summary>
-                <div class="panel panel-border-narrow">
-                  <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to
-                    the other person, keep one copy, and return one copy to you. Post them to:</p>
-                  <div class="court-address">
-                    <%= @court.name %><br/>
-                    <%= simple_format(@court.address.join("\n")) %>
-                  </div>
-                </div>
-              </details>
-
             <% end %>
+
+            <p>
+              <%= link_to 'Download your PDF application',
+                          steps_completion_summary_path(format: :pdf),
+                          class: 'button ga-pageLink',
+                          data: {ga_category: 'completion', ga_label: 'download application'} %>
+            </p>
           </li>
 
-          <li>
+          <!-- TODO: feature-flagged until we release the online submission,
+            then we can remove this condition and insert the partial here -->
+          <% if current_c100_application.submission_type.present? %>
+            <%= render partial: 'steps/completion/what_next/new_instructions' %>
+          <% else %>
+            <%= render partial: 'steps/completion/what_next/old_instructions' %>
+          <% end %>
+
+          <li class="util_mt-medium">
             <h3 class="heading-medium">Pay the application fee</h3>
             <%= render partial: 'steps/shared/payment_instructions' %>
           </li>
