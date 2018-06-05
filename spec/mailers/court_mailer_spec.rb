@@ -35,7 +35,7 @@ RSpec.describe CourtMailer, type: :mailer do
         it 'has the right subject' do
           expect(
             mail.subject
-          ).to eq('C100 New application - Child arrangements')
+          ).to eq('C100 new application - child arrangements')
         end
       end
     end
