@@ -6,8 +6,8 @@
     <div class="prototype-step">This page is a prototype and is not enabled in production.</div>
 
     <div class="grid_content_header govuk-box-highlight">
-      <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Application submitted</h1>
-      <p class="app__lede lede gv-u-text-lede">Your reference is: <%= current_c100_application.reference_code %></p>
+      <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your application has been submitted</h1>
+      <p>Your reference code is:<br/><strong><%= current_c100_application.reference_code %></strong></p>
     </div>
 
     <br/>
@@ -21,12 +21,32 @@
       <% end %>
     </p>
 
-    <h3 class="heading-medium">Pay the application fee</h3>
-    <%= render partial: 'steps/shared/payment_instructions' %>
+    <div class="govuk-govspeak gv-s-prose">
+      <h2 class="heading-large gv-u-heading-large">Pay the application fee</h2>
+      <%= render partial: 'steps/shared/payment_instructions' %>
+    </div>
 
     <% unless current_c100_application.receipt_email? %>
-      <h3 class="heading-medium">Download a copy of your application</h3>
-      <%= render partial: 'steps/shared/download_instructions' %>
+      <div class="govuk-govspeak gv-s-prose">
+        <h2 class="heading-large gv-u-heading-large">Download a copy of your application</h2>
+        <p>
+          This will be a PDF. If you cannot open the PDF after downloading, try using
+          <a href="https://get.adobe.com/uk/reader/" target="external_link" rel="external">Adobe Acrobat Reader</a>.
+        </p>
+
+        <% unless user_signed_in? %>
+          <div class="panel panel-border-narrow">
+            <p>If you want to keep a copy, you must download it now. You cannot return to a submitted application.</p>
+          </div>
+        <% end %>
+
+        <p>
+          <%= link_to 'Download your PDF application',
+                      steps_completion_summary_path(format: :pdf),
+                      class: 'button ga-pageLink',
+                      data: {ga_category: 'completion', ga_label: 'download application'} %>
+        </p>
+      </div>
     <% end %>
 
     <hr>

@@ -1,0 +1,15 @@
+<li class="util_mt-medium">
+  <h3 class="heading-medium">Print your application</h3>
+  <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
+    person, keep one copy, and return one copy to you.</p>
+</li>
+
+<li class="util_mt-medium">
+  <h3 class="heading-medium">Post it to the court</h3>
+  <p>Post all 3 printed copies (and cheque, if that’s how you choose to pay) of your application to:</p>
+
+  <div class="panel panel-border-narrow">
+    <%= @court.name %><br/>
+    <%= simple_format(@court.address.join("\n")) %>
+  </div>
+</li>
