@@ -30,6 +30,12 @@ end
 # :nocov:
 
 Rails.application.routes.draw do
+  constraints host: 'c100.dsd.io' do
+    get '/(*path)' => redirect(
+      ShortUrlExpander.new('https://apply-to-court-about-child-arrangements.dsd.io'), status: 302
+    )
+  end
+
   devise_for :users,
              controllers: {
                registrations: 'users/registrations',

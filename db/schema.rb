@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180605110750) do
+ActiveRecord::Schema.define(version: 20180606145430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -274,6 +274,16 @@ ActiveRecord::Schema.define(version: 20180605110750) do
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
     t.index ["email_address"], name: "index_screener_answers_on_email_address"
     t.index ["email_consent"], name: "index_screener_answers_on_email_consent"
+  end
+
+  create_table "short_urls", primary_key: "path", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "target_url"
+    t.string "target_path"
+    t.string "utm_source"
+    t.string "utm_medium"
+    t.string "utm_campaign"
   end
 
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
