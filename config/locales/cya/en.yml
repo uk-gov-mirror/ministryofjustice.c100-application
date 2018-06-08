@@ -79,6 +79,7 @@ en:
       other_parties_details: Details of any other people
       children_residence: Where the children live
       other_court_cases: Involvement in other proceedings
+      urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       international_element: International information
       application_reasons: Reasons for application
@@ -97,6 +98,7 @@ en:
       person_personal_details: Personal details
       person_contact_details: Contact details
       other_court_cases_details: Other proceedings details
+      urgent_hearing_details: Urgent hearing details
       without_notice_hearing_details: Without notice hearing details
       international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
       international_request: Has a request for information or other assistance involving the children been made to or by another country?
@@ -476,6 +478,21 @@ en:
     court_proceeding_previous_details:
       question: Details of any other previous family case
 
+    urgent_hearing:
+      question: Do you need an urgent hearing?
+      answers:
+        <<: *YESNO
+    urgent_hearing_details:
+      question: Why you’re asking for an urgent hearing
+    urgent_hearing_when:
+      question: How soon do you need an urgent hearing?
+    urgent_hearing_short_notice:
+      question: Do you need a hearing within the next 48 hours?
+      answers:
+        <<: *YESNO
+    urgent_hearing_short_notice_details:
+      question: What have you done to tell each respondent of this application?
+
     without_notice_hearing:
       question: Are you asking for a without notice hearing?
       answers:
@@ -494,6 +511,7 @@ en:
         <<: *YESNO
     without_notice_impossible_details:
       question: Details
+
     international_resident:
       question: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
       answers:

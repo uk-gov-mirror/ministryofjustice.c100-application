@@ -16,7 +16,7 @@ module Summary
         *people_sections,
         HtmlSections::ChildrenResidence.new(c100_application),
         HtmlSections::OtherCourtCases.new(c100_application),
-        HtmlSections::WithoutNoticeDetails.new(c100_application),
+        *urgent_and_without_notice_sections,
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
         HtmlSections::AttendingCourt.new(c100_application),
@@ -66,6 +66,13 @@ module Summary
         HtmlSections::ApplicantsDetails.new(c100_application),
         HtmlSections::RespondentsDetails.new(c100_application),
         HtmlSections::OtherPartiesDetails.new(c100_application),
+      ]
+    end
+
+    def urgent_and_without_notice_sections
+      [
+        HtmlSections::UrgentHearingDetails.new(c100_application),
+        HtmlSections::WithoutNoticeDetails.new(c100_application),
       ]
     end
 
