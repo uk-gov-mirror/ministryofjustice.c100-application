@@ -87,6 +87,7 @@ Rails.application.routes.draw do
       edit_step :previous_proceedings
       edit_step :court_proceedings
       edit_step :urgent_hearing
+      edit_step :urgent_hearing_details
       edit_step :without_notice
       edit_step :without_notice_details
       edit_step :litigation_capacity

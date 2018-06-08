@@ -765,6 +765,11 @@ en:
               <li>irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)</li>
             </ul>
           warning: Contact the police if you or the children are in immediate danger.
+      urgent_hearing_details:
+        edit:
+          page_title: Details of urgent hearing
+          heading: Details of urgent hearing
+          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" target="external_link" rel="external">contact your nearest family court</a> for assistance.
     international:
       resident:
         edit:
@@ -1123,6 +1128,8 @@ en:
         children_previous_proceedings_html: ""
       steps_application_urgent_hearing_form:
         urgent_hearing_html: ""
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_short_notice_html: Do you need a hearing within the next 48 hours?
       steps_application_without_notice_form:
         without_notice_html: ""
       steps_application_without_notice_details_form:
@@ -1310,6 +1317,10 @@ en:
         cafcass_details: Name and office of Cafcass/Cafcass Cymru officer
         order_types: Type of proceedings
         previous_details: Add details of any other previous family case
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_details: Give details of why you’re asking for an urgent hearing
+        urgent_hearing_when: How soon do you need an urgent hearing?
+        urgent_hearing_short_notice_details: What have you done to tell each respondent of this application?
       steps_application_without_notice_details_form:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
@@ -1499,6 +1510,9 @@ en:
         cafcass_details: Leave blank if you don’t know
         order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
         previous_details: Try and include as many details as possible, for example case number, date and name of court
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_details: A court will only hear your case urgently if you can give good reason for the urgency.
+        urgent_hearing_short_notice_details: The court will expect you to tell the other people involved that you are making this application, unless you have a reason not to.
       steps_application_without_notice_details_form:
         without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
         without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.

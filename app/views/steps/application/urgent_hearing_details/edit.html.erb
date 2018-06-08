@@ -1,0 +1,30 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_area :urgent_hearing_details, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.text_field :urgent_hearing_when %>
+
+      <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+        <p><%= t '.court_info_html' %></p>
+      </div>
+
+      <%=
+        f.radio_button_fieldset :urgent_hearing_short_notice, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :urgent_hearing_short_notice_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:urgent_hearing_short_notice_panel) do |panel|
+            panel.text_area :urgent_hearing_short_notice_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
+
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>
