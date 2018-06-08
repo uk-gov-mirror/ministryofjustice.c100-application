@@ -397,22 +397,42 @@ RSpec.shared_examples 'a completion step controller' do
   it_behaves_like 'a show step controller'
 
   describe '#show' do
-    let!(:existing_c100) { C100Application.create(status: :in_progress, navigation_stack: ['/not', '/empty']) }
+    let!(:existing_c100) { C100Application.create(status: status, navigation_stack: ['/not', '/empty']) }
+    let(:status) { :in_progress }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
       allow(existing_c100).to receive(:screener_answers_court).and_return('court data')
-    end
-
-    it 'changes the status to `completed`' do
-      expect {
-        get :show, session: { c100_application_id: existing_c100.id }
-      }.to change { existing_c100.status }.from('in_progress').to('completed')
+      allow(CompletedApplicationsAudit).to receive(:log!)
     end
 
     it 'assigns the court data' do
       get :show, session: { c100_application_id: existing_c100.id }
       expect(assigns[:court]).to eq('court data')
+    end
+
+    describe 'marking as completed and saving audit' do
+      context 'when the application is not already marked as `completed`' do
+        it 'changes the status to `completed`' do
+          expect {
+            get :show, session: {c100_application_id: existing_c100.id}
+          }.to change {existing_c100.status}.from('in_progress').to('completed')
+        end
+
+        it 'saves the audit record' do
+          expect(CompletedApplicationsAudit).to receive(:log!).with(existing_c100)
+          get :show, session: {c100_application_id: existing_c100.id}
+        end
+      end
+
+      context 'when the application is already marked as `completed`' do
+        let(:status) { :completed }
+
+        it 'does not call the `mark_completed` method' do
+          expect(controller).not_to receive(:mark_completed)
+          get :show, session: {c100_application_id: existing_c100.id}
+        end
+      end
     end
   end
 end
