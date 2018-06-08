@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608081404) do
+ActiveRecord::Schema.define(version: 20180608112820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,11 @@ ActiveRecord::Schema.define(version: 20180608081404) do
     t.string "solicitor_account_number"
     t.string "submission_type"
     t.string "receipt_email"
+    t.string "urgent_hearing"
+    t.text "urgent_hearing_details"
+    t.string "urgent_hearing_when"
+    t.string "urgent_hearing_short_notice"
+    t.text "urgent_hearing_short_notice_details"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
