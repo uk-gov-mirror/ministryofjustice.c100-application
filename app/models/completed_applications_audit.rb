@@ -1,7 +1,7 @@
 class CompletedApplicationsAudit < ApplicationRecord
   self.table_name = 'completed_applications_audit'
 
-  default_scope { order(completed_at: :desc) }
+  default_scope { order(completed_at: :asc) }
 
   def self.log!(c100_application)
     create(
