@@ -8,8 +8,6 @@ task :daily_tasks do
   Rake::Task['draft_reminders:first_email'].invoke
   Rake::Task['draft_reminders:last_email'].invoke
 
-  Rake::Task['stats:cumulative_data'].invoke
-
   log 'Finished daily tasks'
 end
 
@@ -42,13 +40,6 @@ namespace :draft_reminders do
 
     log "#{task_name}  - Count: #{rule_set.count}"
     C100App::DraftReminders.new(rule_set: rule_set).run
-  end
-end
-
-namespace :stats do
-  task cumulative_data: :environment do
-    log 'Processing cumulative data points...'
-    CumulativeData.process!
   end
 end
 
