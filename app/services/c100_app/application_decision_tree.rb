@@ -8,6 +8,10 @@ module C100App
       when :previous_proceedings
         after_previous_proceedings
       when :court_proceedings
+        edit(:urgent_hearing)
+      when :urgent_hearing
+        after_urgent_hearing
+      when :urgent_hearing_details
         edit(:without_notice)
       when :without_notice
         after_without_notice
@@ -44,6 +48,14 @@ module C100App
     def after_previous_proceedings
       if question(:children_previous_proceedings).yes?
         edit(:court_proceedings)
+      else
+        edit(:urgent_hearing)
+      end
+    end
+
+    def after_urgent_hearing
+      if question(:urgent_hearing).yes?
+        edit(:urgent_hearing_details)
       else
         edit(:without_notice)
       end

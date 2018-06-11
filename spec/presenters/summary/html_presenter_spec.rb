@@ -71,6 +71,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::OtherPartiesDetails,
         Summary::HtmlSections::ChildrenResidence,
         Summary::HtmlSections::OtherCourtCases,
+        Summary::HtmlSections::UrgentHearingDetails,
         Summary::HtmlSections::WithoutNoticeDetails,
         Summary::HtmlSections::InternationalElement,
         Summary::HtmlSections::ApplicationReasons,

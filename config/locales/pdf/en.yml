@@ -315,11 +315,23 @@ en:
         'no': No - permission not required
     application_details:
       question: Why are you making this application?
-    urgent_hearing_details:
+
+    urgent_hearing:
       question: *details
       answers:
         'yes': ''
         'no': *not_applicable
+    urgent_hearing_details:
+      question: Give details of why you’re asking for an urgent hearing
+    urgent_hearing_when:
+      question: How soon do you need an urgent hearing?
+    urgent_hearing_short_notice:
+      question: Do you need a hearing within the next 48 hours?
+      answers:
+        <<: *YESNO
+    urgent_hearing_short_notice_details:
+      question: What have you done to tell each respondent of this application?
+
     without_notice_hearing_details:
       question: *details
       answers:
