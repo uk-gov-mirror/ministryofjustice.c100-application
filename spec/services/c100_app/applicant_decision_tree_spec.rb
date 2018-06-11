@@ -105,7 +105,25 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
     context 'when all applicants have been edited' do
       let(:record) { double('Applicant', id: 3) }
-      it {is_expected.to have_destination('/steps/respondent/names', :edit)}
+      it {is_expected.to have_destination(:has_solicitor, :edit)}
+    end
+  end
+
+  context 'when the step is `has_solicitor`' do
+    let(:step_params) { { has_solicitor: 'anything' } }
+
+    before do
+      allow(c100_application).to receive(:has_solicitor).and_return(value)
+    end
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination('/steps/solicitor/personal_details', :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+      it { is_expected.to have_destination('/steps/respondent/names', :edit) }
     end
   end
 end

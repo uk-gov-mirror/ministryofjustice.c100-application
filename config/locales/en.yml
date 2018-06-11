@@ -162,6 +162,14 @@ en:
           heading: The applicant is (or may be) less than 18 years old
           lead_text: Sorry, you’re not eligible to apply online. You can only use this online service if both you and the other person (the respondent) are over 18.
           continue: Continue
+      has_solicitor:
+        edit:
+          page_title: Do you have a solicitor?
+          heading:
+            zero: Do you have a solicitor?
+            one: Do you have a solicitor?
+            other: Do you or any of the other applicants have a solicitor?
+          lead_text: Tell us if a solicitor is representing you in these proceedings.
     respondent:
       names:
         edit:
@@ -1210,6 +1218,8 @@ en:
         gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_has_solicitor_form:
+        has_solicitor_html: ""
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex

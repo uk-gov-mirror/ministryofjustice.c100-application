@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180611102906) do
+ActiveRecord::Schema.define(version: 20180611122325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 20180611102906) do
     t.string "urgent_hearing_when"
     t.string "urgent_hearing_short_notice"
     t.text "urgent_hearing_short_notice_details"
+    t.string "has_solicitor"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
@@ -286,6 +287,21 @@ ActiveRecord::Schema.define(version: 20180611102906) do
     t.string "utm_campaign"
   end
 
+  create_table "solicitors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.string "firm_name"
+    t.string "reference"
+    t.text "address"
+    t.string "dx_number"
+    t.string "phone_number"
+    t.string "fax_number"
+    t.string "email"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_solicitors_on_c100_application_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -314,4 +330,5 @@ ActiveRecord::Schema.define(version: 20180611102906) do
   add_foreign_key "relationships", "people"
   add_foreign_key "relationships", "people", column: "minor_id"
   add_foreign_key "screener_answers", "c100_applications"
+  add_foreign_key "solicitors", "c100_applications"
 end
