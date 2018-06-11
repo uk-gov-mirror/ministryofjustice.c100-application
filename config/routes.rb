@@ -195,6 +195,9 @@ Rails.application.routes.draw do
         edit_routes ':id/child/:child_id'
       end
     end
+    namespace :solicitor do
+      edit_step :personal_details
+    end
     namespace :respondent do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]

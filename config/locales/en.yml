@@ -274,6 +274,11 @@ en:
       relationship:
         edit:
           page_title: Other person relationship
+    solicitor:
+      personal_details:
+        edit:
+          page_title: "Solicitor's details"
+          heading: "Solicitor's details"
     abuse_concerns:
       start:
         show:
@@ -1459,6 +1464,10 @@ en:
         new_name: Full name of respondent
       steps_respondent_names_form[names_attributes]:
         full_name: Full name of respondent
+      steps_solicitor_personal_details_form:
+        full_name: Full name of solicitor
+        firm_name: Name of firm
+        reference: Solicitor reference
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_email_consent_form:
@@ -1563,6 +1572,9 @@ en:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
+      steps_solicitor_personal_details_form:
+        full_name: Enter the first name and last name.
+        reference: The solicitor should have given you a reference for your case.
 
     submit:
       continue: Continue
