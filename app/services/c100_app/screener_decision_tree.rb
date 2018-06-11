@@ -6,8 +6,6 @@ module C100App
       case step_name
       when :children_postcodes
         check_if_court_is_valid
-      when :urgency
-        after_urgency
       when :parent
         after_parent
       when :over18
@@ -30,24 +28,14 @@ module C100App
       if courts.empty?
         show(:no_court_found)
       else
-        # store the first court in session so that if they choose "yes, it's urgent"
-        # we can render the court's contact details out to them in the next step
         court = Court.new.from_courtfinder_data!(courts.first)
         c100_application.screener_answers.update!(local_court: court)
-        edit(:urgency)
+        edit(:parent)
       end
 
     # CourtPostcodeChecker already logs the exception
     rescue StandardError
       show(:error_but_continue)
-    end
-
-    def after_urgency
-      if question(:urgent, c100_application.screener_answers).yes?
-        show(:urgent_exit)
-      else
-        edit(:parent)
-      end
     end
 
     def after_parent

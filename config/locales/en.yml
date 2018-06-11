@@ -871,37 +871,6 @@ en:
           page_title: Not eligible
           heading: Sorry, you're not eligible to apply online
           lead_text: This is a new service that we're trying out at a limited number of courts. Unfortunately the appropriate court for your application is not yet taking part in this trial.
-      urgency:
-        edit:
-          page_title: Urgent hearing
-          heading: Do you need an urgent hearing?
-          lead_text: 'A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there’s good reason for the urgency, for example:'
-          examples_html: |
-            <ul class="list list-bullet">
-              <li>there’s a risk of harm to you or the children</li>
-              <li>the children are at risk of abduction</li>
-            </ul>
-          reasons_title: Examples of when a court may consider an urgent hearing
-          reasons_content_html: |
-            <p>There is:</p>
-            <ul class="list list-bullet">
-              <li>risk to the life, liberty or physical safety of you, your family or your home</li>
-              <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
-            </ul>
-            <p>Any delay would cause:</p>
-            <ul class="list list-bullet">
-              <li>a risk of harm to the children</li>
-              <li>unreasonable hardship for you</li>
-              <li>a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales</li>
-              <li>a significant risk of a miscarriage of justice</li>
-              <li>irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)</li>
-            </ul>
-          warning: Contact the police if you or the children are in immediate danger.
-      urgent_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: If your application is urgent, you should contact your local court directly
       parent:
         edit:
           page_title: Are you a parent of the child or children?
@@ -1287,8 +1256,6 @@ en:
 
       ### SCREENER ###
       #
-      steps_screener_urgency_form:
-        urgent_html: ""
       steps_screener_parent_form:
         parent_html: ""
       steps_screener_over18_form:
