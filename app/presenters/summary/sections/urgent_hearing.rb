@@ -7,8 +7,11 @@ module Summary
 
       def answers
         [
-          # TODO: we don't have the urgent steps yet (but for MVP we might do screening)
-          Answer.new(:urgent_hearing_details, GenericYesNo::NO),
+          Answer.new(:urgent_hearing, c100.urgent_hearing, default: GenericYesNo::NO),
+          FreeTextAnswer.new(:urgent_hearing_details, c100.urgent_hearing_details),
+          FreeTextAnswer.new(:urgent_hearing_when, c100.urgent_hearing_when),
+          Answer.new(:urgent_hearing_short_notice, c100.urgent_hearing_short_notice),
+          FreeTextAnswer.new(:urgent_hearing_short_notice_details, c100.urgent_hearing_short_notice_details),
         ].select(&:show?)
       end
     end
