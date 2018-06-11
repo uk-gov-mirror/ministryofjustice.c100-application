@@ -279,6 +279,10 @@ en:
         edit:
           page_title: "Solicitor's details"
           heading: "Solicitor's details"
+      contact_details:
+        edit:
+          page_title: "Solicitor's contact details"
+          heading: "Contact details of %{name}"
     abuse_concerns:
       start:
         show:
@@ -1043,6 +1047,9 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/solicitor/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/children/residence_form:
           attributes:
             person_ids:
@@ -1468,6 +1475,12 @@ en:
         full_name: Full name of solicitor
         firm_name: Name of firm
         reference: Solicitor reference
+      steps_solicitor_contact_details_form:
+        address: Address
+        dx_number: DX number
+        phone_number: Phone number
+        fax_number: Fax number
+        email: Email address
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_email_consent_form:
@@ -1575,6 +1588,11 @@ en:
       steps_solicitor_personal_details_form:
         full_name: Enter the first name and last name.
         reference: The solicitor should have given you a reference for your case.
+      steps_solicitor_contact_details_form:
+        address: Enter the full address including postcode.
+        dx_number_html: |
+          You can ask your solicitor for this (if they have one).<br/>
+          This is a secure document exchange system used by the legal profession.
 
     submit:
       continue: Continue

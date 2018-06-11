@@ -10,13 +10,13 @@ RSpec.describe C100App::SolicitorDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `solicitor_details`' do
-    let(:step_params) { { solicitor_details: 'anything' } }
-    it { is_expected.to have_destination(:solicitor_contact_details, :edit) }
+  context 'when the step is `personal_details`' do
+    let(:step_params) { { personal_details: 'anything' } }
+    it { is_expected.to have_destination(:contact_details, :edit) }
   end
 
-  context 'when the step is `solicitor_contact_details`' do
-    let(:step_params) { { solicitor_contact_details: 'anything' } }
+  context 'when the step is `contact_details`' do
+    let(:step_params) { { contact_details: 'anything' } }
     it { is_expected.to have_destination('/steps/respondent/names', :edit) }
   end
 end

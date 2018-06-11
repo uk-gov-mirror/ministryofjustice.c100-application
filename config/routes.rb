@@ -197,6 +197,7 @@ Rails.application.routes.draw do
     end
     namespace :solicitor do
       edit_step :personal_details
+      edit_step :contact_details
     end
     namespace :respondent do
       crud_step :names
