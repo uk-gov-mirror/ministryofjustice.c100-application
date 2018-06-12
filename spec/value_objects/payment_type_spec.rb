@@ -9,7 +9,8 @@ RSpec.describe PaymentType do
       expect(described_class.values.map(&:to_s)).to eq(%w(
         help_with_fees
         solicitor
-        self_payment
+        self_payment_card
+        self_payment_cheque
       ))
     end
   end
