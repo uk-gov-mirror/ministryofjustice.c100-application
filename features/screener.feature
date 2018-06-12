@@ -18,9 +18,6 @@ Feature: Screener
     Then I should see "Are you and the other parent both over 18?"
     And I choose "Yes"
 
-    Then I should see "Do you have a solicitor?"
-    And I choose "No"
-
     Then I should see "Do you have a signed draft court order you want the court to consider making legally binding?"
     And I choose "No"
 
