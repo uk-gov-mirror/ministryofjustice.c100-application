@@ -29,14 +29,35 @@ RSpec.describe User, type: :model do
   end
 
   describe 'email validation' do
+    subject { described_class.new(password: 'password', email: email) }
+
+    context 'validate if not present' do
+      let(:email) { nil }
+
+      it {
+        expect(subject).not_to be_valid
+        expect(subject.errors.added?(:email, :blank)).to eq(true)
+      }
+    end
+
+    context 'validate if malformed' do
+      let(:email) { 'xxx' }
+
+      it {
+        expect(subject).not_to be_valid
+        expect(subject.errors.added?(:email, :invalid)).to eq(true)
+      }
+    end
+
     context 'custom value casting' do
       #
       # This is just a quick test to ensure the `NormalisedEmailType` casting is being used.
       # A more in-deep test of all possible unicode substitutions can be found in:
       # spec/attributes/normalised_email_type_spec.rb
       #
+      let(:email) { "test\u2032ing@hyphened\u2010domain.com" }
+
       it 'should replace common unicode equivalent characters' do
-        subject.email = "test\u2032ing@hyphened\u2010domain.com"
         expect(subject.email).to eq("test\u0027ing@hyphened\u002ddomain.com")
       end
     end
