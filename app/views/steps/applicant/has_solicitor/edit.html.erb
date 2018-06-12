@@ -1,0 +1,18 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">
+      <%=t '.heading', count: current_c100_application.applicants.count %>
+    </h1>
+
+    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.radio_button_fieldset :has_solicitor, inline: true, choices: GenericYesNo.values %>
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>

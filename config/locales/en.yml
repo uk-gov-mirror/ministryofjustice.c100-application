@@ -162,6 +162,14 @@ en:
           heading: The applicant is (or may be) less than 18 years old
           lead_text: Sorry, you’re not eligible to apply online. You can only use this online service if both you and the other person (the respondent) are over 18.
           continue: Continue
+      has_solicitor:
+        edit:
+          page_title: Do you have a solicitor?
+          heading:
+            zero: Do you have a solicitor?
+            one: Do you have a solicitor?
+            other: Do you or any of the other applicants have a solicitor?
+          lead_text: Tell us if a solicitor is representing you in these proceedings.
     respondent:
       names:
         edit:
@@ -266,6 +274,15 @@ en:
       relationship:
         edit:
           page_title: Other person relationship
+    solicitor:
+      personal_details:
+        edit:
+          page_title: "Solicitor's details"
+          heading: "Solicitor's details"
+      contact_details:
+        edit:
+          page_title: "Solicitor's contact details"
+          heading: "Contact details of %{name}"
     abuse_concerns:
       start:
         show:
@@ -1030,6 +1047,9 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/solicitor/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/children/residence_form:
           attributes:
             person_ids:
@@ -1210,6 +1230,8 @@ en:
         gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_has_solicitor_form:
+        has_solicitor_html: ""
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
@@ -1449,6 +1471,16 @@ en:
         new_name: Full name of respondent
       steps_respondent_names_form[names_attributes]:
         full_name: Full name of respondent
+      steps_solicitor_personal_details_form:
+        full_name: Full name of solicitor
+        firm_name: Name of firm
+        reference: Solicitor reference
+      steps_solicitor_contact_details_form:
+        address: Address
+        dx_number: DX number
+        phone_number: Phone number
+        fax_number: Fax number
+        email: Email address
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_email_consent_form:
@@ -1553,6 +1585,14 @@ en:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
+      steps_solicitor_personal_details_form:
+        full_name: Enter the first name and last name.
+        reference: The solicitor should have given you a reference for your case.
+      steps_solicitor_contact_details_form:
+        address: Enter the full address including postcode.
+        dx_number_html: |
+          You can ask your solicitor for this (if they have one).<br/>
+          This is a secure document exchange system used by the legal profession.
 
     submit:
       continue: Continue

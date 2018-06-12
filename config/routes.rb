@@ -190,9 +190,14 @@ Rails.application.routes.draw do
       crud_step :personal_details, only: [:edit, :update]
       crud_step :under_age,        only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
+      edit_step :has_solicitor
       edit_step :relationship, only: [] do
         edit_routes ':id/child/:child_id'
       end
+    end
+    namespace :solicitor do
+      edit_step :personal_details
+      edit_step :contact_details
     end
     namespace :respondent do
       crud_step :names
