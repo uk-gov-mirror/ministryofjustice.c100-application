@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :completed_applications, -> { completed }, class_name: 'C100Application'
 
   attribute :email, NormalisedEmailType.new
+  validates :email, email: true, allow_blank: true
 
   # Devise requires several DB attributes for the `trackable` module, but we are not
   # using all of them. Using virtual attributes so Devise doesn't complain.
