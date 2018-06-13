@@ -64,6 +64,7 @@ module Summary
     def people_sections
       [
         HtmlSections::ApplicantsDetails.new(c100_application),
+        HtmlSections::SolicitorDetails.new(c100_application),
         HtmlSections::RespondentsDetails.new(c100_application),
         HtmlSections::OtherPartiesDetails.new(c100_application),
       ]

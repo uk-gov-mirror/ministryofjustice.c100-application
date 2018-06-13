@@ -67,6 +67,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::ChildrenFurtherInformation,
         Summary::HtmlSections::OtherChildrenDetails,
         Summary::HtmlSections::ApplicantsDetails,
+        Summary::HtmlSections::SolicitorDetails,
         Summary::HtmlSections::RespondentsDetails,
         Summary::HtmlSections::OtherPartiesDetails,
         Summary::HtmlSections::ChildrenResidence,

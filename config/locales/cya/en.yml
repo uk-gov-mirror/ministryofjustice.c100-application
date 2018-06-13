@@ -87,6 +87,7 @@ en:
       help_with_fees: Help with fees
       payment: How will you pay the application fee?
       submission: How will you submit your application to court?
+      solicitor_details: Details of your solicitor
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -110,6 +111,9 @@ en:
       help_with_fees: Do you have a ‘Help with fees’ reference number?
       payment_type: Payment type
       submission_type: Submission type
+      solicitor_contact_details: Your solicitors contact details
+      solicitor_personal_details: Your solicitors personal details
+
     separators:
       children_details_index_title: Child %{index}
       other_children_details_index_title: Other child %{index}
@@ -586,3 +590,23 @@ en:
         print_and_post: Print and post
     submission_receipt_email:
       question: 'A copy of your application will be sent to:'
+    has_solicitor:
+      question: Do you have a solicitor?
+      answers:
+        <<: *YESNO
+    solicitor_full_name:
+      question: Full name
+    solicitor_firm_name:
+      question: Firm name
+    solicitor_reference:
+      question: Solicitors Reference
+    solicitor_address:
+      question: Address
+    solicitor_dx_number:
+      question: DX number
+    solicitor_phone_number:
+      question: Phone number
+    solicitor_fax_number:
+      question: Fax number
+    solicitor_email:
+      question: Email
