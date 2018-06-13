@@ -125,6 +125,7 @@ en:
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       other_children_details: Other children not part of the application
+      court_fee: Court fee
       ### C1A ###
       c1a_court_details: *to_be_completed
       c1a_children_details: Summary of children’s details
@@ -315,11 +316,23 @@ en:
         'no': No - permission not required
     application_details:
       question: Why are you making this application?
-    urgent_hearing_details:
+
+    urgent_hearing:
       question: *details
       answers:
         'yes': ''
         'no': *not_applicable
+    urgent_hearing_details:
+      question: Give details of why you’re asking for an urgent hearing
+    urgent_hearing_when:
+      question: How soon do you need an urgent hearing?
+    urgent_hearing_short_notice:
+      question: Do you need a hearing within the next 48 hours?
+      answers:
+        <<: *YESNO
+    urgent_hearing_short_notice_details:
+      question: What have you done to tell each respondent of this application?
+
     without_notice_hearing_details:
       question: *details
       answers:
@@ -409,10 +422,34 @@ en:
       question: Email address
     person_relationship_to_children:
       question: Relationship to children listed in this application
+
+    # Note: the solicitor i18n is shared among the C100 and C1A forms.
     has_solicitor:
       question: Is a solicitor acting for you?
       answers:
         <<: *YESNO
+    solicitor_applicant_name:
+      question: Solicitor acting for
+    solicitor_full_name:
+      question: Solicitor’s name
+    solicitor_firm_name:
+      question: Name of firm
+    solicitor_address:
+      question: Address
+    solicitor_phone_number:
+      question: Telephone number
+    solicitor_fax_number:
+      question: Fax number
+    solicitor_dx_number:
+      question: DX number
+    solicitor_reference:
+      question: Solicitor’s reference
+    solicitor_fee_account:
+      question: Fee account number
+      absence_answer: *not_applicable
+    solicitor_email:
+      question: Email address
+
     court_proceeding_children_names:
       question: Name of child(ren)
     court_proceeding_court_name:
@@ -427,6 +464,15 @@ en:
       question: Type of proceedings - if known
     court_proceeding_previous_details:
       question: Details of any other previous family case
+    payment_type:
+      question: Payment option selected
+      answers:
+        help_with_fees: Help with fees
+        solicitor: Through solicitor
+        self_payment_card: Credit or debit card - contact the applicant within 3 working days of receiving application to take payment
+        self_payment_cheque: Cheque or cash
+    solicitor_account_number:
+      question: Fee account number
 
     ### C1A questions/answers ###
     #

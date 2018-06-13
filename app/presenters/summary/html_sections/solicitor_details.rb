@@ -1,0 +1,51 @@
+module Summary
+  module HtmlSections
+    class SolicitorDetails < Sections::BaseSectionPresenter
+      def name
+        :solicitor_details
+      end
+
+      def answers
+        [
+          Answer.new(:has_solicitor, c100.has_solicitor, change_path: edit_steps_applicant_has_solicitor_path),
+          solicitor_personal_details,
+          solicitor_contact_details,
+        ].flatten.select(&:show?)
+      end
+
+      private
+
+      def solicitor
+        c100_application.solicitor || Solicitor.new
+      end
+
+      def solicitor_personal_details
+        [
+          AnswersGroup.new(
+            :solicitor_personal_details,
+            [
+              FreeTextAnswer.new(:solicitor_full_name, solicitor.full_name),
+              FreeTextAnswer.new(:solicitor_firm_name, solicitor.firm_name),
+              FreeTextAnswer.new(:solicitor_reference, solicitor.reference)
+            ],
+            change_path: edit_steps_solicitor_personal_details_path
+          )
+        ]
+      end
+
+      def solicitor_contact_details
+        AnswersGroup.new(
+          :solicitor_contact_details,
+          [
+            FreeTextAnswer.new(:solicitor_address, solicitor.address),
+            FreeTextAnswer.new(:solicitor_dx_number, solicitor.dx_number),
+            FreeTextAnswer.new(:solicitor_phone_number, solicitor.phone_number),
+            FreeTextAnswer.new(:solicitor_fax_number, solicitor.fax_number),
+            FreeTextAnswer.new(:solicitor_email, solicitor.email),
+          ],
+          change_path: edit_steps_solicitor_contact_details_path
+        )
+      end
+    end
+  end
+end

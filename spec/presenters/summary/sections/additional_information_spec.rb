@@ -25,7 +25,7 @@ module Summary
 
         expect(answers[1]).to be_an_instance_of(Answer)
         expect(answers[1].question).to eq(:urgent_or_without_notice)
-        expect(c100_application).to have_received(:without_notice)
+        expect(answers[1].value).to eq(GenericYesNo::NO) # The values of this are tested separated
 
         expect(answers[2]).to be_an_instance_of(Answer)
         expect(answers[2].question).to eq(:children_previous_proceedings)
@@ -42,6 +42,29 @@ module Summary
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:language_assistance)
         expect(c100_application).to have_received(:language_help)
+      end
+    end
+
+    describe '`urgent_or_without_notice_value` answer values' do
+      before do
+        expect(c100_application).to receive(:urgent_hearing).and_return(urgent_hearing)
+        expect(c100_application).to receive(:without_notice)
+      end
+
+      context 'at least one question was answered as `YES`' do
+        let(:urgent_hearing) { 'yes' }
+
+        it 'returns the question value' do
+          expect(answers[1].value).to eq('yes')
+        end
+      end
+
+      context 'there are no questions answered with `YES`' do
+        let(:urgent_hearing) { 'no' }
+
+        it 'returns the default value for the answer' do
+          expect(answers[1].value).to eq(GenericYesNo::NO)
+        end
       end
     end
 

@@ -21,12 +21,32 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'when answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination(:without_notice, :edit) }
+      it { is_expected.to have_destination(:urgent_hearing, :edit) }
     end
   end
 
   context 'when the step is `court_proceedings`' do
     let(:step_params) { { court_proceedings: 'anything' } }
+    it { is_expected.to have_destination(:urgent_hearing, :edit) }
+  end
+
+  context 'when the step is `urgent_hearing`' do
+    let(:c100_application) { instance_double(C100Application, urgent_hearing: answer) }
+    let(:step_params) { { urgent_hearing: 'whatever' } }
+
+    context 'and the answer is `yes`' do
+      let(:answer) { 'yes' }
+      it { is_expected.to have_destination(:urgent_hearing_details, :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:answer) { 'no' }
+      it { is_expected.to have_destination(:without_notice, :edit) }
+    end
+  end
+
+  context 'when the step is `urgent_hearing_details`' do
+    let(:step_params) { { urgent_hearing_details: 'anything' } }
     it { is_expected.to have_destination(:without_notice, :edit) }
   end
 
@@ -92,11 +112,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `special_arrangements`' do
     let(:step_params) { { special_arrangements: 'anything' } }
-    it { is_expected.to have_destination(:help_paying, :edit) }
+    it { is_expected.to have_destination(:payment, :edit) }
   end
 
-  context 'when the step is `help_paying`' do
-    let(:step_params) { { help_paying: 'anything' } }
+  context 'when the step is `payment`' do
+    let(:step_params) { { payment: 'anything' } }
 
     before do
       allow(subject).to receive(:dev_tools_enabled?).and_return(dev_tools_enabled)

@@ -25,7 +25,7 @@
     </details>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :urgent, inline: true, choices: GenericYesNo.values %>
+      <%= f.radio_button_fieldset :urgent_hearing, inline: true, choices: GenericYesNo.values %>
 
       <%= f.continue_button %>
     <% end %>

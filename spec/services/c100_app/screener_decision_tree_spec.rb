@@ -36,7 +36,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
         allow_any_instance_of(Court).to receive(:from_courtfinder_data!).and_return(court)
       end
 
-      it { is_expected.to have_destination(:urgency, :edit) }
+      it { is_expected.to have_destination(:parent, :edit) }
 
       it 'creates a Court from the first result' do
         expect_any_instance_of(Court).to receive(:from_courtfinder_data!).with(courts.first)
@@ -65,24 +65,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
     end
   end
 
-  context 'when the step is `urgency`' do
-    let(:as){ :urgency }
-    let(:step_params){ {urgent: urgent} }
-    let(:screener_answers) { double('screener_answers', urgent: urgent) }
-
-    context 'and urgent is "yes"' do
-      let(:urgent){ GenericYesNo::YES }
-
-      it { is_expected.to have_destination(:urgent_exit, :show) }
-    end
-
-    context 'and urgent is "no"' do
-      let(:urgent){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination(:parent, :edit) }
-    end
-  end
-
   context 'when the step is `parent`' do
     let(:step_params){ {parent: parent} }
     let(:screener_answers) { double('screener_answers', parent: parent) }
@@ -107,30 +89,13 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and over18 is "yes"' do
       let(:over18){ GenericYesNo::YES }
 
-      it { is_expected.to have_destination(:legal_representation, :edit) }
+      it { is_expected.to have_destination(:written_agreement, :edit) }
     end
 
     context 'and over18 is "no"' do
       let(:over18){ GenericYesNo::NO }
 
       it { is_expected.to have_destination(:over18_exit, :show) }
-    end
-  end
-
-  context 'when the step is `legal_representation`' do
-    let(:step_params){ {legal_representation: legal_representation} }
-    let(:screener_answers) { double('screener_answers', legal_representation: legal_representation) }
-
-    context 'and legal_representation is "no"' do
-      let(:legal_representation){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination(:written_agreement, :edit) }
-    end
-
-    context 'and legal_representation is "yes"' do
-      let(:legal_representation){ GenericYesNo::YES }
-
-      it { is_expected.to have_destination(:legal_representation_exit, :show) }
     end
   end
 

@@ -67,15 +67,17 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::ChildrenFurtherInformation,
         Summary::HtmlSections::OtherChildrenDetails,
         Summary::HtmlSections::ApplicantsDetails,
+        Summary::HtmlSections::SolicitorDetails,
         Summary::HtmlSections::RespondentsDetails,
         Summary::HtmlSections::OtherPartiesDetails,
         Summary::HtmlSections::ChildrenResidence,
         Summary::HtmlSections::OtherCourtCases,
+        Summary::HtmlSections::UrgentHearingDetails,
         Summary::HtmlSections::WithoutNoticeDetails,
         Summary::HtmlSections::InternationalElement,
         Summary::HtmlSections::ApplicationReasons,
         Summary::HtmlSections::AttendingCourt,
-        Summary::HtmlSections::HelpWithFees,
+        Summary::HtmlSections::Payment,
         Summary::HtmlSections::Submission,
       ])
     end

@@ -6,8 +6,12 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede"><%=t '.lead_text' %></p>
+    <%= step_form @form_object do |f| %>
+      <%= f.text_field :full_name %>
+      <%= f.text_field :firm_name %>
+      <%= f.text_field :reference %>
 
-    <%= render partial: '/steps/shared/screener_exit_actions' %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>

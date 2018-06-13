@@ -79,6 +79,7 @@ en:
       other_parties_details: Details of any other people
       children_residence: Where the children live
       other_court_cases: Involvement in other proceedings
+      urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       international_element: International information
       application_reasons: Reasons for application
@@ -86,6 +87,7 @@ en:
       help_with_fees: Help with fees
       payment: How will you pay the application fee?
       submission: How will you submit your application to court?
+      solicitor_details: Details of your solicitor
     groups:
       miam_certification_details: Certification details
       abduction_passport_possession: Details of the children’s passports
@@ -97,6 +99,7 @@ en:
       person_personal_details: Personal details
       person_contact_details: Contact details
       other_court_cases_details: Other proceedings details
+      urgent_hearing_details: Urgent hearing details
       without_notice_hearing_details: Without notice hearing details
       international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
       international_request: Has a request for information or other assistance involving the children been made to or by another country?
@@ -108,6 +111,9 @@ en:
       help_with_fees: Do you have a ‘Help with fees’ reference number?
       payment_type: Payment type
       submission_type: Submission type
+      solicitor_contact_details: Your solicitors contact details
+      solicitor_personal_details: Your solicitors personal details
+
     separators:
       children_details_index_title: Child %{index}
       other_children_details_index_title: Other child %{index}
@@ -476,6 +482,21 @@ en:
     court_proceeding_previous_details:
       question: Details of any other previous family case
 
+    urgent_hearing:
+      question: Do you need an urgent hearing?
+      answers:
+        <<: *YESNO
+    urgent_hearing_details:
+      question: Why you’re asking for an urgent hearing
+    urgent_hearing_when:
+      question: How soon do you need an urgent hearing?
+    urgent_hearing_short_notice:
+      question: Do you need a hearing within the next 48 hours?
+      answers:
+        <<: *YESNO
+    urgent_hearing_short_notice_details:
+      question: What have you done to tell each respondent of this application?
+
     without_notice_hearing:
       question: Are you asking for a without notice hearing?
       answers:
@@ -494,6 +515,7 @@ en:
         <<: *YESNO
     without_notice_impossible_details:
       question: Details
+
     international_resident:
       question: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
       answers:
@@ -558,8 +580,9 @@ en:
       question: ''
       answers:
         help_with_fees: Help with fees
-        solicitor: Solicitor payment
-        self_payment: I am paying myself
+        solicitor: Through a solicitor’s fee account
+        self_payment_card: I am paying myself by credit or debit card
+        self_payment_cheque: I am paying myself by cheque or cash
     submission_type:
       question: ''
       answers:
@@ -567,3 +590,23 @@ en:
         print_and_post: Print and post
     submission_receipt_email:
       question: 'A copy of your application will be sent to:'
+    has_solicitor:
+      question: Do you have a solicitor?
+      answers:
+        <<: *YESNO
+    solicitor_full_name:
+      question: Full name
+    solicitor_firm_name:
+      question: Firm name
+    solicitor_reference:
+      question: Solicitors Reference
+    solicitor_address:
+      question: Address
+    solicitor_dx_number:
+      question: DX number
+    solicitor_phone_number:
+      question: Phone number
+    solicitor_fax_number:
+      question: Fax number
+    solicitor_email:
+      question: Email

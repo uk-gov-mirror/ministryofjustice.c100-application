@@ -11,6 +11,7 @@ class C100Application < ApplicationRecord
 
   belongs_to :user, optional: true
 
+  has_one  :solicitor,        dependent: :destroy
   has_one  :abduction_detail, dependent: :destroy
   has_one  :court_order,      dependent: :destroy
   has_one  :court_proceeding, dependent: :destroy

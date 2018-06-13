@@ -70,14 +70,10 @@ Rails.application.routes.draw do
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
-      edit_step :urgency
-      show_step :urgent_exit
       edit_step :parent
       show_step :parent_exit
       edit_step :over18
       show_step :over18_exit
-      edit_step :legal_representation
-      show_step :legal_representation_exit
       edit_step :written_agreement
       show_step :written_agreement_exit
       edit_step :email_consent
@@ -86,6 +82,8 @@ Rails.application.routes.draw do
     namespace :application do
       edit_step :previous_proceedings
       edit_step :court_proceedings
+      edit_step :urgent_hearing
+      edit_step :urgent_hearing_details
       edit_step :without_notice
       edit_step :without_notice_details
       edit_step :litigation_capacity
@@ -190,9 +188,14 @@ Rails.application.routes.draw do
       crud_step :personal_details, only: [:edit, :update]
       crud_step :under_age,        only: [:edit, :update]
       crud_step :contact_details,  only: [:edit, :update]
+      edit_step :has_solicitor
       edit_step :relationship, only: [] do
         edit_routes ':id/child/:child_id'
       end
+    end
+    namespace :solicitor do
+      edit_step :personal_details
+      edit_step :contact_details
     end
     namespace :respondent do
       crud_step :names

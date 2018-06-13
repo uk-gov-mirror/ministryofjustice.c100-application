@@ -19,8 +19,10 @@ module Summary
       private
 
       def urgent_or_without_notice_value
-        # TODO: to be decided when `urgent` apply
-        c100.without_notice
+        [
+          c100.urgent_hearing,
+          c100.without_notice,
+        ].detect { |answer| answer.eql?(GenericYesNo::YES.to_s) }
       end
 
       def international_or_capacity_value

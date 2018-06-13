@@ -162,6 +162,14 @@ en:
           heading: The applicant is (or may be) less than 18 years old
           lead_text: Sorry, you’re not eligible to apply online. You can only use this online service if both you and the other person (the respondent) are over 18.
           continue: Continue
+      has_solicitor:
+        edit:
+          page_title: Do you have a solicitor?
+          heading:
+            zero: Do you have a solicitor?
+            one: Do you have a solicitor?
+            other: Do you or any of the other applicants have a solicitor?
+          lead_text: Tell us if a solicitor is representing you in these proceedings.
     respondent:
       names:
         edit:
@@ -266,6 +274,15 @@ en:
       relationship:
         edit:
           page_title: Other person relationship
+    solicitor:
+      personal_details:
+        edit:
+          page_title: "Solicitor's details"
+          heading: "Solicitor's details"
+      contact_details:
+        edit:
+          page_title: "Solicitor's contact details"
+          heading: "Contact details of %{name}"
     abuse_concerns:
       start:
         show:
@@ -740,6 +757,37 @@ en:
           heading: Resume application
           lead_text: Review your current progress and resume this application
           resume: Resume application
+      urgent_hearing:
+        edit:
+          page_title: Urgent hearing
+          heading: Do you need an urgent hearing?
+          lead_text: 'A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there’s good reason for the urgency, for example:'
+          examples_html: |
+            <ul class="list list-bullet">
+              <li>there’s a risk of harm to you or the children</li>
+              <li>the children are at risk of abduction</li>
+            </ul>
+          reasons_title: Examples of when a court may consider an urgent hearing
+          reasons_content_html: |
+            <p>There is:</p>
+            <ul class="list list-bullet">
+              <li>risk to the life, liberty or physical safety of you, your family or your home</li>
+              <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
+            </ul>
+            <p>Any delay would cause:</p>
+            <ul class="list list-bullet">
+              <li>a risk of harm to the children</li>
+              <li>unreasonable hardship for you</li>
+              <li>a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales</li>
+              <li>a significant risk of a miscarriage of justice</li>
+              <li>irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)</li>
+            </ul>
+          warning: Contact the police if you or the children are in immediate danger.
+      urgent_hearing_details:
+        edit:
+          page_title: Details of urgent hearing
+          heading: Details of urgent hearing
+          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" target="external_link" rel="external">contact your nearest family court</a> for assistance.
     international:
       resident:
         edit:
@@ -841,37 +889,6 @@ en:
           page_title: Not eligible
           heading: Sorry, you're not eligible to apply online
           lead_text: This is a new service that we're trying out at a limited number of courts. Unfortunately the appropriate court for your application is not yet taking part in this trial.
-      urgency:
-        edit:
-          page_title: Urgent hearing
-          heading: Do you need an urgent hearing?
-          lead_text: 'A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there’s good reason for the urgency, for example:'
-          examples_html: |
-            <ul class="list list-bullet">
-              <li>there’s a risk of harm to you or the children</li>
-              <li>the children are at risk of abduction</li>
-            </ul>
-          reasons_title: Examples of when a court may consider an urgent hearing
-          reasons_content_html: |
-            <p>There is:</p>
-            <ul class="list list-bullet">
-              <li>risk to the life, liberty or physical safety of you, your family or your home</li>
-              <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
-            </ul>
-            <p>Any delay would cause:</p>
-            <ul class="list list-bullet">
-              <li>a risk of harm to the children</li>
-              <li>unreasonable hardship for you</li>
-              <li>a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales</li>
-              <li>a significant risk of a miscarriage of justice</li>
-              <li>irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)</li>
-            </ul>
-          warning: Contact the police if you or the children are in immediate danger.
-      urgent_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: If your application is urgent, you should contact your local court directly
       parent:
         edit:
           page_title: Are you a parent of the child or children?
@@ -890,16 +907,6 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if both you and the other person (the respondent) are over 18.
-      legal_representation:
-        edit:
-          page_title: Do you have a solicitor?
-          heading: Do you have a solicitor?
-          lead_text: You can only use this online service if you do not have a solicitor representing you in these proceedings.
-      legal_representation_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: You can only use this online service if you do not have a solicitor representing you or filling this form on your behalf.
       written_agreement:
         edit:
           page_title: Consent order
@@ -1031,6 +1038,9 @@ en:
         steps/other_parties/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/solicitor/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/children/residence_form:
           attributes:
             person_ids:
@@ -1096,6 +1106,10 @@ en:
         relation_html: ""
       steps_application_previous_proceedings_form:
         children_previous_proceedings_html: ""
+      steps_application_urgent_hearing_form:
+        urgent_hearing_html: ""
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_short_notice_html: Do you need a hearing within the next 48 hours?
       steps_application_without_notice_form:
         without_notice_html: ""
       steps_application_without_notice_details_form:
@@ -1207,6 +1221,8 @@ en:
         gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_has_solicitor_form:
+        has_solicitor_html: ""
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
@@ -1253,14 +1269,10 @@ en:
 
       ### SCREENER ###
       #
-      steps_screener_urgency_form:
-        urgent_html: ""
       steps_screener_parent_form:
         parent_html: ""
       steps_screener_over18_form:
         over18_html: ""
-      steps_screener_legal_representation_form:
-        legal_representation_html: ""
       steps_screener_written_agreement_form:
         written_agreement_html: ""
       steps_screener_email_consent_form:
@@ -1283,6 +1295,10 @@ en:
         cafcass_details: Name and office of Cafcass/Cafcass Cymru officer
         order_types: Type of proceedings
         previous_details: Add details of any other previous family case
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_details: Give details of why you’re asking for an urgent hearing
+        urgent_hearing_when: How soon do you need an urgent hearing?
+        urgent_hearing_short_notice_details: What have you done to tell each respondent of this application?
       steps_application_without_notice_details_form:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
@@ -1308,8 +1324,9 @@ en:
       steps_application_payment_form:
         payment_type:
           help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
-          solicitor_html: '<strong>Solicitor payment</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
-          self_payment_html: '<strong>I am paying myself</strong><br>You can pay over the phone using a credit or debit card, by post with a cheque, or in person at the court by cheque, cash or card.'
+          solicitor_html: '<strong>Through a solicitor’s fee account</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
+          self_payment_card_html: '<strong>I am paying myself by credit or debit card</strong><br>Court staff will contact you within 3 working days to take payment over the phone.'
+          self_payment_cheque_html: '<strong>I am paying myself by cheque or cash</strong><br>You can send a cheque or pay in person at the court.'
         hwf_reference_number: Enter your reference number
         solicitor_account_number: Enter solicitor’s fee account number
       steps_application_submission_form:
@@ -1444,6 +1461,16 @@ en:
         new_name: Full name of respondent
       steps_respondent_names_form[names_attributes]:
         full_name: Full name of respondent
+      steps_solicitor_personal_details_form:
+        full_name: Full name of solicitor
+        firm_name: Name of firm
+        reference: Solicitor reference
+      steps_solicitor_contact_details_form:
+        address: Address
+        dx_number: DX number
+        phone_number: Phone number
+        fax_number: Fax number
+        email: Email address
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_email_consent_form:
@@ -1472,6 +1499,9 @@ en:
         cafcass_details: Leave blank if you don’t know
         order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
         previous_details: Try and include as many details as possible, for example case number, date and name of court
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_details: A court will only hear your case urgently if you can give good reason for the urgency.
+        urgent_hearing_short_notice_details: The court will expect you to tell the other people involved that you are making this application, unless you have a reason not to.
       steps_application_without_notice_details_form:
         without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
         without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.
@@ -1545,6 +1575,14 @@ en:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
+      steps_solicitor_personal_details_form:
+        full_name: Enter the first name and last name.
+        reference: The solicitor should have given you a reference for your case.
+      steps_solicitor_contact_details_form:
+        address: Enter the full address including postcode.
+        dx_number_html: |
+          You can ask your solicitor for this (if they have one).<br/>
+          This is a secure document exchange system used by the legal profession.
 
     submit:
       continue: Continue
