@@ -65,6 +65,7 @@ module Summary
           Sections::SolicitorDetails,
           Sections::SectionHeader,
           Sections::StatementOfTruth,
+          Sections::CourtFee,
         ])
       end
     end
