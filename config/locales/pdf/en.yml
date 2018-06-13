@@ -422,10 +422,34 @@ en:
       question: Email address
     person_relationship_to_children:
       question: Relationship to children listed in this application
+
+    # Note: the solicitor i18n is shared among the C100 and C1A forms.
     has_solicitor:
       question: Is a solicitor acting for you?
       answers:
         <<: *YESNO
+    solicitor_applicant_name:
+      question: Solicitor acting for
+    solicitor_full_name:
+      question: Solicitor’s name
+    solicitor_firm_name:
+      question: Name of firm
+    solicitor_address:
+      question: Address
+    solicitor_phone_number:
+      question: Telephone number
+    solicitor_fax_number:
+      question: Fax number
+    solicitor_dx_number:
+      question: DX number
+    solicitor_reference:
+      question: Solicitor’s reference
+    solicitor_fee_account:
+      question: Fee account number
+      absence_answer: *not_applicable
+    solicitor_email:
+      question: Email address
+
     court_proceeding_children_names:
       question: Name of child(ren)
     court_proceeding_court_name:
