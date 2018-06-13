@@ -76,7 +76,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::InternationalElement,
         Summary::HtmlSections::ApplicationReasons,
         Summary::HtmlSections::AttendingCourt,
-        Summary::HtmlSections::HelpWithFees,
+        Summary::HtmlSections::Payment,
         Summary::HtmlSections::Submission,
       ])
     end

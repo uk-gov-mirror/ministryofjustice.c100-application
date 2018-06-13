@@ -4,8 +4,6 @@
   <div class="column-two-thirds">
     <%= step_header %>
 
-    <div class="prototype-step">This page is a prototype and is not enabled in production.</div>
-
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
@@ -15,7 +13,8 @@
         f.radio_button_fieldset :payment_type do |fieldset|
           fieldset.radio_input(PaymentType::HELP_WITH_FEES) { f.text_field :hwf_reference_number, class: 'narrow' }
           fieldset.radio_input(PaymentType::SOLICITOR) { f.text_field :solicitor_account_number, class: 'narrow' }
-          fieldset.radio_input(PaymentType::SELF_PAYMENT)
+          fieldset.radio_input(PaymentType::SELF_PAYMENT_CARD)
+          fieldset.radio_input(PaymentType::SELF_PAYMENT_CHEQUE)
         end
       %>
 

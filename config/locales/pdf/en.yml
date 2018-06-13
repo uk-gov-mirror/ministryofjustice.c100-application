@@ -125,6 +125,7 @@ en:
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       other_children_details: Other children not part of the application
+      court_fee: Court fee
       ### C1A ###
       c1a_court_details: *to_be_completed
       c1a_children_details: Summary of children’s details
@@ -439,6 +440,15 @@ en:
       question: Type of proceedings - if known
     court_proceeding_previous_details:
       question: Details of any other previous family case
+    payment_type:
+      question: Payment option selected
+      answers:
+        help_with_fees: Help with fees
+        solicitor: Through solicitor
+        self_payment_card: Credit or debit card - contact the applicant within 3 working days of receiving application to take payment
+        self_payment_cheque: Cheque or cash
+    solicitor_account_number:
+      question: Fee account number
 
     ### C1A questions/answers ###
     #

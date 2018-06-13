@@ -30,8 +30,8 @@ module C100App
       when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
-        edit(:help_paying)
-      when :help_paying
+        edit(:payment)
+      when :payment
         submission_type_or_cya
       when :submission
         edit(:check_your_answers)

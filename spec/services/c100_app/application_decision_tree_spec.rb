@@ -112,11 +112,11 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `special_arrangements`' do
     let(:step_params) { { special_arrangements: 'anything' } }
-    it { is_expected.to have_destination(:help_paying, :edit) }
+    it { is_expected.to have_destination(:payment, :edit) }
   end
 
-  context 'when the step is `help_paying`' do
-    let(:step_params) { { help_paying: 'anything' } }
+  context 'when the step is `payment`' do
+    let(:step_params) { { payment: 'anything' } }
 
     before do
       allow(subject).to receive(:dev_tools_enabled?).and_return(dev_tools_enabled)

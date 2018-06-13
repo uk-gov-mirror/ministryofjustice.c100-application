@@ -10,7 +10,7 @@ RSpec.describe Steps::Application::PaymentForm do
 
   let(:c100_application) { instance_double(C100Application) }
 
-  let(:payment_type) { PaymentType::SELF_PAYMENT.to_s }
+  let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
   let(:hwf_reference_number) { nil }
   let(:solicitor_account_number) { nil }
 
@@ -43,13 +43,13 @@ RSpec.describe Steps::Application::PaymentForm do
     end
 
     context 'when form is valid' do
-      let(:payment_type) { PaymentType::SELF_PAYMENT.to_s }
+      let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
       let(:hwf_reference_number) { 'HWF-12345' }
       let(:solicitor_account_number) { 'SOL-12345' }
 
       it 'saves the record' do
         expect(c100_application).to receive(:update).with(
-          payment_type: 'self_payment',
+          payment_type: 'self_payment_card',
           hwf_reference_number: nil,
           solicitor_account_number: nil,
         ).and_return(true)

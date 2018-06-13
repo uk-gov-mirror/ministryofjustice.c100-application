@@ -576,8 +576,9 @@ en:
       question: ''
       answers:
         help_with_fees: Help with fees
-        solicitor: Solicitor payment
-        self_payment: I am paying myself
+        solicitor: Through a solicitor’s fee account
+        self_payment_card: I am paying myself by credit or debit card
+        self_payment_cheque: I am paying myself by cheque or cash
     submission_type:
       question: ''
       answers:

@@ -15,7 +15,7 @@ module Summary
         international_element_sections,
         litigation_and_assistance_sections,
         people_sections,
-        statement_of_truth,
+        statement_of_truth_and_payment,
       ].flatten.select(&:show?)
     end
 
@@ -105,10 +105,11 @@ module Summary
       ]
     end
 
-    def statement_of_truth
+    def statement_of_truth_and_payment
       [
         Sections::SectionHeader.new(c100_application, name: :statement_of_truth),
         Sections::StatementOfTruth.new(c100_application),
+        Sections::CourtFee.new(c100_application),
       ]
     end
   end

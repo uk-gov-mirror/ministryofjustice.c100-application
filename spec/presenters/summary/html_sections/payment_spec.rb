@@ -48,7 +48,7 @@ module Summary
         let(:c100_application) {
           instance_double(
             C100Application,
-            payment_type: 'self_payment',
+            payment_type: 'self_payment_card',
             hwf_reference_number: nil,
             solicitor_account_number: nil,
           )
@@ -61,7 +61,7 @@ module Summary
 
           expect(group.answers[0]).to be_an_instance_of(Answer)
           expect(group.answers[0].question).to eq(:payment_type)
-          expect(group.answers[0].value).to eq('self_payment')
+          expect(group.answers[0].value).to eq('self_payment_card')
         end
       end
     end

@@ -78,7 +78,7 @@ module Summary
 
     def payment_and_submission_sections
       [
-        HtmlSections::HelpWithFees.new(c100_application),
+        HtmlSections::Payment.new(c100_application),
         HtmlSections::Submission.new(c100_application),
       ]
     end
