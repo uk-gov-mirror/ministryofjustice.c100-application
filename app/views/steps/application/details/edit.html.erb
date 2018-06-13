@@ -10,6 +10,10 @@
       <%=t '.info_html' %>
     </div>
 
+    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+      <p><%=t '.timeout_warning', session_timeout: session_expire_in_minutes %></p>
+    </div>
+
     <%= step_form @form_object do |f| %>
       <%= f.text_area :application_details, size: '40x4', class: 'form-control-3-4' %>
 
