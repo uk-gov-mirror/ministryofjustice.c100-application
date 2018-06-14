@@ -37,6 +37,18 @@ RSpec.describe CourtMailer, type: :mailer do
             mail.subject
           ).to eq('C100 new application - child arrangements')
         end
+
+        context 'assigns the first applicant full name' do
+          before do
+            allow(
+              c100_application
+            ).to receive(:applicants).and_return(
+              [double('Applicant', full_name: 'John Doe')]
+            )
+          end
+
+          it { expect(mail.body.encoded).to match('John Doe') }
+        end
       end
     end
   end

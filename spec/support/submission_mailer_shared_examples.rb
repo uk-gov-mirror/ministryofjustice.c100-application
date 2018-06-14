@@ -31,6 +31,10 @@ RSpec.shared_examples 'a Submission mailer' do
     expect(mail.attachments.size).to eq(1)
   end
 
+  context 'assigns the application reference code' do
+    it { expect(mail.body.encoded).to match('1970/01/449362AF') }
+  end
+
   describe 'the attachment' do
     let(:attachment){ mail.attachments.last }
 
