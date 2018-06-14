@@ -18,9 +18,10 @@ class SubmissionMailerPreview < ActionMailer::Preview
   # We don't have a factory, so just building (not need to persist)
   # a bare minimum C100 application struct for the purpose of the preview
   def c100_application
-    Struct.new(:reference_code, :screener_answers_court).new(
+    Struct.new(:reference_code, :screener_answers_court, :applicants).new(
       '12345',
       local_court_fixture,
+      applicants_fixture,
     )
   end
 
@@ -36,6 +37,10 @@ class SubmissionMailerPreview < ActionMailer::Preview
       to: 'to-address@example.com',
       reply_to: 'reply-to@example.com',
     }
+  end
+
+  def applicants_fixture
+    [Applicant.new(full_name: 'John Doe')]
   end
 
   def local_court_fixture
