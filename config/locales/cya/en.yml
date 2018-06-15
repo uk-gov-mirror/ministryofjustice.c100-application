@@ -586,7 +586,7 @@ en:
     submission_type:
       question: ''
       answers:
-        online: Online
+        online: Electronically
         print_and_post: Print and post
     submission_receipt_email:
       question: 'A copy of your application will be sent to:'
