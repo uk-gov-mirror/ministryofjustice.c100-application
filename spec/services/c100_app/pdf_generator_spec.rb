@@ -35,7 +35,7 @@ RSpec.describe C100App::PdfGenerator do
       ).and_return(document)
 
       expect(wicked_pdf).to receive(:pdf_from_string).with(
-        document, { footer: { right: '12345/XYZ   Test   [xx]/[yy]' } }
+        document, { footer: { right: '12345/XYZ   Test   [xx]/[yy]' }, extra: '--enable-forms' }
       ).and_return(document)
 
       # Using 0 copies just to make this test scenario simpler to mock,

@@ -17,7 +17,8 @@ module C100App
     def pdf_from_presenter(presenter)
       WickedPdf.new.pdf_from_string(
         render(presenter),
-        footer: { right: footer_line(presenter) }
+        footer: { right: footer_line(presenter) },
+        extra: '--enable-forms',
       )
     end
 

@@ -66,7 +66,7 @@ en:
   shared:
     admin_family_court: The family court sitting at
     admin_case_number: Case number
-    admin_date_issued: Date issued
+    admin_date_issued: Date issued (DD MM YYYY)
     admin_orders_applied_for: Order(s) applied for
     intentional_blank_page: This page is intentionally left blank
     c8_confidential_answer: *c8_attached
@@ -598,7 +598,7 @@ en:
       answers:
         <<: *COURT_ORDER_TYPES
     c1a_order_issue_date:
-      question: Date issued
+      question: Date issued (DD MM YYY)
     c1a_order_length:
       question: Length of order
     c1a_order_is_current:
