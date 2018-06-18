@@ -25,20 +25,20 @@ RSpec.describe Users::LoginsController do
       } }
     end
 
-    context 'when the authentication was successful' do
+    context 'when the registration was successful' do
       let(:c100_application) { instance_double(C100Application, user: user) }
 
       before do
         expect(warden).to receive(:authenticate!).and_return(user)
       end
 
-      it 'signs the user in and redirects to the confirmation page' do
-        do_post
-        expect(response.location).to eq(users_login_save_confirmation_path)
+      it 'does not update `last_sign_in_at` attribute (user is not automatically signed-in)' do
+        expect { do_post }.not_to change(user, :last_sign_in_at)
       end
 
-      it 'records #last_sign_in_at' do
-        expect { do_post }.to change(user, :last_sign_in_at)
+      it 'redirects to the confirmation page' do
+        do_post
+        expect(response.location).to match(users_login_save_confirmation_path)
       end
 
       context 'when the case already belongs to the user (we do not send an email)' do

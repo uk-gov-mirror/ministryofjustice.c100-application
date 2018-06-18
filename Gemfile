@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-ruby '2.4.2'
+ruby '2.4.4'
 
-gem 'devise', '~> 4.4.1'
+gem 'devise', '~> 4.4.3'
 gem 'email_validator'
 gem 'govuk_elements_form_builder', '~> 1.2.0'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_notify_rails', '~> 2.0.0'
-gem 'govuk_template'
+gem 'govuk_template', '~> 0.23.3'
 gem 'gov_uk_date_fields', '~> 3.0.0'
 gem 'jquery-rails'
-gem 'pg', '~> 0.18'
+gem 'pg', '~> 1.0.0'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.1.6'
 gem 'responders'
 gem 'sass-rails'
 gem 'sentry-raven'
@@ -21,7 +21,7 @@ gem 'uk_postcode'
 gem 'virtus'
 
 # PDF generation
-gem 'combine_pdf'
+gem 'combine_pdf', '~> 1.0.10'
 gem 'wicked_pdf', '~> 1.1.0'
 gem 'wkhtmltopdf-binary'
 
