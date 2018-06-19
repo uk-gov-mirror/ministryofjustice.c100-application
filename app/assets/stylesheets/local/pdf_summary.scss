@@ -41,21 +41,21 @@
       height: 20px;
     }
 
-    input.box-to-fill {
+    .box-to-fill {
       border: 1px solid $dark-grey;
       background-color: #fff;
       color: $dark-grey;
       padding: 3px;
       width: 100%;
     }
-
-    input.date-box {
+    .date-box {
       display: inline-block;
       margin-right: -4px;
       width: 14px;
     }
-    div.text-area-box {
-      height: 40px;
+    .text-area-box {
+      overflow: hidden;
+      resize: none;
     }
 
     span.separator {
