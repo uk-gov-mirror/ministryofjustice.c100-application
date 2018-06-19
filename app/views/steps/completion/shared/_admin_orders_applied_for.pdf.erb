@@ -3,7 +3,8 @@
     <%=t 'shared.admin_orders_applied_for' %>
   </td>
 
+  <!-- DO NOT use `<textarea/>`, as it creates incorrect PDF markup -->
   <td class="answer answer-value">
-    <div class="box-to-fill text-area-box">&nbsp;</div>
+    <textarea class="box-to-fill text-area-box" rows="5" name="admin-orders"></textarea>
   </td>
 </tr>
