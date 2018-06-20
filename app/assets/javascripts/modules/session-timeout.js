@@ -134,14 +134,20 @@ moj.Modules.sessionTimeout = {
   },
 
   forceAbort: function() {
-    var self = this;
+    // Important: originally, this function would destroy the session, similar to
+    // the above `abort()` function, when the expire timeout reached the limit.
+    //
+    // But we've discovered there might be some scenarios, where an user opens multiple
+    // tabs, and then continue filling the form in one of the tabs, forgetting about
+    // the other(s). The javascript timer is still running on those forgotten tabs,
+    // and when reaching the limit, call this function, destroying silently the session.
+    // By the time the user clicks continue in their active tab, there is no session
+    // anymore, and they would be shown the expiration error page.
+    //
+    // So we've decided to make this function non-destructive. Just close the modal
+    // and do not trigger any further server-side requests. Still the server will check
+    // the validity of the session on each request (refer to module `SecurityHandling`).
 
-    $.ajax({
-      url: this.config.destroySessionUrl,
-      type: "DELETE",
-      dataType: "json"
-    }).always(function() {
-      window.location.href = self.config.expiredUrl;
-    });
+    this.hideModal();
   }
 };
