@@ -1796,6 +1796,7 @@ en:
   court_mailer:
     submission_to_court:
       subject: C100 new application - child arrangements
+      urgent_subject: URGENT - C100 new application - child arrangements
   receipt_mailer:
     copy_to_user:
       subject: C100 new application - child arrangements

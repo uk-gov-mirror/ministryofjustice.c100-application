@@ -9,7 +9,20 @@ class CourtMailer < SubmissionMailer
 
     mail(
       to: to,
-      reply_to: reply_to
+      reply_to: reply_to,
+      subject: submission_to_court_subject,
     )
+  end
+
+  private
+
+  def submission_to_court_subject
+    i18n_key = if @c100_application.urgent_hearing.eql?(GenericYesNo::YES.to_s)
+                 :urgent_subject
+               else
+                 :subject
+               end
+
+    I18n.translate!(i18n_key, scope: [:court_mailer, :submission_to_court])
   end
 end

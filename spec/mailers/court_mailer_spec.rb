@@ -4,10 +4,12 @@ RSpec.describe CourtMailer, type: :mailer do
   let(:c100_application) {
     C100Application.new(
       id: '449362af-0bc3-4953-82a7-1363d479b876',
-      created_at: Time.at(0)
+      created_at: Time.at(0),
+      urgent_hearing: urgent_hearing,
     )
   }
 
+  let(:urgent_hearing) { nil }
   let(:pdf_file) { '/my/test/file' }
 
   let(:recipient_args) {
@@ -32,10 +34,26 @@ RSpec.describe CourtMailer, type: :mailer do
 
         it_behaves_like 'a Submission mailer'
 
-        it 'has the right subject' do
-          expect(
-            mail.subject
-          ).to eq('C100 new application - child arrangements')
+        describe 'subject' do
+          context 'for an urgent hearing application' do
+            let(:urgent_hearing) { GenericYesNo::YES }
+
+            it 'has the right subject' do
+              expect(
+                mail.subject
+              ).to eq('URGENT - C100 new application - child arrangements')
+            end
+          end
+
+          context 'for a non-urgent application' do
+            let(:urgent_hearing) { GenericYesNo::NO }
+
+            it 'has the right subject' do
+              expect(
+                mail.subject
+              ).to eq('C100 new application - child arrangements')
+            end
+          end
         end
 
         context 'assigns the first applicant full name' do
