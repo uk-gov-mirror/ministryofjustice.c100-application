@@ -267,6 +267,7 @@ ActiveRecord::Schema.define(version: 20180622093834) do
     t.json "local_court"
     t.string "parent"
     t.string "over18"
+    t.string "legal_representation"
     t.string "written_agreement"
     t.string "email_consent"
     t.string "email_address"

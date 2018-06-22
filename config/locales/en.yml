@@ -900,6 +900,16 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if both you and the other person (the respondent) are over 18.
+      legal_representation:
+        edit:
+          page_title: Do you have a solicitor?
+          heading: Do you have a solicitor?
+          lead_text: You can only use this online service if you do not have a solicitor representing you in these proceedings.
+      legal_representation_exit:
+        show:
+          page_title: Sorry, you’re not eligible to apply online
+          heading: Sorry, you’re not eligible to apply online
+          lead_text: You can only use this online service if you do not have a solicitor representing you or filling this form on your behalf.
       written_agreement:
         edit:
           page_title: Consent order
@@ -1264,6 +1274,8 @@ en:
         parent_html: ""
       steps_screener_over18_form:
         over18_html: ""
+      steps_screener_legal_representation_form:
+        legal_representation_html: ""
       steps_screener_written_agreement_form:
         written_agreement_html: ""
       steps_screener_email_consent_form:
