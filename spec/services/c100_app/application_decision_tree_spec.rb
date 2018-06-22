@@ -117,20 +117,7 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `payment`' do
     let(:step_params) { { payment: 'anything' } }
-
-    before do
-      allow(subject).to receive(:dev_tools_enabled?).and_return(dev_tools_enabled)
-    end
-
-    context 'when dev_tools flag is enabled' do
-      let(:dev_tools_enabled) { true }
-      it { is_expected.to have_destination(:submission, :edit) }
-    end
-
-    context 'when dev_tools flag is disabled' do
-      let(:dev_tools_enabled) { false }
-      it { is_expected.to have_destination(:check_your_answers, :edit) }
-    end
+    it { is_expected.to have_destination(:submission, :edit) }
   end
 
   context 'when the step is `submission`' do

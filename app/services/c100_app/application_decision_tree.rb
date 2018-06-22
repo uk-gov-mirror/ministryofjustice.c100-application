@@ -32,7 +32,7 @@ module C100App
       when :special_arrangements
         edit(:payment)
       when :payment
-        submission_type_or_cya
+        edit(:submission)
       when :submission
         edit(:check_your_answers)
       when :declaration
@@ -88,15 +88,6 @@ module C100App
 
     def start_international_journey
       edit('/steps/international/resident')
-    end
-
-    # TODO: temporary journey for user testing on staging
-    def submission_type_or_cya
-      if dev_tools_enabled?
-        edit(:submission)
-      else
-        edit(:check_your_answers)
-      end
     end
   end
 end
