@@ -10,6 +10,8 @@ module C100App
         after_parent
       when :over18
         after_over18
+      when :legal_representation
+        after_legal_representation
       when :written_agreement
         after_written_agreement
       when :email_consent
@@ -46,9 +48,17 @@ module C100App
 
     def after_over18
       if question(:over18, c100_application.screener_answers).yes?
-        edit(:written_agreement)
+        edit(:legal_representation)
       else
         show(:over18_exit)
+      end
+    end
+
+    def after_legal_representation
+      if question(:legal_representation, c100_application.screener_answers).no?
+        edit(:written_agreement)
+      else
+        show(:legal_representation_exit)
       end
     end
 
