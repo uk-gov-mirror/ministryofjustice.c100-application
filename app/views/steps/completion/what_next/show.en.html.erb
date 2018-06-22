@@ -38,8 +38,8 @@
             </p>
           </li>
 
-          <!-- TODO: feature-flagged until we release the online submission,
-            then we can remove this condition and insert the partial here -->
+          <!-- TODO: as there might be some saved applications before we release
+           the online submission, let's leave this for a while, then we can remove it -->
           <% if current_c100_application.submission_type.present? %>
             <%= render partial: 'steps/completion/what_next/new_instructions' %>
           <% else %>
