@@ -568,10 +568,6 @@ en:
         <<: *YESNO
     special_arrangements_details:
       question: ''
-    help_paying:
-      question: ''
-      answers:
-        <<: *YESNO
     hwf_reference_number:
       question: Reference number
     solicitor_account_number:

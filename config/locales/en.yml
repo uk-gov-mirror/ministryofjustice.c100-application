@@ -723,13 +723,6 @@ en:
           section: *attending_court
           heading: Does anyone in this application need someone to help them communicate in court?
           lead_text: They may need a person (also known as an intermediary) to help them understand and participate in the court process
-      help_paying:
-        edit:
-          page_title: Help paying
-          heading: Help with fees
-          body_html: |
-            <p>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> the £215 fee if you’re on a low income, receive certain benefits or have little or no savings.</p>
-            <p>If you do qualify, you’ll need to provide the reference number you were given.</p>
       payment:
         edit:
           page_title: Payment type
@@ -1125,8 +1118,6 @@ en:
         language_help_html: ""
       steps_application_intermediary_form:
         intermediary_help_html: ""
-      steps_application_help_paying_form:
-        help_paying_html: "Do you have a ‘Help with fees’ reference number?"
       steps_application_declaration_form:
         declaration_made_html: ""
       steps_miam_consent_order_form:
@@ -1317,10 +1308,6 @@ en:
         language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
-      # TODO: the `help_paying` is to be removed once we introduce
-      # the `payment_form` substitute (only visible in staging for now)
-      steps_application_help_paying_form:
-        hwf_reference_number: Enter your reference number
       steps_application_payment_form:
         payment_type:
           help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
