@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622093834) do
+ActiveRecord::Schema.define(version: 20180622102800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -267,10 +267,10 @@ ActiveRecord::Schema.define(version: 20180622093834) do
     t.json "local_court"
     t.string "parent"
     t.string "over18"
-    t.string "legal_representation"
     t.string "written_agreement"
     t.string "email_consent"
     t.string "email_address"
+    t.string "legal_representation"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id"
     t.index ["email_address"], name: "index_screener_answers_on_email_address"
     t.index ["email_consent"], name: "index_screener_answers_on_email_consent"
