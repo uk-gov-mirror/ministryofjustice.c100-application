@@ -10,7 +10,7 @@
     <br/>
 
     <p class="lede gv-u-text-lede">
-      Your application has been sent to the court.
+      Your application has been sent to <%= @court.name %>.
 
       <% if current_c100_application.receipt_email? %>
         We’ve emailed a confirmation of this with a copy of your application to
