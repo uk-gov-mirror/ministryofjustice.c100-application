@@ -4,7 +4,6 @@
   need to <a href="https://solicitors.lawsociety.org.uk/">find a legal advisor</a> if you have any issues.
 </p>
 
-<% if court.present? -%>
 <dl>
   <%- unless court.email.blank? %>
     <dt><strong>Email</strong></dt>
@@ -27,4 +26,3 @@
 <p>
   <%= link_to "More information about #{court.name}", C100App::CourtfinderAPI.new.court_url(court.slug) %>
 </p>
-<% end %>
