@@ -9,6 +9,9 @@ module C100App
       "milton-keynes-county-court-and-family-court",
       "watford-county-court-and-family-court",
       "slough-county-court-and-family-court",
+      "kingston-upon-hull-combined-court-centre",
+      "oxford-combined-court-centre",
+      "bristol-civil-and-family-justice-centre",
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
