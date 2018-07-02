@@ -13,9 +13,12 @@ RSpec.describe C100App::PdfEmailSubmission do
   let(:pdf_file) { '/path/to/pdf' }
   let(:receipt_email) { 'user@example.com' }
   let(:screener_answers_court) { double('screener_answers_court', email: 'court@example.com') }
-  let(:email_submission) { instance_double(EmailSubmission) }
+  let(:email_submission) { instance_double(EmailSubmission, message_id: message_id, user_copy_message_id: user_copy_message_id) }
 
   let(:mailer) { spy('mailer', deliver_now!: double('mailer_response', message_id: 'message-id')) }
+
+  let(:message_id) { nil }
+  let(:user_copy_message_id) { nil }
 
   subject { described_class.new(c100_application, pdf_file: pdf_file) }
 
@@ -58,6 +61,17 @@ RSpec.describe C100App::PdfEmailSubmission do
 
         subject.deliver!
       end
+
+      context 'there is already an audit of a previous submission' do
+        let(:message_id) { '123-XYZ' }
+
+        it 'does not deliver another email to the court' do
+          expect(mailer).not_to receive(:submission_to_court)
+          expect(subject).not_to receive(:audit_data)
+
+          subject.deliver!
+        end
+      end
     end
 
     context 'send_copy_to_user' do
@@ -89,6 +103,17 @@ RSpec.describe C100App::PdfEmailSubmission do
           )
 
           subject.deliver!
+        end
+
+        context 'there is already an audit of a previous submission' do
+          let(:user_copy_message_id) { '123-XYZ' }
+
+          it 'does not deliver another email to the user' do
+            expect(mailer).not_to receive(:copy_to_user)
+            expect(subject).not_to receive(:audit_data)
+
+            subject.deliver!
+          end
         end
       end
 

@@ -42,7 +42,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'launchy'
   gem 'mutant-rspec'
