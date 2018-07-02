@@ -16,6 +16,7 @@ gem 'rails', '~> 5.1.6'
 gem 'responders'
 gem 'sass-rails'
 gem 'sentry-raven'
+gem 'sprockets', '~> 3.7.2' # CVE-2018-3760
 gem 'uglifier'
 gem 'uk_postcode'
 gem 'virtus'
