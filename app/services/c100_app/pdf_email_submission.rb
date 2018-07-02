@@ -29,6 +29,8 @@ module C100App
     end
 
     def submission_to_court
+      return unless email_submission.message_id.nil?
+
       # if the court case worker hits reply, it should go to
       # the email given by the user (if present)
       response = CourtMailer.with(application_details).submission_to_court(
@@ -44,6 +46,8 @@ module C100App
     end
 
     def send_copy_to_user
+      return unless email_submission.user_copy_message_id.nil?
+
       # if the user hits reply, it should go to the court
       response = ReceiptMailer.with(application_details).copy_to_user(
         to: receipt_address,
