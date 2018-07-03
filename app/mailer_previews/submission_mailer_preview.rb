@@ -4,13 +4,13 @@ class SubmissionMailerPreview < ActionMailer::Preview
   def submission_to_court
     CourtMailer.with(
       application_details
-    ).submission_to_court(recipients)
+    ).submission_to_court(to: 'court@example.com')
   end
 
   def copy_to_user
     ReceiptMailer.with(
       application_details
-    ).copy_to_user(recipients)
+    ).copy_to_user(to: 'user@example.com', reply_to: 'court@example.com',)
   end
 
   private
@@ -30,13 +30,6 @@ class SubmissionMailerPreview < ActionMailer::Preview
     {
       c100_application: c100_application,
       c100_pdf: MOCK_PDF_PATH,
-    }
-  end
-
-  def recipients
-    {
-      to: 'to-address@example.com',
-      reply_to: 'reply-to@example.com',
     }
   end
 

@@ -6,10 +6,8 @@ describe CourtEmailInterceptor do
       subject: 'Test email',
       from: ['from@example.com'],
       to: ['recipient@example.com'],
-      reply_to: reply_to,
     )
   }
-  let(:reply_to) { nil }
 
   def deliver_email!
     described_class.delivering_email(message)
@@ -40,26 +38,13 @@ describe CourtEmailInterceptor do
       expect(message.subject).to eq('Test email | (Original recipient: recipient@example.com)')
     end
 
+    it 'changes the recipient to be the `FROM` address' do
+      deliver_email!
+      expect(message.to).to eq(['from@example.com'])
+    end
+
     it 'should perform deliveries' do
       expect(message.perform_deliveries).to eq(true)
-    end
-
-    context 'message with reply-to' do
-      let(:reply_to) { ['replies@example.com'] }
-
-      it 'changes the recipient to be the `REPLY-TO` address' do
-        deliver_email!
-        expect(message.to).to eq(reply_to)
-      end
-    end
-
-    context 'message without reply-to' do
-      let(:reply_to) { nil }
-
-      it 'changes the recipient to be the `FROM` address' do
-        deliver_email!
-        expect(message.to).to eq(['from@example.com'])
-      end
     end
   end
 end

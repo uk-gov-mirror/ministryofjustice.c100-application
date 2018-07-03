@@ -31,11 +31,8 @@ module C100App
     def submission_to_court
       return unless email_submission.message_id.nil?
 
-      # if the court case worker hits reply, it should go to
-      # the email given by the user (if present)
       response = CourtMailer.with(application_details).submission_to_court(
         to: court_address,
-        reply_to: receipt_address,
       ).deliver_now!
 
       audit_data(

@@ -42,6 +42,10 @@ RSpec.describe ReceiptMailer, type: :mailer do
           expect(mail.subject).to eq('C100 new application - child arrangements')
         end
 
+        it 'has the given reply_to address' do
+          expect(mail.reply_to).to eq(['replyto@example.com'])
+        end
+
         context 'assigns the court data' do
           it { expect(mail.body.encoded).to match('Court XYZ') }
           it { expect(mail.body.encoded).to match('https://courttribunalfinder.service.gov.uk/courts/court-xyz') }

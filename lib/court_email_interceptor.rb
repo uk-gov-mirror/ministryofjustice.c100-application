@@ -21,12 +21,8 @@ class CourtEmailInterceptor
     end
 
     def intercept_email!(message)
-      # If the user chose to receive a confirmation receipt, we will use this
-      # `reply-to` address as the new recipient of the intercepted email.
-      # Otherwise we will default to the `from` address.
-      #
       message.subject = "#{message.subject} | (Original recipient: #{message.to.join(',')})"
-      message.to = message.reply_to.presence || message.from
+      message.to = message.from
     end
   end
 end

@@ -15,7 +15,6 @@ RSpec.describe CourtMailer, type: :mailer do
   let(:recipient_args) {
     {
       to: 'testto@example.com',
-      reply_to: 'replyto@example.com',
     }
   }
 
@@ -33,6 +32,10 @@ RSpec.describe CourtMailer, type: :mailer do
         end
 
         it_behaves_like 'a Submission mailer'
+
+        it 'does not have a reply_to address' do
+          expect(mail.reply_to).to be_nil
+        end
 
         describe 'subject' do
           context 'for an urgent hearing application' do
