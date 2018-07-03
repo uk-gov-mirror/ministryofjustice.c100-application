@@ -1,5 +1,5 @@
 class CourtMailer < SubmissionMailer
-  def submission_to_court(to:, reply_to:)
+  def submission_to_court(to:)
     attach_c100_pdf!
 
     # A 'real' application would never reach this point without having at
@@ -9,7 +9,6 @@ class CourtMailer < SubmissionMailer
 
     mail(
       to: to,
-      reply_to: reply_to,
       subject: submission_to_court_subject,
     )
   end

@@ -23,10 +23,6 @@ RSpec.shared_examples 'a Submission mailer' do
     expect(mail.to).to eq(['testto@example.com'])
   end
 
-  it 'has the given reply_to address' do
-    expect(mail.reply_to).to eq(['replyto@example.com'])
-  end
-
   it 'has one attachment' do
     expect(mail.attachments.size).to eq(1)
   end

@@ -43,9 +43,7 @@ RSpec.describe C100App::PdfEmailSubmission do
       it 'delivers the email to the court' do
         expect(
           mailer
-        ).to receive(:submission_to_court).with(
-          to: 'court@example.com', reply_to: 'user@example.com'
-        )
+        ).to receive(:submission_to_court).with(to: 'court@example.com')
 
         expect(subject).to receive(:audit_data) # we test this separately
 
