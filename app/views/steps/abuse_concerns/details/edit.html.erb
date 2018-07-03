@@ -6,6 +6,17 @@
     <p class="app__section_heading">Safety concerns</p>
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t ".heading.#{@form_object.i18n_key}" %></h1>
 
+    <details data-block-name="safety-concerns-reasons">
+      <summary>
+        <span class="summary" data-ga-category="explanations" data-ga-label="abuse <%= @form_object.i18n_key %>">
+          <%=t '.explanation_title' %>
+        </span>
+      </summary>
+      <div class="panel panel-border-narrow undefined">
+        <%=t '.explanation_content_html' %>
+      </div>
+    </details>
+
     <%= step_form @form_object do |f| %>
       <%= f.hidden_field :subject %>
       <%= f.hidden_field :kind %>

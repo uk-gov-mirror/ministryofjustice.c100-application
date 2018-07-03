@@ -414,6 +414,16 @@ en:
               sexual: Provide details of the children’s sexual abuse
               financial: Provide details of the children’s financial abuse
               other: Provide details of the other concerns about the children
+          explanation_title: Why do we need to ask this?
+          explanation_content_html: |
+            <p>An advisor from the
+              <a href="https://www.cafcass.gov.uk/" target="external_link" rel="external">Children and Family Court Advisory and Support
+                Service (<abbr title="Children and Family Court Advisory and Support Service">Cafcass</abbr>)</a> or
+              <a href="https://cafcass.gov.wales/" target="external_link" rel="external">Cafcass Cymru</a> protects and promotes the
+              interests of children involved in family court cases. They will look at your answers as part of their safeguarding checks.
+            </p>
+            <p>As part of their enquiries, they will contact organisations such as the police and local authorities for any relevant information about you, any other person or the children.</p>
+            <p>They will submit information to the court before your first hearing. Their assessment helps the judge make a decision that is in the best interests of the children.</p>
       contact:
         edit:
           page_title: Concerns contact
@@ -1164,7 +1174,7 @@ en:
       steps_petition_protection_form:
         protection_orders_html: ""
       steps_safety_questions_address_confidentiality_form:
-        address_confidentiality_html: "Do you want to keep your contact details private?"
+        address_confidentiality_html: "Do you want to keep your contact details private from the other people named in the application (the respondents)?"
       steps_safety_questions_risk_of_abduction_form:
         risk_of_abduction_html: ""
       steps_safety_questions_substance_abuse_form:
