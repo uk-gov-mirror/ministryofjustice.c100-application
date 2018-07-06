@@ -12,17 +12,15 @@
       <%= f.continue_button %>
     <% end %>
 
-    <div class="extraBlocks  govuk-govspeak gv-s-prose">
-      <div>
-        <details data-block-name="has_other_children">
-          <summary>
-            <span class="summary" data-ga-category="explanations" data-ga-label="has other children"><%=t '.block_title' %></span>
-          </summary>
-          <div class=" panel panel-border-narrow undefined">
-            <%=t '.block_content_html' %>
-          </div>
-        </details>
+    <details data-block-name="safety-concerns-reasons">
+      <summary>
+        <span class="summary" data-ga-category="explanations" data-ga-label="has other children">
+          <%=t 'shared.cafcass.safety_title' %>
+        </span>
+      </summary>
+      <div class="panel panel-border-narrow">
+        <%=t 'shared.cafcass.safety_content_html' %>
       </div>
-    </div>
+    </details>
   </div>
 </div>

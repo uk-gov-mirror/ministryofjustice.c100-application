@@ -53,46 +53,6 @@ RSpec.describe Steps::AbuseConcerns::DetailsForm do
       end
     end
 
-    context 'validations on field presence' do
-      it { should validate_presence_of(:subject, :inclusion) }
-      it { should validate_presence_of(:kind, :inclusion) }
-
-      it { should validate_presence_of(:behaviour_description) }
-      it { should validate_presence_of(:behaviour_start) }
-      it { should validate_presence_of(:behaviour_ongoing, :inclusion) }
-      it { should validate_presence_of(:behaviour_description) }
-      it { should validate_presence_of(:asked_for_help, :inclusion) }
-    end
-
-    context 'validation on field `behaviour_stop`' do
-      context 'when abuse is ongoing' do
-        let(:behaviour_ongoing) { 'yes' }
-        it { should_not validate_presence_of(:behaviour_stop) }
-      end
-      context 'when abuse has stopped' do
-        let(:behaviour_ongoing) { 'no' }
-        it { should validate_presence_of(:behaviour_stop) }
-      end
-    end
-
-    context 'validation on help fields' do
-      context 'when `asked_for_help` is yes' do
-        let(:asked_for_help) { 'yes' }
-
-        it { should validate_presence_of(:help_party) }
-        it { should validate_presence_of(:help_provided, :inclusion) }
-        it { should validate_presence_of(:help_description) }
-      end
-
-      context 'when `asked_for_help` is no' do
-        let(:asked_for_help) { 'no' }
-
-        it { should_not validate_presence_of(:help_party) }
-        it { should_not validate_presence_of(:help_provided, :inclusion) }
-        it { should_not validate_presence_of(:help_description) }
-      end
-    end
-
     context 'for valid details' do
       before do
         allow(concerns_collection).to receive(:find_or_initialize_by).with(

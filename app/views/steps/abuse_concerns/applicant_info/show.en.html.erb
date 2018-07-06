@@ -18,5 +18,18 @@
     <div class="xform-group form-submit">
       <%= link_to 'Continue', edit_steps_abuse_concerns_question_path(subject: AbuseSubject::APPLICANT), class: 'button', role: 'button' %>
     </div>
+
+    <div class="govuk-govspeak gv-s-prose util_mt-medium">
+      <details data-block-name="safety-concerns-reasons">
+        <summary>
+        <span class="summary" data-ga-category="explanations" data-ga-label="applicant abuse info">
+          <%=t 'shared.cafcass.safety_title' %>
+        </span>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <%=t 'shared.cafcass.safety_content_html' %>
+        </div>
+      </details>
+    </div>
   </div>
 </div>

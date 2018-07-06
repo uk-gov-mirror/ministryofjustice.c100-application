@@ -345,13 +345,13 @@ en:
     abuse_behaviour_description:
       question: What happened?
     abuse_behaviour_start:
-      question: When did your concerns start?
+      question: When did this behaviour start?
     abuse_behaviour_ongoing:
-      question: Are you concerned the issue is still ongoing?
+      question: Is the behaviour still ongoing?
       answers:
         <<: *YESNO
     abuse_behaviour_stop:
-      question: When did you stop being concerned about the issue?
+      question: When did the behaviour stop?
     abuse_asked_for_help:
       question: Have you ever asked for help?
       answers:
