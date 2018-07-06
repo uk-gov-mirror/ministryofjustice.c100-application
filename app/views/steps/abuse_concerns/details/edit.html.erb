@@ -1,49 +1,99 @@
 <% title t(".page_title.#{@form_object.i18n_key}") %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
+<div class="grid-row gv-o-grid-row">
+  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
     <%= step_header %>
     <p class="app__section_heading">Safety concerns</p>
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t ".heading.#{@form_object.i18n_key}" %></h1>
 
-    <details data-block-name="safety-concerns-reasons">
-      <summary>
-        <span class="summary" data-ga-category="explanations" data-ga-label="abuse <%= @form_object.i18n_key %>">
-          <%=t '.explanation_title' %>
+    <div class="govuk-govspeak gv-s-prose">
+      <details data-block-name="safety-concerns-reasons">
+        <summary>
+        <span class="summary" data-ga-category="explanations" data-ga-label="abuse details">
+          <%=t 'shared.cafcass.safety_title' %>
         </span>
-      </summary>
-      <div class="panel panel-border-narrow undefined">
-        <%=t '.explanation_content_html' %>
-      </div>
-    </details>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <%=t 'shared.cafcass.safety_content_html' %>
+        </div>
+      </details>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.hidden_field :subject %>
-      <%= f.hidden_field :kind %>
+      <%= step_form @form_object do |f| %>
+        <%= f.hidden_field :subject %>
+        <%= f.hidden_field :kind %>
 
-      <%= f.text_area :behaviour_description, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_field :behaviour_start %>
+        <%= f.text_area :behaviour_description, size: '40x4', class: 'form-control-3-4' %>
+        <%= f.text_field :behaviour_start %>
 
-      <%=
-        f.radio_button_fieldset :behaviour_ongoing, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES)
-          fieldset.radio_input(GenericYesNo::NO) { f.text_field :behaviour_stop }
-        end
-      %>
-
-      <%=
-        f.radio_button_fieldset :asked_for_help, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES, panel_id: :asked_for_help_panel)
-          fieldset.radio_input(GenericYesNo::NO)
-          fieldset.revealing_panel(:asked_for_help_panel) do |panel|
-            panel.text_field(:help_party)
-            panel.radio_button_fieldset(:help_provided, inline: true, choices: GenericYesNo.values)
-            panel.text_area(:help_description, size: '40x4', class: 'form-control-3-4')
+        <%=
+          f.radio_button_fieldset :behaviour_ongoing, inline: true do |fieldset|
+            fieldset.radio_input(GenericYesNo::YES)
+            fieldset.radio_input(GenericYesNo::NO) { f.text_field :behaviour_stop }
           end
-        end
-      %>
+        %>
 
-      <%= f.continue_button %>
-    <% end %>
+        <%=
+          f.radio_button_fieldset :asked_for_help, inline: true do |fieldset|
+            fieldset.radio_input(GenericYesNo::YES, panel_id: :asked_for_help_panel)
+            fieldset.radio_input(GenericYesNo::NO)
+            fieldset.revealing_panel(:asked_for_help_panel) do |panel|
+              panel.text_field(:help_party)
+              panel.radio_button_fieldset(:help_provided, inline: true, choices: GenericYesNo.values)
+              panel.text_area(:help_description, size: '40x4', class: 'form-control-3-4')
+            end
+          end
+        %>
+
+        <%= f.continue_button %>
+      <% end %>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <div class="SideBar">
+        <div class="SideBarGrey">
+          <h2 class="SideBar__heading heading-small gv-u-heading-small">
+            Report an incident
+          </h2>
+
+          <p>
+            Always call 999 if there’s an emergency or if you think a child’s in danger.
+          </p>
+
+          <p class="util_mb-none">If it is not an emergency, you can:</p>
+
+          <ul class="list list-bullet">
+            <li><a href="https://www.gov.uk/report-child-abuse" target="external_link" rel="external">report child
+              abuse</a></li>
+            <li>
+              <a href="https://www.gov.uk/report-domestic-abuse" target="external_link" rel="external">report domestic
+                abuse</a></li>
+          </ul>
+        </div>
+
+        <br/>
+        <div class="SideBar__blue-bar"></div>
+
+        <h2 class="SideBar__heading heading-small gv-u-heading-small">
+          Get support
+        </h2>
+
+        <p class="util_mt-medium util_mb-none">
+          <strong>Child safety</strong>
+        </p>
+        <ul>
+          <li><a href="https://www.nspcc.org.uk" target="external_link" rel="external">NSPCC</a></li>
+          <li><a href="https://www.childline.org.uk" target="external_link" rel="external">Childline</a></li>
+        </ul>
+
+        <p class="util_mt-medium util_mb-none">
+          <strong>Domestic abuse</strong>
+        </p>
+        <ul>
+          <li><a href="http://www.nationaldomesticviolencehelpline.org.uk" target="external_link" rel="external">National Domestic Violence Helpline</a></li>
+          <li><a href="https://www.womensaid.org.uk" target="external_link" rel="external">Women’s Aid</a></li>
+          <li><a href="http://www.mensadviceline.org.uk" target="external_link" rel="external">Men’s Advice Line</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

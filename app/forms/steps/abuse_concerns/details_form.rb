@@ -10,17 +10,6 @@ module Steps
       attribute :help_provided, YesNo
       attribute :help_description, String
 
-      validates_inclusion_of :behaviour_ongoing, in: GenericYesNo.values
-      validates_inclusion_of :asked_for_help,    in: GenericYesNo.values
-      validates_inclusion_of :help_provided,     in: GenericYesNo.values, if: -> { asked_for_help&.yes? }
-
-      validates_presence_of :behaviour_description
-      validates_presence_of :behaviour_start
-      validates_presence_of :behaviour_stop, if: -> { behaviour_ongoing&.no? }
-
-      validates_presence_of :help_party,
-                            :help_description, if: -> { asked_for_help&.yes? }
-
       private
 
       def persist!

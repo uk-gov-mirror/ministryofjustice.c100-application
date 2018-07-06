@@ -6,7 +6,7 @@ module Summary
         abuses_suffered.map do |abuse|
           [
             Answer.new(:c1a_abuse_type, "#{abuse.subject}.#{abuse.kind}"),
-            FreeTextAnswer.new(:c1a_abuse_behaviour_description, abuse.behaviour_description),
+            FreeTextAnswer.new(:c1a_abuse_behaviour_description, abuse.behaviour_description, show: true),
             FreeTextAnswer.new(:c1a_abuse_behaviour_start, abuse.behaviour_start),
             Answer.new(:c1a_abuse_behaviour_ongoing, abuse.behaviour_ongoing),
             FreeTextAnswer.new(:c1a_abuse_behaviour_stop, abuse.behaviour_stop),

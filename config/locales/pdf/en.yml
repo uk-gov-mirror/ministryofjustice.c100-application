@@ -534,6 +534,7 @@ en:
       question: Details
     c1a_abuse_behaviour_description:
       question: Nature of behaviour / what happened
+      absence_answer: '[The applicant has chosen not to provide details at this time. Please follow up in due course]'
     c1a_abuse_behaviour_start:
       question: When did behaviour start?
     c1a_abuse_behaviour_ongoing:
