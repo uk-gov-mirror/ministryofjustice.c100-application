@@ -7,6 +7,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
       created_at: Time.at(0),
       updated_at: Time.at(100),
       user_id: user_id,
+      urgent_hearing: 'no',
       submission_type: 'whatever',
       screener_answers_court: screener_answers_court,
     )
@@ -27,6 +28,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
         started_at: Time.at(0),
         completed_at: Time.at(100),
         saved: false,
+        urgent_hearing: 'no',
         submission_type: 'whatever',
         court: 'Test Court',
       )
