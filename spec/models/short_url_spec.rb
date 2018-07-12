@@ -56,6 +56,12 @@ RSpec.describe ShortUrl, type: :model do
       let!(:short_url) { ShortUrl.create(path: 'xyz', target_url: target_url) }
       let(:target_url) { nil }
 
+      it 'increases the visits counter' do
+        expect {
+          resolved_url
+        }.to change { short_url.reload.visits }.by(1)
+      end
+
       it 'returns the found URL' do
         expect(described_class).not_to receive(:new)
         expect(resolved_url).to eq(short_url)
@@ -80,6 +86,10 @@ RSpec.describe ShortUrl, type: :model do
       it 'initialises a new short URL' do
         expect(described_class).to receive(:new).with(path: 'xyz').and_call_original
         resolved_url
+      end
+
+      it 'does not increase the visits counter' do
+        expect(resolved_url.visits).to eq(0)
       end
     end
   end

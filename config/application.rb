@@ -31,9 +31,11 @@ class Application < Rails::Application
 
   config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
 
+  # We are using our own url-shortener. These short urls redirect to surveymonkey,
+  # and tracks visits, so we can see if they are being used.
   config.surveys = {
-    success: 'https://www.surveymonkey.co.uk/r/FHWYXHX',
-    kickout: 'https://www.surveymonkey.co.uk/r/NN8FJZ6',
+    success: 'https://c100.dsd.io/survey',
+    kickout: 'https://c100.dsd.io/exit_survey',
   }
 
   # This is the GDS-hosted homepage for our service, and the one with a `start` button
