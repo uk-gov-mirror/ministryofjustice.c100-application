@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622102800) do
+ActiveRecord::Schema.define(version: 20180711151214) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180622102800) do
     t.boolean "saved"
     t.string "submission_type"
     t.string "court"
+    t.string "urgent_hearing"
   end
 
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

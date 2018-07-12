@@ -8,6 +8,7 @@ class CompletedApplicationsAudit < ApplicationRecord
       started_at: c100_application.created_at,
       completed_at: c100_application.updated_at,
       saved: c100_application.user_id.present?,
+      urgent_hearing: c100_application.urgent_hearing,
       submission_type: c100_application.submission_type,
       court: c100_application.screener_answers_court&.name,
     )
