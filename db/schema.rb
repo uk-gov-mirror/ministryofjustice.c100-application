@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180711151214) do
+ActiveRecord::Schema.define(version: 20180712101836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -285,6 +285,7 @@ ActiveRecord::Schema.define(version: 20180711151214) do
     t.string "utm_source"
     t.string "utm_medium"
     t.string "utm_campaign"
+    t.integer "visits", default: 0
   end
 
   create_table "solicitors", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

@@ -4,7 +4,7 @@ namespace :short_urls do
   task list: :environment do
     ShortUrl.order(created_at: :asc).each do |url|
       url.target_url ||= default_target_url
-      puts "[created: #{url.created_at}] #{default_host_domain}/#{url.path} => #{url.to_str}"
+      puts "[created: #{url.created_at}][visits: #{url.visits}] #{default_host_domain}/#{url.path} => #{url.to_str}"
     end
   end
 
