@@ -461,6 +461,7 @@ describe Court do
           expect(subject.send(:best_enquiries_email, emails)).to eq('my@email')
         end
       end
+
       context 'containing an email with description matching "children"' do
         let(:emails){
           [
@@ -514,6 +515,25 @@ describe Court do
           it 'returns the email address of the description matching children' do
             expect(subject.send(:best_enquiries_email, emails)).to eq('children@email')
           end
+        end
+      end
+
+      context 'containing an email with description matching "family applications"' do
+        let(:emails){
+          [
+              {
+                  'description' => 'All family things',
+                  'address' => 'family@email'
+              },
+              {
+                  'description' => 'Family Applications',
+                  'address' => 'familyapplications@email'
+              }
+          ]
+        }
+
+        it 'returns the email address of the matching description' do
+          expect(subject.send(:best_enquiries_email, emails)).to eq('familyapplications@email')
         end
       end
 
