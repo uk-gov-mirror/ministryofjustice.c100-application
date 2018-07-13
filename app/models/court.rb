@@ -63,17 +63,18 @@ class Court
   end
 
   def best_enquiries_email(emails)
-    # return unless emails
     # There's no consistency to how courts list their email address descriptions
     # So the order of priority is:
+    #
     # 1. anything mentioning 'children'
-    # 2. anything mentioning 'family'
+    # 2. anything mentioning 'family applications' or 'family', in that order
     # 3. a general 'enquiries' address
     # 4. just take the first
 
     emails = Array(emails).compact
 
     best =  emails.find { |e| e['description'] =~ /children/i }                  || \
+            emails.find { |e| e['description'] =~ /family applications/i }       || \
             emails.find { |e| e['description'] =~ /family/i }                    || \
             emails.find { |e| e['description'].to_s.casecmp('enquiries').zero? } || \
             emails.first
