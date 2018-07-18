@@ -4,12 +4,18 @@
 vars = 'RAILS_ENV=test NOCOVERAGE=true'
 flags = '--use rspec --fail-fast'
 source_ref = 'origin/master'
-current_branch = `git symbolic-ref HEAD 2>/dev/null | cut -d "/" -f 3`
+
+# This is to avoid running the mutant with flag `--since master` when
+# we are already on master, as otherwise it will not work on Travis
+current_branch = ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`
+current_branch = ENV['TRAVIS_PULL_REQUEST_BRANCH'] if ENV.fetch('TRAVIS_PULL_REQUEST', 'false') != 'false'
 
 task :mutant => :environment do
   mutation_type = ARGV[1]
 
-  if mutation_type == 'master' 
+  if mutation_type == 'master'
+    puts "> current branch: #{current_branch}"
+
     if current_branch != 'master'
       puts "> running complete mutant testing on all changes since #{source_ref}"
       flags.prepend("--since #{source_ref} ")
