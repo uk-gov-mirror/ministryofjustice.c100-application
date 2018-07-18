@@ -1,25 +1,27 @@
 # Pass a match expression as an optional argument to only run mutant
 # on classes that match. Example: `rake mutant TaxTribs::ZendeskSender`
 #
-task :mutant => :environment do |task, args|
-  vars = 'RAILS_ENV=test NOCOVERAGE=true'
-  flags = "--use rspec --fail-fast"
+vars = 'RAILS_ENV=test NOCOVERAGE=true'
+flags = '--use rspec --fail-fast'
+source_ref = 'origin/master'
+current_branch = `git symbolic-ref HEAD 2>/dev/null | cut -d "/" -f 3`
 
-  unless system("#{vars} mutant #{flags} #{classes_to_mutate.join(' ')}")
-    raise 'Mutation testing failed'
+task :mutant => :environment do
+  mutation_type = ARGV[1]
+
+  if mutation_type == 'master' 
+    if current_branch != 'master'
+      puts "> running complete mutant testing on all changes since #{source_ref}"
+      flags.prepend("--since #{source_ref} ")
+    else
+      # As we are already in master, let's not use the --since, and fallback to
+      # running the quick randomised sample
+      puts "> already on master, overriding --since flag"
+      mutation_type = nil
+    end
   end
 
-  exit
-end
-
-task :mutant_since_master => :environment do
-  source_ref = 'origin/master'
-  vars = 'RAILS_ENV=test NOCOVERAGE=true'
-  flags = "--since=#{source_ref} --use rspec --fail-fast"
-
-  puts "> running complete mutant testing on all changes since #{source_ref}"
-
-  unless system("#{vars} mutant #{flags} #{all_classes_for_mutant.join(' ')}")
+  unless system("#{vars} mutant #{flags} #{classes_to_mutate(mutation_type).join(' ')}")
     raise 'Mutation testing failed'
   end
 
@@ -28,20 +30,16 @@ end
 
 private
 
-def all_classes_for_mutant
+def classes_to_mutate(option)
   Rails.application.eager_load!
-  form_objects + decision_trees_and_services + models
-end
 
-def classes_to_mutate
-  Rails.application.eager_load!
-  case ARGV[1]
+  case option
     when nil
       # Quicker run, reduced testing scope (random sample), default option
       puts '> running quick sample mutant testing'
       form_objects.sample(5) + decision_trees_and_services.sample(3) + models
-    when 'all'
-      # Complete coverage, very long run time
+    when 'all', 'master'
+      # Complete coverage (very long run time) or only changed classes
       puts '> running complete mutant testing'
       form_objects + decision_trees_and_services + models
     else

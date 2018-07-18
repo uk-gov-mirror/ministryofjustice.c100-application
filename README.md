@@ -48,7 +48,9 @@ If you want to point the features at another server (WARNING: NEVER PRODUCTION!)
 
 This project uses extensive mutation coverage, which makes the (mutation) tests take a long time to run, and can end up with the CI killing the build due to excessive job work time.
 
-In order to make this a bit faster, by default in CI (and in local when run without any flags), the scope of mutant testing will be reduced to a few models, and a randomized small sample of classes in each of these groups: Form objects and Decision trees.
+In order to make this a bit faster, by default in CI master branch and in local when run without any flags, the scope of mutant testing will be reduced to a few models, and a randomized small sample of classes in each of these groups: Form objects and Decision trees.
+
+In PRs, the mutation will be `--since master` meaning only files changed will be tested with mutant. This is much faster than running a random sample and also should be more accurate and pick the classes that matter (the changed ones, if any).
 
 However it is still possible to have full flexibility of what mutant runs in your local environment:
 
@@ -57,6 +59,9 @@ However it is still possible to have full flexibility of what mutant runs in you
 
 ##### Run mutation on the whole project (no random samples):
 `bundle exec rake mutant all`
+
+##### Run mutation on the whole project but only on files changed since master:
+`bundle exec rake mutant master`
 
 ##### Run mutation on a small sample of classes (default):
 `bundle exec rake mutant`

@@ -8,4 +8,4 @@ before_script:
   - git remote set-branches origin master && git fetch
 
 script:
-  - bundle exec rake travis
+  - bundle exec rake test:all_the_things master
