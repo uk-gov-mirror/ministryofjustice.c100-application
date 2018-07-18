@@ -67,16 +67,17 @@ class Court
     # So the order of priority is:
     #
     # 1. anything mentioning 'children'
-    # 2. anything mentioning 'family applications' or 'family', in that order
-    # 3. a general 'enquiries' address
-    # 4. just take the first
+    # 2. an 'applications' address
+    # 3. anything mentioning 'family'
+    # 4. a general 'enquiries' address
+    # 5. just take the first
 
     emails = Array(emails).compact
 
-    best =  emails.find { |e| e['description'] =~ /children/i }                  || \
-            emails.find { |e| e['description'] =~ /family applications/i }       || \
-            emails.find { |e| e['description'] =~ /family/i }                    || \
-            emails.find { |e| e['description'].to_s.casecmp('enquiries').zero? } || \
+    best =  emails.find { |e| e['description'] =~ /children/i }                     || \
+            emails.find { |e| e['description'].to_s.casecmp('applications').zero? } || \
+            emails.find { |e| e['description'] =~ /family/i }                       || \
+            emails.find { |e| e['description'].to_s.casecmp('enquiries').zero? }    || \
             emails.first
 
     best.fetch('address') if best.respond_to?(:fetch)
