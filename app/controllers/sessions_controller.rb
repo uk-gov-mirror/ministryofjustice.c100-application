@@ -46,26 +46,23 @@ class SessionsController < ApplicationController
 
   def find_or_create_screener_answers
     ScreenerAnswers.find_or_initialize_by(c100_application_id: c100_application.id).tap do |screener|
-      screener.update(children_postcodes: 'MK9 2DT', local_court: local_court_fixture)
+      screener.update(
+        children_postcodes: 'MK9 2DT',
+        local_court: local_court_fixture
+      ) unless screener.local_court?
     end
   end
 
   def local_court_fixture
     {
-      "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
-      "town" => "Central Milton Keynes",
-      "postcode" => "MK9 2DT",
+      "address" => {
+        "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
+        "town" => "Central Milton Keynes",
+        "postcode" => "MK9 2DT",
+      },
       "name" => "Milton Keynes County Court and Family Court",
       "slug" => "milton-keynes-county-court-and-family-court",
-      "phone_number" => 388,
       "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
-      "opening_times" =>
-        [
-          "Bailiff telephone service: For payments only Tel: 01865 264200 (option 1 then option 7)",
-          "Court counter open: by prior appointment only",
-          "Court building open: Monday to Friday 8:30am to 4pm",
-          "Telephone Enquiries from: 9am to 5pm"
-        ]
     }
   end
   # :nocov:

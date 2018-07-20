@@ -25,15 +25,16 @@ module C100App
 
     def check_if_court_is_valid
       courts = CourtPostcodeChecker.new.courts_for(step_params.fetch(:children_postcodes))
+
       if courts.empty?
         show(:no_court_found)
       else
-        court = Court.new.from_courtfinder_data!(courts.first)
+        court = Court.new(courts.first)
         c100_application.screener_answers.update!(local_court: court)
         edit(:parent)
       end
 
-    # CourtPostcodeChecker already logs the exception
+    # `CourtPostcodeChecker` and `Court` already log any potential exceptions
     rescue StandardError
       show(:error_but_continue)
     end

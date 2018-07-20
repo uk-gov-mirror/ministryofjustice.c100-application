@@ -5,24 +5,9 @@
 </p>
 
 <dl>
-  <%- unless court.email.blank? %>
-    <dt><strong>Email</strong></dt>
-    <dd><%= mail_to court.email, court.email %></dd>
-  <%- end %>
+  <dt><strong>Email</strong></dt>
+  <dd><%= mail_to court.email, court.email %></dd>
 
-  <%- unless court.phone_number.blank? %>
-    <dt><strong>Phone number</strong></dt>
-    <dd><%= court.phone_number %></dd>
-  <%- end %>
-
-  <%- if court.opening_times? %>
-    <dt><strong>Opening times</strong></dt>
-    <%- court.opening_times.each do |opening_time| %>
-      <dd><%= opening_time %></dd>
-    <%- end %>
-  <%- end %>
+  <dt><strong>More information</strong></dt>
+  <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug) %></dd>
 </dl>
-
-<p>
-  <%= link_to "More information about #{court.name}", C100App::CourtfinderAPI.new.court_url(court.slug) %>
-</p>

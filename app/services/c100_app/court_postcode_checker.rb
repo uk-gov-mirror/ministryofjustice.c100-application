@@ -3,21 +3,21 @@ require 'c100_app/courtfinder_api'
 module C100App
   class CourtPostcodeChecker
     AREA_OF_LAW = "Children".freeze
-    COURT_SLUGS_USING_THIS_APP = [
-      'reading-county-court-and-family-court',
-      'guildford-county-court-and-family-court',
-      'milton-keynes-county-court-and-family-court',
-      'watford-county-court-and-family-court',
-      'slough-county-court-and-family-court',
-      'kingston-upon-hull-combined-court-centre',
-      'oxford-combined-court-centre',
-      'bristol-civil-and-family-justice-centre',
-      'preston-crown-court-and-family-court-sessions-house',
-      'newcastle-upon-tyne-combined-court-centre',
-      'nottingham-county-court-and-family-court',
-      'leeds-combined-court-centre',
-      'west-london-family-court',
-      'cardiff-civil-and-family-justice-centre'
+    COURT_SLUGS_USING_THIS_APP = %w[
+      reading-county-court-and-family-court
+      guildford-county-court-and-family-court
+      milton-keynes-county-court-and-family-court
+      watford-county-court-and-family-court
+      slough-county-court-and-family-court
+      kingston-upon-hull-combined-court-centre
+      oxford-combined-court-centre
+      bristol-civil-and-family-justice-centre
+      preston-crown-court-and-family-court-sessions-house
+      newcastle-upon-tyne-combined-court-centre
+      nottingham-county-court-and-family-court
+      leeds-combined-court-centre
+      west-london-family-court
+      cardiff-civil-and-family-justice-centre
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"

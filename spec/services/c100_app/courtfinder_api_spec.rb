@@ -144,157 +144,39 @@ describe C100App::CourtfinderAPI do
     end
   end
 
-  describe '#age_in_seconds' do
-    context 'given a path' do
-      let(:path){ '/my/path' }
-
-      context 'that exists' do
-        let(:file_stat){ double('stat', mtime: Time.now - 10.seconds) }
-        before do
-          allow(File).to receive(:stat).with(path).and_return(file_stat)
-        end
-
-        it 'returns the difference between its mtime and now' do
-          expect(subject.send(:age_in_seconds, path)).to eq(10)
-        end
-      end
-      context 'that does not exist' do
-        before do
-          allow(File).to receive(:stat).with(path).and_raise(Errno::ENOENT)
-        end
-
-        it 'raises an ENOENT error' do
-          expect{ subject.send(:age_in_seconds, path) }.to raise_error(Errno::ENOENT)
-        end
-      end
-    end
-  end
-
-  describe '#file_is_valid?' do
-    let(:exists){ false }
-    let(:age){ 10 }
-    let(:path){ '/my/path' }
-
-    before do
-      allow(File).to receive(:exist?).with(path).and_return(exists)
-      allow(subject).to receive(:age_in_seconds).with(path).and_return(age)
-    end
-
-    context 'when there is no file at the given path' do
-      let(:exists){ false }
-      it 'returns false' do
-        expect(subject.send(:file_is_valid?, path, 20)).to eq(false)
-      end
-    end
-
-    context 'when there is a file at the given path' do
-      let(:exists){ true }
-
-      context 'older than the given max age' do
-        let(:max_age){ 10 }
-        it 'returns false' do
-          expect(subject.send(:file_is_valid?, path, max_age)).to eq(false)
-        end
-      end
-      context 'younger than the given max age' do
-        let(:max_age){ 100 }
-        it 'returns true' do
-          expect(subject.send(:file_is_valid?, path, max_age)).to eq(true)
-        end
-      end
-    end
-
-  end
-
-  describe '#all' do
-    let(:courts){ ['court 1', 'court 2'] }
-    let(:cache_path){ described_class::LOCAL_JSON_CACHE }
-    let(:mock_json_data){ {'courts' => courts} }
-    let(:file_contents){ mock_json_data.to_json }
-    let(:valid){ false }
-
-    before do
-      allow(subject).to receive(:file_is_valid?).and_return(valid)
-      allow(File).to receive(:read).with(cache_path).and_return(file_contents)
-      allow(subject).to receive(:download_all_courts_json_to).with(cache_path)
-      allow(JSON).to receive(:parse).and_return( mock_json_data )
-    end
-
-    context 'given a :cache_ttl' do
-      it 'passes it to file_is_valid?' do
-        expect(subject).to receive(:file_is_valid?).with(cache_path, 1234).and_return(true)
-        subject.all(cache_ttl: 1234)
-      end
-    end
-    context 'given no :cache_ttl' do
-      it 'passes 86400 to file_is_valid?' do
-        expect(subject).to receive(:file_is_valid?).with(cache_path, 86400).and_return(true)
-        subject.all
-      end
-    end
-
-    context 'when there is no valid file in LOCAL_JSON_CACHE' do
-      let(:valid){ false }
-
-      it 'logs a debug message saying it is downloading the file' do
-        expect(subject.logger).to receive(:debug).with("downloading courts.json to #{cache_path}")
-        subject.all
-      end
-
-      it 'downloads the all-courts json to LOCAL_JSON_CACHE' do
-        expect(subject).to receive(:download_all_courts_json_to).with(cache_path)
-        subject.all
-      end
-    end
-    context 'when there is a valid file in LOCAL_JSON_CACHE' do
-      let(:valid){ true }
-
-      it 'does not downloads the all-courts json to LOCAL_JSON_CACHE' do
-        expect(subject).to_not receive(:download_all_courts_json_to).with(cache_path)
-        subject.all
-      end
-    end
-
-    it 'reads the file in LOCAL_JSON_CACHE' do
-      expect(File).to receive(:read).with(cache_path).and_return(file_contents)
-      subject.all
-    end
-
-    it 'parses the file contents as JSON' do
-      expect(JSON).to receive(:parse).with(file_contents).and_return(mock_json_data)
-      subject.all
-    end
-
-    it 'returns the courts key of the parsed JSON' do
-      expect(subject.all).to eq(courts)
-    end
-  end
-
   describe '#court_url' do
     context 'given a slug' do
       it 'returns a string joining the API_ROOT, "/courts/" and the slug' do
         expect(subject.court_url('my-slug')).to eq("#{subject.class::API_ROOT}courts/my-slug")
       end
+
+      context 'with a specific format' do
+        it 'returns a url ending with the format' do
+          expect(subject.court_url('my-slug', format: :json)).to end_with('my-slug.json')
+        end
+      end
     end
   end
 
-  describe '#download_all_courts_json_to' do
-    let(:download){ double('download') }
+  describe '#court_lookup' do
+    let(:mock_io_stream) { double('io stream', read: '{"readresult": "value"}') }
     before do
-      allow(subject).to receive(:open).and_return(download)
-      allow(IO).to receive(:copy_stream)
+      allow(subject).to receive(:court_url).and_return('my court url')
+      allow(subject).to receive(:open).and_return(mock_io_stream)
     end
 
-    context 'given a path' do
-      it 'opens the all-courts JSON url' do
-        expect(subject).to receive(:open).with(subject.class::ALL_COURTS_JSON_URL).and_return(download)
-        subject.download_all_courts_json_to('/my/path')
-      end
+    it 'gets the JSON court_url for the given slug' do
+      expect(subject).to receive(:court_url).with('my-slug', format: :json).and_return('my court url')
+      subject.court_lookup('my-slug')
+    end
 
-      it 'copies the download stream to the given path' do
-        expect(IO).to receive(:copy_stream).with(download, '/my/path')
-        subject.download_all_courts_json_to('/my/path')
-      end
+    it 'opens the court_url' do
+      expect(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
+      subject.court_lookup('my-slug')
+    end
+
+    it 'returns the stream, read, parsed as JSON' do
+      expect(subject.court_lookup('my-slug')).to eq({'readresult'=>'value'})
     end
   end
 

@@ -38,13 +38,20 @@
             </p>
           </li>
 
-          <!-- TODO: as there might be some saved applications before we release
-           the online submission, let's leave this for a while, then we can remove it -->
-          <% if current_c100_application.submission_type.present? %>
-            <%= render partial: 'steps/completion/what_next/new_instructions' %>
-          <% else %>
-            <%= render partial: 'steps/completion/what_next/old_instructions' %>
-          <% end %>
+          <li class="util_mt-medium">
+            <h3 class="heading-medium">Print your application</h3>
+            <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
+              person, keep one copy, and return one copy to you.</p>
+          </li>
+
+          <li class="util_mt-medium">
+            <h3 class="heading-medium">Post it to the court</h3>
+            <p>Post all 3 printed copies (and cheque, if that’s how you choose to pay) of your application to:</p>
+
+            <div class="panel panel-border-narrow">
+              <%= simple_format(@court.full_address.join("\n")) %>
+            </div>
+          </li>
 
           <li class="util_mt-medium">
             <h3 class="heading-medium">Pay the application fee</h3>

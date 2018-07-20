@@ -4,18 +4,12 @@ RSpec.describe ScreenerAnswers, type: :model do
   subject { described_class.new(local_court: local_court) }
 
   describe '#court' do
-    let(:court) { instance_double(Court) }
-
     context 'when there is a local_court' do
-      let(:local_court) {Court.new(name: 'my court')}
-      let(:new_court) {Court.new(name: 'my court')}
-
-      before do
-        allow_any_instance_of(Court).to receive(:from_courtfinder_data!).and_return(court)
-      end
+      let(:local_court) { { "name" => 'whatever' } }
 
       it 'returns a Court' do
-        expect(subject.court).to eq(court)
+        expect(Court).to receive(:new).with(local_court)
+        subject.court
       end
     end
 

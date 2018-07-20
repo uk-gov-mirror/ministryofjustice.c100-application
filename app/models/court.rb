@@ -1,68 +1,35 @@
-require 'open-uri'
-
 class Court
-  attr_accessor :name, :address_lines, :town, :postcode, :phone_number, :slug,
-                :email, :opening_times
+  attr_reader :name, :slug, :email, :address
 
-  def initialize(params = nil)
-    params.to_h.each do |key, val|
-      setter = (key.to_s + '=')
-      public_send(setter, val) if respond_to?(setter)
-    end
+  # Using `fetch` so an exception is raised and we are alerted if the json
+  # schema ever changes, instead of silently let the user continue, as all
+  # details are needed for the application to progress
+  #
+  def initialize(data)
+    # TODO: remove this once all entries in the DB are using the new format
+    backward_compatible_address!(data)
+
+    @name = data.fetch('name')
+    @slug = data.fetch('slug')
+    @address = data.fetch('address')
+    # The email, if not already present, comes from a separate API request
+    @email = data['email'] || best_enquiries_email
+  rescue StandardError => ex
+    log_and_raise(ex, data)
   end
 
-  # NOTE: this is not done in the initializer, as we want to
-  # 1) create a Court from courtfinder data
-  # 2) store just a subset of the courtfinder fields
-  # 3) de-serialize those fields into a Court object
-  # ...mixing up 1 & 3 in the initializer gets messy.
-  def from_courtfinder_data!(court_finder_data)
-    return self unless court_finder_data
-    if (given_address = court_finder_data['address'])
-      parse_given_address!(given_address)
-    elsif court_finder_data['address_lines']
-      parse_given_address!(court_finder_data)
-    end
-    parse_basic_attributes!(court_finder_data)
-    merge_from_full_json_dump!
-    self
+  def full_address
+    [
+      name,
+      address.fetch_values(
+        'address_lines',
+        'town',
+        'postcode',
+      )
+    ].flatten.reject(&:blank?).uniq
   end
 
-  def parse_basic_attributes!(given_attributes)
-    self.name = given_attributes['name']
-    self.slug = given_attributes['slug']
-    self.phone_number = given_attributes['number']
-  end
-
-  def parse_given_address!(given_address)
-    self.address_lines = given_address['address_lines']
-    self.town = given_address['town']
-    self.postcode = given_address['postcode']
-  end
-
-  def address
-    addr = [address_lines, town, postcode].flatten
-    addr.reject(&:blank?).uniq
-  end
-
-  def opening_times?
-    opening_times.instance_of?(Array) && opening_times.any?
-  end
-
-  def self.all(params = {})
-    C100App::CourtfinderAPI.new.all(cache_ttl: params[:cache_ttl] || 86_400)
-  end
-
-  protected
-
-  def merge_from_full_json_dump!
-    this_court = Court.all.find { |c| c.respond_to?(:fetch) && c.fetch('slug') == slug }
-    return unless this_court
-    self.email = best_enquiries_email(this_court['emails'])
-    self.opening_times = this_court['opening_times'].to_a.map { |e| e['opening_time'] }
-  end
-
-  def best_enquiries_email(emails)
+  def best_enquiries_email
     # There's no consistency to how courts list their email address descriptions
     # So the order of priority is:
     #
@@ -72,14 +39,38 @@ class Court
     # 4. a general 'enquiries' address
     # 5. just take the first
 
-    emails = Array(emails).compact
+    emails = retrieve_emails_from_api
 
-    best =  emails.find { |e| e['description'] =~ /children/i }                     || \
-            emails.find { |e| e['description'].to_s.casecmp('applications').zero? } || \
-            emails.find { |e| e['description'] =~ /family/i }                       || \
-            emails.find { |e| e['description'].to_s.casecmp('enquiries').zero? }    || \
+    best =  emails.find { |e| e['description'] =~ /children/i }         || \
+            emails.find { |e| e['description'] =~ /\Aapplications\z/i } || \
+            emails.find { |e| e['description'] =~ /family/i }           || \
+            emails.find { |e| e['description'] =~ /\Aenquiries\z/i }    || \
             emails.first
 
-    best.fetch('address') if best.respond_to?(:fetch)
+    # We want this to raise a `KeyError` exception when no email is found
+    best ||= {}
+    best.fetch('address')
+  end
+
+  private
+
+  # For some time, we will need to support both formats, as there are
+  # old data in the DB, then we can get rid of this horrible hack
+  #
+  def backward_compatible_address!(data)
+    data.merge!(
+      'address' => data.slice('address_lines', 'town', 'postcode')
+    ) if data.key?('address_lines')
+  end
+
+  def retrieve_emails_from_api
+    this_court = C100App::CourtfinderAPI.new.court_lookup(slug)
+    this_court.fetch('emails')
+  end
+
+  def log_and_raise(exception, data)
+    Raven.extra_context(data: data)
+    Raven.capture_exception(exception)
+    raise
   end
 end
