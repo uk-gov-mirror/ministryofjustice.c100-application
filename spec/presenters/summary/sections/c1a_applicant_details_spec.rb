@@ -40,6 +40,10 @@ module Summary
     # of sync, which means a quite solid safety net for any maintainers in the future.
     #
     describe '#answers' do
+      before do
+        allow(c100_application).to receive(:confidentiality_enabled?).and_return(false)
+      end
+
       it 'has the correct number of rows' do
         expect(answers.count).to eq(10)
       end
@@ -88,6 +92,36 @@ module Summary
 
         it 'has the correct number of rows' do
           expect(answers.count).to eq(0)
+        end
+      end
+
+      context 'when address confidentiality is enabled' do
+        let(:address_confidentiality) { 'yes' }
+
+        before do
+          allow(c100_application).to receive(:confidentiality_enabled?).and_return(true)
+        end
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(10)
+        end
+
+        it 'hides the contact details' do
+          expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[5].question).to eq(:person_home_phone)
+          expect(answers[5].value).to eq('[See C8 attached at the end of this form]')
+
+          expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[6].question).to eq(:person_mobile_phone)
+          expect(answers[6].value).to eq('[See C8 attached at the end of this form]')
+
+          expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
+          expect(answers[7].question).to eq(:person_email)
+          expect(answers[7].value).to eq('[See C8 attached at the end of this form]')
+
+          expect(answers[9]).to be_an_instance_of(Answer)
+          expect(answers[9].question).to eq(:c1a_address_confidentiality)
+          expect(answers[9].value).to eq('yes')
         end
       end
     end
