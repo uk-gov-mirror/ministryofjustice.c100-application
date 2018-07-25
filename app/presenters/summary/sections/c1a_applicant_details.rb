@@ -31,7 +31,11 @@ module Summary
       private
 
       def applicant
-        @_applicant ||= c100.applicants.first
+        @_applicant ||= record_collection.first
+      end
+
+      def record_collection
+        C8CollectionProxy.new(c100, c100.applicants)
       end
     end
   end
