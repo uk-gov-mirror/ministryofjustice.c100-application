@@ -168,21 +168,12 @@ moj.Modules.gaEvents = {
 
     trackExternalLinks: function() {
         $("a[rel^=external]").on('click', function(e) {
-            var url = $(this).attr('href'),
-                target = $(this).attr('target');
+            var url = $(this).attr('href');
+
+            window.open(url, '_blank');
+            ga('send', 'event', 'outbound', 'click', url, {});
 
             e.preventDefault();
-
-            ga('send', 'event', 'outbound', 'click', url, {
-                'transport': 'beacon',
-                'hitCallback': function() {
-                    if (target) {
-                      window.open(url, target);
-                    } else {
-                      document.location = url;
-                    }
-                }
-            });
         });
     },
 

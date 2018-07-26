@@ -135,7 +135,7 @@ en:
           heading: What to do now
           copy: To submit your application, you’ll need to complete the C100 paper application form, print it and send it by post.
         download_c100_link: Download the form (PDF)
-        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" target="external_link" rel="external">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
+        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" rel="external">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
     applicant:
       names:
         edit:
