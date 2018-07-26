@@ -135,7 +135,7 @@ en:
           heading: What to do now
           copy: To submit your application, you’ll need to complete the C100 paper application form, print it and send it by post.
         download_c100_link: Download the form (PDF)
-        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" target="external_link" rel="external">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
+        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" rel="external">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
     applicant:
       names:
         edit:
@@ -461,7 +461,7 @@ en:
               <li>sexual abuse</li>
               <li>witnessing domestic violence or abuse</li>
             </ul>
-            <p><a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" target="external_link" rel="external">Find out about the signs of child abuse</a></p>
+            <p><a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" rel="external">Find out about the signs of child abuse</a></p>
           info_note_html: |
             <p>Only include abuse by the people in this application or someone connected to them who has contact with the children.</p>
       domestic_abuse:
@@ -703,7 +703,7 @@ en:
               <li>your reasons for bringing this application to court</li>
               <li>what you want the court to decide (what outcome you want)</li>
               <li>why the other person disagrees</li>
-              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" target="external_link" rel="external">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
+              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
       language:
@@ -775,7 +775,7 @@ en:
         edit:
           page_title: Details of urgent hearing
           heading: Details of urgent hearing
-          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" target="external_link" rel="external">contact your nearest family court</a> for assistance.
+          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" rel="external">contact your nearest family court</a> for assistance.
     international:
       resident:
         edit:
@@ -1005,7 +1005,7 @@ en:
       lead_text: If you copied a web address, please check it’s correct.
       paper_form_html: |
         <p>You can also try starting again from the homepage.</p>
-        <p>If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" target="external_link" rel="external">download and
+        <p>If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" rel="external">download and
         complete a C100 paper application form</a>, print it and send it by post.</p>
       <<: *START_FINISH
 
@@ -1317,7 +1317,7 @@ en:
         intermediary_help_details: *provide_details
       steps_application_payment_form:
         payment_type:
-          help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" target="external_link" rel="external">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
+          help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" rel="external">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
           solicitor_html: '<strong>Through a solicitor’s fee account</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
           self_payment_card_html: '<strong>I am paying myself by credit or debit card</strong><br>Court staff will contact you within 3 working days to take payment over the phone.'
           self_payment_cheque_html: '<strong>I am paying myself by cheque or cash</strong><br>You can send a cheque or pay in person at the court.'
@@ -1634,7 +1634,7 @@ en:
       safety_content_html: |
         <p>The court needs to know if any of the other people in this application, or anyone connected to them who has contact with the children, poses a risk to the safety of the children.</p>
         <p>If you provide information about this now, it will make it easier for the court to make sure your case is dealt with appropriately at the earliest opportunity. If you do not want to provide details of the abuse at this stage, you will be able to do so when you speak to Cafcass or at a later stage in the court proceedings.</p>
-        <p>The <a href="https://www.cafcass.gov.uk/" target="external_link" rel="external">Children and Family Court Advisory and Support Service (Cafcass)</a>, in England, and <a href="https://cafcass.gov.wales/" target="external_link" rel="external">Cafcass Cymru</a>, in Wales, protect and promote the interests of children involved in family court cases. An advisor from Cafcass or Cafcass Cymru will look at your answers as part of their safeguarding checks, and may need to ask you further questions.</p>
+        <p>The <a href="https://www.cafcass.gov.uk/" rel="external">Children and Family Court Advisory and Support Service (Cafcass)</a>, in England, and <a href="https://cafcass.gov.wales/" rel="external">Cafcass Cymru</a>, in Wales, protect and promote the interests of children involved in family court cases. An advisor from Cafcass or Cafcass Cymru will look at your answers as part of their safeguarding checks, and may need to ask you further questions.</p>
         <p>As part of their enquiries they will contact organisations such as the police and local authorities for any relevant information about you, any other person or the children.</p>
         <p>They will submit information to the court before your first hearing. Their assessment helps the judge make a decision that is in the best interests of the children.</p>
         <p>The information you provide in this section will also be shared with the respondents so that they have the opportunity to respond to your allegations.</p>
