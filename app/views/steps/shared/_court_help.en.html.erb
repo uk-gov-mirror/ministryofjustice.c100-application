@@ -3,7 +3,7 @@
   <p>
     You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
     need to
-    <a href="https://solicitors.lawsociety.org.uk/" target="external_link" rel="external">find a legal advisor</a> if
+    <a href="https://solicitors.lawsociety.org.uk/" rel="external">find a legal advisor</a> if
     you have any issues.
   </p>
 
@@ -12,7 +12,7 @@
     <dd><%= mail_to court.email, court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
 
     <dt><strong>More information</strong></dt>
-    <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), target: 'external_link', rel: 'external' %></dd>
+    <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), rel: 'external' %></dd>
   </dl>
 </div>
 
@@ -20,7 +20,7 @@
   <h2 class="heading-large gv-u-heading-large">We’d like your feedback</h2>
   <p>
     Would you like
-    to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], target: 'external_link', rel: 'external' %>
+    to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], rel: 'external' %>
     to give us your feedback about the online service you have just used?
   </p>
   <p>
