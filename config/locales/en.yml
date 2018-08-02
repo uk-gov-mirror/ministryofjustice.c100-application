@@ -141,7 +141,9 @@ en:
         edit:
           page_title: Applicant names
           heading: Enter the applicant’s name
-          body_info: You and anyone else making this application are known as the applicants.
+          body_info_html: |
+            You and anyone else making this application are known as the applicants.<p></p>
+            The other people who will receive this application are known as the respondents. We will ask for their details later.
           record_index: "Applicant %{index}"
           btn_add_another: Add another applicant
           btn_remove: Remove last applicant
