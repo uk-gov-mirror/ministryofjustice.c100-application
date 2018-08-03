@@ -10,7 +10,7 @@ class SubmissionMailerPreview < ActionMailer::Preview
   def copy_to_user
     ReceiptMailer.with(
       application_details
-    ).copy_to_user(to: 'user@example.com', reply_to: 'court@example.com',)
+    ).copy_to_user(to: 'user@example.com', reply_to: 'court@example.com')
   end
 
   private
@@ -18,9 +18,16 @@ class SubmissionMailerPreview < ActionMailer::Preview
   # We don't have a factory, so just building (not need to persist)
   # a bare minimum C100 application struct for the purpose of the preview
   def c100_application
-    Struct.new(:reference_code, :urgent_hearing, :screener_answers_court, :applicants).new(
+    Struct.new(
+      :reference_code,
+      :urgent_hearing,
+      :confidentiality_enabled?,
+      :screener_answers_court,
+      :applicants,
+    ).new(
       '12345',
       'no',
+      true,
       local_court_fixture,
       applicants_fixture,
     )

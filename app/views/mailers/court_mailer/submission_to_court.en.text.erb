@@ -5,4 +5,6 @@ Their reference code is: <%= @reference_code %>
 
 Please contact the applicant to take their payment within 3 working days, if required.
 
+<%= render partial: 'mailers/shared/application_warnings', locals: { c100_application: @c100_application } -%>
+
 <%= render partial: 'mailers/shared/technical_help' %>
