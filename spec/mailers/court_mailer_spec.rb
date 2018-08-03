@@ -6,10 +6,12 @@ RSpec.describe CourtMailer, type: :mailer do
       id: '449362af-0bc3-4953-82a7-1363d479b876',
       created_at: Time.at(0),
       urgent_hearing: urgent_hearing,
+      address_confidentiality: address_confidentiality,
     )
   }
 
   let(:urgent_hearing) { nil }
+  let(:address_confidentiality) { nil }
   let(:pdf_file) { '/my/test/file' }
 
   let(:recipient_args) {
@@ -56,6 +58,18 @@ RSpec.describe CourtMailer, type: :mailer do
                 mail.subject
               ).to eq('C100 new application - child arrangements')
             end
+          end
+        end
+
+        describe 'C8 application warning in email body' do
+          context 'when C8 was triggered' do
+            let(:address_confidentiality) { GenericYesNo::YES }
+            it { expect(mail.body.encoded).to match('C8 form is included') }
+          end
+
+          context 'when C8 was not triggered' do
+            let(:address_confidentiality) { GenericYesNo::NO }
+            it { expect(mail.body.encoded).not_to match('C8 form is included') }
           end
         end
 
