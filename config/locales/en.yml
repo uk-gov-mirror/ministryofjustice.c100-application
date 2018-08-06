@@ -862,6 +862,16 @@ en:
           lead_text_html: |
             <p>Please tell us the postcode of the children you’re making this application about.</p>
             <p>This will allow us to check if you can use this online service, based on which courts are taking part in this trial at the moment.</p>
+          unknown_postcode_html: |
+            <details>
+              <summary>
+                <span class="summary" data-ga-category="explanations" data-ga-label="screener postcode">If you do not know where the children live</span>
+              </summary>
+              <div class="panel panel-border-narrow">
+                <p>You can use <a href="https://www.gov.uk/government/publications/form-c4-application-for-an-order-for-disclosure-of-a-childs-whereabouts" rel="external">form C4</a>
+                to apply for an order for someone to give a court information about where a child is.</p>
+              </div>
+            </details>
       error_but_continue:
         show:
           page_title: Where the children live
@@ -961,8 +971,8 @@ en:
         invalid: *invalid_email_error
         blank: *blank_email_error
       children_postcodes:
-        invalid: Please enter a valid full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'sw1h9aj')
-        blank: Please enter a full postcode, with or without a space (e.g. 'SW1h 9AJ' or 'SW1h9AJ')
+        invalid: Please enter a valid full postcode, with or without a space
+        blank: Please enter a full postcode, with or without a space
     format: "%{message}"
     messages:
       blank: Enter an answer
