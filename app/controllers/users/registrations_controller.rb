@@ -7,7 +7,7 @@ module Users
     after_action :reset_c100_application_session, only: [:save_confirmation]
 
     def save_confirmation
-      @email_address = current_c100_application.user.email
+      @email_address = current_c100_application.user&.email
     end
 
     def update_confirmation; end
