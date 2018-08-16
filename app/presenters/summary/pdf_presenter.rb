@@ -32,6 +32,9 @@ module Summary
       return unless c100_application.has_safety_concerns?
 
       pdf_generator.generate(
+        Summary::BlankPage.new(c100_application), copies: 1
+      )
+      pdf_generator.generate(
         Summary::C1aForm.new(c100_application), copies: 1
       )
     end
