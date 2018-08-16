@@ -27,6 +27,10 @@ describe Summary::PdfPresenter do
         )
 
         expect(generator).to receive(:generate).with(
+          an_instance_of(Summary::BlankPage), copies: 1
+        )
+
+        expect(generator).to receive(:generate).with(
           an_instance_of(Summary::C1aForm), copies: 1
         )
 
