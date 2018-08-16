@@ -18,5 +18,16 @@
 
       <%= f.continue_button %>
     <% end %>
+
+    <details data-block-name="safety-concerns-reasons">
+      <summary>
+        <span class="summary" data-ga-category="explanations" data-ga-label="safety questions">
+          <%=t 'shared.cafcass.safety_title' %>
+        </span>
+      </summary>
+      <div class="panel panel-border-narrow">
+        <%=t 'shared.cafcass.safety_content_html' %>
+      </div>
+    </details>
   </div>
 </div>
