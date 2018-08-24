@@ -971,8 +971,11 @@ en:
         invalid: *invalid_email_error
         blank: *blank_email_error
       children_postcodes:
-        invalid: Please enter a valid full postcode, with or without a space
-        blank: Please enter a full postcode, with or without a space
+        invalid: Enter a valid full postcode, with or without a space
+        blank: Enter a full postcode, with or without a space
+      hwf_reference_number:
+        invalid: "Enter a valid 'Help with fees' reference number"
+        blank: "Enter your 'Help with fees' reference number"
     format: "%{message}"
     messages:
       blank: Enter an answer
@@ -1333,7 +1336,7 @@ en:
           solicitor_html: '<strong>Through a solicitor’s fee account</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
           self_payment_card_html: '<strong>I am paying myself by credit or debit card</strong><br>Court staff will contact you within 3 working days to take payment over the phone.'
           self_payment_cheque_html: '<strong>I am paying myself by cheque or cash</strong><br>You can send a cheque or pay in person at the court.'
-        hwf_reference_number: Enter your reference number
+        hwf_reference_number: Reference number
         solicitor_account_number: Enter solicitor’s fee account number
       steps_application_submission_form:
         submission_type:
@@ -1518,6 +1521,8 @@ en:
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem
       steps_application_details_form:
         application_details: You do not have to give a full statement although you may be asked to provide one later.
+      steps_application_payment_form:
+        hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
       steps_application_submission_form:
         receipt_email: We will send an copy of your application to this address
       steps_abduction_passport_details_form:

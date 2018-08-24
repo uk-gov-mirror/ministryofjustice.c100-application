@@ -32,6 +32,46 @@ RSpec.describe Steps::Application::PaymentForm do
         let(:payment_type) { PaymentType::SOLICITOR.to_s }
         it { should validate_presence_of(:solicitor_account_number) }
       end
+
+      context 'Help with fees format validation' do
+        let(:payment_type) { PaymentType::HELP_WITH_FEES.to_s }
+
+        context 'valid format with dashes' do
+          let(:hwf_reference_number) { 'HWF-123-456' }
+          it { expect(subject.valid?).to eq(true) }
+        end
+
+        context 'valid format with spaces' do
+          let(:hwf_reference_number) { 'HWF 123 ABC' }
+          it { expect(subject.valid?).to eq(true) }
+        end
+
+        context 'valid format without spaces, case insensitive' do
+          let(:hwf_reference_number) { 'hwf123abc' }
+          it { expect(subject.valid?).to eq(true) }
+        end
+
+        context 'for invalid format' do
+          before do
+            subject.valid?
+          end
+
+          context 'invalid format 1' do
+            let(:hwf_reference_number) { 'ABC-123-456' }
+            it { expect(subject.errors.added?(:hwf_reference_number, :invalid)).to eq(true) }
+          end
+
+          context 'invalid format 2' do
+            let(:hwf_reference_number) { 'HWF-123' }
+            it { expect(subject.errors.added?(:hwf_reference_number, :invalid)).to eq(true) }
+          end
+
+          context 'invalid format 3' do
+            let(:hwf_reference_number) { 'HWF-123-456-789' }
+            it { expect(subject.errors.added?(:hwf_reference_number, :invalid)).to eq(true) }
+          end
+        end
+      end
     end
 
     context 'when no c100_application is associated with the form' do
@@ -44,7 +84,7 @@ RSpec.describe Steps::Application::PaymentForm do
 
     context 'when form is valid' do
       let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
-      let(:hwf_reference_number) { 'HWF-12345' }
+      let(:hwf_reference_number) { 'HWF-123-456' }
       let(:solicitor_account_number) { 'SOL-12345' }
 
       it 'saves the record' do
@@ -63,7 +103,7 @@ RSpec.describe Steps::Application::PaymentForm do
         it 'saves the record' do
           expect(c100_application).to receive(:update).with(
             payment_type: 'help_with_fees',
-            hwf_reference_number: 'HWF-12345',
+            hwf_reference_number: 'HWF-123-456',
             solicitor_account_number: nil,
           ).and_return(true)
 

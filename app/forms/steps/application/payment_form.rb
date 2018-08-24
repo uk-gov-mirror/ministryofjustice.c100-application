@@ -10,6 +10,8 @@ module Steps
       validates_presence_of :hwf_reference_number, if: :help_with_fees_payment?
       validates_presence_of :solicitor_account_number, if: :solicitor_payment?
 
+      validates :hwf_reference_number, allow_blank: true, help_with_fees_reference: true, if: :help_with_fees_payment?
+
       private
 
       def help_with_fees_payment?
