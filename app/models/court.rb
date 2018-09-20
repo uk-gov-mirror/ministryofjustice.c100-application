@@ -6,9 +6,6 @@ class Court
   # details are needed for the application to progress
   #
   def initialize(data)
-    # TODO: remove this once all entries in the DB are using the new format
-    backward_compatible_address!(data)
-
     @name = data.fetch('name')
     @slug = data.fetch('slug')
     @address = data.fetch('address')
@@ -53,15 +50,6 @@ class Court
   end
 
   private
-
-  # For some time, we will need to support both formats, as there are
-  # old data in the DB, then we can get rid of this horrible hack
-  #
-  def backward_compatible_address!(data)
-    data.merge!(
-      'address' => data.slice('address_lines', 'town', 'postcode')
-    ) if data.key?('address_lines')
-  end
 
   def retrieve_emails_from_api
     this_court = C100App::CourtfinderAPI.new.court_lookup(slug)
