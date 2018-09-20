@@ -100,14 +100,6 @@ describe Court do
         end
       end
     end
-
-    context 'backward compatible format' do
-      let(:data) { super().except('address').merge(address) }
-
-      it 'converts the address from the old format to the new one' do
-        expect(subject.address).to eq(address)
-      end
-    end
   end
 
   describe '#full_address' do
