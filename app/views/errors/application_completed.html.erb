@@ -4,9 +4,17 @@
   <div class="column-two-thirds">
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%= t '.heading' %></h1>
 
-    <p class="lede"><%=t '.lead_text' %></p>
+    <% if current_c100_application.online_submission? %>
 
-    <p class="lede"><%= link_to t('.how_to_submit'), steps_completion_how_to_submit_path %></p>
+      <p class="lede"><%=t '.lead_text_online' %></p>
+      <p class="lede"><%= link_to t('.application_submitted'), steps_completion_confirmation_path %></p>
+
+    <% else %>
+
+      <p class="lede"><%=t '.lead_text' %></p>
+      <p class="lede"><%= link_to t('.how_to_submit'), steps_completion_how_to_submit_path %></p>
+
+    <% end %>
 
     <div class="form-group">
       <%= link_to t('.start_again'), root_path, class: 'button' %>

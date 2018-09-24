@@ -1013,6 +1013,8 @@ en:
       heading: You have already completed this application
       lead_text: The court will not receive your application until you submit it. If you want to make changes you will need to start a new application.
       how_to_submit: How to submit your application
+      lead_text_online: Your application has been submitted to the court. You cannot make any further changes.
+      application_submitted: Application submitted
       <<: *START_FINISH
     not_found:
       page_title: Page not found
