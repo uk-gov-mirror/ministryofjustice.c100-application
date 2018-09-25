@@ -84,6 +84,7 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
 
     context 'when all parties have been edited' do
       let(:record) { double('OtherParty', id: 3) }
+      let(:c100_application) { instance_double(C100Application, other_party_ids: [1, 2, 3], child_ids: [1, 2, 3]) }
 
       it 'goes to edit the residence of the first child' do
         expect(subject.destination).to eq(controller: '/steps/children/residence', action: :edit, id: 1)
