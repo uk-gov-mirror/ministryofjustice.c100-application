@@ -139,6 +139,7 @@ RSpec.describe C100App::RespondentDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
+      let(:c100_application) { instance_double(C100Application, child_ids: [1, 2, 3]) }
 
       it 'goes to edit the residence of the first child' do
         expect(subject.destination).to eq(controller: '/steps/children/residence', action: :edit, id: 1)

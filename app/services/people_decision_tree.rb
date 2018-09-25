@@ -14,7 +14,7 @@ class PeopleDecisionTree < BaseDecisionTree
   end
 
   def edit_first_child_relationships
-    edit(:relationship, id: record, child_id: first_child_id)
+    edit(:relationship, id: record, child_id: first_minor_id)
   end
 
   def children_relationships
@@ -29,7 +29,14 @@ class PeopleDecisionTree < BaseDecisionTree
     next_record_id(c100_application.minor_ids, current: record.minor)
   end
 
-  def first_child_id
+  # Minors collection include `Child` and `OtherChild` types.
+  def first_minor_id
     c100_application.minor_ids.first
+  end
+
+  # Children collection only include `Child` type. This should be used in
+  # the residence loop, as we only need the residence of the main children.
+  def first_child_id
+    c100_application.child_ids.first
   end
 end
