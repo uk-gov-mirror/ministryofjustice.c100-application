@@ -139,7 +139,7 @@ en:
     miam_certification_date:
       question: When did you attend the MIAM?
     miam_certification_number:
-      question: FMC registration number
+      question: Mediator registration number (URN)
     miam_certification_service_name:
       question: Family mediation service name
     miam_certification_sole_trader_name:

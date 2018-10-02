@@ -1352,7 +1352,7 @@ en:
       steps_miam_acknowledgement_form:
         miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
       steps_miam_certification_details_form:
-        miam_certification_number: FMC registration number
+        miam_certification_number: Mediator registration number (URN)
         miam_certification_service_name: Family mediation service name
         miam_certification_sole_trader_name: Sole trader name
       steps_petition_orders_form:
@@ -1638,7 +1638,7 @@ en:
     form_elements:
       dob: Date of birth
       order_issue: What date was it made?
-      certification_date_hint: For example, 20 04 2018
+      certification_date_hint: For example, 20 09 2018
     why_we_use_children_html: |
       <details style="margin-top: 0;">
         <summary>
