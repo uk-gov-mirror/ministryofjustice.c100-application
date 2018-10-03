@@ -18,6 +18,7 @@ module C100App
       leeds-combined-court-centre
       west-london-family-court
       cardiff-civil-and-family-justice-centre
+      leicester-county-court-and-family-court
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
