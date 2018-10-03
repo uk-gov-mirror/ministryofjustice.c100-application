@@ -33,17 +33,9 @@ Rails.application.configure do
   config.assets.debug = true
   config.assets.quiet = true
 
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
   # NB: Because of the way the form builder works, and hence the
   # gov.uk elements formbuilder, exceptions will not be raised for
   # missing translations of model attribute names. The form will
   # get the constantized attribute name itself, in form labels.
   config.action_view.raise_on_missing_translations = true
-
-  # Enable console when running via docker compose
-  config.web_console.whitelisted_ips = '172.23.0.0/16'
-
 end
-
-Faker::Config.locale = 'en-GB' # For the development tools
