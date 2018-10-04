@@ -27,7 +27,7 @@ RSpec.describe C100Application, type: :model do
 
     it 'picks records equal to or older than the passed-in date' do
       expect(described_class).to receive(:where).with(
-        'created_at <= :date', date: 28.days.ago
+        'c100_applications.created_at <= :date', date: 28.days.ago
       ).and_return(finder_double)
 
       described_class.purge!(28.days.ago)
