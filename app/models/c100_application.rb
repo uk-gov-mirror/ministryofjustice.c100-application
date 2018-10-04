@@ -32,11 +32,12 @@ class C100Application < ApplicationRecord
 
   scope :with_owner,    -> { where.not(user: nil) }
   scope :not_completed, -> { where.not(status: :completed) }
+  scope :not_eligible_orphans, -> { joins(:screener_answers).where('screener_answers.local_court': nil) }
 
   delegate :court, to: :screener_answers, prefix: true, allow_nil: true
 
   def self.purge!(date)
-    where('created_at <= :date', date: date).destroy_all
+    where('c100_applications.created_at <= :date', date: date).destroy_all
   end
 
   def online_submission?
