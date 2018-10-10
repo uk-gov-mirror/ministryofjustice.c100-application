@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe C100App::CourtPostcodeChecker do
+  describe 'COURT_SLUGS_USING_THIS_APP' do
+    it 'returns the expected number of court slugs taking part in the trial' do
+      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(16)
+    end
+  end
+
   describe '#courts_for' do
     before do
       allow(subject).to receive(:court_for).and_return( 'call1', 'call2', 'call3' )
