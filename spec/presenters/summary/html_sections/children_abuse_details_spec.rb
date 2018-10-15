@@ -38,8 +38,7 @@ module Summary
     # of sync, which means a quite solid safety net for any maintainers in the future.
     #
     describe '#answers' do
-      let(:found_abuses_resultset) { double('found_abuses_resultset') }
-      let(:final_resultset) { [abuse_concern] }
+      let(:found_abuses_resultset) { [abuse_concern] }
 
       before do
         allow(
@@ -47,8 +46,6 @@ module Summary
         ).to receive(:where).with(
           subject: AbuseSubject::CHILDREN
         ).and_return(found_abuses_resultset)
-
-        allow(found_abuses_resultset).to receive(:reverse).and_return(final_resultset)
       end
 
       it 'has the correct number of rows' do
