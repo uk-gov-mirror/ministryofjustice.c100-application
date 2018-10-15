@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712101836) do
+ActiveRecord::Schema.define(version: 20181015101148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,8 @@ ActiveRecord::Schema.define(version: 20180712101836) do
     t.string "help_provided"
     t.text "help_description"
     t.uuid "c100_application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id"
   end
 

@@ -27,13 +27,14 @@ module Summary
         []
       end
 
+      # Abuses are returned in the same order we ask them (`created_at`)
       def abuses_suffered
         c100.abuse_concerns.where(
           answer: GenericYesNo::YES,
           subject: subject,
         ).where.not(
           kind: filtered_abuses.map(&:to_s)
-        ).reverse
+        )
       end
     end
   end

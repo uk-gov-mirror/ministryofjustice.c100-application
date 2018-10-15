@@ -37,8 +37,7 @@ module Summary
 
     describe '#answers' do
       let(:found_abuses_resultset) { double('found_abuses_resultset') }
-      let(:filtered_abuses_resultset) { double('filtered_abuses_resultset') }
-      let(:final_resultset) { [abuse_concern] }
+      let(:filtered_abuses_resultset) { [abuse_concern] }
 
       before do
         allow(
@@ -52,8 +51,6 @@ module Summary
         ).to receive_message_chain(:where, :not).with(
           kind: %w(physical emotional psychological sexual financial)
         ).and_return(filtered_abuses_resultset)
-
-        allow(filtered_abuses_resultset).to receive(:reverse).and_return(final_resultset)
       end
 
       it 'has the correct number of rows' do
