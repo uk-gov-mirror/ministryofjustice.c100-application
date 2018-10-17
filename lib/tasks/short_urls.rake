@@ -41,5 +41,5 @@ def default_host_domain
 end
 
 def default_target_url
-  'https://apply-to-court-about-child-arrangements.dsd.io'.freeze
+  'https://apply-to-court-about-child-arrangements.service.justice.gov.uk'.freeze
 end

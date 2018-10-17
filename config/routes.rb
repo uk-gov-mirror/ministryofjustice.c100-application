@@ -32,8 +32,13 @@ end
 Rails.application.routes.draw do
   constraints host: 'c100.dsd.io' do
     get '/(*path)' => redirect(
-      ShortUrlExpander.new('https://apply-to-court-about-child-arrangements.dsd.io'), status: 302
+      ShortUrlExpander.new('https://apply-to-court-about-child-arrangements.service.justice.gov.uk'), status: 302
     )
+  end
+
+  # Maintain this for some time until all our traffic is coming directly from `justice` domain
+  constraints host: 'apply-to-court-about-child-arrangements.dsd.io' do
+    get '/(*path)' => redirect('https://apply-to-court-about-child-arrangements.service.justice.gov.uk', status: 301)
   end
 
   devise_for :users,
