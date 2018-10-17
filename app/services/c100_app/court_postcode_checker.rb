@@ -21,6 +21,9 @@ module C100App
       leicester-county-court-and-family-court
       east-london-family-court
       newport-gwent-civil-and-family-court
+      southampton-combined-court-centre
+      swansea-civil-and-family-justice-centre
+      exeter-combined-court-centre
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
