@@ -4,6 +4,7 @@ moj.Modules.gaEvents = {
     radioFormClass: '.multiple-choice input[type="radio"]',
     checkboxClass:  '.multiple-choice input[type="checkbox"]',
     linkClass: '.ga-pageLink',
+    clickActionClass: '.ga-clickAction',
     revealingLinkClass: 'summary span.summary',
     submitFormClass: '.ga-submitForm',
     submitButtons: 'button[type="submit"], input[type="submit"]',
@@ -34,6 +35,9 @@ moj.Modules.gaEvents = {
             if ($(self.revealingLinkClass).length) {
                 self.trackRevealingLinks();
             }
+            if ($(self.clickActionClass).length) {
+                self.trackClickActions();
+            }
             if ($(self.submitFormClass).length) {
                 self.trackSubmitForms();
             }
@@ -46,9 +50,11 @@ moj.Modules.gaEvents = {
 
     addSubmitValueParamOnClick: function() {
         $(this.submitButtons).on('click', function() {
-            $('<input>',
-                { type: 'hidden', name: $(this).attr('name'), value: $(this).attr('value') }
-            ).appendTo($(this).closest('form'));
+            if ($(this).attr('name')) {
+                $('<input>',
+                    {type: 'hidden', name: $(this).attr('name'), value: $(this).attr('value')}
+                ).appendTo($(this).closest('form'));
+            }
         });
     },
 
@@ -163,6 +169,24 @@ moj.Modules.gaEvents = {
             if ($link.closest('details:not([open])').length && eventData.eventCategory) {
                 self.sendAnalyticsEvent(eventData, options);
             }
+        });
+    },
+
+    trackClickActions: function() {
+        var self = this,
+            $elements = $(self.clickActionClass);
+
+        $elements.on('click', function() {
+            var $el = $(this),
+                eventData;
+
+            eventData = {
+                eventCategory: $el.data('ga-category'),
+                eventAction: $el.data('ga-action'),
+                eventLabel: $el.data('ga-label')
+            };
+
+            self.sendAnalyticsEvent(eventData, {});
         });
     },
 

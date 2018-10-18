@@ -15,12 +15,24 @@
       <p>You need to follow these steps before continuing with your application:</p>
       <section class="numbered-list">
         <ol class="list list-number">
-          <li><a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" rel="external" target="_blank">Find a mediator</a> and book a MIAM</li>
+          <li>
+            <form class="fmc-lookup-form" action="https://www.familymediationcouncil.org.uk/find-local-mediator/" target="_blank">
+              <input type="hidden" name="di" value="5">
+              <div class="form-group util_mb-small">
+                <label class="form-label" for="pc">Enter your postcode to find a mediator</label>
+                <input class="form-control narrow" type="text" name="pc" id="pc" required>
+              </div>
+              <input type="submit" class="button ga-clickAction" value="Find a mediator" data-disable-with="Find a mediator" data-ga-category="miam kickout" data-ga-action="submit" data-ga-label="fmc postcode"/>
+            </form>
+          </li>
+          <li>Book initial meeting with mediator</li>
           <li>Attend the MIAM</li>
           <li>Ask the mediator for a document confirming your attendance</li>
         </ol>
       </section>
     </div>
+
+    <p><%=t 'steps.shared.screener_exit_actions.cait_info_html' %></p>
 
     <%= render partial: 'steps/shared/kickout_survey' %>
   </div>
