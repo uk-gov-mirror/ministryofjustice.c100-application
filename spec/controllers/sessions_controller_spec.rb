@@ -9,42 +9,14 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe '#destroy' do
-    context 'when survey param is not provided' do
-      it 'resets the application session' do
-        expect(subject).to receive(:reset_c100_application_session)
-        get :destroy
-      end
-
-      it 'redirects to the home page' do
-        get :destroy
-        expect(subject).to redirect_to(root_path)
-      end
+    it 'resets the session' do
+      expect(subject).to receive(:reset_session)
+      get :destroy
     end
 
-    context 'when survey param is provided' do
-      context 'for a `true` value' do
-        it 'resets the session' do
-          expect(subject).to receive(:reset_session)
-          get :destroy, params: {survey: true}
-        end
-
-        it 'redirects to the survey page' do
-          get :destroy, params: {survey: true}
-          expect(response.location).to match(/survey$/)
-        end
-      end
-
-      context 'for a `false` value' do
-        it 'resets the application session' do
-          expect(subject).to receive(:reset_c100_application_session)
-          get :destroy, params: {survey: false}
-        end
-
-        it 'redirects to the home page' do
-          get :destroy, params: {survey: false}
-          expect(subject).to redirect_to(root_path)
-        end
-      end
+    it 'redirects to the home page' do
+      get :destroy
+      expect(subject).to redirect_to(root_path)
     end
 
     context 'when a JSON request is made' do
