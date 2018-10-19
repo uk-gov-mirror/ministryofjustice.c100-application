@@ -72,6 +72,7 @@ Rails.application.routes.draw do
   namespace :steps do
     namespace :screener do
       show_step :start
+      show_step :warning
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
