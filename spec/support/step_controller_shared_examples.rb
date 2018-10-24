@@ -433,6 +433,15 @@ RSpec.shared_examples 'a completion step controller' do
           get :show, session: {c100_application_id: existing_c100.id}
         end
       end
+
+      context 'when the application is still `screening`' do
+        let(:status) { :screening }
+
+        it 'does not call the `mark_completed` method' do
+          expect(controller).not_to receive(:mark_completed)
+          get :show, session: {c100_application_id: existing_c100.id}
+        end
+      end
     end
   end
 end
