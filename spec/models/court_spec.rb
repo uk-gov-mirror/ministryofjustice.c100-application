@@ -255,7 +255,7 @@ describe Court do
         end
       end
 
-      context 'containing an email with description matching "enquiries"' do
+      context 'containing an email with explanation matching "family"' do
         let(:emails){
           [
             {
@@ -263,7 +263,8 @@ describe Court do
               'address' => 'other@email'
             },
             {
-              'description' => 'Enquiries',
+              'description' => '',
+              'explanation' => 'Family enquiries',
               'address' => 'my@email',
             },
           ]

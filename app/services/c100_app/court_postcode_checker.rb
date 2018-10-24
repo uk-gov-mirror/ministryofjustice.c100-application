@@ -20,10 +20,11 @@ module C100App
       cardiff-civil-and-family-justice-centre
       leicester-county-court-and-family-court
       east-london-family-court
-      newport-gwent-civil-and-family-court
+      newport-south-wales-county-court-and-family-court
       southampton-combined-court-centre
       swansea-civil-and-family-justice-centre
       exeter-combined-court-centre
+      medway-county-court-and-family-court
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"

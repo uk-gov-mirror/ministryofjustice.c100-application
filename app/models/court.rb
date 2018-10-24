@@ -27,22 +27,12 @@ class Court
   end
 
   def best_enquiries_email
-    # There's no consistency to how courts list their email address descriptions
-    # So the order of priority is:
-    #
-    # 1. anything mentioning 'children'
-    # 2. an 'applications' address
-    # 3. anything mentioning 'family'
-    # 4. a general 'enquiries' address
-    # 5. just take the first
+    # There's no consistency to how courts list their email address descriptions,
+    # so we try to find the most suitable email address, by looking at the `description`
+    # or the `explanation` for each of the emails, and if none found, use the first one
 
     emails = retrieve_emails_from_api
-
-    best =  emails.find { |e| e['description'] =~ /children/i }         || \
-            emails.find { |e| e['description'] =~ /\Aapplications\z/i } || \
-            emails.find { |e| e['description'] =~ /family/i }           || \
-            emails.find { |e| e['description'] =~ /\Aenquiries\z/i }    || \
-            emails.first
+    best = best_match_for(emails, 'description') || best_match_for(emails, 'explanation') || emails.first
 
     # We want this to raise a `KeyError` exception when no email is found
     best ||= {}
@@ -50,6 +40,12 @@ class Court
   end
 
   private
+
+  def best_match_for(emails, node)
+    emails.find { |e| e[node] =~ /children/i }           || \
+      emails.find { |e| e[node] =~ /\Aapplications\z/i } || \
+      emails.find { |e| e[node] =~ /family/i }
+  end
 
   def retrieve_emails_from_api
     this_court = C100App::CourtfinderAPI.new.court_lookup(slug)
