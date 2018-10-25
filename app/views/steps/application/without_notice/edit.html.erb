@@ -6,7 +6,18 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text_html' %></p>
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%=t '.lead_text' %></p>
+    </div>
+
+    <div role="note" aria-label="Warning" class="notice gv-c-notice util_mb-medium">
+      <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
+        <span class="visually-hidden gv-c-notice__icon-fallback-text"><%=t '.warning_title' %></span>
+      </i>
+      <strong class="bold-small gv-c-notice__text">
+        <%=t '.warning_text' %>
+      </strong>
+    </div>
 
     <%= step_form @form_object do |f| %>
       <%= f.radio_button_fieldset :without_notice, inline: true, choices: GenericYesNo.values %>
