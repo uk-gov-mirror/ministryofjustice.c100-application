@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.4'
+ruby '2.5.1'
 
 gem 'devise', '~> 4.4.3'
 gem 'email_validator'
