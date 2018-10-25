@@ -664,10 +664,9 @@ en:
         edit:
           page_title: Without notice hearing
           heading: Are you asking for a without notice hearing?
-          lead_text_html: |
-            <div class=" govuk-govspeak gv-s-prose">
-              <p>Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent, or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</p>
-            </div>
+          lead_text: Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent, or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).
+          warning_title: Warning
+          warning_text: If you ask for a without notice hearing, the court may require you to attend on the same day as you submit your application. They will contact you to tell you when you need to go to the court.
       without_notice_details:
         edit:
           page_title: Details of without notice hearing
