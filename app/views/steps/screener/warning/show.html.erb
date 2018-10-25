@@ -1,0 +1,20 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p>
+      <% if user_signed_in? %>
+        <%=t '.lead_signed_in' %>
+      <% else %>
+        <%=t '.lead_signed_off' %>
+      <% end %>
+    </p>
+
+    <div class="form-submit">
+      <%= link_to t('.resume_link'), previous_step_path, class: 'button ga-pageLink', data: {ga_category: 'in progress warning', ga_label: 'resume application'} %>
+      <%= link_to t('.restart_link'), root_path(new: 'y'), class: 'button button-secondary ga-pageLink', data: {ga_category: 'in progress warning', ga_label: 'new application'} %>
+    </div>
+  </div>
+</div>
