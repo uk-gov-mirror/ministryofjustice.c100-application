@@ -6,7 +6,7 @@ module CompletionStep
   extend ActiveSupport::Concern
 
   included do
-    before_action :mark_completed, if: :in_progress?
+    before_action :mark_completed, unless: :completed?
   end
 
   def show
@@ -15,8 +15,8 @@ module CompletionStep
 
   private
 
-  def in_progress?
-    current_c100_application.in_progress?
+  def completed?
+    current_c100_application.completed?
   end
 
   def mark_completed
