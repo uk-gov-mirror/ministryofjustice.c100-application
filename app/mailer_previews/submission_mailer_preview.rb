@@ -22,12 +22,14 @@ class SubmissionMailerPreview < ActionMailer::Preview
       :reference_code,
       :urgent_hearing,
       :confidentiality_enabled?,
+      :payment_type,
       :screener_answers_court,
       :applicants,
     ).new(
       '12345',
       'no',
       true,
+      PaymentType::SELF_PAYMENT_CARD.to_s,
       local_court_fixture,
       applicants_fixture,
     )

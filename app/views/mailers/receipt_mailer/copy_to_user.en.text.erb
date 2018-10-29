@@ -10,17 +10,9 @@ A copy of your application is attached to this email.
 
 Pay the application fee:
 
-You need to pay the £215 court fee. The court will telephone you (it may come from a
-‘private number’) within 3 working days of receiving your application to take payment
-using a credit or debit card. If you did not enter a telephone number or you do not
-get a call, please contact the court to pay.
-
-You can also pay by post with a cheque made out to ‘HM Courts and Tribunals
-Service’, or in person at the court by cheque, cash or card.
-
-The court will not be able to process your application until payment has been received.
-
-You may not need to pay the full amount if you have a ‘Help with fees’ reference.
+<%= render partial: 'steps/shared/payment_instructions', locals: {
+  c100_application: @c100_application
+} %>
 
 
 <%= render partial: 'mailers/shared/court_help', locals: {court: @court} %>

@@ -20,7 +20,9 @@
 
     <div class="govuk-govspeak gv-s-prose">
       <h2 class="heading-large gv-u-heading-large">Pay the application fee</h2>
-      <%= render partial: 'steps/shared/payment_instructions' %>
+      <%= render partial: 'steps/shared/payment_instructions', locals: {
+        c100_application: @c100_application
+      } %>
     </div>
 
     <div class="govuk-govspeak gv-s-prose">

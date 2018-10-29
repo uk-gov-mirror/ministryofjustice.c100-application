@@ -409,6 +409,7 @@ RSpec.shared_examples 'a completion step controller' do
     it 'assigns the court data' do
       get :show, session: { c100_application_id: existing_c100.id }
       expect(assigns[:court]).to eq('court data')
+      expect(assigns[:c100_application]).to eq(existing_c100)
     end
 
     describe 'marking as completed and saving audit' do

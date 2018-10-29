@@ -46,16 +46,16 @@
 
           <li class="util_mt-medium">
             <h3 class="heading-medium">Post it to the court</h3>
-            <p>Post all 3 printed copies (and cheque, if that’s how you choose to pay) of your application to:</p>
-
-            <div class="panel panel-border-narrow">
-              <%= simple_format(@court.full_address.join("\n")) %>
-            </div>
+            <%= render partial: 'steps/shared/post_instructions', locals: {
+              c100_application: @c100_application, court: @court
+            } %>
           </li>
 
           <li class="util_mt-medium">
             <h3 class="heading-medium">Pay the application fee</h3>
-            <%= render partial: 'steps/shared/payment_instructions' %>
+            <%= render partial: 'steps/shared/payment_instructions', locals: {
+              c100_application: @c100_application
+            } %>
           </li>
         </ol>
       </div>
