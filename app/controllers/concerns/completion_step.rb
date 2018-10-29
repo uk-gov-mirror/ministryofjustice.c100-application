@@ -11,6 +11,7 @@ module CompletionStep
 
   def show
     @court = current_c100_application.screener_answers_court
+    @c100_application = current_c100_application
   end
 
   private
