@@ -3,7 +3,7 @@ require 'rails_helper'
 describe C100App::CourtPostcodeChecker do
   describe 'COURT_SLUGS_USING_THIS_APP' do
     it 'returns the expected number of court slugs taking part in the trial' do
-      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(21)
+      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(24)
     end
   end
 

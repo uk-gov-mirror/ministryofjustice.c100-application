@@ -25,6 +25,9 @@ module C100App
       swansea-civil-and-family-justice-centre
       exeter-combined-court-centre
       medway-county-court-and-family-court
+      liverpool-civil-and-family-court
+      plymouth-combined-court
+      peterborough-combined-court-centre
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
