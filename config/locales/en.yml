@@ -957,8 +957,7 @@ en:
       privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
-      phase_info_email_html: |
-        This is a new service. <a href="mailto:c100helpdesk@digital.justice.gov.uk?subject=Feedback" class="ga-clickAction" data-ga-category="feedback" data-ga-action="click" data-ga-label="report a problem">Report a problem</a> and help improve it for others.
+      feedback_contact_html: This is a new service. <a href="/about/contact">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password
