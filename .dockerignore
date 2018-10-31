@@ -1,0 +1,16 @@
+logs/
+log/
+tmp/
+Dockerfile
+README.md
+.env*
+
+.DS_Store
+.DS_Store/
+.git/
+.idea/
+
+.byebug_history
+/coverage/*
+tags
+.ctags_exclude
