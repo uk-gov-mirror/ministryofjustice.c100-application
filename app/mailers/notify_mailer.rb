@@ -47,6 +47,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
     mail(to: c100_application.user.email)
   end
 
+  def submission_error(c100_application)
+    set_template(:submission_error)
+
+    set_personalisation(
+      reference_code: c100_application.reference_code,
+    )
+
+    mail(to: c100_application.receipt_email)
+  end
+
   def draft_expire_reminder(c100_application, template_name)
     set_template(template_name)
 
