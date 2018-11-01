@@ -12,6 +12,7 @@ integration:
   reset_password: '73d0804a-2302-4307-a431-e4a0fd7087ec'
   change_password: '97ea3c24-0b40-4b8e-8fc6-a54f7f1718e9'
   application_saved: '1252b250-541c-456a-b98b-c568aef05e5f'
+  submission_error: 'c99df4a0-5655-4ef8-aaf4-0a5b83397785'
   draft_first_reminder: 'fcd87b1c-a3a0-4a2a-9b4e-524857e3bf8c'
   draft_last_reminder: '8e622f55-4be8-49cc-8a94-0ab3fd868067'
 
@@ -19,5 +20,6 @@ production:
   reset_password: '0f55e48a-ae27-464c-b30f-272fd3850296'
   change_password: 'c6be1e37-feee-4d18-9552-ed4e4772ad16'
   application_saved: '267ace56-230f-4b07-902f-b993dfc69143'
+  submission_error: '9ded5ada-9e33-4b7b-bdaf-daa85b6c7063'
   draft_first_reminder: 'bf271379-6158-407d-b09a-cc6d8b275f1e'
   draft_last_reminder: '30dedd21-e7da-4794-b66c-94729cfa3180'
