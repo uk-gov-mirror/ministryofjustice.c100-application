@@ -1506,7 +1506,7 @@ en:
 
     hint:
       user:
-        password: Must be at least 8 characters
+        password: Must be at least 10 characters
         current_password: We need your current password to confirm your changes
       steps_applicant_names_form:
         new_name_html: *name_instructions
