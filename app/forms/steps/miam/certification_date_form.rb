@@ -9,6 +9,8 @@ module Steps
 
       validates_presence_of :miam_certification_date
 
+      validates :miam_certification_date, sensible_date: true
+
       private
 
       def persist!
