@@ -13,6 +13,8 @@ module Steps
       validates_inclusion_of :gender, in: Gender.values
       validates_presence_of :dob, unless: :dob_unknown?
 
+      validates :dob, sensible_date: true, unless: :dob_unknown?
+
       private
 
       def persist!

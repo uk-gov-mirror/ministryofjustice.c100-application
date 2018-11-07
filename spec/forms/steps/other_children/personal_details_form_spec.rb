@@ -32,35 +32,11 @@ RSpec.describe Steps::OtherChildren::PersonalDetailsForm do
     end
 
     context 'gender' do
-      context 'when attribute is not given' do
-        let(:gender) { nil }
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:gender]).to_not be_empty
-        end
-      end
-
-      context 'when attribute value is not valid' do
-        let(:gender) {'INVALID VALUE'}
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:gender]).to_not be_empty
-        end
-      end
+      it_behaves_like 'a gender validation'
     end
 
-    context 'validations on field presence unless `unknown`' do
-      it {should validate_presence_unless_unknown_of(:dob)}
+    context 'date of birth' do
+      it_behaves_like 'a date of birth validation with unknown checkbox'
     end
 
     context 'for valid details' do

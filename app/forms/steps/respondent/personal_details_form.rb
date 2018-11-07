@@ -19,6 +19,8 @@ module Steps
       validates_presence_of  :previous_name, if: -> { has_previous_name&.yes? }
       validates_presence_of  :dob, unless: :dob_unknown?
 
+      validates :dob, sensible_date: true, unless: :dob_unknown?
+
       private
 
       def persist!

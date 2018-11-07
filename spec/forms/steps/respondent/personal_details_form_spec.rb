@@ -38,48 +38,15 @@ RSpec.describe Steps::Respondent::PersonalDetailsForm do
     end
 
     context 'has previous name' do
-      context 'when attribute is not given' do
-        let(:has_previous_name) { nil }
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:has_previous_name]).to_not be_empty
-        end
-      end
-
-      context 'when attribute is given and requires previous name' do
-        let(:has_previous_name) { 'yes' }
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the `previous_name` field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:previous_name]).to_not be_empty
-        end
-      end
-
-      context 'when attribute value is not valid' do
-        let(:has_previous_name) {'INVALID VALUE'}
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:has_previous_name]).to_not be_empty
-        end
-      end
+      it_behaves_like 'a previous name validation'
     end
 
-    context 'validations on field presence unless `unknown`' do
-      it { should validate_presence_unless_unknown_of(:dob) }
+    context 'gender' do
+      it_behaves_like 'a gender validation'
+    end
+
+    context 'date of birth' do
+      it_behaves_like 'a date of birth validation with unknown checkbox'
     end
 
     context 'for valid details' do

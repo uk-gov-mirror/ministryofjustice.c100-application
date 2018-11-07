@@ -17,6 +17,8 @@ module Steps
       validates_presence_of :birthplace, :dob
       validates_presence_of :previous_name, if: -> { has_previous_name&.yes? }
 
+      validates :dob, sensible_date: true
+
       private
 
       def persist!

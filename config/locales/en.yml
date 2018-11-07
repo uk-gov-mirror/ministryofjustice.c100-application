@@ -99,6 +99,8 @@ en:
         blank: Enter the previous name
       dob:
         blank: Enter the date of birth
+        invalid: Date of birth is not valid
+        future: Date of birth is in the future
       birthplace:
         blank: Enter the place of birth
       address:
