@@ -981,6 +981,10 @@ en:
       children_postcodes:
         invalid: Enter a valid full postcode, with or without a space
         blank: Enter a full postcode, with or without a space
+      miam_certification_date:
+        blank: Enter the certification date
+        invalid: Certification date is not valid
+        future: Certification date is in the future
       hwf_reference_number:
         invalid: "Enter a valid 'Help with fees' reference number"
         blank: "Enter your 'Help with fees' reference number"

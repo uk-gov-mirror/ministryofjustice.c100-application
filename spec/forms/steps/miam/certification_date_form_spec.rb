@@ -21,6 +21,47 @@ RSpec.describe Steps::Miam::CertificationDateForm do
       end
     end
 
+    context 'certification date validation' do
+      context 'when date is not given' do
+        let(:miam_certification_date) { nil }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:miam_certification_date, :blank)).to eq(true)
+        end
+      end
+
+      context 'when date is invalid' do
+        let(:miam_certification_date) { Date.new(18, 10, 31) } # 2-digits year (18)
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:miam_certification_date, :invalid)).to eq(true)
+        end
+      end
+
+      context 'when date is in the future' do
+        let(:miam_certification_date) { Date.tomorrow }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:miam_certification_date, :future)).to eq(true)
+        end
+      end
+    end
+
     context 'when form is valid' do
       it 'saves the record' do
         expect(c100_application).to receive(:update).with(
