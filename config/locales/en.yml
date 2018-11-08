@@ -1649,8 +1649,11 @@ en:
       hide_password: Hide password
     form_elements:
       dob: Date of birth
+      dob_hint: For example, 31 3 1980
+      dob_child_hint: For example, 31 3 2010
       order_issue: What date was it made?
-      certification_date_hint: For example, 20 09 2018
+      order_issue_hint: For example, 31 3 2015
+      certification_date_hint: For example, 25 9 2018
     why_we_use_children_html: |
       <details style="margin-top: 0;">
         <summary>
