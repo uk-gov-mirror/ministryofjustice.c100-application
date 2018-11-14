@@ -4,28 +4,32 @@
 #
 version: 2
 
-jobs:
-  build:
+references:
+  app_containers: &app_containers
     docker:
-       - image: circleci/ruby:2.5.1-node-browsers
-         environment:
-           RAILS_ENV: test
-           RACK_ENV: test
-           DATABASE_URL: "postgres://postgres@localhost/c100-application-test"
-           EXTERNAL_URL: mocked_in_tests
-           GOVUK_NOTIFY_API_KEY: mocked_in_tests
-       - image: circleci/postgres:10.4
-         environment:
-           POSTGRES_USER: postgres
-           POSTGRES_DB: c100-application-test
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+          DATABASE_URL: "postgres://postgres@localhost/c100-application-test"
+          EXTERNAL_URL: mocked_in_tests
+          GOVUK_NOTIFY_API_KEY: mocked_in_tests
+      - image: circleci/postgres:10.4
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: c100-application-test
+  cloud_container: &cloud_container
+    docker:
+      - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci
+        environment:
+          GITHUB_TEAM_NAME_SLUG: family-justice
 
-    working_directory: ~/repo
 
+jobs:
+  test:
+    <<: *app_containers
     steps:
       - checkout
-
-      - setup_remote_docker:
-          docker_layer_caching: true
 
       # Download and cache dependencies
       - restore_cache:
@@ -51,12 +55,78 @@ jobs:
       # so mutant only runs on modified files; refer to mutant.rake for more details
       - run: git remote set-branches origin master && git fetch
 
-      # run tests!
       - run:
           name: run tests
           command: bundle exec rake test:all_the_things master
 
-      # build docker image
-      # - run:
-      #     name: build docker image
-      #     command: docker build -t c100-application .
+  build:
+    <<: *cloud_container
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: build docker image
+          command: |
+            export BUILD_DATE=$(date -Is) >> $BASH_ENV
+            source $BASH_ENV
+            docker build \
+              --build-arg VERSION_NUMBER=${CIRCLE_BUILD_NUM} \
+              --build-arg COMMIT_ID=${CIRCLE_SHA1} \
+              --build-arg BUILD_DATE=${BUILD_DATE} \
+              --build-arg BUILD_TAG=${CIRCLE_BRANCH} \
+              -t app .
+
+      - run:
+          name: push docker image
+          command: |
+            login="$(aws ecr get-login --region eu-west-1 --no-include-email)"
+            ${login}
+
+            docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+            docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:latest"
+              docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:latest"
+            fi
+
+  deploy_staging:
+    <<: *cloud_container
+    steps:
+      - checkout
+
+      - run:
+          name: kubectl context
+          command: |
+            setup-kube-auth
+            kubectl config use-context staging
+
+      - deploy:
+          name: deploy docker image
+          command: |
+            kubectl set image -n c100-application-staging \
+                    deployment/c100-application-deployment-staging \
+                    c100-application-web-staging="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+
+workflows:
+  version: 2
+
+  test-build-deploy:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - deploy_staging:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

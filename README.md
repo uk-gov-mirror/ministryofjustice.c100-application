@@ -2,16 +2,18 @@
 
 [![CircleCI](https://circleci.com/gh/ministryofjustice/c100-application.svg?style=svg)](https://circleci.com/gh/ministryofjustice/c100-application)
 
-Work in progress: This is a Rails application to enable citizens
-to complete the C100 form. It is based on software patterns developed for the
-[Appeal to the Tax Tribunal][taxtribs] application.
+This is a Rails application to enable citizens to complete the C100 form.  
+It is based on software patterns developed for the [Appeal to the Tax Tribunal][taxtribs] application.
 
-## Heroku demo.
+## Heroku demo environment (soon K8s cluster)
 
-There is a demo app. running on Heroku at [this url][heroku-staging]
+There is a demo app running on Heroku at [this url][heroku-staging]
 
-The demo. app. uses http basic auth. to restrict access. The username and
+The demo app uses http basic auth to restrict access. The username and
 password should be available from the MoJ Rattic server, in the Family Justice group.
+
+**This environment is due to be deprecated / decommissioned** and superseded by another demo environment 
+in the new Cloud Platforms K8s cluster, [at this url][k8s-staging]
 
 ## Getting Started
 
@@ -54,16 +56,27 @@ In PRs, the mutation will be `--since master` meaning only files changed will be
 However it is still possible to have full flexibility of what mutant runs in your local environment:
 
 ##### Run mutation on a specific file:
-`bundle exec rake mutant C100App::OtherPartiesDecisionTree`
+`RAILS_ENV=test bundle exec rake mutant C100App::OtherPartiesDecisionTree`
 
 ##### Run mutation on the whole project (no random samples):
-`bundle exec rake mutant all`
+`RAILS_ENV=test bundle exec rake mutant all`
 
 ##### Run mutation on the whole project but only on files changed since master:
-`bundle exec rake mutant master`
+`RAILS_ENV=test bundle exec rake mutant master`
 
 ##### Run mutation on a small sample of classes (default):
-`bundle exec rake mutant`
+`RAILS_ENV=test bundle exec rake mutant`
+
+
+## CircleCI and continuous deployment
+
+CircleCI is used for CI and CD and you can find the configuration in `.circleci/config.yml`  
+After a successful build, a docker image will be created and pushed to an ECR repository.  
+
+To authenticate with ECR some ENV variables need to be set in the CircleCI project.  
+More information about these variables can be found in the [Cloud Platforms documentation][cloud-docs].
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
 [heroku-staging]: https://c100-staging.herokuapp.com
+[k8s-staging]: https://c100-application-staging.apps.cloud-platform-live-0.k8s.integration.dsd.io
+[cloud-docs]: https://ministryofjustice.github.io/cloud-platform-user-docs/02-deploying-an-app/004-use-circleci-to-upgrade-app

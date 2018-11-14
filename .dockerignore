@@ -8,6 +8,9 @@ README.md
 .DS_Store
 .DS_Store/
 .git/
+.bundle/
+vendor/bundle/
+.circleci/
 .idea/
 
 .byebug_history
