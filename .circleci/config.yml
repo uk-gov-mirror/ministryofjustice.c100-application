@@ -1,0 +1,62 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+
+jobs:
+  build:
+    docker:
+       - image: circleci/ruby:2.5.1-node-browsers
+         environment:
+           RAILS_ENV: test
+           RACK_ENV: test
+           DATABASE_URL: "postgres://postgres@localhost/c100-application-test"
+           EXTERNAL_URL: mocked_in_tests
+           GOVUK_NOTIFY_API_KEY: mocked_in_tests
+       - image: circleci/postgres:10.4
+         environment:
+           POSTGRES_USER: postgres
+           POSTGRES_DB: c100-application-test
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
+
+      # so mutant only runs on modified files; refer to mutant.rake for more details
+      - run: git remote set-branches origin master && git fetch
+
+      # run tests!
+      - run:
+          name: run tests
+          command: bundle exec rake test:all_the_things master
+
+      # build docker image
+      - run:
+          name: build docker image
+          command: docker build -t c100-application .
