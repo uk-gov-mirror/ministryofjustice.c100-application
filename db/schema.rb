@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181015101148) do
+ActiveRecord::Schema.define(version: 20181114112915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,10 +151,11 @@ ActiveRecord::Schema.define(version: 20181015101148) do
   create_table "completed_applications_audit", id: false, force: :cascade do |t|
     t.datetime "started_at", null: false
     t.datetime "completed_at", null: false
-    t.boolean "saved"
     t.string "submission_type"
     t.string "court"
-    t.string "urgent_hearing"
+    t.string "reference_code"
+    t.json "metadata", default: {}
+    t.index ["reference_code"], name: "index_completed_applications_audit_on_reference_code", unique: true
   end
 
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
