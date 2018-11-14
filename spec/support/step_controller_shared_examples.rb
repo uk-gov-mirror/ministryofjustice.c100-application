@@ -394,8 +394,6 @@ RSpec.shared_examples 'a summary step controller' do
 end
 
 RSpec.shared_examples 'a completion step controller' do
-  it_behaves_like 'a show step controller'
-
   describe '#show' do
     let!(:existing_c100) { C100Application.create(status: status, navigation_stack: ['/not', '/empty']) }
     let(:status) { :in_progress }
@@ -404,6 +402,19 @@ RSpec.shared_examples 'a completion step controller' do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
       allow(existing_c100).to receive(:screener_answers_court).and_return('court data')
       allow(CompletedApplicationsAudit).to receive(:log!)
+    end
+
+    context 'when no case exists in the session' do
+      before do
+        # Needed because some specs that include these examples stub current_c100_application,
+        # which is undesirable for this particular test
+        allow(controller).to receive(:current_c100_application).and_return(nil)
+      end
+
+      it 'redirects to the invalid session error page' do
+        get :show
+        expect(response).to redirect_to(invalid_session_errors_path)
+      end
     end
 
     it 'assigns the court data' do
