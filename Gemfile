@@ -54,7 +54,6 @@ group :test do
   gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-rails', require: false
-  gem 'database_cleaner'
   gem 'poltergeist'
   gem 'phantomjs'
   gem 'rails-controller-testing'

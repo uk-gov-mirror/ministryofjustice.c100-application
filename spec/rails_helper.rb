@@ -5,7 +5,6 @@ require 'spec_helper'
 require 'rspec/rails'
 require_relative '../spec/support/view_spec_helpers'
 require_relative '../spec/helpers/authentication_helpers_spec'
-require 'database_cleaner'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -26,19 +25,8 @@ RSpec.configure do |config|
 
   config.before(:each, type: :helper) { initialize_view_helpers(helper) }
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
-
   config.before(:each, js: true) do
-    page.driver.browser.url_whitelist = ["127.0.0.1", "localhost"]
+    page.driver.browser.url_whitelist = %w(127.0.0.1 localhost)
   end
 end
 

@@ -52,6 +52,10 @@ RSpec.describe ShortUrl, type: :model do
   describe '.resolve' do
     let(:resolved_url) { described_class.resolve(path: 'xyz', target_url: 'http://example.com') }
 
+    before do
+      ShortUrl.delete_all # ensure no left-overs
+    end
+
     context 'for an existing path' do
       let!(:short_url) { ShortUrl.create(path: 'xyz', target_url: target_url) }
       let(:target_url) { nil }

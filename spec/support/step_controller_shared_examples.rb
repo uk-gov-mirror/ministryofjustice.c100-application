@@ -123,18 +123,19 @@ end
 RSpec.shared_examples 'a starting point step controller' do
   describe '#edit' do
     context 'when no case exists in the session yet' do
-      it 'creates a new case' do
-        expect { get :edit }.to change { C100Application.count }.by(1)
-      end
-
       it 'responds with HTTP success' do
         get :edit
         expect(response).to be_successful
       end
 
+      it 'creates a new case' do
+        expect { get :edit }.to change { C100Application.count }.by(1)
+      end
+
       it 'sets the case ID in the session' do
+        expect(session[:c100_application_id]).to be_nil
         get :edit
-        expect(session[:c100_application_id]).to eq(C100Application.first.id)
+        expect(session[:c100_application_id]).not_to be_nil
       end
     end
 

@@ -130,7 +130,6 @@ GEM
       terminal-table (~> 1)
     danger-commit_lint (0.0.6)
       danger (~> 5.0)
-    database_cleaner (1.6.2)
     debug_inspector (0.0.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -435,7 +434,6 @@ DEPENDENCIES
   combine_pdf (~> 1.0.10)
   cucumber
   cucumber-rails
-  database_cleaner
   devise (~> 4.4.3)
   dotenv-rails
   email_validator
