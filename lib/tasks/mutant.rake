@@ -9,15 +9,8 @@ task :mutant => :environment do
   source_ref = 'origin/master'
 
   # This is to avoid running the mutant with flag `--since master` when
-  # we are already on master, as otherwise it will not work on CI.
-  #
-  # For now we support both, CircleCI and Travis, but soon we will only use one.
-  if ENV['CIRCLECI']
-    current_branch = ENV['CIRCLE_BRANCH'] || `git rev-parse --abbrev-ref HEAD`
-  else
-    current_branch = ENV['TRAVIS_BRANCH'] || `git rev-parse --abbrev-ref HEAD`
-    current_branch = ENV['TRAVIS_PULL_REQUEST_BRANCH'] if ENV.fetch('TRAVIS_PULL_REQUEST', 'false') != 'false'
-  end
+  # we are already on master, as otherwise it will not work as expected.
+  current_branch = ENV['CIRCLE_BRANCH'] || `git rev-parse --abbrev-ref HEAD`
 
   if mutation_type == 'master'
     puts "> current branch: #{current_branch}"
@@ -73,7 +66,6 @@ def models
     User
     Court
     CompletedApplicationsAudit
-    ShortUrl
   ).freeze
 end
 

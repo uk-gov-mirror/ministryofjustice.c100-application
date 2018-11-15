@@ -1,7 +1,6 @@
 # Family Justice C100 Service
 
-[![Build
-Status](https://travis-ci.org/ministryofjustice/c100-application.svg?branch=master)](https://travis-ci.org/ministryofjustice/c100-application)
+[![CircleCI](https://circleci.com/gh/ministryofjustice/c100-application.svg?style=svg)](https://circleci.com/gh/ministryofjustice/c100-application)
 
 Work in progress: This is a Rails application to enable citizens
 to complete the C100 form. It is based on software patterns developed for the
