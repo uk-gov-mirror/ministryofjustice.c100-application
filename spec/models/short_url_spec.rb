@@ -50,15 +50,22 @@ RSpec.describe ShortUrl, type: :model do
   end
 
   describe '.resolve' do
-    let(:resolved_url) { described_class.resolve(path: 'xyz', target_url: 'http://example.com') }
-
     before do
-      ShortUrl.delete_all # ensure no left-overs
+      ShortUrl.create(path: 'xyz', target_url: target_url)
     end
 
+    after do
+      ShortUrl.delete_all
+    end
+
+    let(:path) { nil }
+    let(:target_url) { nil }
+
+    let(:short_url) { ShortUrl.find(path) }
+    let(:resolved_url) { described_class.resolve(path: path, target_url: 'http://example.com') }
+
     context 'for an existing path' do
-      let!(:short_url) { ShortUrl.create(path: 'xyz', target_url: target_url) }
-      let(:target_url) { nil }
+      let(:path) { 'xyz' }
 
       it 'increases the visits counter' do
         expect {
@@ -87,8 +94,10 @@ RSpec.describe ShortUrl, type: :model do
     end
 
     context 'for a non existent path' do
+      let(:path) { 'foobar' }
+
       it 'initialises a new short URL' do
-        expect(described_class).to receive(:new).with(path: 'xyz').and_call_original
+        expect(described_class).to receive(:new).with(path: 'foobar').and_call_original
         resolved_url
       end
 
