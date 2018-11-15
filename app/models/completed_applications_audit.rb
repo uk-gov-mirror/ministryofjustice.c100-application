@@ -17,7 +17,7 @@ class CompletedApplicationsAudit < ApplicationRecord
 
   def self.metadata(c100_application)
     # We blind a bit the postcode to anonymize it
-    postcode = c100_application.screener_answers_court.children_postcodes
+    postcode = c100_application.screener_answers.children_postcodes
     postcode = postcode.sub(/\s+/, '').upcase.at(0..-3) + '**'
 
     {
