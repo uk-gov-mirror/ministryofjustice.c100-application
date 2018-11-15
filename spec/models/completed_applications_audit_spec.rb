@@ -14,10 +14,12 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
   }
 
   let(:user_id) { nil }
-  let(:screener_answers_court) { double(children_postcodes: 'abcd 123', name: 'Test Court') }
+  let(:screener_answers_court) { instance_double(Court, name: 'Test Court') }
+  let(:screener_answers) { instance_double(ScreenerAnswers, children_postcodes: 'abcd 123') }
 
   before do
     allow(c100_application).to receive(:user_id).and_return(user_id)
+    allow(c100_application).to receive(:screener_answers).and_return(screener_answers)
     allow(c100_application).to receive(:screener_answers_court).and_return(screener_answers_court)
   end
 

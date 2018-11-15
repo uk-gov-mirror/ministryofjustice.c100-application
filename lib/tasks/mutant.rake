@@ -73,7 +73,6 @@ def models
     User
     Court
     CompletedApplicationsAudit
-    ShortUrl
   ).freeze
 end
 
