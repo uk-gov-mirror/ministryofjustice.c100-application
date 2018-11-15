@@ -57,6 +57,6 @@ jobs:
           command: bundle exec rake test:all_the_things master
 
       # build docker image
-      - run:
-          name: build docker image
-          command: docker build -t c100-application .
+      # - run:
+      #     name: build docker image
+      #     command: docker build -t c100-application .
