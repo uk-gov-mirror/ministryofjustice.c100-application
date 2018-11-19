@@ -5,15 +5,15 @@
 This is a Rails application to enable citizens to complete the C100 form.  
 It is based on software patterns developed for the [Appeal to the Tax Tribunal][taxtribs] application.
 
-## Heroku demo environment (soon K8s cluster)
+## K8s cluster staging environment
 
-There is a demo app running on Heroku at [this url][heroku-staging]
+There is a staging env running on cloud-platform-live-0.k8s at [this url][k8s-staging]
 
-The demo app uses http basic auth to restrict access. The username and
+The staging env uses http basic auth to restrict access. The username and
 password should be available from the MoJ Rattic server, in the Family Justice group.
 
-**This environment is due to be deprecated / decommissioned** and superseded by another demo environment 
-in the new Cloud Platforms K8s cluster, [at this url][k8s-staging]
+This environment should be used for any test or demo purposes, user research, etc.  
+Do not use production for tests as this will have an impact on metrics and will trigger real emails
 
 ## Getting Started
 
@@ -71,12 +71,13 @@ However it is still possible to have full flexibility of what mutant runs in you
 ## CircleCI and continuous deployment
 
 CircleCI is used for CI and CD and you can find the configuration in `.circleci/config.yml`  
-After a successful build, a docker image will be created and pushed to an ECR repository.  
+
+After a successful merge to master, a docker image will be created and pushed to an ECR repository.  
+It will also trigger an automatic deploy to [staging][k8s-staging].
 
 To authenticate with ECR some ENV variables need to be set in the CircleCI project.  
 More information about these variables can be found in the [Cloud Platforms documentation][cloud-docs].
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
-[heroku-staging]: https://c100-staging.herokuapp.com
 [k8s-staging]: https://c100-application-staging.apps.cloud-platform-live-0.k8s.integration.dsd.io
 [cloud-docs]: https://ministryofjustice.github.io/cloud-platform-user-docs/02-deploying-an-app/004-use-circleci-to-upgrade-app
