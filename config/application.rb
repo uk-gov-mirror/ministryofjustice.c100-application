@@ -51,8 +51,8 @@ class Application < Rails::Application
 
   # As part of the postcode screening, an empty C100Application record is created.
   # If the postcode is not eligible, these records are left orphans and have no use.
-  # We will only leave them for up to 3 days. Can be configured here.
-  config.x.orphans.expire_in_days = 3
+  # We will only leave them for some time. Can be configured here.
+  config.x.orphans.expire_in_days = 2
 
   # We maintain C100 applications for this number of days, regardless of their status,
   # and if it has an owner (it was saved for later), we send up to two email reminders
