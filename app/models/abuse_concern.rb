@@ -9,7 +9,5 @@ class AbuseConcern < ApplicationRecord
   has_value_object :help_provided,     class_name: 'GenericYesNo'
 
   # Using UUIDs as the record IDs. We can't trust sequential ordering by ID.
-  # For some time we will have records with null `created_at`, so we sort by
-  # the secondary column `kind`. We can get rid of `kind` in the future.
-  default_scope { order(created_at: :asc, kind: :desc) }
+  default_scope { order(created_at: :asc) }
 end

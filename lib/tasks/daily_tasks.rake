@@ -1,5 +1,6 @@
-task :daily_tasks do
+task daily_tasks: :environment do
   log 'Starting daily tasks'
+  log "Users count: #{User.count} / Applications count: #{C100Application.count}"
 
   Rake::Task['purge:users'].invoke
 
@@ -9,6 +10,7 @@ task :daily_tasks do
   Rake::Task['draft_reminders:first_email'].invoke
   Rake::Task['draft_reminders:last_email'].invoke
 
+  log "Users count: #{User.count} / Applications count: #{C100Application.count}"
   log 'Finished daily tasks'
 end
 
