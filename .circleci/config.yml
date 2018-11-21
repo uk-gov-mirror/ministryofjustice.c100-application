@@ -72,6 +72,7 @@ jobs:
           command: |
             export BUILD_DATE=$(date -Is) >> $BASH_ENV
             source $BASH_ENV
+
             docker build \
               --build-arg VERSION_NUMBER=${CIRCLE_BUILD_NUM} \
               --build-arg COMMIT_ID=${CIRCLE_SHA1} \
@@ -99,17 +100,24 @@ jobs:
       - checkout
 
       - run:
-          name: kubectl context
+          name: kubectl use context
           command: |
             setup-kube-auth
             kubectl config use-context staging
 
       - deploy:
-          name: deploy docker image
+          name: rolling update image to staging
           command: |
+            export BUILD_DATE=$(date -Is) >> $BASH_ENV
+            source $BASH_ENV
+
             kubectl set image -n c100-application-staging \
                     deployment/c100-application-deployment-staging \
                     c100-application-web-staging="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+            kubectl annotate -n c100-application-staging \
+                    deployment/c100-application-deployment-staging \
+                    kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
 
 
 workflows:
