@@ -172,8 +172,8 @@ GEM
     govuk_frontend_toolkit (7.4.2)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
-    govuk_notify_rails (2.0.0)
-      notifications-ruby-client (>= 2.0.0)
+    govuk_notify_rails (2.1.0)
+      notifications-ruby-client (>= 2.9.0)
       rails (>= 4.1.0)
     govuk_template (0.23.3)
       rails (>= 3.1)
@@ -253,7 +253,7 @@ GEM
     no_proxy_fix (0.1.2)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    notifications-ruby-client (2.6.0)
+    notifications-ruby-client (2.9.0)
       jwt (>= 1.5, < 3)
     octokit (4.8.0)
       sawyer (~> 0.8.0, >= 0.5.3)
@@ -442,7 +442,7 @@ DEPENDENCIES
   gov_uk_date_fields (~> 3.0.0)
   govuk_elements_form_builder (~> 1.2.0)
   govuk_elements_rails (~> 3.0)
-  govuk_notify_rails (~> 2.0.0)
+  govuk_notify_rails (~> 2.1.0)
   govuk_template (~> 0.23.3)
   i18n-debug
   jquery-rails
