@@ -1,4 +1,4 @@
-class SubmissionMailer < ActionMailer::Base
+class SmtpSubmissionMailer < ActionMailer::Base
   layout 'mailer'
 
   default template_path: ->(mailer) { "mailers/#{mailer.class.name.underscore}" }

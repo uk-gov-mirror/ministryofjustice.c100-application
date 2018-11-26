@@ -1,4 +1,4 @@
-class CourtMailer < SubmissionMailer
+class CourtMailer < SmtpSubmissionMailer
   def submission_to_court(to:)
     attach_c100_pdf!
 
