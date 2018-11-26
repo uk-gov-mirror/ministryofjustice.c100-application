@@ -12,6 +12,8 @@ integration:
   reset_password: '73d0804a-2302-4307-a431-e4a0fd7087ec'
   change_password: '97ea3c24-0b40-4b8e-8fc6-a54f7f1718e9'
   application_saved: '1252b250-541c-456a-b98b-c568aef05e5f'
+  application_submitted_to_court: '0350031e-df36-42e1-8b97-510795dd9ac9'
+  application_submitted_to_user: 'e10806dd-55ae-47ad-a231-757dbb3c9a7e'
   submission_error: 'c99df4a0-5655-4ef8-aaf4-0a5b83397785'
   draft_first_reminder: 'fcd87b1c-a3a0-4a2a-9b4e-524857e3bf8c'
   draft_last_reminder: '8e622f55-4be8-49cc-8a94-0ab3fd868067'
