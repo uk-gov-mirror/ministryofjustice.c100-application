@@ -9,7 +9,9 @@ class NotifyMailer < GovukNotifyRails::Mailer
   # When logging exceptions, filter the following keys from the personalisation hash
   FILTERED = '[FILTERED]'.freeze
   PERSONALISATION_ERROR_FILTER = [
-    :reset_password_url
+    :reset_password_url,
+    :applicant_name,
+    :link_to_pdf,
   ].freeze
 
   # Triggered automatically by Devise when the user resets its password.
