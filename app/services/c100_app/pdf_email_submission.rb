@@ -37,22 +37,20 @@ module C100App
       return unless email_submission.message_id.nil?
 
       # TODO: temporary feature-flag until we decide about Notify attachments
-      if use_notify?
-        response = NotifySubmissionMailer.with(application_details).application_to_court(
-          to_address: court_address
-        ).deliver_now!
-        message_id = response.govuk_notify_response.id
-      else
-        response = CourtMailer.with(application_details).submission_to_court(
-          to: court_address,
-        ).deliver_now!
-        message_id = response.message_id
-      end
+      response = if use_notify?
+                   NotifySubmissionMailer.with(application_details).application_to_court(
+                     to_address: court_address
+                   ).deliver_now
+                 else
+                   CourtMailer.with(application_details).submission_to_court(
+                     to: court_address,
+                   ).deliver_now
+                 end
 
       audit_data(
         to_address: court_address,
         sent_at: Time.current,
-        message_id: message_id,
+        message_id: message_id(response),
       )
     end
 
@@ -60,23 +58,21 @@ module C100App
       return unless email_submission.user_copy_message_id.nil?
 
       # TODO: temporary feature-flag until we decide about Notify attachments
-      if use_notify?
-        response = NotifySubmissionMailer.with(application_details).application_to_user(
-          to_address: receipt_address
-        ).deliver_now!
-        message_id = response.govuk_notify_response.id
-      else
-        # if the user hits reply, it should go to the court
-        response = ReceiptMailer.with(application_details).copy_to_user(
-          to: receipt_address, reply_to: court_address,
-        ).deliver_now!
-        message_id = response.message_id
-      end
+      response = if use_notify?
+                   NotifySubmissionMailer.with(application_details).application_to_user(
+                     to_address: receipt_address
+                   ).deliver_now
+                 else
+                   # if the user hits reply, it should go to the court
+                   ReceiptMailer.with(application_details).copy_to_user(
+                     to: receipt_address, reply_to: court_address,
+                   ).deliver_now
+                 end
 
       audit_data(
         email_copy_to: receipt_address,
         user_copy_sent_at: Time.current,
-        user_copy_message_id: message_id,
+        user_copy_message_id: message_id(response),
       )
     end
 
@@ -89,6 +85,14 @@ module C100App
 
     def audit_data(data)
       email_submission.update(data)
+    end
+
+    def message_id(response)
+      if response.respond_to?(:govuk_notify_response)
+        response.govuk_notify_response.id
+      elsif response.respond_to?(:message_id)
+        response.message_id
+      end
     end
   end
 end
