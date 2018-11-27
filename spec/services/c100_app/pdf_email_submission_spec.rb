@@ -15,7 +15,8 @@ RSpec.describe C100App::PdfEmailSubmission do
   let(:screener_answers_court) { double('screener_answers_court', email: 'court@example.com') }
   let(:email_submission) { instance_double(EmailSubmission, message_id: message_id, user_copy_message_id: user_copy_message_id) }
 
-  let(:mailer) { spy('mailer', deliver_now!: double('mailer_response', message_id: 'message-id')) }
+  let(:mailer) { spy('mailer', deliver_now: mailer_response) }
+  let(:mailer_response) { double('mailer_response', message_id: 'message-id') }
 
   let(:message_id) { nil }
   let(:user_copy_message_id) { nil }
@@ -50,14 +51,46 @@ RSpec.describe C100App::PdfEmailSubmission do
         subject.deliver!
       end
 
-      it 'audits the email details' do
-        expect(email_submission).to receive(:update).with(
-          to_address: 'court@example.com',
-          sent_at: Time.current,
-          message_id: 'message-id'
-        )
+      context 'audit' do
+        context 'for a notify message' do
+          let(:mailer_response) { double('mailer_response', govuk_notify_response: double(id: 'template-id')) }
 
-        subject.deliver!
+          it 'audits the email details' do
+            expect(email_submission).to receive(:update).with(
+              to_address: 'court@example.com',
+              sent_at: Time.current,
+              message_id: 'template-id'
+            )
+
+            subject.deliver!
+          end
+        end
+
+        context 'when there is a message_id' do
+          it 'audits the email details' do
+            expect(email_submission).to receive(:update).with(
+              to_address: 'court@example.com',
+              sent_at: Time.current,
+              message_id: 'message-id'
+            )
+
+            subject.deliver!
+          end
+        end
+
+        context 'when there is no message_id' do
+          let(:mailer_response) { double('mailer_response') }
+
+          it 'audits the email details' do
+            expect(email_submission).to receive(:update).with(
+              to_address: 'court@example.com',
+              sent_at: Time.current,
+              message_id: nil
+            )
+
+            subject.deliver!
+          end
+        end
       end
 
       context 'for a Notify email' do
@@ -69,7 +102,7 @@ RSpec.describe C100App::PdfEmailSubmission do
         end
 
         let(:mailer) {
-          spy('mailer', deliver_now!: double(
+          spy('mailer', deliver_now: double(
             'notify_mailer_response', govuk_notify_response: double(id: 'message-id'))
           )
         }
@@ -147,7 +180,7 @@ RSpec.describe C100App::PdfEmailSubmission do
           end
 
           let(:mailer) {
-            spy('mailer', deliver_now!: double(
+            spy('mailer', deliver_now: double(
               'notify_mailer_response', govuk_notify_response: double(id: 'message-id'))
             )
           }
