@@ -150,7 +150,7 @@ RSpec.describe NotifyMailer, type: :mailer do
     it {
       expect(
         described_class::PERSONALISATION_ERROR_FILTER
-      ).to match_array([:reset_password_url])
+      ).to match_array([:reset_password_url, :applicant_name, :link_to_pdf])
     }
   end
 end

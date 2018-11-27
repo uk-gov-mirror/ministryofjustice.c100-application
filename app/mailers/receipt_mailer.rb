@@ -1,4 +1,4 @@
-class ReceiptMailer < SubmissionMailer
+class ReceiptMailer < SmtpSubmissionMailer
   def copy_to_user(to:, reply_to:)
     attach_c100_pdf!
 
