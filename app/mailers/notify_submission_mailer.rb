@@ -21,6 +21,7 @@ class NotifySubmissionMailer < NotifyMailer
 
   def application_to_court(to_address:)
     set_template(:application_submitted_to_court)
+    set_reference("court;#{@c100_application.reference_code}")
 
     set_personalisation(
       shared_personalisation.merge(
@@ -34,6 +35,7 @@ class NotifySubmissionMailer < NotifyMailer
 
   def application_to_user(to_address:)
     set_template(:application_submitted_to_user)
+    set_reference("user;#{@c100_application.reference_code}")
 
     set_personalisation(
       shared_personalisation.merge(
