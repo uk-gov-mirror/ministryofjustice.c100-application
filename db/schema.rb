@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114112915) do
+ActiveRecord::Schema.define(version: 20181129153804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -214,6 +214,16 @@ ActiveRecord::Schema.define(version: 20181114112915) do
     t.string "user_copy_message_id"
     t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_email_submissions_on_c100_application_id"
+  end
+
+  create_table "email_submissions_audit", id: :uuid, default: nil, force: :cascade do |t|
+    t.string "to", null: false
+    t.string "reference", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.datetime "completed_at", null: false
+    t.datetime "sent_at"
+    t.index ["reference"], name: "index_email_submissions_audit_on_reference"
   end
 
   create_table "miam_exemptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
