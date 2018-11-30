@@ -42,4 +42,5 @@ Rails.application.config.filter_parameters += [
   :home_phone,
   :mobile_phone,
   :residence_history,
+  :recipient,
 ]
