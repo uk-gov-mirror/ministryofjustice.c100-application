@@ -50,12 +50,16 @@ RSpec.describe C100App::NotifyCallback do
     end
 
     context 'there is a reference' do
-      it 'creates a record for this payload' do
+      before do
+        allow(BCrypt::Password).to receive(:create).with('test@example.com').and_return('**hashed**')
+      end
+
+      it 'creates a record for this payload, hashing secure attributes' do
         expect(
           EmailSubmissionsAudit
         ).to receive(:create!).with(
           id: 'id',
-          to: 'test@example.com',
+          to: '**hashed**',
           reference: 'reference',
           status: 'status',
           created_at: 'created_at',
