@@ -246,6 +246,10 @@ Rails.application.routes.draw do
 
   resources :status, only: [:index]
 
+  resource :callbacks, only: [] do
+    post :notify
+  end
+
   resource :errors, only: [] do
     get :invalid_session
     get :application_not_found

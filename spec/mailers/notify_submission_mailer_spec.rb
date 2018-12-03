@@ -49,6 +49,10 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
     it { expect(mail.to).to eq(['court@example.com']) }
     it { expect(mail.from).to eq(['receipt@example.com']) }
 
+    it 'has the right reference' do
+      expect(mail.govuk_notify_reference).to eq('court;1970/01/4A362E1C')
+    end
+
     it 'has the right personalisation' do
       expect(mail.govuk_notify_personalisation).to eq({
         service_name: 'Apply to court about child arrangements',
@@ -80,6 +84,10 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
 
     it { expect(mail.to).to eq(['user@example.com']) }
     it { expect(mail.from).to eq(['receipt@example.com']) }
+
+    it 'has the right reference' do
+      expect(mail.govuk_notify_reference).to eq('user;1970/01/4A362E1C')
+    end
 
     it 'has the right personalisation' do
       expect(mail.govuk_notify_personalisation).to eq({

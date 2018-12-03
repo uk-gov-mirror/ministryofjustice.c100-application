@@ -1,0 +1,25 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Request Forgery",
+      "warning_code": 7,
+      "fingerprint": "8c06199f123e3bc099262b3f2377d5b77434ef0d1c3070a24327f7bc743f7c39",
+      "check_name": "ForgerySetting",
+      "message": "'protect_from_forgery' should be called in CallbacksController",
+      "file": "app/controllers/callbacks_controller.rb",
+      "line": 1,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
+      "code": null,
+      "render_path": null,
+      "location": {
+        "type": "controller",
+        "controller": "CallbacksController"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "note": "No need for a CSRF token as we are using HTTP token authentication."
+    }
+  ],
+  "updated": "2018-11-30 13:32:50 +0000",
+  "brakeman_version": "4.2.0"
+}
