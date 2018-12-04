@@ -1,11 +1,20 @@
+<hr>
+
 <div class="govuk-govspeak gv-s-prose util_mt-large">
   <h2 class="heading-large gv-u-heading-large">We’d like your feedback</h2>
   <p>
-    Would you like
-    to <%= link_to 'complete a 5-minute survey', Rails.configuration.surveys[:success], rel: 'external', target: '_blank' %>
-    to give us your feedback about the online service you have just used?
+    This will help us to improve the service. Your feedback won’t affect your application in any way.
   </p>
-  <p>
-    This will help us to improve it. Your feedback won’t affect your application in any way.
-  </p>
+
+  <!-- BEGIN survey monkey embedded satisfaction -->
+  <style>
+    div.smcx-embed { border: 1px solid #ffffff; }
+  </style>
+  <script>
+    (function (t, e, s, n) {
+      var o, a, c;
+      t.SMCX = t.SMCX || [], e.getElementById(n) || (o = e.getElementsByTagName(s), a = o[o.length - 1], c = e.createElement(s), c.type = "text/javascript", c.async = !0, c.id = n, c.src = ["https:" === location.protocol ? "https://" : "http://", "widget.surveymonkey.com/collect/website/js/tRaiETqnLgj758hTBazgdyilJybRyarDt_2BYigq_2B2pOL612txgZ0f1MGYAVqFSrSg.js"].join(""), a.parentNode.insertBefore(c, a))
+    })(window, document, "script", "smcx-sdk");
+  </script>
+  <!-- END survey monkey embedded satisfaction -->
 </div>
