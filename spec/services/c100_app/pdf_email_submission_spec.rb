@@ -53,16 +53,32 @@ RSpec.describe C100App::PdfEmailSubmission do
 
       context 'audit' do
         context 'for a notify message' do
-          let(:mailer_response) { double('mailer_response', govuk_notify_response: double(id: 'template-id')) }
+          context 'when there is a notify response' do
+            let(:mailer_response) { double('mailer_response', govuk_notify_response: double(id: 'template-id')) }
 
-          it 'audits the email details' do
-            expect(email_submission).to receive(:update).with(
-              to_address: 'court@example.com',
-              sent_at: Time.current,
-              message_id: 'template-id'
-            )
+            it 'audits the email details' do
+              expect(email_submission).to receive(:update).with(
+                to_address: 'court@example.com',
+                sent_at: Time.current,
+                message_id: 'template-id'
+              )
 
-            subject.deliver!
+              subject.deliver!
+            end
+          end
+
+          context 'when there is no notify response' do
+            let(:mailer_response) { double('mailer_response', govuk_notify_response: nil) }
+
+            it 'audits the email details' do
+              expect(email_submission).to receive(:update).with(
+                to_address: 'court@example.com',
+                sent_at: Time.current,
+                message_id: nil
+              )
+
+              subject.deliver!
+            end
           end
         end
 
