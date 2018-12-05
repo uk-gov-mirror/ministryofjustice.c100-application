@@ -88,7 +88,7 @@ module C100App
     end
 
     def message_id(response)
-      if response.respond_to?(:govuk_notify_response)
+      if response.respond_to?(:govuk_notify_response) && response.govuk_notify_response
         response.govuk_notify_response.id
       elsif response.respond_to?(:message_id)
         response.message_id
