@@ -13,13 +13,12 @@ RSpec.describe C100App::PdfEmailSubmission do
   let(:pdf_file) { '/path/to/pdf' }
   let(:receipt_email) { 'user@example.com' }
   let(:screener_answers_court) { double('screener_answers_court', email: 'court@example.com') }
-  let(:email_submission) { instance_double(EmailSubmission, message_id: message_id, user_copy_message_id: user_copy_message_id) }
+  let(:email_submission) { instance_double(EmailSubmission, sent_at: sent_at, user_copy_sent_at: user_copy_sent_at) }
 
-  let(:mailer) { spy('mailer', deliver_now: mailer_response) }
-  let(:mailer_response) { double('mailer_response', message_id: 'message-id') }
+  let(:sent_at) { '' }
+  let(:user_copy_sent_at) { '' }
 
-  let(:message_id) { nil }
-  let(:user_copy_message_id) { nil }
+  let(:mailer) { spy('mailer') }
 
   subject { described_class.new(c100_application, pdf_file: pdf_file) }
 
@@ -41,71 +40,28 @@ RSpec.describe C100App::PdfEmailSubmission do
         allow(subject).to receive(:send_copy_to_user) # we test the user copy separately
       end
 
-      it 'delivers the email to the court' do
-        expect(
-          mailer
-        ).to receive(:submission_to_court).with(to: 'court@example.com')
+      context 'there is already an audit of a previous submission' do
+        let(:sent_at) { Time.now }
 
-        expect(subject).to receive(:audit_data) # we test this separately
+        it 'does not deliver another email to the court' do
+          expect(mailer).not_to receive(:submission_to_court)
+          expect(subject).not_to receive(:audit_data)
 
-        subject.deliver!
+          subject.deliver!
+        end
       end
 
-      context 'audit' do
-        context 'for a notify message' do
-          context 'when there is a notify response' do
-            let(:mailer_response) { double('mailer_response', govuk_notify_response: double(id: 'template-id')) }
+      context 'for a SMTP email' do
+        it 'delivers the email to the court' do
+          expect(
+            mailer
+          ).to receive(:submission_to_court).with(to: 'court@example.com')
 
-            it 'audits the email details' do
-              expect(email_submission).to receive(:update).with(
-                to_address: 'court@example.com',
-                sent_at: Time.current,
-                message_id: 'template-id'
-              )
+          expect(mailer).to receive(:deliver_now)
 
-              subject.deliver!
-            end
-          end
+          expect(subject).to receive(:audit_data) # we test this separately
 
-          context 'when there is no notify response' do
-            let(:mailer_response) { double('mailer_response', govuk_notify_response: nil) }
-
-            it 'audits the email details' do
-              expect(email_submission).to receive(:update).with(
-                to_address: 'court@example.com',
-                sent_at: Time.current,
-                message_id: nil
-              )
-
-              subject.deliver!
-            end
-          end
-        end
-
-        context 'when there is a message_id' do
-          it 'audits the email details' do
-            expect(email_submission).to receive(:update).with(
-              to_address: 'court@example.com',
-              sent_at: Time.current,
-              message_id: 'message-id'
-            )
-
-            subject.deliver!
-          end
-        end
-
-        context 'when there is no message_id' do
-          let(:mailer_response) { double('mailer_response') }
-
-          it 'audits the email details' do
-            expect(email_submission).to receive(:update).with(
-              to_address: 'court@example.com',
-              sent_at: Time.current,
-              message_id: nil
-            )
-
-            subject.deliver!
-          end
+          subject.deliver!
         end
       end
 
@@ -117,42 +73,26 @@ RSpec.describe C100App::PdfEmailSubmission do
           allow(subject).to receive(:send_copy_to_user) # we test the user copy separately
         end
 
-        let(:mailer) {
-          spy('mailer', deliver_now: double(
-            'notify_mailer_response', govuk_notify_response: double(id: 'message-id'))
-          )
-        }
-
         it 'delivers the email to the court' do
           expect(
             mailer
-          ).to receive(:application_to_court).with(to_address: 'court@example.com')
+          ).to receive(:application_to_court).with(to_address: 'court@example.com').and_return(mailer)
+
+          expect(mailer).to receive(:deliver_now)
 
           expect(subject).to receive(:audit_data) # we test this separately
 
           subject.deliver!
         end
-
-        it 'audits the email details' do
-          expect(email_submission).to receive(:update).with(
-            to_address: 'court@example.com',
-            sent_at: Time.current,
-            message_id: 'message-id'
-          )
-
-          subject.deliver!
-        end
       end
 
-      context 'there is already an audit of a previous submission' do
-        let(:message_id) { '123-XYZ' }
+      it 'audits the email details' do
+        expect(email_submission).to receive(:update).with(
+          to_address: 'court@example.com',
+          sent_at: Time.current,
+        )
 
-        it 'does not deliver another email to the court' do
-          expect(mailer).not_to receive(:submission_to_court)
-          expect(subject).not_to receive(:audit_data)
-
-          subject.deliver!
-        end
+        subject.deliver!
       end
     end
 
@@ -162,75 +102,63 @@ RSpec.describe C100App::PdfEmailSubmission do
         allow(subject).to receive(:submission_to_court) # we test the court copy separately
       end
 
+      context 'there is already an audit of a previous submission' do
+        let(:user_copy_sent_at) { Time.now }
+
+        it 'does not deliver another email to the court' do
+          expect(mailer).not_to receive(:copy_to_user)
+          expect(subject).not_to receive(:audit_data)
+
+          subject.deliver!
+        end
+      end
+
       context 'when user chose to receive a copy' do
         let(:receipt_email) { 'user@example.com' }
 
-        it 'delivers the email to the user' do
-          expect(
-            mailer
-          ).to receive(:copy_to_user).with(
-            to: 'user@example.com', reply_to: 'court@example.com'
-          )
+        context 'for a SMTP email' do
+          it 'delivers the email to the user' do
+            expect(
+              mailer
+            ).to receive(:copy_to_user).with(
+              to: 'user@example.com',
+              reply_to: 'court@example.com'
+            )
 
-          expect(subject).to receive(:audit_data) # we test this separately
+            expect(mailer).to receive(:deliver_now)
 
-          subject.deliver!
+            expect(subject).to receive(:audit_data) # we test this separately
+
+            subject.deliver!
+          end
+        end
+
+        context 'for a Notify email' do
+          before do
+            allow(subject).to receive(:use_notify?).and_return(true)
+            allow(NotifySubmissionMailer).to receive(:with).with(application_details).and_return(mailer)
+          end
+
+          it 'delivers the email to the court' do
+            expect(
+              mailer
+            ).to receive(:application_to_user).with(to_address: 'user@example.com')
+
+            expect(mailer).to receive(:deliver_now)
+
+            expect(subject).to receive(:audit_data) # we test this separately
+
+            subject.deliver!
+          end
         end
 
         it 'audits the email details' do
           expect(email_submission).to receive(:update).with(
             email_copy_to: 'user@example.com',
             user_copy_sent_at: Time.current,
-            user_copy_message_id: 'message-id',
           )
 
           subject.deliver!
-        end
-
-        context 'for a Notify email' do
-          before do
-            allow(subject).to receive(:use_notify?).and_return(true)
-
-            allow(NotifySubmissionMailer).to receive(:with).with(application_details).and_return(mailer)
-            allow(subject).to receive(:submission_to_court) # we test the court copy separately
-          end
-
-          let(:mailer) {
-            spy('mailer', deliver_now: double(
-              'notify_mailer_response', govuk_notify_response: double(id: 'message-id'))
-            )
-          }
-
-          it 'delivers the email to the user' do
-            expect(
-              mailer
-            ).to receive(:application_to_user).with(to_address: 'user@example.com')
-
-            expect(subject).to receive(:audit_data) # we test this separately
-
-            subject.deliver!
-          end
-
-          it 'audits the email details' do
-            expect(email_submission).to receive(:update).with(
-              email_copy_to: 'user@example.com',
-              user_copy_sent_at: Time.current,
-              user_copy_message_id: 'message-id',
-            )
-
-            subject.deliver!
-          end
-        end
-
-        context 'there is already an audit of a previous submission' do
-          let(:user_copy_message_id) { '123-XYZ' }
-
-          it 'does not deliver another email to the user' do
-            expect(mailer).not_to receive(:copy_to_user)
-            expect(subject).not_to receive(:audit_data)
-
-            subject.deliver!
-          end
         end
       end
 
