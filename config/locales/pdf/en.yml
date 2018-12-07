@@ -139,7 +139,7 @@ en:
       c8_applicants_details: Applicant contact details to be kept private
       c8_other_parties_details: Other parties contact details to be kept private
     descriptions:
-      risk_concerns: Are you alleging that the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child?
+      risk_concerns: Are you alleging that the applicant(s) or the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child(ren)?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
       c8_attached_html: <strong>C8 is attached at the end of this form</strong>
     separators:
