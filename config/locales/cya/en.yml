@@ -266,11 +266,11 @@ en:
     substance_abuse_details:
       question: Details of the drug, alcohol or substance abuse
     children_abuse:
-      question: Have the children ever suffered or been at risk of suffering domestic or child abuse?
+      question: Have the children ever suffered or are they at risk of suffering domestic or child abuse?
       answers:
         <<: *YESNO
     domestic_abuse:
-      question: Have you or the children ever suffered or been at risk of suffering domestic violence or abuse?
+      question: Have you ever suffered or are you at risk of suffering domestic violence or abuse?
       answers:
         <<: *YESNO
     other_abuse:
