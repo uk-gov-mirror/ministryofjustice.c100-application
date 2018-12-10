@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe C100App::OnlineSubmission do
   let(:c100_application) { instance_double(C100Application) }
 
-  subject { described_class.new(c100_application) }
+  subject { described_class.new(c100_application, recipient: 'recipient') }
 
   describe '#process' do
     let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: true, to_pdf: 'pdf content') }
@@ -14,7 +14,7 @@ RSpec.describe C100App::OnlineSubmission do
     end
 
     it 'generates the PDF' do
-      allow(subject).to receive(:send_emails) # do not care here about the emails
+      allow(subject).to receive(:deliver_email) # do not care here about the email
 
       expect(pdf_presenter).to receive(:generate)
       subject.process
@@ -28,7 +28,7 @@ RSpec.describe C100App::OnlineSubmission do
         c100_application, pdf_file: kind_of(File)
       ).and_return(pdf_email_submission)
 
-      expect(pdf_email_submission).to receive(:deliver!)
+      expect(pdf_email_submission).to receive(:deliver!).with('recipient')
 
       subject.process
     end

@@ -8,9 +8,13 @@ module C100App
       @pdf_file = pdf_file
     end
 
-    def deliver!
-      submission_to_court
-      send_copy_to_user if receipt_address.present?
+    def deliver!(recipient)
+      case recipient
+      when :court
+        submission_to_court
+      when :applicant
+        send_copy_to_user
+      end
     end
 
     # This is the audit table where details about the emails are stored
@@ -36,7 +40,7 @@ module C100App
     def submission_to_court
       return if email_submission.sent_at.present?
 
-      # TODO: temporary feature-flag until we decide about Notify attachments
+      # TODO: temporary feature-flag until we decide about Notify attachments to court
       if use_notify?
         NotifySubmissionMailer.with(application_details).application_to_court(
           to_address: court_address
@@ -53,17 +57,9 @@ module C100App
     def send_copy_to_user
       return if email_submission.user_copy_sent_at.present?
 
-      # TODO: temporary feature-flag until we decide about Notify attachments
-      if use_notify?
-        NotifySubmissionMailer.with(application_details).application_to_user(
-          to_address: receipt_address
-        ).deliver_now
-      else
-        # if the user hits reply, it should go to the court
-        ReceiptMailer.with(application_details).copy_to_user(
-          to: receipt_address, reply_to: court_address,
-        ).deliver_now
-      end
+      NotifySubmissionMailer.with(application_details).application_to_user(
+        to_address: receipt_address
+      ).deliver_now
 
       audit_data(email_copy_to: receipt_address, user_copy_sent_at: Time.current)
     end

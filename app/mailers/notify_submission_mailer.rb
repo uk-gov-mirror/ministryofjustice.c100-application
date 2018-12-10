@@ -10,7 +10,6 @@ class NotifySubmissionMailer < NotifyMailer
   before_action do
     @c100_application = params[:c100_application]
     @c100_pdf = params[:c100_pdf]
-    @c100_pdf.rewind # ensure we are always at the beginning of the file
   end
 
   #
