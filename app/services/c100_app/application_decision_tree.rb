@@ -79,7 +79,7 @@ module C100App
 
     def after_declaration
       if c100_application.online_submission?
-        OnlineSubmissionJob.perform_later(c100_application)
+        OnlineSubmissionQueue.new(c100_application).process
         show('/steps/completion/confirmation')
       else
         show('/steps/completion/what_next')

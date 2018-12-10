@@ -126,22 +126,24 @@ RSpec.describe C100App::ApplicationDecisionTree do
   end
 
   context 'when the step is `declaration`' do
-    let!(:c100_application) { C100Application.create(submission_type: submission_type) }
+    let(:c100_application) { C100Application.new(submission_type: submission_type) }
     let(:step_params) { { declaration: 'anything' } }
-
-    before do
-      ActiveJob::Base.queue_adapter = :test
-    end
 
     context 'and the submission_type is online' do
       let(:submission_type) { SubmissionType::ONLINE }
+      let(:queue) { double.as_null_object }
+
+      before do
+        allow(C100App::OnlineSubmissionQueue).to receive(:new).and_return(queue)
+      end
 
       it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
 
-      it 'enqueues the application online submission' do
-        expect {
-          subject.destination
-        }.to have_enqueued_job.with(c100_application).on_queue('submissions')
+      it 'process the application online submission' do
+        expect(C100App::OnlineSubmissionQueue).to receive(:new).with(c100_application).and_return(queue)
+        expect(queue).to receive(:process)
+
+        subject.destination
       end
     end
 
@@ -150,10 +152,9 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
       it { is_expected.to have_destination('/steps/completion/what_next', :show) }
 
-      it 'does not enqueues the application online submission' do
-        expect {
-          subject.destination
-        }.not_to have_enqueued_job.on_queue('submissions')
+      it 'does not process the application online submission' do
+        expect(C100App::OnlineSubmissionQueue).not_to receive(:new)
+        subject.destination
       end
     end
   end

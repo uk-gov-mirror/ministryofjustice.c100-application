@@ -1,17 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe OnlineSubmissionJob, type: :job do
+RSpec.describe CourtDeliveryJob, type: :job do
   let(:c100_application) { instance_double(C100Application, id: '123-456', receipt_email: receipt_email) }
   let(:receipt_email) { nil }
 
-  before do
-    ActiveJob::Base.queue_adapter = :test
-  end
+  let(:queue) { double.as_null_object }
 
   describe '#perform' do
-    it 'calls the `SendApplicationToCourt` service to process the application' do
-      expect_any_instance_of(C100App::OnlineSubmission).to receive(:process)
-      OnlineSubmissionJob.perform_now(c100_application)
+    it 'calls the `OnlineSubmission` service to process the application' do
+      expect(C100App::OnlineSubmission).to receive(:new).with(
+        c100_application, recipient: :court
+      ).and_return(queue)
+
+      expect(queue).to receive(:process)
+
+      CourtDeliveryJob.perform_now(c100_application)
     end
 
     context 'an exception occurs' do
@@ -23,7 +26,7 @@ RSpec.describe OnlineSubmissionJob, type: :job do
         expect(Raven).to receive(:extra_context).with({ c100_application_id: '123-456' })
         expect(Raven).to receive(:capture_exception).with(NoMethodError)
 
-        OnlineSubmissionJob.perform_now(c100_application)
+        CourtDeliveryJob.perform_now(c100_application)
       end
 
       context 'there is a receipt email' do
@@ -39,7 +42,7 @@ RSpec.describe OnlineSubmissionJob, type: :job do
         end
 
         it 'sends an email to the user do' do
-          OnlineSubmissionJob.perform_now(c100_application)
+          CourtDeliveryJob.perform_now(c100_application)
           expect(mailer_double).to have_received(:deliver_later)
         end
       end
