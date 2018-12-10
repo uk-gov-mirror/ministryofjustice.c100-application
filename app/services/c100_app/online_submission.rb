@@ -2,13 +2,16 @@ module C100App
   class OnlineSubmission
     attr_reader :c100_application
     attr_reader :pdf_content
+    attr_reader :recipient
 
-    def initialize(c100_application)
+    def initialize(c100_application, recipient:)
       @c100_application = c100_application
+      @recipient = recipient
     end
 
+    # Any exception in this method will bubble up to the Job classes
     def process
-      generate_pdf && send_emails
+      generate_pdf && deliver_email
     end
 
     private
@@ -20,14 +23,13 @@ module C100App
       @pdf_content = presenter.to_pdf
     end
 
-    def send_emails
+    def deliver_email
       Tempfile.create do |tmpfile|
         File.binwrite(tmpfile, pdf_content)
 
-        # Now we have the PDF in the local filesystem, we can
-        # send the PDF by email to the court, including
-        # a user copy if they requested it.
-        PdfEmailSubmission.new(c100_application, pdf_file: tmpfile).deliver!
+        PdfEmailSubmission.new(
+          c100_application, pdf_file: tmpfile
+        ).deliver!(recipient)
       end
     end
   end
