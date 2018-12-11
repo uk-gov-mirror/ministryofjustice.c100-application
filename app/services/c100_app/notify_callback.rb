@@ -25,7 +25,7 @@ module C100App
 
     def secure_payload
       payload.merge(payload.slice(*SECURE_ATTRIBUTES)) do |_key, value|
-        BCrypt::Password.create(value.downcase)
+        BCrypt::Password.create(value)
       end
     end
   end
