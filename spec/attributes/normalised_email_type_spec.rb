@@ -13,4 +13,9 @@ RSpec.describe NormalisedEmailType do
     let(:value) { "\u0060 \u2018 \u2019 \u2032" }
     it { expect(replacement_char).to eq(["'"]) }
   end
+
+  describe 'downcase the string' do
+    let(:value) { "Test@Email.Com" }
+    it { expect(replacement_char).to eq(["test@email.com"]) }
+  end
 end
