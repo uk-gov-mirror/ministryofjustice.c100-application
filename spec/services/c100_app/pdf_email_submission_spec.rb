@@ -39,17 +39,6 @@ RSpec.describe C100App::PdfEmailSubmission do
         allow(subject).to receive(:send_copy_to_user) # we test the user copy separately
       end
 
-      context 'there is already an audit of a previous submission' do
-        let(:sent_at) { Time.now }
-
-        it 'does not deliver another email to the court' do
-          expect(mailer).not_to receive(:submission_to_court)
-          expect(subject).not_to receive(:audit_data)
-
-          subject.deliver!(:court)
-        end
-      end
-
       context 'for a SMTP email' do
         it 'delivers the email to the court' do
           expect(
@@ -120,37 +109,6 @@ RSpec.describe C100App::PdfEmailSubmission do
         )
 
         subject.deliver!(:applicant)
-      end
-
-      context 'there is already an audit of a previous submission' do
-        let(:user_copy_sent_at) { Time.now }
-
-        it 'does not deliver another email to the applicant' do
-          expect(mailer).not_to receive(:copy_to_user)
-          expect(subject).not_to receive(:audit_data)
-
-          subject.deliver!(:applicant)
-        end
-      end
-    end
-  end
-
-  describe '`email_submission` audit table' do
-    context 'when table does not exist' do
-      let(:email_submission) { nil }
-
-      it 'creates a new `email_submission` if none exists' do
-        expect(c100_application).to receive(:create_email_submission)
-        subject.email_submission
-      end
-    end
-
-    context 'when table already exists' do
-      let(:email_submission) { double }
-
-      it 'creates a new `email_submission` if none exists' do
-        expect(c100_application).not_to receive(:create_email_submission)
-        subject.email_submission
       end
     end
   end
