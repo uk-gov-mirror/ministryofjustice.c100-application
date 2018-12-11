@@ -11,27 +11,63 @@ RSpec.describe C100App::OnlineSubmissionQueue do
   end
 
   describe '#process' do
-    let(:receipt_email) { '' }
+    context 'when `email_submission` record already exists' do
+      before do
+        allow(c100_application).to receive(:email_submission).and_return(double)
+      end
 
-    it 'enqueues the court delivery job' do
-      expect {
-        subject.process
-      }.to have_enqueued_job.with(c100_application).on_queue('court_submissions')
-    end
-
-    it 'does not enqueue the applicant delivery job' do
-      expect {
-        subject.process
-      }.not_to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
-    end
-
-    context 'when there is a receipt email address' do
-      let(:receipt_email) { 'user@example.com' }
-
-      it 'enqueues the applicant delivery job' do
+      it 'does not process the jobs' do
         expect {
           subject.process
-        }.to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
+        }.not_to have_enqueued_job
+      end
+    end
+
+    context 'when `email_submission` record does not exist' do
+      before do
+        allow(c100_application).to receive(:email_submission).and_return(nil)
+        allow(c100_application).to receive(:create_email_submission)
+      end
+
+      # mutant kill
+      context 'uses `present?`' do
+        let(:finder_double) { double }
+
+        before do
+          allow(c100_application).to receive(:email_submission).and_return(finder_double)
+        end
+
+        it {
+          expect(finder_double).to receive(:present?)
+          subject.process
+        }
+      end
+
+      it 'creates the `email_submission` record' do
+        expect(c100_application).to receive(:create_email_submission)
+        subject.process
+      end
+
+      it 'enqueues the court delivery job' do
+        expect {
+          subject.process
+        }.to have_enqueued_job.with(c100_application).on_queue('court_submissions')
+      end
+
+      it 'does not enqueue the applicant delivery job' do
+        expect {
+          subject.process
+        }.not_to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
+      end
+
+      context 'when there is a receipt email address' do
+        let(:receipt_email) { 'user@example.com' }
+
+        it 'enqueues the applicant delivery job' do
+          expect {
+            subject.process
+          }.to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
+        end
       end
     end
   end

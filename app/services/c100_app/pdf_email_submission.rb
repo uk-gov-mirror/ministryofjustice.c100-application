@@ -17,11 +17,6 @@ module C100App
       end
     end
 
-    # This is the audit table where details about the emails are stored
-    def email_submission
-      c100_application.email_submission || c100_application.create_email_submission
-    end
-
     # TODO: temporary feature-flag until we decide about Notify attachments
     def use_notify?
       Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')
@@ -38,8 +33,6 @@ module C100App
     end
 
     def submission_to_court
-      return if email_submission.sent_at.present?
-
       # TODO: temporary feature-flag until we decide about Notify attachments to court
       if use_notify?
         NotifySubmissionMailer.with(application_details).application_to_court(
@@ -55,8 +48,6 @@ module C100App
     end
 
     def send_copy_to_user
-      return if email_submission.user_copy_sent_at.present?
-
       NotifySubmissionMailer.with(application_details).application_to_user(
         to_address: receipt_address
       ).deliver_now
@@ -72,7 +63,7 @@ module C100App
     end
 
     def audit_data(data)
-      email_submission.update(data)
+      c100_application.email_submission.update(data)
     end
   end
 end
