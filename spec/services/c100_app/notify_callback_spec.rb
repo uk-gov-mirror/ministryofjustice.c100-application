@@ -4,7 +4,7 @@ RSpec.describe C100App::NotifyCallback do
   let(:payload) do
     {
       id: 'id',
-      to: 'test@example.com',
+      to: email,
       reference: 'reference',
       status: 'status',
       created_at: 'created_at',
@@ -12,6 +12,8 @@ RSpec.describe C100App::NotifyCallback do
       sent_at: 'sent_at',
     }
   end
+
+  let(:email) { spy('test@example.com') }
 
   describe '.new' do
     it 'ensures indifferent access of the payload attributes' do
@@ -51,7 +53,8 @@ RSpec.describe C100App::NotifyCallback do
 
     context 'there is a reference' do
       before do
-        allow(BCrypt::Password).to receive(:create).with('test@example.com').and_return('**hashed**')
+        allow(EmailSubmissionsAudit).to receive(:create!)
+        allow(BCrypt::Password).to receive(:create).with(email).and_return('**hashed**')
       end
 
       it 'creates a record for this payload, hashing secure attributes' do
@@ -67,6 +70,11 @@ RSpec.describe C100App::NotifyCallback do
           sent_at: 'sent_at',
         )
 
+        subject.process!
+      end
+
+      it 'downcase the secure attributes' do
+        expect(email).to receive(:downcase)
         subject.process!
       end
     end
