@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'barnes' # Heroku metrics
 gem 'devise', '~> 4.4.3'
 gem 'email_validator'
 gem 'govuk_elements_form_builder', '~> 1.2.0'
@@ -28,6 +27,7 @@ gem 'wicked_pdf', '~> 1.1.0'
 gem 'wkhtmltopdf-binary'
 
 group :production do
+  gem 'barnes' # Heroku metrics
   gem 'lograge'
   gem 'logstash-event'
 end
