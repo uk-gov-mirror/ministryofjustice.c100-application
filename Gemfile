@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
+gem 'barnes' # Heroku metrics
 gem 'devise', '~> 4.4.3'
 gem 'email_validator'
 gem 'govuk_elements_form_builder', '~> 1.2.0'
