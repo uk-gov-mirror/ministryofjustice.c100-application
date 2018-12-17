@@ -23,8 +23,11 @@ before_fork do
   require 'puma_worker_killer'
 
   PumaWorkerKiller.config do |config|
-    config.ram = ENV.fetch("CONTAINER_AVAILABLE_RAM") { 512 }
-    config.frequency = 15 # seconds
+    # Note: in Heroku, the available ram is not very accurate.
+    # The env variable can be set higher to minimise this inaccuracy and
+    # avoid killing the workers unnecessarily.
+    config.ram = ENV.fetch("CONTAINER_AVAILABLE_RAM") { 512 }.to_i
+    config.frequency = 30 # seconds
     config.percent_usage = 0.98
     config.reaper_status_logs = true
     config.rolling_restart_frequency = false
