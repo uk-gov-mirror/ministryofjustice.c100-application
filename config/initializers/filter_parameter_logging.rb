@@ -25,6 +25,8 @@ Rails.application.config.filter_parameters += [
   :passport_possession_other_details,
   :previous_attempt_details,
   :previous_attempt_agency_details,
+  :urgent_hearing_details,
+  :urgent_hearing_short_notice_details,
   :risk_details,
   :current_location,
   :behaviour_description,
@@ -43,4 +45,5 @@ Rails.application.config.filter_parameters += [
   :mobile_phone,
   :residence_history,
   :recipient,
+  :to,
 ]
