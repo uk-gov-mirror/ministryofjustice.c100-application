@@ -8,7 +8,7 @@ RSpec.describe ReceiptMailer, type: :mailer do
     )
   }
 
-  let(:pdf_file) { '/my/test/file' }
+  let(:pdf_content) { instance_double(StringIO, 'pdf content') }
 
   let(:recipient_args) {
     {
@@ -19,7 +19,7 @@ RSpec.describe ReceiptMailer, type: :mailer do
 
   describe '#copy_to_user' do
     before do
-      allow(File).to receive(:read).with(pdf_file).and_return('file content')
+      allow(pdf_content).to receive(:read).and_return('file content')
 
       allow(
         c100_application
@@ -32,7 +32,7 @@ RSpec.describe ReceiptMailer, type: :mailer do
       describe 'the generated mail' do
         let(:mail) do
           described_class.with(
-            c100_application: c100_application, c100_pdf: pdf_file
+            c100_application: c100_application, c100_pdf: pdf_content
           ).copy_to_user(recipient_args)
         end
 

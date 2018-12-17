@@ -17,7 +17,7 @@ class SmtpSubmissionMailer < ActionMailer::Base
   protected
 
   def attach_c100_pdf!
-    attachments[pdf_attachment_filename] = File.read(@c100_pdf)
+    attachments[pdf_attachment_filename] = @c100_pdf.read
   end
 
   private

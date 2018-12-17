@@ -10,7 +10,7 @@ RSpec.describe C100App::PdfEmailSubmission do
     )
   }
 
-  let(:pdf_file) { '/path/to/pdf' }
+  let(:pdf_content) { 'pdf content' }
   let(:screener_answers_court) { double('screener_answers_court', email: 'court@example.com') }
   let(:email_submission) { instance_double(EmailSubmission, sent_at: sent_at, user_copy_sent_at: user_copy_sent_at) }
 
@@ -19,7 +19,7 @@ RSpec.describe C100App::PdfEmailSubmission do
 
   let(:mailer) { spy('mailer') }
 
-  subject { described_class.new(c100_application, pdf_file: pdf_file) }
+  subject { described_class.new(c100_application, pdf_content: pdf_content) }
 
   before do
     travel_to Time.at(0)
@@ -29,7 +29,7 @@ RSpec.describe C100App::PdfEmailSubmission do
     let(:application_details) {
       {
         c100_application: c100_application,
-        c100_pdf: pdf_file,
+        c100_pdf: pdf_content,
       }
     }
 
