@@ -26,12 +26,9 @@ before_fork do
     config.ram = ENV.fetch("CONTAINER_AVAILABLE_RAM") { 512 }
     config.frequency = 15 # seconds
     config.percent_usage = 0.98
-    config.reaper_status_logs = false
+    config.reaper_status_logs = true
     config.rolling_restart_frequency = false
   end
 
   PumaWorkerKiller.start
-
-  require 'barnes'
-  Barnes.start
 end

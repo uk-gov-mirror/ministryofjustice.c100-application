@@ -66,11 +66,4 @@ Rails.application.configure do
       host: uri.host, protocol: uri.scheme, port: uri.port
     }
   end
-
-  # Start Barnes to use Ruby Language Metrics on Heroku
-  # https://devcenter.heroku.com/articles/language-runtime-metrics-ruby
-  require 'barnes'
-
-  puts '> starting Barnes metrics....'
-  Barnes.start
 end
