@@ -12,7 +12,7 @@ RSpec.describe CourtMailer, type: :mailer do
 
   let(:urgent_hearing) { nil }
   let(:address_confidentiality) { nil }
-  let(:pdf_file) { '/my/test/file' }
+  let(:pdf_content) { instance_double(StringIO, 'pdf content') }
 
   let(:recipient_args) {
     {
@@ -22,14 +22,14 @@ RSpec.describe CourtMailer, type: :mailer do
 
   describe '#submission_to_court' do
     before do
-      allow(File).to receive(:read).with(pdf_file).and_return('file content')
+      allow(pdf_content).to receive(:read).and_return('file content')
     end
 
     context 'given all required arguments' do
       describe 'the generated mail' do
         let(:mail) do
           described_class.with(
-            c100_application: c100_application, c100_pdf: pdf_file
+            c100_application: c100_application, c100_pdf: pdf_content
           ).submission_to_court(recipient_args)
         end
 

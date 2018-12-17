@@ -1,11 +1,11 @@
 module C100App
   class PdfEmailSubmission
     attr_reader :c100_application
-    attr_reader :pdf_file
+    attr_reader :pdf_content
 
-    def initialize(c100_application, pdf_file:)
+    def initialize(c100_application, pdf_content:)
       @c100_application = c100_application
-      @pdf_file = pdf_file
+      @pdf_content = pdf_content
     end
 
     def deliver!(recipient)
@@ -58,7 +58,7 @@ module C100App
     def application_details
       {
         c100_application: c100_application,
-        c100_pdf: pdf_file,
+        c100_pdf: pdf_content,
       }
     end
 

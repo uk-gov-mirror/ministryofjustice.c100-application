@@ -20,17 +20,13 @@ module C100App
       presenter = Summary::PdfPresenter.new(c100_application)
       presenter.generate
 
-      @pdf_content = presenter.to_pdf
+      @pdf_content = StringIO.new(presenter.to_pdf)
     end
 
     def deliver_email
-      Tempfile.create do |tmpfile|
-        File.binwrite(tmpfile, pdf_content)
-
-        PdfEmailSubmission.new(
-          c100_application, pdf_file: tmpfile
-        ).deliver!(recipient)
-      end
+      PdfEmailSubmission.new(
+        c100_application, pdf_content: pdf_content
+      ).deliver!(recipient)
     end
   end
 end

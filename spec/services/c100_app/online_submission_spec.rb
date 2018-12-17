@@ -18,14 +18,13 @@ RSpec.describe C100App::OnlineSubmission do
 
       expect(pdf_presenter).to receive(:generate)
       subject.process
-      expect(subject.pdf_content).to eq('pdf content')
+      expect(subject.pdf_content).to be_a(StringIO)
+      expect(subject.pdf_content.read).to eq('pdf content')
     end
 
     it 'sends the emails' do
-      expect(File).to receive(:binwrite).with(kind_of(File), 'pdf content')
-
       expect(C100App::PdfEmailSubmission).to receive(:new).with(
-        c100_application, pdf_file: kind_of(File)
+        c100_application, pdf_content: kind_of(StringIO)
       ).and_return(pdf_email_submission)
 
       expect(pdf_email_submission).to receive(:deliver!).with('recipient')
