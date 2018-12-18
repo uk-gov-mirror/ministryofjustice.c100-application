@@ -23,7 +23,7 @@ gem 'uk_postcode'
 gem 'virtus'
 
 # PDF generation
-gem 'combine_pdf', '~> 1.0.10'
+gem 'combine_pdf', '~> 1.0'
 gem 'wicked_pdf', '~> 1.1.0'
 gem 'wkhtmltopdf-binary'
 

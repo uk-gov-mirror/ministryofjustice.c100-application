@@ -15,7 +15,7 @@ module C100App
     private
 
     def pdf_from_presenter(presenter)
-      WickedPdf.new.pdf_from_string(
+      producer.pdf_from_string(
         render(presenter),
         footer: { right: footer_line(presenter) },
         extra: '--enable-forms',
@@ -35,6 +35,10 @@ module C100App
         presenter.name,
         presenter.page_number,
       ].join('   ')
+    end
+
+    def producer
+      @_producer ||= WickedPdf.new
     end
 
     def combiner
