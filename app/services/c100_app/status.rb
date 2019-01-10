@@ -1,10 +1,8 @@
 module C100App
   class Status
-    def self.check
-      new.check
-    end
+    UNKNOWN_VERSION ||= 'unknown'.freeze
 
-    def check
+    def result
       {
         service_status: service_status,
         version: version,
@@ -15,25 +13,21 @@ module C100App
       }
     end
 
+    def success?
+      service_status.eql?('ok')
+    end
+
     private
 
+    # When building the docker image, this and other bits of info are set.
     def version
-      # This has been manually checked in a demo app in a docker container running
-      # ruby:latest with Docker 1.12. Ymmv, however; in particular it may not
-      # work on alpine-based containers. It is mocked at the method level in the
-      # specs, so it is possible to simply comment the call out if there are
-      # issues with it.
-      `git rev-parse HEAD`.chomp
+      ENV['APP_GIT_COMMIT'] || UNKNOWN_VERSION
     end
 
     def database_status
       # This will only catch high-level failures.  PG::ConnectionBad gets
       # raised too early in the stack to rescue here.
-      @database_status ||= if ActiveRecord::Base.connection
-                             'ok'
-                           else
-                             'failed'
-                           end
+      @database_status ||= (ActiveRecord::Base.connection ? 'ok' : 'failed')
     end
 
     def courtfinder_status
