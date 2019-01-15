@@ -35,43 +35,20 @@ RSpec.describe C100App::PdfEmailSubmission do
 
     context 'submission_to_court' do
       before do
-        allow(CourtMailer).to receive(:with).with(application_details).and_return(mailer)
+        allow(NotifySubmissionMailer).to receive(:with).with(application_details).and_return(mailer)
         allow(subject).to receive(:send_copy_to_user) # we test the user copy separately
       end
 
-      context 'for a SMTP email' do
-        it 'delivers the email to the court' do
-          expect(
-            mailer
-          ).to receive(:submission_to_court).with(to: 'court@example.com')
+      it 'delivers the email to the court' do
+        expect(
+          mailer
+        ).to receive(:application_to_court).with(to_address: 'court@example.com').and_return(mailer)
 
-          expect(mailer).to receive(:deliver_now)
+        expect(mailer).to receive(:deliver_now)
 
-          expect(subject).to receive(:audit_data) # we test this separately
+        expect(subject).to receive(:audit_data) # we test this separately
 
-          subject.deliver!(:court)
-        end
-      end
-
-      context 'for a Notify email' do
-        before do
-          allow(subject).to receive(:use_notify?).and_return(true)
-
-          allow(NotifySubmissionMailer).to receive(:with).with(application_details).and_return(mailer)
-          allow(subject).to receive(:send_copy_to_user) # we test the user copy separately
-        end
-
-        it 'delivers the email to the court' do
-          expect(
-            mailer
-          ).to receive(:application_to_court).with(to_address: 'court@example.com').and_return(mailer)
-
-          expect(mailer).to receive(:deliver_now)
-
-          expect(subject).to receive(:audit_data) # we test this separately
-
-          subject.deliver!(:court)
-        end
+        subject.deliver!(:court)
       end
 
       it 'audits the email details' do
@@ -109,41 +86,6 @@ RSpec.describe C100App::PdfEmailSubmission do
         )
 
         subject.deliver!(:applicant)
-      end
-    end
-  end
-
-  # TODO: temporary feature-flag, mutant wants to test this too
-  describe '#use_notify?' do
-    context 'environment' do
-      before do
-        allow(Rails.env).to receive(:development?).and_return(development)
-      end
-
-      context 'development' do
-        let(:development) { true }
-        it { expect(subject.use_notify?).to eq(true) }
-      end
-
-      context 'not development' do
-        let(:development) { false }
-        it { expect(subject.use_notify?).to eq(false) }
-      end
-    end
-
-    context 'DEV_TOOLS_ENABLED' do
-      before do
-        allow(ENV).to receive(:key?).with('DEV_TOOLS_ENABLED').and_return(dev_tools)
-      end
-
-      context 'dev_tools enabled' do
-        let(:dev_tools) { true }
-        it { expect(subject.use_notify?).to eq(true) }
-      end
-
-      context 'dev_tools not enabled' do
-        let(:dev_tools) { false }
-        it { expect(subject.use_notify?).to eq(false) }
       end
     end
   end

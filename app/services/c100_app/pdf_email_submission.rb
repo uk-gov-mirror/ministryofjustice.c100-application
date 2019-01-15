@@ -17,11 +17,6 @@ module C100App
       end
     end
 
-    # TODO: temporary feature-flag until we decide about Notify attachments
-    def use_notify?
-      Rails.env.development? || ENV.key?('DEV_TOOLS_ENABLED')
-    end
-
     private
 
     def receipt_address
@@ -33,16 +28,9 @@ module C100App
     end
 
     def submission_to_court
-      # TODO: temporary feature-flag until we decide about Notify attachments to court
-      if use_notify?
-        NotifySubmissionMailer.with(application_details).application_to_court(
-          to_address: court_address
-        ).deliver_now
-      else
-        CourtMailer.with(application_details).submission_to_court(
-          to: court_address,
-        ).deliver_now
-      end
+      NotifySubmissionMailer.with(application_details).application_to_court(
+        to_address: court_address
+      ).deliver_now
 
       audit_data(to_address: court_address, sent_at: Time.current)
     end
