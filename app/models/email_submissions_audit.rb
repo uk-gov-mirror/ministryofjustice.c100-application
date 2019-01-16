@@ -6,10 +6,18 @@ class EmailSubmissionsAudit < ApplicationRecord
   class << self
     require 'bcrypt'
 
+    # Note: reference is the email reference, and starts with prefix
+    # `user` or `court`, followed by the application reference code.
+    # Refer to `mailers/notify_submission_mailer.rb`
+    #
+    # Email is optional. If not provided, all records matching the
+    # `reference` will be returned. Otherwise it will return only the
+    # records matching the exact reference and email (email is hashed).
+    #
     # :nocov:
-    def find_records(reference, email)
+    def find_records(reference, email = nil)
       EmailSubmissionsAudit.where(reference: reference).select do |record|
-        BCrypt::Password.new(record.to) == email.downcase
+        email.blank? || BCrypt::Password.new(record.to) == email.downcase
       end
     end
     # :nocov:
