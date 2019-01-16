@@ -51,3 +51,19 @@ Feature: Screener
     Then I should see "Something went wrong"
     And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"
     And I should see a "Go back and try again" link to "/steps/screener/postcode"
+
+
+  @unhappy_path
+  Scenario: Not a parent
+    Given I click the "Check now" link
+    Then I should see "Where do the children live?"
+
+    And I fill in "Postcode" with "MK9 3DX"
+    And I click the "Continue" button
+
+    Then I should see "Are you a parent of the child or children?"
+    And I choose "No"
+
+    Then I should see "Sorry, you’re not eligible to apply online"
+    And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"
+
