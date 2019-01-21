@@ -1068,6 +1068,12 @@ en:
         steps/solicitor/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/children/names_split_form:
+          attributes:
+            new_first_name:
+              blank: Enter the first name
+            new_last_name:
+              blank: Enter the last name
         steps/children/residence_form:
           attributes:
             person_ids:
@@ -1403,6 +1409,12 @@ en:
         full_name: Full name of child
       steps_children_names_form:
         new_name: Full name of child
+      steps_children_names_split_form:
+        new_first_name: First name(s)
+        new_last_name: Last name(s)
+      steps_children_names_split_form[names_attributes]:
+        first_name: First name(s)
+        last_name: Last name(s)
       steps_other_children_names_form:
         new_name: Full name of child
       steps_other_children_names_form[names_attributes]:
@@ -1567,6 +1579,8 @@ en:
         address: *address_hint
       steps_children_names_form:
         new_name_html: *name_instructions
+      steps_children_names_split_form:
+        new_first_name_html: Include all middle names here
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family

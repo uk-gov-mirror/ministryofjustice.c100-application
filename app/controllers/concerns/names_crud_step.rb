@@ -26,6 +26,6 @@ module NamesCrudStep
   private
 
   def additional_permitted_params
-    [names_attributes: [:id, names_form_class.name_attribute]]
+    [names_attributes: [:id, :first_name, :last_name, :full_name]]
   end
 end

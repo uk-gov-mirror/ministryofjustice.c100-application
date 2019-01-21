@@ -1,6 +1,6 @@
-RSpec.shared_examples 'a names CRUD form' do |form_class, options = {}|
+RSpec.shared_examples 'a names CRUD form' do |form_class|
   let(:collection_name) { ActiveModel::Name.new(form_class).collection }
-  let(:name_attribute)  { options.fetch(:name_attribute, :full_name).to_s }
+  let(:name_attribute)  { 'full_name' }
 
   let(:arguments) { {
     c100_application: c100_application,
@@ -15,6 +15,10 @@ RSpec.shared_examples 'a names CRUD form' do |form_class, options = {}|
   let(:new_name) { 'John' }
 
   subject { described_class.new(arguments) }
+
+  describe '#split_names?' do
+    it { expect(subject.split_names?).to eq(false) }
+  end
 
   describe '#save' do
     context 'when no c100_application is associated with the form' do

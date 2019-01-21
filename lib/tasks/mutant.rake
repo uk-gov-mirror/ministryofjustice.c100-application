@@ -65,6 +65,7 @@ def models
     C100Application
     User
     Court
+    Person
     CompletedApplicationsAudit
   ).freeze
 end
