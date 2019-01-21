@@ -21,7 +21,7 @@ module Summary
 
       before do
         allow(Person).to receive(:where).with(id: %w(uuid-123 uuid-456)).and_return(people_find_result)
-        allow(people_find_result).to receive(:pluck).with(:full_name).and_return(full_names)
+        allow(people_find_result).to receive(:map).and_return(full_names)
       end
 
       it 'has the correct rows' do

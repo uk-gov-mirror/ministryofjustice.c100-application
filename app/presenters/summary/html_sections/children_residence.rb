@@ -21,7 +21,7 @@ module Summary
       def residence_for(child)
         Person.where(
           id: child.child_residence&.person_ids
-        ).pluck(:full_name).to_sentence
+        ).map(&:full_name).to_sentence
       end
     end
   end
