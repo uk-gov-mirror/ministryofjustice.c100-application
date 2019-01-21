@@ -9,6 +9,10 @@ class CrudStepController < StepController
   def record_collection
     raise 'implement in subclasses'
   end
+
+  def split_names?
+    current_c100_application.version > 1 || ENV.key?('SPLIT_NAMES')
+  end
   # :nocov:
 
   def current_record

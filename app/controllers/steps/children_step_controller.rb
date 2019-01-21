@@ -6,7 +6,12 @@ module Steps
       C100App::ChildrenDecisionTree
     end
 
+    # Until we've migrated all database records to the new first/last name
+    # structure, we must maintain backward-compatibility. Only c100 records
+    # with version greater than 1 will be eligible for the new split format.
+    #
     def names_form_class
+      return Children::NamesSplitForm if split_names?
       Children::NamesForm
     end
 
