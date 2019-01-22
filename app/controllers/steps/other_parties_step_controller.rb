@@ -7,6 +7,7 @@ module Steps
     end
 
     def names_form_class
+      return OtherParties::NamesSplitForm if split_names?
       OtherParties::NamesForm
     end
 

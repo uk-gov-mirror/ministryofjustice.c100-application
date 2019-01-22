@@ -6,7 +6,7 @@ RSpec.describe Steps::Children::NamesController, type: :controller do
       allow(controller).to receive(:split_names?).and_return(false)
     end
 
-    it_behaves_like 'an names CRUD step controller',
+    it_behaves_like 'a names CRUD step controller',
                     Steps::Children::NamesForm,
                     C100App::ChildrenDecisionTree,
                     Child
@@ -17,7 +17,7 @@ RSpec.describe Steps::Children::NamesController, type: :controller do
       allow(controller).to receive(:split_names?).and_return(true)
     end
 
-    it_behaves_like 'an names CRUD step controller',
+    it_behaves_like 'a names CRUD step controller',
                     Steps::Children::NamesSplitForm,
                     C100App::ChildrenDecisionTree,
                     Child
