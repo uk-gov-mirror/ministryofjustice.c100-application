@@ -14,11 +14,11 @@
       <% @existing_records.each.with_index do |respondent, index| %>
         <%= f.fields_for :names_attributes, respondent, index: index do |c| %>
           <span><%= t('.record_index', index: index + 1) %></span>
-          <%= render partial: 'steps/shared/existing_names', locals: { f: f, c: c } %>
+          <%= render partial: 'steps/shared/existing_names', locals: { names_form: f, person: c } %>
         <% end %>
       <% end %>
 
-      <%= render partial: 'steps/shared/new_name', locals: { f: f } %>
+      <%= render partial: 'steps/shared/new_name', locals: { names_form: f } %>
 
       <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: ['button-add', 'link-button'] %>
 
