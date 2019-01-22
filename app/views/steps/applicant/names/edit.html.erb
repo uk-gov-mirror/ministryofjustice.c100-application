@@ -13,8 +13,7 @@
     <%= step_form @form_object do |f| %>
       <% @existing_records.each.with_index do |applicant, index| %>
         <%= f.fields_for :names_attributes, applicant, index: index do |c| %>
-          <span><%= t('.record_index', index: index + 1) %></span>
-          <%= render partial: 'steps/shared/existing_names', locals: { names_form: f, person: c } %>
+          <%= render partial: 'steps/shared/existing_names', locals: { names_form: f, person: c, legend: t('.record_index', index: index + 1) } %>
         <% end %>
       <% end %>
 

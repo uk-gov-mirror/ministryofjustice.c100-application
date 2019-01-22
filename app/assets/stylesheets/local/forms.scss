@@ -98,6 +98,10 @@ label[for="steps_abduction_risk_details_form_risk_details"]
   font-weight: bold;
 }
 
+.form-label-normal {
+  font-weight: normal;
+}
+
 fieldset + .form-group {
   margin-top: 30px;
   margin-bottom: 15px;
@@ -108,6 +112,14 @@ fieldset + .form-group {
   }
   fieldset + .form-group:last-child {
     margin-bottom: 0;
+  }
+}
+
+.fieldset-compact {
+  padding-bottom: 30px;
+
+  .form-group {
+    margin-bottom: 15px;
   }
 }
 
