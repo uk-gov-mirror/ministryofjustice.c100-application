@@ -10,12 +10,11 @@
       <% @existing_records.each.with_index do |party, index| %>
         <%= f.fields_for :names_attributes, party, index: index do |c| %>
           <span><%= t('.record_index', index: index + 1) %></span>
-          <%= c.hidden_field :id %>
-          <%= c.text_field :full_name %>
+          <%= render partial: 'steps/shared/existing_names', locals: { f: f, c: c } %>
         <% end %>
       <% end %>
 
-      <%= f.text_field :new_name %>
+      <%= render partial: 'steps/shared/new_name', locals: { f: f } %>
 
       <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: ['button-add', 'link-button'] %>
 
