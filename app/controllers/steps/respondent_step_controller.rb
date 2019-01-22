@@ -7,6 +7,7 @@ module Steps
     end
 
     def names_form_class
+      return Respondent::NamesSplitForm if split_names?
       Respondent::NamesForm
     end
 
