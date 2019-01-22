@@ -1,0 +1,8 @@
+<%= c.hidden_field :id %>
+
+<% if f.object.split_names? %>
+  <%= c.text_field :first_name, class: 'narrow' %>
+  <%= c.text_field :last_name, class: 'narrow' %>
+<% else %>
+  <%= c.text_field :full_name %>
+<% end %>

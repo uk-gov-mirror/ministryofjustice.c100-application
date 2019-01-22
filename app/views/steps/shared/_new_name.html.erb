@@ -1,0 +1,6 @@
+<% if f.object.split_names? %>
+  <%= f.text_field :new_first_name, class: 'narrow' %>
+  <%= f.text_field :new_last_name, class: 'narrow' %>
+<% else %>
+  <%= f.text_field :new_name %>
+<% end %>
