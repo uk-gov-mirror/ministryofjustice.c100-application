@@ -15,7 +15,7 @@ class CrudStepController < StepController
   # greater than this version will be eligible for the new split format.
   #
   def split_names?
-    current_c100_application.version > 1 || ENV.key?('SPLIT_NAMES')
+    current_c100_application.version > 1
   end
   # :nocov:
 
