@@ -44,7 +44,11 @@ end
 group :development, :test do
   gem 'dotenv-rails'
   gem 'launchy'
-  gem 'mutant-rspec'
+  # Warning: `mutant` is locked to this version, as newer ones implement some extra
+  # mutations that make form object tests fail (maybe others). Upgrading the version
+  # will require some effort to neutralise new mutants and to ensure CI runs flawless.
+  gem 'mutant', '0.8.14'
+  gem 'mutant-rspec', '0.8.14'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
