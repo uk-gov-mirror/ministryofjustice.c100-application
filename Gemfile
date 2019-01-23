@@ -6,9 +6,10 @@ gem 'devise', '~> 4.4.3'
 gem 'email_validator'
 gem 'govuk_elements_form_builder', '~> 1.2.0'
 gem 'govuk_elements_rails', '~> 3.0'
+gem 'govuk_frontend_toolkit', '< 8.0.0'
 gem 'govuk_notify_rails', '~> 2.1.0'
 gem 'govuk_template', '~> 0.23.3'
-gem 'gov_uk_date_fields', '~> 3.0.0'
+gem 'gov_uk_date_fields', '~> 3.1.0'
 gem 'jquery-rails'
 gem 'pg', '~> 1.0.0'
 gem 'puma', '~> 3.0'
@@ -25,7 +26,7 @@ gem 'virtus'
 # PDF generation
 gem 'combine_pdf', '~> 1.0'
 gem 'wicked_pdf', '~> 1.1.0'
-gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-binary', '0.12.3.1'
 
 group :production do
   gem 'lograge'
@@ -37,7 +38,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'i18n-debug'
   gem 'letter_opener'
-  gem 'ministryofjustice-danger'
   gem 'web-console'
 end
 
@@ -59,7 +59,7 @@ group :test do
   gem 'phantomjs'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.52.1', require: false
   gem 'rubocop-rspec', require: false
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
