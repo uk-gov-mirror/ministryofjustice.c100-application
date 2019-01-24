@@ -133,7 +133,7 @@ en:
         <span class="gv-u-heading-small">You don’t have sufficient contact details for the other people in this application (the respondents)</span>
         <span class="form-hint">The other people can’t be contacted to arrange a MIAM.</span>
       without_notice_html: |
-         <span class="gv-u-heading-small">You’re applying for a without notice hearing</span>
+        <span class="gv-u-heading-small">You’re applying for a without notice hearing</span>
         <span class="form-hint">Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</span>
       ## GROUP MIAM ACCESS ##
       group_miam_access_html: |
