@@ -5,7 +5,7 @@ en:
     DOMESTIC_EXEMPTIONS: &DOMESTIC_EXEMPTIONS
       ## GROUP POLICE ##
       group_police_html: |
-        <span class="heading-small gv-u-heading-small">The police have been involved</span><br/>
+        <span class="heading-small gv-u-heading-small">The police have been involved</span>
         <span class="form-hint">For example, you or the other people in this application (the respondents) have been arrested, cautioned, charged or convicted for domestic or child abuse offences.</span>
       police_arrested_html: Evidence that a prospective party has been arrested for a relevant domestic violence offence
       police_caution_html: Evidence of a relevant police caution for a domestic violence offence
@@ -14,7 +14,7 @@ en:
       police_dvpn_html: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
       ## GROUP COURT ##
       group_court_html: |
-        <span class="heading-small gv-u-heading-small">A court has already been involved</span><br/>
+        <span class="heading-small gv-u-heading-small">A court has already been involved</span>
         <span class="form-hint">For example, a court has made an order relating to you, the other people in this application (the respondents) or somebody close to you or them in connection with domestic violence or abuse.</span>
       court_bound_over_html: A court order binding a prospective party over in connection with a domestic violence offence
       court_protective_injunction_html: A relevant protective injunction
@@ -23,7 +23,7 @@ en:
       court_expert_report_html: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
       ## GROUP SPECIALIST ##
       group_specialist_html: |
-        <span class="heading-small gv-u-heading-small">A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic violence or abuse</span><br/>
+        <span class="heading-small gv-u-heading-small">A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic violence or abuse</span>
         <span class="form-hint">For example, a health professional or specialist has confirmed injuries that are or were a result of domestic violence or abuse.</span>
       specialist_examination_html: |
         <span class="labelLine">A letter or report from an appropriate health professional confirming that-<p></p>
@@ -38,7 +38,7 @@ en:
         </span>
       ## GROUP LOCAL AUTHORITY ##
       group_local_authority_html: |
-        <span class="heading-small gv-u-heading-small">A letter from a local authority or other agency confirms a risk of harm</span><br/>
+        <span class="heading-small gv-u-heading-small">A letter from a local authority or other agency confirms a risk of harm</span>
         <span class="form-hint">For example, a local authority or housing association has confirmed there is or has been a risk of domestic violence or abuse.</span>
       local_authority_marac_html: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
       local_authority_la_ha_html: |
@@ -50,7 +50,7 @@ en:
       local_authority_public_authority_html: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
       ## GROUP DA SERVICE ##
       group_da_service_html: |
-        <span class="heading-small gv-u-heading-small">You have a letter from a domestic violence or abuse support service, specialist or organisation</span><br/>
+        <span class="heading-small gv-u-heading-small">You have a letter from a domestic violence or abuse support service, specialist or organisation</span>
         <span class="form-hint">For example, an independent domestic violence or abuse adviser has confirmed support to you or the other people in this application (the respondents).</span>
       da_service_idva_html: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
       da_service_isva_html: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
@@ -74,11 +74,11 @@ en:
         </span>
       ## RIGHT TO REMAIN ##
       right_to_remain_html: |
-        <span class="heading-small gv-u-heading-small">You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic violence or abuse</span><br/>
+        <span class="heading-small gv-u-heading-small">You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic violence or abuse</span>
         <span class="form-hint">A letter from the Home Office will have confirmed that the leave was granted under paragraph 289B of the Immigration Rules.</span>
       ## FINANCIAL ABUSE ##
       financial_abuse_html: |
-        <span class="heading-small gv-u-heading-small">You have evidence that you or the other people in this application (the respondents) have been, or are at risk of being, financially abused by the other</span><br/>
+        <span class="heading-small gv-u-heading-small">You have evidence that you or the other people in this application (the respondents) have been, or are at risk of being, financially abused by the other</span>
         <span class="form-hint">Financial abuse is a way of controlling someone being able to earn, spend or keep their own money. For example, preventing someone going to work, withholding money, or putting debts in someone else’s name.<p></p>
         <p>Evidence could include:</p>
         <ul class="list list-bullet">
@@ -109,14 +109,14 @@ en:
     ADR_EXEMPTIONS: &ADR_EXEMPTIONS
       ## GROUP PREVIOUS ADR ##
       group_previous_adr_html: |
-        <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or are taking part in another form of non-court resolution</span><br/>
+        <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or are taking part in another form of non-court resolution</span>
         <span class="form-hint">The MIAM must have taken place within the past 4 months (or your attendance at another type of non-court resolution must be ongoing) and have been about the same child arrangements issue.</span>
       previous_attendance_html: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or a very similar dispute
       ongoing_attendance_html: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
       existing_proceedings_attendance_html: The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings
       ## GROUP PREVIOUS MIAM ##
       group_previous_miam_html:
-        <span class="heading-small gv-u-heading-small">You had a valid reason for not attending a MIAM previously</span><br/>
+        <span class="heading-small gv-u-heading-small">You had a valid reason for not attending a MIAM previously</span>
         <span class="form-hint">For example:<p></p>
           <ul class="list list-bullet">
             <li>you’ve made another court application within the last 4 months about the same or a very similar dispute and you had a confirmed valid reason for not attending a MIAM before making that application</li>
@@ -130,14 +130,14 @@ en:
 
     MISC_EXEMPTIONS: &MISC_EXEMPTIONS
       no_respondent_address_html: |
-        <span class="gv-u-heading-small">You don’t have sufficient contact details for the other people in this application (the respondents)</span><br/>
+        <span class="gv-u-heading-small">You don’t have sufficient contact details for the other people in this application (the respondents)</span>
         <span class="form-hint">The other people can’t be contacted to arrange a MIAM.</span>
       without_notice_html: |
         <span class="gv-u-heading-small">You’re applying for a without notice hearing</span><br/>
         <span class="form-hint">Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</span>
       ## GROUP MIAM ACCESS ##
       group_miam_access_html: |
-        <span class="heading-small gv-u-heading-small">You can’t access a mediator</span><br/>
+        <span class="heading-small gv-u-heading-small">You can’t access a mediator</span>
         <span class="form-hint">Examples of not being able to access a mediator include:<p></p>
           <ul class="list list-bullet">
             <li>you live further than 15 miles from a mediator</li>
@@ -146,7 +146,7 @@ en:
           </ul>
         </span>
       no_disabled_facilities_html: |
-        <span class="gv-u-heading-small">You or the other person has a disability and the mediator doesn’t have disabled facilities</span><br/>
+        <span class="gv-u-heading-small">You or the other person has a disability and the mediator doesn’t have disabled facilities</span>
         <span class="sublabel">You will need to provide:<p></p>
           <ul class="list list-bullet">
             <li>evidence you’ve contacted 3 mediators who all state they don’t have disabled facilities</li>
@@ -154,7 +154,7 @@ en:
           </ul>
         </span>
       no_appointment_html: |
-        <span class="gv-u-heading-small">You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days</span><br/>
+        <span class="gv-u-heading-small">You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days</span>
         <span class="sublabel">You will need to provide:<p></p>
           <ul class="list list-bullet">
             <li>evidence you’ve contacted 3 mediators who all state they can’t offer an appointment within 15 days</li>
@@ -164,7 +164,7 @@ en:
       no_mediator_nearby_html: There is no authorised family mediator with an office within 15 miles of your home
       ## END GROUP ##
       access_prohibited_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) can’t attend a MIAM because one of you is:</span><br/>
+        <span class="gv-u-heading-small">You or the other people in this application (the respondents) can’t attend a MIAM because one of you is:</span>
         <ul class="list list-bullet">
           <li>in prison or any other institution</li>
           <li>subject to bail conditions that prevent contact with each other</li>
@@ -172,10 +172,10 @@ en:
         </ul>
         </span>
       non_resident_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) don’t live in England and Wales</span><br/>
+        <span class="gv-u-heading-small">You or the other people in this application (the respondents) don’t live in England and Wales</span>
         <span class="form-hint">You don’t need to attend a MIAM if the lives of you or the other people involved are mainly based outside England or Wales. This may include working, owning property, having children in school or if family life mainly takes place outside England or Wales.</span>
       applicant_under_age_html: |
-        <span class="gv-u-heading-small">The applicant or any of the other people in this application (the respondents) are under 18 years old</span><br/>
+        <span class="gv-u-heading-small">The applicant or any of the other people in this application (the respondents) are under 18 years old</span>
         <span class="form-hint">You don’t need to attend a MIAM if you or any other person who is a respondent in this application is under 18</span>
       ## MISC NONE ##
       misc_none: *none_of_these

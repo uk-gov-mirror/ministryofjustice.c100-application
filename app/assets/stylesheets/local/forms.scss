@@ -1,26 +1,32 @@
-form.button_to {
-  padding-bottom: 0;
+form {
+  .app_heading {
+      margin-bottom: 3rem;
+  }
+  
+  &.button_to {
+    padding-bottom: 0;
 
-  #proposition-links & {
-    input[type="submit"] {
-      background: transparent;
-      border: none;
-      outline: none;
-      color: $white;
-      padding: 0;
-      margin: 0;
-      font-weight: bold;
-      cursor: pointer;
-      text-decoration-skip: ink;
+    #proposition-links & {
+      input[type="submit"] {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: $white;
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration-skip: ink;
 
-      &:hover {
-        text-decoration: underline;
-      }
+        &:hover {
+          text-decoration: underline;
+        }
 
-      &:focus {
-        color: $black;
-        background-color: $yellow;
-        outline: 3px solid $yellow;
+        &:focus {
+          color: $black;
+          background-color: $yellow;
+          outline: 3px solid $yellow;
+        }
       }
     }
   }
@@ -28,35 +34,29 @@ form.button_to {
 
 /* Tweaks */
 
-.form .app__heading {
-  margin-bottom: 3rem;
-}
-
 .form-submit {
   margin-top: 3rem;
 }
 
 .error {
   margin-right: 15px;
-  border-left: 4px solid #b10e1e;
+  border-left: 4px solid $error-colour;
   padding-left: 10px;
-}
 
-@media (min-width: 641px) {
-  .error {
-    border-left: 5px solid #b10e1e;
+  @media (min-width: 641px) {
+    border-left: 5px solid $error-colour;
     padding-left: 15px;
   }
 }
 
-label[for="steps_safety_questions_substance_abuse_details_form_substance_abuse_details"]
-{
+label[for="steps_safety_questions_substance_abuse_details_form_substance_abuse_details"] {
   color: transparent;
 }
-label[for="steps_abduction_risk_details_form_risk_details"]
-{
+
+label[for="steps_abduction_risk_details_form_risk_details"] {
   display: none;
 }
+
 .button-add {
   padding-left: 0;
 }
@@ -83,12 +83,14 @@ label[for="steps_abduction_risk_details_form_risk_details"]
 
   & label .heading-small {
     font-weight: normal;
+    margin-top: 0;
   }
 }
 
 .form-block.or-block {
   float: none;
   margin-top: -4rem;
+
   .or-block__shift & {
     margin-top: -4rem;
   }
@@ -105,13 +107,13 @@ label[for="steps_abduction_risk_details_form_risk_details"]
 fieldset + .form-group {
   margin-top: 30px;
   margin-bottom: 15px;
-}
-@media (min-width: 641px) {
-  fieldset + .form-group {
+  
+  @media (min-width: 641px) {
     margin-bottom: 30px;
-  }
-  fieldset + .form-group:last-child {
-    margin-bottom: 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -123,12 +125,13 @@ fieldset + .form-group {
   }
 }
 
-.form-date .form-hint {
-  margin-bottom: 0;
-}
-
-.form-hint:empty {
-  display: none;
+.form-hint {
+  &:empty {
+    display: none
+  }
+  .form-date & {
+    margin-bottom: 0;
+  }
 }
 
 // This is a workaround to make the fieldset legends visually hidden, as `govuk_elements_form_builder`
