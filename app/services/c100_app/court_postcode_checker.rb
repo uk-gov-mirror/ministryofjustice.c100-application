@@ -28,6 +28,7 @@ module C100App
       liverpool-civil-and-family-court
       plymouth-combined-court
       peterborough-combined-court-centre
+      barnstaple-magistrates-county-and-family-court
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"

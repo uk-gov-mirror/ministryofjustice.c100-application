@@ -275,6 +275,26 @@ describe Court do
         end
       end
 
+      context 'containing email addresses matching "children" or "family"' do
+        let(:emails){
+          [
+            {
+              'description' => 'Anything',
+              'address' => 'Family@email'
+            },
+            {
+              'description' => '',
+              'explanation' => 'Explanation',
+              'address' => 'Children@email',
+            },
+          ]
+        }
+
+        it 'returns the matching email address based on priority' do
+          expect(subject.best_enquiries_email).to eq('Children@email')
+        end
+      end
+
       context 'that is not empty but matches no other criterion' do
         let(:emails){
           [
