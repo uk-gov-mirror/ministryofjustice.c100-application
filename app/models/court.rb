@@ -29,10 +29,14 @@ class Court
   def best_enquiries_email
     # There's no consistency to how courts list their email address descriptions,
     # so we try to find the most suitable email address, by looking at the `description`
-    # or the `explanation` for each of the emails, and if none found, use the first one
+    # or the `explanation` for each of the emails, or the actual email address,
+    # and if none is found, use the first entry.
 
     emails = retrieve_emails_from_api
-    best = best_match_for(emails, 'description') || best_match_for(emails, 'explanation') || emails.first
+    best = best_match_for(emails, 'description') ||
+           best_match_for(emails, 'explanation') ||
+           best_match_for(emails, 'address') ||
+           emails.first
 
     # We want this to raise a `KeyError` exception when no email is found
     best ||= {}
