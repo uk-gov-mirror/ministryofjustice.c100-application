@@ -1011,6 +1011,7 @@ en:
     error_summary:
       heading: There was a problem on the page
       text: ''
+    page_title_prefix: 'Error: '
     invalid_session:
       heading: Sorry, you'll have to start again
       <<: *START_FINISH

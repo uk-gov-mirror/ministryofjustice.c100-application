@@ -7,7 +7,7 @@ class ActionView::TestCase::TestController
   end
 end
 
-RSpec.describe ApplicationHelper do
+RSpec.describe ApplicationHelper, type: :helper do
   let(:record) { C100Application.new }
 
   describe '#step_form' do
@@ -63,14 +63,34 @@ RSpec.describe ApplicationHelper do
       end
     end
 
-    context 'when a form object is given' do
-      let(:form_object) { double('form object') }
+    context 'when a form object without errors is given' do
+      let(:form_object) { double('form object', errors: []) }
+
+      it 'returns nil' do
+        expect(helper.error_summary(form_object)).to be_nil
+      end
+    end
+
+    context 'when a form object with errors is given' do
+      let(:form_object) { double('form object', errors: [:blank]) }
       let(:summary) { double('error summary') }
+
+      let(:title) { helper.content_for(:page_title) }
+
+      before do
+        helper.title('A page')
+      end
 
       it 'delegates to GovukElementsErrorsHelper' do
         expect(GovukElementsErrorsHelper).to receive(:error_summary).with(form_object, anything, anything).and_return(summary)
 
         expect(helper.error_summary(form_object)).to eq(summary)
+      end
+
+      it 'prepends the page title with an error hint' do
+        expect(GovukElementsErrorsHelper).to receive(:error_summary)
+        helper.error_summary(form_object)
+        expect(title).to start_with('Error: A page')
       end
     end
   end
