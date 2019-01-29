@@ -1009,8 +1009,9 @@ en:
       present: Leave empty
       inclusion: Select an option
     error_summary:
-      heading: There was a problem on the page
+      heading: There is a problem on this page
       text: ''
+    page_title_prefix: 'Error: '
     invalid_session:
       heading: Sorry, you'll have to start again
       <<: *START_FINISH

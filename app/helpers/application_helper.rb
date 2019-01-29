@@ -26,12 +26,16 @@ module ApplicationHelper
   end
 
   def error_summary(form_object)
-    return if form_object.nil?
+    return unless GovukElementsErrorsHelper.errors_exist?(form_object)
+
+    content_for(:page_title, flush: true) do
+      content_for(:page_title).insert(0, t('errors.page_title_prefix'))
+    end
 
     GovukElementsErrorsHelper.error_summary(
       form_object,
-      translate('errors.error_summary.heading'),
-      translate('errors.error_summary.text')
+      t('errors.error_summary.heading'),
+      t('errors.error_summary.text')
     )
   end
 
