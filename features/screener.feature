@@ -52,7 +52,6 @@ Feature: Screener
     And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"
     And I should see a "Go back and try again" link to "/steps/screener/postcode"
 
-
   @unhappy_path
   Scenario: Not a parent
     Given I click the "Check now" link

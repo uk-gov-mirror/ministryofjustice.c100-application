@@ -57,3 +57,20 @@ end
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|
   sleep seconds.to_i
 end
+
+# Errors
+When(/^I should see "([^"]*)" in a "([^"]*)" element/) do |text, element|
+  page.find(".error-summary > #{element}").has_content? text
+end
+
+When(/^I should see "([^"]*)" in the form label/) do |text|
+  page.find("label > #error_message_steps_screener_postcode_form_children_postcodes").has_content? text
+end
+
+When(/^Page has title "([^"]*)"/) do |text|
+  page.has_title? text
+end
+
+When(/^"([^"]*)" has focus/) do |text|
+  page.evaluate_script("document.activeElement.id") == text
+end
