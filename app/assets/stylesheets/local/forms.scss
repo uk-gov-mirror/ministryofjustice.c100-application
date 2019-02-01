@@ -2,7 +2,7 @@ form {
   .app_heading {
       margin-bottom: 3rem;
   }
-  
+
   &.button_to {
     padding-bottom: 0;
 
@@ -108,10 +108,10 @@ label[for="steps_abduction_risk_details_form_risk_details"] {
 fieldset + .form-group {
   margin-top: 30px;
   margin-bottom: 15px;
-  
+
   @media (min-width: 641px) {
     margin-bottom: 30px;
-    
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -122,7 +122,15 @@ fieldset + .form-group {
   padding-bottom: 30px;
 
   .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 0;
+  }
+
+  .form-group + .form-group {
+    margin-top: 15px;
+  }
+
+  .form-group + button {
+    margin-top: 5px;
   }
 }
 
