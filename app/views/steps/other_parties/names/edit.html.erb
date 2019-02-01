@@ -15,11 +15,7 @@
 
       <%= render partial: 'steps/shared/new_name', locals: { names_form: f } %>
 
-      <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: ['button-add', 'link-button'] %>
-
-      <% if @existing_records.any? %>
-        <%= link_to t('.btn_remove'), steps_other_parties_names_path(@existing_records.last), method: :delete, class: 'link-button' %>
-      <% end %>
+      <%= f.button t('.btn_add_another'), type: :submit, value: :add_another_name, class: ['button-alternative'] %>
 
       <div class="xform-group form-submit">
         <%= f.continue_button %>

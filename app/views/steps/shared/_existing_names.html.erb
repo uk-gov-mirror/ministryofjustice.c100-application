@@ -11,4 +11,8 @@
   <% else %>
     <%= person.text_field :full_name %>
   <% end %>
+
+  <%= names_form.button t('.remove_name') + " " + legend.downcase, type: :submit,
+                        class: %w(button-remove link-button),
+                        name: :remove_name, value: person.object.id %>
 </fieldset>

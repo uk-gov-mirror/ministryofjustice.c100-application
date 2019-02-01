@@ -300,7 +300,7 @@ end
 RSpec.shared_examples 'a names CRUD step controller' do |form_class, decision_tree_class, resource_class|
   include_examples 'an intermediate step controller', form_class, decision_tree_class
 
-  describe '#destroy' do
+  describe 'remove a name' do
     context 'when no case exists in the session yet' do
       before do
         # Needed because some specs that include these examples stub current_c100_application,
@@ -309,7 +309,7 @@ RSpec.shared_examples 'a names CRUD step controller' do |form_class, decision_tr
       end
 
       it 'redirects to the invalid session error page' do
-        delete :destroy, params: {id: '123'}
+        put :update, params: {remove_name: '123'}
         expect(response).to redirect_to(invalid_session_errors_path)
       end
     end
@@ -322,9 +322,10 @@ RSpec.shared_examples 'a names CRUD step controller' do |form_class, decision_tr
         allow(controller).to receive(:current_c100_application).and_return(existing_case)
       end
 
-      it 'redirects to edit an empty resource' do
-        delete :destroy, params: {id: existing_resource.id}
+      it 'destroy the record and redirects to edit an empty resource' do
+        put :update, params: {remove_name: existing_resource.id}
         expect(response).to redirect_to(action: :edit, id: nil)
+        expect { existing_resource.reload }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
   end
