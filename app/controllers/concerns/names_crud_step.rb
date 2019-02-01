@@ -12,18 +12,22 @@ module NamesCrudStep
   end
 
   def update
+    if params.key?(:remove_name)
+      destroy(params[:remove_name]) && return
+    end
+
     update_and_advance(
       names_form_class,
       as: params.fetch(:button, :names_finished)
     )
   end
 
-  def destroy
-    current_record.destroy
+  private
+
+  def destroy(uuid)
+    @existing_records.destroy(uuid)
     redirect_to action: :edit, id: nil
   end
-
-  private
 
   def additional_permitted_params
     [names_attributes: [:id, :first_name, :last_name, :full_name]]
