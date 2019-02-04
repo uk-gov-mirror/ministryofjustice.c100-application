@@ -6,7 +6,7 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <%= step_form @form_object do |f| %>
+    <%= step_form @form_object, data: { 'disable-enter': 1 } do |f| %>
       <% @existing_records.each.with_index do |party, index| %>
         <%= f.fields_for :names_attributes, party, index: index do |c| %>
           <%= render partial: 'steps/shared/existing_names', locals: { names_form: f, person: c, legend: t('.record_index', index: index + 1) } %>
