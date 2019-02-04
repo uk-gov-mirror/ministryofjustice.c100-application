@@ -1,5 +1,6 @@
 class ErrorsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :check_c100_application_presence, only: [:application_screening, :application_completed]
 
   def invalid_session
     respond_with_status(:not_found)
