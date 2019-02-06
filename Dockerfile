@@ -1,4 +1,4 @@
-FROM ministryofjustice/ruby:2.5.1-webapp-onbuild
+FROM ministryofjustice/ruby:2.5.3-webapp-onbuild
 
 # So the PDF has nice fonts (free alternative to MS fonts)
 RUN apt-get update && apt-get install fonts-liberation
