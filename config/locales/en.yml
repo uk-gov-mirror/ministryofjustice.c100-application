@@ -1421,7 +1421,7 @@ en:
         previous_attempt_details: Give a short description
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
-        risk_details: Give a short description
+        risk_details: Briefly explain your concerns about abduction
         current_location: Where are the children now?
       #
       # begin - full names forms (soon to be deprecated)
