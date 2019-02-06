@@ -44,7 +44,8 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.i18n.fallbacks = true
+  # https://github.com/ruby-i18n/i18n/releases/tag/v1.1.0
+  config.i18n.fallbacks = [I18n.default_locale]
 
   config.active_support.deprecation = :notify
 
