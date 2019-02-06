@@ -21,10 +21,21 @@ details + form {
   .link-back {
     @include core-19;
     margin-right: 5px;
+    &:focus {
+      outline: 1px solid $link-active-colour;
+    }
   }
 
   & + .heading-large {
     margin-top: 0;
+  }
+}
+
+.link-back {
+  border-top: 1px solid transparent;
+  
+  &:focus {
+    border-top: 1px solid $focus-colour;
   }
 }
 
@@ -117,6 +128,7 @@ h2.notice {
 
 h1.gv-u-heading-xxlarge {
   font-size: 24px;
+
   @media (min-width: 641px) {
     font-size: 36px;
   }
@@ -141,6 +153,7 @@ h1.gv-u-heading-xxlarge {
 
 h2.gv-u-heading-large {
   font-size: 19px;
+
   @media (min-width: 641px) {
     font-size: 28px;
   }
@@ -149,6 +162,7 @@ h2.gv-u-heading-large {
 .start-page h2 {
   margin-top: 1.25em;
   margin-bottom: 0.55556em;
+
   @media (min-width: 641px) {
     font-size: 36px;
     line-height: 1.11111;
@@ -157,6 +171,7 @@ h2.gv-u-heading-large {
 
 h1.heading-start {
   font-size: 32px;
+
   @media (min-width: 641px) {
     font-size: 48px;
   }
@@ -172,16 +187,15 @@ h1.heading-start {
   line-height: 1.25;
   margin-top: 0.625em;
   margin-bottom: 0.3125em;
-  a.link-back + & {
-    margin-top: 0;
-  }
-}
-
-@media (min-width: 641px) {
-  .app__section_heading {
+  
+  @media (min-width: 641px) {
     font-size: 1.9rem;
     line-height: 1.31579;
     margin-top: 1.05263em;
+  }
+  
+  a.link-back + & {
+    margin-top: 0;
   }
 }
 
