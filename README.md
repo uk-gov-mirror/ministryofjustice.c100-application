@@ -15,10 +15,15 @@ password should be available from the MoJ Rattic server, in the Family Justice g
 This environment should be used for any test or demo purposes, user research, etc.  
 Do not use production for tests as this will have an impact on metrics and will trigger real emails
 
+There is a [deploy repo][deploy-repo] for this staging environment (or any other future environment).  
+It contains the k8s configuration files and also the required ENV variables.
+
 ## Getting Started
 
+* Copy `.env.example` to `.env` and replace with suitable values.  
+You don't need to configure Notify at this point.
+
 * `bundle install`
-* Copy `.env.example` to `.env` and replace with suitable values
 * `bundle exec rails db:setup`
 * `bundle exec rails db:migrate`
 * `bundle exec rails server`
@@ -28,7 +33,17 @@ Do not use production for tests as this will have an impact on metrics and will 
 * Copy `.env.test.example` to `.env.test` and replace with suitable values if you expect to run the tests
 * `RAILS_ENV=test bundle exec rails db:setup`
 * `RAILS_ENV=test bundle exec rails db:migrate`
-* `RAILS_ENV=test bundle exec rake`
+
+You can then run all the code linters and tests with:
+
+* `RAILS_ENV=test bundle exec rake`  
+or  
+* `RAILS_ENV=test bundle exec rake test:all_the_things`
+
+Or you can run specific tests as follows (refer to *lib/tasks/all_tests.rake* for the complete list):
+
+* `RAILS_ENV=test bundle exec rake spec`
+* `RAILS_ENV=test bundle exec rake brakeman`
 
 ## Cucumber features
 
@@ -79,5 +94,6 @@ To authenticate with ECR some ENV variables need to be set in the CircleCI proje
 More information about these variables can be found in the [Cloud Platforms documentation][cloud-docs].
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
+[deploy-repo]: https://github.com/ministryofjustice/c100-application-deploy
 [k8s-staging]: https://c100-application-staging.apps.cloud-platform-live-0.k8s.integration.dsd.io
 [cloud-docs]: https://ministryofjustice.github.io/cloud-platform-user-docs/02-deploying-an-app/004-use-circleci-to-upgrade-app
