@@ -9,6 +9,9 @@ namespace :test do
   end
 end
 
-if %w(development test).include? Rails.env
-  task(:default).prerequisites << task('test:all_the_things')
-end
+# The following is the default task to run if none specified, so:
+#   `bundle exec rake`
+# will be equivalent to:
+#   `bundle exec rake test:all_the_things`
+#
+task(:default).prerequisites.clear << task('test:all_the_things')
