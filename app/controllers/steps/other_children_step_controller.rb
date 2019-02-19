@@ -7,8 +7,7 @@ module Steps
     end
 
     def names_form_class
-      return OtherChildren::NamesSplitForm if split_names?
-      OtherChildren::NamesForm
+      OtherChildren::NamesSplitForm
     end
 
     def record_collection

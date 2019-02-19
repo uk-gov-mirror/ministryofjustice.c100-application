@@ -1,8 +1,4 @@
 <fieldset class="fieldset-compact">
-  <% if names_form.object.split_names? %>
-    <%= names_form.text_field :new_first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-    <%= names_form.text_field :new_last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-  <% else %>
-    <%= names_form.text_field :new_name %>
-  <% end %>
+  <%= names_form.text_field :new_first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
+  <%= names_form.text_field :new_last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
 </fieldset>

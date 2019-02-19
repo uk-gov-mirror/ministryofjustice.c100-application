@@ -7,7 +7,6 @@ en:
     previous_name_hint: &previous_name_hint "This should be the full legal name (including any middle names)"
     birthplace_hint: &birthplace_hint "For example, town or city"
     address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
-    name_instructions: &name_instructions "This should be the full legal name (including any middle names)"
     middle_names_hint: &middle_names_hint "Include all middle names here"
     order_current: &order_current "Is the order current?"
     order_current_error: &order_current_error "Answer if the order is current"
@@ -68,7 +67,6 @@ en:
 
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
-      full_name: Full name
       has_previous_name:
         <<: *YESNO
       previous_name: Enter their previous name
@@ -94,8 +92,6 @@ en:
 
     # This is a compilation of all possible errors shared between different parties
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
-      full_name:
-        blank: Enter the full name
       previous_name:
         blank: Enter the previous name
       dob:
@@ -1423,34 +1419,6 @@ en:
       steps_abduction_risk_details_form:
         risk_details: Briefly explain your concerns about abduction
         current_location: Where are the children now?
-      #
-      # begin - full names forms (soon to be deprecated)
-      #
-      steps_applicant_names_form:
-        new_name: Full name of applicant
-      steps_applicant_names_form[names_attributes]:
-        full_name: Full name of applicant
-      steps_respondent_names_form:
-        new_name: Full name of respondent
-      steps_respondent_names_form[names_attributes]:
-        full_name: Full name of respondent
-      steps_children_names_form:
-        new_name: Full name of child
-      steps_children_names_form[names_attributes]:
-        full_name: Full name of child
-      steps_other_children_names_form:
-        new_name: Full name of child
-      steps_other_children_names_form[names_attributes]:
-        full_name: Full name of child
-      steps_other_parties_names_form:
-        new_name: Full name of other person
-      steps_other_parties_names_form[names_attributes]:
-        full_name: Full name of other person
-      #
-      # end - full names forms (soon to be deprecated)
-      #
-      # begin - split names forms (c100 application v2)
-      #
       steps_applicant_names_split_form:
         <<: *NAMES_FORM_FIELDS
       steps_applicant_names_split_form[names_attributes]:
@@ -1573,8 +1541,6 @@ en:
       user:
         password: Must be at least 10 characters
         current_password: We need your current password to confirm your changes
-      steps_applicant_names_form:
-        new_name_html: *name_instructions
       steps_application_court_proceedings_form:
         proceedings_date: Add approximate date if unsure
         case_number: Leave blank if you don’t know
@@ -1614,8 +1580,6 @@ en:
       steps_applicant_contact_details_form:
         address: Enter your full address including postcode
         residence_history: Start with the most recent
-      steps_respondent_names_form:
-        new_name_html: *name_instructions
       steps_respondent_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
@@ -1624,9 +1588,6 @@ en:
         address: *address_hint
       steps_other_parties_contact_details_form:
         address: *address_hint
-      steps_children_names_form:
-        new_name_html: *name_instructions
-      # begin - split names form
       steps_applicant_names_split_form:
         new_first_name_html: *middle_names_hint
       steps_respondent_names_split_form:
@@ -1637,16 +1598,11 @@ en:
         new_first_name_html: *middle_names_hint
       steps_other_parties_names_split_form:
         new_first_name_html: *middle_names_hint
-      # end - slit names form
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
       steps_children_residence_form:
         person_ids_html: Select all that apply
-      steps_other_children_names_form:
-        new_name_html: *name_instructions
-      steps_other_parties_names_form:
-        new_name_html: *name_instructions
       steps_other_parties_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
