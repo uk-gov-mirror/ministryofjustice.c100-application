@@ -7,8 +7,7 @@ module Steps
     end
 
     def names_form_class
-      return Applicant::NamesSplitForm if split_names?
-      Applicant::NamesForm
+      Applicant::NamesSplitForm
     end
 
     def record_collection

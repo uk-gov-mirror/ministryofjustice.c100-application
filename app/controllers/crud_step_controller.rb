@@ -10,15 +10,6 @@ class CrudStepController < StepController
     raise 'implement in subclasses'
   end
 
-  # Until we've migrated all database records to the new first/last name
-  # structure, we must maintain backward-compatibility. Only c100 records
-  # greater than this version will be eligible for the new split format.
-  #
-  def split_names?
-    current_c100_application.version > 1
-  end
-  # :nocov:
-
   def current_record
     @_current_record ||= record_collection.find_or_initialize_by(id: params[:id])
   end

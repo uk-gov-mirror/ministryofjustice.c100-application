@@ -5,12 +5,8 @@
     <%= legend %>
   </legend>
 
-  <% if names_form.object.split_names? %>
-    <%= person.text_field :first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-    <%= person.text_field :last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-  <% else %>
-    <%= person.text_field :full_name %>
-  <% end %>
+  <%= person.text_field :first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
+  <%= person.text_field :last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
 
   <%= names_form.button t('.remove_name', legend: legend.downcase), type: :submit,
                         class: %w(button-remove link-button),

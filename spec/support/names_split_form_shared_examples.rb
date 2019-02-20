@@ -17,10 +17,6 @@ RSpec.shared_examples 'a names split CRUD form' do |form_class|
 
   subject { described_class.new(arguments) }
 
-  describe '#split_names?' do
-    it { expect(subject.split_names?).to eq(true) }
-  end
-
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }

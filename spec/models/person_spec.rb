@@ -23,11 +23,4 @@ RSpec.describe Person, type: :model do
       it { expect(subject.full_name).to eq('John Doe') }
     end
   end
-
-  describe '#full_name=' do
-    it 'assigns the value to the `last_name` attribute' do
-      subject.full_name = 'John Doe'
-      expect(subject.last_name).to eq('John Doe')
-    end
-  end
 end
