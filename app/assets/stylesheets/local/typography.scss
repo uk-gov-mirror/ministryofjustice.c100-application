@@ -33,7 +33,7 @@ details + form {
 
 .link-back {
   border-top: 1px solid transparent;
-  
+
   &:focus {
     border-top: 1px solid $focus-colour;
   }
@@ -187,13 +187,13 @@ h1.heading-start {
   line-height: 1.25;
   margin-top: 0.625em;
   margin-bottom: 0.3125em;
-  
+
   @media (min-width: 641px) {
     font-size: 1.9rem;
     line-height: 1.31579;
     margin-top: 1.05263em;
   }
-  
+
   a.link-back + & {
     margin-top: 0;
   }
