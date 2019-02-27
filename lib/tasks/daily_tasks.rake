@@ -6,6 +6,7 @@ task daily_tasks: :environment do
 
   Rake::Task['purge:applications'].invoke
   Rake::Task['purge:orphans'].invoke
+  Rake::Task['purge:email_submissions_audit'].invoke
 
   Rake::Task['draft_reminders:first_email'].invoke
   Rake::Task['draft_reminders:last_email'].invoke
@@ -34,6 +35,13 @@ namespace :purge do
     log "Purging orphan applications older than #{expire_after} days"
     purged = C100Application.not_eligible_orphans.purge!(expire_after.days.ago)
     log "Purged #{purged.size} orphan applications"
+  end
+
+  task email_submissions_audit: :environment do
+    expire_after = Rails.configuration.x.email_submissions_audit.expire_in_days
+    log "Purging email submissions audit older than #{expire_after} days"
+    purged = EmailSubmissionsAudit.purge!(expire_after.days.ago)
+    log "Purged #{purged.size} email submissions audit records"
   end
 end
 
