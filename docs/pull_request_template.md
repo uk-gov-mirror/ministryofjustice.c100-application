@@ -2,7 +2,6 @@
 ## What
 
 [Link to story](https://mojdigital.teamwork.com/index.cfm#/tasks/XXX)
-[Link to pivotal tracker story](https://www.pivotaltracker.com/n/projects/2311302/stories/xxxxx)
 
 Describe what you did and why.
 
