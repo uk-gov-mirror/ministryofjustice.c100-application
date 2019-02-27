@@ -62,4 +62,9 @@ class Application < Rails::Application
 
   # When a user is purged, any saved C100 applications belonging to them, are also purged.
   config.x.users.expire_in_days = 30
+
+  # Applicant confirmation email, and court email, are sent via Notify, but Notify has a
+  # very limited retention period. We maintain an audit (with no personal details) of the
+  # delivery result of these emails for diagnostic and debug purposes.
+  config.x.email_submissions_audit.expire_in_days = 90
 end

@@ -6,6 +6,10 @@ class EmailSubmissionsAudit < ApplicationRecord
   class << self
     require 'bcrypt'
 
+    def purge!(date)
+      where('completed_at <= :date', date: date).destroy_all
+    end
+
     # Note: reference is the email reference, and starts with prefix
     # `user` or `court`, followed by the application reference code.
     # Refer to `mailers/notify_submission_mailer.rb`
@@ -17,7 +21,7 @@ class EmailSubmissionsAudit < ApplicationRecord
     # :nocov:
     def find_records(reference, email = nil)
       EmailSubmissionsAudit.where(reference: reference).select do |record|
-        email.blank? || BCrypt::Password.new(record.to) == email.downcase
+        email.blank? || BCrypt::Password.new(record.to) == email
       end
     end
     # :nocov:
