@@ -2,6 +2,14 @@
 # on classes that match. Example: `rake mutant TaxTribs::ZendeskSender`
 #
 task :mutant => :environment do
+  # Do not run mutant on CI master branch.
+  # Mutant will only run on pull requests against modified files.
+  #
+  if ENV['CIRCLE_BRANCH'] == 'master'
+    puts "> CI master branch -- mutant will not run"
+    exit
+  end
+
   mutation_type = ARGV[1]
 
   vars = 'RAILS_ENV=test NOCOVERAGE=true'
