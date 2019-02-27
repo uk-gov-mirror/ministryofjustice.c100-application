@@ -13,7 +13,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :intermediary_help, inline: true do |fieldset|
+        f.radio_button_fieldset :intermediary_help, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES, panel_id: :intermediary_help_panel)
           fieldset.radio_input(GenericYesNo::NO)
           fieldset.revealing_panel(:intermediary_help_panel) do |panel|

@@ -9,7 +9,7 @@
     <p class="lede gv-u-text-lede"><%=t '.lead_text_html' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :address_confidentiality, inline: true, choices: GenericYesNo.values %>
+      <%= f.radio_button_fieldset :address_confidentiality, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true, choices: GenericYesNo.values %>
 
       <%= f.continue_button %>
     <% end %>

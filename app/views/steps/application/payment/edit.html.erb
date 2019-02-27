@@ -10,7 +10,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :payment_type do |fieldset|
+        f.radio_button_fieldset :payment_type, legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
           fieldset.radio_input(PaymentType::SELF_PAYMENT_CARD)
           fieldset.radio_input(PaymentType::SELF_PAYMENT_CHEQUE)
           fieldset.radio_input(PaymentType::HELP_WITH_FEES) { f.text_field :hwf_reference_number, class: 'narrow' }

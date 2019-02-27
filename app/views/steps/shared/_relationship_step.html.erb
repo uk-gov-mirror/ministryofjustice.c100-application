@@ -6,7 +6,7 @@
 
 <%= step_form form_object do |f| %>
   <%=
-    f.radio_button_fieldset :relation do |fieldset|
+    f.radio_button_fieldset :relation, { legend_options: { class: 'visually-hidden', text: t('.heading', person_name: form_object.record.person.full_name, child_name:  form_object.record.minor.full_name) } } do |fieldset|
       fieldset.radio_input Relation::MOTHER
       fieldset.radio_input Relation::FATHER
       fieldset.radio_input(Relation::OTHER) { f.text_field :relation_other_value }

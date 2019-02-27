@@ -1153,52 +1153,18 @@ en:
 
   helpers:
     fieldset:
-      steps_shared_relationship_form:
-        relation_html: ""
-      steps_application_previous_proceedings_form:
-        children_previous_proceedings_html: ""
-      steps_application_urgent_hearing_form:
-        urgent_hearing_html: ""
       steps_application_urgent_hearing_details_form:
         urgent_hearing_short_notice_html: Do you need a hearing within the next 48 hours?
-      steps_application_without_notice_form:
-        without_notice_html: ""
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_application_litigation_capacity_form:
-        reduced_litigation_capacity_html: ""
-      steps_application_special_assistance_form:
-        special_assistance_html: ""
-      steps_application_special_arrangements_form:
-        special_arrangements_html: ""
-      steps_application_language_form:
-        language_help_html: ""
-      steps_application_intermediary_form:
-        intermediary_help_html: ""
-      steps_application_declaration_form:
-        declaration_made_html: ""
-      steps_miam_consent_order_form:
-        consent_order_html: ""
-      steps_miam_child_protection_cases_form:
-        child_protection_cases_html: ""
-      steps_miam_acknowledgement_form:
-        miam_acknowledgement_html: ""
-      steps_miam_attended_form:
-        miam_attended_html: ""
-      steps_miam_exemption_claim_form:
-        miam_exemption_claim_html: ""
-      steps_miam_certification_form:
-        miam_certification_html: ""
       steps_miam_exemptions_domestic_form:
         domestic_exemptions_html: "Do you have any of the following evidence of domestic violence or abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_protection_form:
         protection_exemptions_html: "Do any of the following apply?"
-        exemptions_group_html: ""
       steps_miam_exemptions_urgency_form:
         urgency_exemptions_html: "Do any of the following apply?"
-        exemptions_group_html: ""
       steps_miam_exemptions_adr_form:
         adr_exemptions_html: "Do any of the following apply?"
         exemptions_group_html: ""
@@ -1209,40 +1175,19 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_petition_protection_form:
-        protection_orders_html: ""
       steps_safety_questions_address_confidentiality_form:
         address_confidentiality_html: "Do you want to keep your contact details private from the other people named in the application (the respondents)?"
-      steps_safety_questions_risk_of_abduction_form:
-        risk_of_abduction_html: ""
-      steps_safety_questions_substance_abuse_form:
-        substance_abuse_html: ""
-      steps_safety_questions_children_abuse_form:
-        children_abuse_html: ""
-      steps_safety_questions_domestic_abuse_form:
-        domestic_abuse_html: ""
-      steps_safety_questions_other_abuse_form:
-        other_abuse_html: ""
-      steps_abduction_children_have_passport_form:
-        children_have_passport_html: ""
       steps_abduction_passport_details_form:
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_international_form:
-        passport_office_notified_html: ""
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
-      steps_abduction_previous_attempt_form:
-        previous_attempt_html: ""
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved_html: "Were the police, private investigators or any other organisation involved?"
-      steps_abuse_concerns_question_form:
-        answer_html: ""
       steps_abuse_concerns_contact_form:
         concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
         concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
-      steps_court_orders_has_orders_form:
-        has_court_orders_html: ""
       steps_court_orders_details_form:
         <<: *COURT_ORDER_TYPES
         non_molestation_is_current: *order_current
@@ -1263,26 +1208,17 @@ en:
         alternative_lawyer_negotiation: Have you tried lawyer negotiation?
       steps_alternatives_collaborative_law_form:
         alternative_collaborative_law: Have you tried collaborative law?
-      steps_alternatives_court_form:
-        court_acknowledgement_html: ""
       steps_applicant_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
       steps_applicant_contact_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
-      steps_applicant_has_solicitor_form:
-        has_solicitor_html: ""
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
       steps_respondent_contact_details_form:
         residence_requirement_met: Have they lived at this address for more than 5 years?
-        address_unknown_html: ""
-        mobile_phone_unknown_html: ""
-        email_unknown_html: ""
-      steps_respondent_has_other_parties_form:
-        has_other_parties_html: ""
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1294,8 +1230,6 @@ en:
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to social services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
-      steps_children_has_other_children_form:
-        has_other_children_html: ""
       steps_other_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1303,31 +1237,6 @@ en:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
-      steps_other_parties_contact_details_form:
-        address_unknown_html: ""
-      steps_international_resident_form:
-        international_resident_html: ""
-      steps_international_jurisdiction_form:
-        international_jurisdiction_html: ""
-      steps_international_request_form:
-        international_request_html: ""
-      steps_application_payment_form:
-        payment_type_html: ""
-      steps_application_submission_form:
-        submission_type_html: ""
-
-      ### SCREENER ###
-      #
-      steps_screener_parent_form:
-        parent_html: ""
-      steps_screener_over18_form:
-        over18_html: ""
-      steps_screener_legal_representation_form:
-        legal_representation_html: ""
-      steps_screener_written_agreement_form:
-        written_agreement_html: ""
-      steps_screener_email_consent_form:
-        email_consent_html: ""
 
     label:
       steps_shared_relationship_form:
@@ -1471,7 +1380,7 @@ en:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
       steps_safety_questions_substance_abuse_details_form:
-        substance_abuse_details:
+        substance_abuse_details: Substance abuse details
       steps_abuse_concerns_details_form:
         behaviour_description: Briefly describe what happened and who was involved, if you feel able to
         behaviour_start: When did this behaviour start?
