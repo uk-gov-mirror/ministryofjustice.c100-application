@@ -59,7 +59,7 @@ jobs:
           name: run tests
           command: bundle exec rake test:all_the_things master
 
-  build:
+  build_staging:
     <<: *cloud_container
     steps:
       - checkout
@@ -92,10 +92,8 @@ jobs:
             docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
             docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:latest"
-              docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:latest"
-            fi
+            docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:staging.latest"
+            docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:staging.latest"
 
   deploy_staging:
     <<: *cloud_container
@@ -122,6 +120,52 @@ jobs:
                     deployment/c100-application-deployment-staging \
                     kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
 
+  tag_production:
+    <<: *cloud_container
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: promote staging image to production
+          command: |
+            login="$(aws ecr get-login --region eu-west-1 --no-include-email)"
+            ${login}
+
+            docker pull "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+            docker tag "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" \
+                       "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:production.latest"
+
+            docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:production.latest"
+
+  deploy_production:
+    <<: *cloud_container
+    steps:
+      - checkout
+
+      - run:
+          name: kubectl use context
+          command: |
+            setup-kube-auth
+            kubectl config use-context production
+
+      - deploy:
+          name: rolling update image to production
+          command: |
+            export BUILD_DATE=$(date -Is) >> $BASH_ENV
+            source $BASH_ENV
+
+            kubectl set image -n c100-application-production \
+                    deployment/c100-application-deployment-production \
+                    c100-application-web-production="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+            kubectl annotate -n c100-application-production \
+                    deployment/c100-application-deployment-production \
+                    kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
+
 
 workflows:
   version: 2
@@ -129,7 +173,7 @@ workflows:
   test-build-deploy:
     jobs:
       - test
-      - build:
+      - build_staging:
           requires:
             - test
           filters:
@@ -137,7 +181,14 @@ workflows:
               only: master
       - deploy_staging:
           requires:
-            - build
-          filters:
-            branches:
-              only: master
+            - build_staging
+      - approve_production:
+          type: approval
+          requires:
+            - deploy_staging
+      - tag_production:
+          requires:
+            - approve_production
+      - deploy_production:
+          requires:
+            - tag_production
