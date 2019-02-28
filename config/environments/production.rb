@@ -33,16 +33,6 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
-    address: ENV['SMTP_HOST'],
-    domain:  ENV['SMTP_DOMAIN'],
-    port: ENV['SMTP_PORT'],
-    authentication: 'login',
-    enable_starttls_auto: true
-  }
 
   # https://github.com/ruby-i18n/i18n/releases/tag/v1.1.0
   config.i18n.fallbacks = [I18n.default_locale]
