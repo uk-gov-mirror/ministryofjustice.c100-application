@@ -4,12 +4,11 @@
   <div class="column-two-thirds">
     <div class="grid_content_header govuk-box-highlight">
       <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your application has been submitted</h1>
-      <p>Your reference code is:<br/><strong><%= current_c100_application.reference_code %></strong></p>
+      <p class="display-block util_mt-none util_mb-none">Your reference code is:</p>
+      <h3 class="heading-medium util_mt-none util_mb-medium"><%= current_c100_application.reference_code %></h3>
     </div>
 
-    <br/>
-
-    <p class="lede gv-u-text-lede">
+    <p class="lede gv-u-text-lede util_mt-large">
       Your application has been sent to <%= @court.name %>.
 
       <% if current_c100_application.receipt_email? %>

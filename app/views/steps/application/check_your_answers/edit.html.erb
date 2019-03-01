@@ -8,15 +8,14 @@
 
 <%= render @presenter.sections %>
 
-<br/>
-
+<div class="util_mt-large"></div>
 <%= step_form @form_object do |f| %>
   <div class="declaration-box util_mt-medium">
     <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge util_mb-medium"><%=t '.declaration_heading' %></h1>
 
     <p class="lede gv-u-text-lede"><%= t '.declaration_lead_text' %></p>
 
-    <div role="note" aria-label="Warning" class="notice gv-c-notice">
+    <div role="note" aria-label="Warning" class="notice gv-c-notice util_mb-medium">
       <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
         <span class="visually-hidden gv-c-notice__icon-fallback-text"><%= t '.warning_title' %></span>
       </i>
@@ -25,13 +24,10 @@
       </strong>
     </div>
 
-    <br/>
-
     <%= f.single_check_box :declaration_made %>
   </div>
 
-  <br/>
-  <div class="panel panel-border-narrow">
+  <div class="panel panel-border-narrow util_mt-medium">
     <p><%=t @presenter.before_submit_warning %></p>
   </div>
 
