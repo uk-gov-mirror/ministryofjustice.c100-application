@@ -1,17 +1,18 @@
 <% title t('.page_title') %>
+<% heading = t(".heading", count: current_c100_application.applicants.count) %>
 
 <div class="grid-row">
   <div class="column-two-thirds">
     <%= step_header %>
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      <%=t '.heading', count: current_c100_application.applicants.count %>
+      <%= heading %>
     </h1>
 
     <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :has_solicitor, inline: true, legend_options: { class: 'visually-hidden', text: t('.heading', count: current_c100_application.applicants.count ) }, choices: GenericYesNo.values %>
+      <%= f.radio_button_fieldset :has_solicitor, inline: true, legend_options: { class: 'visually-hidden', text: heading }, choices: GenericYesNo.values %>
       <%= f.continue_button %>
     <% end %>
   </div>

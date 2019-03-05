@@ -1,10 +1,11 @@
 <% title t(".page_title.#{@form_object.i18n_key}") %>
+<% heading = t(".heading.#{@form_object.i18n_key}") %>
 
 <div class="grid-row">
   <div class="column-two-thirds">
     <%= step_header %>
     <p class="app__section_heading">Safety concerns</p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t ".heading.#{@form_object.i18n_key}" %></h1>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%= heading %></h1>
 
     <div class="govuk-govspeak gv-s-prose">
       <p><%=t ".lead_text.#{@form_object.i18n_key}_html" %></p>
@@ -14,7 +15,10 @@
       <%= f.hidden_field :subject %>
       <%= f.hidden_field :kind %>
 
-      <%= f.radio_button_fieldset :answer, inline: true, choices: GenericYesNo.values, legend_options: { class: 'visually-hidden', text: t(".heading.#{@form_object.i18n_key}") } %>
+      <%= f.radio_button_fieldset :answer, 
+        inline: true, 
+        choices: GenericYesNo.values, 
+        legend_options: { class: 'visually-hidden', text: heading } %>
 
       <%= f.continue_button %>
     <% end %>
