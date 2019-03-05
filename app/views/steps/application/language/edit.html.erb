@@ -11,7 +11,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :language_help, inline: true do |fieldset|
+        f.radio_button_fieldset :language_help, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES, panel_id: :language_help_panel)
           fieldset.radio_input(GenericYesNo::NO)
           fieldset.revealing_panel(:language_help_panel) do |panel|

@@ -7,7 +7,7 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :previous_attempt, inline: true, choices: GenericYesNo.values %>
+      <%= f.radio_button_fieldset :previous_attempt, inline: true, choices: GenericYesNo.values, legend_options: { class: 'visually-hidden', text: t('.heading') } %>
 
       <%= f.continue_button %>
     <% end %>

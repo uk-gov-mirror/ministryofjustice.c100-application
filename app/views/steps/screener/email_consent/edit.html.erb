@@ -11,7 +11,7 @@
     </div>
 
     <%= step_form @form_object do |f| %>
-    <%= f.radio_button_fieldset :email_consent, inline: true do |fieldset|
+    <%= f.radio_button_fieldset :email_consent, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES, panel_id: :email_address_panel)
           fieldset.radio_input(GenericYesNo::NO)
           fieldset.revealing_panel(:email_address_panel) do |panel|

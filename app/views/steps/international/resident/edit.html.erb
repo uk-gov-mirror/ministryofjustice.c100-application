@@ -12,7 +12,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.radio_button_fieldset :international_resident, inline: true do |fieldset|
+        f.radio_button_fieldset :international_resident, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
           fieldset.radio_input(GenericYesNo::YES, panel_id: :international_resident_panel)
           fieldset.radio_input(GenericYesNo::NO)
         end
