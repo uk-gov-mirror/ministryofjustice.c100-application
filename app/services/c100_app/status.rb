@@ -1,11 +1,8 @@
 module C100App
   class Status
-    UNKNOWN_VERSION ||= 'unknown'.freeze
-
     def result
       {
         service_status: service_status,
-        version: version,
         dependencies: {
           database_status: database_status,
           courtfinder_status: courtfinder_status
@@ -18,11 +15,6 @@ module C100App
     end
 
     private
-
-    # When building the docker image, this and other bits of info are set.
-    def version
-      ENV['APP_GIT_COMMIT'] || UNKNOWN_VERSION
-    end
 
     def database_status
       # This will only catch high-level failures.  PG::ConnectionBad gets
