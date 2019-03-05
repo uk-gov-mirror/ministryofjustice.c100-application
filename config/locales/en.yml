@@ -246,7 +246,6 @@ en:
         edit:
           page_title: Which orders apply to the child
           heading: "Which of the decisions you’re asking the court to resolve relate to %{name}?"
-          info_html: Select all that apply
       residence:
         edit:
           page_title: Child residence
@@ -1175,8 +1174,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_safety_questions_address_confidentiality_form:
-        address_confidentiality_html: "Do you want to keep your contact details private from the other people named in the application (the respondents)?"
       steps_abduction_passport_details_form:
         children_multiple_passports_html: "Do the children have more than one passport?"
         passport_possesion_html: "Who is in possession of the children’s passports?"
@@ -1222,11 +1219,6 @@ en:
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
-      steps_children_orders_form:
-        orders_html: ""
-      steps_children_residence_form:
-        person_ids_html: ""
-        other_html: ""
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to social services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
@@ -1512,6 +1504,8 @@ en:
           A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
       steps_children_residence_form:
         person_ids_html: Select all that apply
+      steps_children_orders_form:
+        orders_html: Select all that apply
       steps_other_parties_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
