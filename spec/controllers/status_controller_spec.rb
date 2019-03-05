@@ -1,26 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe StatusController, type: :controller do
-  let(:status) { instance_double(C100App::Status, result: result, success?: success) }
-
-  let(:result) {
-    {
-      service_status: 'ok',
-      version: 'ABC123',
-      dependencies: {
-        database_status: 'ok',
-        courtfinder_status: 'ok'
-      }
-    }.to_json
-  }
-
-  before do
-    allow(C100App::Status).to receive(:new).and_return(status)
-  end
-
   # This is very-happy-path to ensure the controller responds.  The bulk of the
   # status is tested in spec/services/status_spec.rb.
   describe '#index' do
+    let(:status) { instance_double(C100App::Status, result: result, success?: success) }
+
+    let(:result) {
+      {
+        service_status: 'ok',
+        dependencies: {
+          database_status: 'ok',
+          courtfinder_status: 'ok'
+        }
+      }.to_json
+    }
+
+    before do
+      allow(C100App::Status).to receive(:new).and_return(status)
+    end
+
     context 'for a healthy service' do
       let(:success) { true }
 
@@ -47,6 +46,20 @@ RSpec.describe StatusController, type: :controller do
         get :index, format: :json
         expect(response.body).to eq(result)
       end
+    end
+  end
+
+  describe '#ping' do
+    it 'has a 200 response code' do
+      get :ping, format: :json
+      expect(response.status).to eq(200)
+    end
+
+    it 'returns the expected payload' do
+      get :ping, format: :json
+      expect(
+        JSON.parse(response.body).keys
+      ).to eq(%w(build_date build_tag commit_id))
     end
   end
 end

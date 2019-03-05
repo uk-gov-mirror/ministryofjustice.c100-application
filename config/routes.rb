@@ -244,8 +244,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :status, only: [:index]
-
   resource :callbacks, only: [] do
     post :notify
   end
@@ -277,6 +275,13 @@ Rails.application.routes.draw do
 
   # This route is used in court emails to point users to the survey
   get :survey, to: redirect(Rails.configuration.surveys[:success], status: 302)
+
+  # Health and ping endpoints (`status` and `health` are alias)
+  defaults format: :json do
+    get :status, to: 'status#index'
+    get :health, to: 'status#index'
+    get :ping,   to: 'status#ping'
+  end
 
   # catch-all route
   # :nocov:
