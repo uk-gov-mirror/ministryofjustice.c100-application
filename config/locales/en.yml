@@ -205,7 +205,7 @@ en:
           body_info: Include as much detail as you can. This will help us process your application more quickly.
       has_other_parties:
         edit:
-          page_title: Other parties required
+          page_title: Other parties who should know about application
           heading: Is there anyone else who should know about your application?
           info_html: |
             <p>For example, you should tell everyone who:</p>
@@ -236,11 +236,11 @@ en:
           heading: "Provide details for %{name}"
       additional_details:
         edit:
-          page_title: Further information
+          page_title: Further information about the children
           heading: Further information
       has_other_children:
         edit:
-          page_title: Other children required
+          page_title: Other children
           heading: Do you or the other people in this application (the respondents) have other children (separately or together) who aren’t part of this application?
       orders:
         edit:
@@ -255,13 +255,13 @@ en:
     other_children:
       names:
         edit:
-          page_title: Other children
+          page_title: Other children's names
           heading: Enter the other child’s name
           record_index: "Child %{index}"
           btn_add_another: Add another child
       personal_details:
         edit:
-          page_title: Child personal details
+          page_title: Other child personal details
           heading: "Provide details for %{name}"
     other_parties:
       names:
@@ -293,7 +293,7 @@ en:
     abuse_concerns:
       start:
         show:
-          page_title: Concerns further questions
+          page_title: Safety concerns start
           section: Safety concerns
           heading: You and the children
           you_told_us_html: |
@@ -423,7 +423,7 @@ en:
               other: Other concerns about the children
       contact:
         edit:
-          page_title: Concerns contact
+          page_title: Safety concerns contact with the other people
           section: Safety concerns
           heading: Contact between the children and the other people in this application
           lead_text: The court needs to know if you will allow the children to have contact with the other people in this application while you wait for a court date.
@@ -620,7 +620,7 @@ en:
     abduction:
       children_have_passport:
         edit:
-          page_title: Children have passport
+          page_title: Do the children have a passport?
           section: Safety concerns
           heading: Do any of the children have a passport?
       international:
@@ -683,7 +683,7 @@ en:
           heading: Details of without notice hearing
       litigation_capacity:
         edit:
-          page_title: Litigation capacity
+          page_title: Factors affecting taking part in court proceedings
           section: *attending_court
           heading: Are there any factors that may affect any adult in this application taking part in the court proceedings?
           lead_text: For example, they may lack the capacity to conduct legal proceedings, or suffer from a mental or physical impairment or other health problem
