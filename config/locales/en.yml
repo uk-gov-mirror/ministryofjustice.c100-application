@@ -74,7 +74,7 @@ en:
         female: Female
         male: Male
         unspecified: Unspecified
-      dob_unknown: *dont_know
+      dob_unknown: I don't know their date of birth
       age_estimate: Approximate age or year born
       birthplace: Place of birth
 
