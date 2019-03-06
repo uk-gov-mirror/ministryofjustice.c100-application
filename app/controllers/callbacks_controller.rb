@@ -1,14 +1,7 @@
-class CallbacksController < ActionController::Base
-  # Note: this controller does not inherit from `ApplicationController` as
-  # we don't require here the same level of security and error handling.
+class CallbacksController < BareApplicationController
   before_action :authenticate
 
   respond_to :json
-
-  rescue_from StandardError do |exception|
-    Raven.capture_exception(exception)
-    head 500
-  end
 
   def notify
     C100App::NotifyCallback.new(payload).process!

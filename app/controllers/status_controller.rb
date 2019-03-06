@@ -1,4 +1,4 @@
-class StatusController < ActionController::Base
+class StatusController < BareApplicationController
   respond_to :json
 
   BUILD_ARGS = {
