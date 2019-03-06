@@ -3,8 +3,6 @@ class BareApplicationController < ActionController::Base
   # any special session/cookies handling nor error handling.
   # For any other controller, use `ApplicationController` instead.
 
-  protect_from_forgery with: :exception, prepend: true
-
   rescue_from StandardError do |exception|
     Raven.capture_exception(exception)
     head 500
