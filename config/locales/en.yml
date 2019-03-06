@@ -205,7 +205,7 @@ en:
           body_info: Include as much detail as you can. This will help us process your application more quickly.
       has_other_parties:
         edit:
-          page_title: Other parties who should know about application
+          page_title: Other parties who should know about the application
           heading: Is there anyone else who should know about your application?
           info_html: |
             <p>For example, you should tell everyone who:</p>
