@@ -10,6 +10,11 @@ RSpec.describe CallbacksController, type: :controller do
     let(:cb_double) { double.as_null_object }
 
     context 'unauthorized requests' do
+      it 'does not call forgery protection' do
+        expect(controller).not_to receive(:verify_authenticity_token)
+        post :notify, body: payload
+      end
+
       it 'returns 401 Unauthorized' do
         post :notify, body: payload
         expect(response.status).to eq(401)
@@ -25,6 +30,11 @@ RSpec.describe CallbacksController, type: :controller do
       context 'for a successful callback' do
         before do
           request.content_type = 'application/json'
+        end
+
+        it 'does not call forgery protection' do
+          expect(controller).not_to receive(:verify_authenticity_token)
+          post :notify, body: payload
         end
 
         it 'returns 200 OK' do
