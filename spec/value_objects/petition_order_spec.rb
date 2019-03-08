@@ -38,6 +38,18 @@ RSpec.describe PetitionOrder do
     end
   end
 
+  describe 'CHILD_ARRANGEMENTS_HOME' do
+    it 'returns the expected values' do
+      expect(described_class::CHILD_ARRANGEMENTS_HOME.to_s).to eq('child_arrangements_home')
+    end
+  end
+
+  describe 'CHILD_ARRANGEMENTS_TIME' do
+    it 'returns the expected values' do
+      expect(described_class::CHILD_ARRANGEMENTS_TIME.to_s).to eq('child_arrangements_time')
+    end
+  end
+
   describe 'PROHIBITED_STEPS' do
     it 'returns the expected values' do
       expect(described_class::PROHIBITED_STEPS.map(&:to_s)).to eq(%w(

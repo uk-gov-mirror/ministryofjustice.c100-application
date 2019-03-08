@@ -9,10 +9,10 @@ en:
     address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
     middle_names_hint: &middle_names_hint "Include all middle names here"
     order_current: &order_current "Is the order current?"
-    order_current_error: &order_current_error "Answer if the order is current"
     order_length: &order_length "How long was the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
     provide_details: &provide_details "Provide details"
+    select_all_that_apply: &select_all_that_apply "Select all that apply"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these‘"
     account_purge_info: &account_purge_info "If you have not signed in for %{expire_in_days} days we delete your account for security reasons."
@@ -439,7 +439,7 @@ en:
           page_title: Orders details
           section: Safety concerns
           heading: What orders have been made?
-          lead_text: Select all that apply
+          lead_text: *select_all_that_apply
     safety_questions:
       risk_of_abduction:
         edit:
@@ -574,7 +574,6 @@ en:
         edit:
           page_title: What are you asking the court to decide?
           heading: What are you asking the court to decide about the children involved?
-          lead_text: Select all that apply
       other_issue:
         edit:
           page_title: Provide details of the issue
@@ -1161,14 +1160,14 @@ en:
         domestic_exemptions_html: "Do you have any of the following evidence of domestic violence or abuse?"
         exemptions_group_html: ""
       steps_miam_exemptions_protection_form:
-        protection_exemptions_html: "Do any of the following apply?"
+        protection_exemptions_html: "Do you confirm any of the following child protection concerns?"
       steps_miam_exemptions_urgency_form:
-        urgency_exemptions_html: "Do any of the following apply?"
+        urgency_exemptions_html: "Do you confirm any of the following urgency reasons?"
       steps_miam_exemptions_adr_form:
-        adr_exemptions_html: "Do any of the following apply?"
+        adr_exemptions_html: "Do you confirm any of the following reasons for not attending a MIAM?"
         exemptions_group_html: ""
       steps_miam_exemptions_misc_form:
-        misc_exemptions_html: "Do any of the following apply?"
+        misc_exemptions_html: "Do you have any other valid reasons for not attending a MIAM?"
         exemptions_group_html: ""
       steps_petition_orders_form:
         orders_html: ""
@@ -1466,14 +1465,15 @@ en:
       steps_application_submission_form:
         receipt_email: We will send an copy of your application to this address
       steps_abduction_passport_details_form:
-        passport_possesion: Select all that apply
+        passport_possesion: *select_all_that_apply
       steps_abduction_risk_details_form:
         current_location: If they're outside England or Wales, include what country they're in and how long they've been there. You don't need to include any addresses.
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Including in the UK or abroad
       steps_petition_orders_form:
-        orders_prohibited_steps: Select all that apply
-        orders_specific_issues: Select all that apply
+        orders: *select_all_that_apply
+        orders_prohibited_steps: *select_all_that_apply
+        orders_specific_issues: *select_all_that_apply
       steps_applicant_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
@@ -1503,9 +1503,9 @@ en:
         children_protection_plan_html: |
           A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
       steps_children_residence_form:
-        person_ids_html: Select all that apply
+        person_ids_html: *select_all_that_apply
       steps_children_orders_form:
-        orders_html: Select all that apply
+        orders_html: *select_all_that_apply
       steps_other_parties_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
