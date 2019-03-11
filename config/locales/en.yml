@@ -14,10 +14,7 @@ en:
     provide_details: &provide_details "Provide details"
     select_all_that_apply: &select_all_that_apply "Select all that apply"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
-    blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these‘"
     account_purge_info: &account_purge_info "If you have not signed in for %{expire_in_days} days we delete your account for security reasons."
-    invalid_email_error: &invalid_email_error "Enter a valid email address"
-    blank_email_error: &blank_email_error "Enter an email address"
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
       attending_court: &attending_court "Attending court"
@@ -90,34 +87,12 @@ en:
       residence_requirement_met:
         <<: *YESNO
 
-    # This is a compilation of all possible errors shared between different parties
-    PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
-      previous_name:
-        blank: Enter the previous name
-      dob:
-        blank: Enter the date of birth
-        invalid: Date of birth is not valid
-        future: Date of birth is in the future
-      birthplace:
-        blank: Enter the place of birth
-      address:
-        blank: Enter the address
-      mobile_phone:
-        blank: Enter the mobile phone
-
     # Fields shared in all the split first/last name forms
     NAMES_FORM_FIELDS: &NAMES_FORM_FIELDS
       first_name: First name(s)
       new_first_name: First name(s)
       last_name: Last name(s)
       new_last_name: Last name(s)
-
-    # Errors shared in all the split first/last name forms
-    NAMES_FORM_ERRORS: &NAMES_FORM_ERRORS
-      new_first_name:
-        blank: Enter the first name
-      new_last_name:
-        blank: Enter the last name
 
     # This is common abuse concerns `lead_text` copy, for applicant and for children.
     # The specific copy is in their corresponding sections.
@@ -971,38 +946,8 @@ en:
       change_password: Change password
       your_drafts: Your drafts
 
+  # Error pages (`errors_controller`)
   errors:
-    attributes:
-      base:
-        blank_orders: You must select at least one option
-      email:
-        invalid: *invalid_email_error
-        blank: *blank_email_error
-      email_address:
-        invalid: *invalid_email_error
-        blank: *blank_email_error
-      receipt_email:
-        invalid: *invalid_email_error
-        blank: *blank_email_error
-      children_postcodes:
-        invalid: Enter a valid full postcode, with or without a space
-        blank: Enter a full postcode, with or without a space
-      miam_certification_date:
-        blank: Enter the certification date
-        invalid: Certification date is not valid
-        future: Certification date is in the future
-      hwf_reference_number:
-        invalid: "Enter a valid 'Help with fees' reference number"
-        blank: "Enter your 'Help with fees' reference number"
-    format: "%{message}"
-    messages:
-      blank: Enter an answer
-      present: Leave empty
-      inclusion: Select an option
-    error_summary:
-      heading: There is a problem on this page
-      text: ''
-    page_title_prefix: 'Error: '
     invalid_session:
       heading: Sorry, you'll have to start again
       <<: *START_FINISH
@@ -1044,110 +989,6 @@ en:
         <p>If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" rel="external" target="_blank">download and
         complete a C100 paper application form</a>, print it and send it by post.</p>
       <<: *START_FINISH
-
-  activemodel:
-    errors:
-      models:
-        steps/applicant/personal_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/applicant/contact_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/respondent/personal_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/respondent/contact_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/children/personal_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_children/personal_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_parties/personal_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_parties/contact_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/solicitor/contact_details_form:
-          attributes:
-            <<: *PERSONAL_DETAILS_ERRORS
-        steps/applicant/names_split_form:
-          attributes:
-            <<: *NAMES_FORM_ERRORS
-        steps/respondent/names_split_form:
-          attributes:
-            <<: *NAMES_FORM_ERRORS
-        steps/children/names_split_form:
-          attributes:
-            <<: *NAMES_FORM_ERRORS
-        steps/other_children/names_split_form:
-          attributes:
-            <<: *NAMES_FORM_ERRORS
-        steps/other_parties/names_split_form:
-          attributes:
-            <<: *NAMES_FORM_ERRORS
-        steps/children/residence_form:
-          attributes:
-            person_ids:
-              blank: You must select at least one person
-        steps/miam/acknowledgement_form:
-          attributes:
-            miam_acknowledgement:
-              blank: Confirm you understand
-        steps/alternatives/court_form:
-          attributes:
-            court_acknowledgement:
-              blank: Confirm you understand
-        steps/miam_exemptions/domestic_form:
-          attributes:
-            domestic_none:
-              blank: *blank_exemptions_error
-        steps/miam_exemptions/protection_form:
-          attributes:
-            protection_none:
-              blank: *blank_exemptions_error
-        steps/miam_exemptions/urgency_form:
-          attributes:
-            urgency_none:
-              blank: *blank_exemptions_error
-        steps/miam_exemptions/adr_form:
-          attributes:
-            adr_none:
-              blank: *blank_exemptions_error
-        steps/miam_exemptions/misc_form:
-          attributes:
-            misc_none:
-              blank: *blank_exemptions_error
-        steps/application/declaration_form:
-          attributes:
-            declaration_made:
-              blank: You must accept the declaration
-
-  activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            email:
-              blank: Enter your email address
-              invalid: Enter a valid email address
-              taken: You already have a draft saved with this email address. Try signing in.
-            password:
-              blank: Enter a password
-              too_short: Your password must be at least %{count} characters
-              too_long: Your password must be no longer than %{count} characters
-            password_confirmation:
-              blank: Enter the password again
-              too_short: Your password must be at least %{count} characters
-              too_long: Your password must be no longer than %{count} characters
-              confirmation: The password confirmation doesn't match
-            current_password:
-              blank: Enter your current password
-              invalid: The password is not valid
 
   helpers:
     fieldset:
