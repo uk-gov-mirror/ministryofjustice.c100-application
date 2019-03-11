@@ -1,8 +1,8 @@
 class PetitionOrder < ValueObject
   VALUES = [
     CHILD_ARRANGEMENTS = [
-      new(:child_arrangements_home),
-      new(:child_arrangements_time),
+      CHILD_ARRANGEMENTS_HOME = new(:child_arrangements_home),
+      CHILD_ARRANGEMENTS_TIME = new(:child_arrangements_time),
     ].freeze,
 
     GROUP_PROHIBITED_STEPS = new(:group_prohibited_steps),
