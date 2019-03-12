@@ -1022,6 +1022,8 @@ en:
         passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved_html: "Were the police, private investigators or any other organisation involved?"
+      steps_safety_questions_address_confidentiality_form:
+        address_confidentiality_html: "Do you want to keep your contact details private from the other people named in the application (the respondents)?"
       steps_abuse_concerns_contact_form:
         concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
         concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
