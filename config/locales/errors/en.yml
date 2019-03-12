@@ -3,6 +3,7 @@ en:
     invalid_email_error: &invalid_email_error "Enter a valid email address"
     blank_email_error: &blank_email_error "Enter an email address"
     yes_no_error: &yes_no_error "Select yes or no"
+    blank_details_error: &blank_details_error "Enter details"
     blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these’"
 
     # Errors shared in all the split first/last name forms
@@ -14,23 +15,27 @@ en:
 
     # This is a compilation of all possible errors shared between different parties
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
+      has_previous_name:
+        inclusion: Select if they’ve changed their name
       previous_name:
-        blank: Enter the previous name
+        blank: Enter their previous name
       dob:
         blank: Enter the date of birth
         invalid: Date of birth is not valid
         future: Date of birth is in the future
+      gender:
+        inclusion: Select the sex
       birthplace:
-        blank: Enter the place of birth
+        blank: Enter their place of birth
       address:
         blank: Enter the address
+      residence_history:
+        blank: Enter details and dates
       mobile_phone:
         blank: Enter the mobile phone
 
   errors:
     attributes:
-      base:
-        blank_orders: You must select at least one option
       email:
         invalid: *invalid_email_error
         blank: *blank_email_error
@@ -143,6 +148,200 @@ en:
           attributes:
             address_confidentiality:
               inclusion: Select yes if you want to keep your contact details private
+        steps/safety_questions/risk_of_abduction_form:
+          attributes:
+            risk_of_abduction:
+              inclusion: Select yes if the children are at risk of being abducted
+        steps/abduction/international_form:
+          attributes:
+            passport_office_notified:
+              inclusion: Select yes if the police have been notified
+        steps/abduction/children_have_passport_form:
+          attributes:
+            children_have_passport:
+              inclusion: Select yes if the children have a passport
+        steps/abduction/passport_details_form:
+          attributes:
+            children_multiple_passports:
+              inclusion: Select yes if they have more than one passport
+            passport_possession_other_details:
+              blank: *blank_details_error
+        steps/abduction/previous_attempt_form:
+          attributes:
+            previous_attempt:
+              inclusion: Select yes if the children have been abducted before
+        steps/abduction/previous_attempt_details_form:
+          attributes:
+            previous_attempt_agency_involved:
+              inclusion: Select yes if police or others were involved
+            previous_attempt_agency_details:
+              blank: *blank_details_error
+            previous_attempt_details:
+              blank: Describe previous abduction attempts
+        steps/abduction/risk_details_form:
+          attributes:
+            risk_details:
+              blank: Enter details of your concerns
+            current_location:
+              blank: Enter where the children are now
+        steps/safety_questions/substance_abuse_form:
+          attributes:
+            substance_abuse:
+              inclusion: Select yes if you have concerns about drug, alcohol or substance abuse
+        steps/safety_questions/substance_abuse_details_form:
+          attributes:
+            substance_abuse_details:
+              blank: *blank_details_error
+        steps/safety_questions/children_abuse_form:
+          attributes:
+            children_abuse:
+              inclusion: Select yes if the children are at risk of abuse
+        steps/safety_questions/domestic_abuse_form:
+          attributes:
+            domestic_abuse:
+              inclusion: Select yes if you are at risk of abuse
+        steps/safety_questions/other_abuse_form:
+          attributes:
+            other_abuse:
+              inclusion: Select yes if you have any other safety concerns
+        steps/abuse_concerns/question_form:
+          attributes:
+            answer:
+              inclusion: *yes_no_error
+
+        steps/court_orders/has_orders_form:
+          attributes:
+            has_court_orders:
+              inclusion: Select yes if you have a court order
+        steps/court_orders/details_form:
+          attributes:
+            # non-molestation order
+            non_molestation:
+              inclusion: Select yes if you have a non-molestation order
+            non_molestation_issue_date:
+              blank: Enter the date the non-molestation order was made
+            non_molestation_length:
+              blank: Enter how long the non-molestation order was for
+            non_molestation_is_current:
+              inclusion: Select yes if the non-molestation order is current
+            non_molestation_court_name:
+              blank: Enter which court issued the non-molestation order
+            # occupation order
+            occupation:
+              inclusion: Select yes if you have an occupation order
+            occupation_issue_date:
+              blank: Enter the date the occupation order was made
+            occupation_length:
+              blank: Enter how long the occupation order was for
+            occupation_is_current:
+              inclusion: Select yes if the occupation order is current
+            occupation_court_name:
+              blank: Enter which court issued the occupation order
+            # forced marriage protection order
+            forced_marriage_protection:
+              inclusion: Select yes if you have a forced marriage protection order
+            forced_marriage_protection_issue_date:
+              blank: Enter the date the forced marriage protection order was made
+            forced_marriage_protection_length:
+              blank: Enter how long the forced marriage protection order was for
+            forced_marriage_protection_is_current:
+              inclusion: Select yes if the forced marriage protection order is current
+            forced_marriage_protection_court_name:
+              blank: Enter which court issued the forced marriage protection order
+            # restraining order
+            restraining:
+              inclusion: Select yes if you have a restraining order
+            restraining_issue_date:
+              blank: Enter the date the restraining order was made
+            restraining_length:
+              blank: Enter how long the restraining order was for
+            restraining_is_current:
+              inclusion: Select yes if the restraining order is current
+            restraining_court_name:
+              blank: Enter which court issued the restraining order
+            # another injunctive order
+            injunctive:
+              inclusion: Select yes if you have another injunctive order
+            injunctive_issue_date:
+              blank: Enter the date the injunctive order was made
+            injunctive_length:
+              blank: Enter how long the injunctive order was for
+            injunctive_is_current:
+              inclusion: Select yes if the injunctive order is current
+            injunctive_court_name:
+              blank: Enter which court issued the injunctive order
+            # undertaking in place of an order
+            undertaking:
+              inclusion: Select yes if you have an undertaking in place of an order
+            undertaking_issue_date:
+              blank: Enter the date the undertaking in place of an order was made
+            undertaking_length:
+              blank: Enter how long the undertaking in place of an order was for
+            undertaking_is_current:
+              inclusion: Select yes if the undertaking in place of an order is current
+            undertaking_court_name:
+              blank: Enter which court issued the undertaking in place of an order
+
+        steps/abuse_concerns/contact_form:
+          attributes:
+            concerns_contact_type:
+              inclusion: Select if you agree to the children spending time with the other person
+            concerns_contact_other:
+              inclusion: Select yes if you agree to the other person being in touch with the children
+
+        steps/petition/orders_form:
+          attributes:
+            base:
+              blank_orders: Select what you’re asking the court to decide
+            orders_additional_details:
+              blank: *blank_details_error
+        steps/children/orders_form:
+          attributes:
+            base:
+              blank_orders: Select a decision
+        steps/petition/protection_form:
+          attributes:
+            protection_orders:
+              inclusion: Select yes if you’re asking for an order for protection
+            protection_orders_details:
+              blank: *blank_details_error
+        steps/children/additional_details_form:
+          attributes:
+            children_known_to_authorities:
+              inclusion: Select if any of the children are known to social services
+            children_known_to_authorities_details:
+              blank: *blank_details_error
+            children_protection_plan:
+              inclusion: Select if any of the children are the subject of a child protection plan
+        steps/children/has_other_children_form:
+          attributes:
+            has_other_children:
+              inclusion: Select yes if you have other children
+        steps/respondent/has_other_parties_form:
+          attributes:
+            has_other_parties:
+              inclusion: Select yes if anyone else should know about application
+
+        steps/alternatives/court_form:
+          attributes:
+            court_acknowledgement:
+              blank: Confirm you understand
+        steps/alternatives/negotiation_tools_form:
+          attributes:
+            alternative_negotiation_tools:
+              inclusion: *yes_no_error
+        steps/alternatives/mediation_form:
+          attributes:
+            alternative_mediation:
+              inclusion: *yes_no_error
+        steps/alternatives/lawyer_negotiation_form:
+          attributes:
+            alternative_lawyer_negotiation:
+              inclusion: *yes_no_error
+        steps/alternatives/collaborative_law_form:
+          attributes:
+            alternative_collaborative_law:
+              inclusion: *yes_no_error
 
         steps/applicant/personal_details_form:
           attributes:
@@ -150,12 +349,16 @@ en:
         steps/applicant/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+            residence_requirement_met:
+              inclusion: Select yes if you’ve lived at the address for more than 5 years
         steps/respondent/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
         steps/respondent/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+            residence_requirement_met:
+              inclusion: Select yes if they’ve lived at the address for more than 5 years
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -186,14 +389,18 @@ en:
         steps/other_parties/names_split_form:
           attributes:
             <<: *NAMES_FORM_ERRORS
+
         steps/children/residence_form:
           attributes:
             person_ids:
               blank: You must select at least one person
-        steps/alternatives/court_form:
+        steps/shared/relationship_form:
           attributes:
-            court_acknowledgement:
-              blank: Confirm you understand
+            relation:
+              inclusion: Select the relationship
+            relation_other_value:
+              blank: Enter the relationship
+
         steps/miam_exemptions/domestic_form:
           attributes:
             domestic_none:
