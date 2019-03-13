@@ -8,7 +8,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.check_box_fieldset :orders, [], legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
+        f.check_box_fieldset :orders, :base, legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
           fieldset.check_box_input(PetitionOrder::CHILD_ARRANGEMENTS_HOME)
           fieldset.check_box_input(PetitionOrder::CHILD_ARRANGEMENTS_TIME)
           fieldset.check_box_input(PetitionOrder::GROUP_PROHIBITED_STEPS) {

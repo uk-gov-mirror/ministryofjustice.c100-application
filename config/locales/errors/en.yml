@@ -35,6 +35,7 @@ en:
         blank: Enter the mobile phone
 
   errors:
+    format: "%{message}"
     attributes:
       email:
         invalid: *invalid_email_error
@@ -42,16 +43,10 @@ en:
       email_address:
         invalid: *invalid_email_error
         blank: *blank_email_error
-      receipt_email:
-        invalid: *invalid_email_error
-        blank: *blank_email_error
       children_postcodes:
         invalid: Enter a valid full postcode, with or without a space
         blank: Enter a full postcode, with or without a space
-      hwf_reference_number:
-        invalid: "Enter a valid 'Help with fees' reference number"
-        blank: "Enter your 'Help with fees' reference number"
-    format: "%{message}"
+    # fallback error messages in case no specific one is found
     messages:
       blank: Enter an answer
       present: Leave empty
@@ -207,7 +202,7 @@ en:
         steps/abuse_concerns/question_form:
           attributes:
             answer:
-              inclusion: *yes_no_error
+              inclusion: Select yes if this safety concern applies
 
         steps/court_orders/has_orders_form:
           attributes:
@@ -293,6 +288,10 @@ en:
           attributes:
             base:
               blank_orders: Select what you’re asking the court to decide
+            group_prohibited_steps:
+              blank_orders: Select what you’re asking the court to stop the other person doing
+            group_specific_issues:
+              blank_orders: Select what specific issue you’re asking the court to resolve
             orders_additional_details:
               blank: *blank_details_error
         steps/children/orders_form:
@@ -421,6 +420,112 @@ en:
           attributes:
             misc_none:
               blank: *blank_exemptions_error
+
+        steps/application/previous_proceedings_form:
+          attributes:
+            children_previous_proceedings:
+              inclusion: Select yes if the children have been involved in other proceedings
+        steps/application/court_proceedings_form:
+          attributes:
+            children_names:
+              blank: Enter names of children
+            court_name:
+              blank: Enter name of court
+            order_types:
+              blank: Enter type of proceedings
+        steps/application/urgent_hearing_form:
+          attributes:
+            urgent_hearing:
+              inclusion: Select yes if you need an urgent hearing
+        steps/application/urgent_hearing_details_form:
+          attributes:
+            urgent_hearing_details:
+              blank: *blank_details_error
+            urgent_hearing_when:
+              blank: Enter how soon you need a hearing
+            urgent_hearing_short_notice:
+              inclusion: Select yes if you need a hearing in the next 48 hours
+            urgent_hearing_short_notice_details:
+              blank: Enter what you’ve done
+        steps/application/without_notice_form:
+          attributes:
+            without_notice:
+              inclusion: Select yes if you’re asking for a without notice hearing
+        steps/application/without_notice_details_form:
+          attributes:
+            without_notice_details:
+              blank: *blank_details_error
+            without_notice_frustrate:
+              inclusion: Select yes if the other person may obstruct
+            without_notice_frustrate_details:
+              blank: *blank_details_error
+            without_notice_impossible:
+              inclusion: Select yes if there’s no time to give notice
+            without_notice_impossible_details:
+              blank: *blank_details_error
+        steps/international/resident_form:
+          attributes:
+            international_resident:
+              inclusion: *yes_no_error
+        steps/international/jurisdiction_form:
+          attributes:
+            international_jurisdiction:
+              inclusion: *yes_no_error
+            international_jurisdiction_details:
+              blank: *blank_details_error
+        steps/international/request_form:
+          attributes:
+            international_request:
+              inclusion: *yes_no_error
+            international_request_details:
+              blank: *blank_details_error
+        steps/application/details_form:
+          attributes:
+            application_details:
+              blank: *blank_details_error
+        steps/application/language_form:
+          attributes:
+            language_help:
+              inclusion: Select yes if anyone needs help
+            language_help_details:
+              blank: *blank_details_error
+        steps/application/litigation_capacity_form:
+          attributes:
+            reduced_litigation_capacity:
+              inclusion: *yes_no_error
+            language_help_details:
+              blank: *blank_details_error
+        steps/application/intermediary_form:
+          attributes:
+            intermediary_help:
+              inclusion: *yes_no_error
+            intermediary_help_details:
+              blank: *blank_details_error
+        steps/application/special_assistance_form:
+          attributes:
+            special_assistance:
+              inclusion: *yes_no_error
+            special_assistance_details:
+              blank: *blank_details_error
+        steps/application/special_arrangements_form:
+          attributes:
+            special_arrangements:
+              inclusion: Select yes if you need specific arrangements
+            special_arrangements_details:
+              blank: *blank_details_error
+        steps/application/payment_form:
+          attributes:
+            payment_type:
+              inclusion: Select how you’ll pay
+            hwf_reference_number:
+              invalid: Enter a valid ‘Help with fees’ reference number
+              blank: Enter your ‘Help with fees’ reference number
+        steps/application/submission_form:
+          attributes:
+            submission_type:
+              inclusion: Select how you’ll submit your application
+            receipt_email:
+              invalid: *invalid_email_error
         steps/application/declaration_form:
           attributes:
             declaration_made:
