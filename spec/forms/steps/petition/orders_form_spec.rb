@@ -4,6 +4,9 @@ RSpec.describe Steps::Petition::OrdersForm do
   let(:arguments) { {
     c100_application: c100_application,
     child_arrangements_home: '1',
+    group_prohibited_steps: '1',
+    prohibited_steps_holiday: '1',
+    group_specific_issues: '1',
     specific_issues_school: '0',
     specific_issues_medical: '1',
     other_issue: other_issue,
@@ -14,7 +17,7 @@ RSpec.describe Steps::Petition::OrdersForm do
     instance_double(C100Application, orders: orders, orders_additional_details: orders_additional_details)
   }
 
-  let(:orders) {%w(child_arrangements_home specific_issues_medical)}
+  let(:orders) { [] }
   let(:other_issue) { nil }
   let(:orders_additional_details) { nil }
 
@@ -22,6 +25,8 @@ RSpec.describe Steps::Petition::OrdersForm do
 
   describe 'custom build, loading of attributes' do
     subject { described_class.build(c100_application) } # NOTE: Using custom build
+
+    let(:orders) { %w(child_arrangements_home specific_issues_medical) }
 
     it 'returns true if the order is in the list' do
       expect(subject.child_arrangements_home).to eq(true)
@@ -43,18 +48,56 @@ RSpec.describe Steps::Petition::OrdersForm do
     context 'no orders selected' do
       let(:arguments) { { c100_application: c100_application } }
 
-      it 'has a validation error' do
+      it 'has a top level validation error' do
         expect(subject).to_not be_valid
         expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
       end
     end
 
-    context 'only a group top-level checkbox was selected' do
-      let(:arguments) { { c100_application: c100_application, group_specific_issues: '1' } }
+    context 'only a group checkbox was selected' do
+      context 'group_prohibited_steps' do
+        let(:arguments) { {
+          c100_application: c100_application,
+          group_prohibited_steps: '1',
+          group_specific_issues: '1',
+          specific_issues_school: '1',
+        } }
 
-      it 'has a validation error' do
-        expect(subject).to_not be_valid
-        expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
+        it 'has a validation error in the group' do
+          expect(subject).to_not be_valid
+
+          expect(subject.errors.added?(:group_prohibited_steps, :blank_orders)).to eq(true)
+          expect(subject.errors.added?(:group_specific_issues, :blank_orders)).to eq(false)
+          expect(subject.errors.added?(:base, :blank_orders)).to eq(false)
+        end
+      end
+
+      context 'group_specific_issues' do
+        let(:arguments) { {
+          c100_application: c100_application,
+          group_specific_issues: '1',
+          group_prohibited_steps: '1',
+          prohibited_steps_medical: '1',
+        } }
+
+        it 'has a validation error in the group' do
+          expect(subject).to_not be_valid
+
+          expect(subject.errors.added?(:group_specific_issues, :blank_orders)).to eq(true)
+          expect(subject.errors.added?(:group_prohibited_steps, :blank_orders)).to eq(false)
+          expect(subject.errors.added?(:base, :blank_orders)).to eq(false)
+        end
+      end
+
+      context 'do not produce multiple errors' do
+        let(:arguments) { { c100_application: c100_application, group_specific_issues: '1' } }
+
+        it 'has only the group error' do
+          expect(subject).to_not be_valid
+
+          expect(subject.errors.size).to eq(1)
+          expect(subject.errors.added?(:group_specific_issues, :blank_orders)).to eq(true)
+        end
       end
     end
 
@@ -81,7 +124,13 @@ RSpec.describe Steps::Petition::OrdersForm do
     context 'for valid details' do
       it 'updates the record' do
         expect(c100_application).to receive(:update).with(
-          orders: [:child_arrangements_home, :specific_issues_medical],
+          orders: [
+            :child_arrangements_home,
+            :group_prohibited_steps,
+            :prohibited_steps_holiday,
+            :group_specific_issues,
+            :specific_issues_medical
+          ],
           orders_additional_details: nil,
         ).and_return(true)
 
@@ -90,19 +139,16 @@ RSpec.describe Steps::Petition::OrdersForm do
 
       context 'for other issue details' do
         let(:orders_additional_details) { 'details' }
-        let(:orders){ [:specific_issues_medical, :other_issue] }
 
         let(:arguments) { {
           c100_application: c100_application,
           other_issue: '1',
-          specific_issues_school: '0',
-          specific_issues_medical: '1',
           orders_additional_details: orders_additional_details,
         } }
 
         it 'updates the record' do
           expect(c100_application).to receive(:update).with(
-            orders: [:specific_issues_medical, :other_issue],
+            orders: [:other_issue],
             orders_additional_details: 'details',
           ).and_return(true)
 
@@ -114,23 +160,24 @@ RSpec.describe Steps::Petition::OrdersForm do
         let(:existing_details){ 'existing details' }
         let(:c100_application) {
           instance_double(C100Application,
-              orders: existing_orders,
-              orders_additional_details: existing_details
+            orders: existing_orders,
+            orders_additional_details: existing_details
           )
         }
 
         context 'and the other issue checkbox is un-checked' do
-          let(:existing_orders){ [:other_issue, :specific_issues_medical] }
+          let(:existing_orders){ [:other_issue, :group_specific_issues, :specific_issues_medical] }
           let(:existing_details){ 'existing details' }
           let(:arguments) { {
             c100_application: c100_application,
+            group_specific_issues: '1',
             specific_issues_medical: '1',
             orders_additional_details: existing_details,
           } }
 
           it 'updates the record with orders_additional_details set to nil' do
             expect(c100_application).to receive(:update).with(
-              orders: [:specific_issues_medical],
+              orders: [:group_specific_issues, :specific_issues_medical],
               orders_additional_details: nil,
             ).and_return(true)
             subject.save

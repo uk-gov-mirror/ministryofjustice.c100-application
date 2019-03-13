@@ -20,20 +20,32 @@ module Steps
         new(attributes)
       end
 
-      validate :at_least_one_checkbox_validation
+      validate :at_least_one_order
+      validate :at_least_one_prohibited_steps_order
+      validate :at_least_one_specific_issues_order
+
       validates_presence_of :orders_additional_details, if: :other_issue?
 
       private
 
-      # We filter out `group_xxx` items, as the purpose of these are to present the orders
-      # in groups for the user to show/hide them, and are not really an order by itself.
-      #
-      def valid_options
-        selected_options.grep_v(/\Agroup_/)
+      def at_least_one_order
+        errors.add(:base, :blank_orders) unless selected_options.any?
       end
 
-      def at_least_one_checkbox_validation
-        errors.add(:base, :blank_orders) unless valid_options.any?
+      def at_least_one_prohibited_steps_order
+        return unless group_prohibited_steps?
+
+        errors.add(
+          PetitionOrder::GROUP_PROHIBITED_STEPS.to_sym, :blank_orders
+        ) unless selected_options.grep(/\Aprohibited_steps/).any?
+      end
+
+      def at_least_one_specific_issues_order
+        return unless group_specific_issues?
+
+        errors.add(
+          PetitionOrder::GROUP_SPECIFIC_ISSUES.to_sym, :blank_orders
+        ) unless selected_options.grep(/\Aspecific_issues/).any?
       end
 
       def persist!
