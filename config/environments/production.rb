@@ -47,8 +47,8 @@ Rails.application.configure do
   # get the constantized attribute name itself, in form labels.
   config.action_view.raise_on_missing_translations = false
 
-  # Enforce SSl-only
-  config.force_ssl = true
+  # Enforce SSL-only (but allow disabling it, in case of running locally via Docker)
+  config.force_ssl = ENV.key?('DISABLE_SSL') ? false : true
 
   # Prevent host header poisoning by enforcing absolute redirects
   if ENV['EXTERNAL_URL'].present?
