@@ -49,10 +49,6 @@ form {
   }
 }
 
-label[for="steps_safety_questions_substance_abuse_details_form_substance_abuse_details"] {
-  color: transparent;
-}
-
 .button-add,
 .button-remove {
   padding-left: 0;
@@ -139,16 +135,13 @@ fieldset + .form-group {
   }
 }
 
-// This is a workaround to make the fieldset legends visually hidden, as `govuk_elements_form_builder`
-// doesn't support this in their current version.
-//
-// Update: it turns out, WE NEED labels sometimes, so can't hide all or nothing. Commenting out for now and
-// we might need to revisit PR: https://github.com/ministryofjustice/govuk_elements_form_builder/pull/89
-//
-//fieldset {
-//  legend {
-//    span.form-label-bold {
-//      @extend .visuallyhidden
-//    }
-//  }
-//}
+// This is a workaround to visually hide the top part of the miam certification date legend
+// We need it there for screen reader users, but we need to visually hide it because it 
+// duplicates the header. We need the form hint (which is part of the legend) to still be visible
+// so we can't hide the entire legend
+
+#steps_miam_certification_date_form_miam_certification_date {
+  span.form-label-bold {
+    @extend .visuallyhidden
+  }
+}

@@ -13,7 +13,7 @@
     <%= step_form @form_object do |f| %>
       <%= f.gov_uk_date_field :miam_certification_date,
                               placeholders: true,
-                              legend_text: nil,
+                              legend_text: t('.heading'),
                               form_hint_text: t('shared.form_elements.certification_date_hint') %>
 
       <%= f.continue_button %>
