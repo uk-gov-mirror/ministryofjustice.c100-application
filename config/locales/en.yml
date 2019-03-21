@@ -432,7 +432,7 @@ en:
         edit:
           page_title: Substance abuse details
           section: Safety concerns
-          heading: Provide details of the drug, alcohol or substance abuse
+          heading: Drug, alcohol or substance abuse
       children_abuse:
         edit:
           page_title: Children abuse
@@ -1214,7 +1214,7 @@ en:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
       steps_safety_questions_substance_abuse_details_form:
-        substance_abuse_details: Substance abuse details
+        substance_abuse_details: Give a short description of the drug, alcohol or substance abuse
       steps_abuse_concerns_details_form:
         behaviour_description: Briefly describe what happened and who was involved, if you feel able to
         behaviour_start: When did this behaviour start?
@@ -1352,8 +1352,6 @@ en:
       steps_other_parties_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
-      steps_safety_questions_substance_abuse_details_form:
-        substance_abuse_details: Give a short description
       steps_abuse_concerns_details_form:
         behaviour_description: This information will be treated sensitively and you’ll have the opportunity to give further details later in the court proceedings if you wish
         behaviour_start: Add an approximate date if you’re unsure
