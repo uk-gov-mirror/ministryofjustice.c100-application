@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   # Maintain this for some time until all our traffic is coming directly from `k8s` domain
   constraints host: 'c100-staging.herokuapp.com' do
-    get '/(*path)' => redirect('https://c100-application-staging.apps.cloud-platform-live-0.k8s.integration.dsd.io', status: 301)
+    get '/(*path)' => redirect('https://c100-application-staging.apps.live-1.cloud-platform.service.justice.gov.uk', status: 301)
   end
 
   devise_for :users,

@@ -1,4 +1,4 @@
-FROM ministryofjustice/ruby:2.5.3-webapp-onbuild
+FROM ministryofjustice/ruby:2.6.2-webapp-onbuild
 
 # So the PDF has nice fonts (free alternative to MS fonts)
 RUN apt-get update && apt-get install fonts-liberation
@@ -23,6 +23,16 @@ ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 
 ARG APP_GIT_COMMIT
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
+
+# Run the application as user `moj` (created in the base image)
+# uid=1000(moj) gid=1000(moj) groups=1000(moj)
+# Some directories/files need to be chowned otherwise we get Errno::EACCES
+#
+RUN mkdir -p ./usr/src/app/log ./usr/src/app/tmp && \
+    chown -R $APPUSER:$APPUSER /usr/src/app/log /usr/src/app/tmp
+
+ENV APPUID 1000
+USER $APPUID
 
 EXPOSE $PUMA_PORT
 ENTRYPOINT ["./run.sh"]
