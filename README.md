@@ -7,9 +7,9 @@ under certain circumstances based on the answers the applicant gives (for exampl
 
 It is based on software patterns developed for the [Appeal to the Tax Tribunal][taxtribs] application.
 
-## K8s cluster staging environment
+## K8s live-1 cluster
 
-There is a staging env running on cloud-platform-live-0.k8s at [this url][k8s-staging]
+There is a staging environment running on [this url][k8s-staging]
 
 The staging env uses http basic auth to restrict access. The username and
 password should be available from the MoJ Rattic server, in the Family Justice group.
@@ -27,8 +27,8 @@ and any other dependency for you, without having to configure anything in your m
 
 * `docker-compose up`
 
-The application will be run in "production" mode, so will be as accurate as the real production environment (but will 
-not send any emails as the GOV.UK Notify API key is not configured by default).
+The application will be run in "production" mode, so will be as accurate as possible to the real production 
+environment (but will not send any emails as the GOV.UK Notify API key is not configured by default).
 
 ## Getting Started
 
@@ -106,10 +106,8 @@ The build will then hold for approval to promote to production environment, at w
 and push it to the ECR repository, and trigger a rolling update, creating new pods with the new image, and 
 scaling down old pods, as new ones become available.
 
-To authenticate with ECR and do deploys some ENV variables need to be set in the CircleCI project.  
-More information about these variables can be found in the [Cloud Platforms documentation][cloud-docs].
+For more details on the ENV variables needed for CircleCI, refer to the [deploy repo][deploy-repo].
 
 [taxtribs]: https://github.com/ministryofjustice/tax-tribunals-datacapture
 [deploy-repo]: https://github.com/ministryofjustice/c100-application-deploy
-[k8s-staging]: https://c100-application-staging.apps.cloud-platform-live-0.k8s.integration.dsd.io
-[cloud-docs]: https://ministryofjustice.github.io/cloud-platform-user-docs/02-deploying-an-app/004-use-circleci-to-upgrade-app
+[k8s-staging]: https://c100-application-staging.apps.live-1.cloud-platform.service.justice.gov.uk

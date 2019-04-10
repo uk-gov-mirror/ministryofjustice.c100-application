@@ -7,7 +7,7 @@ version: 2
 references:
   app_containers: &app_containers
     docker:
-      - image: circleci/ruby:2.5.3-node-browsers
+      - image: circleci/ruby:2.6.2-node-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
@@ -85,7 +85,7 @@ jobs:
       - run:
           name: push docker image
           command: |
-            login="$(aws ecr get-login --region eu-west-1 --no-include-email)"
+            login="$(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)"
             ${login}
 
             docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
@@ -113,7 +113,7 @@ jobs:
 
             kubectl set image -n c100-application-staging \
                     deployment/c100-application-deployment-staging \
-                    c100-application-web-staging="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+                    webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
             kubectl annotate -n c100-application-staging \
                     deployment/c100-application-deployment-staging \
@@ -130,7 +130,7 @@ jobs:
       - run:
           name: promote staging image to production
           command: |
-            login="$(aws ecr get-login --region eu-west-1 --no-include-email)"
+            login="$(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)"
             ${login}
 
             docker pull "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
@@ -159,7 +159,7 @@ jobs:
 
             kubectl set image -n c100-application-production \
                     deployment/c100-application-deployment-production \
-                    c100-application-web-production="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+                    webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
             kubectl annotate -n c100-application-production \
                     deployment/c100-application-deployment-production \
