@@ -75,4 +75,18 @@ RSpec.describe C100App::PdfGenerator do
       subject.to_pdf
     end
   end
+
+  describe '#has_forms_data?' do
+    let(:combiner) { double('Combiner', forms_data: forms_data) }
+
+    context 'there is data in the combiner' do
+      let(:forms_data) { {whatever: 'xyz'} }
+      it { expect(subject.has_forms_data?).to eq(true) }
+    end
+
+    context 'there is no data yet in the combiner' do
+      let(:forms_data) { nil }
+      it { expect(subject.has_forms_data?).to eq(false) }
+    end
+  end
 end

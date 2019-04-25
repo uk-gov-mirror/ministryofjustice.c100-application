@@ -12,6 +12,10 @@ module C100App
       end
     end
 
+    def has_forms_data?
+      combiner.forms_data.present?
+    end
+
     private
 
     def pdf_from_presenter(presenter)
