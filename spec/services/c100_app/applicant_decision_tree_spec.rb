@@ -86,9 +86,18 @@ RSpec.describe C100App::ApplicantDecisionTree do
     context 'when all child relationships have been edited' do
       let(:child) { double('Child', id: 3) }
 
-      it 'goes to edit the contact details of the current applicant' do
-        expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: applicant)
+      it 'goes to edit the address details of the current applicant' do
+        expect(subject.destination).to eq(controller: :address_details, action: :edit, id: applicant)
       end
+    end
+  end
+
+  context 'when the step is `address_details`' do
+    let(:step_params) {{'address_details' => 'anything'}}
+    let(:record) { double('Applicant', id: 3) }
+
+    it 'goes to edit the contact details of the current applicant' do
+      expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
     end
   end
 
@@ -108,6 +117,7 @@ RSpec.describe C100App::ApplicantDecisionTree do
       it {is_expected.to have_destination('/steps/respondent/names', :edit)}
     end
   end
+
 
   # TODO: the solicitor's details steps are not enabled currently
   # context 'when the step is `has_solicitor`' do

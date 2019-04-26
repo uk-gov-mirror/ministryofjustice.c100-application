@@ -7,15 +7,6 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
     <%= step_form @form_object do |f| %>
-      <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-
-      <%=
-        f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES)
-          fieldset.radio_input(GenericYesNo::NO) { f.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
-        end
-      %>
-
       <%= f.text_field :home_phone %>
       <%= f.text_field :mobile_phone %>
       <%= f.text_field :email %>

@@ -103,7 +103,7 @@ module Summary
 
         expect(answers[3]).to be_an_instance_of(AnswersGroup)
         expect(answers[3].name).to eq(:person_contact_details)
-        expect(answers[3].change_path).to eq('/steps/applicant/contact_details/uuid-123')
+        expect(answers[3].change_path).to eq('/steps/applicant/address_details/uuid-123')
         expect(answers[3].answers.count).to eq(6)
 
           # personal_details group answers ###

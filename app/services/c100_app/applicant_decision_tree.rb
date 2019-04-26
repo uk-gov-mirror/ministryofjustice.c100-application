@@ -14,6 +14,8 @@ module C100App
         edit_first_child_relationships
       when :relationship
         children_relationships
+      when :address_details
+        edit_contact_details
       when :contact_details
         after_contact_details
       # TODO: the solicitor details steps are not enabled currently
@@ -25,6 +27,14 @@ module C100App
     end
 
     private
+
+    def children_relationships
+      if next_child_id
+        edit(:relationship, id: record.person, child_id: next_child_id)
+      else
+        edit_address_details
+      end
+    end
 
     def after_contact_details
       if next_applicant_id
