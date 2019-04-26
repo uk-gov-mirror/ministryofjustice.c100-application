@@ -5,9 +5,9 @@ RSpec.describe ApplicantDeliveryJob, type: :job do
   let(:queue) { double.as_null_object }
 
   describe '#perform' do
-    it 'calls the `OnlineSubmission` service to process the application' do
-      expect(C100App::OnlineSubmission).to receive(:new).with(
-        c100_application, recipient: :applicant
+    it 'calls the `ApplicantOnlineSubmission` service to process the submission' do
+      expect(C100App::ApplicantOnlineSubmission).to receive(:new).with(
+        c100_application
       ).and_return(queue)
 
       expect(queue).to receive(:process)
