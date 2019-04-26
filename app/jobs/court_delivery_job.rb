@@ -9,9 +9,7 @@ class CourtDeliveryJob < ApplicationJob
   rescue_from StandardError, with: :log_and_notify_error
 
   def perform(c100_application)
-    C100App::OnlineSubmission.new(
-      c100_application, recipient: :court
-    ).process
+    C100App::CourtOnlineSubmission.new(c100_application).process
   end
 
   private

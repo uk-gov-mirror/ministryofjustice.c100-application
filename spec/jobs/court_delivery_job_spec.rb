@@ -7,9 +7,9 @@ RSpec.describe CourtDeliveryJob, type: :job do
   let(:queue) { double.as_null_object }
 
   describe '#perform' do
-    it 'calls the `OnlineSubmission` service to process the application' do
-      expect(C100App::OnlineSubmission).to receive(:new).with(
-        c100_application, recipient: :court
+    it 'calls the `CourtOnlineSubmission` service to process the submission' do
+      expect(C100App::CourtOnlineSubmission).to receive(:new).with(
+        c100_application
       ).and_return(queue)
 
       expect(queue).to receive(:process)
@@ -19,7 +19,7 @@ RSpec.describe CourtDeliveryJob, type: :job do
 
     context 'an exception occurs' do
       before do
-        allow_any_instance_of(C100App::OnlineSubmission).to receive(:process).and_raise(NoMethodError)
+        allow_any_instance_of(C100App::CourtOnlineSubmission).to receive(:process).and_raise(NoMethodError)
       end
 
       it 'captures the error' do
