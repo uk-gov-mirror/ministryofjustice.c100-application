@@ -4,13 +4,9 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
-    address: address,
-    address_unknown: address_unknown,
     home_phone: home_phone,
     mobile_phone: mobile_phone,
-    email: email,
-    residence_requirement_met: residence_requirement_met,
-    residence_history: residence_history
+    email: email
   } }
 
   let(:c100_application) { instance_double(C100Application, respondents: respondents_collection) }
@@ -18,13 +14,9 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
   let(:respondent) { double('Respondent', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
   let(:record) { nil }
-  let(:address) { 'address' }
-  let(:address_unknown) { false }
   let(:home_phone) { nil }
   let(:mobile_phone) { nil }
   let(:email) { 'test@test.com' }
-  let(:residence_requirement_met) { 'no' }
-  let(:residence_history) { 'history' }
 
   subject { described_class.new(arguments) }
 
@@ -35,44 +27,6 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
       it 'raises an error' do
         expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
       end
-    end
-
-    context 'residence_requirement_met' do
-      context 'when attribute is not given' do
-        let(:residence_requirement_met) { nil }
-
-        it 'returns false' do
-          expect(subject.save).to be(false)
-        end
-
-        it 'has a validation error on the field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:residence_requirement_met]).to_not be_empty
-        end
-      end
-
-      context 'when attribute is given and requires residency history' do
-        let(:residence_requirement_met) { 'no' }
-        let(:residence_history) { nil }
-
-        it 'has a validation error on the `residence_history` field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:residence_history]).to_not be_empty
-        end
-      end
-
-      context 'when attribute is given and does not requires residency history' do
-        let(:residence_requirement_met) { 'yes' }
-        let(:residence_history) { nil }
-
-        it 'has no validation errors' do
-          expect(subject).to be_valid
-        end
-      end
-    end
-
-    context 'validations on field presence unless `unknown`' do
-      it { should validate_presence_unless_unknown_of(:address) }
     end
 
     context 'email validation' do
@@ -93,13 +47,9 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
     context 'for valid details' do
       let(:expected_attributes) {
         {
-          address: 'address',
-          address_unknown: false,
           home_phone: '',
           mobile_phone: '',
-          email: 'test@test.com',
-          residence_requirement_met: GenericYesNoUnknown::NO,
-          residence_history: 'history'
+          email: 'test@test.com'
         }
       }
 

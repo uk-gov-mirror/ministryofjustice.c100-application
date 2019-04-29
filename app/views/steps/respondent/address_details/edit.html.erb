@@ -1,0 +1,28 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+
+    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+      <p><%=t '.body_info' %></p>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.single_check_box :address_unknown, class: 'util_mb-large dont-know' %>
+
+      <%=
+        f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
+          fieldset.radio_input GenericYesNoUnknown::YES
+          fieldset.radio_input GenericYesNoUnknown::NO, panel_id: :residence_history_panel
+          fieldset.radio_input GenericYesNoUnknown::UNKNOWN
+          fieldset.revealing_panel(:residence_history_panel) { |panel| panel.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
+        end
+      %>
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>

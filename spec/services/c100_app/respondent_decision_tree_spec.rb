@@ -103,8 +103,18 @@ RSpec.describe C100App::RespondentDecisionTree do
       let(:child) { double('Child', id: 3) }
 
       it 'goes to edit the contact details of the current respondent' do
-        expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: respondent)
+        expect(subject.destination).to eq(controller: :address_details, action: :edit, id: respondent)
       end
+    end
+  end
+
+
+  context 'when the step is `address_details`' do
+    let(:step_params) {{'address_details' => 'anything'}}
+    let(:record) { double('Respondent', id: 3) }
+
+    it 'goes to edit the contact details of the current applicant' do
+      expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: record)
     end
   end
 

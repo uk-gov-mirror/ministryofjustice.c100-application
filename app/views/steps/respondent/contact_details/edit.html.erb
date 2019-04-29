@@ -11,17 +11,6 @@
     </div>
 
     <%= step_form @form_object do |f| %>
-      <%= f.text_area :address, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.single_check_box :address_unknown, class: 'util_mb-large dont-know' %>
-
-      <%=
-        f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
-          fieldset.radio_input GenericYesNoUnknown::YES
-          fieldset.radio_input GenericYesNoUnknown::NO, panel_id: :residence_history_panel
-          fieldset.radio_input GenericYesNoUnknown::UNKNOWN
-          fieldset.revealing_panel(:residence_history_panel) { |panel| panel.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
-        end
-      %>
 
       <%= f.text_field :home_phone %>
       <%= f.text_field :mobile_phone %>
