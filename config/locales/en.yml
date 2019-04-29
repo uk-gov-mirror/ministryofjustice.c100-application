@@ -187,6 +187,11 @@ en:
           page_title: Respondent contact details
           heading: "Contact details of %{name}"
           body_info: Include as much detail as you can. This will help us process your application more quickly.
+      address_details:
+        edit:
+          page_title: Respondent address details
+          heading: "Address details of %{name}"
+          body_info: Include as much detail as you can. This will help us process your application more quickly.
       has_other_parties:
         edit:
           page_title: Other parties who should know about the application
@@ -1065,7 +1070,7 @@ en:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
-      steps_respondent_contact_details_form:
+      steps_respondent_address_details_form:
         residence_requirement_met: Have they lived at this address for more than 5 years?
       steps_children_personal_details_form:
         dob_unknown_html: ""
@@ -1206,6 +1211,8 @@ en:
         residence_history: Provide details and dates of all previous addresses for the last 5 years
       steps_respondent_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
+      steps_respondent_address_details_form:
+        <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
@@ -1339,7 +1346,7 @@ en:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
-      steps_respondent_contact_details_form:
+      steps_respondent_address_details_form:
         address: *address_hint
       steps_other_parties_contact_details_form:
         address: *address_hint

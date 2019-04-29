@@ -359,6 +359,9 @@ en:
         steps/respondent/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+        steps/respondent/address_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
             residence_requirement_met:
               inclusion: Select yes if they’ve lived at the address for more than 5 years
         steps/children/personal_details_form:
