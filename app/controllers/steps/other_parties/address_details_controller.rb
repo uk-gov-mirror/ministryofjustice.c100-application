@@ -1,17 +1,17 @@
 module Steps
   module OtherParties
-    class ContactDetailsController < Steps::OtherPartiesStepController
+    class AddressDetailsController < Steps::OtherPartiesStepController
       def edit
-        @form_object = ContactDetailsForm.build(
+        @form_object = AddressDetailsForm.build(
           current_record, c100_application: current_c100_application
         )
       end
 
       def update
         update_and_advance(
-          ContactDetailsForm,
+          AddressDetailsForm,
           record: current_record,
-          as: :contact_details
+          as: :address_details
         )
       end
     end

@@ -28,14 +28,6 @@ module C100App
 
     private
 
-    def children_relationships
-      if next_child_id
-        edit(:relationship, id: record.person, child_id: next_child_id)
-      else
-        edit_address_details
-      end
-    end
-
     def after_contact_details
       if next_applicant_id
         edit(:personal_details, id: next_applicant_id)

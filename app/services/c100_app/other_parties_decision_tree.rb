@@ -12,7 +12,7 @@ module C100App
         after_personal_details(age_check: false)
       when :relationship
         children_relationships
-      when :contact_details
+      when :address_details
         after_contact_details
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"

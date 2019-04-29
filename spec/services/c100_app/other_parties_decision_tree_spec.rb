@@ -66,13 +66,13 @@ RSpec.describe C100App::OtherPartiesDecisionTree do
       let(:child) { double('Child', id: 3) }
 
       it 'goes to edit the contact details of the current party' do
-        expect(subject.destination).to eq(controller: :contact_details, action: :edit, id: other_party)
+        expect(subject.destination).to eq(controller: :address_details, action: :edit, id: other_party)
       end
     end
   end
 
   context 'when the step is `contact_details`' do
-    let(:step_params) {{'contact_details' => 'anything'}}
+    let(:step_params) {{'address_details' => 'anything'}}
 
     context 'when there are remaining parties' do
       let(:record) { double('OtherParty', id: 1) }
