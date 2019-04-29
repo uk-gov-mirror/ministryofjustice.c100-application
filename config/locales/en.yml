@@ -87,6 +87,11 @@ en:
       residence_requirement_met:
         <<: *YESNO
 
+    PERSONAL_ADDRESS_FIELDS: &PERSONAL_ADDRESS_FIELDS
+      address: Address
+      residence_requirement_met:
+        <<: *YESNO
+
     # Fields shared in all the split first/last name forms
     NAMES_FORM_FIELDS: &NAMES_FORM_FIELDS
       first_name: First name(s)
@@ -144,6 +149,10 @@ en:
         edit:
           page_title: Applicant contact details
           heading: "Contact details of %{name}"
+      address_details:
+        edit:
+          page_title: Applicant address details
+          heading: "Address details of %{name}"
       relationship:
         edit:
           page_title: Applicant relationship
@@ -1050,7 +1059,7 @@ en:
       steps_applicant_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
-      steps_applicant_contact_details_form:
+      steps_applicant_address_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
@@ -1192,6 +1201,8 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
+      steps_applicant_address_details_form:
+        <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
       steps_respondent_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
@@ -1321,7 +1332,7 @@ en:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
-      steps_applicant_contact_details_form:
+      steps_applicant_address_details_form:
         address: Enter your full address including postcode
         residence_history: Start with the most recent
       steps_respondent_personal_details_form:

@@ -25,6 +25,14 @@ class PeopleDecisionTree < BaseDecisionTree
     end
   end
 
+  def edit_contact_details
+    edit(:contact_details, id: record)
+  end
+
+  def edit_address_details
+    edit(:address_details, id: record.person)
+  end
+
   def next_child_id
     next_record_id(c100_application.minor_ids, current: record.minor)
   end

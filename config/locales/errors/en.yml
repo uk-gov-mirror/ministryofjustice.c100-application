@@ -345,11 +345,14 @@ en:
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/applicant/contact_details_form:
+        steps/applicant/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
             residence_requirement_met:
               inclusion: Select yes if you’ve lived at the address for more than 5 years
+        steps/applicant/contact_details_form:
+          attributes:
+            <<: *PERSONAL_DETAILS_ERRORS
         steps/respondent/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
