@@ -1,6 +1,6 @@
 module Steps
   module Applicant
-    class AddressDetailsController < Steps::RespondentStepController
+    class AddressDetailsController < Steps::ApplicantStepController
       def edit
         @form_object = AddressDetailsForm.build(
           current_record, c100_application: current_c100_application

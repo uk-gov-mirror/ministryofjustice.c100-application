@@ -264,7 +264,7 @@ en:
           heading: "Provide details for %{name}"
       address_details:
         edit:
-          page_title: Other person contact details
+          page_title: Other person Address details
           heading: "Address details of %{name}"
       relationship:
         edit:
