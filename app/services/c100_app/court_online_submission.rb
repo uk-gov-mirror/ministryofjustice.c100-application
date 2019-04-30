@@ -1,28 +1,23 @@
 module C100App
-  class CourtOnlineSubmission
-    attr_reader :c100_application
-    attr_reader :pdf_content
-
-    def initialize(c100_application)
-      @c100_application = c100_application
+  class CourtOnlineSubmission < BaseOnlineSubmission
+    def process
+      generate_documents && deliver_email && audit_data
     end
 
     def to_address
       c100_application.screener_answers_court.email
     end
 
-    # Any exception in this method will bubble up to the Job classes
-    def process
-      generate_pdf && deliver_email && audit_data
-    end
-
     private
 
-    def generate_pdf
-      presenter = Summary::PdfPresenter.new(c100_application)
-      presenter.generate
-
-      @pdf_content = StringIO.new(presenter.to_pdf)
+    def generate_documents
+      documents.store(
+        :bundle, generate_pdf(:c100, :c1a, :c8)
+      )
+      # TODO: in a follow-up PR we will split the C8 form
+      # documents.store(
+      #   :c8_form, generate_pdf(:c8)
+      # )
     end
 
     def deliver_email
@@ -35,13 +30,6 @@ module C100App
       c100_application.email_submission.update(
         to_address: to_address, sent_at: Time.current
       )
-    end
-
-    def application_details
-      {
-        c100_application: c100_application,
-        c100_pdf: pdf_content,
-      }
     end
   end
 end

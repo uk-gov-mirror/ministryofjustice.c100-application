@@ -17,16 +17,16 @@ RSpec.describe C100App::ApplicantOnlineSubmission do
       allow(Summary::PdfPresenter).to receive(:new).with(c100_application).and_return(pdf_presenter)
     end
 
-    context '#generate_pdf' do
+    context '#generate_documents' do
       before do
         allow(subject).to receive(:deliver_email) # do not care here about the email
       end
 
       it 'generates the PDF' do
-        expect(pdf_presenter).to receive(:generate)
+        expect(pdf_presenter).to receive(:generate).with(no_args)
         subject.process
-        expect(subject.pdf_content).to be_a(StringIO)
-        expect(subject.pdf_content.read).to eq('pdf content')
+
+        expect(subject.documents.size).to eq(1)
       end
     end
 
@@ -35,7 +35,7 @@ RSpec.describe C100App::ApplicantOnlineSubmission do
 
       before do
         allow(NotifySubmissionMailer).to receive(:with).with(
-          c100_application: c100_application, c100_pdf: kind_of(StringIO)
+          c100_application: c100_application, documents: { bundle: kind_of(StringIO) }
         ).and_return(mailer)
       end
 
