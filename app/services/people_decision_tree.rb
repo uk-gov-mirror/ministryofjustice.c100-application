@@ -21,16 +21,12 @@ class PeopleDecisionTree < BaseDecisionTree
     if next_child_id
       edit(:relationship, id: record.person, child_id: next_child_id)
     else
-      edit(:contact_details, id: record.person)
+      edit(:address_details, id: record.person)
     end
   end
 
   def edit_contact_details
     edit(:contact_details, id: record)
-  end
-
-  def edit_address_details
-    edit(:address_details, id: record.person)
   end
 
   def next_child_id

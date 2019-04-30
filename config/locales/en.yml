@@ -262,10 +262,10 @@ en:
         edit:
           page_title: Other person personal details
           heading: "Provide details for %{name}"
-      contact_details:
+      address_details:
         edit:
-          page_title: Other person contact details
-          heading: "Contact details of %{name}"
+          page_title: Other person Address details
+          heading: "Address details of %{name}"
       relationship:
         edit:
           page_title: Other person relationship
@@ -1218,7 +1218,7 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_other_parties_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-      steps_other_parties_contact_details_form:
+      steps_other_parties_address_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
@@ -1348,7 +1348,7 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_address_details_form:
         address: *address_hint
-      steps_other_parties_contact_details_form:
+      steps_other_parties_address_details_form:
         address: *address_hint
       steps_applicant_names_split_form:
         new_first_name_html: *middle_names_hint

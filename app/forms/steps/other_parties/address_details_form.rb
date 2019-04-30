@@ -1,6 +1,6 @@
 module Steps
   module OtherParties
-    class ContactDetailsForm < BaseForm
+    class AddressDetailsForm < BaseForm
       attribute :address, StrippedString
       attribute :address_unknown, Boolean
 

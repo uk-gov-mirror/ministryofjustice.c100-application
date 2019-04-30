@@ -12,8 +12,8 @@ module C100App
         after_personal_details(age_check: false)
       when :relationship
         children_relationships
-      when :contact_details
-        after_contact_details
+      when :address_details
+        after_address_details
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -21,7 +21,7 @@ module C100App
 
     private
 
-    def after_contact_details
+    def after_address_details
       if next_party_id
         edit(:personal_details, id: next_party_id)
       else

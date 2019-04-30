@@ -373,7 +373,7 @@ en:
         steps/other_parties/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_parties/contact_details_form:
+        steps/other_parties/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
         steps/solicitor/contact_details_form:
