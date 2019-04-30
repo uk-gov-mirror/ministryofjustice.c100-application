@@ -11,7 +11,6 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       payment_type: payment_type,
     )
   }
-  let(:c100_pdf) { Tempfile.new('test.pdf') }
 
   let(:payment_type) { nil }
   let(:court) {
@@ -30,17 +29,17 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       application_submitted_to_user: 'application_submitted_to_user_template_id',
     )
 
-    allow(c100_pdf).to receive(:read).and_return('file content')
-
     allow(I18n).to receive(:translate!).with('service.name').and_return(
       'Apply to court about child arrangements'
     )
   end
 
   describe '#application_to_court' do
+    let(:documents) { {bundle: StringIO.new('bundle pdf')} }
+
     let(:mail) {
       described_class.with(
-        c100_application: c100_application, c100_pdf: c100_pdf
+        c100_application: c100_application, documents: documents
       ).application_to_court(to_address: 'court@example.com')
     }
 
@@ -60,7 +59,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         reference_code: '1970/01/4A362E1C',
         urgent: 'yes',
         c8_included: 'no',
-        link_to_pdf: { file: 'ZmlsZSBjb250ZW50' },
+        link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
       })
     end
   end
@@ -74,9 +73,11 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       ).and_return('payment instructions from locales')
     end
 
+    let(:documents) { {bundle: StringIO.new('bundle pdf')} }
+
     let(:mail) {
       described_class.with(
-        c100_application: c100_application, c100_pdf: c100_pdf
+        c100_application: c100_application, documents: documents
       ).application_to_user(to_address: 'user@example.com')
     }
 
@@ -98,7 +99,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         court_email: 'court@example.com',
         court_url: 'https://courttribunalfinder.service.gov.uk/courts/test-court',
         payment_instructions: 'payment instructions from locales',
-        link_to_pdf: { file: 'ZmlsZSBjb250ZW50' },
+        link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
       })
     end
 

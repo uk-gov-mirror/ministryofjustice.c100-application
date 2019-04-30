@@ -9,7 +9,7 @@ class NotifySubmissionMailer < NotifyMailer
 
   before_action do
     @c100_application = params[:c100_application]
-    @c100_pdf = params[:c100_pdf]
+    @documents = params[:documents]
   end
 
   #
@@ -54,7 +54,7 @@ class NotifySubmissionMailer < NotifyMailer
     {
       applicant_name: @c100_application.applicants.first&.full_name || '[name not entered]',
       reference_code: @c100_application.reference_code,
-      link_to_pdf: Notifications.prepare_upload(@c100_pdf),
+      link_to_pdf: Notifications.prepare_upload(@documents[:bundle]), # TODO: split for court and applicant
     }
   end
 
