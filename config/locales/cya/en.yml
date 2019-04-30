@@ -98,6 +98,7 @@ en:
       protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
       person_personal_details: Personal details
       person_contact_details: Contact details
+      person_address_details: Address details
       other_court_cases_details: Other proceedings details
       urgent_hearing_details: Urgent hearing details
       without_notice_hearing_details: Without notice hearing details
