@@ -47,4 +47,11 @@ class BaseOnlineSubmission
       documents: documents,
     }
   end
+
+  # TODO: temporary feature-flag
+  # :nocov:
+  def enable_c8_split?
+    ENV['SPLIT_C8_FORM'].present? || ENV['DEV_TOOLS_ENABLED'].present?
+  end
+  # :nocov:
 end

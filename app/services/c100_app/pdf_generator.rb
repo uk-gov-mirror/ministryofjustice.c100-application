@@ -1,7 +1,5 @@
 module C100App
   class PdfGenerator
-    delegate :to_pdf, to: :combiner
-
     def generate(presenter, copies:)
       main_doc = pdf_from_presenter(presenter)
       raw_file = presenter.raw_file_path
@@ -14,6 +12,11 @@ module C100App
 
     def has_forms_data?
       combiner.forms_data.present?
+    end
+
+    def to_pdf
+      return '' unless has_forms_data?
+      combiner.to_pdf
     end
 
     private

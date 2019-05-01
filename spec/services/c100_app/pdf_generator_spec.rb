@@ -68,11 +68,24 @@ RSpec.describe C100App::PdfGenerator do
   end
 
   describe '#to_pdf' do
-    let(:combiner) { double.as_null_object }
+    let(:combiner) { double('Combiner', forms_data: forms_data) }
 
-    it 'delegates method to combiner' do
-      expect(combiner).to receive(:to_pdf)
-      subject.to_pdf
+    context 'there is data in the combiner' do
+      let(:forms_data) { {whatever: 'xyz'} }
+
+      it 'delegates to the combiner' do
+        expect(combiner).to receive(:to_pdf)
+        subject.to_pdf
+      end
+    end
+
+    context 'there is no data yet in the combiner' do
+      let(:forms_data) { nil }
+
+      it 'returns an empty string without calling the combiner' do
+        expect(combiner).not_to receive(:to_pdf)
+        expect(subject.to_pdf).to eq('')
+      end
     end
   end
 

@@ -19,13 +19,23 @@ class NotifySubmissionMailer < NotifyMailer
   #
 
   def application_to_court(to_address:)
-    set_template(:application_submitted_to_court)
+    # TODO: This is a bit messy but neccessary to maintain current behaviour.
+    # Once we enable the split in production, we can leave only one template
+    # and get rid of the if-else.
+    #
+    if @documents[:c8_form]
+      set_template(:application_submitted_to_court_new_version)
+    else
+      set_template(:application_submitted_to_court)
+    end
+
     set_reference("court;#{@c100_application.reference_code}")
 
     set_personalisation(
       shared_personalisation.merge(
         urgent: @c100_application.urgent_hearing || 'no',
         c8_included: @c100_application.address_confidentiality || 'no',
+        link_to_c8_pdf: prepare_upload(@documents[:c8_form]),
       )
     )
 
@@ -54,7 +64,7 @@ class NotifySubmissionMailer < NotifyMailer
     {
       applicant_name: @c100_application.applicants.first&.full_name || '[name not entered]',
       reference_code: @c100_application.reference_code,
-      link_to_pdf: Notifications.prepare_upload(@documents[:bundle]), # TODO: split for court and applicant
+      link_to_pdf: prepare_upload(@documents[:bundle]),
     }
   end
 
@@ -63,6 +73,11 @@ class NotifySubmissionMailer < NotifyMailer
       @c100_application.payment_type || PaymentType::SELF_PAYMENT_CARD,
       scope: [:notify_submission_mailer, :payment_instructions]
     )
+  end
+
+  def prepare_upload(file)
+    return '' if file.nil? || file.size.zero?
+    Notifications.prepare_upload(file)
   end
 
   def court
