@@ -30,7 +30,12 @@ module Summary
         edit_steps_other_parties_personal_details_path(person)
       end
 
-      def contact_details_path(person)
+      # Other parties do not have a contact details step
+      def contact_details_path(_person)
+        nil
+      end
+
+      def address_details_path(person)
         edit_steps_other_parties_address_details_path(person)
       end
 

@@ -77,7 +77,7 @@ en:
 
     # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
     PERSONAL_CONTACT_FIELDS: &PERSONAL_CONTACT_FIELDS
-      address: Address
+      address: Current Address
       address_unknown: I don’t know where they currently live
       home_phone: Home phone
       mobile_phone: Mobile phone
@@ -88,7 +88,7 @@ en:
         <<: *YESNO
 
     PERSONAL_ADDRESS_FIELDS: &PERSONAL_ADDRESS_FIELDS
-      address: Address
+      address: Current Address
       residence_requirement_met:
         <<: *YESNO
 
@@ -186,12 +186,12 @@ en:
         edit:
           page_title: Respondent contact details
           heading: "Contact details of %{name}"
-          body_info: Include as much detail as you can. This will help us process your application more quickly.
+          body_info: Include as much detail as you can. If there’s information missing, your application may take longer to process.
       address_details:
         edit:
           page_title: Respondent address details
           heading: "Address details of %{name}"
-          body_info: Include as much detail as you can. This will help us process your application more quickly.
+          body_info: Include as much detail as you can. If there’s information missing, your application may take longer to process.
       has_other_parties:
         edit:
           page_title: Other parties who should know about the application
@@ -1438,7 +1438,7 @@ en:
       hide_password: Hide password
     form_elements:
       dob: Date of birth
-      dob_hint: For example, 31 3 1980
+      dob_hint: For example, 31 3 1980. If you don’t know their date of birth, your application may take longer to process
       dob_child_hint: For example, 31 3 2010
       order_issue: What date was it made?
       order_issue_hint: For example, 31 3 2015

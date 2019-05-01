@@ -20,6 +20,10 @@ module Summary
       end
 
       def contact_details_path(person)
+        edit_steps_applicant_contact_details_path(person)
+      end
+
+      def address_details_path(person)
         edit_steps_applicant_address_details_path(person)
       end
 

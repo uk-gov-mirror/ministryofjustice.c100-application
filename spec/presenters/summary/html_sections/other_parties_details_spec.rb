@@ -30,6 +30,10 @@ module Summary
       )
     }
 
+    before do
+      allow(subject).to receive(:contact_details_path).and_return(false)
+    end
+
     subject { described_class.new(c100_application) }
 
     let(:relationships) {
@@ -101,7 +105,7 @@ module Summary
           expect(details[2].value).to eq(Date.new(2018, 1, 20))
 
         expect(answers[4]).to be_an_instance_of(AnswersGroup)
-        expect(answers[4].name).to eq(:person_contact_details)
+        expect(answers[4].name).to eq(:person_address_details)
         expect(answers[4].change_path).to eq('/steps/other_parties/address_details/uuid-123')
         expect(answers[4].answers.count).to eq(1)
 
