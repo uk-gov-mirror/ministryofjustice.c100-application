@@ -11,13 +11,13 @@ module C100App
     private
 
     def generate_documents
-      documents.store(
-        :bundle, generate_pdf(:c100, :c1a, :c8)
-      )
-      # TODO: in a follow-up PR we will split the C8 form
-      # documents.store(
-      #   :c8_form, generate_pdf(:c8)
-      # )
+      if enable_c8_split?
+        documents.store(:bundle, generate_pdf(:c100, :c1a))
+        documents.store(:c8_form, generate_pdf(:c8))
+      else
+        # Generates all 3 forms in a single bundle
+        documents.store(:bundle, generate_pdf)
+      end
     end
 
     def deliver_email
