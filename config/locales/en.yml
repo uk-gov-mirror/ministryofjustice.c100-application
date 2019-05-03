@@ -89,6 +89,10 @@ en:
 
     PERSONAL_ADDRESS_FIELDS: &PERSONAL_ADDRESS_FIELDS
       address: Current Address
+      address_line_1: Building and street
+      town: Town or city
+      country: Country
+      postcode: Postal / zip code
       residence_requirement_met:
         <<: *YESNO
 

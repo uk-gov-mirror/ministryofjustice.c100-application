@@ -17,6 +17,13 @@ textarea.form-control-large {
   input[type=text].form-control.narrow {
     width: 50%;
   }
+  input[type=text].form-control[name*=town],
+  input[type=text].form-control[name*=country] {
+    width: 75%;
+  }
+  input[type=text].form-control[name*=postcode] {
+    width: 25%;
+  }
 }
 
 .block-label:last-child,

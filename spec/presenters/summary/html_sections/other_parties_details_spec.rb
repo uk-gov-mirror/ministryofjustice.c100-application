@@ -32,6 +32,8 @@ module Summary
 
     before do
       allow(subject).to receive(:contact_details_path).and_return(false)
+      allow(other_party).to receive(:split_address?).and_return(false)
+      allow(other_party).to receive(:full_address).and_return(other_party.address)
     end
 
     subject { described_class.new(c100_application) }

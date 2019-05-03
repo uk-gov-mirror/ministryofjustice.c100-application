@@ -60,6 +60,10 @@ class BaseForm
     true
   end
 
+  def split_address?
+    (c100_application.version > 2 || ENV.key?("SPLIT_ADDRESS")) || ENV.key?("DEV_TOOLS_ENABLED")
+  end
+
   private
 
   def record_id

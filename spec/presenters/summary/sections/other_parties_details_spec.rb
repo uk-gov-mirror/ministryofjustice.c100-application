@@ -30,6 +30,11 @@ module Summary
       )
     }
 
+    before do
+      allow(other_party).to receive(:split_address?).and_return(false)
+      allow(other_party).to receive(:full_address).and_return(other_party.address)
+    end
+
     subject { described_class.new(c100_application) }
 
     let(:has_previous_name) { 'no' }

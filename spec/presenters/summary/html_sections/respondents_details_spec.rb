@@ -29,6 +29,11 @@ module Summary
       )
     }
 
+    before do
+      allow(respondent).to receive(:split_address?).and_return(false)
+      allow(respondent).to receive(:full_address).and_return(respondent.address)
+    end
+
     subject { described_class.new(c100_application) }
 
     let(:has_previous_name) { 'no' }
