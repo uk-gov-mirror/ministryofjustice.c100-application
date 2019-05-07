@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe C8ConfidentialityPresenter do
   let(:person) {
-    instance_double(Applicant, address: 'real address', residence_history: nil, gender: 'male')
+    instance_double(Applicant, address: 'real address', full_address: 'real full address', residence_history: nil, gender: 'male')
   }
 
   subject { described_class.new(person) }
@@ -13,6 +13,7 @@ RSpec.describe C8ConfidentialityPresenter do
         described_class::DETAILS_UNDER_C8
       ).to contain_exactly(
         :address,
+        :full_address,
         :residence_history,
         :home_phone,
         :mobile_phone,
@@ -31,6 +32,10 @@ RSpec.describe C8ConfidentialityPresenter do
 
   it 'returns the replacement answer when confidentiality applies' do
     expect(subject.address).to eq('[See C8 attached at the end of this form]')
+  end
+
+  it 'returns the replacement answer when confidentiality applies' do
+    expect(subject.full_address).to eq('[See C8 attached at the end of this form]')
   end
 
   it 'returns the original answer when confidentiality does not apply' do

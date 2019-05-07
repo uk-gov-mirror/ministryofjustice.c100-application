@@ -1,6 +1,7 @@
 class C8ConfidentialityPresenter < SimpleDelegator
   DETAILS_UNDER_C8 = [
     :address,
+    :full_address,
     :residence_history,
     :home_phone,
     :mobile_phone,
