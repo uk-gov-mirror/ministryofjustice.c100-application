@@ -455,7 +455,7 @@ en:
         edit:
           page_title: Children abuse
           section: Safety concerns
-          heading: Have the children ever suffered or are they at risk of suffering domestic or child abuse?
+          heading: Have the children suffered or are they at risk of suffering domestic or child abuse?
           info_html: |
             <p>This includes any action that causes harm to a child. Harm includes seeing or hearing the ill-treatment of others.</p>
             <p>Examples include:</p>
@@ -472,7 +472,7 @@ en:
         edit:
           page_title: Domestic violence or abuse
           section: Safety concerns
-          heading: Have you ever suffered or are you at risk of suffering domestic violence or abuse?
+          heading: Have you suffered or are you at risk of suffering domestic violence or abuse?
           info_html: |
             <p>Domestic violence or abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
             <p>Examples include, but are not limited to:</p>
