@@ -938,6 +938,21 @@ en:
           page_title: Contact by email
           heading: Are you willing to be contacted by email about your experience using this service?
           lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
+          consent_html: |
+            <details>
+              <summary>
+                <span class="summary" data-ga-category="explanations" data-ga-label="screener consent">What happens if you choose to be contacted</span>
+              </summary>
+              <div class="panel panel-border-narrow">
+                <p>By choosing to be contacted by Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes</p>
+                <h3 class="heading-small">The information we use</h3>
+                <p>MOJ can use any information you provide, including your name and contact information (such as your email address).</p>
+                <h3 class="heading-small">Why we use this information</h3>
+                <p>To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
+                <h3 class="heading-small">Data and your rights</h3>
+                <p>You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent">privacy consent</a>.</p>
+              </div>
+            </details>
       warning:
         show:
           page_title: Application in progress

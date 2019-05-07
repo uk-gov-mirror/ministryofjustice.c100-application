@@ -28,4 +28,11 @@ RSpec.describe AboutController do
       expect(response).to render_template(:terms_and_conditions)
     end
   end
+
+  describe '#privacy_consent' do
+    it 'renders the expected page' do
+      get :privacy_consent
+      expect(response).to render_template(:privacy_consent)
+    end
+  end
 end

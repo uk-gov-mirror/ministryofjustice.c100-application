@@ -272,6 +272,7 @@ Rails.application.routes.draw do
   get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
+  get 'about/privacy_consent'
 
   get :miam_exemptions, to: 'home#miam_exemptions', as: :miam_exemptions_page
 
