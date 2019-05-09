@@ -2,8 +2,18 @@ module Steps
   module Respondent
     class AddressDetailsController < Steps::RespondentStepController
       def edit
-        @form_object = AddressDetailsForm.build(
-          current_record, c100_application: current_c100_application
+        @form_object = AddressDetailsForm.new(
+          address: current_record.address,
+          address_unknown: current_record.address_unknown,
+          address_line_1: current_record.address_line_1,
+          address_line_2: current_record.address_line_2,
+          town: current_record.town,
+          country: current_record.country,
+          postcode: current_record.postcode,
+          residence_requirement_met: current_record.residence_requirement_met,
+          residence_history: current_record.residence_history,
+          c100_application: current_c100_application,
+          record: current_record
         )
       end
 

@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe Steps::Applicant::AddressDetailsForm do
+  it_behaves_like 'a address CRUD form', Applicant
+
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
@@ -23,6 +25,7 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
   let(:residence_requirement_met) { 'no' }
   let(:residence_history) { 'history' }
   let(:split_address_result) { false }
+  let(:address_unknown) { false }
 
   let(:address_line_1) { nil }
   let(:address_line_2) { nil }
@@ -83,6 +86,7 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
       let(:expected_attributes) {
         {
           address: 'address',
+          address_unknown: nil,
           residence_requirement_met: GenericYesNo::NO,
           residence_history: 'history'
         }
@@ -141,6 +145,7 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
       let(:expected_attributes) {
         {
           address_data: address_data,
+          address_unknown: nil,
           residence_requirement_met: GenericYesNo::NO,
           residence_history: 'history'
         }
