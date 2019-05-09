@@ -944,13 +944,13 @@ en:
                 <span class="summary" data-ga-category="explanations" data-ga-label="screener consent">What happens if you choose to be contacted</span>
               </summary>
               <div class="panel panel-border-narrow">
-                <p>By choosing to be contacted by Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes</p>
+                <p>By choosing to be contacted by the Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes.</p>
                 <h3 class="heading-small">The information we use</h3>
                 <p>MOJ can use any information you provide, including your name and contact information (such as your email address).</p>
                 <h3 class="heading-small">Why we use this information</h3>
                 <p>To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
                 <h3 class="heading-small">Data and your rights</h3>
-                <p>You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent">privacy consent</a>.</p>
+                <p>You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent">privacy policy</a>.</p>
               </div>
             </details>
       warning:
@@ -1521,7 +1521,6 @@ en:
       invalid_token: "The URL used to change your password is no longer valid or has expired. Please type your email to receive a new email."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
       destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
       signed_up: "Welcome! You have signed up successfully."
