@@ -1,11 +1,6 @@
 module Steps
   module OtherParties
-    class AddressDetailsForm < BaseForm
-      attribute :address, StrippedString
-      attribute :address_unknown, Boolean
-
-      validates_presence_of :address, unless: :address_unknown?
-
+    class AddressDetailsForm < AddressBaseForm
       private
 
       def persist!
@@ -13,7 +8,7 @@ module Steps
 
         party = c100_application.other_parties.find_or_initialize_by(id: record_id)
         party.update(
-          attributes_map
+          update_values
         )
       end
     end

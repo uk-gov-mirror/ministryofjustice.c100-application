@@ -1,12 +1,19 @@
 require 'spec_helper'
 
 RSpec.describe Steps::OtherParties::AddressDetailsForm do
-  let(:arguments) { {
-    c100_application: c100_application,
-    record: record,
-    address: address,
-    address_unknown: address_unknown
-  } }
+  let(:arguments) do
+    {
+      c100_application: c100_application,
+      record: record,
+      address_line_1: address_line_1,
+      address_line_2: address_line_2,
+      town: town,
+      country: country,
+      postcode: postcode,
+      address: address,
+      address_unknown: address_unknown
+    }
+  end
 
   let(:c100_application) { instance_double(C100Application, other_parties: other_parties_collection) }
   let(:other_parties_collection) { double('other_parties_collection') }
@@ -15,6 +22,17 @@ RSpec.describe Steps::OtherParties::AddressDetailsForm do
   let(:record) { nil }
   let(:address) { 'address' }
   let(:address_unknown) { false }
+
+  let(:address_line_1) { nil }
+  let(:address_line_2) { nil }
+  let(:town) { nil }
+  let(:country) { nil }
+  let(:postcode) { nil }
+  let(:split_address_result) { false }
+
+  before do
+    allow(subject).to receive(:split_address?).and_return(split_address_result)
+  end
 
   subject { described_class.new(arguments) }
 
@@ -68,6 +86,100 @@ RSpec.describe Steps::OtherParties::AddressDetailsForm do
           ).and_return(true)
 
           expect(subject.save).to be(true)
+        end
+      end
+    end
+    context 'when split address' do
+      let(:split_address_result) { true }
+
+      let(:address_data) do
+        {
+          address_line_1: address_line_1,
+          address_line_2: address_line_2,
+          town: town,
+          country: country,
+          postcode: postcode
+        }
+      end
+
+      # TODO: after the feature flag split_address has been removed this validation
+      # need to be changed to it { should validate_presence_unless_unknown_of(:address_line_1) }
+      context 'validations on field presence based on validate_split_address? value' do
+        context 'should validate on field presence when validate_split_address? is true ' do
+          it { should validate_presence_of(:address_line_1) }
+          it { should validate_presence_of(:postcode) }
+        end
+
+        context 'should not validate on field presence when validate_split_address? is false' do
+          let(:address_unknown) { true }
+          it { should_not validate_presence_of(:address_line_1) }
+          it { should_not validate_presence_of(:postcode) }
+        end
+      end
+
+      context 'address_line_1' do
+        context 'when attribute is not given' do
+          let(:address_line_1) { nil }
+
+          it 'returns false' do
+            expect(subject.save).to be(false)
+          end
+
+          it 'has a validation error on the field' do
+            expect(subject).to_not be_valid
+            expect(subject.errors[:address_line_1]).to_not be_empty
+          end
+        end
+      end
+
+      context 'for valid details' do
+        let(:expected_attributes) {
+          {
+            address_data: address_data,
+            address_unknown: false,
+          }
+        }
+
+        context 'when record does not exist' do
+          let(:record) { nil }
+          let(:address_line_1) { 'address_line_1' }
+          let(:address_line_2) { 'address_line_2' }
+          let(:town) { 'town' }
+          let(:country) { 'c' }
+          let(:postcode) { 'postcode' }
+
+          it 'creates the record if it does not exist' do
+            expect(other_parties_collection).to receive(:find_or_initialize_by).with(
+              id: nil
+            ).and_return(party)
+
+            expect(party).to receive(:update).with(
+              expected_attributes
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
+        end
+
+        context 'when record already exists' do
+          let(:record) { party }
+          let(:address_line_1) { 'address_line_1' }
+          let(:address_line_2) { 'address_line_2' }
+          let(:town) { 'town' }
+          let(:country) { 'c' }
+          let(:postcode) { 'postcode' }
+
+          it 'updates the record if it already exists' do
+            expect(other_parties_collection).to receive(:find_or_initialize_by).with(
+              id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6'
+            ).and_return(party)
+
+            expect(party).to receive(:update).with(
+              expected_attributes
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
         end
       end
     end

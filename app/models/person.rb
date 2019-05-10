@@ -1,4 +1,6 @@
 class Person < ApplicationRecord
+  store_accessor :address_data, :address_line_1, :address_line_2,
+                 :town, :country, :postcode
   belongs_to :c100_application
   has_many :relationships, source: :person, dependent: :destroy
 

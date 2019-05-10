@@ -14,7 +14,6 @@ RSpec.describe Steps::Respondent::AddressDetailsForm do
       town: town,
       country: country,
       postcode: postcode,
-      address: address,
       address_unknown: address_unknown,
       residence_requirement_met: residence_requirement_met,
       residence_history: residence_history
@@ -146,9 +145,19 @@ RSpec.describe Steps::Respondent::AddressDetailsForm do
         }
       end
 
-      context 'validations on field presence unless `unknown`' do
-        it { should validate_presence_of(:address_line_1) }
-        it { should validate_presence_of(:postcode) }
+      # TODO: after the feature flag split_address has been removed this validation
+      # need to be changed to it { should validate_presence_unless_unknown_of(:address_line_1) }
+      context 'validations on field presence based on validate_split_address? value' do
+        context 'should validations on field presence when validate_split_address? is true ' do
+          it { should validate_presence_of(:address_line_1) }
+          it { should validate_presence_of(:postcode) }
+        end
+
+        context 'should not validations on field presence when validate_split_address? is false' do
+          let(:address_unknown) { true }
+          it { should_not validate_presence_of(:address_line_1) }
+          it { should_not validate_presence_of(:postcode) }
+        end
       end
 
       context 'address_line_1' do
