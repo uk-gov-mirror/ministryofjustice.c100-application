@@ -28,7 +28,6 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       Rails.configuration
     ).to receive(:govuk_notify_templates).and_return(
       application_submitted_to_court: 'application_submitted_to_court_template_id',
-      application_submitted_to_court_new_version: 'application_submitted_to_court_new_template_id',
       application_submitted_to_user: 'application_submitted_to_user_template_id',
     )
 
@@ -38,7 +37,8 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
   end
 
   describe '#application_to_court' do
-    let(:documents) { {bundle: StringIO.new('bundle pdf')} }
+    let(:documents) { { bundle: StringIO.new('bundle pdf'), c8_form: c8_form } }
+    let(:c8_form) { StringIO.new('') }
 
     let(:mail) {
       described_class.with(
@@ -67,46 +67,18 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       })
     end
 
-    # TODO: temporary feature-flagged condition.
-    context 'when the C8 split is enabled' do
-      let(:documents) { { bundle: StringIO.new('bundle pdf'), c8_form: c8_form } }
+    context 'and applicant triggered the `address confidentiality`' do
+      let(:address_confidentiality) { 'yes' }
+      let(:c8_form) { StringIO.new('c8 form') }
 
-      context 'and applicant triggered the `address confidentiality`' do
-        let(:address_confidentiality) { 'yes' }
-        let(:c8_form) { StringIO.new('c8 form') }
-
-        it 'has the right template id' do
-          expect(mail.govuk_notify_template).to eq('application_submitted_to_court_new_template_id')
-        end
-
-        it 'has the right personalisation' do
-          expect(
-            mail.govuk_notify_personalisation
-          ).to match(hash_including(
-            c8_included: 'yes',
-            link_to_c8_pdf: { file: 'YzggZm9ybQ==' },
-            link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
-          ))
-        end
-      end
-
-      context 'and applicant did not trigger the `address confidentiality`' do
-        let(:address_confidentiality) { 'no' }
-        let(:c8_form) { StringIO.new('') }
-
-        it 'has the right template id' do
-          expect(mail.govuk_notify_template).to eq('application_submitted_to_court_new_template_id')
-        end
-
-        it 'has the right personalisation' do
-          expect(
-            mail.govuk_notify_personalisation
-          ).to match(hash_including(
-            c8_included: 'no',
-            link_to_c8_pdf: '',
-            link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
-          ))
-        end
+      it 'has the right personalisation' do
+        expect(
+          mail.govuk_notify_personalisation
+        ).to match(hash_including(
+          c8_included: 'yes',
+          link_to_c8_pdf: { file: 'YzggZm9ybQ==' },
+          link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
+        ))
       end
     end
   end

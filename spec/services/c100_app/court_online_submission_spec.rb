@@ -13,11 +13,9 @@ RSpec.describe C100App::CourtOnlineSubmission do
 
   describe '#process' do
     let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: true, to_pdf: 'pdf content') }
-    let(:c8_split_enabled) { false }
 
     before do
       allow(Summary::PdfPresenter).to receive(:new).with(c100_application).and_return(pdf_presenter)
-      allow(subject).to receive(:enable_c8_split?).and_return(c8_split_enabled) # temporary feature-flag
     end
 
     context '#generate_documents' do
@@ -25,27 +23,13 @@ RSpec.describe C100App::CourtOnlineSubmission do
         allow(subject).to receive(:deliver_email) # do not care here about the email
       end
 
-      context 'C8 split feature-flag enabled' do
-        let(:c8_split_enabled) { true }
+      it 'generates a bundle with C100 and C1A and a separate C8 form' do
+        expect(pdf_presenter).to receive(:generate).with(:c100, :c1a).ordered
+        expect(pdf_presenter).to receive(:generate).with(:c8).ordered
+        subject.process
 
-        it 'generates a bundle with C100 and C1A and a separate C8 form' do
-          expect(pdf_presenter).to receive(:generate).with(:c100, :c1a).ordered
-          expect(pdf_presenter).to receive(:generate).with(:c8).ordered
-          subject.process
-
-          expect(subject.documents.size).to eq(2)
-          expect(subject.documents.keys).to match_array([:bundle, :c8_form])
-        end
-      end
-
-      context 'C8 split feature-flag disabled' do
-        it 'generates all 3 forms in a PDF bundle' do
-          expect(pdf_presenter).to receive(:generate).with(no_args)
-          subject.process
-
-          expect(subject.documents.size).to eq(1)
-          expect(subject.documents.keys).to match_array([:bundle])
-        end
+        expect(subject.documents.size).to eq(2)
+        expect(subject.documents.keys).to match_array([:bundle, :c8_form])
       end
     end
 
@@ -54,11 +38,11 @@ RSpec.describe C100App::CourtOnlineSubmission do
 
       before do
         allow(NotifySubmissionMailer).to receive(:with).with(
-          c100_application: c100_application, documents: { bundle: kind_of(StringIO) }
+          c100_application: c100_application, documents: { bundle: kind_of(StringIO), c8_form: kind_of(StringIO) }
         ).and_return(mailer)
       end
 
-      it 'delivers the email to the applicant' do
+      it 'delivers the email to the court' do
         expect(
           mailer
         ).to receive(:application_to_court).with(to_address: 'court@email.com')
