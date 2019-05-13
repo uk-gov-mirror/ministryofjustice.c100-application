@@ -19,16 +19,7 @@ class NotifySubmissionMailer < NotifyMailer
   #
 
   def application_to_court(to_address:)
-    # TODO: This is a bit messy but neccessary to maintain current behaviour.
-    # Once we enable the split in production, we can leave only one template
-    # and get rid of the if-else.
-    #
-    if @documents[:c8_form]
-      set_template(:application_submitted_to_court_new_version)
-    else
-      set_template(:application_submitted_to_court)
-    end
-
+    set_template(:application_submitted_to_court)
     set_reference("court;#{@c100_application.reference_code}")
 
     set_personalisation(

@@ -23,7 +23,7 @@ RSpec.describe C8ConfidentialityPresenter do
   end
 
   describe '.replacement_answer' do
-    it { expect(described_class.replacement_answer).to eq('[See C8 attached at the end of this form]') }
+    it { expect(described_class.replacement_answer).to eq('[See C8]') }
   end
 
   it 'returns the original answer if it is blank/nil' do
@@ -31,11 +31,11 @@ RSpec.describe C8ConfidentialityPresenter do
   end
 
   it 'returns the replacement answer when confidentiality applies' do
-    expect(subject.address).to eq('[See C8 attached at the end of this form]')
+    expect(subject.address).to eq('[See C8]')
   end
 
   it 'returns the replacement answer when confidentiality applies' do
-    expect(subject.full_address).to eq('[See C8 attached at the end of this form]')
+    expect(subject.full_address).to eq('[See C8]')
   end
 
   it 'returns the original answer when confidentiality does not apply' do
