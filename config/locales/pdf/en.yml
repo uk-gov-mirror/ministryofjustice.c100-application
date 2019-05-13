@@ -3,7 +3,7 @@ en:
     to_be_completed: &to_be_completed "To be completed by the court"
     not_applicable: &not_applicable "[Not applicable in this case]"
     not_required: &not_required "[Not required]"
-    c8_attached: &c8_attached "[See C8 attached at the end of this form]"
+    c8_attached: &c8_attached "[See C8]"
     none_selected: &none_selected "[None selected]"
     unknown: &unknown "Don't know"
     details: &details "Details:"
@@ -141,7 +141,7 @@ en:
     descriptions:
       risk_concerns: Are you alleging that the applicant(s) or the child(ren) named in Section 1 of this form have experienced, or are at risk of experiencing, harm from any of the following by any person who has had contact with the child(ren)?
       c1a_attached_html: <strong>C1A is attached at the end of this form</strong>
-      c8_attached_html: <strong>C8 is attached at the end of this form</strong>
+      c8_attached_html: <strong>C8 has been generated separately</strong>
     separators:
       c8_attached: *c8_attached
       not_applicable: *not_applicable

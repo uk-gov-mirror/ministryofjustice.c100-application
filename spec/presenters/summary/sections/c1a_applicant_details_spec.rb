@@ -109,15 +109,15 @@ module Summary
         it 'hides the contact details' do
           expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[5].question).to eq(:person_home_phone)
-          expect(answers[5].value).to eq('[See C8 attached at the end of this form]')
+          expect(answers[5].value).to eq('[See C8]')
 
           expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[6].question).to eq(:person_mobile_phone)
-          expect(answers[6].value).to eq('[See C8 attached at the end of this form]')
+          expect(answers[6].value).to eq('[See C8]')
 
           expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[7].question).to eq(:person_email)
-          expect(answers[7].value).to eq('[See C8 attached at the end of this form]')
+          expect(answers[7].value).to eq('[See C8]')
 
           expect(answers[9]).to be_an_instance_of(Answer)
           expect(answers[9].question).to eq(:c1a_address_confidentiality)
