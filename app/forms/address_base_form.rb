@@ -1,12 +1,12 @@
 class AddressBaseForm < BaseForm
   attribute :address, StrippedString
-  attribute :address_unknown, Boolean
+  attribute :address_unknown, Boolean, default: false
 
-  attribute :address_line_1, String
-  attribute :address_line_2, String
-  attribute :town, String
-  attribute :country, String
-  attribute :postcode, String
+  attribute :address_line_1, StrippedString
+  attribute :address_line_2, StrippedString
+  attribute :town, StrippedString
+  attribute :country, StrippedString
+  attribute :postcode, StrippedString
 
   validates_presence_of :address, unless: :validate_address?
 
