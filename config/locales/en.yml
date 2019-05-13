@@ -77,22 +77,20 @@ en:
 
     # This is a compilation of all possible fields shared between Applicants and Respondents (maybe others later)
     PERSONAL_CONTACT_FIELDS: &PERSONAL_CONTACT_FIELDS
-      address: Current Address
-      address_unknown: I don’t know where they currently live
       home_phone: Home phone
       mobile_phone: Mobile phone
       mobile_phone_unknown: *dont_know
       email: Email address
       email_unknown: *dont_know
-      residence_requirement_met:
-        <<: *YESNO
 
     PERSONAL_ADDRESS_FIELDS: &PERSONAL_ADDRESS_FIELDS
-      address: Current Address
+      address: Current address
       address_line_1: Building and street
+      address_line_2: Building and street line 2
       town: Town or city
       country: Country
       postcode: Postal / zip code
+      address_unknown: I don’t know where they currently live
       residence_requirement_met:
         <<: *YESNO
 
@@ -1081,7 +1079,7 @@ en:
       steps_alternatives_collaborative_law_form:
         alternative_collaborative_law: Have you tried collaborative law?
       steps_applicant_personal_details_form:
-        has_previous_name: Have they changed their name?
+        has_previous_name: Have you changed your name?
         gender: Sex
       steps_applicant_address_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
@@ -1220,14 +1218,14 @@ en:
       #
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-        previous_name: Enter their previous name
-      steps_respondent_personal_details_form:
-        <<: *PERSONAL_DETAILS_FIELDS
+        previous_name: Enter your previous name
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_applicant_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
+      steps_respondent_personal_details_form:
+        <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_respondent_address_details_form:
@@ -1238,7 +1236,7 @@ en:
       steps_other_parties_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_other_parties_address_details_form:
-        <<: *PERSONAL_CONTACT_FIELDS
+        <<: *PERSONAL_ADDRESS_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
         age_estimate: Approximate age or year child was born
@@ -1458,6 +1456,7 @@ en:
     form_elements:
       dob: Date of birth
       dob_hint: For example, 31 3 1980. If you don’t know their date of birth, your application may take longer to process
+      dob_applicant_hint: For example, 31 3 1980
       dob_child_hint: For example, 31 3 2010
       order_issue: What date was it made?
       order_issue_hint: For example, 31 3 2015

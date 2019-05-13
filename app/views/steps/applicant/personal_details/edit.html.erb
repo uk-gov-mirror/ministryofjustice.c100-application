@@ -16,7 +16,7 @@
       %>
 
       <%= f.radio_button_fieldset :gender, choices: Gender.values %>
-      <%= f.gov_uk_date_field :dob, placeholders: true, legend_text: t('shared.form_elements.dob'), form_hint_text: t('shared.form_elements.dob_hint') %>
+      <%= f.gov_uk_date_field :dob, placeholders: true, legend_text: t('shared.form_elements.dob'), form_hint_text: t('shared.form_elements.dob_applicant_hint') %>
       <%= f.text_field :birthplace %>
 
       <div class="xform-group form-submit">
