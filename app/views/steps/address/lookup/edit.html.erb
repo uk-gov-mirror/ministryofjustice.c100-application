@@ -1,0 +1,13 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">
+      <%=t '.heading', name: @form_object.record.full_name %>
+    </h1>
+
+    <%= render partial: @form_object, locals: { form_object: @form_object } %>
+  </div>
+</div>

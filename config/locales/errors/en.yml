@@ -399,6 +399,12 @@ en:
           attributes:
             <<: *NAMES_FORM_ERRORS
 
+        steps/address/lookup_form:
+          attributes:
+            postcode:
+              invalid: Enter a valid postcode
+              blank: Enter the postcode
+
         steps/children/residence_form:
           attributes:
             person_ids:

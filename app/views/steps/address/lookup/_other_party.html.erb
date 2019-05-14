@@ -1,0 +1,11 @@
+<p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+
+<%= step_form form_object do |f| %>
+  <%= f.text_field :postcode %>
+
+  <%= link_to t('.manual_address'), {
+      controller: '/steps/other_parties/address_details', action: :edit, id: form_object.record
+  } %>
+
+  <%= f.continue_button %>
+<% end %>
