@@ -21,6 +21,7 @@ class PeopleDecisionTree < BaseDecisionTree
     if next_child_id
       edit(:relationship, id: record.person, child_id: next_child_id)
     else
+      return edit('/steps/address/lookup', id: record.person) if address_lookup_enabled?
       edit(:address_details, id: record.person)
     end
   end
@@ -42,5 +43,13 @@ class PeopleDecisionTree < BaseDecisionTree
   # the residence loop, as we only need the residence of the main children.
   def first_child_id
     c100_application.child_ids.first
+  end
+
+  # TODO: temporary feature-flag for the address lookup. Do not enable yet on staging
+  # as this is still under heavy WIP.
+  # Also note, the version needs to be at least 3, which contains the split address work.
+  #
+  def address_lookup_enabled?
+    c100_application.version > 2 && ENV.key?('ADDRESS_LOOKUP_ENABLED')
   end
 end
