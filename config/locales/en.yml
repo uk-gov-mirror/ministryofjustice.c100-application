@@ -271,6 +271,17 @@ en:
       relationship:
         edit:
           page_title: Other person relationship
+    address:
+      lookup:
+        edit:
+          page_title: Address lookup
+          heading: "Address of %{name}"
+        applicant:
+          manual_address: I live outside the UK
+        respondent:
+          manual_address: I don’t know their postcode or they live outside the UK
+        other_party:
+          manual_address: I don’t know their postcode or they live outside the UK
     solicitor:
       personal_details:
         edit:
@@ -1213,9 +1224,8 @@ en:
         <<: *NAMES_FORM_FIELDS
       steps_other_parties_names_split_form[names_attributes]:
         <<: *NAMES_FORM_FIELDS
-      #
-      # end - split names forms (c100 application v2)
-      #
+      steps_address_lookup_form:
+        postcode: Current postcode
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
         previous_name: Enter your previous name

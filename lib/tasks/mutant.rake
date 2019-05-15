@@ -12,9 +12,12 @@ task :mutant => :environment do
 
   mutation_type = ARGV[1]
 
-  vars = 'RAILS_ENV=test NOCOVERAGE=true'
-  flags = '--use rspec --fail-fast'
-  source_ref = 'origin/master'
+  vars = 'RAILS_ENV=test NOCOVERAGE=true'.freeze
+  flags = ['--use rspec', '--fail-fast']
+
+  # When running on CI, a very high number of concurrent jobs seem to make some
+  # mutations fail randomly. Reducing the number of jobs minimise this problem.
+  flags.push('--jobs 24') if ENV.key?('CIRCLE_BRANCH')
 
   # This is to avoid running the mutant with flag `--since master` when
   # we are already on master, as otherwise it will not work as expected.
@@ -24,8 +27,8 @@ task :mutant => :environment do
     puts "> current branch: #{current_branch}"
 
     if current_branch != 'master'
-      puts "> running complete mutant testing on all changes since #{source_ref}"
-      flags.prepend("--since #{source_ref} ")
+      puts "> running complete mutant testing on all changes since 'origin/master'"
+      flags.push('--since origin/master')
     else
       # As we are already in master, let's not use the --since, and fallback to
       # running the quick randomised sample
@@ -34,7 +37,7 @@ task :mutant => :environment do
     end
   end
 
-  unless system("#{vars} mutant #{flags} #{classes_to_mutate(mutation_type).join(' ')}")
+  unless system("#{vars} mutant #{flags.join(' ')} #{classes_to_mutate(mutation_type).join(' ')}")
     raise 'Mutation testing failed'
   end
 

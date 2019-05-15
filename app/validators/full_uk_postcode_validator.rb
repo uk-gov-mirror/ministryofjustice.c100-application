@@ -6,9 +6,7 @@ class FullUkPostcodeValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     entries = value.to_s.split('\n').reject(&:blank?).compact
     entries.each do |entry|
-      unless parsed_postcode(entry).full_valid?
-        record.errors[attribute] << I18n.t(:invalid, scope: [:errors, :attributes, :children_postcodes])
-      end
+      record.errors.add(attribute, :invalid) unless parsed_postcode(entry).full_valid?
     end
   end
 end

@@ -3,12 +3,13 @@ class CrudStepController < StepController
 
   # :nocov:
   def names_form_class
-    raise 'implement in subclasses'
+    raise 'implement in subclasses if needed'
   end
 
   def record_collection
     raise 'implement in subclasses'
   end
+  # :nocov:
 
   def current_record
     @_current_record ||= record_collection.find_or_initialize_by(id: params[:id])

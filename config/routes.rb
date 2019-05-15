@@ -187,6 +187,9 @@ Rails.application.routes.draw do
       edit_step :collaborative_law
       edit_step :court
     end
+    namespace :address do
+      crud_step :lookup, only: [:edit, :update]
+    end
     namespace :children do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
