@@ -13,7 +13,7 @@ task :mutant => :environment do
   mutation_type = ARGV[1]
 
   vars = 'RAILS_ENV=test NOCOVERAGE=true'
-  flags = '--use rspec --fail-fast'
+  flags = '--use rspec --fail-fast --jobs 12'
   source_ref = 'origin/master'
 
   # This is to avoid running the mutant with flag `--since master` when

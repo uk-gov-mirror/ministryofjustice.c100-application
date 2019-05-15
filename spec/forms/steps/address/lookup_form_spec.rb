@@ -63,6 +63,12 @@ RSpec.describe Steps::Address::LookupForm do
     context 'for valid details' do
       let(:record) { spy(Applicant) }
 
+      # mutant kill
+      it 'checks the application is present' do
+        expect(c100_application).to receive(:present?).and_return(true)
+        expect { subject.save }.not_to raise_error
+      end
+
       it 'updates the record' do
         expect(record).to receive(:update).with(
           postcode: 'SW1H 9AJ'
