@@ -24,7 +24,7 @@ module C100App
 
     def query_params
       {
-        key: ENV.fetch('ORDNANACE_SURVEY_API_KEY'),
+        key: ENV.fetch('ORDNANCE_SURVEY_API_KEY'),
         postcode: postcode
       }
     end
