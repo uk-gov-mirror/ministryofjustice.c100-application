@@ -84,22 +84,27 @@ RSpec.describe Person, type: :model do
       end
 
       context 'when version < 3 and one of the  is set' do
-        it 'return true when SPLIT_ADDRESS set' do
-          with_modified_env SPLIT_ADDRESS: 'bar' do
+        context 'SPLIT_ADDRESS is set' do
+          before do
+            allow(ENV).to receive(:key?).with('SPLIT_ADDRESS').and_return(true)
+          end
+
+          it 'return true when SPLIT_ADDRESS set' do
             expect(subject.split_address?).to eq(true)
           end
         end
 
-        it 'return true when DEV_TOOLS_ENABLED set' do
-          with_modified_env DEV_TOOLS_ENABLED: 'bar' do
+        context 'DEV_TOOLS_ENABLED is set' do
+          before do
+            allow(ENV).to receive(:key?).with('SPLIT_ADDRESS').and_return(false)
+            allow(ENV).to receive(:key?).with('DEV_TOOLS_ENABLED').and_return(true)
+          end
+
+          it 'return true when DEV_TOOLS_ENABLED set' do
             expect(subject.split_address?).to eq(true)
           end
         end
       end
-    end
-
-    def with_modified_env(options, &block)
-      ClimateControl.modify(options, &block)
     end
   end
 end

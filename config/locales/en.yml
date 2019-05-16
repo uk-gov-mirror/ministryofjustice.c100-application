@@ -89,7 +89,7 @@ en:
       address_line_2: Building and street line 2
       town: Town or city
       country: Country
-      postcode: Postal / zip code
+      postcode: Postcode
       address_unknown: I don’t know where they currently live
       residence_requirement_met:
         <<: *YESNO

@@ -83,7 +83,6 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.2)
       xpath (~> 3.2)
-    climate_control (0.2.0)
     cliver (0.3.2)
     coderay (1.1.2)
     coercible (1.0.0)
@@ -404,7 +403,6 @@ DEPENDENCIES
   binding_of_caller
   brakeman
   capybara
-  climate_control
   combine_pdf (~> 1.0)
   cucumber
   cucumber-rails

@@ -10,9 +10,8 @@ class AddressBaseForm < BaseForm
 
   validates_presence_of :address, unless: :validate_address?
 
-  # TODO: To confirm the if we want any validation on a split address
   validates_presence_of :address_line_1, if: :validate_split_address?
-  validates_presence_of :postcode, if: :validate_split_address?
+  validates_presence_of :town, if: :validate_split_address?
 
   def validate_address?
     [address_unknown?, split_address?].any?

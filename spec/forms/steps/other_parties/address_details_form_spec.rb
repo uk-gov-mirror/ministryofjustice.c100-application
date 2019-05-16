@@ -107,13 +107,13 @@ RSpec.describe Steps::OtherParties::AddressDetailsForm do
       context 'validations on field presence based on validate_split_address? value' do
         context 'should validate on field presence when validate_split_address? is true ' do
           it { should validate_presence_of(:address_line_1) }
-          it { should validate_presence_of(:postcode) }
+          it { should validate_presence_of(:town) }
         end
 
         context 'should not validate on field presence when validate_split_address? is false' do
           let(:address_unknown) { true }
           it { should_not validate_presence_of(:address_line_1) }
-          it { should_not validate_presence_of(:postcode) }
+          it { should_not validate_presence_of(:town) }
         end
       end
 

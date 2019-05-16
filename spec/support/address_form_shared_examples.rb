@@ -11,7 +11,6 @@ RSpec.shared_examples 'a address CRUD form' do |form_class, |
       town: town,
       country: country,
       postcode: postcode,
-      address: address,
       address_unknown: address_unknown,
       residence_requirement_met: residence_requirement_met,
       residence_history: residence_history

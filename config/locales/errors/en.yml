@@ -30,11 +30,13 @@ en:
       address:
         blank: Enter the address
       address_line_1:
-        blank: Enter first line of address
-      postcode:
-        blank: Enter a postcode
+        blank: Enter the first line of the address
+      town:
+        blank: Enter the town or city
+      country:
+        blank: Enter the country
       residence_history:
-        blank: Enter details and dates
+        blank: Enter details and dates of previous addresses
       mobile_phone:
         blank: Enter the mobile phone
 
@@ -367,7 +369,11 @@ en:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
             residence_requirement_met:
-              inclusion: Select yes if they’ve lived at the address for more than 5 years
+              inclusion: Select if they’ve lived at the address for more than 5 years
+            address_line_1:
+              blank: Enter the first line of the address or select if you don’t know where they live
+            town:
+              blank: Enter the town or city or select if you don’t know where they live
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -380,6 +386,10 @@ en:
         steps/other_parties/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+            address_line_1:
+              blank: Enter the first line of the address or select if you don’t know where they live
+            town:
+              blank: Enter the town or city or select if you don’t know where they live
         steps/solicitor/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS

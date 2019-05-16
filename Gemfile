@@ -53,7 +53,6 @@ end
 group :test do
   gem 'brakeman'
   gem 'capybara'
-  gem 'climate_control' # Allows environment variables to be modified within specs
   gem 'cucumber'
   gem 'cucumber-rails', require: false
   gem 'poltergeist'
