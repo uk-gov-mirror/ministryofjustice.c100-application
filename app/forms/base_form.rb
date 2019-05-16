@@ -61,7 +61,7 @@ class BaseForm
   end
 
   def split_address?
-    (c100_application.version > 2 || ENV.key?("SPLIT_ADDRESS")) || ENV.key?("DEV_TOOLS_ENABLED")
+    c100_application.version > 2
   end
 
   private

@@ -21,6 +21,6 @@ class Person < ApplicationRecord
   # greater than this version will be eligible for the new split format.
   #
   def split_address?
-    (c100_application.version > 2 || ENV.key?("SPLIT_ADDRESS")) || ENV.key?("DEV_TOOLS_ENABLED")
+    c100_application.version > 2
   end
 end
