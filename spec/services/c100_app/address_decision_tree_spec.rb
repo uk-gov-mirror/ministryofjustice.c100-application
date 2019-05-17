@@ -23,7 +23,7 @@ RSpec.describe C100App::AddressDecisionTree do
     let(:step_params) { { 'postcode_lookup' => 'anything' } }
     let(:record) { double('Applicant', id: 123) }
 
-    it 'goes to edit the address details of the record' do
+    it 'goes to the address results page' do
       expect(subject.destination).to eq(controller: :results, action: :edit, id: record)
     end
   end

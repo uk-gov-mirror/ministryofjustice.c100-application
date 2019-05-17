@@ -15,7 +15,7 @@ RSpec.describe C100App::MapAddressLookupResults do
         expect(subject[0].address_line_1).to eq('APARTMENT 1001, 4, WIVERTON TOWER')
         expect(subject[0].address_line_2).to eq('NEW DRUM STREET')
         expect(subject[0].town).to eq('LONDON')
-        expect(subject[0].country).to eq('United Kingdom')
+        expect(subject[0].country).to eq('UNITED KINGDOM')
         expect(subject[0].postcode).to eq('E1 7AS')
       end
 
@@ -30,7 +30,7 @@ RSpec.describe C100App::MapAddressLookupResults do
 
         context '#tokenized_value' do
           it 'returns all address details in a tokenized string' do
-            expect(result.tokenized_value).to eq('APARTMENT 1001, 4, WIVERTON TOWER|NEW DRUM STREET|LONDON|United Kingdom|E1 7AS')
+            expect(result.tokenized_value).to eq('APARTMENT 1001, 4, WIVERTON TOWER|NEW DRUM STREET|LONDON|UNITED KINGDOM|E1 7AS')
           end
         end
       end
