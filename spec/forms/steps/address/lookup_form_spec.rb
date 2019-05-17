@@ -61,14 +61,36 @@ RSpec.describe Steps::Address::LookupForm do
     end
 
     context 'for valid details' do
-      let(:record) { spy(Applicant) }
+      before do
+        allow(postcode).to receive(:eql?).and_call_original
+      end
 
-      it 'updates the record' do
-        expect(record).to receive(:update).with(
-          postcode: 'SW1H 9AJ'
-        ).and_return(true)
+      context 'when the postcode has changed' do
+        let(:record) { spy(Applicant, postcode: nil) }
 
-        expect(subject.save).to be(true)
+        it 'updates the record' do
+          expect(record).to receive(:update).with(
+            postcode: 'SW1H 9AJ',
+            country: 'UNITED KINGDOM',
+            address_line_1: nil,
+            address_line_2: nil,
+            town: nil,
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'when the postcode is the same as in the persisted record' do
+        let(:record) { spy(Applicant, postcode: postcode) }
+
+        it 'does not save the record but returns true' do
+          expect(record).not_to receive(:update)
+          expect(subject.save).to be(true)
+
+          # mutant kill
+          expect(postcode).to have_received(:eql?).with('SW1H 9AJ')
+        end
       end
     end
   end

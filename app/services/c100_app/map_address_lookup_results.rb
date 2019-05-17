@@ -2,7 +2,7 @@ module C100App
   class MapAddressLookupResults
     LINE_ONE_PARTS = %w[SUB_BUILDING_NAME BUILDING_NUMBER BUILDING_NAME].freeze
     LINE_TWO_PARTS = %w[DEPENDENT_THOROUGHFARE_NAME THOROUGHFARE_NAME].freeze
-    COUNTRY_NAME = "United Kingdom".freeze
+    DEFAULT_COUNTRY = 'UNITED KINGDOM'.freeze
 
     Address = Struct.new(:address_line_1, :address_line_2, :town, :country, :postcode) do
       def address_lines
@@ -25,7 +25,7 @@ module C100App
         address_line(result.slice(*LINE_ONE_PARTS).values),
         address_line(result.slice(*LINE_TWO_PARTS).values),
         result.fetch('POST_TOWN'),
-        COUNTRY_NAME,
+        DEFAULT_COUNTRY,
         result.fetch('POSTCODE')
       )
     end
