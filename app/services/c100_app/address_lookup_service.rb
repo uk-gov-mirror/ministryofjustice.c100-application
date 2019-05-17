@@ -37,29 +37,32 @@ module C100App
       errors.any?
     end
 
+    # TODO: report to Sentry errors for monitoring purposes
     def perform_lookup
       uri = URI.parse(ORDNANCE_SURVEY_URL)
       uri.query = query_params.to_query
       response = Faraday.get(uri)
 
       if response.success?
-        parse_successful_response(response)
+        parse_successful_response(response.body)
       else
-        # NOTE: Add error tracking (e.g. Sentry)
         errors.add(:lookup, :unsuccessful)
         []
       end
     rescue Faraday::ConnectionFailed
       errors.add(:lookup, :service_unavailable)
       []
+    rescue JSON::ParserError, KeyError
+      errors.add(:lookup, :parser_error)
+      []
     end
 
     def parse_successful_response(response)
-      parsed_body = JSON.parse(response.body)
+      parsed_body = JSON.parse(response)
+
       if parsed_body.fetch('header').fetch('totalresults').positive?
         parsed_body.fetch('results')
       else
-        errors.add(:lookup, :no_results)
         []
       end
     end

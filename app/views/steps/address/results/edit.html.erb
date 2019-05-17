@@ -1,0 +1,38 @@
+<% title t('.page_title') %>
+
+<% record = @form_object.record %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">
+      <%=t '.heading', name: record.full_name %>
+    </h1>
+
+    <p class="heading-small bold">
+      <%=t '.current_postcode' %>
+    </p>
+
+    <p>
+      <span class="bold-small"><%= record.postcode %></span>
+      <%= link_to t('.change_postcode'), edit_steps_address_lookup_path(record), class: 'util_ml-medium' %>
+    </p>
+
+    <% if @addresses.any? %>
+
+      <%= step_form @form_object do |f| %>
+        <%= f.collection_select :selected_address, @addresses, :tokenized_value, :address_lines, include_blank: true %>
+
+        <%= link_to t('.address_not_listed'), person_url_for(record, step: :address_details) %>
+
+        <%= f.continue_button %>
+      <% end %>
+
+    <% else %>
+      <%= render partial: 'steps/address/results/no_results', locals: {
+        successful_lookup: @successful_lookup, record: record
+      } %>
+    <% end %>
+  </div>
+</div>

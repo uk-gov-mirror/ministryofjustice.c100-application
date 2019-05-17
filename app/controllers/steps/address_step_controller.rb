@@ -1,5 +1,7 @@
 module Steps
   class AddressStepController < CrudStepController
+    include PersonUrlHelper
+
     private
 
     def decision_tree_class
