@@ -32,14 +32,52 @@ RSpec.describe C100App::AddressLookupService do
         service.result
       end
 
+      it 'returns the collection of addresses' do
+        expect(service).to be_success
+        expect(service.result).to all(be_a(Struct))
+        expect(service.result.size).to eq(3)
+      end
+
       context 'but the response does not contain any results' do
         let(:postcode) { 'W1A1AA' }
         let(:stubbed_json_body) { file_fixture('address_lookups/no_results.json') }
 
-        it 'outcome is unsuccessful' do
-          expect(service).not_to be_success
-          expect(service.errors).to eq(lookup: [:no_results])
+        it 'has a successful outcome' do
+          expect(service).to be_success
           expect(service.result).to eq([])
+        end
+      end
+
+      context 'the response cannot be parsed (`header` not found)' do
+        let(:postcode) { 'W1A1AA' }
+        let(:stubbed_json_body) { "{\"unknown\":\"keys\"}" }
+
+        it 'has an unsuccessful outcome' do
+          expect(service).not_to be_success
+          expect(service.result).to eq([])
+          expect(service.errors).to eq(lookup: [:parser_error])
+        end
+      end
+
+      context 'the response cannot be parsed (`totalresults` not found)' do
+        let(:postcode) { 'W1A1AA' }
+        let(:stubbed_json_body) { "{\"header\":{\"foo\":\"bar\"}}" }
+
+        it 'has an unsuccessful outcome' do
+          expect(service).not_to be_success
+          expect(service.result).to eq([])
+          expect(service.errors).to eq(lookup: [:parser_error])
+        end
+      end
+
+      context 'the response cannot be parsed (invalid json)' do
+        let(:postcode) { 'W1A1AA' }
+        let(:stubbed_json_body) { 'not_json' }
+
+        it 'has an unsuccessful outcome' do
+          expect(service).not_to be_success
+          expect(service.result).to eq([])
+          expect(service.errors).to eq(lookup: [:parser_error])
         end
       end
 
