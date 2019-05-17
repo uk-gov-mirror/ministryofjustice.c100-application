@@ -189,6 +189,7 @@ Rails.application.routes.draw do
     end
     namespace :address do
       crud_step :lookup, only: [:edit, :update]
+      crud_step :results, only: [:edit, :update]
     end
     namespace :children do
       crud_step :names
