@@ -282,6 +282,13 @@ en:
           manual_address: I don’t know their postcode or they live outside the UK
         other_party:
           manual_address: I don’t know their postcode or they live outside the UK
+      results:
+        edit:
+          page_title: Select an address
+          heading: "Select address of %{name}"
+          current_postcode: Current postcode
+          change_postcode: Change
+          address_not_listed: I can’t find the address in the list
     solicitor:
       personal_details:
         edit:
@@ -1226,6 +1233,8 @@ en:
         <<: *NAMES_FORM_FIELDS
       steps_address_lookup_form:
         postcode: Current postcode
+      steps_address_results_form:
+        selected_address: Select an address
       steps_applicant_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
         previous_name: Enter your previous name

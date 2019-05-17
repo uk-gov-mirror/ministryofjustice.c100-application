@@ -414,6 +414,10 @@ en:
             postcode:
               invalid: Enter a valid postcode
               blank: Enter the postcode
+        steps/address/results_form:
+          attributes:
+            selected_address:
+              blank: Select an address from the list
 
         steps/children/residence_form:
           attributes:
