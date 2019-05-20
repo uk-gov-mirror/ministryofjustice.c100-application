@@ -5,7 +5,6 @@ module Steps
       attribute :residence_history, String
 
       validates_inclusion_of :residence_requirement_met, in: GenericYesNoUnknown.values
-      validates_presence_of :residence_history, if: -> { residence_requirement_met&.no? }
 
       private
 

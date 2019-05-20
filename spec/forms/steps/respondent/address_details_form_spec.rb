@@ -65,18 +65,8 @@ RSpec.describe Steps::Respondent::AddressDetailsForm do
         end
       end
 
-      context 'when attribute is given and requires residency history' do
+      context 'when attribute is `no`, does not require residency history' do
         let(:residence_requirement_met) { 'no' }
-        let(:residence_history) { nil }
-
-        it 'has a validation error on the `residence_history` field' do
-          expect(subject).to_not be_valid
-          expect(subject.errors[:residence_history]).to_not be_empty
-        end
-      end
-
-      context 'when attribute is given and does not requires residency history' do
-        let(:residence_requirement_met) { 'yes' }
         let(:residence_history) { nil }
 
         it 'has no validation errors' do
