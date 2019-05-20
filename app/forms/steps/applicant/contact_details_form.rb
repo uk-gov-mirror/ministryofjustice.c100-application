@@ -5,6 +5,7 @@ module Steps
       attribute :mobile_phone, StrippedString
       attribute :email, NormalisedEmail
 
+      validates_presence_of :mobile_phone
       validates :email, email: true, allow_blank: true
 
       private

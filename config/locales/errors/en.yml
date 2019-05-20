@@ -1,6 +1,6 @@
 en:
   dictionary:
-    invalid_email_error: &invalid_email_error "Enter a valid email address"
+    invalid_email_error: &invalid_email_error "Enter an email address in the correct format, like name@example.com"
     blank_email_error: &blank_email_error "Enter an email address"
     yes_no_error: &yes_no_error "Select yes or no"
     blank_details_error: &blank_details_error "Enter details"
@@ -38,7 +38,7 @@ en:
       residence_history:
         blank: Enter details and dates of previous addresses
       mobile_phone:
-        blank: Enter the mobile phone
+        blank: Enter a mobile number or tell us why the court cannot phone you
 
   errors:
     format: "%{message}"
