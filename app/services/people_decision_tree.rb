@@ -18,11 +18,14 @@ class PeopleDecisionTree < BaseDecisionTree
   end
 
   def children_relationships
+    current_person = record.person
+
     if next_child_id
-      edit(:relationship, id: record.person, child_id: next_child_id)
+      edit(:relationship, id: current_person, child_id: next_child_id)
+    elsif show_address_lookup?
+      edit('/steps/address/lookup', id: current_person)
     else
-      return edit('/steps/address/lookup', id: record.person) if address_lookup_enabled?
-      edit(:address_details, id: record.person)
+      edit(:address_details, id: current_person)
     end
   end
 
@@ -45,11 +48,19 @@ class PeopleDecisionTree < BaseDecisionTree
     c100_application.child_ids.first
   end
 
-  # TODO: temporary feature-flag for the address lookup. Do not enable yet on staging
-  # as this is still under heavy WIP.
-  # Also note, the version needs to be at least 3, which contains the split address work.
-  #
-  def address_lookup_enabled?
-    c100_application.version > 2 && ENV.key?('ADDRESS_LOOKUP_ENABLED')
+  # If the address has already been entered, do not take the user again
+  # through the postcode lookup and address selection steps.
+  def show_address_lookup?
+    return false if !address_lookup_enabled? || record.person.address_unknown?
+    record.person.address_line_1.blank?
   end
+
+  # TODO: temporary feature-flag for the address lookup.
+  # The version needs to be at least 3, which contains the split address work.
+  # Once all applications are in version >= 3, we can delete this code.
+  # :nocov:
+  def address_lookup_enabled?
+    c100_application.version > 2 && dev_tools_enabled?
+  end
+  # :nocov:
 end
