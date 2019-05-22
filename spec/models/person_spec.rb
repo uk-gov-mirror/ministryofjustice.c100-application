@@ -3,14 +3,6 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   subject { person }
 
-  let(:person) do
-    Person.new(first_name: first_name, last_name: last_name)
-  end
-
-  let(:first_name) { nil }
-  let(:last_name)  { nil }
-
-
   let(:address_hash) do
     {
       address_line_1: 'address_line_1',
@@ -21,11 +13,17 @@ RSpec.describe Person, type: :model do
     }
   end
 
-  let(:full_address_string) { address_hash.values.reject(&:empty?).join(', ') }
   let(:address_string) { 'address' }
   let(:split_address_value) { false }
 
   describe '#full_name' do
+    let(:person) do
+      Person.new(first_name: first_name, last_name: last_name)
+    end
+
+    let(:first_name) { nil }
+    let(:last_name)  { nil }
+
     context 'for a person with first and last name attributes' do
       let(:first_name) { 'John' }
       let(:last_name) { 'Doe' }
@@ -43,10 +41,9 @@ RSpec.describe Person, type: :model do
     end
   end
 
-
   describe '#full_address' do
     let(:person) do
-      Person.new(first_name: first_name, last_name: last_name, address: address_string, address_data: address_hash)
+      Person.new(address: address_string, address_data: address_hash)
     end
 
     before do
@@ -59,7 +56,23 @@ RSpec.describe Person, type: :model do
 
     context 'split address' do
       let(:split_address_value) { true }
-      it { expect(subject.full_address).to eq(full_address_string) }
+
+      it { expect(subject.full_address).to eq('address_line_1, town, country, postcode') }
+
+      context 'when the hash keys are in a different order or missing' do
+        let(:address_hash) do
+          {
+            postcode: 'postcode',
+            country: 'country',
+            address_line_1: 'address_line_1',
+            town: 'town',
+          }
+        end
+
+        it 'returns the value in the expected order' do
+          expect(subject.full_address).to eq('address_line_1, town, country, postcode')
+        end
+      end
     end
   end
 
@@ -68,7 +81,7 @@ RSpec.describe Person, type: :model do
     let(:c100_application) { C100Application.new(version: version) }
 
     let(:person) do
-      Person.new(first_name: first_name, last_name: last_name, address: address_string, address_data: address_hash, c100_application: c100_application)
+      Person.new(address: address_string, address_data: address_hash, c100_application: c100_application)
     end
 
     context 'return false' do
