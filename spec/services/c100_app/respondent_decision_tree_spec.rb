@@ -102,29 +102,11 @@ RSpec.describe C100App::RespondentDecisionTree do
     context 'when all child relationships have been edited' do
       let(:child) { double('Child', id: 3) }
 
-      context 'and the address lookup is enabled' do
-        before do
-          allow(c100_application).to receive(:version).and_return(3)
-          allow(ENV).to receive(:key?).with('ADDRESS_LOOKUP_ENABLED').and_return('yes')
-        end
-
-        it 'goes to the address lookup of the current respondent' do
-          expect(subject.destination).to eq(controller: '/steps/address/lookup', action: :edit, id: respondent)
-        end
-      end
-
-      context 'and the address lookup is disabled' do
-        before do
-          allow(c100_application).to receive(:version).and_return(2)
-        end
-
-        it 'goes to edit the address details of the current respondent' do
-          expect(subject.destination).to eq(controller: :address_details, action: :edit, id: respondent)
-        end
+      include_examples 'address lookup decision tree' do
+        let(:person) { respondent }
       end
     end
   end
-
 
   context 'when the step is `address_details`' do
     let(:step_params) {{'address_details' => 'anything'}}
