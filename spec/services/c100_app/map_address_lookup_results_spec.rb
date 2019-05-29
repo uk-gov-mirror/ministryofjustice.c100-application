@@ -42,6 +42,52 @@ RSpec.describe C100App::MapAddressLookupResults do
         expect(subject).to eq([])
       end
     end
+
+    context 'jeresy results' do
+      let(:parsed_body) { JSON.parse(file_fixture('address_lookups/jersey.json').read) }
+      let(:results) { parsed_body['results'] }
+
+      it 'retrieves the address return by api' do
+
+        expect(subject.size).to eq(6)
+
+        expect(subject[0].address_line_1).to eq('1, INVESTEC')
+        expect(subject[0].address_line_2).to eq('ESPLANADE')
+        expect(subject[0].town).to eq('ST. HELIER')
+        expect(subject[0].country).to eq('JERSEY')
+        expect(subject[0].postcode).to eq('JE2 3QA')
+      end
+    end
+
+    context 'guernsey results' do
+      let(:parsed_body) { JSON.parse(file_fixture('address_lookups/guernsey.json').read) }
+      let(:results) { parsed_body['results'] }
+
+      it 'retrieves the address return by api' do
+        expect(subject.size).to eq(1)
+
+        expect(subject[0].address_line_1).to eq('SARK POST OFFICE')
+        expect(subject[0].address_line_2).to eq('')
+        expect(subject[0].town).to eq('SARK')
+        expect(subject[0].country).to eq('GUERNSEY')
+        expect(subject[0].postcode).to eq('GY10 1PB')
+      end
+    end
+
+    context 'isle of man results' do
+      let(:parsed_body) { JSON.parse(file_fixture('address_lookups/isle_of_man.json').read) }
+      let(:results) { parsed_body['results'] }
+
+      it 'retrieves the address return by api' do
+        expect(subject.size).to eq(3)
+
+        expect(subject[0].address_line_1).to eq('FLAT 1, 2, FAIRFIELD MANSIONS')
+        expect(subject[0].address_line_2).to eq('FAIRFIELD TERRACE')
+        expect(subject[0].town).to eq('DOUGLAS')
+        expect(subject[0].country).to eq('ISLE OF MAN')
+        expect(subject[0].postcode).to eq('IM1 1BE')
+      end
+    end
   end
 
   context '#address_line' do
