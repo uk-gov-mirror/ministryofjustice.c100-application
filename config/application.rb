@@ -34,8 +34,8 @@ class Application < Rails::Application
   # We are using our own url-shortener. These short urls redirect to surveymonkey,
   # and tracks visits, so we can see if they are being used.
   config.surveys = {
-    success: 'https://c100.dsd.io/survey',
-    kickout: 'https://c100.dsd.io/exit_survey',
+    success: 'https://c100.service.justice.gov.uk/survey',
+    kickout: 'https://c100.service.justice.gov.uk/exit_survey',
   }
 
   # This is the GDS-hosted homepage for our service, and the one with a `start` button
