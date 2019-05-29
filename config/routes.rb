@@ -30,24 +30,10 @@ end
 # :nocov:
 
 Rails.application.routes.draw do
-  # TODO: once we migrate, there will be an S3/Route 53 redirection from `c100.dsd.io`
-  # to `c100.service.justice.gov.uk` and we can remove this constraint.
-  constraints host: 'c100.dsd.io' do
-    get '/(*path)' => redirect(
-      ShortUrlExpander.new('https://apply-to-court-about-child-arrangements.service.justice.gov.uk'), status: 302
-    )
-  end
-
-  # New short url in live-1 k8s cluster
   constraints host: 'c100.service.justice.gov.uk' do
     get '/(*path)' => redirect(
       ShortUrlExpander.new('https://apply-to-court-about-child-arrangements.service.justice.gov.uk'), status: 302
     )
-  end
-
-  # TODO: to be removed once we decommission our heroku environment
-  constraints host: 'c100-staging.herokuapp.com' do
-    get '/(*path)' => redirect('https://c100-application-staging.apps.live-1.cloud-platform.service.justice.gov.uk', status: 301)
   end
 
   devise_for :users,

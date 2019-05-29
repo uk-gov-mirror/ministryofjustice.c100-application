@@ -37,7 +37,7 @@ end
 private
 
 def default_host_domain
-  'https://c100.dsd.io'.freeze
+  'https://c100.service.justice.gov.uk'.freeze
 end
 
 def default_target_url
