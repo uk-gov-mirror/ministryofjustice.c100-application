@@ -6,7 +6,8 @@ RSpec.describe C100App::AddressLookupService do
   let(:query_params) do
     {
       key: 'test-token',
-      postcode: postcode
+      postcode: postcode,
+      lr: 'EN',
     }
   end
 
