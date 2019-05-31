@@ -1,8 +1,11 @@
 module C100App
   class AddressLookupService
+    class UnsuccessfulLookupError < StandardError; end
+
     ORDNANCE_SURVEY_URL = 'https://api.ordnancesurvey.co.uk/places/v1/addresses/postcode'.freeze
 
     attr_reader :postcode
+    attr_reader :last_exception
 
     def initialize(postcode)
       @postcode = postcode
@@ -13,11 +16,7 @@ module C100App
     end
 
     def success?
-      !failure?
-    end
-
-    def errors
-      @errors ||= AddressLookupErrors.new
+      last_exception.nil?
     end
 
     private
@@ -33,27 +32,19 @@ module C100App
       @results ||= perform_lookup
     end
 
-    def failure?
-      errors.any?
-    end
-
-    # TODO: report to Sentry errors for monitoring purposes
     def perform_lookup
       uri = URI.parse(ORDNANCE_SURVEY_URL)
       uri.query = query_params.to_query
       response = Faraday.get(uri)
 
-      if response.success?
-        parse_successful_response(response.body)
-      else
-        errors.add(:lookup, :unsuccessful)
-        []
-      end
-    rescue Faraday::ConnectionFailed
-      errors.add(:lookup, :service_unavailable)
-      []
-    rescue JSON::ParserError, KeyError
-      errors.add(:lookup, :parser_error)
+      raise UnsuccessfulLookupError unless response.success?
+
+      parse_successful_response(
+        response.body
+      )
+    rescue StandardError => ex
+      Raven.capture_exception(ex)
+      @last_exception = ex
       []
     end
 

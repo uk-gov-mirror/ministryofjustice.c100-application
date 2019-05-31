@@ -34,7 +34,7 @@ RSpec.describe C100App::AddressLookupService do
 
       it 'returns the collection of addresses' do
         expect(service).to be_success
-        expect(service.result).to all(be_a(Struct))
+        expect(service.result).to all(be_an(C100App::MapAddressLookupResults::Address))
         expect(service.result.size).to eq(3)
       end
 
@@ -55,7 +55,7 @@ RSpec.describe C100App::AddressLookupService do
         it 'has an unsuccessful outcome' do
           expect(service).not_to be_success
           expect(service.result).to eq([])
-          expect(service.errors).to eq(lookup: [:parser_error])
+          expect(service.last_exception).to be_a(KeyError)
         end
       end
 
@@ -66,7 +66,7 @@ RSpec.describe C100App::AddressLookupService do
         it 'has an unsuccessful outcome' do
           expect(service).not_to be_success
           expect(service.result).to eq([])
-          expect(service.errors).to eq(lookup: [:parser_error])
+          expect(service.last_exception).to be_a(KeyError)
         end
       end
 
@@ -77,14 +77,8 @@ RSpec.describe C100App::AddressLookupService do
         it 'has an unsuccessful outcome' do
           expect(service).not_to be_success
           expect(service.result).to eq([])
-          expect(service.errors).to eq(lookup: [:parser_error])
+          expect(service.last_exception).to be_a(JSON::ParserError)
         end
-      end
-
-      it 'returns a list of mapped addresses' do
-        expect(service).to be_success
-        expect(service.errors).to be_empty
-        expect(service.result).to all(be_an(C100App::MapAddressLookupResults::Address))
       end
     end
 
@@ -95,10 +89,10 @@ RSpec.describe C100App::AddressLookupService do
         service.result
       end
 
-      it 'outcome is unsuccessful' do
+      it 'has an unsuccessful outcome' do
         expect(service).not_to be_success
-        expect(service.errors).to eq(lookup: [:service_unavailable])
         expect(service.result).to eq([])
+        expect(service.last_exception).to be_a(Faraday::ConnectionFailed)
       end
     end
 
@@ -118,9 +112,31 @@ RSpec.describe C100App::AddressLookupService do
         service.result
       end
 
-      it 'outcome is unsuccessful' do
+      it 'has an unsuccessful outcome' do
         expect(service).not_to be_success
-        expect(service.errors).to eq(lookup: [:unsuccessful])
+        expect(service.result).to eq([])
+        expect(service.last_exception).to be_a(C100App::AddressLookupService::UnsuccessfulLookupError)
+      end
+    end
+
+    context 'capturing and sending errors to Sentry' do
+      let(:exception) { StandardError.new('boom!') }
+
+      before do
+        stub_request(:get, api_request_uri).to_raise(exception)
+      end
+
+      it 'sends the error to Sentry' do
+        expect(Raven).to receive(:capture_exception).with(exception)
+        service.result
+      end
+
+      it 'stores the last exception' do
+        service.result
+        expect(service.last_exception).not_to be_nil
+      end
+
+      it 'returns an empty array' do
         expect(service.result).to eq([])
       end
     end
