@@ -19,7 +19,7 @@ class Person < ApplicationRecord
     # in a predictable order, matching the `store_accessor` declaration.
     address_data.symbolize_keys.values_at(
       *self.class.stored_attributes.fetch(:address_data)
-    ).reject(&:blank?).join(', ')
+    ).presence_join(', ')
   end
 
   # Until we've migrated all database records to the new address form

@@ -1,4 +1,8 @@
-Dir[File.join(Rails.root, 'lib', 'extensions', '*.rb')].each { |file| require file }
+Dir[File.join(Rails.root, 'lib', 'extensions', '*.rb')].each(&method(:require))
+
+class Array
+  include ArrayExtension
+end
 
 class String
   include StringExtension
