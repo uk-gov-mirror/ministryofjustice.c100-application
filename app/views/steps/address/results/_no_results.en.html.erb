@@ -23,6 +23,6 @@
 </section>
 
 <div class="xform-group form-submit">
-  <%= link_to 'Continue', person_url_for(record, step: :address_details), class: 'button', role: 'button' %>
-  <%= link_to 'Go back and try again', edit_steps_address_lookup_path(record), class: 'button button-secondary', role: 'button' %>
+  <%= link_to 'Continue', person_url_for(record, step: :address_details), class: 'button ga-pageLink', role: 'button', data: { ga_category: 'address lookup', ga_label: 'no results continue' } %>
+  <%= link_to 'Go back and try again', edit_steps_address_lookup_path(record), class: 'button button-secondary ga-pageLink', role: 'button', data: { ga_category: 'address lookup', ga_label: 'no results retry' } %>
 </div>
