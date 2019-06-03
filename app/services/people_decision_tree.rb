@@ -60,7 +60,7 @@ class PeopleDecisionTree < BaseDecisionTree
   # Once all applications are in version >= 3, we can delete this code.
   # :nocov:
   def address_lookup_enabled?
-    c100_application.version > 2 && dev_tools_enabled?
+    c100_application.version > 2
   end
   # :nocov:
 end
