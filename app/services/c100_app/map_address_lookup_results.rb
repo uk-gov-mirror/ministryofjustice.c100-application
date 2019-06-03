@@ -7,7 +7,7 @@ module C100App
 
     Address = Struct.new(:address_line_1, :address_line_2, :town, :country, :postcode) do
       def address_lines
-        [address_line_1, address_line_2].join(', ')
+        [address_line_1, address_line_2].presence_join(', ')
       end
 
       def tokenized_value
@@ -36,13 +36,13 @@ module C100App
       result.fetch('POST_TOWN')
     end
 
-    def self.address_line(values)
-      values.reject(&:blank?).join(', ')
-    end
-
     def self.country_name(result)
       return result.fetch('POST_TOWN') if OTHER_COUNTRIES.include?(result.fetch('POST_TOWN'))
       DEFAULT_COUNTRY
+    end
+
+    def self.address_line(values)
+      values.presence_join(', ')
     end
   end
 end
