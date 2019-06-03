@@ -3,7 +3,7 @@
 
   <%= link_to t('.manual_address'), {
       controller: '/steps/applicant/address_details', action: :edit, id: form_object.record
-  } %>
+  }, class: 'ga-pageLink', data: { ga_category: 'address lookup', ga_label: 'applicant manual entry' } %>
 
   <%= f.continue_button %>
 <% end %>
