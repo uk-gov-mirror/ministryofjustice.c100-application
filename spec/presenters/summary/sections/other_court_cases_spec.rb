@@ -66,8 +66,8 @@ module Summary
         expect(answers[6].value).to eq('previous_details')
       end
 
-      context 'when there are no previous proceedings' do
-        let(:children_previous_proceedings) { 'no' }
+      context 'when there are no previous proceeding details' do
+        let(:court_proceeding) { nil }
 
         it 'has the correct rows' do
           expect(answers.count).to eq(1)

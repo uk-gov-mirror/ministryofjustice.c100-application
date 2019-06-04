@@ -13,7 +13,7 @@ module Summary
       def answers
         return [
           Answer.new(:c1a_abduction_risk, c100.risk_of_abduction)
-        ] unless c100.risk_of_abduction.eql?(GenericYesNo::YES.to_s)
+        ] unless abduction.present?
 
         [
           Answer.new(:c1a_abduction_risk, c100.risk_of_abduction),
