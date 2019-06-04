@@ -11,6 +11,7 @@ RSpec.describe ApplicantDeliveryJob, type: :job do
       ).and_return(queue)
 
       expect(queue).to receive(:process)
+      expect(GC).to receive(:start)
 
       ApplicantDeliveryJob.perform_now(c100_application)
     end
