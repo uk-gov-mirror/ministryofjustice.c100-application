@@ -92,6 +92,7 @@ module Summary
 
       context 'when there is no abduction risk' do
         let(:risk_of_abduction) { 'no' }
+        let(:abduction_detail) { nil }
 
         it 'has the correct rows' do
           expect(answers.count).to eq(1)
@@ -99,6 +100,19 @@ module Summary
           expect(answers[0]).to be_an_instance_of(Answer)
           expect(answers[0].question).to eq(:c1a_abduction_risk)
           expect(answers[0].value).to eq('no')
+        end
+      end
+
+      context 'when there are no abduction details' do
+        let(:risk_of_abduction) { 'yes' }
+        let(:abduction_detail) { nil }
+
+        it 'has the correct rows' do
+          expect(answers.count).to eq(1)
+
+          expect(answers[0]).to be_an_instance_of(Answer)
+          expect(answers[0].question).to eq(:c1a_abduction_risk)
+          expect(answers[0].value).to eq('yes')
         end
       end
     end
