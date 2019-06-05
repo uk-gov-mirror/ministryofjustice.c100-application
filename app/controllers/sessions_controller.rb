@@ -44,22 +44,29 @@ class SessionsController < ApplicationController
   def find_or_create_screener_answers
     ScreenerAnswers.find_or_initialize_by(c100_application_id: c100_application.id).tap do |screener|
       screener.update(
-        children_postcodes: 'MK9 2DT',
-        local_court: local_court_fixture
-      ) unless screener.local_court?
+        screener_answers_fixture
+      ) unless screener.valid?(:completion)
     end
   end
 
-  def local_court_fixture
+  def screener_answers_fixture
     {
-      "address" => {
-        "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
-        "town" => "Central Milton Keynes",
-        "postcode" => "MK9 2DT",
-      },
-      "name" => "Milton Keynes County Court and Family Court",
-      "slug" => "milton-keynes-county-court-and-family-court",
-      "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
+      children_postcodes: 'MK9 2DT',
+      parent: 'yes',
+      over18: 'yes',
+      legal_representation: 'no',
+      written_agreement: 'no',
+      email_consent: 'no',
+      local_court: {
+        "address" => {
+          "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
+          "town" => "Central Milton Keynes",
+          "postcode" => "MK9 2DT",
+        },
+        "name" => "Milton Keynes County Court and Family Court",
+        "slug" => "milton-keynes-county-court-and-family-court",
+        "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
+      }
     }
   end
   # :nocov:
