@@ -74,6 +74,7 @@ end
 def models
   %w(
     C100Application
+    ScreenerAnswers
     User
     Court
     Person
