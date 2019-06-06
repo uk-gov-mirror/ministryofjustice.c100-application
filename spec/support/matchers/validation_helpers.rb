@@ -2,7 +2,7 @@ module ValidationHelpers
   private
 
   def check_errors(object, attribute, error)
-    !object.valid?
+    !object.valid?(validation_context)
     object.errors.added?(attribute, error)
   end
 

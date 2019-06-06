@@ -169,11 +169,24 @@ RSpec.shared_examples 'a starting point step controller' do
 end
 
 RSpec.shared_examples 'a savepoint step controller' do
+  let(:screener_answers) do
+    ScreenerAnswers.new(
+      children_postcodes: 'MK9 2DT',
+      parent: 'yes',
+      over18: 'yes',
+      legal_representation: 'no',
+      written_agreement: 'no',
+      email_consent: 'no',
+      local_court: { name: 'whatever' }
+    )
+  end
+
   describe '#edit' do
     let!(:existing_c100) { C100Application.create(status: :screening, navigation_stack: ['/not', '/empty']) }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+      allow(existing_c100).to receive(:screener_answers).and_return(screener_answers)
     end
 
     it 'initialises the navigation stack in the session introducing the entrypoint' do
@@ -185,6 +198,26 @@ RSpec.shared_examples 'a savepoint step controller' do
       expect {
         get :edit
       }.to_not change { existing_c100.status }
+    end
+
+    it 'does not redirect to the error page' do
+      get :edit
+      expect(response).not_to redirect_to(application_screening_errors_path)
+    end
+
+    context 'for a not yet completed, or invalid, screener' do
+      let(:screener_answers) { nil }
+
+      it 'redirects to the error page' do
+        get :edit
+        expect(response).to redirect_to(application_screening_errors_path)
+      end
+
+      it 'does not change the status' do
+        expect {
+          get :edit
+        }.to_not change { existing_c100.status }
+      end
     end
 
     context 'saving the application for later on `edit`' do
@@ -208,12 +241,28 @@ RSpec.shared_examples 'a savepoint step controller' do
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+      allow(existing_c100).to receive(:screener_answers).and_return(screener_answers)
     end
 
     it 'changes the status to `in_progress`' do
       expect {
         put :update, params: {}
       }.to change { existing_c100.status }.from('screening').to('in_progress')
+    end
+
+    context 'for a not yet completed, or invalid, screener' do
+      let(:screener_answers) { nil }
+
+      it 'redirects to the error page' do
+        put :update, params: {}
+        expect(response).to redirect_to(application_screening_errors_path)
+      end
+
+      it 'does not change the status' do
+        expect {
+          put :update, params: {}
+        }.to_not change { existing_c100.status }
+      end
     end
 
     context 'saving the case for later on `update`' do

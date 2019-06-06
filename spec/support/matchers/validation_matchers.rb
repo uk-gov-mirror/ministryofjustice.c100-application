@@ -6,6 +6,8 @@ RSpec::Matchers.define :validate_presence_of do |attribute, error = :blank|
     check_errors(object, attribute, error)
   end
 
+  chain :on_context, :validation_context
+
   description do
     "validate_presence_of #{attribute}"
   end
@@ -26,6 +28,8 @@ RSpec::Matchers.define :validate_absence_of do |attribute, error = :present|
     object.send("#{attribute}=", 'xxx')
     check_errors(object, attribute, error)
   end
+
+  chain :on_context, :validation_context
 
   description do
     "validate_absence_of #{attribute}"
@@ -50,6 +54,8 @@ RSpec::Matchers.define :validate_presence_unless_unknown_of do |attribute, error
     object.valid?
   end
 
+  chain :on_context, :validation_context
+
   description do
     "validate_presence_unless_unknown_of #{attribute}"
   end
@@ -66,6 +72,8 @@ RSpec::Matchers.define :validate_email do |attribute, error = :invalid|
     object.send("#{attribute}=", 'x@x')
     check_errors(object, attribute, error)
   end
+
+  chain :on_context, :validation_context
 
   description do
     "validate_email #{attribute}"
