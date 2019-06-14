@@ -6,6 +6,7 @@ class CourtEmailInterceptor
   DELIVERY_WHITELIST = %w[
     NotifyMailer
     ReceiptMailer
+    ReportsMailer
   ].freeze
 
   class << self

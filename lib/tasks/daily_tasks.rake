@@ -11,6 +11,8 @@ task daily_tasks: :environment do
   Rake::Task['draft_reminders:first_email'].invoke
   Rake::Task['draft_reminders:last_email'].invoke
 
+  Rake::Task['reports:failed_emails'].invoke
+
   log "Users count: #{User.count} / Applications count: #{C100Application.count}"
   log 'Finished daily tasks'
 end
@@ -58,6 +60,13 @@ namespace :draft_reminders do
 
     log "#{task_name}  - Count: #{rule_set.count}"
     C100App::DraftReminders.new(rule_set: rule_set).run
+  end
+end
+
+namespace :reports do
+  task failed_emails: :environment do
+    log "Running failed emails report"
+    Reports::FailedEmailsReport.run
   end
 end
 
