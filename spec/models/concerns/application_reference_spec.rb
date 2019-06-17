@@ -15,7 +15,7 @@ RSpec.describe ApplicationReference do
 
     it 'has the correct date filter criteria' do
       expect(test_class).to receive(:where).with(
-        created_at: [Date.new(2018, 5, 1)..Date.new(2018, 5, 31)]
+        created_at: [Date.new(2018, 5, 1).beginning_of_day..Date.new(2018, 5, 31).end_of_day]
       ).and_return(date_finder_double)
 
       test_class.find_by_reference_code('2018/05/DB2ED4FD')
