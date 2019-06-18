@@ -24,6 +24,12 @@ ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 ARG APP_GIT_COMMIT
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
 
+# Download RDS certificates bundle -- needed for SSL verification
+#
+ADD https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem \
+    /usr/src/app/config/rds-combined-ca-bundle.pem
+RUN chmod +r /usr/src/app/config/rds-combined-ca-bundle.pem
+
 # Run the application as user `moj` (created in the base image)
 # uid=1000(moj) gid=1000(moj) groups=1000(moj)
 # Some directories/files need to be chowned otherwise we get Errno::EACCES
