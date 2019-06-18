@@ -14,7 +14,7 @@ module ApplicationReference
 
     def date_range(year, month)
       date = Date.new(year.to_i, month.to_i)
-      [date.beginning_of_month..date.end_of_month]
+      [date.beginning_of_month.beginning_of_day..date.end_of_month.end_of_day]
     end
   end
 
