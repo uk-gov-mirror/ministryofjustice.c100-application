@@ -13,4 +13,4 @@ test:
 production:
   <<: *default
   sslmode: <%= ENV.fetch('DATABASE_SSLMODE', 'verify-full') %>
-  sslrootcert: <%= Rails.root.join('config', 'rds-combined-ca-bundle.pem') %>
+  sslrootcert: <%= ENV['RDS_COMBINED_CA_BUNDLE'] %>
