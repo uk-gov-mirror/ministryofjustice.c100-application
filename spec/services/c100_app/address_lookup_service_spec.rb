@@ -117,6 +117,7 @@ RSpec.describe C100App::AddressLookupService do
         expect(service).not_to be_success
         expect(service.result).to eq([])
         expect(service.last_exception).to be_a(C100App::AddressLookupService::UnsuccessfulLookupError)
+        expect(service.last_exception.message).to eq('{"error":{"statuscode":400,"message":"No postcode parameter provided."}}')
       end
     end
 
