@@ -38,7 +38,7 @@ module C100App
       uri.query = query_params.to_query
       response = Faraday.get(uri)
 
-      raise UnsuccessfulLookupError unless response.success?
+      raise UnsuccessfulLookupError, response.body unless response.success?
 
       parse_successful_response(
         response.body
