@@ -13,7 +13,6 @@ RSpec.describe CourtDeliveryJob, type: :job do
       ).and_return(queue)
 
       expect(queue).to receive(:process)
-      expect(GC).to receive(:start)
 
       CourtDeliveryJob.perform_now(c100_application)
     end
@@ -26,8 +25,6 @@ RSpec.describe CourtDeliveryJob, type: :job do
       it 'captures the error' do
         expect(Raven).to receive(:extra_context).with({ c100_application_id: '123-456' })
         expect(Raven).to receive(:capture_exception).with(NoMethodError)
-
-        expect(GC).to receive(:start)
 
         CourtDeliveryJob.perform_now(c100_application)
       end
