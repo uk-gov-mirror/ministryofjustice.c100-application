@@ -10,8 +10,6 @@ class CourtDeliveryJob < ApplicationJob
 
   def perform(c100_application)
     C100App::CourtOnlineSubmission.new(c100_application).process
-  ensure
-    GC.start # force garbage collection
   end
 
   private
