@@ -24,7 +24,8 @@
       <%= step_form @form_object do |f| %>
         <%= f.collection_select :selected_address, @addresses, :tokenized_value, :address_lines, include_blank: true %>
 
-        <%= link_to t('.address_not_listed'), person_url_for(record, step: :address_details) %>
+        <%= link_to t('.address_not_listed'), person_url_for(record, step: :address_details),
+                    class: 'ga-pageLink', data: { ga_category: 'address lookup', ga_label: 'address not listed' } %>
 
         <%= f.continue_button %>
       <% end %>
