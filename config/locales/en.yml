@@ -6,7 +6,7 @@ en:
     dont_know: &dont_know "Don't know"
     previous_name_hint: &previous_name_hint "This should be the full legal name (including any middle names)"
     birthplace_hint: &birthplace_hint "For example, town or city"
-    address_hint: &address_hint "Court documents will be sent here. Include the postcode if you have it"
+    address_hint: &address_hint "Court documents will be sent here"
     middle_names_hint: &middle_names_hint "Include all middle names here"
     order_current: &order_current "Is the order current?"
     order_length: &order_length "How long was the order for?"
@@ -84,7 +84,6 @@ en:
       email_unknown: *dont_know
 
     PERSONAL_ADDRESS_FIELDS: &PERSONAL_ADDRESS_FIELDS
-      address: Current address
       address_line_1: Building and street
       address_line_2: Building and street line 2
       town: Town or city
@@ -1376,16 +1375,15 @@ en:
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
       steps_applicant_address_details_form:
-        address: Enter your full address including postcode
         residence_history: Start with the most recent
       steps_respondent_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
       steps_respondent_address_details_form:
-        address: *address_hint
+        address_line_1: *address_hint
       steps_other_parties_address_details_form:
-        address: *address_hint
+        address_line_1: *address_hint
       steps_applicant_names_split_form:
         new_first_name_html: *middle_names_hint
       steps_respondent_names_split_form:

@@ -51,16 +51,7 @@ class PeopleDecisionTree < BaseDecisionTree
   # If the address has already been entered, do not take the user again
   # through the postcode lookup and address selection steps.
   def show_address_lookup?
-    return false if !address_lookup_enabled? || record.person.address_unknown?
+    return false if record.person.address_unknown?
     record.person.address_line_1.blank?
   end
-
-  # TODO: temporary feature-flag for the address lookup.
-  # The version needs to be at least 3, which contains the split address work.
-  # Once all applications are in version >= 3, we can delete this code.
-  # :nocov:
-  def address_lookup_enabled?
-    c100_application.version > 2
-  end
-  # :nocov:
 end

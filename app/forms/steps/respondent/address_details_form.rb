@@ -13,7 +13,7 @@ module Steps
 
         respondent = c100_application.respondents.find_or_initialize_by(id: record_id)
         respondent.update(
-          update_values.merge(
+          address_values.merge(
             residence_requirement_met: residence_requirement_met,
             residence_history: residence_history,
           )

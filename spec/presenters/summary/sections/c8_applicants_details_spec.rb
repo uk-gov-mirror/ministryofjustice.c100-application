@@ -12,7 +12,6 @@ module Summary
     let(:applicant) {
       instance_double(Applicant,
         full_name: 'fullname',
-        address: 'address',
         residence_history: 'history',
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
@@ -21,8 +20,7 @@ module Summary
     }
 
     before do
-      allow(applicant).to receive(:split_address?).and_return(false)
-      allow(applicant).to receive(:full_address).and_return(applicant.address)
+      allow(applicant).to receive(:full_address).and_return('full address')
     end
 
     subject { described_class.new(c100_application) }
@@ -64,7 +62,7 @@ module Summary
 
         expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[2].question).to eq(:person_address)
-        expect(answers[2].value).to eq('address')
+        expect(answers[2].value).to eq('full address')
 
         expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[3].question).to eq(:person_residence_history)
