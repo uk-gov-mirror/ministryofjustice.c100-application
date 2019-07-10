@@ -60,10 +60,6 @@ class BaseForm
     true
   end
 
-  def split_address?
-    c100_application.version > 2
-  end
-
   private
 
   def record_id

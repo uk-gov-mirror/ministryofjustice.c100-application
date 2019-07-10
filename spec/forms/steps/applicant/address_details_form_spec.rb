@@ -1,12 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe Steps::Applicant::AddressDetailsForm do
-  it_behaves_like 'a address CRUD form', Applicant
-
   let(:arguments) { {
     c100_application: c100_application,
     record: record,
-    address: address,
     address_line_1: address_line_1,
     address_line_2: address_line_2,
     town: town,
@@ -21,21 +18,14 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
   let(:applicant) { double('Applicant', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe9') }
 
   let(:record) { nil }
-  let(:address) { 'address' }
   let(:residence_requirement_met) { 'no' }
   let(:residence_history) { 'history' }
-  let(:split_address_result) { false }
-  let(:address_unknown) { false }
 
-  let(:address_line_1) { nil }
-  let(:address_line_2) { nil }
-  let(:town) { nil }
-  let(:country) { nil }
-  let(:postcode) { nil }
-
-  before do
-    allow(subject).to receive(:split_address?).and_return(split_address_result)
-  end
+  let(:address_line_1) { 'address_line_1' }
+  let(:address_line_2) { 'address_line_2' }
+  let(:town) { 'town' }
+  let(:country) { 'country' }
+  let(:postcode) { 'postcode' }
 
   subject { described_class.new(arguments) }
 
@@ -82,10 +72,25 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
       end
     end
 
+    context 'field presence validations' do
+      it { should validate_presence_of(:address_line_1) }
+      it { should validate_presence_of(:town) }
+      it { should validate_presence_of(:country) }
+
+      it { should_not validate_presence_of(:address_line_2) }
+      it { should_not validate_presence_of(:postcode) }
+    end
+
     context 'for valid details' do
       let(:expected_attributes) {
         {
-          address: 'address',
+          address_data: {
+            address_line_1: 'address_line_1',
+            address_line_2: 'address_line_2',
+            town: 'town',
+            country: 'country',
+            postcode: 'postcode'
+          },
           address_unknown: false,
           residence_requirement_met: GenericYesNo::NO,
           residence_history: 'history'
@@ -114,66 +119,6 @@ RSpec.describe Steps::Applicant::AddressDetailsForm do
         it 'updates the record if it already exists' do
           expect(applicants_collection).to receive(:find_or_initialize_by).with(
             id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe9'
-          ).and_return(applicant)
-
-          expect(applicant).to receive(:update).with(
-            expected_attributes
-          ).and_return(true)
-
-          expect(subject.save).to be(true)
-        end
-      end
-    end
-
-    context 'when split address' do
-      let(:address_line_1) { 'address_line_1' }
-      let(:address_line_2) { 'address_line_2' }
-      let(:town) { 'town' }
-      let(:country) { 'country' }
-      let(:postcode) { 'postcode' }
-      let(:address_data) do
-        {
-          address_line_1: address_line_1,
-          address_line_2: address_line_2,
-          town: town,
-          country: country,
-          postcode: postcode
-        }
-      end
-      let(:split_address_result) { true }
-
-      let(:expected_attributes) {
-        {
-          address_data: address_data,
-          address_unknown: false,
-          residence_requirement_met: GenericYesNo::NO,
-          residence_history: 'history'
-        }
-      }
-
-      # TODO: after the feature flag split_address has been removed this validation
-      # need to be changed to it { should validate_presence_unless_unknown_of(:address_line_1) }
-      context 'validations on field presence based on validate_split_address? value' do
-        context 'should validate on field presence when validate_split_address? is true ' do
-          it { should validate_presence_of(:address_line_1) }
-          it { should validate_presence_of(:town) }
-          it { should validate_presence_of(:country) }
-        end
-
-        context 'should not validate on field presence when validate_split_address? is false' do
-          let(:split_address_result) { false }
-          it { should_not validate_presence_of(:address_line_1) }
-          it { should_not validate_presence_of(:town) }
-          it { should_not validate_presence_of(:country) }
-        end
-      end
-
-      context 'when record does not exist' do
-        let(:record) { nil }
-
-        it 'creates the record if it does not exist' do
-          expect(applicants_collection).to receive(:find_or_initialize_by).with(
-            id: nil
           ).and_return(applicant)
 
           expect(applicant).to receive(:update).with(

@@ -8,7 +8,7 @@ module Steps
 
         party = c100_application.other_parties.find_or_initialize_by(id: record_id)
         party.update(
-          update_values
+          address_values
         )
       end
     end

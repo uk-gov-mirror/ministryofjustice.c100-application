@@ -38,13 +38,7 @@ RSpec.shared_examples 'a decision tree' do
 end
 
 RSpec.shared_examples 'address lookup decision tree' do
-  before do
-    allow(subject).to receive(:address_lookup_enabled?).and_return(address_lookup_enabled)
-  end
-
-  context 'and the address lookup is enabled' do
-    let(:address_lookup_enabled) { true }
-
+  context 'show or bypass address lookup' do
     before do
       allow(person).to receive(:address_unknown?).and_return(address_unknown)
       allow(person).to receive(:address_line_1).and_return(address_line_1)
@@ -53,13 +47,13 @@ RSpec.shared_examples 'address lookup decision tree' do
     let(:address_line_1) { nil }
     let(:address_unknown) { false }
 
-    context 'and the person has yet to enter an address' do
+    context 'when the person has yet to enter an address' do
       it 'goes to the address lookup of the current person' do
         expect(subject.destination).to eq(controller: '/steps/address/lookup', action: :edit, id: person)
       end
     end
 
-    context 'and the person has already entered an address' do
+    context 'when the person has already entered an address' do
       let(:address_line_1) { 'address line 1' }
 
       it 'goes to edit the address details of the current person' do
@@ -67,20 +61,12 @@ RSpec.shared_examples 'address lookup decision tree' do
       end
     end
 
-    context 'and the person does not know the address' do
+    context 'when the person does not know the address' do
       let(:address_unknown) { true }
 
       it 'goes to edit the address details of the current person' do
         expect(subject.destination).to eq(controller: :address_details, action: :edit, id: person)
       end
-    end
-  end
-
-  context 'and the address lookup is disabled' do
-    let(:address_lookup_enabled) { false }
-
-    it 'goes to edit the address details of the current person' do
-      expect(subject.destination).to eq(controller: :address_details, action: :edit, id: person)
     end
   end
 end

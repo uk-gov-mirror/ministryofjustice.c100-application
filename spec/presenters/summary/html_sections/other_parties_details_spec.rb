@@ -20,7 +20,6 @@ module Summary
         age_estimate: nil,
         gender: 'female',
         birthplace: nil,
-        address: 'address',
         residence_requirement_met: nil,
         residence_history: nil,
         home_phone: nil,
@@ -32,8 +31,7 @@ module Summary
 
     before do
       allow(subject).to receive(:contact_details_path).and_return(false)
-      allow(other_party).to receive(:split_address?).and_return(false)
-      allow(other_party).to receive(:full_address).and_return(other_party.address)
+      allow(other_party).to receive(:full_address).and_return('full address')
     end
 
     subject { described_class.new(c100_application) }
@@ -116,7 +114,7 @@ module Summary
 
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
           expect(details[0].question).to eq(:person_address)
-          expect(details[0].value).to eq('address')
+          expect(details[0].value).to eq('full address')
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:relationship_to_child)

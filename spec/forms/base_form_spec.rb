@@ -35,24 +35,6 @@ RSpec.describe BaseForm do
     end
   end
 
-  describe 'split_address?' do
-    let(:version) { 2 }
-    let(:c100_application) { instance_double(C100Application, version: version) }
-
-    before do
-      subject.c100_application = c100_application
-    end
-
-    context 'return false' do
-      it { expect(subject.split_address?).to eq(false) }
-    end
-
-    context 'return true' do
-      let(:version) { 3 }
-      it { expect(subject.split_address?).to eq(true) }
-    end
-  end
-
   describe '[]' do
     let(:c100_application) { instance_double(C100Application) }
 
