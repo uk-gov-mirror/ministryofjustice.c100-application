@@ -12,6 +12,7 @@ class NotifyMailer < GovukNotifyRails::Mailer
     :reset_password_url,
     :applicant_name,
     :link_to_pdf,
+    :link_to_c8_pdf,
   ].freeze
 
   # Triggered automatically by Devise when the user resets its password.
