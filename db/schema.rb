@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190516095303) do
+ActiveRecord::Schema.define(version: 20190809083025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "uuid-ossp"
   enable_extension "pgcrypto"
+  enable_extension "uuid-ossp"
 
   create_table "abduction_details", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "children_have_passport"
@@ -140,13 +140,13 @@ ActiveRecord::Schema.define(version: 20190516095303) do
   create_table "child_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "child_id"
     t.string "orders", default: [], array: true
-    t.index ["child_id"], name: "index_child_orders_on_child_id"
+    t.index ["child_id"], name: "index_child_orders_on_child_id", unique: true
   end
 
   create_table "child_residences", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "child_id"
     t.string "person_ids", default: [], array: true
-    t.index ["child_id"], name: "index_child_residences_on_child_id"
+    t.index ["child_id"], name: "index_child_residences_on_child_id", unique: true
   end
 
   create_table "completed_applications_audit", id: false, force: :cascade do |t|
