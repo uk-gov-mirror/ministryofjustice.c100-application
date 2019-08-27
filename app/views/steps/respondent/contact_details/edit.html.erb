@@ -11,10 +11,9 @@
     </div>
 
     <%= step_form @form_object do |f| %>
-
       <%= f.text_field :home_phone %>
       <%= f.text_field :mobile_phone %>
-      <%= f.text_field :email %>
+      <%= f.email_field :email %>
 
       <%= f.continue_button %>
     <% end %>

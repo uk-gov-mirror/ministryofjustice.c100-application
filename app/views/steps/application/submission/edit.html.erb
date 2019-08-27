@@ -14,7 +14,7 @@
           fieldset.radio_input(SubmissionType::ONLINE, panel_id: :receipt_email_panel)
           fieldset.radio_input(SubmissionType::PRINT_AND_POST)
           fieldset.revealing_panel(:receipt_email_panel) do |panel|
-            panel.text_field :receipt_email
+            panel.email_field :receipt_email
           end
         end
       %>
