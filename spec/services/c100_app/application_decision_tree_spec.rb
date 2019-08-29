@@ -122,7 +122,22 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `submission`' do
     let(:step_params) { { submission: 'anything' } }
-    it { is_expected.to have_destination(:check_your_answers, :edit) }
+    let(:c100_application) { instance_double(C100Application, receipt_email: receipt_email) }
+
+    context 'and user chose to receive a confirmation email' do
+      let(:receipt_email) { 'test@example.com' }
+      it { is_expected.to have_destination(:receipt_email_check, :show) }
+    end
+
+    context 'and user left blank the confirmation email' do
+      let(:receipt_email) { '' }
+      it { is_expected.to have_destination(:check_your_answers, :edit) }
+    end
+
+    context 'and user do not want online submission' do
+      let(:receipt_email) { nil }
+      it { is_expected.to have_destination(:check_your_answers, :edit) }
+    end
   end
 
   context 'when the step is `declaration`' do

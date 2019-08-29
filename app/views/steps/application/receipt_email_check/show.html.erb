@@ -1,0 +1,24 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class="panel panel-border-narrow">
+      <p class="lede">
+        <strong><%= current_c100_application.receipt_email %></strong>
+      </p>
+    </div>
+
+    <p><%=t '.email_info' %></p>
+
+    <div class="xform-group form-submit">
+      <%= link_to t('.continue'), edit_steps_application_check_your_answers_path, class: 'button', role: 'button' %>
+      <%= link_to t('.go_back'), edit_steps_application_submission_path,
+                  class: 'link-button link-button-secondary no-visited-state ga-pageLink',
+                  data: { ga_category: 'receipt email address', ga_label: 'change email' } %>
+    </div>
+  </div>
+</div>

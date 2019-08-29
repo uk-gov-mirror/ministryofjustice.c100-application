@@ -745,6 +745,13 @@ en:
           page_title: How would you submit your application?
           heading: How would you like to submit your application to court?
           lead_text: Your completed application can be sent straight to the court electronically, or you can print it and send it by post if you prefer.
+      receipt_email_check:
+        show:
+          page_title: Check your email address
+          heading: Is this email address correct?
+          email_info: We’ll send a copy of your application to this email address. Please make sure it’s correct and that you can access the email account.
+          continue: Yes, continue
+          go_back: No, change it
       check_your_answers:
         edit:
           page_title: Check your answers
@@ -1359,7 +1366,7 @@ en:
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
       steps_application_submission_form:
-        receipt_email: We will send an copy of your application to this address
+        receipt_email: We’ll send a copy of your application to this email address
       steps_abduction_passport_details_form:
         passport_possesion: *select_all_that_apply
       steps_abduction_risk_details_form:

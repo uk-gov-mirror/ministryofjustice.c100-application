@@ -90,6 +90,37 @@ form.fmc-lookup-form {
   }
 }
 
+.link-button-secondary {
+  display: inline-block;
+  margin: 2rem 0 0;
+  padding: 0;
+  font-size: 1em;
+  line-height: 1.25;
+
+  @media (min-width: 641px) {
+    margin-top: 1rem;
+    margin-left: 6rem;
+  }
+}
+
+// State of the link remains as non-visited.
+// Used in cases where it is not helpful to distinguish between visited and non-visited links.
+//
+.no-visited-state {
+  &:link {
+    color: $link-colour;
+  }
+  &:visited {
+    color: $link-colour;
+  }
+  &:hover {
+    color: $link-hover-colour;
+  }
+  &:active {
+    color: $link-active-colour;
+  }
+}
+
 // This will hide the Sentry user-feedback attribution. There is a setting
 // to hide it but currently it is not working, so this is an alternative.
 div.sentry-error-embed-wrapper p.powered-by {

@@ -34,7 +34,7 @@ module C100App
       when :payment
         edit(:submission)
       when :submission
-        edit(:check_your_answers)
+        after_submission_type
       when :declaration
         after_declaration
       else
@@ -74,6 +74,14 @@ module C100App
         edit(:litigation_capacity_details)
       else
         edit(:intermediary)
+      end
+    end
+
+    def after_submission_type
+      if c100_application.receipt_email.present?
+        show(:receipt_email_check)
+      else
+        edit(:check_your_answers)
       end
     end
 
