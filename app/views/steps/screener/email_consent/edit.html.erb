@@ -15,10 +15,10 @@
           fieldset.radio_input(GenericYesNo::YES, panel_id: :email_address_panel)
           fieldset.radio_input(GenericYesNo::NO)
           fieldset.revealing_panel(:email_address_panel) do |panel|
-            panel.text_field :email_address, type: :email
+            panel.email_field :email_address
           end
         end
-        %>
+    %>
 
       <%= f.continue_button %>
     <% end %>
