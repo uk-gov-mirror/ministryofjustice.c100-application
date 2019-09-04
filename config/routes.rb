@@ -36,6 +36,15 @@ Rails.application.routes.draw do
     )
   end
 
+  # Back office
+  namespace :backoffice do
+    resources :dashboard, only: [:index]
+    resources :emails, only: [:index]
+    resource :errors, only: [] do
+      get :unhandled
+    end
+  end
+
   devise_for :users,
              controllers: {
                registrations: 'users/registrations',
