@@ -4,6 +4,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require 'simplecov'
 SimpleCov.minimum_coverage 100
+
 # SimpleCov conflicts with mutant. This lets us turn it off, when necessary.
 unless ENV['NOCOVERAGE']
   SimpleCov.start do
@@ -11,6 +12,8 @@ unless ENV['NOCOVERAGE']
     add_filter 'spec/support'
     add_filter 'spec/rails_helper.rb'
     add_filter 'config/initializers'
+    add_filter 'controllers/backoffice'
+    add_filter 'helpers/auth0'
   end
 end
 
