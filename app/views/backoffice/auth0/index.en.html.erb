@@ -1,0 +1,11 @@
+<% title 'Back office login' %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office</h1>
+
+    <p class="lede">You need to authenticate in order to access the back office.</p>
+
+    <%= button_to 'Login', 'auth/auth0', method: :post, class: 'button', id: 'qsLoginBtn' %>
+  </div>
+</div>

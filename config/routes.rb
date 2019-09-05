@@ -38,11 +38,21 @@ Rails.application.routes.draw do
 
   # Back office
   namespace :backoffice do
-    resources :dashboard, only: [:index]
-    resources :emails, only: [:index]
+    get '/', to: 'auth0#index'
+
+    namespace :auth0 do
+      get :callback
+      get :failure
+      delete :logout
+    end
+
     resource :errors, only: [] do
       get :unhandled
     end
+
+    # Auth0-protected routes
+    resources :dashboard, only: [:index]
+    resources :emails, only: [:index]
   end
 
   devise_for :users,

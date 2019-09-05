@@ -35,7 +35,7 @@
   <main id="content" role="main">
     <%= render partial: 'layouts/phase_banner' %>
 
-    <% if flash[:alert] %>
+    <% if flash[:alert].present? %>
       <div class="error-summary">
         <%= flash[:alert] %>
       </div>
