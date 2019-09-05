@@ -94,6 +94,20 @@ However it is still possible to have full flexibility of what mutant runs in you
 ##### Run mutation on a small sample of classes (default):
 `RAILS_ENV=test bundle exec rake mutant`
 
+## Back office (Auth0 integration)
+
+There is a back office / admin side that uses [Auth0](http://auth0.com) as the identity provider.  
+Each application environment (localhost, staging and production) has a corresponding `tenant` in an Auth0 account.  
+
+This allow us to have separate configurations for each environment and to test the integration with confidence.  
+
+The different tenants contain each an `application` (the C100 backoffice). And each tenant also has `rules` that need to 
+be present in order to ensure we only allow users who have been previously granted access.
+
+You can test and use the backoffice locally without need for Auth0 credentials. Just expose the `AUTH0_BYPASS_LOCALHOST` 
+env variable.
+
+Please refer to the [config/auth0](config/auth0) directory for more details.
 
 ## CircleCI and continuous deployment
 

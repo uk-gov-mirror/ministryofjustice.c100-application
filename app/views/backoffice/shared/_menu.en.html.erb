@@ -1,18 +1,13 @@
-<a role="button" href="#proposition-links" class="js-header-toggle menu"
-   aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</a>
-
 <nav id="proposition-menu">
-  <% if admin_signed_in? %>
-    <ul id="proposition-links" aria-label="Top Level Navigation">
-      <li>
-        <%= link_to_unless_current 'Dashboard', backoffice_dashboard_index_path %>
-      </li>
-      <li>
-        <%= link_to_unless_current 'Emails', backoffice_emails_path %>
-      </li>
-      <li class="util_ml-medium">
-        <%= link_to 'Logout', backoffice_auth0_logout_path, method: :delete, data: { confirm: 'Are you sure?' } %> (<%= admin_name %>)
-      </li>
-    </ul>
-  <% end %>
+  <ul id="proposition-links" aria-label="Top Level Navigation">
+    <li>
+      <%= link_to_unless_current 'Dashboard', backoffice_dashboard_index_path %>
+    </li>
+    <li>
+      <%= link_to_unless_current 'Emails', backoffice_emails_path %>
+    </li>
+    <li class="util_ml-medium">
+      <%= link_to 'Logout', backoffice_auth0_logout_path, method: :delete, data: { confirm: 'Are you sure?' } %> (<%= admin_name %>)
+    </li>
+  </ul>
 </nav>

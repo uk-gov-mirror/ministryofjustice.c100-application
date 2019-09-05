@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190809083025) do
+ActiveRecord::Schema.define(version: 20190905111838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20190809083025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id"
+  end
+
+  create_table "backoffice_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "email", null: false
+    t.string "user_id"
+    t.boolean "active", default: true
+    t.integer "logins_count", default: 0
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.index ["email"], name: "index_backoffice_users_on_email", unique: true
   end
 
   create_table "c100_applications", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

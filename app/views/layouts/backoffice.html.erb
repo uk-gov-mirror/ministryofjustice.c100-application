@@ -15,8 +15,14 @@
 <% content_for(:proposition_header) do %>
   <div class="header-proposition">
     <div class="content">
-      <%= link_to service_name, Rails.configuration.gds_service_homepage_url, id: 'proposition-name' %>
-      <%= render partial: 'backoffice/shared/menu' %>
+      <% if admin_signed_in? %>
+        <a role="button" href="#proposition-links" class="js-header-toggle menu"
+           aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</a>
+      <% end %>
+      <nav id="proposition-menu">
+        <%= link_to service_name, Rails.configuration.gds_service_homepage_url, id: 'proposition-name', class: 'ga-pageLink', data: {ga_category: 'header', ga_label: 'service name'} %>
+        <%= render partial: 'backoffice/shared/menu' if admin_signed_in? %>
+      </nav>
     </div>
   </div>
 <% end %>
