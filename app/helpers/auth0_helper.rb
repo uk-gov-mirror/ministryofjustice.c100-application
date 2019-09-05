@@ -7,6 +7,10 @@ module Auth0Helper
     session[:backoffice_userinfo].dig('info', 'name')
   end
 
+  def admin_auth_url
+    auth0_bypass_in_local? ? backoffice_auth0_local_auth_path : 'auth/auth0'
+  end
+
   def admin_logout_url
     params = {
       client_id: ENV['AUTH0_CLIENT_ID'],
@@ -18,5 +22,10 @@ module Auth0Helper
       path: '/v2/logout',
       query: params.to_query
     ).to_s
+  end
+
+  def auth0_bypass_in_local?
+    Rails.env.development? &&
+      ENV['AUTH0_BYPASS_LOCALHOST'].present?
   end
 end

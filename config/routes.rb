@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     namespace :auth0 do
       get :callback
       get :failure
+      post :local_auth
       delete :logout
     end
 

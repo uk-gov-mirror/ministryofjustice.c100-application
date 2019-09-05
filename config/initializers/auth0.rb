@@ -11,4 +11,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   )
 end
 
+OmniAuth.config.allowed_request_methods = [:post]
 OmniAuth.config.on_failure = Backoffice::Auth0Controller.action(:failure)

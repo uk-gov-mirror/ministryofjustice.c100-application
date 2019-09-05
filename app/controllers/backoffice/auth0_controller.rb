@@ -20,6 +20,13 @@ module Backoffice
       redirect_to backoffice_dashboard_index_path
     end
 
+    def local_auth
+      raise 'For development use only' unless helpers.auth0_bypass_in_local?
+
+      request.env['omniauth.auth'] = { info: { name: 'Test User' } }
+      callback
+    end
+
     def failure
       error = request.env['omniauth.error']
 
