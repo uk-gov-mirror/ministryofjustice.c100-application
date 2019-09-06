@@ -42,6 +42,6 @@ function (user, context, callback) {
             return callback(null, user, context);
         }
 
-        callback('Email address is not authorised');
+        callback('Unauthorised email address: ' + user.email);
     });
 }

@@ -31,7 +31,7 @@ module Backoffice
       error = request.env['omniauth.error']
 
       Raven.capture_exception(
-        RuntimeError, "Auth0 Error: #{error.message}"
+        RuntimeError.new("Auth0 Error: #{error.message}")
       )
 
       redirect_to backoffice_path, flash: { alert: error.message }
