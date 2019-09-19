@@ -57,7 +57,9 @@ Rails.application.routes.draw do
 
     # Auth0-protected routes
     resources :dashboard, only: [:index]
-    resources :emails, only: [:index]
+    resources :emails, only: [:index] do
+      put :resend
+    end
   end
 
   devise_for :users,
