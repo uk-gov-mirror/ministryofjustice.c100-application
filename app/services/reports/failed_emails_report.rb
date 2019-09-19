@@ -3,10 +3,33 @@ module Reports
   class FailedEmailsReport
     require 'csv'
 
-    class_attribute :failures
+    class_attribute :failures,
+                    :report_type
 
     class << self
+      # This class method is used in the back-office
+      def list
+        self.report_type = :backoffice
+        self.failures = []
+
+        EmailSubmission.where(
+          created_at: 1.week.ago.beginning_of_day...Date.current.end_of_day
+        ).joins(:c100_application).find_each(batch_size: 25) do |record|
+          reference_code = record.c100_application.reference_code
+
+          check_court_email(record, reference_code)
+
+          # Only if the applicant chose to receive a confirmation, otherwise
+          # these emails are not sent and there is no need to do any check.
+          check_user_email(record, reference_code) if record.c100_application.receipt_email?
+        end
+
+        failures
+      end
+
+      # This class method is used in `lib/tasks/daily_tasks.rake`
       def run
+        self.report_type = :daily_tasks
         self.failures = []
 
         EmailSubmission.where(
@@ -56,11 +79,19 @@ module Reports
       end
 
       def report_line(record, reference, error_msg)
-        [
-          record.created_at,
-          reference,
-          error_msg,
-        ]
+        if report_type == :backoffice
+          Backoffice::FailedEmail.new(
+            record: record,
+            reference: reference,
+            error: error_msg,
+          )
+        else
+          [
+            record.created_at,
+            reference,
+            error_msg,
+          ]
+        end
       end
     end
   end

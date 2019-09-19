@@ -5,7 +5,37 @@
     <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: emails</h1>
 
     <div class="govuk-govspeak gv-s-prose">
-      This is work in progress.
+      <p>
+        This is a report of any failed submission emails (court or applicant confirmation), in the last 7 days.
+      </p>
+
+      <p>
+        <strong>
+          After resending a failed email, wait a few seconds (usually less than 30) and reload this page. The failure
+          should be gone if the email was sent successfully, otherwise a new error will show.
+        </strong>
+      </p>
+
+      <p>
+        Please note some failures might be genuine, for instance, due to a typo in the applicant's email address. Do
+        not retry these emails as they will fail again.
+      </p>
     </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Sent at</th>
+          <th>Reference</th>
+          <th>Type</th>
+          <th>Error</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%= render partial: 'failure', collection: @report, as: :failure %>
+      </tbody>
+    </table>
   </div>
 </div>

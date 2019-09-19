@@ -1,0 +1,17 @@
+<tr>
+  <td valign="middle"><%= failure.sent_at %></td>
+  <td valign="middle"><%= failure.reference %></td>
+  <td valign="middle"><%= failure.type %></td>
+  <td valign="middle"><%= failure.error %></td>
+  <td valign="middle">
+    <%= button_to 'Resend email', backoffice_email_resend_path(failure.record, type: failure.type), method: :put, data: { confirm: 'Are you sure' }, class: 'button' %>
+  </td>
+</tr>
+
+<% if failure.address %>
+  <tr>
+    <td colspan="5">
+      <strong>Email:</strong> <%= failure.address %>
+    </td>
+  </tr>
+<% end %>
