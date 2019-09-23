@@ -44,12 +44,17 @@ class SessionsController < ApplicationController
   def find_or_create_screener_answers
     ScreenerAnswers.find_or_initialize_by(c100_application_id: c100_application.id).tap do |screener|
       screener.update(
-        screener_answers_fixture
+        screener_answers_fixture(screener)
       ) unless screener.valid?(:completion)
     end
   end
 
-  def screener_answers_fixture
+  # If there are some answers already present, we maintain these previous
+  # answers (for example, it is possible to answer the postcode question
+  # in the screener, and then do a bypass, maintaining the court data
+  # returned from court tribunal finder).
+  #
+  def screener_answers_fixture(screener)
     {
       children_postcodes: 'MK9 2DT',
       parent: 'yes',
@@ -67,7 +72,9 @@ class SessionsController < ApplicationController
         "slug" => "milton-keynes-county-court-and-family-court",
         "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
       }
-    }
+    }.merge(screener.attributes.symbolize_keys) do |_key, old_value, new_value|
+      new_value || old_value
+    end
   end
   # :nocov:
 end

@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe Steps::Screener::StartController, type: :controller do
   let!(:existing_c100) { C100Application.create(status: status, navigation_stack: navigation_stack) }
 
-  before do
-    allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-  end
-
   describe '#show' do
     context 'when an existing application in progress exists' do
       let(:status) { :in_progress }
@@ -25,6 +21,16 @@ RSpec.describe Steps::Screener::StartController, type: :controller do
             expect(session).to receive(:delete).with(:last_seen).ordered
             expect(session).to receive(:delete) # any other deletes
             get :show, session: { c100_application_id: existing_c100.id }, params: {new: 'y'}
+          end
+
+          it 'resets the memoized `current_c100_application`' do
+            # simulate memoization
+            controller.instance_variable_set(:@_current_c100_application, existing_c100)
+            expect(controller.current_c100_application).not_to be_nil
+
+            get :show, session: { c100_application_id: existing_c100.id }, params: {new: 'y'}
+
+            expect(controller.current_c100_application).to be_nil
           end
         end
 
@@ -54,7 +60,17 @@ RSpec.describe Steps::Screener::StartController, type: :controller do
           expect(session).to receive(:delete).with(:c100_application_id).ordered
           expect(session).to receive(:delete).with(:last_seen).ordered
           expect(session).to receive(:delete) # any other deletes
-          get :show
+          get :show, session: { c100_application_id: existing_c100.id }
+        end
+
+        it 'resets the memoized `current_c100_application`' do
+          # simulate memoization
+          controller.instance_variable_set(:@_current_c100_application, existing_c100)
+          expect(controller.current_c100_application).not_to be_nil
+
+          get :show, session: { c100_application_id: existing_c100.id }
+
+          expect(controller.current_c100_application).to be_nil
         end
       end
     end

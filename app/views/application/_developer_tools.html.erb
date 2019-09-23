@@ -6,6 +6,14 @@
       <% if current_c100_application %>
         <h4 class="heading-small">Current Application ID</h4>
         <p><%= current_c100_application.id %></p>
+
+        <% if current_c100_application.screener_answers_court %>
+          <h4 class="heading-small">Current court data</h4>
+          <p>
+            <%= current_c100_application.screener_answers_court.name %><br/>
+            <%= current_c100_application.screener_answers_court.email %>
+          </p>
+        <% end %>
       <% end %>
 
       <h4>Destroy session</h4>
