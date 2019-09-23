@@ -148,7 +148,7 @@ describe Court do
           [
             {
               'description' => 'Enquiries',
-              'address' => 'my@email',
+              'address' => 'enquiries@email',
             },
             {
               'description' => 'All Children Enquiries',
@@ -197,21 +197,21 @@ describe Court do
           end
         end
 
-        context 'and containing an email with description matching "enquiries"' do
+        context 'and containing an email matching "enquiries"' do
           let(:emails){
             [
+              {
+                'description' => 'Enquiries',
+                'address' => 'enquiries@email',
+              },
               {
                 'description' => 'All children things',
                 'address' => 'children@email'
               },
-              {
-                'description' => 'Enquiries',
-                'address' => 'my@email',
-              },
             ]
           }
 
-          it 'returns the email address of the description matching children' do
+          it 'returns the email address matching children' do
             expect(subject.best_enquiries_email).to eq('children@email')
           end
         end
@@ -222,7 +222,7 @@ describe Court do
           [
             {
               'description' => 'Enquiries',
-              'address' => 'my@email',
+              'address' => 'enquiries@email',
             },
             {
               'description' => 'All Family Enquiries',
@@ -240,7 +240,7 @@ describe Court do
             [
               {
                 'description' => 'Enquiries',
-                'address' => 'my@email',
+                'address' => 'enquiries@email',
               },
               {
                 'description' => 'All family things',
@@ -255,23 +255,23 @@ describe Court do
         end
       end
 
-      context 'containing an email with explanation matching "family"' do
+      context 'containing an email with explanation matching "family" but also enquiries' do
         let(:emails){
           [
             {
-              'description' => 'All other things',
-              'address' => 'other@email'
+              'description' => 'Other enquiries',
+              'address' => 'other.enquiries@email'
             },
             {
               'description' => '',
               'explanation' => 'Family enquiries',
-              'address' => 'my@email',
+              'address' => 'enquiries@email',
             },
           ]
         }
 
-        it 'returns the email address of the matching description' do
-          expect(subject.best_enquiries_email).to eq('my@email')
+        it 'returns the email address of the matching explanation' do
+          expect(subject.best_enquiries_email).to eq('enquiries@email')
         end
       end
 
@@ -292,6 +292,27 @@ describe Court do
 
         it 'returns the matching email address based on priority' do
           expect(subject.best_enquiries_email).to eq('Children@email')
+        end
+      end
+
+      context 'nothing matches except the enquiries email address' do
+        let(:emails){
+          [
+            {
+              'description' => 'Should not match anything',
+              'address' => 'my@email',
+            },
+            {
+              'description' => 'No address',
+            },
+            {
+              'description' => 'Any description',
+              'address' => 'Enquiries@email',
+            },
+          ]
+        }
+        it 'returns the `enquiries` email' do
+          expect(subject.best_enquiries_email).to eq('Enquiries@email')
         end
       end
 
