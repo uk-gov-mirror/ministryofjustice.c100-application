@@ -30,13 +30,14 @@ class Court
     # There's no consistency to how courts list their email address descriptions,
     # so we try to find the most suitable email address, by looking at the `description`
     # or the `explanation` for each of the emails, or the actual email address,
-    # and if none is found, use the first entry.
-
+    # and if none is found, as a last resort we try to find an email address containing
+    # the `enquiries` word and if still nothing is found, we pick the first entry.
+    #
     emails = retrieve_emails_from_api
     best = best_match_for(emails, 'description') ||
            best_match_for(emails, 'explanation') ||
            best_match_for(emails, 'address') ||
-           emails.first
+           fallback_address(emails)
 
     # We want this to raise a `KeyError` exception when no email is found
     best ||= {}
@@ -49,6 +50,10 @@ class Court
     emails.find { |e| e[node] =~ /children/i }           || \
       emails.find { |e| e[node] =~ /\Aapplications\z/i } || \
       emails.find { |e| e[node] =~ /family/i }
+  end
+
+  def fallback_address(emails)
+    emails.find { |e| e['address'] =~ /enquiries/i } || emails.first
   end
 
   def retrieve_emails_from_api
