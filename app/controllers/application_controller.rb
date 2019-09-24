@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
   def reset_c100_application_session
     session.delete(:c100_application_id)
     session.delete(:last_seen)
+
+    # ensure we don't have a memoized record anymore
+    @_current_c100_application = nil
   end
 
   def initialize_c100_application(attributes = {})
