@@ -2,4 +2,7 @@ table.backoffice-table {
   td {
     font-size: 85%;
   }
+  td.no-border {
+    border: 0;
+  }
 }
