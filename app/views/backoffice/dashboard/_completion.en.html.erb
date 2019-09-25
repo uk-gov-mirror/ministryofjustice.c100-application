@@ -1,14 +1,16 @@
 <tr>
   <td valign="middle" width="200"><%= completion.completed_at %></td>
-  <td valign="middle"><%= completion.submission_type || SubmissionType::PRINT_AND_POST.value %></td>
   <td valign="middle"><%= completion.reference_code %></td>
-  <td valign="middle"><%= completion.court %></td>
+  <td valign="middle"><%= completion.submission_type || 'N/A' %></td>
+  <td valign="middle"><%= completion.metadata['payment_type'] || 'N/A' %></td>
+  <td valign="middle"><%= completion.metadata['postcode'] %></td>
+  <td valign="middle"><%= completion.metadata['saved_for_later'] %></td>
 </tr>
 <tr>
-  <td valign="middle" colspan="4">
-    <strong>Postcode:</strong> <%= completion.metadata['postcode'] %> |
-    <strong>Urgent:</strong> <%= completion.metadata['urgent_hearing'] %> |
-    <strong>Payment:</strong> <%= completion.metadata['payment_type'] %> |
-    <strong>Saved:</strong> <%= completion.metadata['saved_for_later'] %>
+  <td valign="middle" colspan="6" class="no-border">
+    <%= completion.court %>
   </td>
+</tr>
+<tr>
+  <td valign="middle" colspan="6" class="no-border"></td>
 </tr>
