@@ -67,6 +67,10 @@ module Reports
         if record.user_copy_sent_at.nil?
           failures << report_line(record, reference, 'error')
         elsif email_not_delivered?(reference)
+          # Ignore these failures when sending the report, as these are very
+          # frequently user typos, and nothing we can fix on our side.
+          return if report_type == :daily_tasks
+
           failures << report_line(record, reference, 'undelivered')
         end
       end
