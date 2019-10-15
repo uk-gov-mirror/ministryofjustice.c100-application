@@ -74,8 +74,8 @@ en:
     statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
     statement_of_truth_hmcts_instructions: Statement of truth has been completed online - no signature required
     relationship_to_child:
-      show_person: "%{person_name} - %{relation} to %{child_name}"
-      hide_person: "%{relation} to %{child_name}"
+      show_person_html: "<div>%{person_name} - %{relation} to %{child_name}</div>"
+      hide_person_html: "<div>%{relation} to %{child_name}</div>"
 
   check_answers:
     headers:

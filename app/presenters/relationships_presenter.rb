@@ -1,6 +1,4 @@
 class RelationshipsPresenter
-  PEOPLE_SEPARATOR = '; '.freeze
-
   attr_reader :c100_application
 
   def initialize(c100_application)
@@ -14,7 +12,7 @@ class RelationshipsPresenter
 
     relationships.where(minor: minors, person: person_or_people).map do |relationship|
       show_person_name ? present_relation_with_person(relationship) : present_relation_without_person(relationship)
-    end.join(PEOPLE_SEPARATOR)
+    end.join
   end
 
   private
@@ -39,7 +37,7 @@ class RelationshipsPresenter
 
   def present_relation_with_person(relationship)
     I18n.translate!(
-      'shared.relationship_to_child.show_person',
+      'shared.relationship_to_child.show_person_html',
       person_name: relationship.person.full_name,
       child_name: relationship.minor.full_name,
       relation: i18n_relation(relationship)
@@ -48,7 +46,7 @@ class RelationshipsPresenter
 
   def present_relation_without_person(relationship)
     I18n.translate!(
-      'shared.relationship_to_child.hide_person',
+      'shared.relationship_to_child.hide_person_html',
       child_name: relationship.minor.full_name,
       relation: i18n_relation(relationship)
     )

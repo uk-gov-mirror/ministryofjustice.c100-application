@@ -31,13 +31,13 @@ RSpec.describe RelationshipsPresenter do
 
     context 'showing the person name' do
       it 'returns a string describing the relationships' do
-        expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - Father to Child name')
+        expect(subject.relationship_to_children(person, show_person_name: true)).to eq('<div>Person name - Father to Child name</div>')
       end
     end
 
     context 'hiding the person name' do
       it 'returns a string describing the relationships' do
-        expect(subject.relationship_to_children(person, show_person_name: false)).to eq('Father to Child name')
+        expect(subject.relationship_to_children(person, show_person_name: false)).to eq('<div>Father to Child name</div>')
       end
     end
 
@@ -49,13 +49,13 @@ RSpec.describe RelationshipsPresenter do
 
       context 'showing the person name' do
         it 'returns a string describing the relationships' do
-          expect(subject.relationship_to_children(person, show_person_name: true)).to eq('Person name - A friend to Child name')
+          expect(subject.relationship_to_children(person, show_person_name: true)).to eq('<div>Person name - A friend to Child name</div>')
         end
       end
 
       context 'hiding the person name' do
         it 'returns a string describing the relationships' do
-          expect(subject.relationship_to_children(person, show_person_name: false)).to eq('A friend to Child name')
+          expect(subject.relationship_to_children(person, show_person_name: false)).to eq('<div>A friend to Child name</div>')
         end
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe RelationshipsPresenter do
 
         context 'but the bypass is activated' do
           it 'returns the relationship details' do
-            expect(subject.relationship_to_children(person, bypass_c8: true)).to eq('Person name - Father to Child name')
+            expect(subject.relationship_to_children(person, bypass_c8: true)).to eq('<div>Person name - Father to Child name</div>')
           end
         end
       end
@@ -81,7 +81,7 @@ RSpec.describe RelationshipsPresenter do
         let(:confidentiality_enabled) { false }
 
         it 'returns the relationship details' do
-          expect(subject.relationship_to_children(person)).to eq('Person name - Father to Child name')
+          expect(subject.relationship_to_children(person)).to eq('<div>Person name - Father to Child name</div>')
         end
       end
     end
