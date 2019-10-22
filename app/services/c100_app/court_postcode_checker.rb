@@ -57,6 +57,18 @@ module C100App
       hertford-county-court-and-family-court
       chester-civil-and-family-justice-centre
       crewe-county-court-and-family-court
+      caernarfon-justice-centre
+      wrexham-county-and-family-court
+      welshpool-magistrates-court
+      prestatyn-justice-centre
+      blackwood-civil-and-family-court
+      pontypridd-county-court-and-family-court
+      port-talbot-justice-centre
+      merthyr-tydfil-combined-court-centre
+      aberystwyth-justice-centre
+      carmarthen-county-court-and-family-court
+      haverfordwest-county-court-and-family-court
+      carmarthen-county-court-and-family-court
     ].freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
