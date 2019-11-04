@@ -4,7 +4,7 @@ ruby '2.6.2'
 
 gem 'devise', '~> 4.7.1'
 gem 'email_validator'
-gem 'govuk_elements_form_builder', git: "https://github.com/ministryofjustice/govuk_elements_form_builder.git"
+gem 'govuk_elements_form_builder', '~> 1.3.1'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_frontend_toolkit', '< 8.0.0'
 gem 'govuk_notify_rails', '~> 2.1.0'
