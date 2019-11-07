@@ -22,7 +22,7 @@ module C100App
       east-london-family-court
       newport-south-wales-county-court-and-family-court
       southampton-combined-court-centre
-      swansea-civil-and-family-justice-centre
+      swansea-civil-justice-centre
       exeter-combined-court-centre
       medway-county-court-and-family-court
       liverpool-civil-and-family-court
