@@ -74,7 +74,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    cliver (0.3.2)
+    childprocess (3.0.0)
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
@@ -248,11 +248,6 @@ GEM
     parser (2.5.3.0)
       ast (~> 2.4.0)
     pg (1.0.0)
-    phantomjs (2.1.1.0)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     powerpack (0.1.2)
     procto (0.0.3)
     pry (0.12.2)
@@ -336,6 +331,7 @@ GEM
       rubocop (>= 0.52.1)
     ruby-progressbar (1.10.1)
     ruby-rc4 (0.1.5)
+    rubyzip (2.0.0)
     safe_yaml (1.0.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -352,6 +348,9 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    selenium-webdriver (3.142.6)
+      childprocess (>= 0.5, < 4.0)
+      rubyzip (>= 1.2.2)
     sentry-raven (2.12.2)
       faraday (>= 0.7.6, < 1.0)
     simplecov (0.17.1)
@@ -440,8 +439,6 @@ DEPENDENCIES
   omniauth-auth0 (~> 2.2)
   omniauth-rails_csrf_protection
   pg (~> 1.0.0)
-  phantomjs
-  poltergeist
   pry-byebug
   pry-rails
   puma (~> 3.0)
@@ -453,6 +450,7 @@ DEPENDENCIES
   rubocop (~> 0.52.1)
   rubocop-rspec
   sass-rails
+  selenium-webdriver
   sentry-raven
   simplecov
   simplecov-rcov

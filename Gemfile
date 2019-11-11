@@ -57,12 +57,11 @@ group :test do
   gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-rails', require: false
-  gem 'poltergeist'
-  gem 'phantomjs'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.52.1', require: false
   gem 'rubocop-rspec', require: false
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
   gem 'webmock'
