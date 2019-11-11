@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.6.2'
+ruby '2.6.3'
 
 gem 'devise', '~> 4.7.1'
-gem 'email_validator'
+gem 'email_validator', '< 2.0.0'
 gem 'govuk_elements_form_builder', '~> 1.3.1'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_frontend_toolkit', '< 8.0.0'
@@ -19,6 +19,7 @@ gem 'rails', '~> 5.1.6'
 gem 'responders'
 gem 'sass-rails'
 gem 'sentry-raven'
+gem 'sprockets', '< 4.0.0'
 gem 'uglifier'
 gem 'uk_postcode'
 gem 'virtus'
@@ -56,12 +57,11 @@ group :test do
   gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-rails', require: false
-  gem 'poltergeist'
-  gem 'phantomjs'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.52.1', require: false
   gem 'rubocop-rspec', require: false
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
   gem 'webmock'
