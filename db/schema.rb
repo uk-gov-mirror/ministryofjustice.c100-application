@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191031094243) do
+ActiveRecord::Schema.define(version: 20191113151710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -163,8 +163,8 @@ ActiveRecord::Schema.define(version: 20191031094243) do
     t.datetime "started_at", null: false
     t.datetime "completed_at", null: false
     t.string "submission_type"
-    t.string "court"
-    t.string "reference_code"
+    t.string "court", null: false
+    t.string "reference_code", null: false
     t.json "metadata", default: {}
     t.index ["reference_code"], name: "index_completed_applications_audit_on_reference_code", unique: true
   end
