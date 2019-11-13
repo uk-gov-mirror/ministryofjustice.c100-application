@@ -21,7 +21,7 @@ moj.Modules.passwordToggle = {
       var $el = $(e.target),
           tag = $el.prop('tagName').toLowerCase();
 
-      if(tag === 'span') {
+      if(tag === 'a') {
         $el = $el.closest('p');
       }
       e.preventDefault();
@@ -33,7 +33,7 @@ moj.Modules.passwordToggle = {
   injectLinks: function($els) {
     var self = this;
 
-    $els.after('<p class="' + self.link_class + '"><span class="show toggle">' + moj.Modules.showPasswordText + '</span><span class="hide toggle js-hidden">' + moj.Modules.hidePasswordText + '</span></p>');
+    $els.after('<p class="' + self.link_class + '"><a href="#" class="show toggle">' + moj.Modules.showPasswordText + '</a><a href="#" class="hide toggle js-hidden">' + moj.Modules.hidePasswordText + '</a></p>');
   },
 
   togglePassword: function($link) {
