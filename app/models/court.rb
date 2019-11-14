@@ -44,6 +44,10 @@ class Court
     best.fetch('address')
   end
 
+  def court_data
+    @_court_data ||= C100App::CourtfinderAPI.new.court_lookup(slug)
+  end
+
   private
 
   def best_match_for(emails, node)
@@ -57,8 +61,7 @@ class Court
   end
 
   def retrieve_emails_from_api
-    this_court = C100App::CourtfinderAPI.new.court_lookup(slug)
-    this_court.fetch('emails')
+    court_data.fetch('emails')
   end
 
   def log_and_raise(exception, data)
