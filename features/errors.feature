@@ -1,6 +1,5 @@
 Feature: Errors
   Background:
-    Given I show my environment
     When I visit "/"
     Given I click the "Check now" link
 
