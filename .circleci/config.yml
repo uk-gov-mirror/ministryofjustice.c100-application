@@ -1,8 +1,8 @@
-# Ruby CircleCI 2.0 configuration file
+# Ruby CircleCI configuration file
 #
-# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+# Check https://circleci.com/docs/2.0/configuration-reference/ for more details
 #
-version: 2
+version: 2.1
 
 references:
   app_containers: &app_containers
@@ -28,6 +28,10 @@ references:
 jobs:
   test:
     <<: *app_containers
+    parameters:
+      test_command:
+        type: string
+        default: bundle exec rake test:all_the_things master
     steps:
       - checkout
 
@@ -57,7 +61,7 @@ jobs:
 
       - run:
           name: run tests
-          command: bundle exec rake test:all_the_things master
+          command: << parameters.test_command >>
 
   build_staging:
     <<: *cloud_container
@@ -167,8 +171,6 @@ jobs:
 
 
 workflows:
-  version: 2
-
   test-build-deploy:
     jobs:
       - test
@@ -191,3 +193,16 @@ workflows:
       - deploy_production:
           requires:
             - tag_production
+
+  smoke-tests:
+    jobs:
+      - test:
+          name: smoke-tests
+          test_command: bundle exec cucumber -p smoke
+    triggers:
+      - schedule:
+          cron: "0 * * * *"
+          filters:
+            branches:
+              only:
+                - master
