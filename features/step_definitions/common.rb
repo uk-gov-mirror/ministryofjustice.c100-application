@@ -1,8 +1,3 @@
-Given(/^I show my environment$/) do
-  puts "Running against: #{Capybara.app_host}"
-  puts "Never point these features against a production environment :-)"
-end
-
 When(/^I visit "([^"]*)"$/) do |path|
   visit path
 end

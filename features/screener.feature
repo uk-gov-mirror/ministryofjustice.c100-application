@@ -1,6 +1,5 @@
 Feature: Screener
   Background:
-    Given I show my environment
     When I visit "/"
     Then I should see "We’re trialling a new online service to apply to court about child arrangements"
 
