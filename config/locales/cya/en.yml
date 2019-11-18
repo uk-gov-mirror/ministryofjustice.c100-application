@@ -57,7 +57,7 @@ en:
       undertaking: Undertaking in place of an order
 
   check_answers_html:
-    change_link: Change
+    change_link_html: Change <span class="visuallyhidden">answer to %{a11y_question}</span>
     sections:
       child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: MIAM requirement
