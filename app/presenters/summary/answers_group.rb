@@ -1,12 +1,11 @@
 module Summary
   class AnswersGroup
-    attr_reader :name, :change_path, :name_args
+    attr_reader :name, :change_path
 
     def initialize(name, answers, params = {})
       @name = name
       @answers = answers
       @change_path = params[:change_path]
-      @name_args = params[:name_args]
     end
 
     def answers
