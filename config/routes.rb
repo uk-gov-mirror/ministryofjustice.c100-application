@@ -294,6 +294,7 @@ Rails.application.routes.draw do
   get 'entrypoint/what_is_needed'
   get 'entrypoint/how_long'
 
+  get 'about/accessibility'
   get 'about/contact'
   get 'about/cookies'
   get 'about/privacy'

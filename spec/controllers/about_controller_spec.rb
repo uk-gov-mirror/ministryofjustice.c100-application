@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe AboutController do
+  describe '#accessibility' do
+    it 'renders the expected page' do
+      get :accessibility
+      expect(response).to render_template(:accessibility)
+    end
+  end
+
   describe '#contact' do
     it 'renders the expected page' do
       get :contact

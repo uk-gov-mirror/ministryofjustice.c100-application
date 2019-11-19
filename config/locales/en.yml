@@ -990,6 +990,7 @@ en:
   layouts:
     footer_links:
       help: Help
+      accessibility: Accessibility
       contact: Contact
       cookies: Cookies
       privacy: Privacy
