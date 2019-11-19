@@ -3,8 +3,13 @@
     a11y_question = if question.is_a?(Summary::AnswersGroup)
                       t("check_answers_html.groups.#{question.name}")
                     else
-                      t("check_answers_html.#{question.question}.question_a11y",
-                        default: t("check_answers_html.#{question.question}.question", question.i18n_opts || {}))
+                      i18n_opts = question.i18n_opts || {}
+
+                      t(
+                        "check_answers_html.#{question.question}.question_a11y", {
+                          default: t("check_answers_html.#{question.question}.question", i18n_opts)
+                        }.merge(i18n_opts)
+                      )
                     end
   %>
 

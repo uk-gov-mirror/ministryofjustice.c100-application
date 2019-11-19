@@ -57,7 +57,7 @@ en:
       undertaking: Undertaking in place of an order
 
   check_answers_html:
-    change_link_html: Change <span class="visuallyhidden">answer to %{a11y_question}</span>
+    change_link_html: Change <span class="visuallyhidden">your answer to, %{a11y_question}</span>
     sections:
       child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: MIAM requirement
@@ -93,7 +93,7 @@ en:
       abduction_passport_possession: Details of the children’s passports
       abduction_previous_attempt: Details of the previous abductions
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
-      abuse_details: Details
+      abuse_details: Details of the abuse
       court_orders_details: What orders have been made?
       protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
       person_personal_details: Personal details
@@ -182,6 +182,7 @@ en:
         <<: *YESNO
     child_residence:
       question: '%{child_name}'
+      question_a11y: Who %{child_name} lives with
 
     miam_exemptions_domestic:
       question: Evidence of domestic abuse and violence
@@ -385,8 +386,6 @@ en:
         <<: *YESNO
     order_court_name:
       question: Name of court
-    protection_orders:
-      question: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
     concerns_contact_type:
       question: Do you agree to the children spending time with the other people in this application?
       answers:
@@ -400,18 +399,22 @@ en:
 
     child_arrangements_orders:
       question: 'You would like the court to:'
+      question_a11y: What you’re asking the court to decide about living arrangements
       answers:
         <<: *ARRANGEMENT_ORDERS
     specific_issues_orders:
       question: 'You would like the court to resolve an issue about:'
+      question_a11y: What you’re asking the court to decide about other issues
       answers:
         <<: *SPECIFIC_ISSUE_ORDERS
     prohibited_steps_orders:
       question: 'You would like the court to stop the other person:'
+      question_a11y: What you’re asking the court to stop the other person from doing
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
     other_issue_details:
       question: 'You told us that you need help with this dispute:'
+      question_a11y: You need help with this dispute
     protection_orders:
       question: ''
       answers:
