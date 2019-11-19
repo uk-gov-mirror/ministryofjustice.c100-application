@@ -33,7 +33,7 @@ Feature: Screener
     Given I click the "Check now" link
 
     Then I should see "Where do the children live?"
-    And I fill in "Postcode" with "M60 9DJ"
+    And I fill in "Postcode" with "TN17 4EA"
     And I click the "Continue" button
 
     Then I should see "Sorry, you're not eligible to apply online"

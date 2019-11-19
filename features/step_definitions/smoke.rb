@@ -1,6 +1,10 @@
 When(/^Using the court slugs defined in the service$/) do
   @court_slugs = C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP
   @court_aol = C100App::CourtPostcodeChecker::AREA_OF_LAW
+  @court_slugs_ignore_aol = %w[
+    clerkenwell-and-shoreditch-county-court-and-family-court
+    salisbury-law-courts
+  ]
 end
 
 Then(/^Iterate through each court slug and call the API$/) do
@@ -35,10 +39,10 @@ Then(/^The court exists and is enabled$/) do
   #
   expect(@court.court_data['open']).to be_truthy
 
-  # Make an exception for Clerkenwell as it is a very weird case, where the
+  # Make an exception for these courts, acting weird, where the
   # API is returning the court despite not having `Children` in the AOL
   #
-  unless @court.slug == 'clerkenwell-and-shoreditch-county-court-and-family-court'
+  unless @court_slugs_ignore_aol.include?(@court.slug)
     expect(@court.court_data['areas_of_law']).to include(@court_aol)
   end
 end

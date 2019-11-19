@@ -3,73 +3,9 @@ require 'c100_app/courtfinder_api'
 module C100App
   class CourtPostcodeChecker
     AREA_OF_LAW = "Children".freeze
-    COURT_SLUGS_USING_THIS_APP = %w[
-      reading-county-court-and-family-court
-      guildford-county-court-and-family-court
-      milton-keynes-county-court-and-family-court
-      watford-county-court-and-family-court
-      slough-county-court-and-family-court
-      kingston-upon-hull-combined-court-centre
-      oxford-combined-court-centre
-      bristol-civil-and-family-justice-centre
-      preston-crown-court-and-family-court-sessions-house
-      newcastle-upon-tyne-combined-court-centre
-      nottingham-county-court-and-family-court
-      leeds-combined-court-centre
-      west-london-family-court
-      cardiff-civil-and-family-justice-centre
-      leicester-county-court-and-family-court
-      east-london-family-court
-      newport-south-wales-county-court-and-family-court
-      southampton-combined-court-centre
-      swansea-civil-justice-centre
-      exeter-combined-court-centre
-      medway-county-court-and-family-court
-      liverpool-civil-and-family-court
-      plymouth-combined-court
-      peterborough-combined-court-centre
-      barnstaple-magistrates-county-and-family-court
-      portsmouth-combined-court-centre
-      isle-of-wight-combined-court
-      sheffield-combined-court-centre
-      doncaster-magistrates-court-and-family-court
-      barnsley-law-courts
-      lincoln-county-court-and-family-court
-      york-county-court-and-family-court
-      harrogate-magistrates-court-and-family-court
-      scarborough-justice-centre
-      skipton-county-court-and-family-court
-      central-family-court
-      clerkenwell-and-shoreditch-county-court-and-family-court
-      bury-st-edmunds-county-court-and-family-court
-      southend-magistrates-court-and-family-court
-      taunton-crown-county-and-family-court
-      yeovil-county-family-and-magistrates-court
-      norwich-combined-court-centre
-      kings-lynn-magistrates-court-and-family-court
-      luton-county-court-and-family-court
-      bedford-county-court-and-family-court
-      chelmsford-county-and-family-court
-      southend-magistrates-court-and-family-court
-      canterbury-combined-court-centre
-      dartford-county-court-and-family-court
-      maidstone-combined-court-centre
-      hertford-county-court-and-family-court
-      chester-civil-and-family-justice-centre
-      crewe-county-court-and-family-court
-      caernarfon-justice-centre
-      wrexham-county-and-family-court
-      welshpool-magistrates-court
-      prestatyn-justice-centre
-      blackwood-civil-and-family-court
-      pontypridd-county-court-and-family-court
-      port-talbot-justice-centre
-      merthyr-tydfil-combined-court-centre
-      aberystwyth-justice-centre
-      carmarthen-county-court-and-family-court
-      haverfordwest-county-court-and-family-court
-      carmarthen-county-court-and-family-court
-    ].freeze
+    COURT_SLUGS_USING_THIS_APP = YAML.load_file(
+      File.join(Rails.root, 'config', 'court_slugs.yml')
+    ).freeze
 
     # Separate multiple postcodes/postcode areas by "\n"
     # Will return an array of courts to which the application
