@@ -1,4 +1,6 @@
 class AboutController < ApplicationController
+  def accessibility; end
+
   def contact; end
 
   def cookies; end
