@@ -16,7 +16,7 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
   let(:record) { nil }
   let(:home_phone) { nil }
   let(:mobile_phone) { '12345' }
-  let(:email) { nil }
+  let(:email) { 'test@example.com' }
 
   subject { described_class.new(arguments) }
 
@@ -39,17 +39,11 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
     end
 
     context 'email validation' do
-      context 'email is not validated if not present' do
-        let(:email) { nil }
-        it { expect(subject).to be_valid }
-      end
+      let(:email) { nil }
 
-      context 'email is validated if present' do
-        let(:email) { 'xxx' }
-        it {
-          expect(subject).not_to be_valid
-          expect(subject.errors.added?(:email, :invalid)).to eq(true)
-        }
+      it 'has a validation error on the field if not present' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:email, :blank)).to eq(true)
       end
     end
 
@@ -58,7 +52,7 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
         {
           home_phone: '',
           mobile_phone: '12345',
-          email: ''
+          email: 'test@example.com'
         }
       }
 

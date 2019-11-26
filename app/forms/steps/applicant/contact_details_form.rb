@@ -3,10 +3,15 @@ module Steps
     class ContactDetailsForm < BaseForm
       attribute :home_phone, StrippedString
       attribute :mobile_phone, StrippedString
-      attribute :email, NormalisedEmail
+      attribute :email, StrippedString
 
-      validates_presence_of :mobile_phone
-      validates :email, email: true, allow_blank: true
+      # Note: we validate presence of these fields, but allow the applicant to enter
+      # free text in case they do not want to disclose their phone or email address.
+      # That is why we do not perform any further validation, other than presence
+      # (do not validate the format of the phone or email, etc.)
+      #
+      validates_presence_of :mobile_phone,
+                            :email
 
       private
 
