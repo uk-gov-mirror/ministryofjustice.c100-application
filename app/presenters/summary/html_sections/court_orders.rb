@@ -37,6 +37,7 @@ module Summary
         orders_made.map do |name|
           [
             Answer.new(:order_name, name),
+            FreeTextAnswer.new(:order_case_number, answer_for(name, :case_number)),
             DateAnswer.new(:order_issue_date, answer_for(name, :issue_date)),
             FreeTextAnswer.new(:order_length, answer_for(name, :length)),
             Answer.new(:order_is_current, answer_for(name, :is_current)),

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191114093418) do
+ActiveRecord::Schema.define(version: 20191128124833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,6 +201,12 @@ ActiveRecord::Schema.define(version: 20191114093418) do
     t.string "undertaking_is_current"
     t.string "undertaking_court_name"
     t.uuid "c100_application_id"
+    t.string "non_molestation_case_number"
+    t.string "occupation_case_number"
+    t.string "forced_marriage_protection_case_number"
+    t.string "restraining_case_number"
+    t.string "injunctive_case_number"
+    t.string "undertaking_case_number"
     t.index ["c100_application_id"], name: "index_court_orders_on_c100_application_id"
   end
 

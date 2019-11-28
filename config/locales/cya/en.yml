@@ -376,6 +376,8 @@ en:
       question: Order
       answers:
         <<: *COURT_ORDER_TYPES
+    order_case_number:
+      question: Case number
     order_issue_date:
       question: Date issued
     order_length:

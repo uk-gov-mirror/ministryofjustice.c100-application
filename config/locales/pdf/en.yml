@@ -598,8 +598,10 @@ en:
       question: Order
       answers:
         <<: *COURT_ORDER_TYPES
+    c1a_order_case_number:
+      question: Case number
     c1a_order_issue_date:
-      question: Date issued (DD MM YYY)
+      question: Date issued
     c1a_order_length:
       question: Length of order
     c1a_order_is_current:

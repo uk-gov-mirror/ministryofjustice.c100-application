@@ -15,8 +15,9 @@
             fieldset.radio_input(GenericYesNo::YES, panel_id: "#{order_name}_panel")
             fieldset.radio_input(GenericYesNo::NO)
             fieldset.revealing_panel("#{order_name}_panel") do |panel|
+              panel.text_field :"#{order_name}_case_number", class: 'narrow'
               panel.gov_uk_date_field :"#{order_name}_issue_date", placeholders: true, legend_text: t('shared.form_elements.order_issue'), form_hint_text: t('shared.form_elements.order_issue_hint')
-              panel.text_field :"#{order_name}_length"
+              panel.text_field :"#{order_name}_length", class: 'narrow'
               panel.radio_button_fieldset :"#{order_name}_is_current", inline: true, choices: GenericYesNo.values
               panel.text_field :"#{order_name}_court_name"
             end

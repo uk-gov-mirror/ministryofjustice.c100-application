@@ -8,6 +8,7 @@ module Steps
 
       NON_MOLESTATION_ATTRIBUTES = {
         non_molestation: YesNo,
+        non_molestation_case_number: String,
         non_molestation_issue_date: Date,
         non_molestation_length: String,
         non_molestation_is_current: YesNo,
@@ -16,6 +17,7 @@ module Steps
 
       OCCUPATION_ATTRIBUTES = {
         occupation: YesNo,
+        occupation_case_number: String,
         occupation_issue_date: Date,
         occupation_length: String,
         occupation_is_current: YesNo,
@@ -24,6 +26,7 @@ module Steps
 
       FORCED_MARRIAGE_PROTECTION_ATTRIBUTES = {
         forced_marriage_protection: YesNo,
+        forced_marriage_protection_case_number: String,
         forced_marriage_protection_issue_date: Date,
         forced_marriage_protection_length: String,
         forced_marriage_protection_is_current: YesNo,
@@ -32,6 +35,7 @@ module Steps
 
       RESTRAINING_ATTRIBUTES = {
         restraining: YesNo,
+        restraining_case_number: String,
         restraining_issue_date: Date,
         restraining_length: String,
         restraining_is_current: YesNo,
@@ -40,6 +44,7 @@ module Steps
 
       INJUNCTIVE_ATTRIBUTES = {
         injunctive: YesNo,
+        injunctive_case_number: String,
         injunctive_issue_date: Date,
         injunctive_length: String,
         injunctive_is_current: YesNo,
@@ -48,6 +53,7 @@ module Steps
 
       UNDERTAKING_ATTRIBUTES = {
         undertaking: YesNo,
+        undertaking_case_number: String,
         undertaking_issue_date: Date,
         undertaking_length: String,
         undertaking_is_current: YesNo,
