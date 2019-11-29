@@ -44,8 +44,9 @@ class Court
     best.fetch('address')
   end
 
+  # No need to memoize, we are using a basic ActiveSupport cache
   def court_data
-    @_court_data ||= C100App::CourtfinderAPI.new.court_lookup(slug)
+    C100App::CourtfinderAPI.new.court_lookup(slug)
   end
 
   private

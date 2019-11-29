@@ -160,23 +160,49 @@ describe C100App::CourtfinderAPI do
 
   describe '#court_lookup' do
     let(:mock_io_stream) { double('io stream', read: '{"readresult": "value"}') }
+
     before do
       allow(subject).to receive(:court_url).and_return('my court url')
-      allow(subject).to receive(:open).and_return(mock_io_stream)
+      allow(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
     end
 
-    it 'gets the JSON court_url for the given slug' do
-      expect(subject).to receive(:court_url).with('my-slug', format: :json).and_return('my court url')
-      subject.court_lookup('my-slug')
+    context 'without cache' do
+      before do
+        subject.cache.clear
+      end
+
+      it 'gets the JSON court_url for the given slug' do
+        expect(subject).to receive(:court_url).with('my-slug', format: :json).and_return('my court url')
+        subject.court_lookup('my-slug')
+      end
+
+      it 'opens the court_url' do
+        expect(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
+        subject.court_lookup('my-slug')
+      end
+
+      it 'returns the stream, read, parsed as JSON' do
+        expect(subject.court_lookup('my-slug')).to eq({'readresult'=>'value'})
+      end
     end
 
-    it 'opens the court_url' do
-      expect(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
-      subject.court_lookup('my-slug')
-    end
+    context 'with cache' do
+      it 'tries to fetch the key from the cache' do
+        expect(subject.cache).to receive(:fetch).with('my-slug', skip_nil: true, expires_in: 72.hours).and_call_original
+        subject.court_lookup('my-slug')
+      end
 
-    it 'returns the stream, read, parsed as JSON' do
-      expect(subject.court_lookup('my-slug')).to eq({'readresult'=>'value'})
+      it 'calls the API when key is not found in the cache and stores it' do
+        subject.cache.clear
+
+        # first time, it calls the API
+        expect(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
+        subject.court_lookup('my-slug')
+
+        # second time, cache exists, do not call the API
+        expect(subject).not_to receive(:open)
+        subject.court_lookup('my-slug')
+      end
     end
   end
 

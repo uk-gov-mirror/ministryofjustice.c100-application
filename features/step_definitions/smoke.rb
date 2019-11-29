@@ -32,7 +32,7 @@ Then(/^The court exists and is enabled$/) do
   # We don't test here if the email is what it needs to be, as emails can change,
   # we just check if at least we found something that looks like an email address
   #
-  expect(@court.best_enquiries_email).to match(/.*@.*/)
+  expect(@court.best_enquiries_email).to match(/.+@.+/)
 
   # Above method will trigger the call to the API and populate the following
   # memoized method for further introspection (mainly for smoke tests)
