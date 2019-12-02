@@ -10,6 +10,8 @@ RSpec.describe ScreenerAnswers, type: :model do
       expect(
         described_class.attributes_to_validate
       ).to match_array(%w(
+        id
+        c100_application_id
         children_postcodes
         local_court
         parent
