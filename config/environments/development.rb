@@ -19,8 +19,7 @@ Rails.application.configure do
   end
 
   # save mails to tmp/mails
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :file
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
   # lets you preview action_mailer mails from the browser at:

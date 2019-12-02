@@ -182,11 +182,12 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#edit' do
-    let!(:existing_c100) { C100Application.create(status: :screening, navigation_stack: ['/not', '/empty']) }
+    let!(:existing_c100) {
+      C100Application.create(status: :screening, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
+    }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-      allow(existing_c100).to receive(:screener_answers).and_return(screener_answers)
     end
 
     it 'initialises the navigation stack in the session introducing the entrypoint' do
@@ -237,11 +238,12 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#update' do
-    let!(:existing_c100) { C100Application.create(status: :screening, navigation_stack: ['/not', '/empty']) }
+    let!(:existing_c100) {
+      C100Application.create(status: :screening, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
+    }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-      allow(existing_c100).to receive(:screener_answers).and_return(screener_answers)
     end
 
     it 'changes the status to `in_progress`' do
