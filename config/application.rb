@@ -9,19 +9,16 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 
-# Ensure that when running the application through Rake the RAILS_ENV doesn't incorrectly
-# get replaced with 'development' when running the specs.
-# Adapted from `railties/lib/rails/test_unit/railtie.rb`.
-# :nocov:
-if defined?(Rake.application) &&
-    Rake.application.top_level_tasks.grep(/^(default$|spec(:|$))/).any?
-  ENV["RAILS_ENV"] ||= "test"
-end
-# :nocov:
-
-Bundler.require *Rails.groups(assets: %w(development test))
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
 class Application < Rails::Application
+  config.load_defaults 5.2
+
+  # We use the callback manually in the controllers that require it
+  config.action_controller.default_protect_from_forgery = false
+
   # This automatically adds id: :uuid to create_table in all future migrations
   config.generators do |g|
     g.orm :active_record, primary_key_type: :uuid
@@ -30,6 +27,9 @@ class Application < Rails::Application
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
 
   config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
+
+  # Don't generate system test files.
+  config.generators.system_tests = nil
 
   # We are using our own url-shortener. These short urls redirect to surveymonkey,
   # and tracks visits, so we can see if they are being used.

@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
@@ -15,7 +16,7 @@ gem 'omniauth-auth0', '~> 2.2'
 gem 'omniauth-rails_csrf_protection'
 gem 'pg', '~> 1.0.0'
 gem 'puma', '~> 3.0'
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2.4'
 gem 'responders'
 gem 'sass-rails'
 gem 'sentry-raven'
@@ -38,7 +39,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'i18n-debug'
-  gem 'letter_opener'
   gem 'web-console'
 end
 
