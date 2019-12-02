@@ -15,6 +15,7 @@ module Summary
     let(:court_order) {
       CourtOrder.new(
         restraining: 'yes',
+        restraining_case_number: '12345678',
         restraining_issue_date: Date.new(2018, 1, 20),
         restraining_length: '1 year',
         restraining_is_current: 'yes',
@@ -54,7 +55,7 @@ module Summary
         expect(answers[1]).to be_an_instance_of(AnswersGroup)
         expect(answers[1].name).to eq(:court_orders_details)
         expect(answers[1].change_path).to eq('/steps/court_orders/details')
-        expect(answers[1].answers.count).to eq(5)
+        expect(answers[1].answers.count).to eq(6)
 
           ## court_orders details group answers ###
           details = answers[1].answers
@@ -63,21 +64,25 @@ module Summary
           expect(details[0].question).to eq(:order_name)
           expect(details[0].value).to eq('restraining')
 
-          expect(details[1]).to be_an_instance_of(DateAnswer)
-          expect(details[1].question).to eq(:order_issue_date)
-          expect(details[1].value).to eq(Date.new(2018, 1, 20))
+          expect(details[1]).to be_an_instance_of(FreeTextAnswer)
+          expect(details[1].question).to eq(:order_case_number)
+          expect(details[1].value).to eq('12345678')
 
-          expect(details[2]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[2].question).to eq(:order_length)
-          expect(details[2].value).to eq('1 year')
+          expect(details[2]).to be_an_instance_of(DateAnswer)
+          expect(details[2].question).to eq(:order_issue_date)
+          expect(details[2].value).to eq(Date.new(2018, 1, 20))
 
-          expect(details[3]).to be_an_instance_of(Answer)
-          expect(details[3].question).to eq(:order_is_current)
-          expect(details[3].value).to eq('yes')
+          expect(details[3]).to be_an_instance_of(FreeTextAnswer)
+          expect(details[3].question).to eq(:order_length)
+          expect(details[3].value).to eq('1 year')
 
-          expect(details[4]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[4].question).to eq(:order_court_name)
-          expect(details[4].value).to eq('court name')
+          expect(details[4]).to be_an_instance_of(Answer)
+          expect(details[4].question).to eq(:order_is_current)
+          expect(details[4].value).to eq('yes')
+
+          expect(details[5]).to be_an_instance_of(FreeTextAnswer)
+          expect(details[5].question).to eq(:order_court_name)
+          expect(details[5].value).to eq('court name')
       end
 
       context 'when no court orders were made' do

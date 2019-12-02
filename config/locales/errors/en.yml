@@ -217,6 +217,8 @@ en:
             # non-molestation order
             non_molestation:
               inclusion: Select yes if you have a non-molestation order
+            non_molestation_case_number:
+              blank: Enter the case number of the non-molestation order
             non_molestation_issue_date:
               blank: Enter the date the non-molestation order was made
             non_molestation_length:
@@ -228,6 +230,8 @@ en:
             # occupation order
             occupation:
               inclusion: Select yes if you have an occupation order
+            occupation_case_number:
+              blank: Enter the case number of the occupation order
             occupation_issue_date:
               blank: Enter the date the occupation order was made
             occupation_length:
@@ -239,6 +243,8 @@ en:
             # forced marriage protection order
             forced_marriage_protection:
               inclusion: Select yes if you have a forced marriage protection order
+            forced_marriage_protection_case_number:
+              blank: Enter the case number of the forced marriage protection order
             forced_marriage_protection_issue_date:
               blank: Enter the date the forced marriage protection order was made
             forced_marriage_protection_length:
@@ -250,6 +256,8 @@ en:
             # restraining order
             restraining:
               inclusion: Select yes if you have a restraining order
+            restraining_case_number:
+              blank: Enter the case number of the restraining order
             restraining_issue_date:
               blank: Enter the date the restraining order was made
             restraining_length:
@@ -261,6 +269,8 @@ en:
             # another injunctive order
             injunctive:
               inclusion: Select yes if you have another injunctive order
+            injunctive_case_number:
+              blank: Enter the case number of the injunctive order
             injunctive_issue_date:
               blank: Enter the date the injunctive order was made
             injunctive_length:
@@ -272,6 +282,8 @@ en:
             # undertaking in place of an order
             undertaking:
               inclusion: Select yes if you have an undertaking in place of an order
+            undertaking_case_number:
+              blank: Enter the case number of the undertaking in place of an order
             undertaking_issue_date:
               blank: Enter the date the undertaking in place of an order was made
             undertaking_length:

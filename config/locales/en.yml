@@ -11,6 +11,8 @@ en:
     order_current: &order_current "Is the order current?"
     order_length: &order_length "How long was the order for?"
     order_court_name: &order_court_name "Which court issued the order?"
+    order_case_number: &order_case_number "Case number"
+    order_case_number_hint: &order_case_number_hint "For example, BS19F99999"
     provide_details: &provide_details "Provide details"
     select_all_that_apply: &select_all_that_apply "Select all that apply"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
@@ -1299,16 +1301,22 @@ en:
         has_court_orders:
           <<: *YESNO
       steps_court_orders_details_form:
+        non_molestation_case_number: *order_case_number
         non_molestation_length: *order_length
         non_molestation_court_name: *order_court_name
+        occupation_case_number: *order_case_number
         occupation_length: *order_length
         occupation_court_name: *order_court_name
+        forced_marriage_protection_case_number: *order_case_number
         forced_marriage_protection_length: *order_length
         forced_marriage_protection_court_name: *order_court_name
+        restraining_case_number: *order_case_number
         restraining_length: *order_length
         restraining_court_name: *order_court_name
+        injunctive_case_number: *order_case_number
         injunctive_length: *order_length
         injunctive_court_name: *order_court_name
+        undertaking_case_number: *order_case_number
         undertaking_length: *order_length
         undertaking_court_name: *order_court_name
       steps_international_jurisdiction_form:
@@ -1421,6 +1429,12 @@ en:
         concerns_contact_other: For example, by phone, text or email
       steps_court_orders_details_form:
         restraining: Under the Protection from Harassment Act 1997
+        non_molestation_case_number: *order_case_number_hint
+        occupation_case_number: *order_case_number_hint
+        forced_marriage_protection_case_number: *order_case_number_hint
+        restraining_case_number: *order_case_number_hint
+        injunctive_case_number: *order_case_number_hint
+        undertaking_case_number: *order_case_number_hint
       steps_miam_exemptions_domestic_form:
         domestic_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_protection_form:

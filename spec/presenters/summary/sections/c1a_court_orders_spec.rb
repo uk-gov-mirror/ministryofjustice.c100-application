@@ -10,6 +10,7 @@ module Summary
     let(:court_order) {
       CourtOrder.new(
         restraining: GenericYesNo::YES,
+        restraining_case_number: '12345678',
         restraining_issue_date: Date.new(2018, 1, 20),
         restraining_length: '1 year',
         restraining_is_current: GenericYesNo::YES,
@@ -39,30 +40,34 @@ module Summary
       end
 
       it 'has the correct rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(7)
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:c1a_order_name)
         expect(answers[0].value).to eq('restraining')
 
-        expect(answers[1]).to be_an_instance_of(DateAnswer)
-        expect(answers[1].question).to eq(:c1a_order_issue_date)
-        expect(answers[1].value).to eq(Date.new(2018, 1, 20))
+        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[1].question).to eq(:c1a_order_case_number)
+        expect(answers[1].value).to eq('12345678')
 
-        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[2].question).to eq(:c1a_order_length)
-        expect(answers[2].value).to eq('1 year')
+        expect(answers[2]).to be_an_instance_of(DateAnswer)
+        expect(answers[2].question).to eq(:c1a_order_issue_date)
+        expect(answers[2].value).to eq(Date.new(2018, 1, 20))
 
-        expect(answers[3]).to be_an_instance_of(Answer)
-        expect(answers[3].question).to eq(:c1a_order_is_current)
-        expect(answers[3].value).to eq('yes')
+        expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[3].question).to eq(:c1a_order_length)
+        expect(answers[3].value).to eq('1 year')
 
-        expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[4].question).to eq(:c1a_order_court_name)
-        expect(answers[4].value).to eq('court name')
+        expect(answers[4]).to be_an_instance_of(Answer)
+        expect(answers[4].question).to eq(:c1a_order_is_current)
+        expect(answers[4].value).to eq('yes')
 
-        expect(answers[5]).to be_an_instance_of(Partial)
-        expect(answers[5].name).to eq(:row_blank_space)
+        expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[5].question).to eq(:c1a_order_court_name)
+        expect(answers[5].value).to eq('court name')
+
+        expect(answers[6]).to be_an_instance_of(Partial)
+        expect(answers[6].name).to eq(:row_blank_space)
       end
 
       context 'when no court orders were made' do
