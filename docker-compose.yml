@@ -8,10 +8,13 @@ version: '3'
 services:
   db:
     image: postgres
+  cache:
+    image: redis
   web:
     build: .
     environment:
       - DATABASE_URL=postgresql://postgres@db/c100-application
+      - REDIS_URL=redis://cache:6379
       - EXTERNAL_URL=http://localhost:3000
       - RAILS_SERVE_STATIC_FILES=1
       - DATABASE_SSLMODE=disable
@@ -20,3 +23,4 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - cache

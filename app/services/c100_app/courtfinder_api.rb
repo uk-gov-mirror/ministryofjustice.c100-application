@@ -5,16 +5,16 @@ module C100App
   class CourtfinderAPI
     attr_accessor :logger
 
-    # Very basic cache (almost like memoization) to save a few API requests.
-    # This is just an in-memory cache and thus, suboptimal as we have more than one
-    # instance of the application, but it could be replaced with RedisCacheStore.
-    #
-    SLUGS_CACHE ||= ActiveSupport::Cache::MemoryStore.new(namespace: 'court_slugs')
-    SLUGS_CACHE_EXPIRE_IN = 72.hours.freeze
-
     API_ROOT              ||= "https://courttribunalfinder.service.gov.uk/".freeze
     API_URL               ||= "#{API_ROOT}%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
     COURTFINDER_ERROR_MSG ||= 'Exception hitting Courtfinder:'.freeze
+
+    SLUGS_CACHE_OPTIONS = {
+      namespace: 'courtfinder',
+      expires_in: 72.hours,
+      compress: false,
+      skip_nil: true
+    }.freeze
 
     def initialize(params = {})
       self.logger = params[:logger] || Rails.logger
@@ -38,7 +38,7 @@ module C100App
     end
 
     def court_lookup(slug)
-      cache.fetch(slug, skip_nil: true, expires_in: SLUGS_CACHE_EXPIRE_IN) do
+      cache.fetch(slug, SLUGS_CACHE_OPTIONS) do
         JSON.parse(open(court_url(slug, format: :json)).read)
       end
     end
@@ -47,8 +47,12 @@ module C100App
       status.eql? '200'
     end
 
+    # Very basic cache to save a few API requests.
+    # It uses `MemoryStore` on dev/test by default, and `RedisCacheStore` on prod.
+    # Refer to `config/initializers/cache_store.rb` for more details.
+    #
     def cache
-      SLUGS_CACHE
+      Rails.cache
     end
 
     private
