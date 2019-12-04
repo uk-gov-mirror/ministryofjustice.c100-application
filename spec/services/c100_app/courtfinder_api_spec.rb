@@ -166,6 +166,10 @@ describe C100App::CourtfinderAPI do
       allow(subject).to receive(:open).with('my court url').and_return(mock_io_stream)
     end
 
+    it 'uses the memory store on envs that does not declare the `REDIS_URL` variable' do
+      expect(subject.cache).to be_kind_of(ActiveSupport::Cache::MemoryStore)
+    end
+
     context 'without cache' do
       before do
         subject.cache.clear
@@ -188,7 +192,10 @@ describe C100App::CourtfinderAPI do
 
     context 'with cache' do
       it 'tries to fetch the key from the cache' do
-        expect(subject.cache).to receive(:fetch).with('my-slug', skip_nil: true, expires_in: 72.hours).and_call_original
+        expect(subject.cache).to receive(:fetch).with(
+          'my-slug', skip_nil: true, compress: false, expires_in: 72.hours, namespace: 'courtfinder'
+        ).and_call_original
+
         subject.court_lookup('my-slug')
       end
 
