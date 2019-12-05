@@ -1438,6 +1438,8 @@ en:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
+      steps_miam_certification_details_form:
+        miam_certification_sole_trader_name: Leave blank if you don’t know
       steps_solicitor_personal_details_form:
         full_name: Enter the first name and last name.
         reference: The solicitor should have given you a reference for your case.

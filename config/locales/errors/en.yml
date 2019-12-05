@@ -140,9 +140,6 @@ en:
               blank: Enter a mediator registration number (URN)
             miam_certification_service_name:
               blank: Enter a family mediation service name
-            miam_certification_sole_trader_name:
-              blank: Enter a sole trader name
-
         steps/safety_questions/address_confidentiality_form:
           attributes:
             address_confidentiality:
