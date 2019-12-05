@@ -1,11 +1,11 @@
 Feature: Screener
   Background:
     When I visit "/"
-    Then I should see "We’re trialling a new online service to apply to court about child arrangements"
+    Then I should see "Use this service to make an application for child arrangements in England or Wales"
 
   @happy_path
   Scenario: Complete the screener
-    Given I click the "Check now" link
+    Given I click the "Check eligibility" link
 
     Then I should see "Where do the children live?"
     And I fill in "Postcode" with "MK9 3DX"
@@ -14,7 +14,7 @@ Feature: Screener
     Then I should see "Are you a parent of the child or children?"
     And I choose "Yes"
 
-    Then I should see "Are you and the other parent both over 18?"
+    Then I should see "Are you and the other parent (the respondent) both over 18?"
     And I choose "Yes"
 
     Then I should see "Do you have a solicitor?"
@@ -30,18 +30,18 @@ Feature: Screener
 
   @unhappy_path
   Scenario: Postcode not eligible
-    Given I click the "Check now" link
+    Given I click the "Check eligibility" link
 
     Then I should see "Where do the children live?"
     And I fill in "Postcode" with "TN17 4EA"
     And I click the "Continue" button
 
-    Then I should see "Sorry, you're not eligible to apply online"
+    Then I should see "Sorry, you cannot apply online"
     And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"
 
   @unhappy_path
   Scenario: Postcode not recognised
-    Given I click the "Check now" link
+    Given I click the "Check eligibility" link
 
     Then I should see "Where do the children live?"
     And I fill in "Postcode" with "GU2 9JE"
@@ -53,7 +53,7 @@ Feature: Screener
 
   @unhappy_path
   Scenario: Not a parent
-    Given I click the "Check now" link
+    Given I click the "Check eligibility" link
     Then I should see "Where do the children live?"
 
     And I fill in "Postcode" with "MK9 3DX"

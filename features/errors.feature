@@ -1,7 +1,7 @@
 Feature: Errors
   Background:
     When I visit "/"
-    Given I click the "Check now" link
+    Given I click the "Check eligibility" link
 
   @happy_path
   Scenario: I don't fill out the postcode field
