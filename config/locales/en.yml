@@ -129,7 +129,7 @@ en:
       screener_exit_actions:
         what_to_do_now:
           heading: What to do now
-          copy: To submit your application, you’ll need to complete the C100 paper application form, print it and send it by post.
+          copy: To submit an application in England or Wales, you’ll need to complete the C100 paper form, print it and send it by post.
         download_c100_link: Download the form (PDF)
         cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" rel="external" target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
       existing_names:
@@ -883,9 +883,7 @@ en:
         edit:
           page_title: Where the children live
           heading: Where do the children live?
-          lead_text_html: |
-            <p>Please tell us the postcode of the children you’re making this application about.</p>
-            <p>This will allow us to check if you can use this online service, based on which courts are taking part in this trial at the moment.</p>
+          lead_text: Please tell us the postcode of the children you’re making this application about.
           unknown_postcode_html: |
             <details>
               <summary>
@@ -901,18 +899,13 @@ en:
           page_title: Where the children live
           heading: Something went wrong
           lead_text:
-            courtfinder_ok: Although the postcode you entered looks like it's in the right format, our checker didn't recognize it. This can happen sometimes if it's a very new or old postcode.
-            courtfinder_not_ok: We're having some trouble connecting to our postcode checker at the moment - this could be a temporary problem, and it might work if you try again.
+            courtfinder_ok: Although the postcode you entered looks like it’s in the right format, our checker didn’t recognize it. This can happen sometimes if it’s a very new or old postcode.
+            courtfinder_not_ok: We’re having some trouble connecting to our postcode checker at the moment - this could be a temporary problem, and it might work if you try again.
           what_to_do_now:
             heading: What to do now
-            copy: You can go back and try again, or download the paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
+            copy: You can go back and try again, or download the C100 paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
           go_back: Go back and try again
           download_c100_link: Download the form (PDF)
-      no_court_found:
-        show:
-          page_title: Not eligible
-          heading: Sorry, you're not eligible to apply online
-          lead_text: This is a new service that we're trying out at a limited number of courts. Unfortunately the appropriate court for your application is not yet taking part in this trial.
       parent:
         edit:
           page_title: Are you a parent of the child or children?
@@ -925,7 +918,7 @@ en:
       over18:
         edit:
           page_title: Are you and the other parent both over 18?
-          heading: Are you and the other parent both over 18?
+          heading: Are you and the other parent (the respondent) both over 18?
       over18_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -1027,7 +1020,7 @@ en:
     application_screening:
       page_title: Application screening
       heading: You need to complete the eligibility criteria process
-      lead_text: We’re trialling a new online service and you need to meet some criteria to be able to apply online.
+      lead_text: This is a new online service and you need to meet some criteria to be able to apply online.
       more_info_text: It seems you've not completed yet this process or some information is missing. You will need to start again.
       <<: *START_FINISH
     application_completed:
@@ -1671,7 +1664,7 @@ en:
   entrypoint:
     shared:
       start_application:
-        start: Start
+        start: Start application
   miam:
     index:
       continue: Continue
