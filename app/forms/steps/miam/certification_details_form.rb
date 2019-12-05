@@ -6,8 +6,7 @@ module Steps
       attribute :miam_certification_sole_trader_name, StrippedString
 
       validates_presence_of :miam_certification_number,
-                            :miam_certification_service_name,
-                            :miam_certification_sole_trader_name
+                            :miam_certification_service_name
 
       private
 

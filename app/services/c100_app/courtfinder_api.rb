@@ -9,7 +9,7 @@ module C100App
     API_URL               ||= "#{API_ROOT}%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
     COURTFINDER_ERROR_MSG ||= 'Exception hitting Courtfinder:'.freeze
 
-    SLUGS_CACHE_OPTIONS = {
+    SLUGS_CACHE_OPTIONS ||= {
       namespace: 'courtfinder',
       expires_in: 72.hours,
       compress: false,

@@ -14,7 +14,7 @@ RSpec.describe Steps::Miam::CertificationDetailsForm do
   describe '#save' do
     it { should validate_presence_of(:miam_certification_number) }
     it { should validate_presence_of(:miam_certification_service_name) }
-    it { should validate_presence_of(:miam_certification_sole_trader_name) }
+    it { should_not validate_presence_of(:miam_certification_sole_trader_name) }
 
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
