@@ -23,6 +23,7 @@ module Summary
         residence_history: 'history',
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
+        voicemail_consent: nil,
         email: 'email',
         relationships: [relationships],
       )
@@ -132,16 +133,16 @@ module Summary
           details = answers[4].answers
 
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[0].question).to eq(:person_home_phone)
-          expect(details[0].value).to eq('home_phone')
+          expect(details[0].question).to eq(:person_email)
+          expect(details[0].value).to eq('email')
 
           expect(details[1]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[1].question).to eq(:person_mobile_phone)
-          expect(details[1].value).to eq('mobile_phone')
+          expect(details[1].question).to eq(:person_home_phone)
+          expect(details[1].value).to eq('home_phone')
 
           expect(details[2]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[2].question).to eq(:person_email)
-          expect(details[2].value).to eq('email')
+          expect(details[2].question).to eq(:person_mobile_phone)
+          expect(details[2].value).to eq('mobile_phone')
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:relationship_to_child)
