@@ -1,9 +1,9 @@
 module Steps
   module Respondent
     class ContactDetailsForm < BaseForm
+      attribute :email, NormalisedEmail
       attribute :home_phone, StrippedString
       attribute :mobile_phone, StrippedString
-      attribute :email, NormalisedEmail
 
       validates :email, email: true, allow_blank: true
 

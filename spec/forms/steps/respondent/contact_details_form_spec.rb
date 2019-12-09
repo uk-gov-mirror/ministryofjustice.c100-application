@@ -47,9 +47,9 @@ RSpec.describe Steps::Respondent::ContactDetailsForm do
     context 'for valid details' do
       let(:expected_attributes) {
         {
+          email: 'test@test.com',
           home_phone: '',
           mobile_phone: '',
-          email: 'test@test.com'
         }
       }
 

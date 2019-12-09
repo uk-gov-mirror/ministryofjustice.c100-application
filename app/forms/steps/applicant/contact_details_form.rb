@@ -1,17 +1,20 @@
 module Steps
   module Applicant
     class ContactDetailsForm < BaseForm
+      attribute :email, StrippedString
       attribute :home_phone, StrippedString
       attribute :mobile_phone, StrippedString
-      attribute :email, StrippedString
+      attribute :voicemail_consent, YesNo
 
       # Note: we validate presence of these fields, but allow the applicant to enter
       # free text in case they do not want to disclose their phone or email address.
       # That is why we do not perform any further validation, other than presence
       # (do not validate the format of the phone or email, etc.)
       #
-      validates_presence_of :mobile_phone,
-                            :email
+      validates_presence_of :email,
+                            :mobile_phone
+
+      validates_inclusion_of :voicemail_consent, in: GenericYesNo.values
 
       private
 
