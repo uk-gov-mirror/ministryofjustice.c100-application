@@ -233,7 +233,7 @@ en:
       has_other_children:
         edit:
           page_title: Other children
-          heading: Do you or the other people in this application (the respondents) have other children (separately or together) who aren’t part of this application?
+          heading: Do you or any respondents have other children who are not part of this application?
       orders:
         edit:
           page_title: Which orders apply to the child
