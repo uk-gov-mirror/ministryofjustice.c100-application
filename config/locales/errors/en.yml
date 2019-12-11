@@ -370,6 +370,8 @@ en:
               blank: Enter a mobile number or tell us why the court cannot phone you
             email:
               blank: Enter an email address or tell us why the court cannot email you
+            voicemail_consent:
+              inclusion: Select yes if the court can leave you a voicemail
         steps/respondent/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS

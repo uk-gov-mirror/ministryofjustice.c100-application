@@ -7,6 +7,7 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
     home_phone: home_phone,
     mobile_phone: mobile_phone,
     email: email,
+    voicemail_consent: voicemail_consent,
   } }
 
   let(:c100_application) { instance_double(C100Application, applicants: applicants_collection) }
@@ -17,6 +18,7 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
   let(:home_phone) { nil }
   let(:mobile_phone) { '12345' }
   let(:email) { 'test@example.com' }
+  let(:voicemail_consent) { 'yes' }
 
   subject { described_class.new(arguments) }
 
@@ -47,12 +49,41 @@ RSpec.describe Steps::Applicant::ContactDetailsForm do
       end
     end
 
+    context 'voicemail consent validation' do
+      context 'when attribute is not given' do
+        let(:voicemail_consent) { nil }
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors[:voicemail_consent]).to_not be_empty
+        end
+      end
+
+      context 'when attribute value is not valid' do
+        let(:voicemail_consent) {'INVALID VALUE'}
+
+        it 'returns false' do
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors[:voicemail_consent]).to_not be_empty
+        end
+      end
+    end
+
     context 'for valid details' do
       let(:expected_attributes) {
         {
+          email: 'test@example.com',
           home_phone: '',
           mobile_phone: '12345',
-          email: 'test@example.com'
+          voicemail_consent: GenericYesNo::YES,
         }
       }
 

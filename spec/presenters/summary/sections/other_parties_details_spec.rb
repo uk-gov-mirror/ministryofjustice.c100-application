@@ -26,6 +26,7 @@ module Summary
         home_phone: nil,
         mobile_phone: nil,
         email: nil,
+        voicemail_consent: nil,
       )
     }
 

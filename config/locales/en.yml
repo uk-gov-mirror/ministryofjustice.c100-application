@@ -1103,6 +1103,8 @@ en:
         gender: Sex
       steps_applicant_address_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
@@ -1242,6 +1244,9 @@ en:
         previous_name: Enter your previous name
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
+        voicemail_consent:
+          'yes': Yes, the court can leave me a voicemail
+          'no': No, the court cannot leave me a voicemail
       steps_applicant_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
@@ -1385,6 +1390,8 @@ en:
         birthplace: *birthplace_hint
       steps_applicant_address_details_form:
         residence_history: Start with the most recent
+      steps_applicant_contact_details_form:
+        voicemail_consent: If the court calls you about your application and you cannot answer the phone, we need to know that it’s safe for them to leave a voicemail.
       steps_respondent_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint

@@ -55,9 +55,10 @@ module Summary
 
       def contact_details_questions(person)
         [
+          FreeTextAnswer.new(:person_email, person.email),
           FreeTextAnswer.new(:person_home_phone, person.home_phone),
           FreeTextAnswer.new(:person_mobile_phone, person.mobile_phone),
-          FreeTextAnswer.new(:person_email, person.email),
+          Answer.new(:person_voicemail_consent, person.voicemail_consent), # This shows only if a value is present
         ]
       end
 

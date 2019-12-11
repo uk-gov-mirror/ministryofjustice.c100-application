@@ -467,6 +467,11 @@ en:
       question: Mobile telephone number
     person_email:
       question: Email address
+    person_voicemail_consent:
+      question: Allow voicemail?
+      answers:
+        'yes': Yes, the court can leave a voicemail
+        'no': No, the court cannot leave a voicemail
 
     has_other_court_cases:
       question: Have any of the children in this application been involved in other family court proceedings?
