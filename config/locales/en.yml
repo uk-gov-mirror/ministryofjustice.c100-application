@@ -647,7 +647,7 @@ en:
           page_title: Previous abduction details
           section: Safety concerns
           heading: Provide details of the previous abductions
-          lead_text: Include any previous attempts or threats to abduct them
+          lead_text: Include any previous attempts or threats to abduct them.
       risk_details:
         edit:
           page_title: Abduction risk details
@@ -1210,7 +1210,7 @@ en:
         passport_possession_other: Other
         passport_possession_other_details: Provide more details
       steps_abduction_previous_attempt_details_form:
-        previous_attempt_details: Give a short description
+        previous_attempt_details: Give a short description of the previous abductions
         previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Briefly explain your concerns about abduction
