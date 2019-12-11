@@ -17,7 +17,8 @@ module Summary
         residence_history: 'history',
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
-        email: 'email'
+        email: 'email',
+        voicemail_consent: nil,
       )
     }
 
@@ -114,16 +115,16 @@ module Summary
         expect(answers[8].value).to eq('history')
 
         expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[9].question).to eq(:person_home_phone)
-        expect(answers[9].value).to eq('home_phone')
+        expect(answers[9].question).to eq(:person_email)
+        expect(answers[9].value).to eq('email')
 
         expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[10].question).to eq(:person_mobile_phone)
-        expect(answers[10].value).to eq('mobile_phone')
+        expect(answers[10].question).to eq(:person_home_phone)
+        expect(answers[10].value).to eq('home_phone')
 
         expect(answers[11]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[11].question).to eq(:person_email)
-        expect(answers[11].value).to eq('email')
+        expect(answers[11].question).to eq(:person_mobile_phone)
+        expect(answers[11].value).to eq('mobile_phone')
 
         expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[12].question).to eq(:person_relationship_to_children)

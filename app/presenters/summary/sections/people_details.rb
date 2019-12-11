@@ -31,9 +31,10 @@ module Summary
             FreeTextAnswer.new(:person_address, person.full_address, show: true),
             Answer.new(:person_residence_requirement_met, person.residence_requirement_met),
             FreeTextAnswer.new(:person_residence_history, person.residence_history),
+            FreeTextAnswer.new(:person_email, person.email),
             FreeTextAnswer.new(:person_home_phone, person.home_phone),
             FreeTextAnswer.new(:person_mobile_phone, person.mobile_phone),
-            FreeTextAnswer.new(:person_email, person.email),
+            Answer.new(:person_voicemail_consent, person.voicemail_consent), # This shows only if a value is present
             FreeTextAnswer.new(
               :person_relationship_to_children,
               RelationshipsPresenter.new(c100_application).relationship_to_children(

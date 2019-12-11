@@ -23,7 +23,8 @@ module Summary
         residence_history: 'history',
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
-        email: 'email'
+        email: 'email',
+        voicemail_consent: 'yes',
       )
     }
 
@@ -76,7 +77,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(14)
+        expect(answers.count).to eq(15)
       end
 
       it 'has the correct rows in the right order' do
@@ -117,23 +118,27 @@ module Summary
         expect(answers[8].value).to eq('history')
 
         expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[9].question).to eq(:person_home_phone)
-        expect(answers[9].value).to eq('home_phone')
+        expect(answers[9].question).to eq(:person_email)
+        expect(answers[9].value).to eq('email')
 
         expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[10].question).to eq(:person_mobile_phone)
-        expect(answers[10].value).to eq('mobile_phone')
+        expect(answers[10].question).to eq(:person_home_phone)
+        expect(answers[10].value).to eq('home_phone')
 
         expect(answers[11]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[11].question).to eq(:person_email)
-        expect(answers[11].value).to eq('email')
+        expect(answers[11].question).to eq(:person_mobile_phone)
+        expect(answers[11].value).to eq('mobile_phone')
 
-        expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[12].question).to eq(:person_relationship_to_children)
-        expect(answers[12].value).to eq('relationships')
+        expect(answers[12]).to be_an_instance_of(Answer)
+        expect(answers[12].question).to eq(:person_voicemail_consent)
+        expect(answers[12].value).to eq('yes')
 
-        expect(answers[13]).to be_an_instance_of(Partial)
-        expect(answers[13].name).to eq(:row_blank_space)
+        expect(answers[13]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[13].question).to eq(:person_relationship_to_children)
+        expect(answers[13].value).to eq('relationships')
+
+        expect(answers[14]).to be_an_instance_of(Partial)
+        expect(answers[14].name).to eq(:row_blank_space)
       end
 
       context 'for existing previous name' do
@@ -141,7 +146,7 @@ module Summary
         let(:previous_name) { 'previous_name' }
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(14)
+          expect(answers.count).to eq(15)
         end
 
         it 'renders the previous name' do

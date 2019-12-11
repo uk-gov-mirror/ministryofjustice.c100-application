@@ -16,7 +16,8 @@ module Summary
         gender: 'female',
         home_phone: 'home_phone',
         mobile_phone: 'mobile_phone',
-        email: 'email'
+        email: 'email',
+        voicemail_consent: 'yes',
       )
     }
 
@@ -45,7 +46,7 @@ module Summary
       end
 
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(10)
+        expect(answers.count).to eq(11)
       end
 
       it 'has the correct rows in the right order' do
@@ -68,23 +69,27 @@ module Summary
         expect(answers[4].title).to eq(:contact_details)
 
         expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[5].question).to eq(:person_home_phone)
-        expect(answers[5].value).to eq('home_phone')
+        expect(answers[5].question).to eq(:person_email)
+        expect(answers[5].value).to eq('email')
 
         expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[6].question).to eq(:person_mobile_phone)
-        expect(answers[6].value).to eq('mobile_phone')
+        expect(answers[6].question).to eq(:person_home_phone)
+        expect(answers[6].value).to eq('home_phone')
 
         expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[7].question).to eq(:person_email)
-        expect(answers[7].value).to eq('email')
+        expect(answers[7].question).to eq(:person_mobile_phone)
+        expect(answers[7].value).to eq('mobile_phone')
 
-        expect(answers[8]).to be_an_instance_of(Partial)
-        expect(answers[8].name).to eq(:row_blank_space)
+        expect(answers[8]).to be_an_instance_of(Answer)
+        expect(answers[8].question).to eq(:person_voicemail_consent)
+        expect(answers[8].value).to eq('yes')
 
-        expect(answers[9]).to be_an_instance_of(Answer)
-        expect(answers[9].question).to eq(:c1a_address_confidentiality)
-        expect(answers[9].value).to eq(GenericYesNo::NO)
+        expect(answers[9]).to be_an_instance_of(Partial)
+        expect(answers[9].name).to eq(:row_blank_space)
+
+        expect(answers[10]).to be_an_instance_of(Answer)
+        expect(answers[10].question).to eq(:c1a_address_confidentiality)
+        expect(answers[10].value).to eq(GenericYesNo::NO)
       end
 
       context 'when no applicant present' do
@@ -103,25 +108,29 @@ module Summary
         end
 
         it 'has the correct number of rows' do
-          expect(answers.count).to eq(10)
+          expect(answers.count).to eq(11)
         end
 
         it 'hides the contact details' do
           expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[5].question).to eq(:person_home_phone)
+          expect(answers[5].question).to eq(:person_email)
           expect(answers[5].value).to eq('[See C8]')
 
           expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[6].question).to eq(:person_mobile_phone)
+          expect(answers[6].question).to eq(:person_home_phone)
           expect(answers[6].value).to eq('[See C8]')
 
           expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[7].question).to eq(:person_email)
+          expect(answers[7].question).to eq(:person_mobile_phone)
           expect(answers[7].value).to eq('[See C8]')
 
-          expect(answers[9]).to be_an_instance_of(Answer)
-          expect(answers[9].question).to eq(:c1a_address_confidentiality)
-          expect(answers[9].value).to eq('yes')
+          expect(answers[8]).to be_an_instance_of(Answer)
+          expect(answers[8].question).to eq(:person_voicemail_consent)
+          expect(answers[8].value).to eq('yes')
+
+          expect(answers[10]).to be_an_instance_of(Answer)
+          expect(answers[10].question).to eq(:c1a_address_confidentiality)
+          expect(answers[10].value).to eq('yes')
         end
       end
     end

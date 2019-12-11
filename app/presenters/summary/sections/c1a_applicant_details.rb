@@ -19,9 +19,10 @@ module Summary
           Answer.new(:c1a_person_type, :applicant), # Always going to be `applicant` in our digital form
           Partial.row_blank_space,
           Separator.new(:contact_details),
+          FreeTextAnswer.new(:person_email, applicant.email),
           FreeTextAnswer.new(:person_home_phone, applicant.home_phone),
           FreeTextAnswer.new(:person_mobile_phone, applicant.mobile_phone),
-          FreeTextAnswer.new(:person_email, applicant.email),
+          Answer.new(:person_voicemail_consent, applicant.voicemail_consent),
           Partial.row_blank_space,
           Answer.new(:c1a_address_confidentiality, c100.address_confidentiality, default: GenericYesNo::NO),
         ].select(&:show?)
