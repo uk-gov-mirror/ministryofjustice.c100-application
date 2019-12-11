@@ -28,14 +28,14 @@ class Court
 
   def best_enquiries_email
     # There's no consistency to how courts list their email address descriptions,
-    # so we try to find the most suitable email address, by looking at the `description`
-    # or the `explanation` for each of the emails, or the actual email address,
+    # so we try to find the most suitable email address, by looking at the `explanation`
+    # or the `description` for each of the emails, or the actual email address,
     # and if none is found, as a last resort we try to find an email address containing
     # the `enquiries` word and if still nothing is found, we pick the first entry.
     #
     emails = retrieve_emails_from_api
-    best = best_match_for(emails, 'description') ||
-           best_match_for(emails, 'explanation') ||
+    best = best_match_for(emails, 'explanation') ||
+           best_match_for(emails, 'description') ||
            best_match_for(emails, 'address') ||
            fallback_address(emails)
 
@@ -52,8 +52,8 @@ class Court
   private
 
   def best_match_for(emails, node)
-    emails.find { |e| e[node] =~ /children/i }           || \
-      emails.find { |e| e[node] =~ /\Aapplications\z/i } || \
+    emails.find { |e| e[node] =~ /children/i }       || \
+      emails.find { |e| e[node] =~ /applications/i } || \
       emails.find { |e| e[node] =~ /family/i }
   end
 

@@ -255,6 +255,46 @@ describe Court do
         end
       end
 
+      context 'containing an email with description matching "applications" and another with explanation matching "family"' do
+        let(:emails) {
+          [
+            {
+              'description' => 'Applications',
+              'address' => 'applications@email'
+            },
+            {
+              'description' => 'Anything',
+              'explanation' => 'Family',
+              'address' => 'email@example',
+            },
+          ]
+        }
+
+        it 'returns the email address of the matching explanation' do
+          expect(subject.best_enquiries_email).to eq('email@example')
+        end
+      end
+
+      context 'containing an email with description matching "applications"' do
+        let(:emails) {
+          [
+            {
+              'description' => 'Anything',
+              'explanation' => 'other queries',
+              'address' => 'email@example',
+            },
+            {
+              'description' => 'C100 applications',
+              'address' => 'c100@email'
+            }
+          ]
+        }
+
+        it 'returns the email address of the matching explanation' do
+          expect(subject.best_enquiries_email).to eq('c100@email')
+        end
+      end
+
       context 'containing an email with explanation matching "family" but also enquiries' do
         let(:emails){
           [
