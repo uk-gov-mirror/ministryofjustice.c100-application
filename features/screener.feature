@@ -33,7 +33,7 @@ Feature: Screener
     Given I click the "Check eligibility" link
 
     Then I should see "Where do the children live?"
-    And I fill in "Postcode" with "TN17 4EA"
+    And I fill in "Postcode" with "ZE2 9TE"
     And I click the "Continue" button
 
     Then I should see "Sorry, you cannot apply online"

@@ -56,7 +56,10 @@ Rails.application.routes.draw do
     end
 
     # Auth0-protected routes
-    resources :dashboard, only: [:index]
+    resources :dashboard, only: [:index] do
+      post :lookup, on: :collection
+    end
+
     resources :emails, only: [:index] do
       put :resend
     end

@@ -1,0 +1,8 @@
+<p class="heading-medium">
+  Lookup an application by reference code
+</p>
+
+<%= form_with(url: lookup_backoffice_dashboard_index_path, local: true) do |f| %>
+  <%= f.text_field :reference_code, class: 'narrow', value: @reference_code %>
+  <%= f.submit 'Lookup application', class: 'button' %>
+<% end %>

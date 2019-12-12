@@ -4,10 +4,10 @@
   <div class="column-full">
     <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: applications</h1>
 
-    <%= render partial: 'lookup_form' %>
+    <%= render partial: 'lookup_form', locals: { reference_code: @reference_code } %>
 
     <p class="heading-medium">
-      Last 50 completed applications
+      Results
     </p>
 
     <%= render partial: 'results_table', locals: { report: @report } %>
