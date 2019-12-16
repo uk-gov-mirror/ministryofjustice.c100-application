@@ -1,0 +1,31 @@
+<% title 'Back office: emails' %>
+
+<div class="grid-row">
+  <div class="column-full">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: emails</h1>
+
+    <%= render partial: 'lookup_form', locals: { reference_code: @reference_code, email_address: @email_address } %>
+
+    <table class="backoffice-table">
+      <thead>
+        <tr>
+          <th>Reference</th>
+          <th>Created at</th>
+          <th>Sent at</th>
+          <th>Completed at</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @report.any? %>
+          <%= render partial: 'results_table', collection: @report, as: :result %>
+        <% else %>
+          <tr>
+            <td colspan="6">No emails were found</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

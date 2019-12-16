@@ -20,7 +20,7 @@ class EmailSubmissionsAudit < ApplicationRecord
     #
     # :nocov:
     def find_records(reference, email = nil)
-      EmailSubmissionsAudit.where(reference: reference).select do |record|
+      EmailSubmissionsAudit.where(reference: %W[user;#{reference} court;#{reference}]).select do |record|
         email.blank? || BCrypt::Password.new(record.to) == email
       end
     end

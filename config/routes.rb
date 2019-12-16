@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     end
 
     resources :emails, only: [:index] do
+      post :lookup, on: :collection
       put :resend
     end
   end

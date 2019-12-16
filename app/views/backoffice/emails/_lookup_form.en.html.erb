@@ -1,0 +1,16 @@
+<p class="heading-medium">
+  Lookup sent emails (last 90 days)
+</p>
+
+<div class="govuk-govspeak gv-s-prose">
+  <p>
+    The reference code is mandatory. Email is optional and can be the email of the applicant, if they chose to receive a
+    copy of the application, or the email of the court where the application was sent.
+  </p>
+</div>
+
+<%= form_with(url: lookup_backoffice_emails_path, local: true) do |f| %>
+  <%= f.text_field :reference_code, class: 'narrow', value: @reference_code %>
+  <%= f.text_field :email_address, class: 'narrow', value: @email_address %>
+  <%= f.submit 'Lookup emails', class: 'button' %>
+<% end %>

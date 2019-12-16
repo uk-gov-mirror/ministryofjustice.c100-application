@@ -6,6 +6,13 @@ module Backoffice
       @report = Reports::FailedEmailsReport.list
     end
 
+    def lookup
+      @reference_code = params[:reference_code]
+      @email_address  = params[:email_address]
+
+      @report = EmailSubmissionsAudit.find_records(@reference_code, @email_address)
+    end
+
     def resend
       email = EmailSubmission.find(params[:email_id])
       email.resend!(type: params[:type])
