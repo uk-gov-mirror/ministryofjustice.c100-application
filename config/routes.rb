@@ -64,6 +64,8 @@ Rails.application.routes.draw do
       post :lookup, on: :collection
       put :resend
     end
+
+    resources :audit, only: [:index]
   end
 
   devise_for :users,

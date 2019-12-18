@@ -1,0 +1,32 @@
+<% title 'Back office: audit records' %>
+
+<div class="grid-row">
+  <div class="column-full">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: audit records</h1>
+
+    <p class="heading-medium">
+      Actions performed in the last 30 days
+    </p>
+
+    <table class="backoffice-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Author</th>
+          <th>Action</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @report.any? %>
+          <%= render partial: 'record', collection: @report, as: :record %>
+        <% else %>
+          <tr>
+            <td colspan="4">No records were found in the time period</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
