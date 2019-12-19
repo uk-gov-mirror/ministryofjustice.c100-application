@@ -4,7 +4,7 @@ module Auth0Helper
   end
 
   def admin_name
-    session[:backoffice_userinfo].dig('info', 'name')
+    session[:backoffice_userinfo].dig('info', 'name') if admin_signed_in?
   end
 
   def admin_auth_url
