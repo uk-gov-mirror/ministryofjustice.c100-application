@@ -6,11 +6,43 @@
   <td valign="middle"><%= completion.metadata['postcode'] %></td>
   <td valign="middle"><%= completion.metadata['saved_for_later'] %></td>
 </tr>
-<tr>
-  <td valign="middle" colspan="6" class="no-border">
-    <%= completion.court %>
-  </td>
-</tr>
+
+<% if defined?(@reference_code) %>
+  <tr>
+    <td valign="middle" colspan="6" class="no-border">
+      <details data-block-name="application-extra-details">
+        <summary>
+          <span class="summary">
+            show details
+          </span>
+        </summary>
+        <div class="panel panel-border-narrow application-extra-details">
+          <dl>
+            <dt>Application started at</dt>
+            <dd><%= completion.started_at %></dd>
+            <dt>Court</dt>
+            <dd><%= completion.court %></dd>
+            <dt>Urgent hearing?</dt>
+            <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
+            <dt>Without notice hearing?</dt>
+            <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
+            <dt>C1A form?</dt>
+            <dd><%= completion.metadata['c1a_form'] || 'N/A' %></dd>
+            <dt>C8 form?</dt>
+            <dd><%= completion.metadata['c8_form'] || 'N/A' %></dd>
+          </dl>
+        </div>
+      </details>
+    </td>
+  </tr>
+<% else %>
+  <tr>
+    <td valign="middle" colspan="6" class="no-border">
+      <%= completion.court %>
+    </td>
+  </tr>
+<% end %>
+
 <tr>
   <td valign="middle" colspan="6" class="no-border"></td>
 </tr>
