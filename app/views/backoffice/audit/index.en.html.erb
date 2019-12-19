@@ -12,9 +12,8 @@
       <thead>
         <tr>
           <th>Timestamp</th>
-          <th>Author</th>
           <th>Action</th>
-          <th>Details</th>
+          <th>Author</th>
         </tr>
       </thead>
 
@@ -23,7 +22,7 @@
           <%= render partial: 'record', collection: @report, as: :record %>
         <% else %>
           <tr>
-            <td colspan="4">No records were found in the time period</td>
+            <td colspan="3">No records were found in the time period</td>
           </tr>
         <% end %>
       </tbody>

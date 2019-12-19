@@ -9,6 +9,11 @@ module Backoffice
     def lookup
       @reference_code = params[:reference_code]
       @report = CompletedApplicationsAudit.where(reference_code: @reference_code)
+
+      audit!(
+        action: :application_lookup,
+        details: { reference_code: @reference_code, found: @report.size }
+      )
     end
   end
 end
