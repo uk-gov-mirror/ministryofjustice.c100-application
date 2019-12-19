@@ -8,18 +8,32 @@ module Backoffice
     # Refer to the rule for details: `config/auth0/rules/check_user_exists.js`
     #
     def exists
-      user = BackofficeUser.active.find_by(email: params[:id])
-      return head(404) if user.nil?
+      email = params[:id]
+      user  = BackofficeUser.active.find_by(email: email)
 
+      if user.nil?
+        process_forbidden(email)
+        head(404)
+      else
+        process_login(user)
+        head(200)
+      end
+    end
+
+    private
+
+    def process_login(user)
       user.logins_count += 1
       user.last_login_at = user.current_login_at
       user.current_login_at = Time.now.utc
       user.save
 
-      head(200)
+      BackofficeAuditRecord.log!(author: user.email, action: :login)
     end
 
-    private
+    def process_forbidden(email)
+      BackofficeAuditRecord.log!(author: email, action: :forbidden)
+    end
 
     def authenticate
       authenticate_or_request_with_http_token do |token|

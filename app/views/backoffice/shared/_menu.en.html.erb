@@ -6,8 +6,11 @@
     <li>
       <%= link_to_unless_current 'Emails', backoffice_emails_path %>
     </li>
+    <li>
+      <%= link_to_unless_current 'Audit', backoffice_audit_index_path %>
+    </li>
     <li class="util_ml-medium">
-      <%= link_to 'Logout', backoffice_auth0_logout_path, method: :delete, data: { confirm: 'Are you sure?' } %> (<%= admin_name %>)
+      <%= link_to 'Logout', backoffice_auth0_logout_path, method: :delete %> (<%= admin_name %>)
     </li>
   </ul>
 </nav>

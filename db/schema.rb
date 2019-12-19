@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_09_103137) do
+ActiveRecord::Schema.define(version: 2019_12_18_120550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -53,9 +53,16 @@ ActiveRecord::Schema.define(version: 2019_12_09_103137) do
     t.index ["c100_application_id"], name: "index_abuse_concerns_on_c100_application_id"
   end
 
+  create_table "backoffice_audit_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "author", null: false
+    t.string "action", null: false
+    t.json "details", default: {}
+    t.index ["author"], name: "index_backoffice_audit_records_on_author"
+  end
+
   create_table "backoffice_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", null: false
-    t.string "user_id"
     t.boolean "active", default: true
     t.integer "logins_count", default: 0
     t.datetime "current_login_at"
