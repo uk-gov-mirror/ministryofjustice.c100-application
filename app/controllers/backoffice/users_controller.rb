@@ -28,11 +28,11 @@ module Backoffice
       user.current_login_at = Time.now.utc
       user.save
 
-      BackofficeAuditRecord.log!(author: user.email, action: :login)
+      audit!(author: user.email, action: :login)
     end
 
     def process_forbidden(email)
-      BackofficeAuditRecord.log!(author: email, action: :forbidden)
+      audit!(author: email, action: :forbidden)
     end
 
     def authenticate

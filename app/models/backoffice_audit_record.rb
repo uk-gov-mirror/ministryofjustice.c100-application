@@ -6,6 +6,9 @@ class BackofficeAuditRecord < ApplicationRecord
     login: 'login',
     logout: 'logout',
     forbidden: 'forbidden',
+    application_lookup: 'application_lookup',
+    email_lookup: 'email_lookup',
+    resend_email: 'resend_email',
   }
 
   def self.log!(author:, action:, details: {})

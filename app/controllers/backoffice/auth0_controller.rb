@@ -5,7 +5,7 @@ module Backoffice
     end
 
     def logout
-      BackofficeAuditRecord.log!(author: helpers.admin_name, action: :logout)
+      audit!(action: :logout)
       session.delete(:backoffice_userinfo)
 
       redirect_to helpers.admin_logout_url

@@ -1,6 +1,22 @@
 <tr>
-  <td valign="middle" width="200"><%= record.created_at %></td>
-  <td valign="middle" width="350"><%= record.author %></td>
-  <td valign="middle" width="150"><%= record.action.upcase %></td>
-  <td valign="middle"><%= record.details %></td>
+  <td valign="middle" width="220"><%= record.created_at %></td>
+  <td valign="middle" width="200"><%= record.action.upcase %></td>
+  <td valign="middle"><%= record.author %></td>
 </tr>
+
+<% if record.details.present? %>
+  <tr>
+    <td valign="middle" colspan="3" class="xsmall no-border">
+      <details data-block-name="audit-details">
+        <summary>
+          <span class="summary">
+            show details
+          </span>
+        </summary>
+        <div class="panel panel-border-narrow">
+          <%= record.details %>
+        </div>
+      </details>
+    </td>
+  </tr>
+<% end %>

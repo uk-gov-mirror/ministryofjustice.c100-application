@@ -4,7 +4,7 @@
   <td valign="middle"><%= failure.type %></td>
   <td valign="middle"><%= failure.error %></td>
   <td valign="middle">
-    <%= button_to 'Resend email', backoffice_email_resend_path(failure.record, type: failure.type), method: :put, data: { confirm: 'Are you sure' }, class: 'button' %>
+    <%= button_to 'Resend email', backoffice_email_resend_path(failure.record, type: failure.type), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
   </td>
 </tr>
 
