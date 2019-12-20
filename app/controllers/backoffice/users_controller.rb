@@ -1,6 +1,13 @@
 module Backoffice
   class UsersController < Backoffice::ApplicationController
+    include Auth0Secured
+
+    skip_before_action :logged_in_using_omniauth?, only: [:exists]
     before_action :authenticate, only: [:exists]
+
+    def index
+      @admins = BackofficeUser.active
+    end
 
     # This endpoint is used by an Auth0 rule to ensure the user signin-in to the
     # backoffice have been granted access.
