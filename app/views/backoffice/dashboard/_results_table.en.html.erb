@@ -4,9 +4,7 @@
       <th>Completed at</th>
       <th>Reference</th>
       <th>Type</th>
-      <th>Payment</th>
-      <th>Postcode</th>
-      <th>Saved</th>
+      <th>Court</th>
     </tr>
   </thead>
 
@@ -15,7 +13,7 @@
       <%= render partial: 'completion', collection: report, as: :completion %>
     <% else %>
       <tr>
-        <td colspan="6">No applications were found</td>
+        <td colspan="4">No applications were found</td>
       </tr>
     <% end %>
   </tbody>

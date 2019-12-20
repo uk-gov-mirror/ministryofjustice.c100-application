@@ -1,15 +1,15 @@
 <tr>
   <td valign="middle" width="200"><%= completion.completed_at %></td>
-  <td valign="middle"><%= completion.reference_code %></td>
+  <td valign="middle" width="160"><%= completion.reference_code %></td>
   <td valign="middle"><%= completion.submission_type || 'N/A' %></td>
-  <td valign="middle"><%= completion.metadata['payment_type'] || 'N/A' %></td>
-  <td valign="middle"><%= completion.metadata['postcode'] %></td>
-  <td valign="middle"><%= completion.metadata['saved_for_later'] %></td>
+  <td valign="middle"><%= completion.court %></td>
 </tr>
 
 <% if defined?(@reference_code) %>
+  <% c100 = completion.c100_application %>
+
   <tr>
-    <td valign="middle" colspan="6" class="no-border">
+    <td valign="middle" colspan="4" class="no-border">
       <details data-block-name="application-extra-details">
         <summary>
           <span class="summary">
@@ -17,32 +17,42 @@
           </span>
         </summary>
         <div class="panel panel-border-narrow application-extra-details">
-          <dl>
-            <dt>Application started at</dt>
-            <dd><%= completion.started_at %></dd>
-            <dt>Court</dt>
-            <dd><%= completion.court %></dd>
-            <dt>Urgent hearing?</dt>
-            <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
-            <dt>Without notice hearing?</dt>
-            <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
-            <dt>C1A form?</dt>
-            <dd><%= completion.metadata['c1a_form'] %></dd>
-            <dt>C8 form?</dt>
-            <dd><%= completion.metadata['c8_form'] %></dd>
-          </dl>
+          <table>
+            <tr>
+              <td width="300" class="no-border">
+                <dl>
+                  <dt>Application started at</dt>
+                  <dd><%= completion.started_at %></dd>
+                  <dt>Saved for later?</dt>
+                  <dd><%= completion.metadata['saved_for_later'] %></dd>
+                  <dt>Payment type</dt>
+                  <dd><%= completion.metadata['payment_type'] || 'N/A' %></dd>
+                  <dt>Urgent hearing?</dt>
+                  <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
+                  <dt>Without notice hearing?</dt>
+                  <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
+                </dl>
+              </td>
+              <td class="no-border">
+                <dl>
+                  <dt>Postcode</dt>
+                  <dd><%= completion.metadata['postcode'] %></dd>
+                  <dt>C1A form?</dt>
+                  <dd><%= completion.metadata['c1a_form'] %></dd>
+                  <dt>C8 form?</dt>
+                  <dd><%= completion.metadata['c8_form'] %></dd>
+                  <% if c100 %>
+                    <dt>Court receipt email address</dt>
+                    <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank' %></dd>
+                    <dt>Applicant receipt email address</dt>
+                    <dd><%= c100.receipt_email || 'none' %></dd>
+                  <% end %>
+                </dl>
+              </td>
+            </tr>
+          </table>
         </div>
       </details>
     </td>
   </tr>
-<% else %>
-  <tr>
-    <td valign="middle" colspan="6" class="no-border">
-      <%= completion.court %>
-    </td>
-  </tr>
 <% end %>
-
-<tr>
-  <td valign="middle" colspan="6" class="no-border"></td>
-</tr>
