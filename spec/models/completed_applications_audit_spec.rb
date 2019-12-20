@@ -69,4 +69,17 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
       end
     end
   end
+
+  describe '#c100_application' do
+    let(:reference_code) { '1970/01/449362AF' }
+
+    before do
+      allow(subject).to receive(:reference_code).and_return(reference_code)
+      allow(C100Application).to receive(:find_by_reference_code).with(reference_code).and_return(c100_application)
+    end
+
+    it 'returns the corresponding C100 application if still in the database' do
+      expect(subject.c100_application).to eq(c100_application)
+    end
+  end
 end

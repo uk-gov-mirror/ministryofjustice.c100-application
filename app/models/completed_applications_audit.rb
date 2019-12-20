@@ -30,4 +30,9 @@ class CompletedApplicationsAudit < ApplicationRecord
       payment_type: c100_application.payment_type,
     }
   end
+
+  # This will be `nil` if the application has been purged from database already
+  def c100_application
+    C100Application.find_by_reference_code(reference_code)
+  end
 end
