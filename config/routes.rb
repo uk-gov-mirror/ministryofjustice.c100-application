@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       delete :logout
     end
 
-    resources :users, only: [] do
+    resources :users, only: [:index] do
       get :exists, on: :member, constraints: { id: /[^\/]+/ }
     end
 

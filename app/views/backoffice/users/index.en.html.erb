@@ -1,0 +1,31 @@
+<% title 'Back office: admin users' %>
+
+<div class="grid-row">
+  <div class="column-full">
+    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: admin users</h1>
+
+    <p class="heading-medium">
+      Users with access to the back office
+    </p>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p>
+        Contact a developer with access to the service in order to add/remove access.
+      </p>
+    </div>
+
+    <table class="backoffice-table">
+      <thead>
+      <tr>
+        <th>Email</th>
+        <th>Last login at</th>
+        <th>Current login at</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <%= render partial: 'admin_user', collection: @admins, as: :admin %>
+      </tbody>
+    </table>
+  </div>
+</div>
