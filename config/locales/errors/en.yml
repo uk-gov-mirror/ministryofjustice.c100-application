@@ -560,6 +560,8 @@ en:
           attributes:
             payment_type:
               inclusion: Select how you’ll pay
+            solicitor_account_number:
+              blank: Enter your solicitor’s fee account number
             hwf_reference_number:
               invalid: Enter a valid ‘Help with fees’ reference number
               blank: Enter your ‘Help with fees’ reference number
