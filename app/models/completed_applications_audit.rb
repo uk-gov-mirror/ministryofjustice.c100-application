@@ -25,6 +25,7 @@ class CompletedApplicationsAudit < ApplicationRecord
       c1a_form: c100_application.has_safety_concerns?,
       c8_form: c100_application.confidentiality_enabled?,
       saved_for_later: c100_application.user_id.present?,
+      legal_representation: c100_application.has_solicitor,
       urgent_hearing: c100_application.urgent_hearing,
       without_notice: c100_application.without_notice,
       payment_type: c100_application.payment_type,

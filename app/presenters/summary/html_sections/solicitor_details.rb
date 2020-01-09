@@ -39,9 +39,9 @@ module Summary
           [
             FreeTextAnswer.new(:solicitor_address, solicitor.address),
             FreeTextAnswer.new(:solicitor_dx_number, solicitor.dx_number),
+            FreeTextAnswer.new(:solicitor_email, solicitor.email),
             FreeTextAnswer.new(:solicitor_phone_number, solicitor.phone_number),
             FreeTextAnswer.new(:solicitor_fax_number, solicitor.fax_number),
-            FreeTextAnswer.new(:solicitor_email, solicitor.email),
           ],
           change_path: edit_steps_solicitor_contact_details_path
         )

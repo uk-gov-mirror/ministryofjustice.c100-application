@@ -5,7 +5,6 @@ module Summary
     let(:c100_application) {
       instance_double(
         C100Application,
-        applicants: [applicant],
         solicitor_account_number: solicitor_account_number,
         has_solicitor: 'yes',
         solicitor: solicitor,
@@ -13,7 +12,6 @@ module Summary
 
     subject { described_class.new(c100_application) }
 
-    let(:applicant) { instance_double(Applicant, full_name: 'John Doe') }
     let(:solicitor) {
       instance_double(
         Solicitor,
@@ -55,7 +53,7 @@ module Summary
         let(:solicitor_account_number) { nil }
 
         it 'has the correct rows' do
-          expect(answers.count).to eq(11)
+          expect(answers.count).to eq(10)
 
           expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[9].question).to eq(:solicitor_fee_account)
@@ -66,39 +64,39 @@ module Summary
 
       context 'solicitor details are present' do
         it 'has the correct rows' do
-          expect(answers.count).to eq(11)
+          expect(answers.count).to eq(10)
 
           expect(answers[0]).to be_an_instance_of(Answer)
           expect(answers[0].question).to eq(:has_solicitor)
           expect(answers[0].value).to eq(GenericYesNo::YES)
 
           expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[1].question).to eq(:solicitor_applicant_name)
-          expect(answers[1].value).to eq('John Doe')
+          expect(answers[1].question).to eq(:solicitor_full_name)
+          expect(answers[1].value).to eq('full_name')
 
           expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[2].question).to eq(:solicitor_full_name)
-          expect(answers[2].value).to eq('full_name')
+          expect(answers[2].question).to eq(:solicitor_firm_name)
+          expect(answers[2].value).to eq('firm_name')
 
           expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[3].question).to eq(:solicitor_firm_name)
-          expect(answers[3].value).to eq('firm_name')
+          expect(answers[3].question).to eq(:solicitor_address)
+          expect(answers[3].value).to eq('address')
 
           expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[4].question).to eq(:solicitor_address)
-          expect(answers[4].value).to eq('address')
+          expect(answers[4].question).to eq(:solicitor_phone_number)
+          expect(answers[4].value).to eq('phone_number')
 
           expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[5].question).to eq(:solicitor_phone_number)
-          expect(answers[5].value).to eq('phone_number')
+          expect(answers[5].question).to eq(:solicitor_fax_number)
+          expect(answers[5].value).to eq('fax_number')
 
           expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[6].question).to eq(:solicitor_fax_number)
-          expect(answers[6].value).to eq('fax_number')
+          expect(answers[6].question).to eq(:solicitor_dx_number)
+          expect(answers[6].value).to eq('dx_number')
 
           expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[7].question).to eq(:solicitor_dx_number)
-          expect(answers[7].value).to eq('dx_number')
+          expect(answers[7].question).to eq(:solicitor_email)
+          expect(answers[7].value).to eq('email')
 
           expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[8].question).to eq(:solicitor_reference)
@@ -107,10 +105,6 @@ module Summary
           expect(answers[9]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[9].question).to eq(:solicitor_fee_account)
           expect(answers[9].value).to eq('12345')
-
-          expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[10].question).to eq(:solicitor_email)
-          expect(answers[10].value).to eq('email')
         end
       end
     end

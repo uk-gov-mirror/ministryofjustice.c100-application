@@ -13,7 +13,7 @@
         f.radio_button_fieldset :payment_type, legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
           fieldset.radio_input(PaymentType::SELF_PAYMENT_CARD)
           fieldset.radio_input(PaymentType::SELF_PAYMENT_CHEQUE)
-          fieldset.radio_input(PaymentType::SOLICITOR) { f.text_field :solicitor_account_number, class: 'narrow' } if dev_tools_enabled?
+          fieldset.radio_input(PaymentType::SOLICITOR) { f.text_field :solicitor_account_number, class: 'narrow' } if @form_object.has_solicitor?
           fieldset.radio_input(PaymentType::HELP_WITH_FEES) { f.text_field :hwf_reference_number, class: 'narrow' }
         end
       %>

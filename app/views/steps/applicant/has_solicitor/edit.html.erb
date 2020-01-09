@@ -9,7 +9,7 @@
       <%= heading %>
     </h1>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+    <p class="govuk-govspeak gv-s-prose"><%=t '.lead_text' %></p>
 
     <%= step_form @form_object do |f| %>
       <%= f.radio_button_fieldset :has_solicitor, inline: true, legend_options: { class: 'visually-hidden', text: heading }, choices: GenericYesNo.values %>
