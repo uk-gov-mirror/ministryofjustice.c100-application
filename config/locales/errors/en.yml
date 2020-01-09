@@ -355,6 +355,10 @@ en:
             alternative_collaborative_law:
               inclusion: *yes_no_error
 
+        steps/applicant/has_solicitor_form:
+          attributes:
+            has_solicitor:
+              inclusion: *yes_no_error
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -403,6 +407,12 @@ en:
               blank: Enter the first line of the address or select if you don’t know where they live
             town:
               blank: Enter the town or city or select if you don’t know where they live
+        steps/solicitor/personal_details_form:
+          attributes:
+            full_name:
+              blank: Enter the full name
+            firm_name:
+              blank: Enter the name of the firm or chambers
         steps/solicitor/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS

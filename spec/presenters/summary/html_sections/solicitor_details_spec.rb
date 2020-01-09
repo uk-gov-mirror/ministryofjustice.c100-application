@@ -88,16 +88,16 @@ module Summary
           expect(details[1].value).to eq('dx012345')
 
           expect(details[2]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[2].question).to eq(:solicitor_phone_number)
-          expect(details[2].value).to eq('0123456789')
+          expect(details[2].question).to eq(:solicitor_email)
+          expect(details[2].value).to eq('solicitor@example.com')
 
           expect(details[3]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[3].question).to eq(:solicitor_fax_number)
-          expect(details[3].value).to eq('0987654321')
+          expect(details[3].question).to eq(:solicitor_phone_number)
+          expect(details[3].value).to eq('0123456789')
 
           expect(details[4]).to be_an_instance_of(FreeTextAnswer)
-          expect(details[4].question).to eq(:solicitor_email)
-          expect(details[4].value).to eq('solicitor@example.com')
+          expect(details[4].question).to eq(:solicitor_fax_number)
+          expect(details[4].value).to eq('0987654321')
       end
     end
   end

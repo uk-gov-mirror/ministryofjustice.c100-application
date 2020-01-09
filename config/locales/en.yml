@@ -169,10 +169,10 @@ en:
         edit:
           page_title: Do you have a solicitor?
           heading:
-            zero: Do you have a solicitor?
-            one: Do you have a solicitor?
-            other: Do you or any of the other applicants have a solicitor?
-          lead_text: Tell us if a solicitor is representing you in these proceedings.
+            zero: Will you be legally represented by a solicitor in these proceedings?
+            one: Will you be legally represented by a solicitor in these proceedings?
+            other: Will you or any other applicants be legally represented by a solicitor in these proceedings?
+          lead_text: Any legal representative must be authorised to conduct litigation.
     respondent:
       names:
         edit:
@@ -293,11 +293,12 @@ en:
     solicitor:
       personal_details:
         edit:
-          page_title: "Solicitor's details"
-          heading: "Solicitor's details"
+          page_title: Details of legal representative
+          heading: Details of legal representative
+          lead_text: This is the person who’s been instructed to act in these proceedings.
       contact_details:
         edit:
-          page_title: "Solicitor's contact details"
+          page_title: Contact details of legal representative
           heading: "Contact details of %{name}"
     abuse_concerns:
       start:
@@ -1167,7 +1168,7 @@ en:
           self_payment_card_html: '<strong>I am paying myself by credit or debit card</strong><br>Court staff will contact you within 3 working days to take payment over the phone.'
           self_payment_cheque_html: '<strong>I am paying myself by cheque or cash</strong><br>You can send a cheque or pay in person at the court.'
         hwf_reference_number: Reference number
-        solicitor_account_number: Enter solicitor’s fee account number
+        solicitor_account_number: Solicitor’s fee account number
       steps_application_submission_form:
         submission_type:
           online: Submit electronically
@@ -1322,9 +1323,9 @@ en:
       steps_international_request_form:
         international_request_details: *provide_details
       steps_solicitor_personal_details_form:
-        full_name: Full name of solicitor
-        firm_name: Name of firm
-        reference: Solicitor reference
+        full_name: Full name
+        firm_name: Name of firm or chambers
+        reference: Reference number
       steps_solicitor_contact_details_form:
         address: Address
         dx_number: DX number
@@ -1448,10 +1449,9 @@ en:
       steps_miam_certification_details_form:
         miam_certification_sole_trader_name: Leave blank if you don’t know
       steps_solicitor_personal_details_form:
-        full_name: Enter the first name and last name.
-        reference: The solicitor should have given you a reference for your case.
+        reference: This is the legal representative’s reference for this case
       steps_solicitor_contact_details_form:
-        address: Enter the full address including postcode.
+        address: Enter the full address including postcode
         dx_number_html: |
           You can ask your solicitor for this (if they have one).<br/>
           This is a secure document exchange system used by the legal profession.

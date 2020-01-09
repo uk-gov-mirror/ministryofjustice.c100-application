@@ -433,12 +433,10 @@ en:
       question: Is a solicitor acting for you?
       answers:
         <<: *YESNO
-    solicitor_applicant_name:
-      question: Solicitor acting for
     solicitor_full_name:
       question: Solicitor’s name
     solicitor_firm_name:
-      question: Name of firm
+      question: Name of firm or chambers
     solicitor_address:
       question: Address
     solicitor_phone_number:
