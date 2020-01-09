@@ -18,9 +18,8 @@ module C100App
         edit_contact_details
       when :contact_details
         after_contact_details
-      # TODO: the solicitor details steps are not enabled currently
-      # when :has_solicitor
-      #   after_has_solicitor
+      when :has_solicitor
+        after_has_solicitor
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -31,21 +30,28 @@ module C100App
     def after_contact_details
       if next_applicant_id
         edit(:personal_details, id: next_applicant_id)
+      elsif show_solicitor_journey?
+        edit(:has_solicitor)
       else
         edit('/steps/respondent/names')
       end
     end
 
-    # def after_has_solicitor
-    #   if question(:has_solicitor).yes?
-    #     edit('/steps/solicitor/personal_details')
-    #   else
-    #     edit('/steps/respondent/names')
-    #   end
-    # end
+    def after_has_solicitor
+      if question(:has_solicitor).yes?
+        edit('/steps/solicitor/personal_details')
+      else
+        edit('/steps/respondent/names')
+      end
+    end
 
     def next_applicant_id
       next_record_id(c100_application.applicant_ids)
+    end
+
+    # TODO: change this to use `version >= 4` when releasing to production
+    def show_solicitor_journey?
+      dev_tools_enabled?
     end
   end
 end
