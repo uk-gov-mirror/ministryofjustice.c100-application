@@ -3,7 +3,7 @@ require 'rails_helper'
 describe C100App::CourtPostcodeChecker do
   describe 'COURT_SLUGS_USING_THIS_APP' do
     it 'returns the expected number' do
-      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(104)
+      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(105)
     end
   end
 
