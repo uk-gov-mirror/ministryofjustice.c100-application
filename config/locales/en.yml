@@ -1680,6 +1680,8 @@ en:
 
   notify_submission_mailer:
     payment_instructions:
+      solicitor: |
+        Your solicitor will pay the court fee by direct debit, through their fee account.
       help_with_fees: |
         You may not need to pay the full amount if you have a valid ‘Help with fees’ reference.
         The court will phone you (it may come from a ‘private number’) if they require payment.
