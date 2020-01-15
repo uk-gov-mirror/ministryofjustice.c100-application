@@ -6,7 +6,7 @@ module Backoffice
     before_action :authenticate, only: [:exists]
 
     def index
-      @admins = BackofficeUser.active
+      @admins = BackofficeUser.active.order(email: :asc)
     end
 
     # This endpoint is used by an Auth0 rule to ensure the user signin-in to the
