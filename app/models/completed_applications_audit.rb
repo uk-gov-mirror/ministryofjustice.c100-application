@@ -29,6 +29,7 @@ class CompletedApplicationsAudit < ApplicationRecord
       urgent_hearing: c100_application.urgent_hearing,
       without_notice: c100_application.without_notice,
       payment_type: c100_application.payment_type,
+      signee_capacity: c100_application.declaration_signee_capacity,
     }
   end
 

@@ -11,6 +11,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
       without_notice: 'yes',
       submission_type: 'online',
       payment_type: 'cash',
+      declaration_signee_capacity: 'applicant',
     )
   }
 
@@ -51,6 +52,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
           urgent_hearing: 'no',
           without_notice: 'yes',
           payment_type: 'cash',
+          signee_capacity: 'applicant',
         }
       )
 

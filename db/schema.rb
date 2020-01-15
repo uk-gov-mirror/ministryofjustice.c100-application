@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_09_113022) do
+ActiveRecord::Schema.define(version: 2020_01_15_151905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -150,6 +150,8 @@ ActiveRecord::Schema.define(version: 2020_01_09_113022) do
     t.text "urgent_hearing_short_notice_details"
     t.string "has_solicitor"
     t.integer "version", default: 3
+    t.string "declaration_signee"
+    t.string "declaration_signee_capacity"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
