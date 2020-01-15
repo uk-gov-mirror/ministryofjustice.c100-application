@@ -37,7 +37,7 @@
                 <dd><%= completion.metadata['c1a_form'] %></dd>
                 <dt>C8 form?</dt>
                 <dd><%= completion.metadata['c8_form'] %></dd>
-                <% if !c100 %>
+                <% if c100 %>
                   <dt>Court receipt email address</dt>
                   <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank' %></dd>
                   <dt>Applicant receipt email address</dt>
