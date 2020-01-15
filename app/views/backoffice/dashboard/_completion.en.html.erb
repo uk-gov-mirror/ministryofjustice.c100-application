@@ -10,51 +10,49 @@
 
   <tr>
     <td valign="middle" colspan="4" class="no-border">
-      <details data-block-name="application-extra-details">
-        <summary>
-          <span class="summary">
-            show details
-          </span>
-        </summary>
-        <div class="panel panel-border-narrow application-extra-details">
-          <table>
-            <tr>
-              <td width="300" class="no-border">
-                <dl>
-                  <dt>Application started at</dt>
-                  <dd><%= completion.started_at %></dd>
-                  <dt>Saved for later?</dt>
-                  <dd><%= completion.metadata['saved_for_later'] %></dd>
-                  <dt>Payment type</dt>
-                  <dd><%= completion.metadata['payment_type'] || 'N/A' %></dd>
-                  <dt>Legal representation</dt>
-                  <dd><%= completion.metadata['legal_representation'] || 'N/A' %></dd>
-                  <dt>Urgent hearing?</dt>
-                  <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
-                  <dt>Without notice hearing?</dt>
-                  <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
-                </dl>
-              </td>
-              <td class="no-border">
-                <dl>
-                  <dt>Postcode</dt>
-                  <dd><%= completion.metadata['postcode'] %></dd>
-                  <dt>C1A form?</dt>
-                  <dd><%= completion.metadata['c1a_form'] %></dd>
-                  <dt>C8 form?</dt>
-                  <dd><%= completion.metadata['c8_form'] %></dd>
-                  <% if c100 %>
-                    <dt>Court receipt email address</dt>
-                    <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank' %></dd>
-                    <dt>Applicant receipt email address</dt>
-                    <dd><%= c100.receipt_email || 'none' %></dd>
-                  <% end %>
-                </dl>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </details>
+      <div class="panel panel-border-narrow application-extra-details">
+        <table>
+          <tr>
+            <td width="300" class="no-border">
+              <dl>
+                <dt>Application started at</dt>
+                <dd><%= completion.started_at %></dd>
+                <dt>Saved for later?</dt>
+                <dd><%= completion.metadata['saved_for_later'] %></dd>
+                <dt>Payment type</dt>
+                <dd><%= completion.metadata['payment_type'] || 'N/A' %></dd>
+                <dt>Legal representation</dt>
+                <dd><%= completion.metadata['legal_representation'] || 'N/A' %></dd>
+                <dt>Urgent hearing?</dt>
+                <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
+                <dt>Without notice hearing?</dt>
+                <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
+              </dl>
+            </td>
+            <td class="no-border">
+              <dl>
+                <dt>Postcode</dt>
+                <dd><%= completion.metadata['postcode'] %></dd>
+                <dt>C1A form?</dt>
+                <dd><%= completion.metadata['c1a_form'] %></dd>
+                <dt>C8 form?</dt>
+                <dd><%= completion.metadata['c8_form'] %></dd>
+                <% if !c100 %>
+                  <dt>Court receipt email address</dt>
+                  <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank' %></dd>
+                  <dt>Applicant receipt email address</dt>
+                  <dd><%= c100.receipt_email || 'none' %></dd>
+                <% else %>
+                  <dt>Court receipt email address</dt>
+                  <dd>(purged from database)</dd>
+                  <dt>Applicant receipt email address</dt>
+                  <dd>(purged from database)</dd>
+                <% end %>
+              </dl>
+            </td>
+          </tr>
+        </table>
+      </div>
     </td>
   </tr>
 <% end %>

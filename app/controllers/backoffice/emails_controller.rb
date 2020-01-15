@@ -7,8 +7,8 @@ module Backoffice
     end
 
     def lookup
-      @reference_code = params[:reference_code]
-      @email_address  = params[:email_address]
+      @reference_code = params[:reference_code]&.strip
+      @email_address  = params[:email_address]&.strip
 
       @report = EmailSubmissionsAudit.find_records(@reference_code, @email_address)
 

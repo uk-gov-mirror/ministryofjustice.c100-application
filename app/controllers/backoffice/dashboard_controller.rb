@@ -7,7 +7,7 @@ module Backoffice
     end
 
     def lookup
-      @reference_code = params[:reference_code]
+      @reference_code = params[:reference_code]&.strip
       @report = CompletedApplicationsAudit.where(reference_code: @reference_code)
 
       audit!(
