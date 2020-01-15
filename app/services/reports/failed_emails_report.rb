@@ -44,11 +44,7 @@ module Reports
           check_user_email(record, reference_code) if record.c100_application.receipt_email?
         end
 
-        return if failures.empty?
-
-        ReportsMailer.failed_emails_report(
-          failures.map(&:to_csv).join
-        ).deliver_now
+        send_email_report if failures.any?
       end
 
       def check_court_email(record, reference_code)
@@ -95,6 +91,21 @@ module Reports
             reference,
             error_msg,
           ]
+        end
+      end
+
+      def send_email_report
+        # Unset the env variable to stop the emails (for example
+        # on staging we don't want these emails, only on production)
+        return unless ENV.key?('SEND_FAILED_EMAILS_REPORT')
+
+        recipients = BackofficeUser.active.pluck(:email)
+        report = failures.map(&:to_csv).join
+
+        puts "[#{Time.now}] Sending failed emails report to #{recipients.size} recipients..."
+
+        recipients.each do |recipient|
+          ReportsMailer.failed_emails_report(report, to_address: recipient).deliver_now
         end
       end
     end
