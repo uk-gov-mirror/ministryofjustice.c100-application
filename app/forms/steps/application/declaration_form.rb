@@ -1,9 +1,15 @@
 module Steps
   module Application
     class DeclarationForm < BaseForm
-      attribute :declaration_made, Boolean
+      attribute :declaration_signee, StrippedString
+      attribute :declaration_signee_capacity, String
 
-      validates_presence_of :declaration_made
+      validates_presence_of  :declaration_signee
+      validates_inclusion_of :declaration_signee_capacity, in: UserType.string_values
+
+      def has_solicitor?
+        c100_application.has_solicitor.eql?(GenericYesNo::YES.to_s)
+      end
 
       private
 
@@ -11,7 +17,8 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         c100_application.update(
-          declaration_made: declaration_made
+          declaration_signee: declaration_signee,
+          declaration_signee_capacity: declaration_signee_capacity,
         )
       end
     end

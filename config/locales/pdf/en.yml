@@ -71,8 +71,12 @@ en:
     intentional_blank_page: This page intentionally left blank
     c8_confidential_answer: *c8_attached
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
-    statement_of_truth: "%{applicant_name} believes that the facts stated in this application are true."
+    statement_of_truth: "%{signee_name} (%{signee_capacity}) believes that the facts stated in this application are true."
     statement_of_truth_hmcts_instructions: Statement of truth has been completed online - no signature required
+    statement_of_truth_disclaimer: Proceedings for contempt of court may be brought against a person who makes or causes to be made, a false statement in a document verified by a statement of truth.
+    statement_of_truth_signee_capacity:
+      applicant: Applicant
+      representative: Applicant’s solicitor
     relationship_to_child:
       show_person_html: "<div>%{person_name} - %{relation} to %{child_name}</div>"
       hide_person_html: "<div>%{relation} to %{child_name}</div>"

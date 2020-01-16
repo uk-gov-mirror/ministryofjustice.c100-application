@@ -583,5 +583,7 @@ en:
               invalid: *invalid_email_error
         steps/application/declaration_form:
           attributes:
-            declaration_made:
-              blank: You must accept the declaration
+            declaration_signee:
+              blank: Enter your full name
+            declaration_signee_capacity:
+              inclusion: Select who is making this declaration

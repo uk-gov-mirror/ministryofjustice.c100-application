@@ -85,23 +85,23 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
   describe '#single_check_box' do
     let(:c100_application) { C100Application.new }
     let(:builder) { described_class.new :c100_application, c100_application, helper, {} }
-    let(:html_output) { builder.single_check_box(:declaration_made) }
+    let(:html_output) { builder.single_check_box(:miam_acknowledgement) }
 
     it 'outputs the check box' do
       expect(
         html_output
-      ).to eq('<div class="multiple-choice single-cb"><input name="c100_application[declaration_made]" type="hidden" value="0" /><input type="checkbox" value="1" name="c100_application[declaration_made]" id="c100_application_declaration_made" /><label for="c100_application_declaration_made">Declaration made</label></div>')
+      ).to eq('<div class="multiple-choice single-cb"><input name="c100_application[miam_acknowledgement]" type="hidden" value="0" /><input type="checkbox" value="1" name="c100_application[miam_acknowledgement]" id="c100_application_miam_acknowledgement" /><label for="c100_application_miam_acknowledgement">Miam acknowledgement</label></div>')
     end
 
     context 'when there are errors' do
       before do
-        c100_application.errors.add(:declaration_made, :blank)
+        c100_application.errors.add(:miam_acknowledgement, :blank)
       end
 
       it 'outputs the check box with the error markup' do
         expect(
           html_output
-        ).to eq('<div class="multiple-choice single-cb" id="error_c100_application_declaration_made"><input name="c100_application[declaration_made]" type="hidden" value="0" /><input aria-describedby="error_message_c100_application_declaration_made" type="checkbox" value="1" name="c100_application[declaration_made]" id="c100_application_declaration_made" /><label for="c100_application_declaration_made">Declaration made<span class="error-message" id="error_message_c100_application_declaration_made">Enter an answer</span></label></div>')
+        ).to eq('<div class="multiple-choice single-cb" id="error_c100_application_miam_acknowledgement"><input name="c100_application[miam_acknowledgement]" type="hidden" value="0" /><input aria-describedby="error_message_c100_application_miam_acknowledgement" type="checkbox" value="1" name="c100_application[miam_acknowledgement]" id="c100_application_miam_acknowledgement" /><label for="c100_application_miam_acknowledgement">Miam acknowledgement<span class="error-message" id="error_message_c100_application_miam_acknowledgement">Enter an answer</span></label></div>')
       end
     end
   end
