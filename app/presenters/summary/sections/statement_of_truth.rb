@@ -11,14 +11,24 @@ module Summary
 
       def answers
         [
-          Partial.new(:statement_of_truth, applicant_name),
+          Partial.new(:statement_of_truth, signee_name: signee_name, signee_capacity: signee_capacity),
         ]
       end
 
       private
 
-      def applicant_name
-        c100.applicants.first&.full_name
+      # We must consider `nil` values, for backward compatibility and also because
+      # for quick tests we might bypass and render the PDF with details missing.
+      #
+      def signee_name
+        c100.declaration_signee || c100.applicants.first&.full_name || '<name not entered>'
+      end
+
+      def signee_capacity
+        I18n.translate!(
+          c100.declaration_signee_capacity || UserType::APPLICANT,
+          scope: 'shared.statement_of_truth_signee_capacity'
+        )
       end
     end
   end

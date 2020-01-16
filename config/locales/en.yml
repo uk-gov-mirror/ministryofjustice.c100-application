@@ -761,9 +761,9 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before you finish your application
           declaration_heading: Declaration
-          declaration_lead_text: You must confirm that the information you’ve provided in your application is true.
+          declaration_lead_text: You must confirm that the information you’ve provided in this application is true.
           warning_title: Warning
-          false_information_warning: You could be fined or imprisoned for contempt of court if you deliberately submit false information.
+          false_information_warning: Proceedings for contempt of court may be brought against a person who makes or causes to be made, a false statement in a document verified by a statement of truth.
           submit_warning:
             online: Once you submit your application, you cannot make any further changes. You can download a copy of your submitted application on the next page.
             print_and_post: Once you continue, you cannot make any further changes to your application. You can download a copy of your application on the next page.
@@ -1125,6 +1125,8 @@ en:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
+      steps_application_declaration_form:
+        declaration_signee_capacity_html: ""
 
     label:
       steps_shared_relationship_form:
@@ -1175,7 +1177,10 @@ en:
           print_and_post: Print and send by post
         receipt_email: Enter an email address if you would like to get a confirmation
       steps_application_declaration_form:
-        declaration_made: I confirm that I believe that the facts stated in this application are true
+        declaration_signee: By entering your full name, you confirm that the facts stated in this application are true
+        declaration_signee_capacity:
+          applicant: I am the applicant
+          representative: I am the solicitor and I have been given the authority to make this declaration
       steps_alternatives_court_form:
         court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
