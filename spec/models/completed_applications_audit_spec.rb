@@ -6,7 +6,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
       id: '449362af-0bc3-4953-82a7-1363d479b876',
       created_at: Time.at(0),
       updated_at: Time.at(100),
-      has_solicitor: 'no',
+      has_solicitor: has_solicitor,
       urgent_hearing: 'no',
       without_notice: 'yes',
       submission_type: 'online',
@@ -16,6 +16,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
   }
 
   let(:user_id) { nil }
+  let(:has_solicitor) { 'yes' }
   let(:screener_answers_court) { instance_double(Court, name: 'Test Court') }
   let(:screener_answers) { instance_double(ScreenerAnswers, children_postcodes: 'abcd 123') }
 
@@ -48,7 +49,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
           c1a_form: false,
           c8_form: false,
           saved_for_later: false,
-          legal_representation: 'no',
+          legal_representation: 'yes',
           urgent_hearing: 'no',
           without_notice: 'yes',
           payment_type: 'cash',
@@ -57,6 +58,20 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
       )
 
       described_class.log!(c100_application)
+    end
+
+    context 'for an application with `has_solicitor` attribute set to `nil`' do
+      let(:has_solicitor) { nil }
+
+      it 'defaults to `no`' do
+        expect(
+          described_class
+        ).to receive(:create).with(
+          hash_including(metadata: hash_including(legal_representation: 'no'))
+        )
+
+        described_class.log!(c100_application)
+      end
     end
 
     context 'for a saved application' do

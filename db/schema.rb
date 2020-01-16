@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_15_151905) do
+ActiveRecord::Schema.define(version: 2020_01_16_142446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -138,7 +138,6 @@ ActiveRecord::Schema.define(version: 2020_01_15_151905) do
     t.integer "status", default: 0
     t.string "protection_orders"
     t.text "protection_orders_details"
-    t.boolean "declaration_made"
     t.string "payment_type"
     t.string "solicitor_account_number"
     t.string "submission_type"
@@ -174,7 +173,7 @@ ActiveRecord::Schema.define(version: 2020_01_15_151905) do
     t.string "submission_type"
     t.string "court", null: false
     t.string "reference_code", null: false
-    t.json "metadata", default: {}
+    t.jsonb "metadata", default: {}, null: false
     t.index ["reference_code"], name: "index_completed_applications_audit_on_reference_code", unique: true
   end
 
