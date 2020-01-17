@@ -11,7 +11,7 @@ module Steps
       attribute :fax_number, StrippedString
       attribute :email, NormalisedEmail
 
-      validates_presence_of :address
+      validates_presence_of :address, :phone_number
       validates :email, email: true, allow_blank: true
 
       # Used to present the solicitor's name in the view

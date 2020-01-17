@@ -6,7 +6,6 @@ en:
     dont_know: &dont_know "Don't know"
     previous_name_hint: &previous_name_hint "This should be the full legal name (including any middle names)"
     birthplace_hint: &birthplace_hint "For example, town or city"
-    address_hint: &address_hint "Court documents will be sent here"
     middle_names_hint: &middle_names_hint "Include all middle names here"
     order_current: &order_current "Is the order current?"
     order_length: &order_length "How long was the order for?"
@@ -280,8 +279,10 @@ en:
         applicant:
           manual_address: I live outside the UK
         respondent:
+          address_for_documents: Documents relating to this application will be sent here.
           manual_address: I don’t know their postcode or they live outside the UK
         other_party:
+          address_for_documents: Documents relating to this application may be sent here.
           manual_address: I don’t know their postcode or they live outside the UK
       results:
         edit:
@@ -763,7 +764,7 @@ en:
           declaration_heading: Declaration
           declaration_lead_text: You must confirm that the information you’ve provided in this application is true.
           warning_title: Warning
-          false_information_warning: Proceedings for contempt of court may be brought against a person who makes or causes to be made, a false statement in a document verified by a statement of truth.
+          false_information_warning: You could be fined or imprisoned for contempt of court if you deliberately submit false information, or cause false information to be submitted.
           submit_warning:
             online: Once you submit your application, you cannot make any further changes. You can download a copy of your submitted application on the next page.
             print_and_post: Once you continue, you cannot make any further changes to your application. You can download a copy of your application on the next page.
@@ -1330,7 +1331,7 @@ en:
       steps_solicitor_personal_details_form:
         full_name: Full name
         firm_name: Name of firm or chambers
-        reference: Reference number
+        reference: Solicitor’s reference
       steps_solicitor_contact_details_form:
         address: Address
         dx_number: DX number
@@ -1403,9 +1404,9 @@ en:
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
       steps_respondent_address_details_form:
-        address_line_1: *address_hint
+        address_line_1: Court documents will be sent here
       steps_other_parties_address_details_form:
-        address_line_1: *address_hint
+        address_line_1: Court documents may be sent here
       steps_applicant_names_split_form:
         new_first_name_html: *middle_names_hint
       steps_respondent_names_split_form:
