@@ -19,6 +19,7 @@ RSpec.describe Steps::Solicitor::ContactDetailsForm do
   describe '#save' do
     context 'validations' do
       it { should validate_presence_of(:address) }
+      it { should validate_presence_of(:phone_number) }
 
       context 'email validation' do
         context 'email is not validated if not present' do
