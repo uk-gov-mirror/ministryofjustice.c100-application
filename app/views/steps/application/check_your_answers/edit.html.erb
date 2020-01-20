@@ -8,8 +8,10 @@
 
 <%= render @presenter.sections %>
 
-<div class="util_mt-large"></div>
-<%= step_form @form_object do |f| %>
+<%= step_form @form_object,
+              html: { class: 'util_mt-large ga-submitForm' },
+              data: { ga_category: 'application completed', ga_label: 'declaration' } do |f| %>
+
   <div class="declaration-box util_mt-medium">
     <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge util_mb-medium"><%=t '.declaration_heading' %></h1>
 
