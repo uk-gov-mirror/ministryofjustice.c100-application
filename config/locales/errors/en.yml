@@ -92,10 +92,6 @@ en:
           attributes:
             over18:
               inclusion: Select yes if you and the other parent are over 18
-        steps/screener/legal_representation_form:
-          attributes:
-            legal_representation:
-              inclusion: Select yes if you have a solicitor
         steps/screener/written_agreement_form:
           attributes:
             written_agreement:

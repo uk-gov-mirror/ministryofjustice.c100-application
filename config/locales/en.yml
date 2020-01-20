@@ -743,7 +743,7 @@ en:
         edit:
           page_title: Payment type
           heading: How will you pay the application fee?
-          lead_text: The court fee is £215. Only the person applying to court (the applicant) needs to pay.
+          lead_text: The court fee is £215. Only the person applying to court (the applicant) or their legal representative needs to pay.
       submission:
         edit:
           page_title: How would you submit your application?
@@ -926,16 +926,6 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if both you and the other person (the respondent) are over 18.
-      legal_representation:
-        edit:
-          page_title: Do you have a solicitor?
-          heading: Do you have a solicitor?
-          lead_text: You can only use this online service if you do not have a solicitor representing you in these proceedings.
-      legal_representation_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: You can only use this online service if you do not have a solicitor representing you or filling this form on your behalf.
       written_agreement:
         edit:
           page_title: Consent order
