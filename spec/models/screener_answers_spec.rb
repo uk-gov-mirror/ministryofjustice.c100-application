@@ -18,7 +18,6 @@ RSpec.describe ScreenerAnswers, type: :model do
         over18
         written_agreement
         email_consent
-        legal_representation
       ))
     end
   end

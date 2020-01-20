@@ -89,30 +89,13 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and over18 is "yes"' do
       let(:over18){ GenericYesNo::YES }
 
-      it { is_expected.to have_destination(:legal_representation, :edit) }
+      it { is_expected.to have_destination(:written_agreement, :edit) }
     end
 
     context 'and over18 is "no"' do
       let(:over18){ GenericYesNo::NO }
 
       it { is_expected.to have_destination(:over18_exit, :show) }
-    end
-  end
-
-  context 'when the step is `legal_representation`' do
-    let(:step_params){ {legal_representation: legal_representation} }
-    let(:screener_answers) { double('screener_answers', legal_representation: legal_representation) }
-
-    context 'and legal_representation is "no"' do
-      let(:legal_representation){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination(:written_agreement, :edit) }
-    end
-
-    context 'and legal_representation is "yes"' do
-      let(:legal_representation){ GenericYesNo::YES }
-
-      it { is_expected.to have_destination(:legal_representation_exit, :show) }
     end
   end
 
