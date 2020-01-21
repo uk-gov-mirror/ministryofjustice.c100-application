@@ -48,6 +48,10 @@ class C100Application < ApplicationRecord
     address_confidentiality.eql?(GenericYesNo::YES.to_s)
   end
 
+  def has_solicitor?
+    has_solicitor.eql?(GenericYesNo::YES.to_s)
+  end
+
   def has_safety_concerns?
     [
       domestic_abuse,

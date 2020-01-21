@@ -65,6 +65,23 @@ RSpec.describe C100Application, type: :model do
     end
   end
 
+  describe '#has_solicitor?' do
+    context 'for a `nil` value' do
+      let(:attributes) { {has_solicitor: nil} }
+      it { expect(subject.has_solicitor?).to eq(false) }
+    end
+
+    context 'for a `no` value' do
+      let(:attributes) { {has_solicitor: 'no'} }
+      it { expect(subject.has_solicitor?).to eq(false) }
+    end
+
+    context 'for a `yes` value' do
+      let(:attributes) { {has_solicitor: 'yes'} }
+      it { expect(subject.has_solicitor?).to eq(true) }
+    end
+  end
+
   describe '#has_safety_concerns?' do
     let(:attributes) { {
       domestic_abuse: domestic_abuse,

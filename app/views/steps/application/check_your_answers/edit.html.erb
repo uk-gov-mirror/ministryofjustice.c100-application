@@ -28,7 +28,7 @@
 
     <%= f.text_field :declaration_signee, class: 'narrow' %>
 
-    <% if @form_object.has_solicitor? %>
+    <% if current_c100_application.has_solicitor? %>
       <%= f.radio_button_fieldset :declaration_signee_capacity, choices: UserType.values %>
     <% else %>
       <%# No need to ask the capacity if the applicant does not have a solicitor, so we default to `applicant` %>
