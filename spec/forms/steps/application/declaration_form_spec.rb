@@ -13,27 +13,6 @@ RSpec.describe Steps::Application::DeclarationForm do
 
   subject { described_class.new(arguments) }
 
-  describe '#has_solicitor?' do
-    before do
-      allow(c100_application).to receive(:has_solicitor).and_return(has_solicitor)
-    end
-
-    context 'for a `nil` value' do
-      let(:has_solicitor) { nil }
-      it { expect(subject.has_solicitor?).to eq(false) }
-    end
-
-    context 'for a `no` value' do
-      let(:has_solicitor) { 'no' }
-      it { expect(subject.has_solicitor?).to eq(false) }
-    end
-
-    context 'for a `yes` value' do
-      let(:has_solicitor) { 'yes' }
-      it { expect(subject.has_solicitor?).to eq(true) }
-    end
-  end
-
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }

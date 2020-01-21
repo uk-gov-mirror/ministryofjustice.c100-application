@@ -16,27 +16,6 @@ RSpec.describe Steps::Application::PaymentForm do
 
   subject { described_class.new(arguments) }
 
-  describe '#has_solicitor?' do
-    before do
-      allow(c100_application).to receive(:has_solicitor).and_return(has_solicitor)
-    end
-
-    context 'for a `nil` value' do
-      let(:has_solicitor) { nil }
-      it { expect(subject.has_solicitor?).to eq(false) }
-    end
-
-    context 'for a `no` value' do
-      let(:has_solicitor) { 'no' }
-      it { expect(subject.has_solicitor?).to eq(false) }
-    end
-
-    context 'for a `yes` value' do
-      let(:has_solicitor) { 'yes' }
-      it { expect(subject.has_solicitor?).to eq(true) }
-    end
-  end
-
   describe '#save' do
     context 'validations' do
       it { should validate_presence_of(:payment_type, :inclusion) }

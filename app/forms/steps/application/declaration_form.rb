@@ -7,10 +7,6 @@ module Steps
       validates_presence_of  :declaration_signee
       validates_inclusion_of :declaration_signee_capacity, in: UserType.string_values
 
-      def has_solicitor?
-        c100_application.has_solicitor.eql?(GenericYesNo::YES.to_s)
-      end
-
       private
 
       def persist!

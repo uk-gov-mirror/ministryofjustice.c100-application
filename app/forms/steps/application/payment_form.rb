@@ -12,10 +12,6 @@ module Steps
 
       validates :hwf_reference_number, allow_blank: true, help_with_fees_reference: true, if: :help_with_fees_payment?
 
-      def has_solicitor?
-        c100_application.has_solicitor.eql?(GenericYesNo::YES.to_s)
-      end
-
       private
 
       def help_with_fees_payment?
