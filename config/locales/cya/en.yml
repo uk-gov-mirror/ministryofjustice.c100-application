@@ -604,9 +604,9 @@ en:
     solicitor_full_name:
       question: Full name
     solicitor_firm_name:
-      question: Name of firm or chambers
+      question: Name of firm
     solicitor_reference:
-      question: Reference number
+      question: Solicitor’s reference
     solicitor_address:
       question: Address
     solicitor_dx_number:

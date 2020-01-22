@@ -406,7 +406,7 @@ en:
             full_name:
               blank: Enter the full name
             firm_name:
-              blank: Enter the name of the firm or chambers
+              blank: Enter the name of the firm
         steps/solicitor/contact_details_form:
           attributes:
             address:

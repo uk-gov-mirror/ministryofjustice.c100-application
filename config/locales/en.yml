@@ -294,12 +294,12 @@ en:
     solicitor:
       personal_details:
         edit:
-          page_title: Details of legal representative
-          heading: Details of legal representative
+          page_title: Details of solicitor
+          heading: Details of solicitor
           lead_text: This is the person who’s been instructed to act in these proceedings.
       contact_details:
         edit:
-          page_title: Contact details of legal representative
+          page_title: Contact details of solicitor
           heading: "Contact details of %{name}"
     abuse_concerns:
       start:
@@ -743,7 +743,7 @@ en:
         edit:
           page_title: Payment type
           heading: How will you pay the application fee?
-          lead_text: The court fee is £215. Only the person applying to court (the applicant) or their legal representative needs to pay.
+          lead_text: The court fee is £215. Only the person applying to court (the applicant) or their solicitor needs to pay.
       submission:
         edit:
           page_title: How would you submit your application?
@@ -1320,7 +1320,7 @@ en:
         international_request_details: *provide_details
       steps_solicitor_personal_details_form:
         full_name: Full name
-        firm_name: Name of firm or chambers
+        firm_name: Name of firm
         reference: Solicitor’s reference
       steps_solicitor_contact_details_form:
         address: Address
@@ -1445,12 +1445,10 @@ en:
       steps_miam_certification_details_form:
         miam_certification_sole_trader_name: Leave blank if you don’t know
       steps_solicitor_personal_details_form:
-        reference: This is the legal representative’s reference for this case
+        reference: This is the reference for this case
       steps_solicitor_contact_details_form:
         address: Enter the full address including postcode
-        dx_number_html: |
-          You can ask your solicitor for this (if they have one).<br/>
-          This is a secure document exchange system used by the legal profession.
+        dx_number: This is a secure document exchange system used by the legal profession
 
     submit:
       continue: Continue
