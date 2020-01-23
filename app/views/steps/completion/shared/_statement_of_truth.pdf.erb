@@ -1,6 +1,10 @@
-<p>
-  <%=t 'shared.statement_of_truth', statement_of_truth.ivar %>
-</p>
+<%
+  signee_name = statement_of_truth.ivar[:signee_name]
+  signee_capacity = statement_of_truth.ivar[:signee_capacity]
+%>
+
+<%=t "#{signee_capacity}_html", signee_name: signee_name, scope: 'shared.statement_of_truth' %>
+
 <p>
   <strong><%=t 'shared.statement_of_truth_hmcts_instructions' %></strong>
 </p>
