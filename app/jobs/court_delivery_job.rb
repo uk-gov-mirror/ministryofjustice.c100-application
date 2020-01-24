@@ -1,5 +1,5 @@
 class CourtDeliveryJob < ApplicationJob
-  queue_as :court_submissions
+  queue_as :submissions
 
   # As this is the email to the court, any exception during the processing
   # or sending of the PDF must be captured and notified to the applicant, if
