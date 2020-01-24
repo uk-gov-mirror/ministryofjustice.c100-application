@@ -25,8 +25,9 @@ gem 'uglifier'
 gem 'uk_postcode'
 gem 'virtus'
 
-# Caching. Jobs processing (Sidekiq?) might be next
+# Caching and jobs processing
 gem 'redis'
+gem 'sidekiq', '~> 6.0'
 
 # PDF generation
 gem 'combine_pdf', '~> 1.0'
