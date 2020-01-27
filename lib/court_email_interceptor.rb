@@ -5,7 +5,6 @@ class CourtEmailInterceptor
   # Add here the delivery handlers allowed to bypass the interception.
   DELIVERY_WHITELIST = %w[
     NotifyMailer
-    ReceiptMailer
     ReportsMailer
   ].freeze
 
@@ -21,8 +20,11 @@ class CourtEmailInterceptor
       DELIVERY_WHITELIST.include?(message.delivery_handler.to_s)
     end
 
+    # As we are sending the emails with Notify, there is nothing we can change
+    # other than the recipient (`to`) but that's the important bit.
+    #
     def intercept_email!(message)
-      message.subject = "#{message.subject} | (Original recipient: #{message.to.join(',')})"
+      Rails.logger.warn "Email intended for #{message.to} intercepted. Sending to #{message.from}"
       message.to = message.from
     end
   end

@@ -3,7 +3,6 @@ require 'rails_helper'
 describe CourtEmailInterceptor do
   let(:message) {
     Mail::Message.new(
-      subject: 'Test email',
       from: ['from@example.com'],
       to: ['recipient@example.com'],
     )
@@ -14,7 +13,7 @@ describe CourtEmailInterceptor do
   end
 
   context 'whitelisted handlers' do
-    it { expect(described_class::DELIVERY_WHITELIST).to eq(%w[NotifyMailer ReceiptMailer ReportsMailer]) }
+    it { expect(described_class::DELIVERY_WHITELIST).to eq(%w[NotifyMailer ReportsMailer]) }
   end
 
   context 'for a whitelisted delivery handler' do
@@ -31,11 +30,6 @@ describe CourtEmailInterceptor do
   context 'for a non-whitelisted delivery handler' do
     before do
       message.delivery_handler = 'whatever'
-    end
-
-    it 'should be intercepted and the subject changed' do
-      deliver_email!
-      expect(message.subject).to eq('Test email | (Original recipient: recipient@example.com)')
     end
 
     it 'changes the recipient to be the `FROM` address' do
