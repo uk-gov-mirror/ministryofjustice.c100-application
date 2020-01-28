@@ -40,6 +40,16 @@ Rails.application.routes.draw do
   namespace :backoffice do
     get '/', to: 'auth0#index'
 
+    # Sidekiq Web UI (when signed in)
+    constraints ->(req) { req.session[:backoffice_userinfo].present? } do
+      require 'sidekiq/web'
+      Sidekiq::Web.set :sessions, false
+      mount Sidekiq::Web => '/sidekiq'
+    end
+
+    # Sidekiq Web UI fallback when signed out
+    get :sidekiq, to: redirect(path: '/backoffice', status: 307)
+
     namespace :auth0 do
       get :callback
       get :failure
