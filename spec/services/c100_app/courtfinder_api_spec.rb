@@ -1,33 +1,6 @@
 require 'rails_helper'
 
 describe C100App::CourtfinderAPI do
-  describe '#initialize' do
-    context 'given arguments' do
-      subject{ described_class.new(params) }
-      context 'given a :logger' do
-        let(:params){ {logger: double('logger') } }
-
-        it 'stores the given logger' do
-          expect(subject.logger).to eq(params[:logger])
-        end
-      end
-
-      context 'given no :logger' do
-        let(:params){ {} }
-
-        it 'stores the Rails logger' do
-          expect(subject.logger).to eq(Rails.logger)
-        end
-      end
-    end
-
-    context 'given no arguments' do
-      it 'stores the Rails logger' do
-        expect( described_class.new.logger ).to eq(Rails.logger)
-      end
-    end
-  end
-
   describe '#court_for' do
     let(:dummy_json){ '[{"search": "result"}]' }
     before do
@@ -49,9 +22,12 @@ describe C100App::CourtfinderAPI do
         allow(subject).to receive(:search).and_raise(dummy_exception)
       end
 
-      it 'handles the error' do
-        expect(subject).to receive(:handle_error).with(dummy_exception)
-        subject.court_for('a', 'b')
+      it 'reports the error to Sentry and re-raise it' do
+        expect(Raven).to receive(:capture_exception).with(dummy_exception)
+
+        expect {
+          subject.court_for('a', 'b')
+        }.to raise_error
       end
     end
   end
@@ -101,46 +77,6 @@ describe C100App::CourtfinderAPI do
       it "returns the interpolated URL" do
         expect(subject.send(:construct_url,*args)).to include("endpoint.json?aol=aol&postcode=pcd")
       end
-    end
-  end
-
-  describe "#handle_error" do
-    let(:e){ double('exception') }
-
-    it 'logs the error with the COURTFINDER_ERROR_MSG' do
-      allow(subject).to receive(:raise)
-      expect(subject).to receive(:log_error).with(C100App::CourtfinderAPI::COURTFINDER_ERROR_MSG, e)
-      subject.send(:handle_error, e)
-    end
-
-    it 're-raises the error' do
-      allow(subject).to receive(:log_error)
-      expect(subject).to receive(:raise)
-      subject.send(:handle_error, e)
-    end
-  end
-
-  describe '#log_error' do
-    let(:msg){ "blah" }
-    let(:exception){ double('Exception') }
-    before do
-      allow(subject.logger).to receive(:info).with(anything)
-      allow(Raven).to receive(:capture_exception)
-    end
-
-    it 'logs the message as info using its own logger' do
-      expect(subject.logger).to receive(:info).with(msg)
-      subject.send(:log_error, msg, exception)
-    end
-
-    it 'logs info about the exception using its own logger' do
-      expect(subject.logger).to receive(:info).with({caller: 'C100App::CourtfinderAPI', method: 'court_for', error: exception}.to_json)
-      subject.send(:log_error, msg, exception)
-    end
-
-    it 'captures the exception in Raven' do
-      expect(Raven).to receive(:capture_exception).with(exception)
-      subject.send(:log_error, msg, exception)
     end
   end
 
@@ -242,9 +178,7 @@ describe C100App::CourtfinderAPI do
           expect(subject.is_ok?).to eq(false)
         end
       end
-
     end
-
   end
 
   describe 'status' do
