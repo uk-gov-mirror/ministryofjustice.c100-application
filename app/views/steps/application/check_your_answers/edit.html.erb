@@ -15,7 +15,9 @@
   <div class="declaration-box util_mt-medium">
     <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge util_mb-medium"><%=t '.declaration_heading' %></h1>
 
-    <p class="lede gv-u-text-lede"><%= t '.declaration_lead_text' %></p>
+    <% unless current_c100_application.has_solicitor? %>
+      <p class="lede gv-u-text-lede"><%= t '.declaration_lead_text' %></p>
+    <% end %>
 
     <div role="note" aria-label="Warning" class="notice gv-c-notice util_mb-medium">
       <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">

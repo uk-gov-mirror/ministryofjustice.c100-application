@@ -762,7 +762,7 @@ en:
           heading: Check your answers
           lead_text: Please review your answers before you finish your application
           declaration_heading: Declaration
-          declaration_lead_text: You must confirm that the information you’ve provided in this application is true.
+          declaration_lead_text: By entering your full name, you confirm that the facts stated in this application are true.
           warning_title: Warning
           false_information_warning: You could be fined or imprisoned for contempt of court if you deliberately submit false information, or cause false information to be submitted.
           submit_warning:
@@ -1168,10 +1168,10 @@ en:
           print_and_post: Print and send by post
         receipt_email: Enter an email address if you would like to get a confirmation
       steps_application_declaration_form:
-        declaration_signee: By entering your full name, you confirm that the facts stated in this application are true
+        declaration_signee: Enter your full name
         declaration_signee_capacity:
-          applicant: I am the applicant
-          representative: I am the solicitor and I have been given the authority to make this declaration
+          applicant: I am the applicant and I believe that the facts stated in this application are true.
+          representative: I am the solicitor. The applicant believes that the facts stated in this application are true and I have been given the authority to make this declaration.
       steps_alternatives_court_form:
         court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
@@ -1370,7 +1370,7 @@ en:
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
       steps_application_submission_form:
-        receipt_email: We’ll send a copy of your application to this email address
+        receipt_email: We’ll send a copy of your application to this email address. You can also download a copy on the confirmation page.
       steps_abduction_passport_details_form:
         passport_possesion: *select_all_that_apply
       steps_abduction_risk_details_form:
