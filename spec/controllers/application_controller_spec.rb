@@ -16,6 +16,20 @@ RSpec.describe ApplicationController do
   end
 
   context 'Security handling' do
+    before do
+      routes.draw { get 'my_url' => 'anonymous#my_url' }
+    end
+
+    context '#drop_dangerous_headers!' do
+      it 'removes dangerous headers' do
+        request.headers.merge!('HTTP_X_FORWARDED_HOST' => 'foobar.com')
+        get :my_url
+        expect(request.env).not_to include('HTTP_X_FORWARDED_HOST')
+      end
+    end
+  end
+
+  context 'Session handling' do
     context 'ensure_session_validity' do
       before do
         travel_to Time.at(555555)

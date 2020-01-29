@@ -10,33 +10,11 @@ module SecurityHandling
 
     protect_from_forgery with: :exception, prepend: true
 
-    before_action :drop_dangerous_headers!,
-                  :ensure_session_validity
-
-    after_action :set_security_headers
-
-    helper_method :session_expire_in_minutes
-  end
-
-  def session_expire_in_minutes
-    Rails.configuration.x.session.expires_in_minutes
-  end
-
-  def session_expire_in_seconds
-    session_expire_in_minutes * 60
+    before_action :drop_dangerous_headers!
+    after_action  :set_security_headers
   end
 
   private
-
-  def ensure_session_validity
-    epoch = Time.now.to_i
-
-    if epoch - session.fetch(:last_seen, epoch) > session_expire_in_seconds
-      reset_session
-    end
-
-    session[:last_seen] = epoch
-  end
 
   def drop_dangerous_headers!
     request.env.except!('HTTP_X_FORWARDED_HOST') # just drop the variable
@@ -54,6 +32,6 @@ module SecurityHandling
       'X-XSS-Protection'          => '1; mode=block',
       'X-Content-Type-Options'    => 'nosniff',
       'Strict-Transport-Security' => 'max-age=15768000; includeSubDomains',
-    }
+    }.freeze
   end
 end

@@ -1,8 +1,8 @@
 module Backoffice
   class ApplicationController < ActionController::Base
-    layout 'backoffice'
+    include SecurityHandling
 
-    protect_from_forgery with: :exception, prepend: true
+    layout 'backoffice'
 
     rescue_from Exception do |exception|
       raise if Rails.application.config.consider_all_requests_local
