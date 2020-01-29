@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SecurityHandling
+  include SessionHandling
   include ErrorHandling
 
   # This is required to get request attributes in to the production logs.
