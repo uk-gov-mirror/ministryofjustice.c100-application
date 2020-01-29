@@ -146,7 +146,7 @@ moj.Modules.sessionTimeout = {
     //
     // So we've decided to make this function non-destructive. Just close the modal
     // and do not trigger any further server-side requests. Still the server will check
-    // the validity of the session on each request (refer to module `SecurityHandling`).
+    // the validity of the session on each request (refer to module `SessionHandling`).
 
     this.hideModal();
   }

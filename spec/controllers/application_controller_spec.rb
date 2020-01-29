@@ -27,6 +27,13 @@ RSpec.describe ApplicationController do
         expect(request.env).not_to include('HTTP_X_FORWARDED_HOST')
       end
     end
+
+    context 'basic HTTP auth' do
+      it 'checks for the ENV variable' do
+        expect(ENV).to receive(:key?).with('HTTP_AUTH_ENABLED')
+        get :my_url
+      end
+    end
   end
 
   context 'Session handling' do
