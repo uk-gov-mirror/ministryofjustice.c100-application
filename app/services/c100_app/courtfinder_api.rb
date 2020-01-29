@@ -3,11 +3,8 @@ require 'open-uri'
 
 module C100App
   class CourtfinderAPI
-    attr_accessor :logger
-
-    API_ROOT              ||= "https://courttribunalfinder.service.gov.uk/".freeze
-    API_URL               ||= "#{API_ROOT}%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
-    COURTFINDER_ERROR_MSG ||= 'Exception hitting Courtfinder:'.freeze
+    API_ROOT ||= "https://courttribunalfinder.service.gov.uk/".freeze
+    API_URL  ||= "#{API_ROOT}%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
 
     SLUGS_CACHE_OPTIONS ||= {
       namespace: 'courtfinder',
@@ -16,14 +13,10 @@ module C100App
       skip_nil: true
     }.freeze
 
-    def initialize(params = {})
-      self.logger = params[:logger] || Rails.logger
-    end
-
     def court_for(area_of_law, postcode)
       JSON.parse(search(area_of_law, postcode))
-    rescue StandardError => e
-      handle_error(e)
+    rescue StandardError => ex
+      log_and_raise(ex)
     end
 
     def search(area_of_law, postcode)
@@ -77,18 +70,9 @@ module C100App
       format(API_URL, endpoint: endpoint, aol: area_of_law, pcd: postcode)
     end
 
-    # TODO: what's our plan for exception handling?
-    # For now, just log it and re-raise - the caller should know what to do
-    # better than we can (Dev principle!)
-    def handle_error(e)
-      log_error(COURTFINDER_ERROR_MSG, e)
-      raise
-    end
-
-    def log_error(msg, exception)
-      logger.info(msg)
-      logger.info({caller: self.class.name, method: 'court_for', error: exception}.to_json)
+    def log_and_raise(exception)
       Raven.capture_exception(exception)
+      raise
     end
   end
 end
