@@ -2,6 +2,7 @@ module Backoffice
   class ApplicationController < ActionController::Base
     include SecurityHandling
 
+    skip_before_action :check_http_credentials
     layout 'backoffice'
 
     rescue_from Exception do |exception|

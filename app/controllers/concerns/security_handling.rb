@@ -2,16 +2,12 @@ module SecurityHandling
   extend ActiveSupport::Concern
 
   included do
-    # :nocov:
-    if ENV.fetch('HTTP_AUTH_ENABLED', false)
-      http_basic_authenticate_with name: ENV.fetch('HTTP_AUTH_USER'), password: ENV.fetch('HTTP_AUTH_PASSWORD')
-    end
-    # :nocov:
-
     protect_from_forgery with: :exception, prepend: true
 
-    before_action :drop_dangerous_headers!
-    after_action  :set_security_headers
+    before_action :drop_dangerous_headers!,
+                  :check_http_credentials
+
+    after_action :set_security_headers
   end
 
   private
@@ -33,5 +29,15 @@ module SecurityHandling
       'X-Content-Type-Options'    => 'nosniff',
       'Strict-Transport-Security' => 'max-age=15768000; includeSubDomains',
     }.freeze
+  end
+
+  def check_http_credentials
+    return unless ENV.key?('HTTP_AUTH_ENABLED')
+
+    # :nocov:
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV.fetch('HTTP_AUTH_USER') && password == ENV.fetch('HTTP_AUTH_PASSWORD')
+    end
+    # :nocov:
   end
 end
