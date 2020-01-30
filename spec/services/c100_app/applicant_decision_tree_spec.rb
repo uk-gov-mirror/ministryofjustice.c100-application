@@ -115,30 +115,23 @@ RSpec.describe C100App::ApplicantDecisionTree do
     context 'when all applicants have been edited' do
       let(:record) { double('Applicant', id: 3) }
 
-      let(:dev_tools_enabled) { 'false' }
-      let(:development_env) { true }
-
       before do
-        allow(ENV).to receive(:[]).with('DEV_TOOLS_ENABLED').and_return(dev_tools_enabled)
-        allow(Rails.env).to receive(:development?).and_return(development_env)
+        allow(c100_application).to receive(:version).and_return(version)
       end
 
-      context 'on development environments' do
-        it { is_expected.to have_destination(:has_solicitor, :edit) }
-      end
-
-      context 'on production environments with DEV_TOOLS_ENABLED' do
-        let(:dev_tools_enabled) { 'true' }
-        let(:development_env) { false }
-
-        it { is_expected.to have_destination(:has_solicitor, :edit) }
-      end
-
-      context 'on production environments without DEV_TOOLS_ENABLED' do
-        let(:dev_tools_enabled) { 'false' }
-        let(:development_env) { false }
-
+      context 'when C100 application version is < 4' do
+        let(:version) { 3 }
         it { is_expected.to have_destination('/steps/respondent/names', :edit) }
+      end
+
+      context 'when C100 application version is = 4' do
+        let(:version) { 4 }
+        it { is_expected.to have_destination(:has_solicitor, :edit) }
+      end
+
+      context 'when C100 application version is > 4' do
+        let(:version) { 5 }
+        it { is_expected.to have_destination(:has_solicitor, :edit) }
       end
     end
   end

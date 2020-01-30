@@ -49,9 +49,9 @@ module C100App
       next_record_id(c100_application.applicant_ids)
     end
 
-    # TODO: change this to use `version >= 4` when releasing to production
+    # TODO: leave this until all applications are migrated to version >= 4
     def show_solicitor_journey?
-      dev_tools_enabled?
+      c100_application.version >= 4
     end
   end
 end
