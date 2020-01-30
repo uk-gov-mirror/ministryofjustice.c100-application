@@ -25,10 +25,7 @@ module Summary
       end
 
       def signee_capacity
-        I18n.translate!(
-          c100.declaration_signee_capacity || UserType::APPLICANT,
-          scope: 'shared.statement_of_truth_signee_capacity'
-        )
+        c100.declaration_signee_capacity || UserType::APPLICANT
       end
     end
   end

@@ -66,14 +66,14 @@ module Summary
           let(:declaration_signee_capacity) { UserType::REPRESENTATIVE }
 
           it 'returns the signee capacity' do
-            expect(answers[0].ivar).to include(signee_capacity: 'Applicant’s solicitor')
+            expect(answers[0].ivar).to include(signee_capacity: UserType::REPRESENTATIVE)
           end
         end
 
         context 'when there is no signee capacity' do
           it 'defaults to be an applicant' do
             expect(applicants).to receive(:first).and_return(nil)
-            expect(answers[0].ivar).to include(signee_capacity: 'Applicant')
+            expect(answers[0].ivar).to include(signee_capacity: UserType::APPLICANT)
           end
         end
       end
