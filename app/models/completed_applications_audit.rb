@@ -21,6 +21,7 @@ class CompletedApplicationsAudit < ApplicationRecord
     postcode = postcode.sub(/\s+/, '').upcase.at(0..-3) + '**'
 
     {
+      v: c100_application.version,
       postcode: postcode,
       c1a_form: c100_application.has_safety_concerns?,
       c8_form: c100_application.confidentiality_enabled?,
