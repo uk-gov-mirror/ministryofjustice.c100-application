@@ -4,6 +4,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
   let(:c100_application) {
     C100Application.new(
       id: '449362af-0bc3-4953-82a7-1363d479b876',
+      version: 123,
       created_at: Time.at(0),
       updated_at: Time.at(100),
       has_solicitor: has_solicitor,
@@ -45,6 +46,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
         submission_type: 'online',
         court: 'Test Court',
         metadata: {
+          v: 123,
           postcode: 'ABCD1**',
           c1a_form: false,
           c8_form: false,
