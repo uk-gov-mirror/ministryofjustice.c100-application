@@ -17,7 +17,6 @@ RSpec.describe NotifyMailer, type: :mailer do
       reset_password: 'reset_password_template_id',
       change_password: 'change_password_template_id',
       application_saved: 'application_saved_template_id',
-      submission_error: 'submission_error_template_id',
       draft_first_reminder: 'draft_first_reminder_template_id',
       draft_last_reminder: 'draft_last_reminder_template_id',
     )
@@ -35,26 +34,6 @@ RSpec.describe NotifyMailer, type: :mailer do
         service_name: 'Apply to court about child arrangements',
         resume_draft_url: 'https://c100.justice.uk/users/drafts/4a362e1c-48eb-40e3-9458-a31ead3f30a4/resume',
         draft_expire_in_days: 28,
-      })
-    end
-  end
-
-  describe '#submission_error' do
-    before do
-      allow(c100_application).to receive(:created_at).and_return(Time.at(0))
-      allow(c100_application).to receive(:receipt_email).and_return('receipt@example.com')
-    end
-
-    let(:mail) { described_class.submission_error(c100_application) }
-
-    it_behaves_like 'a Notify mail', template_id: 'submission_error_template_id'
-
-    it { expect(mail.to).to eq(['receipt@example.com']) }
-
-    it 'has the right personalisation' do
-      expect(mail.govuk_notify_personalisation).to eq({
-        service_name: 'Apply to court about child arrangements',
-        reference_code: '1970/01/4A362E1C',
       })
     end
   end
@@ -129,11 +108,10 @@ RSpec.describe NotifyMailer, type: :mailer do
   context 'capturing unexpected errors' do
     let(:mail) { described_class.reset_password_instructions(nil, 'token') }
 
-    it 'should report the exception' do
-      expect(Rails.logger).to receive(:info)
-      expect(Raven).to receive(:capture_exception)
+    it 'should add extra details for Sentry and re-raise it' do
       expect(Raven).to receive(:extra_context).with(
         {
+          method: 'reset_password_instructions',
           template_id: 'reset_password_template_id',
           personalisation: {
             service_name: 'Apply to court about child arrangements',
@@ -142,7 +120,7 @@ RSpec.describe NotifyMailer, type: :mailer do
         }
       )
 
-      mail.deliver_now
+      expect { mail.deliver_now }.to raise_error
     end
   end
 

@@ -31,6 +31,13 @@ class Application < Rails::Application
   # Don't generate system test files.
   config.generators.system_tests = nil
 
+  # By default we use `sidekiq` but can be overridden with the ENV variable,
+  # for example to use `async` or `inline`.
+  # In development most of the time can be left as `async`, otherwise you need
+  # to run redis and sidekiq in the background to process the jobs.
+  #
+  config.active_job.queue_adapter = ENV.fetch('QUEUE_ADAPTER', :sidekiq).to_sym
+
   # We are using our own url-shortener. These short urls redirect to surveymonkey,
   # and tracks visits, so we can see if they are being used.
   config.surveys = {

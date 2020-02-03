@@ -21,6 +21,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :test
 
+  config.active_job.queue_adapter = :test
+
   config.active_support.deprecation = :stderr
 
   # So we can always expect the same value in tests

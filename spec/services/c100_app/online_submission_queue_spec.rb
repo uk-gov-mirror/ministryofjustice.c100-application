@@ -6,10 +6,6 @@ RSpec.describe C100App::OnlineSubmissionQueue do
 
   subject { described_class.new(c100_application) }
 
-  before do
-    ActiveJob::Base.queue_adapter = :test
-  end
-
   describe '#process' do
     context 'when `email_submission` record already exists' do
       before do
@@ -51,13 +47,13 @@ RSpec.describe C100App::OnlineSubmissionQueue do
       it 'enqueues the court delivery job' do
         expect {
           subject.process
-        }.to have_enqueued_job.with(c100_application).on_queue('court_submissions')
+        }.to have_enqueued_job(CourtDeliveryJob).with(c100_application).on_queue('submissions')
       end
 
       it 'does not enqueue the applicant delivery job' do
         expect {
           subject.process
-        }.not_to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
+        }.not_to have_enqueued_job(ApplicantDeliveryJob).with(c100_application).on_queue('submissions')
       end
 
       context 'when there is a receipt email address' do
@@ -66,7 +62,7 @@ RSpec.describe C100App::OnlineSubmissionQueue do
         it 'enqueues the applicant delivery job' do
           expect {
             subject.process
-          }.to have_enqueued_job.with(c100_application).on_queue('applicant_receipts')
+          }.to have_enqueued_job(ApplicantDeliveryJob).with(c100_application).on_queue('submissions')
         end
       end
     end

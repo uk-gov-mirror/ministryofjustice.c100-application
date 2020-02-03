@@ -1,5 +1,5 @@
 class NotifyMailer < GovukNotifyRails::Mailer
-  rescue_from Exception, with: :log_errors
+  rescue_from Exception, with: :log_error_and_raise
 
   before_action do
     @service_name = I18n.translate!('service.name')
@@ -50,16 +50,6 @@ class NotifyMailer < GovukNotifyRails::Mailer
     mail(to: c100_application.user.email)
   end
 
-  def submission_error(c100_application)
-    set_template(:submission_error)
-
-    set_personalisation(
-      reference_code: c100_application.reference_code,
-    )
-
-    mail(to: c100_application.receipt_email)
-  end
-
   def draft_expire_reminder(c100_application, template_name)
     set_template(template_name)
 
@@ -85,14 +75,16 @@ class NotifyMailer < GovukNotifyRails::Mailer
 
   private
 
-  def log_errors(exception)
-    Rails.logger.info({caller: self.class.name, method: action_name, error: exception}.to_json)
-
+  def log_error_and_raise
     Raven.extra_context(
+      method: action_name,
       template_id: govuk_notify_template,
       personalisation: filtered_personalisation
     )
-    Raven.capture_exception(exception)
+
+    # The error is sent to Sentry automatically with extra context and the job
+    # is re-enqueued, as some errors can be retried and succeed (Notify blips).
+    raise
   end
 
   def filtered_personalisation
