@@ -35,15 +35,17 @@ probe_function(){
 wait_function(){
   sleep 2
 
-  for ((i=1; i<=$RETRY_LIMIT; i++))
-  do
-    IS_SIDEKIQ_DONE=$(sidekiqmon processes | grep -E "(0 busy)" > /dev/null)$?
+  i=0
+  while [[ ${i} -lt ${RETRY_LIMIT} ]]; do
+    i=$((i+1))
+
+    IS_SIDEKIQ_DONE=$(sidekiqmon processes | grep -E "(1 busy)" > /dev/null)$?
 
     if [[ ${IS_SIDEKIQ_DONE} -eq 0 ]]; then
       echo "Sidekiq finished all jobs."
       break
     else
-      echo "Sidekiq is still busy. Waiting $RETRY_FREQUENCY seconds..."
+      echo "Sidekiq is still busy. Retry $i/$RETRY_LIMIT Waiting $RETRY_FREQUENCY seconds..."
       sleep ${RETRY_FREQUENCY}
     fi
   done
