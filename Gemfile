@@ -30,8 +30,8 @@ gem 'redis'
 
 # PDF generation
 gem 'combine_pdf', '~> 1.0'
-gem 'wicked_pdf', '~> 1.1.0'
-gem 'wkhtmltopdf-binary', '0.12.3.1'
+gem 'wicked_pdf', '~> 1.4.0'
+gem 'wkhtmltopdf-binary-edge-alpine', '~> 0.12.5'
 
 group :production do
   gem 'lograge'

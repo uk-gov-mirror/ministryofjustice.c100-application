@@ -11,4 +11,5 @@
 WickedPdf.config ||= {}
 WickedPdf.config.merge!({
   encoding: 'utf-8',
+  zoom: 1.3,
 })
