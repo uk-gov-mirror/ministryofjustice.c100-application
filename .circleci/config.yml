@@ -119,6 +119,10 @@ jobs:
                     deployment/c100-application-deployment-staging \
                     webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
+            kubectl set image -n c100-application-staging \
+                    deployment/c100-application-sidekiq-staging \
+                    sidekiq="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
             kubectl annotate -n c100-application-staging \
                     deployment/c100-application-deployment-staging \
                     kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
@@ -164,6 +168,10 @@ jobs:
             kubectl set image -n c100-application-production \
                     deployment/c100-application-deployment-production \
                     webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+
+            kubectl set image -n c100-application-production \
+                    deployment/c100-application-sidekiq-production \
+                    sidekiq="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
             kubectl annotate -n c100-application-production \
                     deployment/c100-application-deployment-production \
