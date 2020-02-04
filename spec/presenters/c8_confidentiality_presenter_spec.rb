@@ -22,6 +22,14 @@ RSpec.describe C8ConfidentialityPresenter do
     }
   end
 
+  describe '#to_ary' do
+    it 'forwards private method' do
+      x, y = subject
+      expect(x).to eq(subject)
+      expect(y).to be_nil
+    end
+  end
+
   describe '.replacement_answer' do
     it { expect(described_class.replacement_answer).to eq('[See C8]') }
   end

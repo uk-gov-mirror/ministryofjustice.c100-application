@@ -18,6 +18,12 @@ class C8ConfidentialityPresenter < SimpleDelegator
 
   private
 
+  # This is just to remove from the logs:
+  #   `warning: delegator does not forward private method #to_ary`
+  def to_ary
+    [self]
+  end
+
   def confidential_detail?(attribute, value)
     DETAILS_UNDER_C8.include?(attribute) && value.present?
   end

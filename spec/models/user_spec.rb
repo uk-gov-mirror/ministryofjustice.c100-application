@@ -62,4 +62,20 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#send_devise_notification' do
+    let(:devise_mailer) { double('devise_mailer') }
+    let(:mailer) { double('mailer') }
+
+    before do
+      allow(subject).to receive(:devise_mailer).and_return(devise_mailer)
+    end
+
+    it 'uses `deliver_later`' do
+      expect(devise_mailer).to receive(:send).with(:test_email, subject, :hello).and_return(mailer)
+      expect(mailer).to receive(:deliver_later)
+
+      subject.send_devise_notification(:test_email, :hello)
+    end
+  end
 end
