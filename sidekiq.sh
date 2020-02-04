@@ -28,10 +28,6 @@ stop_function(){
   fi
 }
 
-probe_function(){
-  sidekiqmon processes | grep 'Processes (0)' > /dev/null && exit 1 || exit 0
-}
-
 wait_function(){
   sleep 2
 
@@ -39,7 +35,7 @@ wait_function(){
   while [[ ${i} -lt ${RETRY_LIMIT} ]]; do
     i=$((i+1))
 
-    IS_SIDEKIQ_DONE=$(sidekiqmon processes | grep -E "(1 busy)" > /dev/null)$?
+    IS_SIDEKIQ_DONE=$(sidekiqmon processes | grep -q "(0 busy)"; echo $?)
 
     if [[ ${IS_SIDEKIQ_DONE} -eq 0 ]]; then
       echo "Sidekiq finished all jobs."
@@ -49,6 +45,28 @@ wait_function(){
       sleep ${RETRY_FREQUENCY}
     fi
   done
+}
+
+# This is used in the kubernetes deployment readinessProbe and livenessProbe.
+probe_function(){
+  MONITOR_OUTPUT=$(sidekiqmon processes)
+
+  # Check redis connection
+  REDIS_CHECK=$(echo ${MONITOR_OUTPUT} | grep -q "ECONNREFUSED"; echo $?)
+
+  # Check there is at least 1 process running
+  PROCESSES_CHECK=$(echo ${MONITOR_OUTPUT} | grep -q "Processes (0)"; echo $?)
+
+  # Check there is more than 1 thread running (normally will be 3)
+  THREADS_CHECK=$(echo ${MONITOR_OUTPUT} | grep -qE "Threads: \b[0-1]\b"; echo $?)
+
+  # If any of the above checks returns '0' it means the regex found a match
+  if [[ ${REDIS_CHECK} -eq 0 ]] || [[ ${PROCESSES_CHECK} -eq 0 ]] || [[ ${THREADS_CHECK} -eq 0 ]]; then
+    echo 'Sidekiq probe: KO'
+    exit 1
+  fi
+
+  echo 'Sidekiq probe: OK'
 }
 
 

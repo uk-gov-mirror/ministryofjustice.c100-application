@@ -34,7 +34,7 @@ services:
     build: .
     environment:
       <<: *common-variables
-    entrypoint: bundle exec sidekiq
+    entrypoint: ["./sidekiq.sh", "start"]
     depends_on:
       - db
       - cache
