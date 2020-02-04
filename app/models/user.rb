@@ -18,4 +18,11 @@ class User < ApplicationRecord
     # This does *not* automatically happen when they create their account.
     where('last_sign_in_at <= :date OR (created_at <= :date AND last_sign_in_at IS NULL)', date: date).destroy_all
   end
+
+  # Needed in order to deliver Devise emails in the background.
+  # https://github.com/heartcombo/devise#activejob-integration
+  #
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
 end
