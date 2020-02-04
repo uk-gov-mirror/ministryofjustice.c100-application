@@ -96,6 +96,19 @@ However it is still possible to have full flexibility of what mutant runs in you
 ##### Run mutation on a small sample of classes (default):
 `RAILS_ENV=test bundle exec rake mutant`
 
+## Sidekiq for background job processing
+
+The service makes use of [Sidekiq](https://github.com/mperham/sidekiq) to process background jobs including sending 
+emails asynchronously. It also requires Redis to be setup and running.
+
+In local machines, to simplify development and minimise dependencies, you can set an ENV variable `QUEUE_ADAPTER=async` 
+so the jobs are processed in memory.
+
+If you want to replicate a production environment as much as possible, you can use `docker-compose` or you can install 
+the dependencies locally (Redis and Sidekiq) and then start the redis server (`redis-server`) and sidekiq worker (there 
+is a [sidekiq.sh](/sidekiq.sh) script to simplify this and other tasks).  
+Do not forget to unset the `QUEUE_ADAPTER` variable in your local env.
+
 ## Back office (Auth0 integration)
 
 There is a back office / admin side that uses [Auth0](http://auth0.com) as the identity provider.  
