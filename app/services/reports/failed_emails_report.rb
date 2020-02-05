@@ -105,7 +105,7 @@ module Reports
         puts "[#{Time.now}] Sending failed emails report to #{recipients.size} recipients..."
 
         recipients.each do |recipient|
-          ReportsMailer.failed_emails_report(report, to_address: recipient).deliver_now
+          ReportsMailer.failed_emails_report(report, to_address: recipient).deliver_later
         end
       end
     end

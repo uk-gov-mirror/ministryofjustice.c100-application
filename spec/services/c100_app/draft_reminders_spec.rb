@@ -21,7 +21,7 @@ RSpec.describe C100App::DraftReminders do
     end
 
     it 'should send the email and update the C100 application status' do
-      expect(mailer_double).to receive(:deliver_now)
+      expect(mailer_double).to receive(:deliver_later)
       expect(c100_application).to receive(:update).with(status: :another_status)
       subject.run
     end
