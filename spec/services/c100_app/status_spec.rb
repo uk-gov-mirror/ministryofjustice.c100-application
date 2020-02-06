@@ -1,115 +1,106 @@
 require 'rails_helper'
 
 RSpec.describe C100App::Status do
-  let(:status) do
-    {
-      service_status: service_status,
-      dependencies: {
-        database_status: database_status,
-        courtfinder_status: courtfinder_status,
-      }
-    }
-  end
-
-  let(:check) { described_class.new }
-
-  # Default is everything is fine
-  let(:service_status) { 'ok' }
-  let(:database_status) { 'ok' }
-  let(:courtfinder_status) { 'ok' }
-  let(:courtfinder_api_is_ok) { true }
-
-  before do
-    allow(ActiveRecord::Base).to receive(:connection).and_return(double)
-    allow_any_instance_of(C100App::CourtfinderAPI).to receive(:is_ok?).and_return(courtfinder_api_is_ok)
-  end
-
-  describe '#service_status' do
-    before do
-      allow(subject).to receive(:database_status).and_return(database_status)
-      allow(subject).to receive(:courtfinder_status).and_return(courtfinder_status)
-    end
-    context 'when database_status is "ok"' do
-      let(:database_status) { 'ok' }
-
-      context 'when courtfinder_status is "ok"' do
-        let(:courtfinder_status) { 'ok' }
-
-        it 'returns ok' do
-          expect(subject.send(:service_status)).to eq('ok')
-        end
-      end
-
-      context 'when courtfinder_status is not "ok"' do
-        let(:courtfinder_status) { 'foo' }
-
-        it 'returns failed' do
-          expect(subject.send(:service_status)).to eq('failed')
-        end
-      end
-    end
-    context 'when courtfinder_status is "ok"' do
-      let(:courtfinder_status) { 'ok' }
-
-      context 'when database_status is not "ok"' do
-        let(:database_status) { 'foo' }
-
-        it 'returns failed' do
-          expect(subject.send(:service_status)).to eq('failed')
-        end
-      end
-    end
-  end
-
   describe '#success?' do
-    context 'for a success result' do
-      it 'returns true' do
-        expect(check.success?).to eq(true)
-      end
+    before do
+      allow(subject).to receive(:results).and_return(results)
     end
 
-    context 'for a failed result' do
-      let(:courtfinder_api_is_ok) { false }
+    context 'when all checks are OK' do
+      let(:results) { {database: true, foobar: true, sidekiq: true} }
+      it { expect(subject.success?).to eq(true) }
+    end
 
-      it 'returns false' do
-        expect(check.success?).to eq(false)
-      end
+    context 'when at least one check is KO' do
+      let(:results) { {database: true, foobar: false, sidekiq: true} }
+      it { expect(subject.success?).to eq(false) }
     end
   end
 
-  describe '#result' do
-    context 'database available' do
-      let(:courtfinder_api_is_ok){ true }
-      before do
-        expect(ActiveRecord::Base).to receive(:connection).and_call_original
-      end
+  describe '#response' do
+    let(:database_active) { true }
+    let(:sidekiq_queues) { [double(latency: 5), double(latency: 10)] }
+    let(:sidekiq_process_set) { [1] }
 
-      specify { expect(check.result).to eq(status) }
+    before do
+      allow(ActiveRecord::Base.connection).to receive(:active?).and_return(database_active)
+      allow(Sidekiq::Queue).to receive(:all).and_return(sidekiq_queues)
+      allow(Sidekiq::ProcessSet).to receive(:new).and_return(sidekiq_process_set)
     end
 
-    context 'database unavailable' do
-      let(:service_status) { 'failed' }
-      let(:database_status) { 'failed' }
+    describe 'database' do
+      context 'database is OK' do
+        let(:database_active) { true }
 
-      before do
-        expect(ActiveRecord::Base).to receive(:connection).and_return(nil)
+        it {
+          expect(subject.response[:dependencies]).to include('database' => true)
+        }
       end
 
-      specify { expect(check.result).to eq(status) }
+      context 'database is KO' do
+        let(:database_active) { false }
+
+        it {
+          expect(subject.response[:dependencies]).to include('database' => false)
+        }
+      end
+
+      context 'database is KO (raises error)' do
+        before do
+          allow(ActiveRecord::Base.connection).to receive(:active?).and_raise('boom')
+        end
+
+        it {
+          expect(subject.response[:dependencies]).to include('database' => false)
+        }
+      end
     end
 
-    describe 'Courtfinder API status' do
-      context 'when CourtfinderAPI.status.is_ok?' do
-        let(:courtfinder_api_is_ok){ true }
+    describe 'sidekiq' do
+      context 'sidekiq is OK' do
+        let(:sidekiq_process_set) { [1] }
 
-        specify { expect(check.result).to eq(status) }
+        it {
+          expect(subject.response[:dependencies]).to include('sidekiq' => true)
+        }
       end
-      context 'when it is not OK' do
-        let(:courtfinder_api_is_ok){ false }
-        let(:service_status) { 'failed' }
-        let(:courtfinder_status) { 'failed' }
 
-        specify { expect(check.result).to eq(status) }
+      context 'sidekiq is KO' do
+        let(:sidekiq_process_set) { [] }
+
+        it {
+          expect(subject.response[:dependencies]).to include('sidekiq' => false)
+        }
+      end
+
+      context 'sidekiq is KO (raises error)' do
+        before do
+          allow(Sidekiq::ProcessSet).to receive(:new).and_raise('boom')
+        end
+
+        it {
+          expect(subject.response[:dependencies]).to include('sidekiq' => false)
+        }
+      end
+    end
+
+    describe 'sidekiq_latency' do
+      context 'returns the sum of the queues latencies' do
+        it {
+          expect(subject.response).to include(healthy: true)
+          expect(subject.response[:dependencies]).to include('sidekiq_latency' => 15)
+        }
+      end
+
+      context 'sidekiq is KO and queues method raises error' do
+        before do
+          allow(Sidekiq::Queue).to receive(:all).and_raise('boom')
+        end
+
+        it {
+          expect(subject.response).to include('healthy': false)
+          expect(subject.response[:dependencies]).to include('sidekiq_latency' => false)
+        }
       end
     end
   end
