@@ -19,7 +19,7 @@ module C100App
         created_days_ago: 23,
         status: :in_progress,
         status_transition_to: :first_reminder_sent,
-        email_template_name: :draft_first_reminder
+        email_template_name: 'draft_first_reminder'
       )
     end
 
@@ -28,7 +28,7 @@ module C100App
         created_days_ago: 27,
         status: :first_reminder_sent,
         status_transition_to: :last_reminder_sent,
-        email_template_name: :draft_last_reminder
+        email_template_name: 'draft_last_reminder'
       )
     end
 

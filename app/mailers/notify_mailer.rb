@@ -1,6 +1,4 @@
 class NotifyMailer < GovukNotifyRails::Mailer
-  rescue_from Exception, with: :log_error_and_raise
-
   before_action do
     @service_name = I18n.translate!('service.name')
     @template_ids = Rails.configuration.govuk_notify_templates
@@ -72,29 +70,4 @@ class NotifyMailer < GovukNotifyRails::Mailer
     super({ service_name: @service_name }.merge(personalisation))
   end
   # rubocop:enable Naming/AccessorMethodName
-
-  private
-
-  def log_error_and_raise
-    Raven.extra_context(
-      method: action_name,
-      template_id: govuk_notify_template,
-      personalisation: filtered_personalisation
-    )
-
-    # The error is sent to Sentry automatically with extra context and the job
-    # is re-enqueued, as some errors can be retried and succeed (Notify blips).
-    raise
-  end
-
-  def filtered_personalisation
-    personalisation = govuk_notify_personalisation&.dup || {}
-    personalisation.each_key do |key|
-      personalisation[key] = FILTERED if filter_key?(key)
-    end
-  end
-
-  def filter_key?(key)
-    PERSONALISATION_ERROR_FILTER.include?(key)
-  end
 end
