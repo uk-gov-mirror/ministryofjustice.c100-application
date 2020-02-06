@@ -7,7 +7,7 @@ RSpec.describe C100App::ReminderRuleSet do
     it { expect(subject.created_days_ago).to eq(23) }
     it { expect(subject.status).to eq(:in_progress) }
     it { expect(subject.status_transition_to).to eq(:first_reminder_sent) }
-    it { expect(subject.email_template_name).to eq(:draft_first_reminder) }
+    it { expect(subject.email_template_name).to eq('draft_first_reminder') }
   end
 
   describe '.last_reminder' do
@@ -16,7 +16,7 @@ RSpec.describe C100App::ReminderRuleSet do
     it { expect(subject.created_days_ago).to eq(27) }
     it { expect(subject.status).to eq(:first_reminder_sent) }
     it { expect(subject.status_transition_to).to eq(:last_reminder_sent) }
-    it { expect(subject.email_template_name).to eq(:draft_last_reminder) }
+    it { expect(subject.email_template_name).to eq('draft_last_reminder') }
   end
 
   describe '#find_each' do

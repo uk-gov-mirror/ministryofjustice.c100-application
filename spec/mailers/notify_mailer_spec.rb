@@ -105,30 +105,11 @@ RSpec.describe NotifyMailer, type: :mailer do
     end
   end
 
-  context 'capturing unexpected errors' do
+  context 'unexpected errors' do
     let(:mail) { described_class.reset_password_instructions(nil, 'token') }
 
-    it 'should add extra details for Sentry and re-raise it' do
-      expect(Raven).to receive(:extra_context).with(
-        {
-          method: 'reset_password_instructions',
-          template_id: 'reset_password_template_id',
-          personalisation: {
-            service_name: 'Apply to court about child arrangements',
-            reset_password_url: '[FILTERED]',
-          }
-        }
-      )
-
+    it 'should just raise the error (let the job processor handle it)' do
       expect { mail.deliver_now }.to raise_error
     end
-  end
-
-  describe 'personalisation logging filter' do
-    it {
-      expect(
-        described_class::PERSONALISATION_ERROR_FILTER
-      ).to match_array([:reset_password_url, :applicant_name, :link_to_pdf, :link_to_c8_pdf])
-    }
   end
 end
