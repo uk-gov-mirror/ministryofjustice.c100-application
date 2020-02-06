@@ -32,8 +32,8 @@ RSpec.describe Users::LoginsController do
         expect(warden).to receive(:authenticate!).and_return(user)
       end
 
-      it 'does not update `last_sign_in_at` attribute (user is not automatically signed-in)' do
-        expect { do_post }.not_to change(user, :last_sign_in_at)
+      it 'does not update `current_sign_in_at` attribute (user is not automatically signed-in)' do
+        expect { do_post }.not_to change(user, :current_sign_in_at)
       end
 
       it 'redirects to the confirmation page' do

@@ -13,10 +13,10 @@ class User < ApplicationRecord
   attr_accessor :last_sign_in_ip, :current_sign_in_ip, :sign_in_count
 
   def self.purge!(date)
-    # Using `#created_at` as the secondary criteria because `#last_sign_in_at`
-    # does not get set until after the first time they have actually signed in.
+    # Using `#created_at` as the secondary criteria because `#current_sign_in_at`
+    # does not get set until the first time they have actually signed in.
     # This does *not* automatically happen when they create their account.
-    where('last_sign_in_at <= :date OR (created_at <= :date AND last_sign_in_at IS NULL)', date: date).destroy_all
+    where('current_sign_in_at <= :date OR (created_at <= :date AND current_sign_in_at IS NULL)', date: date).destroy_all
   end
 
   # Needed in order to deliver Devise emails in the background.
