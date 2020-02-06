@@ -5,6 +5,10 @@ RSpec.describe User, type: :model do
     specify { expect(described_class.column_names).to include('last_sign_in_at') }
   end
 
+  describe '#current_sign_in_at' do
+    specify { expect(described_class.column_names).to include('current_sign_in_at') }
+  end
+
   describe '.purge!' do
     let(:finder_double) { double.as_null_object }
 
@@ -14,7 +18,7 @@ RSpec.describe User, type: :model do
 
     it 'picks records equal to or older than the passed-in date' do
       expect(described_class).to receive(:where).with(
-        'last_sign_in_at <= :date OR (created_at <= :date AND last_sign_in_at IS NULL)', date: 30.days.ago
+        'current_sign_in_at <= :date OR (created_at <= :date AND current_sign_in_at IS NULL)', date: 30.days.ago
       ).and_return(finder_double)
 
       described_class.purge!(30.days.ago)
