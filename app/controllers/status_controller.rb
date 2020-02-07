@@ -7,11 +7,16 @@ class StatusController < BareApplicationController
     commit_id: ENV['APP_GIT_COMMIT'],
   }.freeze
 
+  # Use the `ping` endpoint for kubernetes probes, and this one
+  # for Pingdom or similar monitoring systems. Reason being this
+  # endpoint reports external dependencies that can fail, and
+  # kubernetes would kill the pods/containers if this happens.
+  #
   def index
     check = C100App::Status.new
     status_code = check.success? ? :ok : :service_unavailable
 
-    respond_with(check.result, status: status_code)
+    respond_with(check.response, status: status_code)
   end
 
   def ping

@@ -4,14 +4,16 @@ RSpec.describe StatusController, type: :controller do
   # This is very-happy-path to ensure the controller responds.  The bulk of the
   # status is tested in spec/services/status_spec.rb.
   describe '#index' do
-    let(:status) { instance_double(C100App::Status, result: result, success?: success) }
+    let(:status) { instance_double(C100App::Status, response: result, success?: success) }
 
     let(:result) {
       {
-        service_status: 'ok',
+        healthy: true,
         dependencies: {
-          database_status: 'ok',
-          courtfinder_status: 'ok'
+          database: true,
+          redis: true,
+          sidekiq: true,
+          courtfinder: true,
         }
       }.to_json
     }
