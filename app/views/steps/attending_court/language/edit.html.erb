@@ -1,0 +1,29 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <p class="app__section_heading"><%=t '.section' %></p>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <p><%=t '.info_html' %></p>
+
+    <%= step_form @form_object do |f| %>
+      <%=
+        f.check_box_fieldset :help_with_language, [
+          :language_interpreter, :sign_language_interpreter
+        ] do |fieldset|
+          fieldset.check_box_input(:language_interpreter) {
+            f.text_area :language_interpreter_details, size: '40x4', class: 'form-control-3-4'
+          }
+          fieldset.check_box_input(:sign_language_interpreter) {
+            f.text_area :sign_language_interpreter_details, size: '40x4', class: 'form-control-3-4'
+          }
+        end
+      %>
+
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>

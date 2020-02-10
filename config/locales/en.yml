@@ -804,6 +804,15 @@ en:
           page_title: Details of urgent hearing
           heading: Details of urgent hearing
           court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" rel="external" target="_blank">contact your nearest family court</a> for assistance.
+    # attending court redesign -- begin
+    attending_court:
+      language:
+        edit:
+          page_title: Language help
+          section: *attending_court
+          heading: Does anyone in this application need help with language?
+          info_html: You can ask for an interpreter. In Wales, you have the right to speak Welsh at any court hearing.
+    # attending court redesign -- end
     international:
       resident:
         edit:
@@ -1118,6 +1127,10 @@ en:
         dob_unknown_html: ""
       steps_application_declaration_form:
         declaration_signee_capacity_html: ""
+      # attending court redesign -- begin
+      steps_attending_court_language_form:
+        help_with_language: 'One of the people named in this application needs:'
+      # attending court redesign -- end
 
     label:
       steps_shared_relationship_form:
@@ -1154,6 +1167,13 @@ en:
         language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
+      # attending court redesign -- begin
+      steps_attending_court_language_form:
+        language_interpreter: An interpreter
+        sign_language_interpreter: A sign language interpreter
+        language_interpreter_details: Give details of who needs an interpreter and the language they require (including dialect, if applicable)
+        sign_language_interpreter_details: Give details of who needs a British Sign Language interpreter
+      # attending court redesign -- end
       steps_application_payment_form:
         payment_type:
           help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
