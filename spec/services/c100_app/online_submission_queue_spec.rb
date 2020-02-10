@@ -9,7 +9,9 @@ RSpec.describe C100App::OnlineSubmissionQueue do
   describe '#process' do
     context 'when `email_submission` record already exists' do
       before do
-        allow(c100_application).to receive(:email_submission).and_return(double)
+        allow(EmailSubmission).to receive(:create).with(
+          c100_application: c100_application
+        ).and_raise(ActiveRecord::RecordNotUnique)
       end
 
       it 'does not process the jobs' do
@@ -21,26 +23,12 @@ RSpec.describe C100App::OnlineSubmissionQueue do
 
     context 'when `email_submission` record does not exist' do
       before do
-        allow(c100_application).to receive(:email_submission).and_return(nil)
-        allow(c100_application).to receive(:create_email_submission)
-      end
-
-      # mutant kill
-      context 'uses `present?`' do
-        let(:finder_double) { double }
-
-        before do
-          allow(c100_application).to receive(:email_submission).and_return(finder_double)
-        end
-
-        it {
-          expect(finder_double).to receive(:present?)
-          subject.process
-        }
+        allow(EmailSubmission).to receive(:create).with(
+          c100_application: c100_application
+        ).and_return(double.as_null_object)
       end
 
       it 'creates the `email_submission` record' do
-        expect(c100_application).to receive(:create_email_submission)
         subject.process
       end
 

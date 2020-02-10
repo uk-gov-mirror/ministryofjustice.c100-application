@@ -8,9 +8,7 @@ module C100App
 
     def process
       # Do not process again if we have a DB record, to avoid duplicating emails
-      return if processed?
-
-      initialize_audit!
+      return unless ready_to_process
 
       CourtDeliveryJob.perform_later(c100_application)
       ApplicantDeliveryJob.perform_later(c100_application) if receipt?
@@ -22,12 +20,14 @@ module C100App
       c100_application.receipt_email?
     end
 
-    def processed?
-      c100_application.email_submission.present?
-    end
-
-    def initialize_audit!
-      c100_application.create_email_submission
+    # Thread-safe mechanism.
+    # Do not use `find_or_create` as there are race-conditions
+    #
+    def ready_to_process
+      EmailSubmission.create(c100_application: c100_application)
+    rescue ActiveRecord::RecordNotUnique
+      # do nothing and return `nil` if record already exists
+      nil
     end
   end
 end
