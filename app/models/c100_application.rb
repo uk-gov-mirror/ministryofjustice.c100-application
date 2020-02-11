@@ -11,24 +11,25 @@ class C100Application < ApplicationRecord
 
   belongs_to :user, optional: true
 
-  has_one  :solicitor,        dependent: :destroy
-  has_one  :abduction_detail, dependent: :destroy
-  has_one  :court_order,      dependent: :destroy
-  has_one  :court_proceeding, dependent: :destroy
-  has_one  :miam_exemption,   dependent: :destroy
-  has_one  :screener_answers, dependent: :destroy
-  has_one  :email_submission, dependent: :destroy
+  has_one  :solicitor,          dependent: :destroy
+  has_one  :abduction_detail,   dependent: :destroy
+  has_one  :court_order,        dependent: :destroy
+  has_one  :court_proceeding,   dependent: :destroy
+  has_one  :court_arrangement,  dependent: :destroy
+  has_one  :miam_exemption,     dependent: :destroy
+  has_one  :screener_answers,   dependent: :destroy
+  has_one  :email_submission,   dependent: :destroy
 
-  has_many :abuse_concerns,   dependent: :destroy
-  has_many :relationships,    dependent: :destroy
+  has_many :abuse_concerns,     dependent: :destroy
+  has_many :relationships,      dependent: :destroy
 
-  has_many :people,           dependent: :destroy
+  has_many :people,             dependent: :destroy
   has_many :minors
   has_many :children
   has_many :applicants
   has_many :respondents
-  has_many :other_children,   dependent: :destroy
-  has_many :other_parties,    dependent: :destroy
+  has_many :other_children,     dependent: :destroy
+  has_many :other_parties,      dependent: :destroy
 
   scope :with_owner,    -> { where.not(user: nil) }
   scope :not_completed, -> { where.not(status: :completed) }

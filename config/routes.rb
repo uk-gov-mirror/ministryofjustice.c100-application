@@ -269,6 +269,9 @@ Rails.application.routes.draw do
       edit_step :jurisdiction
       edit_step :request
     end
+    namespace :attending_court do
+      edit_step :language
+    end
     namespace :completion do
       show_step :confirmation
       show_step :what_next

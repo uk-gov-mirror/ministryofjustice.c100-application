@@ -563,6 +563,14 @@ en:
               inclusion: Select yes if you need specific arrangements
             special_arrangements_details:
               blank: *blank_details_error
+        # attending court redesign -- begin
+        steps/attending_court/language_form:
+          attributes:
+            language_interpreter_details:
+              blank: Enter details of your interpreter needs
+            sign_language_interpreter_details:
+              blank: Enter details of your sign language interpreter needs
+        # attending court redesign -- end
         steps/application/payment_form:
           attributes:
             payment_type:

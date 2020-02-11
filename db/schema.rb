@@ -177,6 +177,17 @@ ActiveRecord::Schema.define(version: 2020_02_10_092306) do
     t.index ["reference_code"], name: "index_completed_applications_audit_on_reference_code", unique: true
   end
 
+  create_table "court_arrangements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "language_interpreter"
+    t.text "language_interpreter_details"
+    t.boolean "sign_language_interpreter"
+    t.text "sign_language_interpreter_details"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_court_arrangements_on_c100_application_id", unique: true
+  end
+
   create_table "court_orders", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "non_molestation"
     t.date "non_molestation_issue_date"
@@ -361,6 +372,7 @@ ActiveRecord::Schema.define(version: 2020_02_10_092306) do
   add_foreign_key "c100_applications", "users"
   add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "child_residences", "people", column: "child_id"
+  add_foreign_key "court_arrangements", "c100_applications"
   add_foreign_key "court_orders", "c100_applications"
   add_foreign_key "court_proceedings", "c100_applications"
   add_foreign_key "email_submissions", "c100_applications"
