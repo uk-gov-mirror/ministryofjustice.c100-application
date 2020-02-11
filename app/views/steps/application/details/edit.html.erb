@@ -10,12 +10,14 @@
       <%=t '.info_html' %>
     </div>
 
-    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-      <p><%=t '.timeout_warning', session_timeout: session_expire_in_minutes %></p>
-    </div>
+    <% unless user_signed_in? %>
+      <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+        <p><%=t '.timeout_warning', session_timeout: session_expire_in_minutes %></p>
+      </div>
+    <% end %>
 
     <%= step_form @form_object do |f| %>
-      <%= f.text_area :application_details, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.text_area :application_details, size: '40x8', class: 'form-control-3-4' %>
 
       <%= f.continue_button %>
     <% end %>

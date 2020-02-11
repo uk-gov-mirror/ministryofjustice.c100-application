@@ -12,6 +12,6 @@ RSpec.describe C100App::AttendingCourtDecisionTree do
 
   context 'when the step is `language`' do
     let(:step_params) { { language: 'anything' } }
-    it { is_expected.to have_destination('/steps/application/litigation_capacity', :edit) }
+    it { is_expected.to have_destination('/steps/application/intermediary', :edit) }
   end
 end

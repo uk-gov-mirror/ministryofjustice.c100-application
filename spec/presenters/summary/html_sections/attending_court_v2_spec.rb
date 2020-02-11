@@ -4,7 +4,16 @@ module Summary
   describe HtmlSections::AttendingCourtV2 do
     subject { described_class.new(c100_application) }
 
-    let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        reduced_litigation_capacity: 'yes',
+        participation_capacity_details: 'participation_capacity_details',
+        participation_other_factors_details: 'participation_other_factors_details',
+        participation_referral_or_assessment_details: 'participation_referral_or_assessment_details',
+        court_arrangement: court_arrangement
+      )
+    }
 
     let(:court_arrangement) {
       instance_double(CourtArrangement,
@@ -22,15 +31,24 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(1)
+        expect(answers.count).to eq(3)
 
-        expect(answers[0]).to be_an_instance_of(AnswersGroup)
-        expect(answers[0].name).to eq(:language_interpreter)
-        expect(answers[0].change_path).to eq('/steps/attending_court/language')
+        expect(answers[0]).to be_an_instance_of(Answer)
+        expect(answers[0].question).to eq(:reduced_litigation_capacity)
+        expect(answers[0].value).to eq('yes')
+        expect(answers[0].change_path).to eq('/steps/application/litigation_capacity')
+
+        expect(answers[1]).to be_an_instance_of(AnswersGroup)
+        expect(answers[1].name).to eq(:litigation_capacity)
+        expect(answers[1].change_path).to eq('/steps/application/litigation_capacity_details')
+
+        expect(answers[2]).to be_an_instance_of(AnswersGroup)
+        expect(answers[2].name).to eq(:language_interpreter)
+        expect(answers[2].change_path).to eq('/steps/attending_court/language')
       end
 
       context 'language_interpreter' do
-        let(:group_answers) { answers[0].answers }
+        let(:group_answers) { answers[2].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(4)

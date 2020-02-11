@@ -13,8 +13,8 @@ module Summary
 
       def answers
         [
-          language_assistance,
           litigation_capacity,
+          language_assistance,
           intermediary,
           special_assistance,
           special_arrangements,
