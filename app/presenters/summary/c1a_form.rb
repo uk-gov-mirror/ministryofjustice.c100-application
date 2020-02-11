@@ -86,6 +86,7 @@ module Summary
       [
         Sections::SectionHeader.new(c100_application, name: :c1a_attending_court),
         Sections::AttendingCourt.new(c100_application),
+        Sections::AttendingCourtV2.new(c100_application),
       ]
     end
   end

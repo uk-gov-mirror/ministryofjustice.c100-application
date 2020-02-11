@@ -393,6 +393,22 @@ en:
         <<: *YESNO
     special_arrangements_details:
       question: *details
+    # attending court redesign -- begin
+    language_interpreter:
+      question: Interpreter
+      answers:
+        'true': 'Yes'
+        'false': Not needed
+    sign_language_interpreter:
+      question: Sign language interpreter
+      answers:
+        'true': 'Yes'
+        'false': Not needed
+    language_interpreter_details:
+      question: *details
+    sign_language_interpreter_details:
+      question: *details
+    # attending court redesign -- end
 
     person_full_name:
       question: Full name

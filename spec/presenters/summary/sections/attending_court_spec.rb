@@ -12,11 +12,13 @@ module Summary
         language_help_details: 'language_help_details',
         intermediary_help: 'yes',
         intermediary_help_details: 'intermediary_help_details',
+        court_arrangement: court_arrangement,
     ) }
 
     subject { described_class.new(c100_application) }
 
     let(:answers) { subject.answers }
+    let(:court_arrangement) { nil }
 
     describe '#name' do
       it { expect(subject.name).to eq(:attending_court) }
@@ -24,6 +26,24 @@ module Summary
 
     describe '#show_header?' do
       it { expect(subject.show_header?).to eq(false) }
+    end
+
+    describe '#show?' do
+      context 'when not using the new special court arrangement details' do
+        let(:court_arrangement) { nil }
+
+        it 'returns true (we use this class, `AttendingCourt`)' do
+          expect(subject.show?).to eq(true)
+        end
+      end
+
+      context 'when using the new special court arrangement details' do
+        let(:court_arrangement) { double }
+
+        it 'returns false (we use the new class, `AttendingCourtV2`)' do
+          expect(subject.show?).to eq(false)
+        end
+      end
     end
 
     # The following tests can be fragile, but on purpose. During the development phase
