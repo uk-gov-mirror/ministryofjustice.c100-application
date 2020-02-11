@@ -9,6 +9,12 @@ module Summary
         false
       end
 
+      # TODO: Temporary conditional reveal until all applications
+      # are migrated to the new version
+      def show?
+        arrangement.nil? && super
+      end
+
       def answers
         [
           *language_assistance_answers,
@@ -18,6 +24,10 @@ module Summary
       end
 
       private
+
+      def arrangement
+        @_arrangement ||= c100.court_arrangement
+      end
 
       def language_assistance_answers
         [
