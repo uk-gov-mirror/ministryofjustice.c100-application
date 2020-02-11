@@ -50,18 +50,18 @@ module Summary
       it 'has the correct rows' do
         expect(answers.count).to eq(6)
 
-        expect(answers[0]).to be_an_instance_of(AnswersGroup)
-        expect(answers[0].name).to eq(:language_help)
-        expect(answers[0].change_path).to eq('/steps/application/language')
+        expect(answers[0]).to be_an_instance_of(Answer)
+        expect(answers[0].question).to eq(:reduced_litigation_capacity)
+        expect(answers[0].value).to eq('yes')
+        expect(answers[0].change_path).to eq('/steps/application/litigation_capacity')
 
-        expect(answers[1]).to be_an_instance_of(Answer)
-        expect(answers[1].question).to eq(:reduced_litigation_capacity)
-        expect(answers[1].value).to eq('yes')
-        expect(answers[1].change_path).to eq('/steps/application/litigation_capacity')
+        expect(answers[1]).to be_an_instance_of(AnswersGroup)
+        expect(answers[1].name).to eq(:litigation_capacity)
+        expect(answers[1].change_path).to eq('/steps/application/litigation_capacity_details')
 
         expect(answers[2]).to be_an_instance_of(AnswersGroup)
-        expect(answers[2].name).to eq(:litigation_capacity)
-        expect(answers[2].change_path).to eq('/steps/application/litigation_capacity_details')
+        expect(answers[2].name).to eq(:language_help)
+        expect(answers[2].change_path).to eq('/steps/application/language')
 
         expect(answers[3]).to be_an_instance_of(AnswersGroup)
         expect(answers[3].name).to eq(:intermediary)
@@ -77,7 +77,7 @@ module Summary
       end
 
       context 'language_assistance' do
-        let(:group_answers) { answers[0].answers }
+        let(:group_answers) { answers[2].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(2)
@@ -93,7 +93,7 @@ module Summary
       end
 
       context 'litigation_capacity' do
-        let(:group_answers) { answers[2].answers }
+        let(:group_answers) { answers[1].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(3)

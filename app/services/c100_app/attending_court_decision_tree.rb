@@ -5,7 +5,7 @@ module C100App
 
       case step_name
       when :language
-        edit('/steps/application/litigation_capacity')
+        edit('/steps/application/intermediary')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
