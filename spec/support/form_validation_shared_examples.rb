@@ -55,6 +55,11 @@ RSpec.shared_examples 'a yes-no question form' do |options|
 
   let(:c100_application) { instance_double(C100Application) }
 
+  # Used for forms including the concern `HasOneAssociationForm`
+  # Refer to `spec/forms/steps/attending_court/intermediary_form_spec.rb` for an example if this
+  let(:association_name) { options[:association_name] }
+  let(:association) { association_name ? instance_double(association_name.to_s.classify) : c100_application }
+
   subject { described_class.new(arguments) }
 
   def attributes_to_reset(attrs)
@@ -86,28 +91,35 @@ RSpec.shared_examples 'a yes-no question form' do |options|
       end
     end
 
-    context 'when answer is `yes`' do
-      let(:answer_value) { 'yes' }
-      let(:additional_attributes) { attributes_to_reset(reset_when_yes).merge(linked_attributes) }
-
-      it 'saves the record' do
-        expect(c100_application).to receive(:update).with(
-          { options[:attribute_name] => GenericYesNo::YES }.merge(additional_attributes)
-        ).and_return(true)
-        expect(described_class.new(arguments).save).to be(true)
+    context 'when there is a c100_application associated with the form' do
+      if options[:association_name]
+        before do
+          allow(c100_application).to receive(association_name).and_return(association)
+        end
       end
-    end
 
-    context 'when answer is `no`' do
-      let(:answer_value) { 'no' }
-      let(:additional_attributes) { attributes_to_reset(reset_when_no) }
+      context 'when answer is `yes`' do
+        let(:answer_value) { 'yes' }
+        let(:additional_attributes) { attributes_to_reset(reset_when_yes).merge(linked_attributes) }
 
-      it 'saves the record' do
-        expect(c100_application).to receive(:update).with( hash_including(
-            { options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes)
-          )
-        ).and_return(true)
-        expect(described_class.new(arguments).save).to be(true)
+        it 'saves the record' do
+          expect(association).to receive(:update).with(
+            { options[:attribute_name] => GenericYesNo::YES }.merge(additional_attributes)
+          ).and_return(true)
+          expect(described_class.new(arguments).save).to be(true)
+        end
+      end
+
+      context 'when answer is `no`' do
+        let(:answer_value) { 'no' }
+        let(:additional_attributes) { attributes_to_reset(reset_when_no) }
+
+        it 'saves the record' do
+          expect(association).to receive(:update).with(
+            hash_including({ options[:attribute_name] => GenericYesNo::NO }.merge(additional_attributes))
+          ).and_return(true)
+          expect(described_class.new(arguments).save).to be(true)
+        end
       end
     end
   end

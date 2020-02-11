@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_10_092306) do
+ActiveRecord::Schema.define(version: 2020_02_11_153458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -185,6 +185,10 @@ ActiveRecord::Schema.define(version: 2020_02_10_092306) do
     t.boolean "sign_language_interpreter"
     t.text "sign_language_interpreter_details"
     t.uuid "c100_application_id"
+    t.boolean "welsh_language"
+    t.text "welsh_language_details"
+    t.string "intermediary_help"
+    t.text "intermediary_help_details"
     t.index ["c100_application_id"], name: "index_court_arrangements_on_c100_application_id", unique: true
   end
 

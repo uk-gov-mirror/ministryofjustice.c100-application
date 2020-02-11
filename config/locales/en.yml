@@ -737,8 +737,8 @@ en:
         edit:
           page_title: Intermediary help
           section: *attending_court
-          heading: Does anyone in this application need someone to help them communicate in court?
-          lead_text: They may need a person (also known as an intermediary) to help them understand and participate in the court process
+          heading: Does anyone in this application need an intermediary to help them communicate in court?
+          lead_text: An intermediary is appointed by the court to help people understand and participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       payment:
         edit:
           page_title: Payment type
@@ -812,6 +812,12 @@ en:
           section: *attending_court
           heading: Does anyone in this application need help with language?
           info_html: You can ask for an interpreter. In Wales, you have the right to speak Welsh at any court hearing.
+      intermediary:
+        edit:
+          page_title: Intermediary help
+          section: *attending_court
+          heading: Does anyone in this application need an intermediary to help them communicate in court?
+          lead_text: An intermediary is appointed by the court to help people understand and participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
     # attending court redesign -- end
     international:
       resident:
@@ -1167,12 +1173,18 @@ en:
         language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
+        intermediary_help:
+          <<: *YESNO
       # attending court redesign -- begin
       steps_attending_court_language_form:
         language_interpreter: An interpreter
         sign_language_interpreter: A sign language interpreter
         language_interpreter_details: Give details of who needs an interpreter and the language they require (including dialect, if applicable)
         sign_language_interpreter_details: Give details of who needs a British Sign Language interpreter
+      steps_attending_court_intermediary_form:
+        intermediary_help_details: *provide_details
+        intermediary_help:
+          <<: *YESNO
       # attending court redesign -- end
       steps_application_payment_form:
         payment_type:

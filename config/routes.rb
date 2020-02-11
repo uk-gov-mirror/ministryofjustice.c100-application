@@ -271,6 +271,7 @@ Rails.application.routes.draw do
     end
     namespace :attending_court do
       edit_step :language
+      edit_step :intermediary
     end
     namespace :completion do
       show_step :confirmation
