@@ -16,14 +16,34 @@ module Summary
         special_assistance_details: 'special_assistance_details',
         special_arrangements: 'yes',
         special_arrangements_details: 'special_arrangements_details',
+        court_arrangement: court_arrangement,
     ) }
 
     subject { described_class.new(c100_application) }
 
     let(:answers) { subject.answers }
+    let(:court_arrangement) { nil }
 
     describe '#name' do
       it { expect(subject.name).to eq(:attending_court) }
+    end
+
+    describe '#show?' do
+      context 'when not using the new special court arrangement details' do
+        let(:court_arrangement) { nil }
+
+        it 'returns true (we use this class, `AttendingCourt`)' do
+          expect(subject.show?).to eq(true)
+        end
+      end
+
+      context 'when using the new special court arrangement details' do
+        let(:court_arrangement) { double }
+
+        it 'returns false (we use the new class, `AttendingCourtV2`)' do
+          expect(subject.show?).to eq(false)
+        end
+      end
     end
 
     describe '#answers' do

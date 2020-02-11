@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/ClassLength
 module Summary
   module HtmlSections
     class PeopleDetails < Sections::BaseSectionPresenter
@@ -125,4 +124,3 @@ module Summary
     end
   end
 end
-# rubocop:enable Metrics/ClassLength

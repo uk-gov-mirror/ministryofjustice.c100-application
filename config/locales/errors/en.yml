@@ -567,9 +567,9 @@ en:
         steps/attending_court/language_form:
           attributes:
             language_interpreter_details:
-              blank: Enter details of your interpreter needs
+              blank: You must give interpreter details
             sign_language_interpreter_details:
-              blank: Enter details of your sign language interpreter needs
+              blank: You must give sign language interpreter details
         # attending court redesign -- end
         steps/application/payment_form:
           attributes:

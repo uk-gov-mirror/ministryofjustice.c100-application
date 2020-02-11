@@ -145,10 +145,6 @@ IfUnlessModifier:
   Description: Favor modifier if/unless usage when you have a single-line body.
   Enabled: false
 
-MethodCalledOnDoEndBlock:
-  Description: Avoid chaining a method call on a do...end block.
-  Enabled: true
-
 MethodCallWithoutArgsParentheses:
   Description: 'Do not use parentheses for method calls with no arguments.'
   Enabled: true
@@ -488,6 +484,10 @@ MultilineIfModifier:
 AccessModifierIndentation:
   Enabled: true
   EnforcedStyle: indent
+
+ClassLength:
+  Enabled: true
+  Max: 105
 
 MethodLength:
   Enabled: true
