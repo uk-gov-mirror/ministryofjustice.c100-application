@@ -18,6 +18,7 @@ module Summary
       def answers
         [
           *language_interpreter,
+          *intermediary,
         ].select(&:show?)
       end
 
@@ -40,6 +41,14 @@ module Summary
           FreeTextAnswer.new(:language_interpreter_details, arrangement.language_interpreter_details),
           Answer.new(:sign_language_interpreter, arrangement.sign_language_interpreter.to_s),
           FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
+        ]
+      end
+
+      def intermediary
+        [
+          Separator.new(:intermediary),
+          Answer.new(:intermediary_help, arrangement.intermediary_help),
+          FreeTextAnswer.new(:intermediary_help_details, arrangement.intermediary_help_details),
         ]
       end
     end

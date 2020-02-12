@@ -17,6 +17,6 @@ RSpec.describe C100App::AttendingCourtDecisionTree do
 
   context 'when the step is `intermediary`' do
     let(:step_params) { { intermediary: 'anything' } }
-    it { is_expected.to have_destination('/steps/application/special_assistance', :edit) }
+    it { is_expected.to have_destination('/steps/application/special_arrangements', :edit) }
   end
 end

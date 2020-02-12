@@ -15,6 +15,7 @@ module Summary
         [
           litigation_capacity,
           language_interpreter,
+          intermediary,
         ].flatten.select(&:show?)
       end
 
@@ -61,6 +62,17 @@ module Summary
             FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
           ],
           change_path: edit_steps_attending_court_language_path
+        )
+      end
+
+      def intermediary
+        AnswersGroup.new(
+          :intermediary,
+          [
+            Answer.new(:intermediary_help, arrangement.intermediary_help),
+            FreeTextAnswer.new(:intermediary_help_details, arrangement.intermediary_help_details),
+          ],
+          change_path: edit_steps_attending_court_intermediary_path
         )
       end
     end
