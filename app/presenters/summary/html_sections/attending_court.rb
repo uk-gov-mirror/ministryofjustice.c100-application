@@ -16,8 +16,8 @@ module Summary
           litigation_capacity,
           language_assistance,
           intermediary,
-          special_assistance,
           special_arrangements,
+          special_assistance,
         ].flatten.select(&:show?)
       end
 
@@ -68,17 +68,6 @@ module Summary
         )
       end
 
-      def special_assistance
-        AnswersGroup.new(
-          :special_assistance,
-          [
-            Answer.new(:special_assistance, c100.special_assistance),
-            FreeTextAnswer.new(:special_assistance_details, c100.special_assistance_details),
-          ],
-          change_path: edit_steps_application_special_assistance_path
-        )
-      end
-
       def special_arrangements
         AnswersGroup.new(
           :special_arrangements,
@@ -87,6 +76,17 @@ module Summary
             FreeTextAnswer.new(:special_arrangements_details, c100.special_arrangements_details),
           ],
           change_path: edit_steps_application_special_arrangements_path
+        )
+      end
+
+      def special_assistance
+        AnswersGroup.new(
+          :special_assistance,
+          [
+            Answer.new(:special_assistance, c100.special_assistance),
+            FreeTextAnswer.new(:special_assistance_details, c100.special_assistance_details),
+          ],
+          change_path: edit_steps_application_special_assistance_path
         )
       end
     end

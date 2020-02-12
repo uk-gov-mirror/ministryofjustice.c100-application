@@ -19,6 +19,7 @@ module Summary
         [
           *language_assistance_answers,
           *intermediary_answers,
+          *special_arrangements_answers,
           *special_assistance_answers,
         ].select(&:show?)
       end
@@ -45,13 +46,19 @@ module Summary
         ]
       end
 
+      def special_arrangements_answers
+        [
+          Separator.new(:special_arrangements),
+          Answer.new(:special_arrangements, c100.special_arrangements),
+          FreeTextAnswer.new(:special_arrangements_details, c100.special_arrangements_details),
+        ]
+      end
+
       def special_assistance_answers
         [
           Separator.new(:special_assistance),
           Answer.new(:special_assistance, c100.special_assistance),
           FreeTextAnswer.new(:special_assistance_details, c100.special_assistance_details),
-          Answer.new(:special_arrangements, c100.special_arrangements),
-          FreeTextAnswer.new(:special_arrangements_details, c100.special_arrangements_details),
         ]
       end
     end

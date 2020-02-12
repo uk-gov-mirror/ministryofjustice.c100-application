@@ -53,7 +53,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(11)
+        expect(answers.count).to eq(12)
 
         expect(answers[0]).to be_an_instance_of(Separator)
         expect(answers[0].title).to eq(:language_assistance)
@@ -76,23 +76,27 @@ module Summary
         expect(answers[5].value).to eq('intermediary_help_details')
 
         expect(answers[6]).to be_an_instance_of(Separator)
-        expect(answers[6].title).to eq(:special_assistance)
+        expect(answers[6].title).to eq(:special_arrangements)
 
         expect(answers[7]).to be_an_instance_of(Answer)
-        expect(answers[7].question).to eq(:special_assistance)
+        expect(answers[7].question).to eq(:special_arrangements)
         expect(answers[7].value).to eq('yes')
 
         expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[8].question).to eq(:special_assistance_details)
-        expect(answers[8].value).to eq('assistance_details')
+        expect(answers[8].question).to eq(:special_arrangements_details)
+        expect(answers[8].value).to eq('arrangements_details')
 
-        expect(answers[9]).to be_an_instance_of(Answer)
-        expect(answers[9].question).to eq(:special_arrangements)
-        expect(answers[9].value).to eq('yes')
+        expect(answers[9]).to be_an_instance_of(Separator)
+        expect(answers[9].title).to eq(:special_assistance)
 
-        expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[10].question).to eq(:special_arrangements_details)
-        expect(answers[10].value).to eq('arrangements_details')
+        expect(answers[10]).to be_an_instance_of(Answer)
+        expect(answers[10].question).to eq(:special_assistance)
+        expect(answers[10].value).to eq('yes')
+
+        expect(answers[11]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[11].question).to eq(:special_assistance_details)
+        expect(answers[11].value).to eq('assistance_details')
+
       end
     end
   end

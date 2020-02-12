@@ -26,10 +26,10 @@ module C100App
       when :language
         edit(:intermediary)
       when :intermediary
-        edit(:special_assistance)
-      when :special_assistance
         edit(:special_arrangements)
       when :special_arrangements
+        edit(:special_assistance)
+      when :special_assistance
         edit(:payment)
       when :payment
         edit(:submission)

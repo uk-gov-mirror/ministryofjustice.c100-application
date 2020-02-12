@@ -68,12 +68,12 @@ module Summary
         expect(answers[3].change_path).to eq('/steps/application/intermediary')
 
         expect(answers[4]).to be_an_instance_of(AnswersGroup)
-        expect(answers[4].name).to eq(:special_assistance)
-        expect(answers[4].change_path).to eq('/steps/application/special_assistance')
+        expect(answers[4].name).to eq(:special_arrangements)
+        expect(answers[4].change_path).to eq('/steps/application/special_arrangements')
 
         expect(answers[5]).to be_an_instance_of(AnswersGroup)
-        expect(answers[5].name).to eq(:special_arrangements)
-        expect(answers[5].change_path).to eq('/steps/application/special_arrangements')
+        expect(answers[5].name).to eq(:special_assistance)
+        expect(answers[5].change_path).to eq('/steps/application/special_assistance')
       end
 
       context 'language_assistance' do
@@ -128,24 +128,8 @@ module Summary
         end
       end
 
-      context 'special_assistance' do
-        let(:group_answers) { answers[4].answers }
-
-        it 'has the correct rows in the right order' do
-          expect(group_answers.count).to eq(2)
-
-          expect(group_answers[0]).to be_an_instance_of(Answer)
-          expect(group_answers[0].question).to eq(:special_assistance)
-          expect(group_answers[0].value).to eq('yes')
-
-          expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
-          expect(group_answers[1].question).to eq(:special_assistance_details)
-          expect(group_answers[1].value).to eq('special_assistance_details')
-        end
-      end
-
       context 'special_arrangements' do
-        let(:group_answers) { answers[5].answers }
+        let(:group_answers) { answers[4].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(2)
@@ -157,6 +141,22 @@ module Summary
           expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
           expect(group_answers[1].question).to eq(:special_arrangements_details)
           expect(group_answers[1].value).to eq('special_arrangements_details')
+        end
+      end
+
+      context 'special_assistance' do
+        let(:group_answers) { answers[5].answers }
+
+        it 'has the correct rows in the right order' do
+          expect(group_answers.count).to eq(2)
+
+          expect(group_answers[0]).to be_an_instance_of(Answer)
+          expect(group_answers[0].question).to eq(:special_assistance)
+          expect(group_answers[0].value).to eq('yes')
+
+          expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
+          expect(group_answers[1].question).to eq(:special_assistance_details)
+          expect(group_answers[1].value).to eq('special_assistance_details')
         end
       end
     end

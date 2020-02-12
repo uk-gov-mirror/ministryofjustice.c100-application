@@ -102,16 +102,16 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
   context 'when the step is `intermediary`' do
     let(:step_params) { { intermediary: 'anything' } }
-    it { is_expected.to have_destination(:special_assistance, :edit) }
-  end
-
-  context 'when the step is `special_assistance`' do
-    let(:step_params) { { special_assistance: 'anything' } }
     it { is_expected.to have_destination(:special_arrangements, :edit) }
   end
 
   context 'when the step is `special_arrangements`' do
     let(:step_params) { { special_arrangements: 'anything' } }
+    it { is_expected.to have_destination(:special_assistance, :edit) }
+  end
+
+  context 'when the step is `special_assistance`' do
+    let(:step_params) { { special_assistance: 'anything' } }
     it { is_expected.to have_destination(:payment, :edit) }
   end
 

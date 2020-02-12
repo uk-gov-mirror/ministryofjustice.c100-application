@@ -560,7 +560,7 @@ en:
         steps/application/special_arrangements_form:
           attributes:
             special_arrangements:
-              inclusion: Select yes if you need specific arrangements
+              inclusion: Select yes if you need specific safety arrangements
             special_arrangements_details:
               blank: *blank_details_error
         # attending court redesign -- begin
