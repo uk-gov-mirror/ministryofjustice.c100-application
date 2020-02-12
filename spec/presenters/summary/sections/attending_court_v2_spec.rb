@@ -11,7 +11,9 @@ module Summary
         language_interpreter: true,
         language_interpreter_details: 'language_interpreter_details',
         sign_language_interpreter: true,
-        sign_language_interpreter_details: 'sign_language_interpreter_details'
+        sign_language_interpreter_details: 'sign_language_interpreter_details',
+        intermediary_help: 'yes',
+        intermediary_help_details: 'intermediary_help_details',
     )}
 
     let(:answers) { subject.answers }
@@ -47,7 +49,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(8)
 
         expect(answers[0]).to be_an_instance_of(Separator)
         expect(answers[0].title).to eq(:language_assistance)
@@ -63,6 +65,16 @@ module Summary
 
         expect(answers[4].question).to eq(:sign_language_interpreter_details)
         expect(answers[4].value).to eq('sign_language_interpreter_details')
+
+        expect(answers[5]).to be_an_instance_of(Separator)
+        expect(answers[5].title).to eq(:intermediary)
+
+        expect(answers[6].question).to eq(:intermediary_help)
+        expect(answers[6].value).to eq('yes')
+
+        expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[7].question).to eq(:intermediary_help_details)
+        expect(answers[7].value).to eq('intermediary_help_details')
       end
     end
   end
