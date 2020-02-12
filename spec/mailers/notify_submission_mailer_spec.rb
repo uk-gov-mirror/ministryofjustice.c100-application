@@ -9,6 +9,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       urgent_hearing: 'yes',
       address_confidentiality: address_confidentiality,
       payment_type: payment_type,
+      declaration_signee: 'John Doe',
     )
   }
 
@@ -58,7 +59,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
     it 'has the right personalisation' do
       expect(mail.govuk_notify_personalisation).to eq({
         service_name: 'Apply to court about child arrangements',
-        applicant_name: '[name not entered]',
+        applicant_name: 'John Doe',
         reference_code: '1970/01/4A362E1C',
         urgent: 'yes',
         c8_included: 'no',
@@ -112,7 +113,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
     it 'has the right personalisation' do
       expect(mail.govuk_notify_personalisation).to eq({
         service_name: 'Apply to court about child arrangements',
-        applicant_name: '[name not entered]',
+        applicant_name: 'John Doe',
         reference_code: '1970/01/4A362E1C',
         court_name: 'Test court',
         court_email: 'court@example.com',

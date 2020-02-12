@@ -53,7 +53,7 @@ class NotifySubmissionMailer < NotifyMailer
 
   def shared_personalisation
     {
-      applicant_name: @c100_application.applicants.first&.full_name || '[name not entered]',
+      applicant_name: @c100_application.declaration_signee,
       reference_code: @c100_application.reference_code,
       link_to_pdf: prepare_upload(@documents[:bundle]),
     }
