@@ -707,13 +707,14 @@ en:
           page_title: Special Assistance
           section: *attending_court
           heading: Does anyone in this application need assistance or special facilities when attending court?
-          lead_text: For example they need to use British Sign Language, a hearing loop or documents in braille
+          lead_text: For example they need a hearing loop or documents in braille.
       special_arrangements:
         edit:
           page_title: Special Arrangements
           section: *attending_court
-          heading: Do you or the children need specific arrangements when you attend court?
-          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns. The court may contact you to discuss your requirements.
+          heading: Do you or the children need specific safety arrangements at court?
+          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns.
+          court_contact: The court will contact you to discuss safety arrangements before your hearing.
       details:
         edit:
           page_title: Application details

@@ -153,7 +153,8 @@ en:
       contact_details: Contact details
       language_assistance: Language assistance
       intermediary: Intermediary
-      special_assistance: Special assistance / facilities
+      special_arrangements: Special safety arrangements
+      special_assistance: Special assistance or facilities
       child_index_title: Child %{index}
       other_child_index_title: Other child %{index}
       applicants_details_index_title: Applicant %{index}
@@ -382,7 +383,7 @@ en:
     intermediary_help_details:
       question: *details
     special_assistance:
-      question: Special assistance or special facilities required for any of the parties
+      question: Special assistance or special facilities required for applicant or any of the parties
       answers:
         <<: *YESNO
     special_assistance_details:
