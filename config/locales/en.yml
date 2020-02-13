@@ -739,8 +739,8 @@ en:
         edit:
           page_title: Intermediary help
           section: *attending_court
-          heading: Does anyone in this application need an intermediary to help them communicate in court?
-          lead_text: An intermediary is appointed by the court to help people understand and participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
+          heading: Does anyone in this application need an intermediary to help them in court?
+          lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       payment:
         edit:
           page_title: Payment type
@@ -818,8 +818,8 @@ en:
         edit:
           page_title: Intermediary help
           section: *attending_court
-          heading: Does anyone in this application need an intermediary to help them communicate in court?
-          lead_text: An intermediary is appointed by the court to help people understand and participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
+          heading: Does anyone in this application need an intermediary to help them in court?
+          lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       special_arrangements:
         edit:
           page_title: Special arrangements
@@ -1198,7 +1198,7 @@ en:
           <<: *YESNO
       steps_attending_court_special_arrangements_form:
         separate_waiting_rooms: Separate waiting rooms
-        separate_entrance_exit: Separate exists and entrances
+        separate_entrance_exit: Separate exits and entrances
         advance_court_viewing: Advance viewing of the court
         protective_screens: Protective screens - this needs to be approved by a judge
         video_link: Video links - this needs to be approved by a judge
