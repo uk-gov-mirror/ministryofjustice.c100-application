@@ -565,12 +565,6 @@ en:
       question: Details of anything else that could affect any adult in this application taking part in these court proceedings
     participation_referral_or_assessment_details:
       question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was
-    intermediary_help:
-      question: ''
-      answers:
-        <<: *YESNO
-    intermediary_help_details:
-      question: ''
     special_assistance:
       question: ''
       answers:
@@ -589,6 +583,13 @@ en:
         'true': 'Yes'
         'false': *not_needed
     language_interpreter_details:
+      question: ''
+    intermediary_help:
+      question: ''
+      answers:
+        'yes': 'Yes'
+        'no': *not_needed
+    intermediary_help_details:
       question: ''
     sign_language_interpreter_details:
       question: ''

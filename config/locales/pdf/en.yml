@@ -5,6 +5,7 @@ en:
     not_required: &not_required "[Not required]"
     c8_attached: &c8_attached "[See C8]"
     none_selected: &none_selected "[None selected]"
+    not_needed: &not_needed "Not needed"
     unknown: &unknown "Don't know"
     details: &details "Details:"
 
@@ -376,38 +377,47 @@ en:
         <<: *YESNO
     language_help_details:
       question: *details
-    intermediary_help:
-      question: Are you aware of whether an intermediary will be required?
-      answers:
-        <<: *YESNO
-    intermediary_help_details:
-      question: *details
     special_assistance:
       question: Special assistance or special facilities required for applicant or any of the parties
       answers:
         <<: *YESNO
     special_assistance_details:
       question: *details
-    special_arrangements:
-      question: Special arrangements for applicant or relevant children to attend court
-      answers:
-        <<: *YESNO
-    special_arrangements_details:
-      question: *details
     # attending court redesign -- begin
     language_interpreter:
       question: Interpreter
       answers:
         'true': 'Yes'
-        'false': Not needed
+        'false': *not_needed
     sign_language_interpreter:
       question: Sign language interpreter
       answers:
         'true': 'Yes'
-        'false': Not needed
+        'false': *not_needed
     language_interpreter_details:
       question: *details
     sign_language_interpreter_details:
+      question: *details
+    intermediary_help:
+      question: Are you aware of whether an intermediary will be required?
+      answers:
+        'yes': 'Yes'
+        'no': *not_needed
+    intermediary_help_details:
+      question: *details
+    special_arrangements:
+      question: Special arrangements for applicant or relevant children to attend court
+      absence_answer: None required
+      answers:
+        # old version
+        <<: *YESNO
+        # new version
+        separate_waiting_rooms: Separate waiting rooms
+        separate_entrance_exit: Separate exists and entrances
+        advance_court_viewing: Advance viewing of the court
+        protective_screens: Protective screens
+        video_link: Video links
+    special_arrangements_details:
       question: *details
     # attending court redesign -- end
 

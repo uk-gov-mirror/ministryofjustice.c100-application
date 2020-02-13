@@ -4,8 +4,13 @@
   </td>
 
   <td class="answer answer-value">
-    <%= multi_answer_row.value.map do |value| %>
-      <% t("check_answers.#{multi_answer_row.question}.answers.#{value}") %>
-    <% end.join('; ') %>
+    <% if multi_answer_row.value.any? %>
+      <%= multi_answer_row.value.map do |value| %>
+        <% t("check_answers.#{multi_answer_row.question}.answers.#{value}") %>
+      <% end.join('; ') %>
+    <% else %>
+      <%# It will only enter here when using `show: true` in the `MultiAnswer` %>
+      <%=t "check_answers.#{multi_answer_row.question}.absence_answer" %>
+    <% end %>
   </td>
 </tr>

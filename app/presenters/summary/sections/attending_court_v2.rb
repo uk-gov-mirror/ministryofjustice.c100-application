@@ -19,6 +19,7 @@ module Summary
         [
           *language_interpreter,
           *intermediary,
+          *special_arrangements,
         ].select(&:show?)
       end
 
@@ -49,6 +50,14 @@ module Summary
           Separator.new(:intermediary),
           Answer.new(:intermediary_help, arrangement.intermediary_help),
           FreeTextAnswer.new(:intermediary_help_details, arrangement.intermediary_help_details),
+        ]
+      end
+
+      def special_arrangements
+        [
+          Separator.new(:special_arrangements),
+          MultiAnswer.new(:special_arrangements, arrangement.special_arrangements, show: true),
+          FreeTextAnswer.new(:special_arrangements_details, arrangement.special_arrangements_details),
         ]
       end
     end
