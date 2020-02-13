@@ -15,6 +15,7 @@ en:
     provide_details: &provide_details "Provide details"
     select_all_that_apply: &select_all_that_apply "Select all that apply"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
+    one_of_the_people_needs: &one_of_the_people_needs "One of the people named in this application needs:"
     account_purge_info: &account_purge_info "If you have not signed in for %{expire_in_days} days we delete your account for security reasons."
     sections:
       miam_exemptions: &miam_exemptions "MIAM exemptions"
@@ -819,6 +820,13 @@ en:
           section: *attending_court
           heading: Does anyone in this application need an intermediary to help them communicate in court?
           lead_text: An intermediary is appointed by the court to help people understand and participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
+      special_arrangements:
+        edit:
+          page_title: Special arrangements
+          section: *attending_court
+          heading: Do you or the children need specific safety arrangements at court?
+          lead_text: Not every court has the facilities listed here, and some need to be agreed by a judge, for example the use of protective screens.
+          court_contact: The court will contact you to discuss safety arrangements before your hearing.
     # attending court redesign -- end
     international:
       resident:
@@ -1136,7 +1144,9 @@ en:
         declaration_signee_capacity_html: ""
       # attending court redesign -- begin
       steps_attending_court_language_form:
-        help_with_language: 'One of the people named in this application needs:'
+        help_with_language: *one_of_the_people_needs
+      steps_attending_court_special_arrangements_form:
+        special_arrangements: *one_of_the_people_needs
       # attending court redesign -- end
 
     label:
@@ -1186,6 +1196,13 @@ en:
         intermediary_help_details: *provide_details
         intermediary_help:
           <<: *YESNO
+      steps_attending_court_special_arrangements_form:
+        separate_waiting_rooms: Separate waiting rooms
+        separate_entrance_exit: Separate exists and entrances
+        advance_court_viewing: Advance viewing of the court
+        protective_screens: Protective screens - this needs to be approved by a judge
+        video_link: Video links - this needs to be approved by a judge
+        special_arrangements_details: You can add more detail if neccessary
       # attending court redesign -- end
       steps_application_payment_form:
         payment_type:

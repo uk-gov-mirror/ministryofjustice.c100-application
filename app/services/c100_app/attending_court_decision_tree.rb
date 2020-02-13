@@ -7,7 +7,9 @@ module C100App
       when :language
         edit(:intermediary)
       when :intermediary
-        edit('/steps/application/special_arrangements')
+        edit(:special_arrangements)
+      when :special_arrangements
+        edit('/steps/application/special_assistance')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
