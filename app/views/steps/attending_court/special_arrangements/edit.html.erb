@@ -1,0 +1,22 @@
+<% title t('.page_title') %>
+
+<div class="grid-row">
+  <div class="column-two-thirds">
+    <%= step_header %>
+
+    <p class="app__section_heading"><%=t '.section' %></p>
+    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+
+    <div class="govuk-govspeak gv-s-prose">
+      <p><%= t '.lead_text' %></p>
+      <p><%= t '.court_contact' %></p>
+    </div>
+
+    <%= step_form @form_object do |f| %>
+      <%= f.check_box_fieldset :special_arrangements, SpecialArrangements.values %>
+      <%= f.text_area :special_arrangements_details, size: '40x4', class: 'form-control-3-4' %>
+
+      <%= f.continue_button %>
+    <% end %>
+  </div>
+</div>
