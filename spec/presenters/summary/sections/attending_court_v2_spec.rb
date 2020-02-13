@@ -14,7 +14,12 @@ module Summary
         sign_language_interpreter_details: 'sign_language_interpreter_details',
         intermediary_help: 'yes',
         intermediary_help_details: 'intermediary_help_details',
+        special_arrangements: special_arrangements,
+        special_arrangements_details: special_arrangements_details,
     )}
+
+    let(:special_arrangements) { ['video_link'] }
+    let(:special_arrangements_details) { 'special_arrangements_details' }
 
     let(:answers) { subject.answers }
 
@@ -49,7 +54,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(8)
+        expect(answers.count).to eq(11)
 
         expect(answers[0]).to be_an_instance_of(Separator)
         expect(answers[0].title).to eq(:language_assistance)
@@ -75,6 +80,31 @@ module Summary
         expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[7].question).to eq(:intermediary_help_details)
         expect(answers[7].value).to eq('intermediary_help_details')
+
+        expect(answers[8]).to be_an_instance_of(Separator)
+        expect(answers[8].title).to eq(:special_arrangements)
+
+        expect(answers[9]).to be_an_instance_of(MultiAnswer)
+        expect(answers[9].question).to eq(:special_arrangements)
+        expect(answers[9].value).to eq(['video_link'])
+
+        expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[10].question).to eq(:special_arrangements_details)
+        expect(answers[10].value).to eq('special_arrangements_details')
+      end
+    end
+
+    describe 'no special arrangements selected' do
+      let(:special_arrangements) { [] }
+      let(:special_arrangements_details) { '' }
+
+      it 'still shows the block because `show: true` (will use the `absence_answer`)' do
+        expect(answers.count).to eq(10)
+
+        # Note it only shows the multi answer, not the free text because it is empty
+        expect(answers[9]).to be_an_instance_of(MultiAnswer)
+        expect(answers[9].question).to eq(:special_arrangements)
+        expect(answers[9].value).to eq([])
       end
     end
   end

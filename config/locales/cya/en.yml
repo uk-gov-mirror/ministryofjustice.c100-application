@@ -1,6 +1,7 @@
 en:
   dictionary:
     none_selected: &none_selected "No exemption selected"
+    not_needed: &not_needed "Not needed"
     unknown: &unknown "Don't know"
     details: &details "Details:"
 
@@ -564,39 +565,48 @@ en:
       question: Details of anything else that could affect any adult in this application taking part in these court proceedings
     participation_referral_or_assessment_details:
       question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was
-    intermediary_help:
-      question: ''
-      answers:
-        <<: *YESNO
-    intermediary_help_details:
-      question: ''
     special_assistance:
       question: ''
       answers:
         <<: *YESNO
     special_assistance_details:
       question: ''
-    special_arrangements:
-      question: ''
-      answers:
-        <<: *YESNO
-    special_arrangements_details:
-      question: ''
     # attending court redesign -- begin
     language_interpreter:
       question: Interpreter
       answers:
         'true': 'Yes'
-        'false': Not needed
+        'false': *not_needed
     sign_language_interpreter:
       question: Sign language interpreter
       answers:
         'true': 'Yes'
-        'false': Not needed
+        'false': *not_needed
     language_interpreter_details:
+      question: ''
+    intermediary_help:
+      question: ''
+      answers:
+        'yes': 'Yes'
+        'no': *not_needed
+    intermediary_help_details:
       question: ''
     sign_language_interpreter_details:
       question: ''
+    special_arrangements:
+      question: ''
+      absence_answer: None selected
+      answers:
+        # old version
+        <<: *YESNO
+        # new version
+        separate_waiting_rooms: Separate waiting rooms
+        separate_entrance_exit: Separate exists and entrances
+        advance_court_viewing: Advance viewing of the court
+        protective_screens: Protective screens
+        video_link: Video links
+    special_arrangements_details:
+      question: Additional details
     # attending court redesign -- end
     hwf_reference_number:
       question: Reference number

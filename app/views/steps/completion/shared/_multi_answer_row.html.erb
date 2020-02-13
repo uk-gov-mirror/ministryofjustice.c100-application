@@ -3,13 +3,18 @@
     <%=t "check_answers_html.#{multi_answer_row.question}.question" %>
   </dt>
   <dd class="answer">
-    <ul class="list list-bullet">
-      <% multi_answer_row.value.each do |value| %>
-        <li>
-          <%= t("check_answers_html.#{multi_answer_row.question}.answers.#{value}") %>
-        </li>
-      <% end %>
-    </ul>
+    <% if multi_answer_row.value.any? %>
+      <ul class="list list-bullet">
+        <% multi_answer_row.value.each do |value| %>
+          <li>
+            <%= t("check_answers_html.#{multi_answer_row.question}.answers.#{value}") %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%# It will only enter here when using `show: true` in the `MultiAnswer` %>
+      <%=t "check_answers_html.#{multi_answer_row.question}.absence_answer" %>
+    <% end %>
   </dd>
   <dd class="change">
     <%= render partial: 'steps/completion/shared/change_link', locals: { question: multi_answer_row } %>

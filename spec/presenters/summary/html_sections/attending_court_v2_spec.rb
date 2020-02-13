@@ -23,7 +23,12 @@ module Summary
         sign_language_interpreter_details: 'sign_language_interpreter_details',
         intermediary_help: 'yes',
         intermediary_help_details: 'intermediary_help_details',
+        special_arrangements: special_arrangements,
+        special_arrangements_details: special_arrangements_details,
     )}
+
+    let(:special_arrangements) { ['video_link'] }
+    let(:special_arrangements_details) { 'special_arrangements_details' }
 
     let(:answers) { subject.answers }
 
@@ -33,7 +38,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(4)
+        expect(answers.count).to eq(5)
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:reduced_litigation_capacity)
@@ -51,6 +56,19 @@ module Summary
         expect(answers[3]).to be_an_instance_of(AnswersGroup)
         expect(answers[3].name).to eq(:intermediary)
         expect(answers[3].change_path).to eq('/steps/attending_court/intermediary')
+
+        expect(answers[4]).to be_an_instance_of(AnswersGroup)
+        expect(answers[4].name).to eq(:special_arrangements)
+        expect(answers[4].change_path).to eq('/steps/attending_court/special_arrangements')
+      end
+
+      context 'when the special arrangements step has not been visited yet' do
+        let(:special_arrangements) { [] }
+        let(:special_arrangements_details) { nil }
+
+        it 'does not show the block' do
+          expect(answers.count).to eq(4)
+        end
       end
 
       context 'litigation_capacity' do
@@ -110,6 +128,34 @@ module Summary
           expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
           expect(group_answers[1].question).to eq(:intermediary_help_details)
           expect(group_answers[1].value).to eq('intermediary_help_details')
+        end
+      end
+
+      context 'special_arrangements' do
+        let(:group_answers) { answers[4].answers }
+
+        it 'has the correct rows in the right order' do
+          expect(group_answers.count).to eq(2)
+
+          expect(group_answers[0]).to be_an_instance_of(MultiAnswer)
+          expect(group_answers[0].question).to eq(:special_arrangements)
+          expect(group_answers[0].value).to eq(['video_link'])
+
+          expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
+          expect(group_answers[1].question).to eq(:special_arrangements_details)
+          expect(group_answers[1].value).to eq('special_arrangements_details')
+        end
+
+        context 'when no check boxes were selected' do
+          let(:special_arrangements) { [] }
+
+          it 'still shows the block because `show: true` (will use the `absence_answer`)' do
+            expect(group_answers.count).to eq(2)
+
+            expect(group_answers[0]).to be_an_instance_of(MultiAnswer)
+            expect(group_answers[0].question).to eq(:special_arrangements)
+            expect(group_answers[0].value).to eq([])
+          end
         end
       end
     end
