@@ -76,8 +76,9 @@ RSpec.describe C100App::ApplicationDecisionTree do
   end
 
   context 'when the step is `litigation_capacity`' do
-    let(:c100_application) { instance_double(C100Application, reduced_litigation_capacity: answer) }
+    let(:c100_application) { instance_double(C100Application, version: version, reduced_litigation_capacity: answer) }
     let(:step_params) { { litigation_capacity: 'whatever' } }
+    let(:version) { 5 }
 
     context 'and the answer is `yes`' do
       let(:answer) { 'yes' }
@@ -86,13 +87,43 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-      it { is_expected.to have_destination(:language, :edit) }
+
+      context 'when C100 application version is < 5' do
+        let(:version) { 4 }
+        it { is_expected.to have_destination(:language, :edit) }
+      end
+
+      context 'when C100 application version is = 5' do
+        let(:version) { 5 }
+        it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+      end
+
+      context 'when C100 application version is > 5' do
+        let(:version) { 6 }
+        it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+      end
     end
   end
 
   context 'when the step is `litigation_capacity_details`' do
+    let(:c100_application) { instance_double(C100Application, version: version) }
     let(:step_params) { { litigation_capacity_details: 'anything' } }
-    it { is_expected.to have_destination(:language, :edit) }
+    let(:version) { 5 }
+
+    context 'when C100 application version is < 5' do
+      let(:version) { 4 }
+      it { is_expected.to have_destination(:language, :edit) }
+    end
+
+    context 'when C100 application version is = 5' do
+      let(:version) { 5 }
+      it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+    end
+
+    context 'when C100 application version is > 5' do
+      let(:version) { 6 }
+      it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+    end
   end
 
   context 'when the step is `language`' do
@@ -156,6 +187,7 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
       it 'process the application online submission' do
         expect(C100App::OnlineSubmissionQueue).to receive(:new).with(c100_application).and_return(queue)
+        expect(c100_application).to receive(:online_submission?).and_call_original
         expect(queue).to receive(:process)
 
         subject.destination
@@ -169,6 +201,8 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
       it 'does not process the application online submission' do
         expect(C100App::OnlineSubmissionQueue).not_to receive(:new)
+        expect(c100_application).to receive(:online_submission?).and_call_original
+
         subject.destination
       end
     end
