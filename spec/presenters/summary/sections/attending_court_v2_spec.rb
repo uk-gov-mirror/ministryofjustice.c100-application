@@ -16,10 +16,14 @@ module Summary
         intermediary_help_details: 'intermediary_help_details',
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
+        special_assistance: special_assistance,
+        special_assistance_details: special_assistance_details,
     )}
 
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
+    let(:special_assistance) { ['hearing_loop'] }
+    let(:special_assistance_details) { 'special_assistance_details' }
 
     let(:answers) { subject.answers }
 
@@ -54,7 +58,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(11)
+        expect(answers.count).to eq(14)
 
         expect(answers[0]).to be_an_instance_of(Separator)
         expect(answers[0].title).to eq(:language_assistance)
@@ -91,6 +95,17 @@ module Summary
         expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[10].question).to eq(:special_arrangements_details)
         expect(answers[10].value).to eq('special_arrangements_details')
+
+        expect(answers[11]).to be_an_instance_of(Separator)
+        expect(answers[11].title).to eq(:special_assistance)
+
+        expect(answers[12]).to be_an_instance_of(MultiAnswer)
+        expect(answers[12].question).to eq(:special_assistance)
+        expect(answers[12].value).to eq(['hearing_loop'])
+
+        expect(answers[13]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[13].question).to eq(:special_assistance_details)
+        expect(answers[13].value).to eq('special_assistance_details')
       end
     end
 
@@ -99,12 +114,26 @@ module Summary
       let(:special_arrangements_details) { '' }
 
       it 'still shows the block because `show: true` (will use the `absence_answer`)' do
-        expect(answers.count).to eq(10)
+        expect(answers.count).to eq(13)
 
         # Note it only shows the multi answer, not the free text because it is empty
         expect(answers[9]).to be_an_instance_of(MultiAnswer)
         expect(answers[9].question).to eq(:special_arrangements)
         expect(answers[9].value).to eq([])
+      end
+    end
+
+    describe 'no special assistance selected' do
+      let(:special_assistance) { [] }
+      let(:special_assistance_details) { '' }
+
+      it 'still shows the block because `show: true` (will use the `absence_answer`)' do
+        expect(answers.count).to eq(13)
+
+        # Note it only shows the multi answer, not the free text because it is empty
+        expect(answers[12]).to be_an_instance_of(MultiAnswer)
+        expect(answers[12].question).to eq(:special_assistance)
+        expect(answers[12].value).to eq([])
       end
     end
   end
