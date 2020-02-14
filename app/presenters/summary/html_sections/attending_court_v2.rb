@@ -17,6 +17,7 @@ module Summary
           language_interpreter,
           intermediary,
           special_arrangements,
+          special_assistance,
         ].flatten.select(&:show?)
       end
 
@@ -89,6 +90,21 @@ module Summary
             FreeTextAnswer.new(:special_arrangements_details, arrangement.special_arrangements_details),
           ],
           change_path: edit_steps_attending_court_special_arrangements_path
+        )
+      end
+
+      def special_assistance
+        # Do not show this block in CYA if the user didn't yet reach this step
+        # (we know because the text attribute will be `nil` in that case).
+        return [] if arrangement.special_assistance_details.nil?
+
+        AnswersGroup.new(
+          :special_assistance,
+          [
+            MultiAnswer.new(:special_assistance, arrangement.special_assistance, show: true),
+            FreeTextAnswer.new(:special_assistance_details, arrangement.special_assistance_details),
+          ],
+          change_path: edit_steps_attending_court_special_assistance_path
         )
       end
     end

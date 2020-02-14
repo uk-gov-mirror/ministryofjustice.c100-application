@@ -25,10 +25,14 @@ module Summary
         intermediary_help_details: 'intermediary_help_details',
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
+        special_assistance: special_assistance,
+        special_assistance_details: special_assistance_details,
     )}
 
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
+    let(:special_assistance) { ['hearing_loop'] }
+    let(:special_assistance_details) { 'special_assistance_details' }
 
     let(:answers) { subject.answers }
 
@@ -38,7 +42,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(6)
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:reduced_litigation_capacity)
@@ -60,6 +64,10 @@ module Summary
         expect(answers[4]).to be_an_instance_of(AnswersGroup)
         expect(answers[4].name).to eq(:special_arrangements)
         expect(answers[4].change_path).to eq('/steps/attending_court/special_arrangements')
+
+        expect(answers[5]).to be_an_instance_of(AnswersGroup)
+        expect(answers[5].name).to eq(:special_assistance)
+        expect(answers[5].change_path).to eq('/steps/attending_court/special_assistance')
       end
 
       context 'when the special arrangements step has not been visited yet' do
@@ -67,7 +75,16 @@ module Summary
         let(:special_arrangements_details) { nil }
 
         it 'does not show the block' do
-          expect(answers.count).to eq(4)
+          expect(answers.count).to eq(5)
+        end
+      end
+
+      context 'when the special assistance step has not been visited yet' do
+        let(:special_assistance) { [] }
+        let(:special_assistance_details) { nil }
+
+        it 'does not show the block' do
+          expect(answers.count).to eq(5)
         end
       end
 
@@ -154,6 +171,34 @@ module Summary
 
             expect(group_answers[0]).to be_an_instance_of(MultiAnswer)
             expect(group_answers[0].question).to eq(:special_arrangements)
+            expect(group_answers[0].value).to eq([])
+          end
+        end
+      end
+
+      context 'special_assistance' do
+        let(:group_answers) { answers[5].answers }
+
+        it 'has the correct rows in the right order' do
+          expect(group_answers.count).to eq(2)
+
+          expect(group_answers[0]).to be_an_instance_of(MultiAnswer)
+          expect(group_answers[0].question).to eq(:special_assistance)
+          expect(group_answers[0].value).to eq(['hearing_loop'])
+
+          expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
+          expect(group_answers[1].question).to eq(:special_assistance_details)
+          expect(group_answers[1].value).to eq('special_assistance_details')
+        end
+
+        context 'when no check boxes were selected' do
+          let(:special_assistance) { [] }
+
+          it 'still shows the block because `show: true` (will use the `absence_answer`)' do
+            expect(group_answers.count).to eq(2)
+
+            expect(group_answers[0]).to be_an_instance_of(MultiAnswer)
+            expect(group_answers[0].question).to eq(:special_assistance)
             expect(group_answers[0].value).to eq([])
           end
         end
