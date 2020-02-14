@@ -25,6 +25,10 @@
 
   .answer {
     padding-bottom: em(9, 19); // from Elements' td
+
+    p.user-free-text:last-of-type {
+      margin-bottom: 5px;
+    }
   }
 
   .change {
