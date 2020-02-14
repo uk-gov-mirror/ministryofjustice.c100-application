@@ -377,12 +377,6 @@ en:
         <<: *YESNO
     language_help_details:
       question: *details
-    special_assistance:
-      question: Special assistance or special facilities required for applicant or any of the parties
-      answers:
-        <<: *YESNO
-    special_assistance_details:
-      question: *details
     # attending court redesign -- begin
     language_interpreter:
       question: Interpreter
@@ -417,6 +411,19 @@ en:
         protective_screens: Protective screens
         video_link: Video links
     special_arrangements_details:
+      question: *details
+    special_assistance:
+      question: Assistance or special facilities required for applicant or any of the parties
+      absence_answer: None required
+      answers:
+        # old version
+        <<: *YESNO
+        # new version
+        hearing_loop: A hearing loop
+        braille_documents: Documents in Braille
+        advance_court_viewing: Advance viewing of the court
+        other_assistance: Other assistance or facilities
+    special_assistance_details:
       question: *details
     # attending court redesign -- end
 

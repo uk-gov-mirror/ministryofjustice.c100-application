@@ -20,6 +20,7 @@ module Summary
           *language_interpreter,
           *intermediary,
           *special_arrangements,
+          *special_assistance,
         ].select(&:show?)
       end
 
@@ -58,6 +59,14 @@ module Summary
           Separator.new(:special_arrangements),
           MultiAnswer.new(:special_arrangements, arrangement.special_arrangements, show: true),
           FreeTextAnswer.new(:special_arrangements_details, arrangement.special_arrangements_details),
+        ]
+      end
+
+      def special_assistance
+        [
+          Separator.new(:special_assistance),
+          MultiAnswer.new(:special_assistance, arrangement.special_assistance, show: true),
+          FreeTextAnswer.new(:special_assistance_details, arrangement.special_assistance_details),
         ]
       end
     end
