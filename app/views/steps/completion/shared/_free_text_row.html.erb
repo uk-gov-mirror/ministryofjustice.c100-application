@@ -4,7 +4,7 @@
   </dt>
   <dd class="answer">
     <%= simple_format(
-      free_text_row.value.presence || t("check_answers_html.#{free_text_row.question}.absence_answer"), {}, wrapper_tag: 'div'
+      free_text_row.value.presence || t("check_answers_html.#{free_text_row.question}.absence_answer"), { class: 'user-free-text' }
     ) %>
   </dd>
   <dd class="change">
