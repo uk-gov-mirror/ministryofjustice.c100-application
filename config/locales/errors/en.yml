@@ -550,7 +550,7 @@ en:
             intermediary_help:
               inclusion: Select yes if an intermediary is needed in court
             intermediary_help_details:
-              blank: You must give details of who needs help communicating in court
+              blank: You must give details of who needs help in court
         steps/application/special_assistance_form:
           attributes:
             special_assistance:
@@ -575,7 +575,7 @@ en:
             intermediary_help:
               inclusion: Select yes if an intermediary is needed in court
             intermediary_help_details:
-              blank: You must give details of who needs help communicating in court
+              blank: You must give details of who needs help in court
         # attending court redesign -- end
         steps/application/payment_form:
           attributes:
