@@ -33,10 +33,27 @@ RSpec.describe Steps::AttendingCourt::SpecialAssistanceForm do
     end
 
     context 'when form is valid' do
+      # TODO: temporarily until all applications are migrated to version >= 5
+      let(:c100_application) {
+        instance_double(
+          C100Application,
+          reduced_litigation_capacity: 'yes',
+          participation_capacity_details: 'participation_capacity_details',
+          participation_other_factors_details: 'participation_other_factors_details',
+          participation_referral_or_assessment_details: 'participation_referral_or_assessment_details',
+          court_arrangement: court_arrangement,
+        )
+      }
+
       it 'saves the record' do
         expect(court_arrangement).to receive(:update).with(
           special_assistance: [:hearing_loop],
-          special_assistance_details: 'details'
+          special_assistance_details: 'details',
+          # litigation capacity attributes
+          reduced_litigation_capacity: 'yes',
+          participation_capacity_details: 'participation_capacity_details',
+          participation_other_factors_details: 'participation_other_factors_details',
+          participation_referral_or_assessment_details: 'participation_referral_or_assessment_details',
         ).and_return(true)
 
         expect(subject.save).to be(true)
