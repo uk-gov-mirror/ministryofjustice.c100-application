@@ -9,7 +9,6 @@ RSpec.describe SpecialArrangements do
       expect(described_class.values.map(&:to_s)).to eq(%w(
         separate_waiting_rooms
         separate_entrance_exit
-        advance_court_viewing
         protective_screens
         video_link
       ))
