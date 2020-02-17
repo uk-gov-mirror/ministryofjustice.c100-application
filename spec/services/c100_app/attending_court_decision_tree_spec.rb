@@ -10,13 +10,13 @@ RSpec.describe C100App::AttendingCourtDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `language`' do
-    let(:step_params) { { language: 'anything' } }
-    it { is_expected.to have_destination(:intermediary, :edit) }
-  end
-
   context 'when the step is `intermediary`' do
     let(:step_params) { { intermediary: 'anything' } }
+    it { is_expected.to have_destination(:language, :edit) }
+  end
+
+  context 'when the step is `language`' do
+    let(:step_params) { { language: 'anything' } }
     it { is_expected.to have_destination(:special_arrangements, :edit) }
   end
 

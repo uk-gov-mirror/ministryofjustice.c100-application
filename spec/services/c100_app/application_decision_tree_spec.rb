@@ -90,17 +90,17 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
       context 'when C100 application version is < 5' do
         let(:version) { 4 }
-        it { is_expected.to have_destination(:language, :edit) }
+        it { is_expected.to have_destination(:intermediary, :edit) }
       end
 
       context 'when C100 application version is = 5' do
         let(:version) { 5 }
-        it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+        it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
       end
 
       context 'when C100 application version is > 5' do
         let(:version) { 6 }
-        it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+        it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
       end
     end
   end
@@ -112,27 +112,27 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'when C100 application version is < 5' do
       let(:version) { 4 }
-      it { is_expected.to have_destination(:language, :edit) }
+      it { is_expected.to have_destination(:intermediary, :edit) }
     end
 
     context 'when C100 application version is = 5' do
       let(:version) { 5 }
-      it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+      it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
     end
 
     context 'when C100 application version is > 5' do
       let(:version) { 6 }
-      it { is_expected.to have_destination('/steps/attending_court/language', :edit) }
+      it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
     end
-  end
-
-  context 'when the step is `language`' do
-    let(:step_params) { { language: 'anything' } }
-    it { is_expected.to have_destination(:intermediary, :edit) }
   end
 
   context 'when the step is `intermediary`' do
     let(:step_params) { { intermediary: 'anything' } }
+    it { is_expected.to have_destination(:language, :edit) }
+  end
+
+  context 'when the step is `language`' do
+    let(:step_params) { { language: 'anything' } }
     it { is_expected.to have_destination(:special_arrangements, :edit) }
   end
 

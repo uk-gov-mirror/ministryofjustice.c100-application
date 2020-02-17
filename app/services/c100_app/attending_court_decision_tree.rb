@@ -4,9 +4,9 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :language
-        edit(:intermediary)
       when :intermediary
+        edit(:language)
+      when :language
         edit(:special_arrangements)
       when :special_arrangements
         edit(:special_assistance)
