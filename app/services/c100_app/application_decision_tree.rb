@@ -22,10 +22,10 @@ module C100App
       when :litigation_capacity
         after_litigation_capacity
       when :litigation_capacity_details
-        language_step_for_version
-      when :language
-        edit(:intermediary)
+        intermediary_step_for_version
       when :intermediary
+        edit(:language)
+      when :language
         edit(:special_arrangements)
       when :special_arrangements
         edit(:special_assistance)
@@ -73,7 +73,7 @@ module C100App
       if question(:reduced_litigation_capacity).yes?
         edit(:litigation_capacity_details)
       else
-        language_step_for_version
+        intermediary_step_for_version
       end
     end
 
@@ -99,11 +99,11 @@ module C100App
     end
 
     # TODO: leave this until all applications are migrated to version >= 5
-    def language_step_for_version
+    def intermediary_step_for_version
       if c100_application.version >= 5
-        edit('/steps/attending_court/language')
+        edit('/steps/attending_court/intermediary')
       else
-        edit(:language)
+        edit(:intermediary)
       end
     end
   end

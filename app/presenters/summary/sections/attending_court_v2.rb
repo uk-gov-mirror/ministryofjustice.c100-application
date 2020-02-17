@@ -17,8 +17,8 @@ module Summary
 
       def answers
         [
-          *language_interpreter,
           *intermediary,
+          *language_interpreter,
           *special_arrangements,
           *special_assistance,
         ].select(&:show?)
@@ -28,6 +28,14 @@ module Summary
 
       def arrangement
         @_arrangement ||= c100.court_arrangement
+      end
+
+      def intermediary
+        [
+          Separator.new(:intermediary),
+          Answer.new(:intermediary_help, arrangement.intermediary_help),
+          FreeTextAnswer.new(:intermediary_help_details, arrangement.intermediary_help_details),
+        ]
       end
 
       # Note: we convert the booleans in the `Answer` object with `to_s`, so `true` and `false`
@@ -43,14 +51,6 @@ module Summary
           FreeTextAnswer.new(:language_interpreter_details, arrangement.language_interpreter_details),
           Answer.new(:sign_language_interpreter, arrangement.sign_language_interpreter.to_s),
           FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
-        ]
-      end
-
-      def intermediary
-        [
-          Separator.new(:intermediary),
-          Answer.new(:intermediary_help, arrangement.intermediary_help),
-          FreeTextAnswer.new(:intermediary_help_details, arrangement.intermediary_help_details),
         ]
       end
 

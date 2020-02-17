@@ -581,8 +581,7 @@ en:
     intermediary_help:
       question: ''
       answers:
-        'yes': 'Yes'
-        'no': *not_needed
+        <<: *YESNO
     intermediary_help_details:
       question: ''
     sign_language_interpreter_details:
