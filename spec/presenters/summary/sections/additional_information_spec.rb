@@ -41,7 +41,6 @@ module Summary
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:language_assistance)
-        expect(c100_application).to have_received(:language_help)
       end
     end
 
@@ -89,6 +88,54 @@ module Summary
 
         it 'returns the default value for the answer' do
           expect(answers[4].value).to eq(GenericYesNo::NO)
+        end
+      end
+    end
+
+    describe '`language_assistance` answer values' do
+      before do
+        allow(c100_application).to receive(:court_arrangement).and_return(court_arrangement)
+        allow(c100_application).to receive(:language_help).and_return(language_help)
+      end
+
+      let(:language_help) { nil }
+      let(:court_arrangement) { nil }
+
+      # new version
+      context 'when we have a `court_arrangement` record' do
+        let(:court_arrangement) {
+          instance_double(
+            CourtArrangement,
+            language_interpreter: language_interpreter,
+            sign_language_interpreter:sign_language_interpreter,
+          )
+        }
+
+        context 'at least one check box was selected' do
+          let(:language_interpreter) { false }
+          let(:sign_language_interpreter) { true }
+
+          it 'returns a `YES` value' do
+            expect(answers[5].value).to eq(GenericYesNo::YES)
+          end
+        end
+
+        context 'no check box was selected' do
+          let(:language_interpreter) { false }
+          let(:sign_language_interpreter) { false }
+
+          it 'returns the default value' do
+            expect(answers[5].value).to eq(GenericYesNo::NO)
+          end
+        end
+      end
+
+      # old version
+      context 'when we do not have a `court_arrangement` record' do
+        let(:language_help) { 'yes' }
+
+        it 'returns the question value' do
+          expect(answers[5].value).to eq('yes')
         end
       end
     end
