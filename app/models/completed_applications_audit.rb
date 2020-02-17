@@ -16,22 +16,7 @@ class CompletedApplicationsAudit < ApplicationRecord
   end
 
   def self.metadata(c100_application)
-    # We blind a bit the postcode to anonymize it
-    postcode = c100_application.screener_answers.children_postcodes
-    postcode = postcode.sub(/\s+/, '').upcase.at(0..-3) + '**'
-
-    {
-      v: c100_application.version,
-      postcode: postcode,
-      c1a_form: c100_application.has_safety_concerns?,
-      c8_form: c100_application.confidentiality_enabled?,
-      saved_for_later: c100_application.user_id.present?,
-      legal_representation: c100_application.has_solicitor || 'no',
-      urgent_hearing: c100_application.urgent_hearing,
-      without_notice: c100_application.without_notice,
-      payment_type: c100_application.payment_type,
-      signee_capacity: c100_application.declaration_signee_capacity,
-    }
+    AuditHelper.new(c100_application).metadata
   end
 
   # This will be `nil` if the application has been purged from database already
