@@ -103,6 +103,12 @@ form.fmc-lookup-form {
   }
 }
 
+.button-secondary {
+  @media (min-width: 641px) {
+    margin-left: 6rem;
+  }
+}
+
 // State of the link remains as non-visited.
 // Used in cases where it is not helpful to distinguish between visited and non-visited links.
 //

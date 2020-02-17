@@ -12,6 +12,7 @@ textarea.form-control-large {
 }
 
 @media (min-width: 641px) {
+  input[type=password].form-control,
   input[type=text].form-control[name*=phone],
   input[type=text].form-control[name*=age_estimate],
   input[type=text].form-control.narrow {
@@ -43,5 +44,5 @@ textarea.form-control-large {
 // Maintain the width when toggling between input password and input text.
 // Otherwise the input text override the width, making it bigger.
 .js-toggleable-password {
-  width: 50% !important;
+  width: $full-width;
 }
