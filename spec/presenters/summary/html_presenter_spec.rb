@@ -82,6 +82,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::WithoutNoticeDetails,
         Summary::HtmlSections::InternationalElement,
         Summary::HtmlSections::ApplicationReasons,
+        Summary::HtmlSections::LitigationCapacity,
         Summary::HtmlSections::AttendingCourt,
         Summary::HtmlSections::Payment,
         Summary::HtmlSections::Submission,

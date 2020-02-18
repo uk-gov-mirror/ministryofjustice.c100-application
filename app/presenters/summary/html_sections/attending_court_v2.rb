@@ -13,7 +13,6 @@ module Summary
 
       def answers
         [
-          litigation_capacity,
           intermediary,
           language_interpreter,
           special_arrangements,
@@ -25,27 +24,6 @@ module Summary
 
       def arrangement
         @_arrangement ||= c100.court_arrangement
-      end
-
-      # Note: this for now maintains the same DB model as before (dupe from `AttendingCourt`)
-      # To be evaluated if it is worth move the fields to the new `court_arrangements` table.
-      def litigation_capacity
-        [
-          Answer.new(
-            :reduced_litigation_capacity,
-            c100.reduced_litigation_capacity,
-            change_path: edit_steps_application_litigation_capacity_path
-          ),
-          AnswersGroup.new(
-            :litigation_capacity,
-            [
-              FreeTextAnswer.new(:participation_capacity_details, c100.participation_capacity_details),
-              FreeTextAnswer.new(:participation_other_factors_details, c100.participation_other_factors_details),
-              FreeTextAnswer.new(:participation_referral_or_assessment_details, c100.participation_referral_or_assessment_details),
-            ],
-            change_path: edit_steps_application_litigation_capacity_details_path
-          )
-        ]
       end
 
       def intermediary

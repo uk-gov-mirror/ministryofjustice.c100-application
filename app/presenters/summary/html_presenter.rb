@@ -19,8 +19,7 @@ module Summary
         *urgent_and_without_notice_sections,
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
-        HtmlSections::AttendingCourt.new(c100_application),
-        HtmlSections::AttendingCourtV2.new(c100_application),
+        *litigation_and_assistance_sections,
         *payment_and_submission_sections,
       ].flatten.select(&:show?)
     end
@@ -75,6 +74,14 @@ module Summary
       [
         HtmlSections::UrgentHearingDetails.new(c100_application),
         HtmlSections::WithoutNoticeDetails.new(c100_application),
+      ]
+    end
+
+    def litigation_and_assistance_sections
+      [
+        HtmlSections::LitigationCapacity.new(c100_application),
+        HtmlSections::AttendingCourt.new(c100_application),
+        HtmlSections::AttendingCourtV2.new(c100_application),
       ]
     end
 
