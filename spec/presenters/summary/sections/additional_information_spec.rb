@@ -7,6 +7,10 @@ module Summary
 
     let(:answers) { subject.answers }
 
+    before do
+      allow(c100_application).to receive(:court_arrangement).and_return(nil)
+    end
+
     describe '#name' do
       it 'is expected to be correct' do
         expect(subject.name).to eq(:additional_information)
@@ -103,17 +107,10 @@ module Summary
 
       # new version
       context 'when we have a `court_arrangement` record' do
-        let(:court_arrangement) {
-          instance_double(
-            CourtArrangement,
-            language_interpreter: language_interpreter,
-            sign_language_interpreter:sign_language_interpreter,
-          )
-        }
+        let(:court_arrangement) { instance_double(CourtArrangement, language_options: language_options) }
 
         context 'at least one check box was selected' do
-          let(:language_interpreter) { false }
-          let(:sign_language_interpreter) { true }
+          let(:language_options) { ['language_interpreter'] }
 
           it 'returns a `YES` value' do
             expect(answers[5].value).to eq(GenericYesNo::YES)
@@ -121,8 +118,7 @@ module Summary
         end
 
         context 'no check box was selected' do
-          let(:language_interpreter) { false }
-          let(:sign_language_interpreter) { false }
+          let(:language_options) { [] }
 
           it 'returns the default value' do
             expect(answers[5].value).to eq(GenericYesNo::NO)

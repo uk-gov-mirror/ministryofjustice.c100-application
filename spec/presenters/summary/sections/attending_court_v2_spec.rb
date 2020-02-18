@@ -8,17 +8,20 @@ module Summary
 
     let(:court_arrangement) {
       instance_double(CourtArrangement,
-        language_interpreter: true,
-        language_interpreter_details: 'language_interpreter_details',
-        sign_language_interpreter: true,
-        sign_language_interpreter_details: 'sign_language_interpreter_details',
         intermediary_help: 'yes',
         intermediary_help_details: 'intermediary_help_details',
+        language_options: language_options,
+        language_interpreter_details: language_interpreter_details,
+        sign_language_interpreter_details: sign_language_interpreter_details,
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
         special_assistance: special_assistance,
         special_assistance_details: special_assistance_details,
     )}
+
+    let(:language_options) { %w(language_interpreter sign_language_interpreter) }
+    let(:language_interpreter_details) { 'language_interpreter_details' }
+    let(:sign_language_interpreter_details) { 'sign_language_interpreter_details' }
 
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
@@ -106,6 +109,23 @@ module Summary
         expect(answers[13]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[13].question).to eq(:special_assistance_details)
         expect(answers[13].value).to eq('special_assistance_details')
+      end
+    end
+
+    describe 'no language options selected' do
+      let(:language_options) { [] }
+      let(:language_interpreter_details) { '' }
+      let(:sign_language_interpreter_details) { '' }
+
+      it 'still shows the block because we convert booleans to strings' do
+        expect(answers.count).to eq(12)
+
+        # Note it only shows the multi answer, not the free text because it is empty
+        expect(answers[4].question).to eq(:language_interpreter)
+        expect(answers[4].value).to eq('false')
+
+        expect(answers[5].question).to eq(:sign_language_interpreter)
+        expect(answers[5].value).to eq('false')
       end
     end
 

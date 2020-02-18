@@ -39,17 +39,24 @@ module Summary
       end
 
       # Note: we convert the booleans in the `Answer` object with `to_s`, so `true` and `false`
-      # are true for `#present?` but not for nil (''), meaning if the user didn't reach this
-      # question yet, the value will be `nil` and `Answer` will not show, but once they reach
-      # this question and continue, it will become `true` or `false`, and we want it to show
-      # (even if it is `false` i.e. checkbox not selected).
+      # are both true for `#present?` as we want to show this question even if it is `false`
+      # i.e. checkbox was not selected. If `language_options` is `nil`, it means the user didn't
+      # yet reach this step and only in that case we skip this block.
       #
       def language_interpreter
         [
           Separator.new(:language_assistance),
-          Answer.new(:language_interpreter, arrangement.language_interpreter.to_s),
+
+          Answer.new(
+            :language_interpreter,
+            arrangement.language_options.include?(LanguageHelp::LANGUAGE_INTERPRETER.to_s).to_s
+          ),
           FreeTextAnswer.new(:language_interpreter_details, arrangement.language_interpreter_details),
-          Answer.new(:sign_language_interpreter, arrangement.sign_language_interpreter.to_s),
+
+          Answer.new(
+            :sign_language_interpreter,
+            arrangement.language_options.include?(LanguageHelp::SIGN_LANGUAGE_INTERPRETER.to_s).to_s
+          ),
           FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
         ]
       end
