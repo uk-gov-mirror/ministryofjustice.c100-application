@@ -16,6 +16,7 @@ class AuditHelper
       legal_representation: c100.has_solicitor || 'no',
       urgent_hearing: c100.urgent_hearing,
       without_notice: c100.without_notice,
+      reduced_litigation: c100.reduced_litigation_capacity,
       payment_type: c100.payment_type,
       signee_capacity: c100.declaration_signee_capacity,
       arrangements: arrangements_metadata,

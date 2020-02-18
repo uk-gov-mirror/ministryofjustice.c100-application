@@ -5,6 +5,7 @@ describe AuditHelper do
     C100Application.new(
       version: 123,
       has_solicitor: has_solicitor,
+      reduced_litigation_capacity: 'yes',
       urgent_hearing: 'no',
       without_notice: 'yes',
       payment_type: 'cash',
@@ -41,6 +42,7 @@ describe AuditHelper do
         legal_representation: 'yes',
         urgent_hearing: 'no',
         without_notice: 'yes',
+        reduced_litigation: 'yes',
         payment_type: 'cash',
         signee_capacity: 'applicant',
         arrangements: [],
