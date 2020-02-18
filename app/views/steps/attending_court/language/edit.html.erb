@@ -11,9 +11,7 @@
 
     <%= step_form @form_object do |f| %>
       <%=
-        f.check_box_fieldset :help_with_language, [
-          :language_interpreter, :sign_language_interpreter
-        ] do |fieldset|
+        f.check_box_fieldset :help_with_language, LanguageHelp.values do |fieldset|
           fieldset.check_box_input(:language_interpreter) {
             f.text_area :language_interpreter_details, size: '40x4', class: 'form-control-3-4'
           }
