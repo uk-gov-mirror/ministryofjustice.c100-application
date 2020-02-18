@@ -60,18 +60,27 @@ module Summary
       end
 
       # Note: we convert the booleans in the `Answer` object with `to_s`, so `true` and `false`
-      # are true for `#present?` but not for nil (''), meaning if the user didn't reach this
-      # question yet, the value will be `nil` and `Answer` will not show, but once they reach
-      # this question and continue, it will become `true` or `false`, and we want it to show
-      # (even if it is `false` i.e. checkbox not selected).
+      # are both true for `#present?` as we want to show this question even if it is `false`
+      # i.e. checkbox was not selected. If `language_options` is `nil`, it means the user didn't
+      # yet reach this step and only in that case we skip this block.
       #
       def language_interpreter
+        # Do not show this block in CYA if the user didn't yet reach this step
+        # (we know because the array will be `nil` in that case).
+        return [] if arrangement.language_options.nil?
+
         AnswersGroup.new(
           :language_interpreter,
           [
-            Answer.new(:language_interpreter, arrangement.language_interpreter.to_s),
+            Answer.new(
+              :language_interpreter,
+              arrangement.language_options.include?(LanguageHelp::LANGUAGE_INTERPRETER.to_s).to_s
+            ),
             FreeTextAnswer.new(:language_interpreter_details, arrangement.language_interpreter_details),
-            Answer.new(:sign_language_interpreter, arrangement.sign_language_interpreter.to_s),
+            Answer.new(
+              :sign_language_interpreter,
+              arrangement.language_options.include?(LanguageHelp::SIGN_LANGUAGE_INTERPRETER.to_s).to_s
+            ),
             FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
           ],
           change_path: edit_steps_attending_court_language_path
@@ -80,8 +89,8 @@ module Summary
 
       def special_arrangements
         # Do not show this block in CYA if the user didn't yet reach this step
-        # (we know because the text attribute will be `nil` in that case).
-        return [] if arrangement.special_arrangements_details.nil?
+        # (we know because the array will be `nil` in that case).
+        return [] if arrangement.special_arrangements.nil?
 
         AnswersGroup.new(
           :special_arrangements,
@@ -95,8 +104,8 @@ module Summary
 
       def special_assistance
         # Do not show this block in CYA if the user didn't yet reach this step
-        # (we know because the text attribute will be `nil` in that case).
-        return [] if arrangement.special_assistance_details.nil?
+        # (we know because the array will be `nil` in that case).
+        return [] if arrangement.special_assistance.nil?
 
         AnswersGroup.new(
           :special_assistance,

@@ -1,7 +1,6 @@
 module Summary
   module Sections
     class C1aBaseAbuseDetails < BaseSectionPresenter
-      # rubocop:disable Metrics/AbcSize
       def answers
         abuses_suffered.map do |abuse|
           [
@@ -18,7 +17,6 @@ module Summary
           ].select(&:show?)
         end.flatten
       end
-      # rubocop:enable Metrics/AbcSize
 
       private
 

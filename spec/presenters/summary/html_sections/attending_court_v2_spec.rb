@@ -17,18 +17,18 @@ module Summary
 
     let(:court_arrangement) {
       instance_double(CourtArrangement,
-        language_interpreter: true,
-        language_interpreter_details: 'language_interpreter_details',
-        sign_language_interpreter: true,
-        sign_language_interpreter_details: 'sign_language_interpreter_details',
         intermediary_help: 'yes',
         intermediary_help_details: 'intermediary_help_details',
+        language_options: language_options,
+        language_interpreter_details: 'language_interpreter_details',
+        sign_language_interpreter_details: 'sign_language_interpreter_details',
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
         special_assistance: special_assistance,
         special_assistance_details: special_assistance_details,
     )}
 
+    let(:language_options) { %w(language_interpreter sign_language_interpreter) }
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
     let(:special_assistance) { ['hearing_loop'] }
@@ -70,9 +70,16 @@ module Summary
         expect(answers[5].change_path).to eq('/steps/attending_court/special_assistance')
       end
 
+      context 'when the language step has not been visited yet' do
+        let(:language_options) { nil }
+
+        it 'does not show the block' do
+          expect(answers.count).to eq(5)
+        end
+      end
+
       context 'when the special arrangements step has not been visited yet' do
-        let(:special_arrangements) { [] }
-        let(:special_arrangements_details) { nil }
+        let(:special_arrangements) { nil }
 
         it 'does not show the block' do
           expect(answers.count).to eq(5)
@@ -80,8 +87,7 @@ module Summary
       end
 
       context 'when the special assistance step has not been visited yet' do
-        let(:special_assistance) { [] }
-        let(:special_assistance_details) { nil }
+        let(:special_assistance) { nil }
 
         it 'does not show the block' do
           expect(answers.count).to eq(5)
@@ -145,6 +151,30 @@ module Summary
           expect(group_answers[3]).to be_an_instance_of(FreeTextAnswer)
           expect(group_answers[3].question).to eq(:sign_language_interpreter_details)
           expect(group_answers[3].value).to eq('sign_language_interpreter_details')
+        end
+
+        context 'when no check boxes were selected' do
+          let(:language_options) { [] }
+
+          it 'still shows the block because we convert booleans to strings' do
+            expect(group_answers.count).to eq(4)
+
+            expect(group_answers[0]).to be_an_instance_of(Answer)
+            expect(group_answers[0].question).to eq(:language_interpreter)
+            expect(group_answers[0].value).to eq('false')
+
+            expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
+            expect(group_answers[1].question).to eq(:language_interpreter_details)
+            expect(group_answers[1].value).to eq('language_interpreter_details')
+
+            expect(group_answers[2]).to be_an_instance_of(Answer)
+            expect(group_answers[2].question).to eq(:sign_language_interpreter)
+            expect(group_answers[2].value).to eq('false')
+
+            expect(group_answers[3]).to be_an_instance_of(FreeTextAnswer)
+            expect(group_answers[3].question).to eq(:sign_language_interpreter_details)
+            expect(group_answers[3].value).to eq('sign_language_interpreter_details')
+          end
         end
       end
 

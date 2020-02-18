@@ -18,7 +18,7 @@ module ArrangementsCheckBoxesForm
       # can retrieve their state (checked/unchecked) from the DB array column.
       attribute_names.each do |name|
         define_method(name) do
-          selected_options.include?(name) || record_to_persist[group_name].include?(name.to_s)
+          selected_options.include?(name) || Array(record_to_persist[group_name]).include?(name.to_s)
         end
 
         define_method("#{name}?") do

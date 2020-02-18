@@ -180,16 +180,16 @@ ActiveRecord::Schema.define(version: 2020_02_18_092658) do
   create_table "court_arrangements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "language_options", default: [], array: true
+    t.string "language_options", array: true
     t.text "language_interpreter_details"
     t.text "sign_language_interpreter_details"
     t.uuid "c100_application_id"
     t.text "welsh_language_details"
     t.string "intermediary_help"
     t.text "intermediary_help_details"
-    t.string "special_arrangements", default: [], array: true
+    t.string "special_arrangements", array: true
     t.text "special_arrangements_details"
-    t.string "special_assistance", default: [], array: true
+    t.string "special_assistance", array: true
     t.text "special_assistance_details"
     t.string "reduced_litigation_capacity"
     t.text "participation_capacity_details"
