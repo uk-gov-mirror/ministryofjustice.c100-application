@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_092658) do
+ActiveRecord::Schema.define(version: 2020_02_18_143731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -191,10 +191,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_092658) do
     t.text "special_arrangements_details"
     t.string "special_assistance", array: true
     t.text "special_assistance_details"
-    t.string "reduced_litigation_capacity"
-    t.text "participation_capacity_details"
-    t.text "participation_other_factors_details"
-    t.text "participation_referral_or_assessment_details"
     t.index ["c100_application_id"], name: "index_court_arrangements_on_c100_application_id", unique: true
   end
 
