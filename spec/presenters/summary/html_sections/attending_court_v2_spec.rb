@@ -4,16 +4,7 @@ module Summary
   describe HtmlSections::AttendingCourtV2 do
     subject { described_class.new(c100_application) }
 
-    let(:c100_application) {
-      instance_double(
-        C100Application,
-        reduced_litigation_capacity: 'yes',
-        participation_capacity_details: 'participation_capacity_details',
-        participation_other_factors_details: 'participation_other_factors_details',
-        participation_referral_or_assessment_details: 'participation_referral_or_assessment_details',
-        court_arrangement: court_arrangement
-      )
-    }
+    let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
 
     let(:court_arrangement) {
       instance_double(CourtArrangement,
@@ -42,39 +33,30 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(4)
 
-        expect(answers[0]).to be_an_instance_of(Answer)
-        expect(answers[0].question).to eq(:reduced_litigation_capacity)
-        expect(answers[0].value).to eq('yes')
-        expect(answers[0].change_path).to eq('/steps/application/litigation_capacity')
+        expect(answers[0]).to be_an_instance_of(AnswersGroup)
+        expect(answers[0].name).to eq(:intermediary)
+        expect(answers[0].change_path).to eq('/steps/attending_court/intermediary')
 
         expect(answers[1]).to be_an_instance_of(AnswersGroup)
-        expect(answers[1].name).to eq(:litigation_capacity)
-        expect(answers[1].change_path).to eq('/steps/application/litigation_capacity_details')
+        expect(answers[1].name).to eq(:language_interpreter)
+        expect(answers[1].change_path).to eq('/steps/attending_court/language')
 
         expect(answers[2]).to be_an_instance_of(AnswersGroup)
-        expect(answers[2].name).to eq(:intermediary)
-        expect(answers[2].change_path).to eq('/steps/attending_court/intermediary')
+        expect(answers[2].name).to eq(:special_arrangements)
+        expect(answers[2].change_path).to eq('/steps/attending_court/special_arrangements')
 
         expect(answers[3]).to be_an_instance_of(AnswersGroup)
-        expect(answers[3].name).to eq(:language_interpreter)
-        expect(answers[3].change_path).to eq('/steps/attending_court/language')
-
-        expect(answers[4]).to be_an_instance_of(AnswersGroup)
-        expect(answers[4].name).to eq(:special_arrangements)
-        expect(answers[4].change_path).to eq('/steps/attending_court/special_arrangements')
-
-        expect(answers[5]).to be_an_instance_of(AnswersGroup)
-        expect(answers[5].name).to eq(:special_assistance)
-        expect(answers[5].change_path).to eq('/steps/attending_court/special_assistance')
+        expect(answers[3].name).to eq(:special_assistance)
+        expect(answers[3].change_path).to eq('/steps/attending_court/special_assistance')
       end
 
       context 'when the language step has not been visited yet' do
         let(:language_options) { nil }
 
         it 'does not show the block' do
-          expect(answers.count).to eq(5)
+          expect(answers.count).to eq(3)
         end
       end
 
@@ -82,7 +64,7 @@ module Summary
         let(:special_arrangements) { nil }
 
         it 'does not show the block' do
-          expect(answers.count).to eq(5)
+          expect(answers.count).to eq(3)
         end
       end
 
@@ -90,32 +72,12 @@ module Summary
         let(:special_assistance) { nil }
 
         it 'does not show the block' do
-          expect(answers.count).to eq(5)
-        end
-      end
-
-      context 'litigation_capacity' do
-        let(:group_answers) { answers[1].answers }
-
-        it 'has the correct rows in the right order' do
-          expect(group_answers.count).to eq(3)
-
-          expect(group_answers[0]).to be_an_instance_of(FreeTextAnswer)
-          expect(group_answers[0].question).to eq(:participation_capacity_details)
-          expect(group_answers[0].value).to eq('participation_capacity_details')
-
-          expect(group_answers[1]).to be_an_instance_of(FreeTextAnswer)
-          expect(group_answers[1].question).to eq(:participation_other_factors_details)
-          expect(group_answers[1].value).to eq('participation_other_factors_details')
-
-          expect(group_answers[2]).to be_an_instance_of(FreeTextAnswer)
-          expect(group_answers[2].question).to eq(:participation_referral_or_assessment_details)
-          expect(group_answers[2].value).to eq('participation_referral_or_assessment_details')
+          expect(answers.count).to eq(3)
         end
       end
 
       context 'intermediary' do
-        let(:group_answers) { answers[2].answers }
+        let(:group_answers) { answers[0].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(2)
@@ -131,7 +93,7 @@ module Summary
       end
 
       context 'language_interpreter' do
-        let(:group_answers) { answers[3].answers }
+        let(:group_answers) { answers[1].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(4)
@@ -179,7 +141,7 @@ module Summary
       end
 
       context 'special_arrangements' do
-        let(:group_answers) { answers[4].answers }
+        let(:group_answers) { answers[2].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(2)
@@ -207,7 +169,7 @@ module Summary
       end
 
       context 'special_assistance' do
-        let(:group_answers) { answers[5].answers }
+        let(:group_answers) { answers[3].answers }
 
         it 'has the correct rows in the right order' do
           expect(group_answers.count).to eq(2)

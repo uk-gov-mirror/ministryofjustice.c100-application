@@ -695,13 +695,11 @@ en:
       litigation_capacity:
         edit:
           page_title: Factors affecting taking part in court proceedings
-          section: *attending_court
           heading: Are there any factors that may affect any adult in this application taking part in the court proceedings?
           lead_text: For example, they may lack the capacity to conduct legal proceedings, or suffer from a mental or physical impairment or other health problem
       litigation_capacity_details:
         edit:
           page_title: Factors affecting ability to participate
-          section: *attending_court
           heading: Factors affecting ability to participate
       special_assistance:
         edit:
