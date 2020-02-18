@@ -41,11 +41,7 @@ module Summary
       # TODO: maintain for a while until all applications are using the new table
       def language_assistance_value
         return c100.language_help if arrangement.nil?
-
-        return GenericYesNo::YES if [
-          arrangement.language_interpreter,
-          arrangement.sign_language_interpreter,
-        ].any?
+        return GenericYesNo::YES  if (LanguageHelp.string_values & arrangement.language_options).any?
 
         default_value
       end

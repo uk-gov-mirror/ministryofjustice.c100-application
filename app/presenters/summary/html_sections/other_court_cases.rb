@@ -22,7 +22,6 @@ module Summary
 
       private
 
-      # rubocop:disable Metrics/AbcSize
       def other_court_cases_details
         return [] if court_proceeding.nil?
 
@@ -36,7 +35,6 @@ module Summary
           FreeTextAnswer.new(:court_proceeding_previous_details, court_proceeding.previous_details),
         ]
       end
-      # rubocop:enable Metrics/AbcSize
 
       def court_proceeding
         @_court_proceeding ||= c100.court_proceeding

@@ -51,10 +51,8 @@ describe AuditHelper do
     context 'when we have court arrangements' do
       let(:court_arrangement) {
         CourtArrangement.new(
-          reduced_litigation_capacity: 'no',
           intermediary_help: 'yes',
-          language_interpreter: true,
-          sign_language_interpreter: false,
+          language_options: %w(language_interpreter),
           special_arrangements: %w(video_link protective_screens),
           special_assistance: %w(hearing_loop),
         )

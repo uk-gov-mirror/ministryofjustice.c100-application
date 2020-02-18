@@ -38,18 +38,10 @@ class AuditHelper
     return [] unless arrangement.present?
 
     [].tap do |options|
-      options << litigation_intermediary_language
+      options << 'intermediary' if arrangement.intermediary_help.eql?(GenericYesNo::YES.to_s)
+      options << arrangement.language_options
       options << arrangement.special_arrangements
       options << arrangement.special_assistance
     end.flatten
-  end
-
-  def litigation_intermediary_language
-    [].tap do |options|
-      options << 'reduced_litigation'        if arrangement.reduced_litigation_capacity.eql?(GenericYesNo::YES.to_s)
-      options << 'intermediary'              if arrangement.intermediary_help.eql?(GenericYesNo::YES.to_s)
-      options << 'language_interpreter'      if arrangement.language_interpreter?
-      options << 'sign_language_interpreter' if arrangement.sign_language_interpreter?
-    end
   end
 end

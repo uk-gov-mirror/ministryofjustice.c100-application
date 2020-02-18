@@ -6,7 +6,6 @@ module Summary
       @c100_application = c100_application
     end
 
-    # rubocop:disable Metrics/AbcSize
     def sections
       [
         *miam_questions,
@@ -25,7 +24,6 @@ module Summary
         *payment_and_submission_sections,
       ].flatten.select(&:show?)
     end
-    # rubocop:enable Metrics/AbcSize
 
     def before_submit_warning
       ['.submit_warning', submission_type].join('.')
