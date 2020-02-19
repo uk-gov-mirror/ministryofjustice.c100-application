@@ -12,7 +12,7 @@ class RelationshipsPresenter
 
     relationships.where(minor: minors, person: person_or_people).map do |relationship|
       show_person_name ? present_relation_with_person(relationship) : present_relation_without_person(relationship)
-    end.join
+    end.join("\n")
   end
 
   private

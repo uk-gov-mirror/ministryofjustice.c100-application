@@ -73,8 +73,8 @@ en:
     c8_confidential_answer: *c8_attached
     miam_exemptions_info: "The applicant has not attended a MIAM because the following exemption(s) applies:"
     relationship_to_child:
-      show_person_html: "<div>%{person_name} - %{relation} to %{child_name}</div>"
-      hide_person_html: "<div>%{relation} to %{child_name}</div>"
+      show_person_html: "%{person_name} - %{relation} to %{child_name}"
+      hide_person_html: "%{relation} to %{child_name}"
     statement_of_truth:
       applicant_html: |
         <p>%{signee_name} (applicant) believes that the facts stated in this application are true.</p>
