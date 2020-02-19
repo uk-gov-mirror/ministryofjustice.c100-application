@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:2.6.5-alpine
 MAINTAINER UCPD Cross Justice Delivery
 
 # build dependencies:
@@ -19,11 +19,12 @@ RUN apk --no-cache add --virtual build-deps \
 && apk --no-cache add \
   postgresql-client \
   linux-headers \
+  xz-libs \
   tzdata \
   nodejs \
   yarn
 
-# Install dependencies for wkhtmltopdf
+# Install dependencies for wkhtmltopdf and microsoft fonts
 RUN apk --no-cache add \
   libx11 \
   libxrender \
@@ -32,7 +33,6 @@ RUN apk --no-cache add \
   ttf-ubuntu-font-family \
 && apk --no-cache add --virtual fonts-deps \
   msttcorefonts-installer \
-# install microsoft fonts
 && update-ms-fonts && fc-cache -f
 
 # ensure everything is executable
