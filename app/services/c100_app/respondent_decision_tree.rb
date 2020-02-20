@@ -37,7 +37,7 @@ module C100App
 
     def after_has_other_parties
       if question(:has_other_parties).yes?
-        edit('/steps/other_parties/names')
+        edit('/steps/other_party/names')
       else
         edit('/steps/children/residence', id: first_child_id)
       end

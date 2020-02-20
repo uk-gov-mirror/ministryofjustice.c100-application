@@ -254,7 +254,7 @@ en:
         edit:
           page_title: Other child personal details
           heading: "Provide details for %{name}"
-    other_parties:
+    other_party:
       names:
         edit:
           page_title: Other people
@@ -1134,7 +1134,7 @@ en:
       steps_other_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
-      steps_other_parties_personal_details_form:
+      steps_other_party_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
@@ -1283,9 +1283,9 @@ en:
         <<: *NAMES_FORM_FIELDS
       steps_other_children_names_split_form[names_attributes]:
         <<: *NAMES_FORM_FIELDS
-      steps_other_parties_names_split_form:
+      steps_other_party_names_split_form:
         <<: *NAMES_FORM_FIELDS
-      steps_other_parties_names_split_form[names_attributes]:
+      steps_other_party_names_split_form[names_attributes]:
         <<: *NAMES_FORM_FIELDS
       steps_address_lookup_form:
         postcode: Current postcode
@@ -1311,9 +1311,9 @@ en:
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-      steps_other_parties_personal_details_form:
+      steps_other_party_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
-      steps_other_parties_address_details_form:
+      steps_other_party_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
@@ -1450,7 +1450,7 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_address_details_form:
         address_line_1: Court documents will be sent here
-      steps_other_parties_address_details_form:
+      steps_other_party_address_details_form:
         address_line_1: Court documents may be sent here
       steps_applicant_names_split_form:
         new_first_name_html: *middle_names_hint
@@ -1460,7 +1460,7 @@ en:
         new_first_name_html: *middle_names_hint
       steps_other_children_names_split_form:
         new_first_name_html: *middle_names_hint
-      steps_other_parties_names_split_form:
+      steps_other_party_names_split_form:
         new_first_name_html: *middle_names_hint
       steps_children_additional_details_form:
         children_protection_plan_html: |
@@ -1469,7 +1469,7 @@ en:
         person_ids_html: *select_all_that_apply
       steps_children_orders_form:
         orders_html: *select_all_that_apply
-      steps_other_parties_personal_details_form:
+      steps_other_party_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
       steps_abuse_concerns_details_form:

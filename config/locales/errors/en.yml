@@ -389,10 +389,10 @@ en:
         steps/other_children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_parties/personal_details_form:
+        steps/other_party/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-        steps/other_parties/address_details_form:
+        steps/other_party/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
             address_line_1:
@@ -423,7 +423,7 @@ en:
         steps/other_children/names_split_form:
           attributes:
             <<: *NAMES_FORM_ERRORS
-        steps/other_parties/names_split_form:
+        steps/other_party/names_split_form:
           attributes:
             <<: *NAMES_FORM_ERRORS
 

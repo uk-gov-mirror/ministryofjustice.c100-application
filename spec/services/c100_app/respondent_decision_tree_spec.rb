@@ -143,7 +143,7 @@ RSpec.describe C100App::RespondentDecisionTree do
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
-      it { is_expected.to have_destination('/steps/other_parties/names', :edit) }
+      it { is_expected.to have_destination('/steps/other_party/names', :edit) }
     end
 
     context 'and the answer is `no`' do

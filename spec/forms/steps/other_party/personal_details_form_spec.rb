@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Steps::OtherParties::PersonalDetailsForm do
+RSpec.describe Steps::OtherParty::PersonalDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: record,

@@ -85,7 +85,7 @@ In PRs, the mutation will be `--since master` meaning only files changed will be
 However it is still possible to have full flexibility of what mutant runs in your local environment:
 
 ##### Run mutation on a specific file:
-`RAILS_ENV=test bundle exec rake mutant C100App::OtherPartiesDecisionTree`
+`RAILS_ENV=test bundle exec rake mutant C100App::RespondentDecisionTree`
 
 ##### Run mutation on the whole project (no random samples):
 `RAILS_ENV=test bundle exec rake mutant all`

@@ -81,12 +81,12 @@ module Summary
 
         expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[2].question).to eq(:person_full_name)
-        expect(answers[2].change_path).to eq('/steps/other_parties/names/')
+        expect(answers[2].change_path).to eq('/steps/other_party/names/')
         expect(answers[2].value).to eq('fullname')
 
         expect(answers[3]).to be_an_instance_of(AnswersGroup)
         expect(answers[3].name).to eq(:person_personal_details)
-        expect(answers[3].change_path).to eq('/steps/other_parties/personal_details/uuid-123')
+        expect(answers[3].change_path).to eq('/steps/other_party/personal_details/uuid-123')
         expect(answers[3].answers.count).to eq(3)
 
           # personal_details group answers ###
@@ -106,7 +106,7 @@ module Summary
 
         expect(answers[4]).to be_an_instance_of(AnswersGroup)
         expect(answers[4].name).to eq(:person_address_details)
-        expect(answers[4].change_path).to eq('/steps/other_parties/address_details/uuid-123')
+        expect(answers[4].change_path).to eq('/steps/other_party/address_details/uuid-123')
         expect(answers[4].answers.count).to eq(1)
 
           # personal_details group answers ###
@@ -118,7 +118,7 @@ module Summary
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:relationship_to_child)
-        expect(answers[5].change_path).to eq('/steps/other_parties/relationship/uuid-123/child/uuid-555')
+        expect(answers[5].change_path).to eq('/steps/other_party/relationship/uuid-123/child/uuid-555')
         expect(answers[5].value).to eq('mother')
         expect(answers[5].i18n_opts).to eq({child_name: 'Child Test'})
       end
@@ -159,7 +159,7 @@ module Summary
         it 'renders the correct relationship value' do
           expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[5].question).to eq(:relationship_to_child)
-          expect(answers[5].change_path).to eq('/steps/other_parties/relationship/uuid-123/child/uuid-555')
+          expect(answers[5].change_path).to eq('/steps/other_party/relationship/uuid-123/child/uuid-555')
           expect(answers[5].value).to eq('Aunt')
           expect(answers[5].i18n_opts).to eq({child_name: 'Child Test'})
         end

@@ -255,7 +255,7 @@ Rails.application.routes.draw do
         edit_routes ':id/child/:child_id'
       end
     end
-    namespace :other_parties do
+    namespace :other_party do
       crud_step :names
       crud_step :personal_details, only: [:edit, :update]
       crud_step :address_details,  only: [:edit, :update]

@@ -51,7 +51,7 @@ RSpec.describe C100App::AddressDecisionTree do
       let(:record) { OtherParty.new(id: 'cb211915-6b89-42b8-ac50-24a0dfa73f53') }
 
       it 'goes to edit the address details of the record' do
-        expect(subject.destination).to eq('/steps/other_parties/address_details/cb211915-6b89-42b8-ac50-24a0dfa73f53')
+        expect(subject.destination).to eq('/steps/other_party/address_details/cb211915-6b89-42b8-ac50-24a0dfa73f53')
       end
     end
   end
