@@ -466,11 +466,6 @@ en:
           section: Safety concerns
           heading: Do you have any concerns about drug, alcohol or substance abuse?
           lead_text: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
-      substance_abuse_details:
-        edit:
-          page_title: Substance abuse details
-          section: Safety concerns
-          heading: Drug, alcohol or substance abuse
       children_abuse:
         edit:
           page_title: Children abuse
@@ -1331,7 +1326,7 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
-      steps_safety_questions_substance_abuse_details_form:
+      steps_safety_questions_substance_abuse_form:
         substance_abuse_details: Give a short description of the drug, alcohol or substance abuse
       steps_abuse_concerns_details_form:
         behaviour_description: Briefly describe what happened and who was involved, if you feel able to
