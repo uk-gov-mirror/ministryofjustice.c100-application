@@ -41,7 +41,7 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
 
     context 'and the answer is `yes`' do
       let(:value) { 'yes' }
-      it { is_expected.to have_destination(:substance_abuse_details, :edit) }
+      it { is_expected.to have_destination('/steps/abuse_concerns/start', :show) }
     end
 
     context 'and the answer is `no`' do
@@ -57,11 +57,6 @@ RSpec.describe C100App::SafetyQuestionsDecisionTree do
         it { is_expected.to have_destination(:children_abuse, :edit) }
       end
     end
-  end
-
-  context 'when the step is `substance_abuse_details`' do
-    let(:step_params) { { substance_abuse_details: 'anything' } }
-    it {is_expected.to have_destination('/steps/abuse_concerns/start', :show) }
   end
 
   context 'when the step is `children_abuse`' do

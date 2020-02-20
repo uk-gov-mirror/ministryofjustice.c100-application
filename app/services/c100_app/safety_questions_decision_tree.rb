@@ -10,8 +10,6 @@ module C100App
         after_risk_of_abduction
       when :substance_abuse
         after_substance_abuse
-      when :substance_abuse_details
-        start_abuse_concerns_journey
       when :children_abuse
         after_children_abuse
       when :domestic_abuse
@@ -34,9 +32,7 @@ module C100App
     end
 
     def after_substance_abuse
-      if question(:substance_abuse).yes?
-        edit(:substance_abuse_details)
-      elsif question(:risk_of_abduction).yes?
+      if question(:substance_abuse).yes? || question(:risk_of_abduction).yes?
         start_abuse_concerns_journey
       else
         edit(:children_abuse)

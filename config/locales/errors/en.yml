@@ -178,10 +178,8 @@ en:
           attributes:
             substance_abuse:
               inclusion: Select yes if you have concerns about drug, alcohol or substance abuse
-        steps/safety_questions/substance_abuse_details_form:
-          attributes:
             substance_abuse_details:
-              blank: *blank_details_error
+              blank: Enter details of the abuse
         steps/safety_questions/children_abuse_form:
           attributes:
             children_abuse:

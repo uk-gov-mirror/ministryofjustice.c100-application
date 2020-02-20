@@ -185,7 +185,6 @@ Rails.application.routes.draw do
       edit_step :address_confidentiality
       edit_step :risk_of_abduction
       edit_step :substance_abuse
-      edit_step :substance_abuse_details
       edit_step :children_abuse
       edit_step :domestic_abuse
       edit_step :other_abuse

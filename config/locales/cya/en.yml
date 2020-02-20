@@ -95,6 +95,7 @@ en:
       abduction_passport_possession: Details of the children’s passports
       abduction_previous_attempt: Details of the previous abductions
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
+      substance_abuse: Do you have any concerns about drug, alcohol or substance abuse?
       abuse_details: Details of the abuse
       court_orders_details: What orders have been made?
       protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
@@ -267,11 +268,11 @@ en:
       answers:
         <<: *YESNO
     substance_abuse:
-      question: Do you have any concerns about drug, alcohol or substance abuse?
+      question: ''
       answers:
         <<: *YESNO
     substance_abuse_details:
-      question: Details of the drug, alcohol or substance abuse
+      question: Details
     children_abuse:
       question: Have the children ever suffered or are they at risk of suffering domestic or child abuse?
       answers:

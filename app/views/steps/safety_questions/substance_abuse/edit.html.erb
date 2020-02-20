@@ -11,7 +11,15 @@
     </div>
 
     <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :substance_abuse, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true, choices: GenericYesNo.values %>
+      <%=
+        f.radio_button_fieldset :substance_abuse, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
+          fieldset.radio_input(GenericYesNo::YES, panel_id: :substance_abuse_panel)
+          fieldset.radio_input(GenericYesNo::NO)
+          fieldset.revealing_panel(:substance_abuse_panel) do |panel|
+            panel.text_area :substance_abuse_details, size: '40x4', class: 'form-control-3-4'
+          end
+        end
+      %>
 
       <%= f.continue_button %>
     <% end %>
