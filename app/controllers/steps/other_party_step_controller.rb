@@ -1,13 +1,13 @@
 module Steps
-  class OtherPartiesStepController < CrudStepController
+  class OtherPartyStepController < CrudStepController
     private
 
     def decision_tree_class
-      C100App::OtherPartiesDecisionTree
+      C100App::OtherPartyDecisionTree
     end
 
     def names_form_class
-      OtherParties::NamesSplitForm
+      OtherParty::NamesSplitForm
     end
 
     def record_collection

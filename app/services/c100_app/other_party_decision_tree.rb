@@ -1,5 +1,5 @@
 module C100App
-  class OtherPartiesDecisionTree < PeopleDecisionTree
+  class OtherPartyDecisionTree < PeopleDecisionTree
     def destination
       return next_step if next_step
 

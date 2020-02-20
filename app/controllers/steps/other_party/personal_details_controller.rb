@@ -1,6 +1,6 @@
 module Steps
-  module OtherParties
-    class PersonalDetailsController < Steps::OtherPartiesStepController
+  module OtherParty
+    class PersonalDetailsController < Steps::OtherPartyStepController
       def edit
         @form_object = PersonalDetailsForm.build(
           current_record, c100_application: current_c100_application

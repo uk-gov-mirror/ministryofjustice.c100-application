@@ -1,5 +1,5 @@
 module Steps
-  module OtherParties
+  module OtherParty
     class PersonalDetailsForm < BaseForm
       include GovUkDateFields::ActsAsGovUkDate
 

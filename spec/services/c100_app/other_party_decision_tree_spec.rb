@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe C100App::OtherPartiesDecisionTree do
+RSpec.describe C100App::OtherPartyDecisionTree do
   let(:c100_application) { double('Object') }
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }

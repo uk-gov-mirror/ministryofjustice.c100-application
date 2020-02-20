@@ -1,6 +1,6 @@
 module Steps
-  module OtherParties
-    class AddressDetailsController < Steps::OtherPartiesStepController
+  module OtherParty
+    class AddressDetailsController < Steps::OtherPartyStepController
       def edit
         @form_object = AddressDetailsForm.new(
           address: current_record.address,

@@ -6,7 +6,7 @@
   <%= f.text_field :postcode %>
 
   <%= link_to t('.manual_address'), {
-      controller: '/steps/other_parties/address_details', action: :edit, id: form_object.record
+      controller: '/steps/other_party/address_details', action: :edit, id: form_object.record
   }, class: 'ga-pageLink', data: { ga_category: 'address lookup', ga_label: 'other party manual entry' } %>
 
   <%= f.continue_button %>

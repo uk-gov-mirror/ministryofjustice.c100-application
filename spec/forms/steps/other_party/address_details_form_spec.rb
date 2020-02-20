@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Steps::OtherParties::AddressDetailsForm do
+RSpec.describe Steps::OtherParty::AddressDetailsForm do
   let(:arguments) do
     {
       c100_application: c100_application,
