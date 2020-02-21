@@ -400,7 +400,7 @@ en:
       question: *details
     special_arrangements:
       question: Special arrangements for applicant or relevant children to attend court
-      absence_answer: None required
+      absence_answer: *not_needed
       answers:
         # old version
         <<: *YESNO
@@ -413,7 +413,7 @@ en:
       question: *details
     special_assistance:
       question: Assistance or special facilities required for applicant or any of the parties
-      absence_answer: None required
+      absence_answer: *not_needed
       answers:
         # old version
         <<: *YESNO
