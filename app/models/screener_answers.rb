@@ -10,4 +10,15 @@ class ScreenerAnswers < ApplicationRecord
   def court
     Court.new(local_court) if local_court
   end
+
+  # Can be used to repeat the postcode lookup in CTF and save the
+  # new court details to the database, when court/slug changes.
+  #
+  def refresh_local_court!
+    courts = C100App::CourtPostcodeChecker.new.courts_for(children_postcodes)
+    return unless courts.any?
+
+    court = Court.new(courts.first)
+    update_column(:local_court, court)
+  end
 end
