@@ -4,7 +4,7 @@ describe AuditHelper do
   let(:c100_application) {
     C100Application.new(
       version: 123,
-      has_solicitor: has_solicitor,
+      has_solicitor: 'yes',
       reduced_litigation_capacity: 'yes',
       urgent_hearing: 'no',
       without_notice: 'yes',
@@ -14,7 +14,6 @@ describe AuditHelper do
   }
 
   let(:user_id) { nil }
-  let(:has_solicitor) { 'yes' }
   let(:screener_answers_court) { instance_double(Court, name: 'Test Court') }
   let(:screener_answers) { instance_double(ScreenerAnswers, children_postcodes: 'abcd 123') }
 
@@ -70,16 +69,6 @@ describe AuditHelper do
           protective_screens
           hearing_loop
         ))
-      end
-    end
-
-    context 'for an application with `has_solicitor` attribute set to `nil`' do
-      let(:has_solicitor) { nil }
-
-      it 'defaults to `no`' do
-        expect(
-          subject.metadata
-        ).to include(legal_representation: 'no')
       end
     end
 

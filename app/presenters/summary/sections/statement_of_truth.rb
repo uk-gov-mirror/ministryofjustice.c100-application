@@ -21,7 +21,7 @@ module Summary
       # for quick tests we might bypass and render the PDF with details missing.
       #
       def signee_name
-        c100.declaration_signee || c100.applicants.first&.full_name || '<name not entered>'
+        c100.declaration_signee || '<name not entered>'
       end
 
       def signee_capacity

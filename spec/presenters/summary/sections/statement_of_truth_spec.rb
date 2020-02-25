@@ -4,13 +4,11 @@ module Summary
   describe Sections::StatementOfTruth do
     let(:c100_application) {
       instance_double(C100Application,
-                      applicants: applicants,
                       declaration_signee: declaration_signee,
                       declaration_signee_capacity: declaration_signee_capacity,
       )
     }
 
-    let(:applicants) { [instance_double(Applicant, full_name: 'John Doe')] }
     let(:declaration_signee) { nil }
     let(:declaration_signee_capacity) { nil }
 
@@ -41,21 +39,12 @@ module Summary
           let(:declaration_signee) { 'Mr XYZ' }
 
           it 'returns the signee name' do
-            expect(applicants).not_to receive(:first)
             expect(answers[0].ivar).to include(signee_name: 'Mr XYZ')
           end
         end
 
-        context 'when there is no signee name but there are applicant names' do
-          it 'picks the first applicant name' do
-            expect(applicants).to receive(:first).and_call_original
-            expect(answers[0].ivar).to include(signee_name: 'John Doe')
-          end
-        end
-
-        context 'when there is no signee name and no applicant names' do
+        context 'when there is no signee name' do
           it 'defaults to a placeholder text' do
-            expect(applicants).to receive(:first).and_return(nil)
             expect(answers[0].ivar).to include(signee_name: '<name not entered>')
           end
         end
@@ -72,7 +61,6 @@ module Summary
 
         context 'when there is no signee capacity' do
           it 'defaults to be an applicant' do
-            expect(applicants).to receive(:first).and_return(nil)
             expect(answers[0].ivar).to include(signee_capacity: UserType::APPLICANT)
           end
         end

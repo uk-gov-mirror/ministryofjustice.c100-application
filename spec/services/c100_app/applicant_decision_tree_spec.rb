@@ -114,25 +114,7 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
     context 'when all applicants have been edited' do
       let(:record) { double('Applicant', id: 3) }
-
-      before do
-        allow(c100_application).to receive(:version).and_return(version)
-      end
-
-      context 'when C100 application version is < 4' do
-        let(:version) { 3 }
-        it { is_expected.to have_destination('/steps/respondent/names', :edit) }
-      end
-
-      context 'when C100 application version is = 4' do
-        let(:version) { 4 }
-        it { is_expected.to have_destination(:has_solicitor, :edit) }
-      end
-
-      context 'when C100 application version is > 4' do
-        let(:version) { 5 }
-        it { is_expected.to have_destination(:has_solicitor, :edit) }
-      end
+      it { is_expected.to have_destination(:has_solicitor, :edit) }
     end
   end
 

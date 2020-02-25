@@ -13,7 +13,7 @@ class AuditHelper
       c1a_form: c100.has_safety_concerns?,
       c8_form: c100.confidentiality_enabled?,
       saved_for_later: c100.user_id.present?,
-      legal_representation: c100.has_solicitor || 'no',
+      legal_representation: c100.has_solicitor,
       urgent_hearing: c100.urgent_hearing,
       without_notice: c100.without_notice,
       reduced_litigation: c100.reduced_litigation_capacity,

@@ -30,10 +30,8 @@ module C100App
     def after_contact_details
       if next_applicant_id
         edit(:personal_details, id: next_applicant_id)
-      elsif show_solicitor_journey?
-        edit(:has_solicitor)
       else
-        edit('/steps/respondent/names')
+        edit(:has_solicitor)
       end
     end
 
@@ -47,11 +45,6 @@ module C100App
 
     def next_applicant_id
       next_record_id(c100_application.applicant_ids)
-    end
-
-    # TODO: leave this until all applications are migrated to version >= 4
-    def show_solicitor_journey?
-      c100_application.version >= 4
     end
   end
 end
