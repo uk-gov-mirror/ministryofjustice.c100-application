@@ -5,17 +5,30 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
     c100_application: c100_application,
     language_interpreter: language_interpreter,
     sign_language_interpreter: sign_language_interpreter,
+    welsh_language: welsh_language,
     language_interpreter_details: language_interpreter_details,
     sign_language_interpreter_details: sign_language_interpreter_details,
+    welsh_language_details: welsh_language_details,
   } }
 
   let(:language_interpreter) { '1' }
   let(:language_interpreter_details) { 'details' }
+
   let(:sign_language_interpreter) { '0' }
   let(:sign_language_interpreter_details) { 'details' }
 
+  let(:welsh_language) { '0' }
+  let(:welsh_language_details) { 'details' }
+
   let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
-  let(:court_arrangement) { CourtArrangement.new(language_options: ['language_interpreter'], language_interpreter_details: 'details', sign_language_interpreter_details: '') }
+  let(:court_arrangement) {
+    CourtArrangement.new(
+      language_options: ['language_interpreter'],
+      language_interpreter_details: 'details',
+      sign_language_interpreter_details: '',
+      welsh_language_details: '',
+    )
+  }
 
   subject { described_class.new(arguments) }
 
@@ -26,6 +39,10 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
 
     it 'returns false if the attribute is not in the list' do
       expect(subject.sign_language_interpreter).to eq(false)
+    end
+
+    it 'returns false if the attribute is not in the list' do
+      expect(subject.welsh_language).to eq(false)
     end
   end
 
@@ -58,6 +75,16 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
         let(:sign_language_interpreter) { false }
         it { should_not validate_presence_of(:sign_language_interpreter_details) }
       end
+
+      context 'when `welsh_language` is checked' do
+        let(:welsh_language) { true }
+        it { should validate_presence_of(:welsh_language_details) }
+      end
+
+      context 'when `welsh_language` is not checked' do
+        let(:welsh_language) { false }
+        it { should_not validate_presence_of(:welsh_language_details) }
+      end
     end
 
     context 'when form is valid' do
@@ -66,6 +93,7 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
           language_options: [:language_interpreter],
           language_interpreter_details: 'details',
           sign_language_interpreter_details: nil,
+          welsh_language_details: nil,
         ).and_return(true)
 
         expect(subject.save).to be(true)
@@ -73,10 +101,17 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
     end
 
     context 'ensure leftovers are deleted when deselecting a checkbox' do
+      let(:language_interpreter) { '0' }
+      let(:sign_language_interpreter) { '0' }
+      let(:welsh_language) { '0' }
+      let(:language_interpreter_details) { nil }
+      let(:sign_language_interpreter_details) { nil }
+      let(:welsh_language_details) { nil }
+
       context '`language_interpreter` is not checked and `language_interpreter_details` is filled' do
         let(:language_interpreter) { '0' }
-        let(:sign_language_interpreter) { '1' }
         let(:language_interpreter_details) { 'language_interpreter_details' }
+        let(:sign_language_interpreter) { '1' }
         let(:sign_language_interpreter_details) { 'sign_language_interpreter_details' }
 
         it 'saves the record' do
@@ -84,6 +119,7 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
             language_options: [:sign_language_interpreter],
             language_interpreter_details: nil,
             sign_language_interpreter_details: 'sign_language_interpreter_details',
+            welsh_language_details: nil,
           ).and_return(true)
 
           expect(subject.save).to be(true)
@@ -91,16 +127,35 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
       end
 
       context '`sign_language_interpreter` is not checked and `sign_language_interpreter_details` is filled' do
-        let(:language_interpreter) { '1' }
         let(:sign_language_interpreter) { '0' }
-        let(:language_interpreter_details) { 'language_interpreter_details' }
         let(:sign_language_interpreter_details) { 'sign_language_interpreter_details' }
+        let(:welsh_language) { '1' }
+        let(:welsh_language_details) { 'welsh_language_details' }
+
+        it 'saves the record' do
+          expect(court_arrangement).to receive(:update).with(
+            language_options: [:welsh_language],
+            language_interpreter_details: nil,
+            sign_language_interpreter_details: nil,
+            welsh_language_details: 'welsh_language_details',
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context '`welsh_language` is not checked and `welsh_language_details` is filled' do
+        let(:welsh_language) { '0' }
+        let(:welsh_language_details) { 'welsh_language_details' }
+        let(:language_interpreter) { '1' }
+        let(:language_interpreter_details) { 'language_interpreter_details' }
 
         it 'saves the record' do
           expect(court_arrangement).to receive(:update).with(
             language_options: [:language_interpreter],
             language_interpreter_details: 'language_interpreter_details',
             sign_language_interpreter_details: nil,
+            welsh_language_details: nil,
           ).and_return(true)
 
           expect(subject.save).to be(true)

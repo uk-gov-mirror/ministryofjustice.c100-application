@@ -568,6 +568,8 @@ en:
               blank: You must give interpreter details
             sign_language_interpreter_details:
               blank: You must give sign language interpreter details
+            welsh_language_details:
+              blank: You must give Welsh details
         steps/attending_court/intermediary_form:
           attributes:
             intermediary_help:
