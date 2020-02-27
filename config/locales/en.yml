@@ -805,8 +805,7 @@ en:
         edit:
           page_title: Language help
           section: *attending_court
-          heading: Does anyone in this application need help with language?
-          info_html: You can ask for an interpreter. In Wales, you have the right to speak Welsh at any court hearing.
+          heading: Does anyone in this application have special language requirements?
       intermediary:
         edit:
           page_title: Intermediary help

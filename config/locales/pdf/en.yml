@@ -378,6 +378,13 @@ en:
     language_help_details:
       question: *details
     # attending court redesign -- begin
+    intermediary_help:
+      question: Are you aware of whether an intermediary will be required?
+      answers:
+        <<: *YESNO
+      intermediary_help_details:
+        question: *details
+
     language_interpreter:
       question: Interpreter
       answers:
@@ -388,16 +395,18 @@ en:
       answers:
         'true': 'Yes'
         'false': *not_needed
+    welsh_language:
+      question: Welsh language
+      answers:
+        'true': 'Yes'
+        'false': *not_needed
     language_interpreter_details:
       question: *details
     sign_language_interpreter_details:
       question: *details
-    intermediary_help:
-      question: Are you aware of whether an intermediary will be required?
-      answers:
-        <<: *YESNO
-    intermediary_help_details:
+    welsh_language_details:
       question: *details
+
     special_arrangements:
       question: Special arrangements for applicant or relevant children to attend court
       absence_answer: *not_needed
@@ -411,6 +420,7 @@ en:
         video_link: Video links
     special_arrangements_details:
       question: *details
+
     special_assistance:
       question: Assistance or special facilities required for applicant or any of the parties
       absence_answer: *not_needed

@@ -3,7 +3,7 @@
     <%=t "check_answers_html.#{multi_answer_row.question}.question" %>
   </dt>
   <dd class="answer">
-    <% if multi_answer_row.value.any? %>
+    <% if Array(multi_answer_row.value).any? %>
       <ul class="list list-bullet">
         <% multi_answer_row.value.each do |value| %>
           <li>

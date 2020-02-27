@@ -7,8 +7,6 @@
     <p class="app__section_heading"><%=t '.section' %></p>
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p><%=t '.info_html' %></p>
-
     <%= step_form @form_object do |f| %>
       <%=
         f.check_box_fieldset :help_with_language, LanguageHelp.values do |fieldset|

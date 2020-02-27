@@ -13,13 +13,14 @@ module Summary
         language_options: language_options,
         language_interpreter_details: 'language_interpreter_details',
         sign_language_interpreter_details: 'sign_language_interpreter_details',
+        welsh_language_details: 'welsh_language_details',
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
         special_assistance: special_assistance,
         special_assistance_details: special_assistance_details,
     )}
 
-    let(:language_options) { %w(language_interpreter sign_language_interpreter) }
+    let(:language_options) { %w(language_interpreter sign_language_interpreter welsh_language) }
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
     let(:special_assistance) { ['hearing_loop'] }
@@ -96,7 +97,7 @@ module Summary
         let(:group_answers) { answers[1].answers }
 
         it 'has the correct rows in the right order' do
-          expect(group_answers.count).to eq(4)
+          expect(group_answers.count).to eq(6)
 
           expect(group_answers[0]).to be_an_instance_of(Answer)
           expect(group_answers[0].question).to eq(:language_interpreter)
@@ -113,13 +114,21 @@ module Summary
           expect(group_answers[3]).to be_an_instance_of(FreeTextAnswer)
           expect(group_answers[3].question).to eq(:sign_language_interpreter_details)
           expect(group_answers[3].value).to eq('sign_language_interpreter_details')
+
+          expect(group_answers[4]).to be_an_instance_of(Answer)
+          expect(group_answers[4].question).to eq(:welsh_language)
+          expect(group_answers[4].value).to eq('true')
+
+          expect(group_answers[5]).to be_an_instance_of(FreeTextAnswer)
+          expect(group_answers[5].question).to eq(:welsh_language_details)
+          expect(group_answers[5].value).to eq('welsh_language_details')
         end
 
         context 'when no check boxes were selected' do
           let(:language_options) { [] }
 
           it 'still shows the block because we convert booleans to strings' do
-            expect(group_answers.count).to eq(4)
+            expect(group_answers.count).to eq(6)
 
             expect(group_answers[0]).to be_an_instance_of(Answer)
             expect(group_answers[0].question).to eq(:language_interpreter)
@@ -136,6 +145,14 @@ module Summary
             expect(group_answers[3]).to be_an_instance_of(FreeTextAnswer)
             expect(group_answers[3].question).to eq(:sign_language_interpreter_details)
             expect(group_answers[3].value).to eq('sign_language_interpreter_details')
+
+            expect(group_answers[4]).to be_an_instance_of(Answer)
+            expect(group_answers[4].question).to eq(:welsh_language)
+            expect(group_answers[4].value).to eq('false')
+
+            expect(group_answers[5]).to be_an_instance_of(FreeTextAnswer)
+            expect(group_answers[5].question).to eq(:welsh_language_details)
+            expect(group_answers[5].value).to eq('welsh_language_details')
           end
         end
       end
