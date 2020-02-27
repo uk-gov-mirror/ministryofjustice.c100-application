@@ -113,7 +113,7 @@ en:
       special_assistance: Does anyone in this application need assistance or special facilities when attending court?
       special_arrangements: Do you or the children need specific safety arrangements at court?
       # attending court redesign -- begin
-      language_interpreter: Does anyone in this application need help with language?
+      language_interpreter: Does anyone in this application have special language requirements?
       # attending court redesign -- end
       help_with_fees: Do you have a ‘Help with fees’ reference number?
       payment_type: Payment type
@@ -568,6 +568,13 @@ en:
     participation_referral_or_assessment_details:
       question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was
     # attending court redesign -- begin
+    intermediary_help:
+      question: ''
+      answers:
+        <<: *YESNO
+      intermediary_help_details:
+        question: ''
+
     language_interpreter:
       question: Interpreter
       answers:
@@ -578,16 +585,18 @@ en:
       answers:
         'true': 'Yes'
         'false': *not_needed
-    language_interpreter_details:
-      question: ''
-    intermediary_help:
-      question: ''
+    welsh_language:
+      question: Welsh language
       answers:
-        <<: *YESNO
-    intermediary_help_details:
+        'true': 'Yes'
+        'false': *not_needed
+    language_interpreter_details:
       question: ''
     sign_language_interpreter_details:
       question: ''
+    welsh_language_details:
+      question: ''
+
     special_arrangements:
       question: ''
       absence_answer: None selected
@@ -601,6 +610,7 @@ en:
         video_link: Video links
     special_arrangements_details:
       question: Additional details
+
     special_assistance:
       question: ''
       absence_answer: None selected

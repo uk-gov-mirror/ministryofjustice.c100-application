@@ -42,6 +42,7 @@ module Summary
       # i.e. checkbox was not selected. If `language_options` is `nil`, it means the user didn't
       # yet reach this step and only in that case we skip this block.
       #
+      # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def language_interpreter
         # Do not show this block in CYA if the user didn't yet reach this step
         # (we know because the array will be `nil` in that case).
@@ -60,10 +61,16 @@ module Summary
               arrangement.language_options.include?(LanguageHelp::SIGN_LANGUAGE_INTERPRETER.to_s).to_s
             ),
             FreeTextAnswer.new(:sign_language_interpreter_details, arrangement.sign_language_interpreter_details),
+            Answer.new(
+              :welsh_language,
+              arrangement.language_options.include?(LanguageHelp::WELSH_LANGUAGE.to_s).to_s
+            ),
+            FreeTextAnswer.new(:welsh_language_details, arrangement.welsh_language_details),
           ],
           change_path: edit_steps_attending_court_language_path
         )
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
       def special_arrangements
         # Do not show this block in CYA if the user didn't yet reach this step

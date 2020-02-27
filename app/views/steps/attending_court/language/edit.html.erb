@@ -7,8 +7,6 @@
     <p class="app__section_heading"><%=t '.section' %></p>
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p><%=t '.info_html' %></p>
-
     <%= step_form @form_object do |f| %>
       <%=
         f.check_box_fieldset :help_with_language, LanguageHelp.values do |fieldset|
@@ -17,6 +15,9 @@
           }
           fieldset.check_box_input(:sign_language_interpreter) {
             f.text_area :sign_language_interpreter_details, size: '40x4', class: 'form-control-3-4'
+          }
+          fieldset.check_box_input(:welsh_language) {
+            f.text_area :welsh_language_details, size: '40x4', class: 'form-control-3-4'
           }
         end
       %>

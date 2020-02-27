@@ -13,15 +13,17 @@ module Summary
         language_options: language_options,
         language_interpreter_details: language_interpreter_details,
         sign_language_interpreter_details: sign_language_interpreter_details,
+        welsh_language_details: welsh_language_details,
         special_arrangements: special_arrangements,
         special_arrangements_details: special_arrangements_details,
         special_assistance: special_assistance,
         special_assistance_details: special_assistance_details,
     )}
 
-    let(:language_options) { %w(language_interpreter sign_language_interpreter) }
+    let(:language_options) { %w(language_interpreter sign_language_interpreter welsh_language) }
     let(:language_interpreter_details) { 'language_interpreter_details' }
     let(:sign_language_interpreter_details) { 'sign_language_interpreter_details' }
+    let(:welsh_language_details) { 'welsh_language_details' }
 
     let(:special_arrangements) { ['video_link'] }
     let(:special_arrangements_details) { 'special_arrangements_details' }
@@ -61,7 +63,7 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(14)
+        expect(answers.count).to eq(16)
 
         expect(answers[0]).to be_an_instance_of(Separator)
         expect(answers[0].title).to eq(:intermediary)
@@ -88,27 +90,33 @@ module Summary
         expect(answers[7].question).to eq(:sign_language_interpreter_details)
         expect(answers[7].value).to eq('sign_language_interpreter_details')
 
-        expect(answers[8]).to be_an_instance_of(Separator)
-        expect(answers[8].title).to eq(:special_arrangements)
+        expect(answers[8].question).to eq(:welsh_language)
+        expect(answers[8].value).to eq('true')
 
-        expect(answers[9]).to be_an_instance_of(MultiAnswer)
-        expect(answers[9].question).to eq(:special_arrangements)
-        expect(answers[9].value).to eq(['video_link'])
+        expect(answers[9].question).to eq(:welsh_language_details)
+        expect(answers[9].value).to eq('welsh_language_details')
 
-        expect(answers[10]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[10].question).to eq(:special_arrangements_details)
-        expect(answers[10].value).to eq('special_arrangements_details')
+        expect(answers[10]).to be_an_instance_of(Separator)
+        expect(answers[10].title).to eq(:special_arrangements)
 
-        expect(answers[11]).to be_an_instance_of(Separator)
-        expect(answers[11].title).to eq(:special_assistance)
+        expect(answers[11]).to be_an_instance_of(MultiAnswer)
+        expect(answers[11].question).to eq(:special_arrangements)
+        expect(answers[11].value).to eq(['video_link'])
 
-        expect(answers[12]).to be_an_instance_of(MultiAnswer)
-        expect(answers[12].question).to eq(:special_assistance)
-        expect(answers[12].value).to eq(['hearing_loop'])
+        expect(answers[12]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[12].question).to eq(:special_arrangements_details)
+        expect(answers[12].value).to eq('special_arrangements_details')
 
-        expect(answers[13]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[13].question).to eq(:special_assistance_details)
-        expect(answers[13].value).to eq('special_assistance_details')
+        expect(answers[13]).to be_an_instance_of(Separator)
+        expect(answers[13].title).to eq(:special_assistance)
+
+        expect(answers[14]).to be_an_instance_of(MultiAnswer)
+        expect(answers[14].question).to eq(:special_assistance)
+        expect(answers[14].value).to eq(['hearing_loop'])
+
+        expect(answers[15]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[15].question).to eq(:special_assistance_details)
+        expect(answers[15].value).to eq('special_assistance_details')
       end
     end
 
@@ -116,9 +124,10 @@ module Summary
       let(:language_options) { [] }
       let(:language_interpreter_details) { '' }
       let(:sign_language_interpreter_details) { '' }
+      let(:welsh_language_details) { '' }
 
       it 'still shows the block because we convert booleans to strings' do
-        expect(answers.count).to eq(12)
+        expect(answers.count).to eq(13)
 
         # Note it only shows the multi answer, not the free text because it is empty
         expect(answers[4].question).to eq(:language_interpreter)
@@ -126,6 +135,9 @@ module Summary
 
         expect(answers[5].question).to eq(:sign_language_interpreter)
         expect(answers[5].value).to eq('false')
+
+        expect(answers[6].question).to eq(:welsh_language)
+        expect(answers[6].value).to eq('false')
       end
     end
 
@@ -134,12 +146,12 @@ module Summary
       let(:special_arrangements_details) { '' }
 
       it 'still shows the block because `show: true` (will use the `absence_answer`)' do
-        expect(answers.count).to eq(13)
+        expect(answers.count).to eq(15)
 
         # Note it only shows the multi answer, not the free text because it is empty
-        expect(answers[9]).to be_an_instance_of(MultiAnswer)
-        expect(answers[9].question).to eq(:special_arrangements)
-        expect(answers[9].value).to eq([])
+        expect(answers[11]).to be_an_instance_of(MultiAnswer)
+        expect(answers[11].question).to eq(:special_arrangements)
+        expect(answers[11].value).to eq([])
       end
     end
 
@@ -148,12 +160,12 @@ module Summary
       let(:special_assistance_details) { '' }
 
       it 'still shows the block because `show: true` (will use the `absence_answer`)' do
-        expect(answers.count).to eq(13)
+        expect(answers.count).to eq(15)
 
         # Note it only shows the multi answer, not the free text because it is empty
-        expect(answers[12]).to be_an_instance_of(MultiAnswer)
-        expect(answers[12].question).to eq(:special_assistance)
-        expect(answers[12].value).to eq([])
+        expect(answers[14]).to be_an_instance_of(MultiAnswer)
+        expect(answers[14].question).to eq(:special_assistance)
+        expect(answers[14].value).to eq([])
       end
     end
   end
