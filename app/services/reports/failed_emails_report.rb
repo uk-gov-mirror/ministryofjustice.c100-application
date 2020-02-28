@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
 module Reports
   # :nocov:
   class FailedEmailsReport
     require 'csv'
+
+    USER_EMAIL_TYPE  = 'user'
+    COURT_EMAIL_TYPE = 'court'
+    SUCCESSFUL_STATUS_CALLBACK = 'delivered'
 
     class_attribute :failures,
                     :report_type
@@ -17,11 +23,11 @@ module Reports
         ).joins(:c100_application).find_each(batch_size: 25) do |record|
           reference_code = record.c100_application.reference_code
 
-          check_court_email(record, reference_code)
+          find_failures(record, reference_code, COURT_EMAIL_TYPE)
 
           # Only if the applicant chose to receive a confirmation, otherwise
           # these emails are not sent and there is no need to do any check.
-          check_user_email(record, reference_code) if record.c100_application.receipt_email?
+          find_failures(record, reference_code, USER_EMAIL_TYPE) if record.c100_application.receipt_email?
         end
 
         failures
@@ -37,45 +43,35 @@ module Reports
         ).joins(:c100_application).find_each(batch_size: 25) do |record|
           reference_code = record.c100_application.reference_code
 
-          check_court_email(record, reference_code)
+          find_failures(record, reference_code, COURT_EMAIL_TYPE)
 
           # Only if the applicant chose to receive a confirmation, otherwise
           # these emails are not sent and there is no need to do any check.
-          check_user_email(record, reference_code) if record.c100_application.receipt_email?
+          find_failures(record, reference_code, USER_EMAIL_TYPE) if record.c100_application.receipt_email?
         end
 
         send_email_report if failures.any?
       end
 
-      def check_court_email(record, reference_code)
-        reference = ['court', reference_code].join(';').freeze
+      def find_failures(record, reference_code, email_type)
+        reference = [email_type, reference_code].join(';').freeze
 
         if record.sent_at.nil?
           failures << report_line(record, reference, 'error')
-        elsif email_not_delivered?(reference)
-          failures << report_line(record, reference, 'undelivered')
+          return
         end
-      end
 
-      def check_user_email(record, reference_code)
-        reference = ['user', reference_code].join(';').freeze
+        # Ignore following failures when sending the report, as these are very
+        # frequently user typos, and nothing we can fix on our side.
+        return if report_type == :daily_tasks && email_type == USER_EMAIL_TYPE
 
-        if record.user_copy_sent_at.nil?
-          failures << report_line(record, reference, 'error')
-        elsif email_not_delivered?(reference)
-          # Ignore these failures when sending the report, as these are very
-          # frequently user typos, and nothing we can fix on our side.
-          return if report_type == :daily_tasks
-
-          failures << report_line(record, reference, 'undelivered')
-        end
-      end
-
-      def email_not_delivered?(reference)
-        EmailSubmissionsAudit.unscoped.order(completed_at: :desc).find_by(
+        status = EmailSubmissionsAudit.unscoped.order(completed_at: :desc).find_by(
           reference: reference,
-          status: 'delivered',
-        ).nil?
+        )&.status || 'callback-missing'
+
+        return if status == SUCCESSFUL_STATUS_CALLBACK
+
+        failures << report_line(record, reference, status)
       end
 
       def report_line(record, reference, error_msg)
