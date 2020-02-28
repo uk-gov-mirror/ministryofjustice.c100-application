@@ -382,8 +382,8 @@ en:
       question: Are you aware of whether an intermediary will be required?
       answers:
         <<: *YESNO
-      intermediary_help_details:
-        question: *details
+    intermediary_help_details:
+      question: *details
 
     language_interpreter:
       question: Interpreter

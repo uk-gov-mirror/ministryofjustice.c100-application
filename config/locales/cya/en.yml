@@ -572,8 +572,8 @@ en:
       question: ''
       answers:
         <<: *YESNO
-      intermediary_help_details:
-        question: ''
+    intermediary_help_details:
+      question: ''
 
     language_interpreter:
       question: Interpreter
