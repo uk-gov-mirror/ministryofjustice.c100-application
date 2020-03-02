@@ -1,0 +1,39 @@
+<p class="heading-medium">
+  Resend emails
+</p>
+
+<div class="govuk-govspeak gv-s-prose">
+  <p>
+    Emails can be triggered again up to 28 days after the application was created. Use this functionality when, for
+    whatever reason, an application was not received or can't be found.
+  </p>
+</div>
+
+<table class="backoffice-table">
+  <thead>
+    <tr>
+      <th>Recipient</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if submission.to_address %>
+      <tr>
+        <td><%= submission.to_address %></td>
+        <td valign="middle">
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'court'), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
+        </td>
+      </tr>
+    <% end %>
+
+    <% if submission.email_copy_to %>
+      <tr>
+        <td><%= submission.email_copy_to %></td>
+        <td valign="middle">
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'user'), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

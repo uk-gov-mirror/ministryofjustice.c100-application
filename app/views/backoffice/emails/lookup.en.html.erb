@@ -27,5 +27,9 @@
         <% end %>
       </tbody>
     </table>
+
+    <% if @submission %>
+      <%= render partial: 'submission', locals: { submission: @submission } %>
+    <% end %>
   </div>
 </div>

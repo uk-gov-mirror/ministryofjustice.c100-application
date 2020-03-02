@@ -25,7 +25,7 @@ RSpec.describe ApplicationReference do
       expect(test_class).to receive(:where).and_return(date_finder_double)
 
       expect(date_finder_double).to receive(:where).with(
-        "id::text ILIKE :uuid_filter", uuid_filter: 'DB2ED4FD%'
+        "id::text ILIKE :uuid_filter", uuid_filter: 'DB2ED4FD-%'
       ).and_return(uuid_finder_double)
 
       test_class.find_by_reference_code('2018/05/DB2ED4FD')

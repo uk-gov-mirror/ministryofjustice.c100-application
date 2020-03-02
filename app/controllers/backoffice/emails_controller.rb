@@ -11,6 +11,7 @@ module Backoffice
       @email_address  = params[:email_address]&.strip
 
       @report = EmailSubmissionsAudit.find_records(@reference_code, @email_address)
+      @submission = C100Application.find_by_reference_code(@reference_code)&.email_submission
 
       audit!(
         action: :email_lookup,
@@ -26,7 +27,7 @@ module Backoffice
       audit_resend(email, resend_type: type)
 
       redirect_to backoffice_emails_path, flash: {
-        alert: 'Email resend in progress. Please reload the page in a few seconds.'
+        alert: 'Email resend in progress.'
       }
     end
 

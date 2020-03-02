@@ -8,7 +8,7 @@ module ApplicationReference
       where(
         created_at: date_range(year, month)
       ).where(
-        'id::text ILIKE :uuid_filter', uuid_filter: "#{uuid_part}%"
+        'id::text ILIKE :uuid_filter', uuid_filter: "#{uuid_part}-%"
       ).take
     end
 
