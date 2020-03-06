@@ -79,6 +79,11 @@ en:
             current_password:
               blank: Enter your current password
               invalid: The password is not valid
+        # Fulfillment validation errors
+        c100_application:
+          attributes:
+            applicants:
+              blank: You must add at least one applicant
 
   activemodel:
     errors:

@@ -37,6 +37,11 @@ class C100Application < ApplicationRecord
 
   delegate :court, to: :screener_answers, prefix: true, allow_nil: true
 
+  # Before marking the application as completed we run a final
+  # validation to ensure the basic details are fulfilled.
+  #
+  validates_with ApplicationFulfilmentValidator, on: :completion
+
   def self.purge!(date)
     where('c100_applications.created_at <= :date', date: date).destroy_all
   end
