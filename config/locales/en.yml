@@ -768,6 +768,8 @@ en:
           heading: Resume application
           lead_text: Review your current progress and resume this application
           resume: Resume application
+        fulfilment_summary:
+          errors_heading: Errors found in your application
       urgent_hearing:
         edit:
           page_title: Urgent hearing

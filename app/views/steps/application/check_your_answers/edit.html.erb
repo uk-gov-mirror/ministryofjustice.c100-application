@@ -8,6 +8,9 @@
 
 <%= render @presenter.sections %>
 
+<%= render partial: 'fulfilment_summary',
+           locals: { errors: @presenter.errors } if @presenter.errors.any? %>
+
 <%= step_form @form_object,
               html: { class: 'util_mt-large ga-submitForm' },
               data: { ga_category: 'application completed', ga_label: 'declaration' } do |f| %>

@@ -24,6 +24,10 @@ module Summary
       ].flatten.select(&:show?)
     end
 
+    def errors
+      FulfilmentErrorsPresenter.new(c100_application).errors
+    end
+
     def before_submit_warning
       ['.submit_warning', submission_type].join('.')
     end

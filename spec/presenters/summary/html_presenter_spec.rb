@@ -121,4 +121,16 @@ describe Summary::HtmlPresenter do
       end
     end
   end
+
+  describe '#errors' do
+    let(:errors_presenter) { instance_double(FulfilmentErrorsPresenter, errors: [Object]) }
+
+    before do
+      allow(FulfilmentErrorsPresenter).to receive(:new).with(c100_application).and_return(errors_presenter)
+    end
+
+    it 'returns application fulfilment errors' do
+      expect(subject.errors).to eq([Object])
+    end
+  end
 end
