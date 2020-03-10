@@ -62,6 +62,7 @@ class SessionsController < ApplicationController
       written_agreement: 'no',
       email_consent: 'no',
       local_court: {
+        _fixture: true, # this flag indicates the court data is "fake" (bypass)
         "address" => {
           "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
           "town" => "Central Milton Keynes",

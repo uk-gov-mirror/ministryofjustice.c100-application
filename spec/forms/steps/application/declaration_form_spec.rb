@@ -23,18 +23,53 @@ RSpec.describe Steps::Application::DeclarationForm do
     end
 
     context 'validations' do
+      before do
+        allow(c100_application).to receive(:valid?)
+      end
+
       it { should validate_presence_of(:declaration_signee) }
       it { should validate_presence_of(:declaration_signee_capacity, :inclusion) }
     end
 
-    context 'when form is valid' do
-      it 'saves the record' do
-        expect(c100_application).to receive(:update).with(
-          declaration_signee: 'Full Name',
-          declaration_signee_capacity: 'applicant',
-        ).and_return(true)
+    context 'when application fulfilment is successful' do
+      before do
+        allow(c100_application).to receive(:valid?).with(:completion).and_return(true)
+      end
 
-        expect(subject.save).to be(true)
+      context 'and form is valid' do
+        it 'saves the record' do
+          expect(c100_application).to receive(:update).with(
+            declaration_signee: 'Full Name',
+            declaration_signee_capacity: 'applicant',
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'and form is not valid' do
+        let(:declaration_signee_capacity) { nil }
+
+        it 'returns false' do
+          expect(c100_application).not_to receive(:update)
+          expect(subject.save).to eq(false)
+        end
+      end
+    end
+
+    context 'when application fulfilment fails' do
+      before do
+        allow(c100_application).to receive(:valid?).with(:completion).and_return(false)
+      end
+
+      it 'has an error in the `c100_application` attribute' do
+        subject.save
+        expect(subject.errors.added?(:c100_application, :invalid)).to eq(true)
+      end
+
+      it 'returns false' do
+        expect(c100_application).not_to receive(:update)
+        expect(subject.save).to eq(false)
       end
     end
   end

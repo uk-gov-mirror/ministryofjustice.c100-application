@@ -603,3 +603,5 @@ en:
               blank: Enter your full name
             declaration_signee_capacity:
               inclusion: Select who is making this declaration
+            c100_application:
+              invalid: "" # do not show this error message, we show the specific ones
