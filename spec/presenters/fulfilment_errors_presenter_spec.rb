@@ -18,17 +18,19 @@ RSpec.describe FulfilmentErrorsPresenter do
         c100_application.errors.add(:miam_acknowledgement, :blank, change_path: 'steps/foo/bar')
       end
 
-      it 'returns a collection of `FulfilmentError` instances' do
-        expect(subject.errors).to match_instances_array([FulfilmentError])
+      it 'returns a collection of errors' do
+        expect(subject.errors).to be_an_instance_of(Array)
       end
 
-      it 'the `FulfilmentError` contains all the information needed' do
-        error = subject.errors.first
+      context 'returned error' do
+        let(:error) { subject.errors.first }
 
-        expect(error.attribute).to eq(:miam_acknowledgement)
-        expect(error.message).to eq('Enter an answer')
-        expect(error.error).to eq(:blank)
-        expect(error.change_path).to eq('steps/foo/bar')
+        it 'contains all the information needed' do
+          expect(error.attribute).to eq(:miam_acknowledgement)
+          expect(error.message).to eq('Enter an answer')
+          expect(error.error).to eq(:blank)
+          expect(error.change_path).to eq('steps/foo/bar')
+        end
       end
     end
   end

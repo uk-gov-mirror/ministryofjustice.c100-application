@@ -94,6 +94,23 @@
   }
 }
 
+.fulfilment-errors-summary {
+  dl, dt, dd {
+    // override some styles from `check-your-answers` class
+    border: none;
+    padding-top: 0.1em;
+    padding-bottom: 0.2em;
+  }
+
+  &.form-group-error {
+    margin-right: 0;
+  }
+
+  .fulfilment-errors {
+    width: 100%;
+  }
+}
+
 div.declaration-box {
   padding: 1px 20px 20px;
   background-color: #ddd;
