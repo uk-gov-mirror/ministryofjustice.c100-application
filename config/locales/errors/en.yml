@@ -82,8 +82,12 @@ en:
         # Fulfillment validation errors
         c100_application:
           attributes:
+            children:
+              blank: You must add at least one child
             applicants:
               blank: You must add at least one applicant
+            respondents:
+              blank: You must add at least one respondent
 
   activemodel:
     errors:
