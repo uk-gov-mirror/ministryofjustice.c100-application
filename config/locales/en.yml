@@ -769,7 +769,9 @@ en:
           lead_text: Review your current progress and resume this application
           resume: Resume application
         fulfilment_summary:
-          errors_heading: Errors found in your application
+          heading: You must enter the following information before your application can be submitted
+        fulfilment_error:
+          change_link: Add missing information
       urgent_hearing:
         edit:
           page_title: Urgent hearing
