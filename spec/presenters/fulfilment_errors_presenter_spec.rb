@@ -14,22 +14,36 @@ RSpec.describe FulfilmentErrorsPresenter do
 
     context 'there are errors' do
       before do
-        # Add a fake error as an example (the attribute must exist)
+        # Add a couple fake errors as an example (the attributes must exist)
         c100_application.errors.add(:miam_acknowledgement, :blank, change_path: 'steps/foo/bar')
+        c100_application.errors.add(:substance_abuse, :blank, change_path: 'steps/xyz')
       end
 
       it 'returns a collection of errors' do
         expect(subject.errors).to be_an_instance_of(Array)
       end
 
-      context 'returned error' do
-        let(:error) { subject.errors.first }
+      context 'returned errors' do
+        context 'first error' do
+          let(:error) { subject.errors[0] }
 
-        it 'contains all the information needed' do
-          expect(error.attribute).to eq(:miam_acknowledgement)
-          expect(error.message).to eq('Enter an answer')
-          expect(error.error).to eq(:blank)
-          expect(error.change_path).to eq('steps/foo/bar')
+          it 'contains all the information needed' do
+            expect(error.attribute).to eq(:miam_acknowledgement)
+            expect(error.message).to eq('Enter an answer')
+            expect(error.error).to eq(:blank)
+            expect(error.change_path).to eq('steps/foo/bar')
+          end
+        end
+
+        context 'second error' do
+          let(:error) { subject.errors[1] }
+
+          it 'contains all the information needed' do
+            expect(error.attribute).to eq(:substance_abuse)
+            expect(error.message).to eq('Enter an answer')
+            expect(error.error).to eq(:blank)
+            expect(error.change_path).to eq('steps/xyz')
+          end
         end
       end
     end

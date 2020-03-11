@@ -8,7 +8,13 @@ class FulfilmentErrorsPresenter
   end
 
   def errors
-    @errors.map.with_index do |(attribute, message), index|
+    @errors.keys.map(&method(:build_errors)).flatten
+  end
+
+  private
+
+  def build_errors(attribute)
+    @errors[attribute].map.with_index do |message, index|
       FulfilmentError.new(
         attribute: attribute,
         message: message,
@@ -17,8 +23,6 @@ class FulfilmentErrorsPresenter
       )
     end
   end
-
-  private
 
   def details(attribute, index, key)
     @errors.details[attribute][index][key]

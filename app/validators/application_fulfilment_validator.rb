@@ -26,11 +26,13 @@ class ApplicationFulfilmentValidator < ActiveModel::Validator
   end
 
   # Individual validations to be added here
-  # Final list to be defined
+  # Errors, when more than one, will maintain this order
   #
   def validations
     [
+      ->(record) { [:children, :blank, edit_steps_children_names_path(id: '')] unless record.children.any? },
       ->(record) { [:applicants, :blank, edit_steps_applicant_names_path(id: '')] unless record.applicants.any? },
+      ->(record) { [:respondents, :blank, edit_steps_respondent_names_path(id: '')] unless record.respondents.any? },
     ]
   end
 end
