@@ -16,41 +16,7 @@ RSpec.describe ApplicationFulfilmentValidator, type: :model do
   let(:applicants)  { [Object] }
   let(:respondents) { [Object] }
 
-  # TODO: feature-flag code, to be remove once released
-  context 'validations are run based on feature flag' do
-    let(:screener_answers) { instance_double(ScreenerAnswers, local_court: local_court) }
-
-    # make it fail by not having children
-    let(:children) { [] }
-
-    before do
-      allow(subject).to receive(:screener_answers).and_return(screener_answers)
-    end
-
-    context 'when the court data is a fixture' do
-      let(:local_court) { { "_fixture" => true } }
-
-      it 'runs the validations' do
-        expect(subject).not_to be_valid
-      end
-    end
-
-    context 'when the court data is not a fixture' do
-      let(:local_court) { {} }
-
-      it 'does not run the validations' do
-        expect(subject).to be_valid
-      end
-    end
-  end
-
   context 'individual validations' do
-    # TODO: feature-flag code, to be remove once released
-    # Assume in following tests we must always validate
-    before do
-      allow_any_instance_of(described_class).to receive(:must_validate?).and_return(true)
-    end
-
     context 'children' do
       context 'there is at least one child' do
         it 'is valid' do
