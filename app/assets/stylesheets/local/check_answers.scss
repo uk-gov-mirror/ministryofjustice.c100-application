@@ -95,12 +95,22 @@
 }
 
 .fulfilment-errors-summary {
+  // BEGIN -- override some styles from `check-your-answers` class
+  // This is to make sure the error message and the 'Add missing information'
+  // link do not overlap on smaller devices or resized screens apart from
+  // some minor visual differences like padding or removing borders.
   dl, dt, dd {
-    // override some styles from `check-your-answers` class
     border: none;
     padding-top: 0.1em;
     padding-bottom: 0.2em;
   }
+  dt {
+    padding-right: 6em;
+  }
+  .change {
+    width: 35%;
+  }
+  // END -- override some styles from `check-your-answers` class
 
   &.form-group-error {
     margin-right: 0;
