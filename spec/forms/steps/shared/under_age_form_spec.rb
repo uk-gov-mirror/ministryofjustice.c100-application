@@ -3,12 +3,16 @@ require 'spec_helper'
 RSpec.describe Steps::Shared::UnderAgeForm do
   let(:arguments) { {
     c100_application: c100_application,
-    record: record
+    record: record,
+    under_age: under_age,
   } }
 
-  let(:c100_application) { instance_double(C100Application) }
+  let(:c100_application) { instance_double(C100Application, applicants: applicants_collection) }
+  let(:applicants_collection) { double('applicants_collection') }
+  let(:applicant) { double('Applicant', id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6') }
 
-  let(:record) { double('Applicant') }
+  let(:record) { nil }
+  let(:under_age) { true }
 
   subject { described_class.new(arguments) }
 
@@ -21,9 +25,38 @@ RSpec.describe Steps::Shared::UnderAgeForm do
       end
     end
 
-    it 'does nothing on the record and return true' do
-      expect(record).not_to receive(:update)
-      expect(subject.save).to be(true)
+    context 'validations' do
+      it { should validate_presence_of(:under_age) }
+    end
+
+    context 'when a record exists' do
+      let(:record) { applicant }
+
+      it 'saves the record' do
+        expect(applicants_collection).to receive(:find_or_initialize_by).with(
+          id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe6',
+        ).and_return(applicant)
+
+        expect(applicant).to receive(:update).with(
+          under_age: under_age,
+        ).and_return(true)
+
+        expect(subject.save).to be true
+      end
+    end
+
+    context 'when a record does not exist' do
+      it 'creates a new applicant record' do
+        expect(applicants_collection).to receive(:find_or_initialize_by).with(
+          id: nil
+        ).and_return(applicant)
+
+        expect(applicant).to receive(:update).with(
+          under_age: under_age
+        ).and_return(true)
+
+        expect(subject.save).to be(true)
+      end
     end
   end
 end
