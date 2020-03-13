@@ -36,43 +36,11 @@ RSpec.describe C100App::RespondentDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) {{'personal_details' => 'anything'}}
-    let(:record) { double('Respondent', id: 1, dob: dob) }
+    let(:record) { double('Respondent', id: 1) }
 
-    before do
-      expect(record).to receive(:reload).and_return(record)
-      travel_to Date.new(2018, 1, 5) # Stub current date to 5 Jan 2018
-    end
-
-    context 'and the DoB is under age' do
-      let(:dob) { Date.new(2000, 1, 6) }
-
-      it 'goes to the warning under age page' do
-        expect(subject.destination).to eq(controller: :under_age, action: :edit, id: record)
-      end
-    end
-
-    context 'and the DoB is not under age' do
-      let(:dob) { Date.new(2000, 1, 5) }
-
-      it 'goes to edit the first child relationship for the current record' do
-        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
-      end
-    end
-
-    context 'and the DoB is nil' do
-      let(:dob) { nil }
-
-      it 'goes to edit the first child relationship for the current record' do
-        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
-      end
-    end
-
-    context 'and the DoB is an empty string (mutant kill)' do
-      let(:dob) { '' }
-
-      it 'goes to edit the first child relationship for the current record' do
-        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
-      end
+    it 'does not run an age check' do
+      expect(subject).to receive(:after_personal_details).with(age_check: false)
+      subject.destination
     end
   end
 
