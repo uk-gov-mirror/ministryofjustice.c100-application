@@ -993,6 +993,7 @@ en:
 
   layouts:
     footer_links:
+      header: Support links
       help: Help
       accessibility: Accessibility
       contact: Contact
@@ -1000,7 +1001,7 @@ en:
       privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
-      feedback_contact_html: This is a new service. <a href="/about/contact">Report a problem</a> and help improve it for others.
+      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password

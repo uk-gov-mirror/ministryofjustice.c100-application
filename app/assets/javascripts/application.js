@@ -22,6 +22,9 @@
 // From MOJ gov_uk_date_fields
 //= require govuk_date_fields
 
+// GOV.UK Frontend
+//= require govuk-frontend/govuk/all
+
 $(document).ready(function() {
   // Show and hide toggled content
   new GOVUK.ShowHideContent().init();

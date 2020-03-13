@@ -1,8 +1,11 @@
 <% content_for(:footer_top) do %>
-  <details class="developer_tools">
-    <summary><span class="summary">Developer Tools</span></summary>
-
-    <div class="panel panel-border-narrow">
+  <details class="govuk-details developer_tools" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Developer Tools
+      </span>
+    </summary>
+    <div class="govuk-details__text">
       <% if current_c100_application %>
         <h4 class="heading-small">Current Application ID</h4>
         <p><%= current_c100_application.id %></p>

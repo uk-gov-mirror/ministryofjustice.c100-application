@@ -41,7 +41,6 @@
 @import 'local/buttons';
 @import 'local/forms';
 @import 'local/typography';
-@import 'local/header';
 @import 'local/panels';
 @import 'local/banners';
 @import 'local/utilities';
@@ -55,7 +54,7 @@
 $govuk-compatibility-govukfrontendtoolkit: true;
 $govuk-compatibility-govuktemplate: true;
 $govuk-compatibility-govukelements: true;
-$govuk-assets-path: '/assets/govuk-frontend/assets/';
+$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
 @import 'govuk-frontend/govuk/all';
 
 // Import these after the front end styles as this is custom css
