@@ -43,14 +43,6 @@ module C100App
       end
     end
 
-    def dob_under_age?
-      # Respondents, unlike Applicants, can have an 'unknown' DoB and they can fill
-      # an 'approximate age or year born' free input text. The prototype does some fancy
-      # stuff to try to come up with a valid date/age from the text field, but for now,
-      # I will leave out that functionality as there are more important things to do!
-      record.reload.dob.present? && (record.dob > 18.years.ago)
-    end
-
     def next_respondent_id
       next_record_id(c100_application.respondent_ids)
     end
