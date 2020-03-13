@@ -2,55 +2,22 @@
 
 <% content_for(:head) do %>
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <!--[if lt IE 9]>
-  <%= stylesheet_link_tag 'ie8', media: 'all' %>
-  <![endif]-->
-  <meta name="robots" content="noindex, nofollow"/>
-  <meta name="msapplication-config" content="none"/>
 <% end %>
 
-<% content_for(:header_class) do %>with-proposition<% end %>
+<% content_for(:service_name) do %>
+  <%= link_to service_name, '/', class: 'govuk-header__link govuk-header__link--service-name' %>
+<% end %>
 
-<% content_for(:proposition_header) do %>
-  <div class="header-proposition">
-    <div class="content">
-      <% if admin_signed_in? %>
-        <a role="button" href="#proposition-links" class="js-header-toggle menu"
-           aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</a>
-      <% end %>
-      <nav id="proposition-menu">
-        <%= link_to service_name, Rails.configuration.gds_service_homepage_url, id: 'proposition-name', class: 'ga-pageLink', data: {ga_category: 'header', ga_label: 'service name'} %>
-        <%= render partial: 'backoffice/shared/menu' if admin_signed_in? %>
-      </nav>
-    </div>
-  </div>
+<% content_for(:header_navigation) do %>
+  <%= render partial: 'backoffice/shared/menu' %>
 <% end %>
 
 <% content_for(:content) do %>
-  <main id="content" role="main">
-    <% if flash[:alert].present? %>
-      <div class="error-summary">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
-
-    <%= yield %>
-  </main>
+  <%= yield %>
 <% end %>
 
-<% content_for(:body_end) do %>
-  <!--[if lte IE 8]>
-  <script>
-    document.body.className = document.body.className.replace("js-enabled","")
-  </script>
-  <![endif]-->
-
-  <!--[if gt IE 8]><!--><%= javascript_include_tag 'application' %><!--<![endif]-->
+<% content_for(:footer_links) do %>
+  <% render partial: 'layouts/footer_links' %>
 <% end %>
 
-<% content_for(:footer_support_links) do %>
-  <%= render partial: 'layouts/footer_links' %>
-<% end %>
-
-<%= render template: "layouts/govuk_template" %>
+<%= render file: 'layouts/govuk_template' %>
