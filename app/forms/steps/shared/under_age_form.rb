@@ -1,13 +1,18 @@
 module Steps
   module Shared
     class UnderAgeForm < BaseForm
-      # This form does nothing really, but we use it for the interstitials 'under 18 years'
-      # warning pages, which are complex in the sense we need to keep track of the current
-      # applicant and, for the following page, the child to ask for their relationship.
+      attribute :under_age, Boolean
+
+      validates_presence_of :under_age
 
       def persist!
         raise C100ApplicationNotFound unless c100_application
-        true
+
+        applicant = c100_application.applicants.find_or_initialize_by(id: record_id)
+
+        applicant.update(
+          under_age: under_age
+        )
       end
     end
   end

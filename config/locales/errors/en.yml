@@ -111,6 +111,10 @@ en:
               inclusion: Select yes if you’re willing to be contacted about using this service
         # End screener
 
+        steps/shared/under_age_form:
+          attributes:
+            under_age:
+              blank: You must confirm you understand
         steps/miam/child_protection_cases_form:
           attributes:
             child_protection_cases:
