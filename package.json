@@ -1,0 +1,9 @@
+{
+  "name": "c100-application",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "govuk-frontend": "^3.6.0"
+  }
+}
