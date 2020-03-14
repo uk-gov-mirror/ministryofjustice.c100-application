@@ -8,6 +8,9 @@
 
     <p class="lede"><%=t '.lead_text' %></p>
 
-    <%= render partial: '/steps/shared/screener_exit_actions' %>
+    <%= step_form @form_object do |f| %>
+      <%= f.single_check_box :under_age %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>
