@@ -52,6 +52,17 @@ RSpec.describe ApplicationHelper, type: :helper do
 
       expect(helper.step_header).to eq('foobar')
     end
+
+    context 'a specific path is provided' do
+      it 'renders the back link with provided path' do
+        expect(helper).to receive(:render).with(partial: 'step_header', locals: {path: '/another/step'}).and_return('foo')
+
+        assign(:form_object, form_object)
+        expect(helper).to receive(:error_summary).with(form_object).and_return('bar')
+
+        expect(helper.step_header(path: '/another/step')).to eq('foobar')
+      end
+    end
   end
 
   describe '#error_summary' do

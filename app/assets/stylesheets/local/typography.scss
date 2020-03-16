@@ -18,24 +18,8 @@ details + form {
   margin-top: 45px;
   margin-bottom: 0;
 
-  .link-back {
-    @include core-19;
-    margin-right: 5px;
-    &:focus {
-      outline: 1px solid $link-active-colour;
-    }
-  }
-
   & + .heading-large {
     margin-top: 0;
-  }
-}
-
-.link-back {
-  border-top: 1px solid transparent;
-
-  &:focus {
-    border-top: 1px solid $focus-colour;
   }
 }
 

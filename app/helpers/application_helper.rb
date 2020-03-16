@@ -17,10 +17,10 @@ module ApplicationHelper
   end
 
   # Render a back link pointing to the user's previous step
-  def step_header
+  def step_header(path: nil)
     capture do
       render partial: 'step_header', locals: {
-        path: controller.previous_step_path
+        path: path || controller.previous_step_path
       }
     end + error_summary(@form_object)
   end
