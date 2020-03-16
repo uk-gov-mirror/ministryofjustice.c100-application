@@ -118,6 +118,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         court_name: 'Test court',
         court_email: 'court@example.com',
         court_url: 'https://courttribunalfinder.service.gov.uk/courts/test-court',
+        is_under_age: 'no',
         payment_instructions: 'payment instructions from locales',
         link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
       })
@@ -136,6 +137,20 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         expect(
           mail.govuk_notify_personalisation
         ).to include(payment_instructions: 'hwf payment instructions')
+      end
+    end
+
+    context 'when at least one applicant is under age' do
+      let(:applicants_collection_double) { double(under_age?: true) }
+
+      before do
+        allow(c100_application).to receive(:applicants).and_return(applicants_collection_double)
+      end
+
+      it 'has the right personalisation' do
+        expect(
+          mail.govuk_notify_personalisation
+        ).to include(is_under_age: 'yes')
       end
     end
   end

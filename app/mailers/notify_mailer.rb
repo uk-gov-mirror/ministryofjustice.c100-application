@@ -61,4 +61,10 @@ class NotifyMailer < GovukNotifyRails::Mailer
     super({ service_name: @service_name }.merge(personalisation))
   end
   # rubocop:enable Naming/AccessorMethodName
+
+  # GOV.UK Notify expects booleans to be literals `yes` or `no`
+  # to show/hide optional content.
+  def notify_boolean(value)
+    value.present? ? 'yes' : 'no'
+  end
 end
