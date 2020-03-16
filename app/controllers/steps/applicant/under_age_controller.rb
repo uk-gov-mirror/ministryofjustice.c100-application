@@ -1,6 +1,8 @@
 module Steps
   module Applicant
     class UnderAgeController < Steps::ApplicantStepController
+      before_action :set_court
+
       def edit
         @form_object = Steps::Shared::UnderAgeForm.build(
           current_record, c100_application: current_c100_application
@@ -13,6 +15,12 @@ module Steps
           record: current_record,
           as: :under_age
         )
+      end
+
+      private
+
+      def set_court
+        @court = current_c100_application.screener_answers_court
       end
     end
   end

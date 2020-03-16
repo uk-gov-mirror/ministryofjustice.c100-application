@@ -6,7 +6,29 @@
 
     <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
 
-    <p class="lede"><%=t '.lead_text' %></p>
+    <p class="lede">
+      <%
+        litigation_url = link_to(
+          'litigation friend',
+          'https://www.gov.uk/litigation-friend',
+          target: :_blank,
+          rel: :external
+        )
+      %>
+      <%= t('.lead_text_html', litigation_url: litigation_url) %>
+    </p>
+
+    <p>
+      <%
+        court_and_tribunal_finder_url = link_to(
+          'Court and tribunal finder',
+          C100App::CourtfinderAPI.new.court_url(@court.slug),
+          target: :_blank,
+          rel: :external
+        )
+      %>
+      <%= t('.court_and_tribunal_html', court_name: @court.name, court_and_tribunal_finder_url: court_and_tribunal_finder_url) %>
+   </p>
 
     <%= step_form @form_object do |f| %>
       <%= f.single_check_box :under_age %>
