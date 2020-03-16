@@ -24,31 +24,7 @@
       } %>
     </div>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <h2 class="heading-large gv-u-heading-large">
-        Send certificate of suitability or court order appointing a litigation friend
-      </h2>
-
-      <%= render partial: 'steps/shared/under_age_section' %>
-
-      <%
-        court_and_tribunal_finder_url = link_to(
-          'Court and tribunal finder',
-          C100App::CourtfinderAPI.new.court_url(@court.slug),
-          target: :_blank,
-          rel: :external
-        )
-      %>
-
-      <p>
-        You need to send documents to: <%= @court.name %>. See <%= court_and_tribunal_finder_url %> for contact details.
-        Include your application reference code.
-      </p>
-
-      <p>
-        The court will not be able to process your application until these documents have been received.
-      </p>
-    </div>
+    <%= render partial: 'under_age_section' %>
 
     <div class="govuk-govspeak gv-s-prose">
       <h2 class="heading-large gv-u-heading-large">Download a copy of your application</h2>
