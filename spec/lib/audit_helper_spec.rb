@@ -37,6 +37,7 @@ describe AuditHelper do
         postcode: 'ABCD1**',
         c1a_form: false,
         c8_form: false,
+        under_age: false,
         saved_for_later: false,
         legal_representation: 'yes',
         urgent_hearing: 'no',

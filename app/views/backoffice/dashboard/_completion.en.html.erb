@@ -19,13 +19,15 @@
                 <dd><%= completion.started_at %> (v:<%= completion.metadata['v'] || '1-3' %>)</dd>
                 <dt>Saved for later?</dt>
                 <dd><%= completion.metadata['saved_for_later'] %></dd>
+                <dt>Any applicant under 18?</dt>
+                <dd><%= completion.metadata['under_age'] || false %></dd>
                 <dt>Payment type</dt>
                 <dd><%= completion.metadata['payment_type'] || 'N/A' %></dd>
                 <dt>Legal representation</dt>
                 <dd><%= completion.metadata['legal_representation'] || 'N/A' %></dd>
-                <dt>Urgent hearing?</dt>
+                <dt>Urgent hearing</dt>
                 <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
-                <dt>Without notice hearing?</dt>
+                <dt>Without notice hearing</dt>
                 <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
               </dl>
             </td>
