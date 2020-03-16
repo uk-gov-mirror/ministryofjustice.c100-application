@@ -25,6 +25,44 @@
     </div>
 
     <div class="govuk-govspeak gv-s-prose">
+      <h2 class="heading-large gv-u-heading-large">
+        Send certificate of suitability or court order appointing a litigation friend
+      </h2>
+
+      <p>
+        As you are under 18, you need a
+        <%= link_to 'a litigation friend', 'url', target: :_blank, rel: :external %>
+        to act on your behalf and be present at court hearings.
+        You must either have a:
+      </p>
+
+      <ul class="list list-bullet">
+        <li>
+          <%= link_to('certificate of suitability', 'url', target: :_blank, rel: :external )%>
+          completed by your litigation friend</li>
+        <li>or a copy of the court order appointing a litigation friend</li>
+      </ul>
+
+      <%
+        court_and_tribunal_finder_url = link_to(
+          'Court and tribunal finder',
+          C100App::CourtfinderAPI.new.court_url(@court.slug),
+          target: :_blank,
+          rel: :external
+        )
+      %>
+
+      <p>
+        You need to send documents to: <%= @court.name %>. See <%= court_and_tribunal_finder_url %> for contact details.
+        Include your application reference code.
+      </p>
+
+      <p>
+        The court will not be able to process your application until these documents have been received.
+      </p>
+    </div>
+
+    <div class="govuk-govspeak gv-s-prose">
       <h2 class="heading-large gv-u-heading-large">Download a copy of your application</h2>
       <p>
         This will be a PDF. If you cannot open the PDF after downloading, try using
