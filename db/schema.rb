@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_151742) do
+ActiveRecord::Schema.define(version: 2020_03_17_155024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -325,7 +325,6 @@ ActiveRecord::Schema.define(version: 2020_03_10_151742) do
     t.uuid "c100_application_id"
     t.json "local_court"
     t.string "parent"
-    t.string "over18"
     t.string "written_agreement"
     t.string "email_consent"
     t.string "email_address"
