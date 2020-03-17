@@ -1,7 +1,7 @@
 class PeopleDecisionTree < BaseDecisionTree
   private
 
-  def after_personal_details(age_check: true)
+  def after_personal_details(age_check:)
     if age_check && dob_under_age?
       edit(:under_age, id: record)
     else

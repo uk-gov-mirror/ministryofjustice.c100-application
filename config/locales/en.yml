@@ -943,15 +943,6 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if you’re a parent of the children you’re making this application about.
-      over18:
-        edit:
-          page_title: Are you and the other parent both over 18?
-          heading: Are you and the other parent (the respondent) both over 18?
-      over18_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: You can only use this online service if both you and the other person (the respondent) are over 18.
       written_agreement:
         edit:
           page_title: Consent order

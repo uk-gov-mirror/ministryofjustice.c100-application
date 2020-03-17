@@ -97,10 +97,6 @@ en:
           attributes:
             parent:
               inclusion: Select yes if you’re a parent
-        steps/screener/over18_form:
-          attributes:
-            over18:
-              inclusion: Select yes if you and the other parent are over 18
         steps/screener/written_agreement_form:
           attributes:
             written_agreement:
