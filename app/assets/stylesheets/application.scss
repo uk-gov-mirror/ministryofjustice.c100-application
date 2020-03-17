@@ -7,10 +7,7 @@
 @import 'grid_layout';
 @import 'typography';
 @import 'shims';
-
-@import 'design-patterns/alpha-beta';
 @import 'design-patterns/buttons';
-@import 'design-patterns/breadcrumbs';
 
 // From GDS's alphagov/govuk_elements
 @import 'elements/helpers';
@@ -27,8 +24,6 @@
 @import 'elements/forms/form-multiple-choice';
 @import 'elements/forms/form-date';
 @import 'elements/forms/form-validation';
-@import 'elements/breadcrumbs';
-@import 'elements/phase-banner';
 @import 'elements/components';
 @import 'elements/shame';
 
@@ -46,14 +41,9 @@
 @import 'local/utilities';
 @import 'local/timeout_modal';
 @import 'local/spinner';
-@import 'local/developer_tools';
 @import 'local/js_enabled';
 
 // GOV.UK Frontend
-// Compatibility mode enabled for now
-$govuk-compatibility-govukfrontendtoolkit: true;
-$govuk-compatibility-govuktemplate: true;
-$govuk-compatibility-govukelements: true;
 $govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
 @import 'govuk-frontend/govuk/all';
 
