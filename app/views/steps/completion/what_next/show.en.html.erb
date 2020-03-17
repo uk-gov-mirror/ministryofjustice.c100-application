@@ -44,6 +44,18 @@
               person, keep one copy, and return one copy to you.</p>
           </li>
 
+          <% if current_c100_application.applicants.under_age? %>
+            <li class="util_mt-medium">
+              <h3 class="heading-medium">
+                Send certificate of suitability or court order appointing a litigation friend
+              </h3>
+
+              <%= render partial: 'steps/shared/under_age_section' %>
+
+               Include your application reference code. The court will not be able to process your application until these documents have been received.
+            </li>
+          <% end %>
+
           <li class="util_mt-medium">
             <h3 class="heading-medium">Post it to the court</h3>
             <%= render partial: 'steps/shared/post_instructions', locals: {
