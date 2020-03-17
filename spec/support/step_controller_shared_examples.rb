@@ -173,7 +173,6 @@ RSpec.shared_examples 'a savepoint step controller' do
     ScreenerAnswers.new(
       children_postcodes: 'MK9 2DT',
       parent: 'yes',
-      over18: 'yes',
       written_agreement: 'no',
       email_consent: 'no',
       local_court: { name: 'whatever' }

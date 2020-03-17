@@ -15,7 +15,6 @@ RSpec.describe ScreenerAnswers, type: :model do
         children_postcodes
         local_court
         parent
-        over18
         written_agreement
         email_consent
       ))
