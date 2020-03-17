@@ -8,8 +8,6 @@ module C100App
         check_if_court_is_valid
       when :parent
         after_parent
-      when :over18
-        after_over18
       when :written_agreement
         after_written_agreement
       when :email_consent
@@ -39,17 +37,9 @@ module C100App
 
     def after_parent
       if question(:parent, c100_application.screener_answers).yes?
-        edit(:over18)
-      else
-        show(:parent_exit)
-      end
-    end
-
-    def after_over18
-      if question(:over18, c100_application.screener_answers).yes?
         edit(:written_agreement)
       else
-        show(:over18_exit)
+        show(:parent_exit)
       end
     end
 

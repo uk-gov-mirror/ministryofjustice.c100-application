@@ -58,7 +58,6 @@ class SessionsController < ApplicationController
     {
       children_postcodes: 'MK9 2DT',
       parent: 'yes',
-      over18: 'yes',
       written_agreement: 'no',
       email_consent: 'no',
       local_court: {
