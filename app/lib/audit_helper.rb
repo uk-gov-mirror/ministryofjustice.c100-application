@@ -6,12 +6,14 @@ class AuditHelper
     @c100_application = c100_application
   end
 
+  # rubocop:disable Metrics/AbcSize
   def metadata
     {
       v: c100.version,
       postcode: postcode,
       c1a_form: c100.has_safety_concerns?,
       c8_form: c100.confidentiality_enabled?,
+      under_age: c100.applicants.under_age?,
       saved_for_later: c100.user_id.present?,
       legal_representation: c100.has_solicitor,
       urgent_hearing: c100.urgent_hearing,
@@ -22,6 +24,7 @@ class AuditHelper
       arrangements: arrangements_metadata,
     }
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
