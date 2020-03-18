@@ -9,8 +9,6 @@ module Summary
         false
       end
 
-      # TODO: Temporary conditional reveal until all applications
-      # are migrated to the new version
       def show?
         arrangement.present? && super
       end
