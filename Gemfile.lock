@@ -463,7 +463,6 @@ DEPENDENCIES
   sidekiq (~> 6.0)
   simplecov
   simplecov-rcov
-  sprockets (< 4.0.0)
   uglifier
   uk_postcode
   virtus

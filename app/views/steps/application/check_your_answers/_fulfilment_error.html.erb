@@ -5,7 +5,7 @@
   <dd class="change">
     <%# We only show the link in the first error, in case there are more than one %>
     <%= link_to t('.change_link'), error.change_path,
-                class: 'ga-pageLink no-visited-state',
+                class: 'ga-pageLink govuk-link--no-visited-state',
                 data: {
                   ga_category: 'check your answers',
                   ga_label: "fulfilment error: #{error.attribute}"

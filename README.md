@@ -75,6 +75,8 @@ If you want to show the browser (useful to debug issues) prefix the commands lik
 
 * `SHOW_BROWSER=1 bundle exec cucumber features`
 
+Note: if some assets are not found when running cucumber, try deleting the content of the `/tmp` directory (inside your local checkout of the project).
+
 ## Mutation testing
 
 This project uses extensive mutation coverage, which makes the (mutation) tests take a long time to run, and can end up with the CI killing the build due to excessive job work time.
