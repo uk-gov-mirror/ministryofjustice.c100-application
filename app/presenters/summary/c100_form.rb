@@ -87,7 +87,6 @@ module Summary
         Sections::SectionHeader.new(c100_application, name: :litigation_capacity),
         Sections::LitigationCapacity.new(c100_application),
         Sections::SectionHeader.new(c100_application, name: :attending_court),
-        Sections::AttendingCourt.new(c100_application),
         Sections::AttendingCourtV2.new(c100_application),
       ]
     end
