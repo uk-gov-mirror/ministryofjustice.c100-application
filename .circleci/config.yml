@@ -159,6 +159,21 @@ workflows:
   test-build-deploy:
     jobs:
       - test
+      ### dev ###
+      - build_image:
+          name: build-dev
+          env_name: dev
+          requires:
+            - test
+          filters:
+            branches:
+              only: develop
+      - deploy_image:
+          name: deploy-dev
+          env_name: dev
+          requires:
+            - build-dev
+      ### staging ###
       - build_image:
           name: build-staging
           env_name: staging
@@ -172,6 +187,7 @@ workflows:
           env_name: staging
           requires:
             - build-staging
+      ### production ###
       - approve_production:
           type: approval
           requires:
