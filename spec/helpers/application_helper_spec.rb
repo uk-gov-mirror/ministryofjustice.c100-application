@@ -45,7 +45,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:form_object) { double('Form object') }
 
     it 'renders the expected content' do
-      expect(helper).to receive(:render).with(partial: 'step_header', locals: {path: '/foo/bar'}).and_return('foo')
+      expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/foo/bar'}).and_return('foo')
 
       assign(:form_object, form_object)
       expect(helper).to receive(:error_summary).with(form_object).and_return('bar')
@@ -55,7 +55,7 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     context 'a specific path is provided' do
       it 'renders the back link with provided path' do
-        expect(helper).to receive(:render).with(partial: 'step_header', locals: {path: '/another/step'}).and_return('foo')
+        expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/another/step'}).and_return('foo')
 
         assign(:form_object, form_object)
         expect(helper).to receive(:error_summary).with(form_object).and_return('bar')

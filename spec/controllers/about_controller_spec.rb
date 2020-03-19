@@ -42,4 +42,11 @@ RSpec.describe AboutController do
       expect(response).to render_template(:privacy_consent)
     end
   end
+
+  describe '#miam_exemptions' do
+    it 'renders the expected page' do
+      get :miam_exemptions
+      expect(response).to render_template(:miam_exemptions)
+    end
+  end
 end

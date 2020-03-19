@@ -305,9 +305,6 @@ Rails.application.routes.draw do
   root 'steps/screener/start#show'
 
   get 'entrypoint/v1'
-  get 'entrypoint/v2'
-  get 'entrypoint/v3'
-
   get 'entrypoint/what_is_needed'
   get 'entrypoint/how_long'
 
@@ -317,8 +314,7 @@ Rails.application.routes.draw do
   get 'about/privacy'
   get 'about/terms_and_conditions'
   get 'about/privacy_consent'
-
-  get :miam_exemptions, to: 'home#miam_exemptions', as: :miam_exemptions_page
+  get 'about/miam_exemptions'
 
   # This route is used in court emails to point users to the survey
   get :survey, to: redirect(Rails.configuration.surveys[:success], status: 302)

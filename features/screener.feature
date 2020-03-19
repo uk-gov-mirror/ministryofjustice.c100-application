@@ -21,10 +21,10 @@ Feature: Screener
     And I choose "Yes" and fill in "Email address" with "smoketest@example.com"
 
     Then I should see "You're eligible to apply online"
-    
+
     And I click the "Continue" link
     Then I should see "Before you start your application"
-    
+
     And I click the "Start application" link
     Then I should see "What you’ll need to complete your application"
 

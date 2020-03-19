@@ -10,4 +10,6 @@ class AboutController < ApplicationController
   def terms_and_conditions; end
 
   def privacy_consent; end
+
+  def miam_exemptions; end
 end
