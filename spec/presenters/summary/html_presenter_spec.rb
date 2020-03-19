@@ -44,7 +44,7 @@ describe Summary::HtmlPresenter do
 
   describe '#sections' do
     let(:abduction_detail) { instance_double(AbductionDetail) }
-    let(:court_arrangement) { nil }
+    let(:court_arrangement) { instance_double(CourtArrangement) }
 
     before do
       allow_any_instance_of(Summary::Sections::BaseSectionPresenter).to receive(:show?).and_return(true)
@@ -83,7 +83,7 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::InternationalElement,
         Summary::HtmlSections::ApplicationReasons,
         Summary::HtmlSections::LitigationCapacity,
-        Summary::HtmlSections::AttendingCourt,
+        Summary::HtmlSections::AttendingCourtV2,
         Summary::HtmlSections::Payment,
         Summary::HtmlSections::Submission,
       ])
@@ -94,30 +94,6 @@ describe Summary::HtmlPresenter do
 
       it 'does not include the section' do
         expect(subject.sections).not_to include(Summary::HtmlSections::Abduction)
-      end
-    end
-
-    context 'when not using the new special court arrangement details' do
-      let(:court_arrangement) { nil }
-
-      it 'does not include the `AttendingCourtV2` section' do
-        expect(subject.sections).not_to include(Summary::HtmlSections::AttendingCourtV2)
-      end
-
-      it 'includes the `AttendingCourt` section' do
-        expect(subject.sections).to include(Summary::HtmlSections::AttendingCourt)
-      end
-    end
-
-    context 'when using the new special court arrangement details' do
-      let(:court_arrangement) { instance_double(CourtArrangement) }
-
-      it 'includes the `AttendingCourtV2` section' do
-        expect(subject.sections).to include(Summary::HtmlSections::AttendingCourtV2)
-      end
-
-      it 'does not include the `AttendingCourt` section' do
-        expect(subject.sections).not_to include(Summary::HtmlSections::AttendingCourt)
       end
     end
   end

@@ -84,7 +84,6 @@ module Summary
     def litigation_and_assistance_sections
       [
         HtmlSections::LitigationCapacity.new(c100_application),
-        HtmlSections::AttendingCourt.new(c100_application),
         HtmlSections::AttendingCourtV2.new(c100_application),
       ]
     end

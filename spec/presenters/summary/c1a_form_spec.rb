@@ -3,7 +3,7 @@ require 'spec_helper'
 module Summary
   describe C1aForm do
     let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
-    let(:court_arrangement) { nil }
+    let(:court_arrangement) { instance_double(CourtArrangement) }
 
     subject { described_class.new(c100_application) }
 
@@ -48,31 +48,9 @@ module Summary
           Sections::SectionHeader,
           Sections::StatementOfTruth,
           Sections::SectionHeader,
-          Sections::AttendingCourt,
+          Sections::AttendingCourtV2,
           Sections::C1aGettingSupport,
         ])
-      end
-
-      context 'when not using the new special court arrangement details' do
-        it 'does not include the `AttendingCourtV2` section' do
-          expect(subject.sections).not_to include(Sections::AttendingCourtV2)
-        end
-
-        it 'includes the `AttendingCourt` section' do
-          expect(subject.sections).to include(Sections::AttendingCourt)
-        end
-      end
-
-      context 'when using the new special court arrangement details' do
-        let(:court_arrangement) { instance_double(CourtArrangement) }
-
-        it 'includes the `AttendingCourtV2` section' do
-          expect(subject.sections).to include(Sections::AttendingCourtV2)
-        end
-
-        it 'does not include the `AttendingCourt` section' do
-          expect(subject.sections).not_to include(Sections::AttendingCourt)
-        end
       end
     end
   end
