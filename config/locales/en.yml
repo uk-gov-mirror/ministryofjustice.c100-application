@@ -532,7 +532,7 @@ en:
           page_title: Exemption claim
           heading: Do you have a valid reason for not attending a MIAM?
           lead_text_html: |
-            <p>If you’re unsure you can <a href="/miam_exemptions" target="_blank">check the list of valid reasons</a>.</p>
+            <p>If you’re unsure you can <a href="/about/miam_exemptions" target="_blank">check the list of valid reasons</a>.</p>
           info_notice_html: |
             <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
               <p>
@@ -993,6 +993,7 @@ en:
 
   layouts:
     footer_links:
+      header: Support links
       help: Help
       accessibility: Accessibility
       contact: Contact
@@ -1000,7 +1001,7 @@ en:
       privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
-      feedback_contact_html: This is a new service. <a href="/about/contact">Report a problem</a> and help improve it for others.
+      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password
@@ -1394,9 +1395,6 @@ en:
       user_signin:
         email: Your email address
         password: Enter password
-      surveys_feedback_form:
-        comment: Describe any service improvement or problems you are having
-        email: Email (optional)
 
     hint:
       user:
@@ -1705,26 +1703,6 @@ en:
         expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong>.
           Any information will be automatically deleted for your security after this time.
         return_info: You can return to continue your application at any time.
-
-  surveys:
-    feedback:
-      new:
-        page_title: Feedback
-        heading: Help us improve this service
-        submit: Submit
-        lead_text: Please tell us how to improve the service or report a problem below (your feedback will be anonymous).
-      thanks:
-        page_title: Feedback submitted
-        heading: Thank you for your feedback
-        lead_text: Your feedback helps us to improve this service.
-        continue: Continue
-  entrypoint:
-    shared:
-      start_application:
-        start: Start application
-  miam:
-    index:
-      continue: Continue
 
   notify_submission_mailer:
     payment_instructions:

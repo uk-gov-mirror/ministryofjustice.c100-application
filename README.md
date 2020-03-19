@@ -35,6 +35,7 @@ environment (but will not send any emails as the GOV.UK Notify API key is not co
 * Copy `.env.example` to `.env` and replace with suitable values.  
 You don't need to configure Notify or Auth0 at this point.
 
+* `npm install` # will pull [GOV.UK Frontend](https://design-system.service.gov.uk)
 * `bundle install`
 * `bundle exec rails db:setup`
 * `bundle exec rails db:migrate`
@@ -73,6 +74,8 @@ By default cucumber will start a local server on a random port, run features aga
 If you want to show the browser (useful to debug issues) prefix the commands like this:
 
 * `SHOW_BROWSER=1 bundle exec cucumber features`
+
+Note: if some assets are not found when running cucumber, try deleting the content of the `/tmp` directory (inside your local checkout of the project).
 
 ## Mutation testing
 

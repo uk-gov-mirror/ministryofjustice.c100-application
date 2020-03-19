@@ -7,10 +7,7 @@
 @import 'grid_layout';
 @import 'typography';
 @import 'shims';
-
-@import 'design-patterns/alpha-beta';
 @import 'design-patterns/buttons';
-@import 'design-patterns/breadcrumbs';
 
 // From GDS's alphagov/govuk_elements
 @import 'elements/helpers';
@@ -27,8 +24,6 @@
 @import 'elements/forms/form-multiple-choice';
 @import 'elements/forms/form-date';
 @import 'elements/forms/form-validation';
-@import 'elements/breadcrumbs';
-@import 'elements/phase-banner';
 @import 'elements/components';
 @import 'elements/shame';
 
@@ -41,16 +36,20 @@
 @import 'local/buttons';
 @import 'local/forms';
 @import 'local/typography';
-@import 'local/header';
 @import 'local/panels';
 @import 'local/banners';
 @import 'local/utilities';
 @import 'local/timeout_modal';
 @import 'local/spinner';
-@import 'local/developer_tools';
 @import 'local/js_enabled';
 
+// GOV.UK Frontend
+$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
+@import 'govuk-frontend/govuk/all';
+
+// Import these after the front end styles as this is custom css
+// that sometimes override some of the styles above.
+//
 @import 'local/check_answers';
 @import 'local/pdf_summary';
-
 @import 'local/app';

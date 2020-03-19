@@ -23,5 +23,6 @@ tags
 .env
 .env.test
 
+node_modules/
 public/assets/
 .DS_Store

@@ -1,0 +1,41 @@
+<% content_for(:footer_top) do %>
+  <details class="govuk-details developer-tools" data-module="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Developer Tools
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      <% if current_c100_application %>
+        <h4 class="govuk-heading-s">Current Application ID</h4>
+        <p><%= current_c100_application.id %></p>
+
+        <% if current_c100_application.screener_answers_court %>
+          <h4 class="govuk-heading-s">Current court data</h4>
+          <p>
+            <%= current_c100_application.screener_answers_court.name %><br/>
+            <%= current_c100_application.screener_answers_court.email %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <h3 class="govuk-heading-m">Destroy session</h3>
+      <p>Deletes all data entered in this session and lets you start a new application from scratch.</p>
+
+      <%= button_to session_path, method: :delete,
+                    class: 'govuk-button govuk-button--warning',
+                    data: { module: 'govuk-button', confirm: 'Are you sure?' } do; 'Destroy session'; end %>
+
+      <h3 class="govuk-heading-m">Bypass steps</h3>
+      <p>Bypass the screener or go to the check your answers page</p>
+
+      <%= button_to bypass_screener_session_path,
+                    class: 'govuk-button govuk-!-margin-right-1',
+                    data: { module: 'govuk-button' } do; 'Bypass screener'; end %>
+
+      <%= button_to bypass_to_cya_session_path,
+                    class: 'govuk-button',
+                    data: { module: 'govuk-button' } do; 'Bypass to CYA'; end %>
+    </div>
+  </details>
+<% end %>
