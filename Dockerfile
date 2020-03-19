@@ -61,7 +61,14 @@ ENV EXTERNAL_URL            replace_this_at_build_time
 ENV SECRET_KEY_BASE         replace_this_at_build_time
 ENV GOVUK_NOTIFY_API_KEY    replace_this_at_build_time
 
+ENV RAILS_ENV production
 RUN bundle exec rake assets:precompile
+
+# Copy fonts and images (without digest) along with the digested ones,
+# as there are some hardcoded references in the `govuk-frontend` files
+# that will not be able to use the rails digest mechanism.
+RUN cp node_modules/govuk-frontend/govuk/assets/fonts/*  public/assets/govuk-frontend/govuk/assets/fonts
+RUN cp node_modules/govuk-frontend/govuk/assets/images/* public/assets/govuk-frontend/govuk/assets/images
 
 # tidy up installation
 RUN apk del build-deps fonts-deps && rm -rf /tmp/*
@@ -85,11 +92,10 @@ ENV APP_BUILD_TAG ${APP_BUILD_TAG}
 ARG APP_GIT_COMMIT
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
 
-ENV RAILS_ENV production
-ENV PUMA_PORT 3000
-
 ENV APPUID 1000
 USER $APPUID
 
+ENV PUMA_PORT 3000
 EXPOSE $PUMA_PORT
+
 ENTRYPOINT ["./run.sh"]
