@@ -5,7 +5,7 @@ moj.Modules.gaEvents = {
     checkboxClass:  '.multiple-choice input[type="checkbox"]',
     linkClass: '.ga-pageLink',
     clickActionClass: '.ga-clickAction',
-    revealingLinkClass: 'summary span.summary',
+    revealingLinkClass: 'summary span',
     submitFormClass: '.ga-submitForm',
     submitButtons: 'button[type="submit"], input[type="submit"]',
 
