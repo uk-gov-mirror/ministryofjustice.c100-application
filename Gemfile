@@ -5,6 +5,7 @@ ruby '2.6.5'
 
 gem 'devise', '~> 4.7.1'
 gem 'email_validator', '< 2.0.0'
+gem 'govuk_design_system_formbuilder', '~> 1.1'
 gem 'govuk_elements_form_builder', '~> 1.3.1'
 gem 'govuk_elements_rails', '~> 3.0'
 gem 'govuk_frontend_toolkit', '< 8.0.0'
