@@ -131,7 +131,9 @@ en:
           heading: What to do now
           copy: To submit an application in England or Wales, you’ll need to complete the C100 paper form, print it and send it by post.
         download_c100_link: Download the form (PDF)
-        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" rel="external" target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
+        cait_info_html: |
+          Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" class="govuk-link" rel="external"
+          target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
       existing_names:
         remove_name: "Remove %{legend}"
     applicant:
@@ -932,7 +934,6 @@ en:
       parent:
         edit:
           page_title: Are you a parent of the child or children?
-          heading: Are you a parent of the child or children?
       parent_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -942,11 +943,7 @@ en:
         edit:
           page_title: Consent order
           heading: Do you have a signed draft court order you want the court to consider making legally binding?
-          lead_text_html: |
-            <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding.</p>
-              <p>This is known as a consent order.</p>
-            </div>
+          lead_text: If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding. This is known as a consent order.
           info_notice: |
             This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.
       written_agreement_exit:
@@ -959,21 +956,16 @@ en:
           page_title: Contact by email
           heading: Are you willing to be contacted by email about your experience using this service?
           lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
-          consent_html: |
-            <details>
-              <summary>
-                <span class="summary" data-ga-category="explanations" data-ga-label="screener consent">What happens if you choose to be contacted</span>
-              </summary>
-              <div class="panel panel-border-narrow">
-                <p>By choosing to be contacted by the Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes.</p>
-                <h3 class="heading-small">The information we use</h3>
-                <p>MOJ can use any information you provide, including your name and contact information (such as your email address).</p>
-                <h3 class="heading-small">Why we use this information</h3>
-                <p>To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
-                <h3 class="heading-small">Data and your rights</h3>
-                <p>You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent">privacy policy</a>.</p>
-              </div>
-            </details>
+          details:
+            summary: What happens if you choose to be contacted
+            text_html: |
+              <p class="govuk-body">By choosing to be contacted by the Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes.</p>
+              <h3 class="govuk-heading-m">The information we use</h3>
+              <p class="govuk-body">MOJ can use any information you provide, including your name and contact information (such as your email address).</p>
+              <h3 class="govuk-heading-m">Why we use this information</h3>
+              <p class="govuk-body">To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
+              <h3 class="govuk-heading-m">Data and your rights</h3>
+              <p class="govuk-body">You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent" class: "govuk-link">privacy policy</a>.</p>
       warning:
         show:
           page_title: Application in progress
@@ -996,7 +988,7 @@ en:
       privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
-      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link">Report a problem</a> and help improve it for others.
+      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link govuk-link--no-visited-state">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password
@@ -1496,6 +1488,10 @@ en:
       steps_solicitor_contact_details_form:
         address: Enter the full address including postcode
         dx_number: This is a secure document exchange system used by the legal profession
+
+    legend:
+      steps_screener_parent_form:
+        parent: Are you a parent of the child or children?
 
     submit:
       continue: Continue

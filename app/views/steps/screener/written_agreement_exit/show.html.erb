@@ -1,12 +1,11 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
-
-    <p class="lede"><%=t '.lead_text' %></p>
+    <p class="govuk-body-l"><%=t '.lead_text' %></p>
 
     <%= render partial: '/steps/shared/screener_exit_actions', locals: { hide_cait_info: true } %>
   </div>
