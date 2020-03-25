@@ -77,6 +77,9 @@
       </div>
     <% end %>
 
+    <%# TODO: to be removed once all views are migrated %>
+    <%= yield(:old_error_summary) %>
+
     <%= yield(:content) %>
   </main>
 </div>

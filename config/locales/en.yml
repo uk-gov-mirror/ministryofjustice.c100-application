@@ -912,16 +912,11 @@ en:
           page_title: Where the children live
           heading: Where do the children live?
           lead_text: Please tell us the postcode of the children you’re making this application about.
-          unknown_postcode_html: |
-            <details>
-              <summary>
-                <span class="summary" data-ga-category="explanations" data-ga-label="screener postcode">If you do not know where the children live</span>
-              </summary>
-              <div class="panel panel-border-narrow">
-                <p>You can use <a href="https://www.gov.uk/government/publications/form-c4-application-for-an-order-for-disclosure-of-a-childs-whereabouts" rel="external" target="_blank">form C4</a>
-                to apply for an order for someone to give a court information about where a child is.</p>
-              </div>
-            </details>
+          details:
+            summary: If you do not know where the children live
+            text_html: |
+              You can use <a href="https://www.gov.uk/government/publications/form-c4-application-for-an-order-for-disclosure-of-a-childs-whereabouts"
+              class="govuk-link" rel="external" target="_blank">form C4</a> to apply for an order for someone to give a court information about where a child is.
       error_but_continue:
         show:
           page_title: Where the children live

@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 class TestHelper < ActionView::Base
+  #:nocov:
   def user_signed_in?
     false
   end
+  #:nocov:
 end
 
 # The module `CustomFormHelpers` gets mixed in and extends the helpers already
-# provided by `GovukElementsFormBuilder`. Refer to: `config/initializers/form_builder.rb`
+# provided by `GovukElementsFormBuilder::FormBuilder`. These are app-specific
+# form helpers so can be coupled to application business and logic.
+#
+# Refer to: `config/initializers/form_builder.rb`
 #
 RSpec.describe GovukElementsFormBuilder::FormBuilder do
   let(:helper) { TestHelper.new }
