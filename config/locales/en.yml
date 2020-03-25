@@ -943,11 +943,7 @@ en:
         edit:
           page_title: Consent order
           heading: Do you have a signed draft court order you want the court to consider making legally binding?
-          lead_text_html: |
-            <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding.</p>
-              <p>This is known as a consent order.</p>
-            </div>
+          lead_text: If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding. This is known as a consent order.
           info_notice: |
             This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.
       written_agreement_exit:
