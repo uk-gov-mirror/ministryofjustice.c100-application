@@ -934,7 +934,6 @@ en:
       parent:
         edit:
           page_title: Are you a parent of the child or children?
-          heading: Are you a parent of the child or children?
       parent_exit:
         show:
           page_title: Sorry, you’re not eligible to apply online
@@ -1498,6 +1497,10 @@ en:
       steps_solicitor_contact_details_form:
         address: Enter the full address including postcode
         dx_number: This is a secure document exchange system used by the legal profession
+
+    legend:
+      steps_screener_parent_form:
+        parent: Are you a parent of the child or children?
 
     submit:
       continue: Continue
