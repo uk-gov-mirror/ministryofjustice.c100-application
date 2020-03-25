@@ -1,12 +1,11 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
-
-    <p class="lede">
+    <p class="govuk-body-l">
       <%- if @courtfinder_ok %>
         <%= t '.lead_text.courtfinder_ok' %>
       <%- else %>
@@ -14,16 +13,11 @@
       <%- end %>
     </p>
 
-    <section id="what-to-do-now" class="moj-Section moj-Section--2" data-block-name="what-to-do-now">
-      <h2 class="gv-u-heading-xlarge"><%= t '.what_to_do_now.heading' %></h2>
-      <div class="Section__content govuk-govspeak gv-s-prose">
-        <p><%= t '.what_to_do_now.copy' %></p>
-      </div>
-    </section>
+    <h2 class="govuk-heading-l"><%= t '.what_to_do_now.heading' %></h2>
 
-    <div class="xform-group form-submit">
-      <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button ga-pageLink', role: 'button', data: {ga_category: 'postcode error', ga_label: 'paper form'} %>
-      <%= link_to t('.go_back'), '/steps/screener/postcode', class: 'button button-secondary', role: 'button' %>
-    </div>
+    <p class="govuk-body govuk-!-margin-bottom-6"><%= t '.what_to_do_now.copy' %></p>
+
+    <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'govuk-button govuk-!-margin-right-1 ga-pageLink', role: 'button', draggable: false, data: { module: 'govuk-button', ga_category: 'postcode error', ga_label: 'paper form' } %>
+    <%= link_to t('.go_back'), '/steps/screener/postcode', class: 'govuk-button govuk-button--secondary', role: 'button', draggable: false, data: { module: 'govuk-button' } %>
   </div>
 </div>

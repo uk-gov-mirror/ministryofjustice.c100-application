@@ -1,20 +1,20 @@
 <% title 'Not eligible' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Sorry, you cannot apply online</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      Sorry, you cannot apply online
-    </h1>
+    <p class="govuk-body-l">This service is only available in England and Wales.</p>
 
-    <p class="lede">This service is only available in England and Wales.</p>
+    <p class="govuk-body">
+      If your child or children live in Scotland or Northern Ireland, you will not be able to use this service to submit
+      your application.
+    </p>
 
-    <p>If your child or children live in Scotland or Northern Ireland, you will not be able to use this service to submit your application.</p>
-
-    <p>
+    <p class="govuk-body">
       If you think there’s been an error finding an appropriate court, you
-      can <%= link_to 'report the problem', about_contact_path, class: 'ga-pageLink', data: { ga_category: 'no court found', ga_label: 'contact' } %>.
+      can <%= link_to 'report the problem', about_contact_path, class: 'govuk-link ga-pageLink', data: { ga_category: 'no court found', ga_label: 'contact' } %>.
     </p>
 
     <%= render partial: '/steps/shared/screener_exit_actions' %>

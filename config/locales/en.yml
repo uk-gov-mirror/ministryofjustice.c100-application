@@ -131,7 +131,9 @@ en:
           heading: What to do now
           copy: To submit an application in England or Wales, you’ll need to complete the C100 paper form, print it and send it by post.
         download_c100_link: Download the form (PDF)
-        cait_info_html: Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" rel="external" target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
+        cait_info_html: |
+          Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" class="govuk-link" rel="external"
+          target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
       existing_names:
         remove_name: "Remove %{legend}"
     applicant:
@@ -996,7 +998,7 @@ en:
       privacy: Privacy
       terms_and_conditions: Terms and conditions
     phase_banner:
-      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link">Report a problem</a> and help improve it for others.
+      feedback_contact_html: This is a new service. <a href="/about/contact" class="govuk-link govuk-link--no-visited-state">Report a problem</a> and help improve it for others.
     current_user_menu:
       logout: Sign out
       change_password: Change password

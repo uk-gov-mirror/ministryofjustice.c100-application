@@ -2,10 +2,6 @@ strong {
   font-weight: bold;
 }
 
-form {
-  padding-bottom: $gutter;
-}
-
 .form-submit + details,
 details + form {
   margin-top: $gutter;
@@ -42,12 +38,6 @@ details + form {
 
 address {
   font-style: normal;
-}
-
-.ellipses {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .actions {
