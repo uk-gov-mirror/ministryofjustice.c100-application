@@ -7,18 +7,6 @@ details + form {
   margin-top: $gutter;
 }
 
-.step-info {
-  @include core-19;
-  color: $grey-1;
-
-  margin-top: 45px;
-  margin-bottom: 0;
-
-  & + .heading-large {
-    margin-top: 0;
-  }
-}
-
 .check-your-answers {
   td {
     @include core-19;
@@ -112,24 +100,6 @@ h2.gv-u-heading-large {
 
   @media (min-width: 641px) {
     font-size: 28px;
-  }
-}
-
-.start-page h2 {
-  margin-top: 1.25em;
-  margin-bottom: 0.55556em;
-
-  @media (min-width: 641px) {
-    font-size: 36px;
-    line-height: 1.11111;
-  }
-}
-
-h1.heading-start {
-  font-size: 32px;
-
-  @media (min-width: 641px) {
-    font-size: 48px;
   }
 }
 

@@ -4,35 +4,6 @@ ul.buttons {
   }
 }
 
-.task-list {
-  font-size: 24px;
-  border-top: 1px solid $grey-2;
-  list-style-position: inside;
-  padding-left: 0;
-  margin-top: 45px;
-  margin-bottom: 45px;
-
-  li {
-    padding: 15px 0;
-    border-bottom: 1px solid $grey-2;
-    margin: 0;
-    position: relative;
-    vertical-align: top;
-
-    @media (min-width: 641px) {
-      p {
-        width: 75%;
-      }
-    }
-  }
-
-  a.task-link {
-    font-weight: bold;
-    max-width: 70%;
-    display: inline-block;
-  }
-}
-
 // Second level lists get circles instead of bullets
 li li {
   list-style: circle;
@@ -40,11 +11,6 @@ li li {
 // Third level lists get squares instead of bullets
 li li li {
   list-style: square;
-}
-
-// Allow overriding the bullets style
-ul.force-disc-style li {
-  list-style-type: disc !important;
 }
 
 section.numbered-list h3 {

@@ -1,11 +1,3 @@
-textarea.form-control-large {
-  height: 20em;
-}
-
-.form-control-full-width {
-  width: $full-width;
-}
-
 .form-group input[type=text].form-control,
 .form-group textarea.form-control {
   width: $full-width;
@@ -25,11 +17,6 @@ textarea.form-control-large {
   input[type=text].form-control[name*=postcode] {
     width: 25%;
   }
-}
-
-.block-label:last-child,
-.block-label:last-of-type {
-  margin-bottom: 10px;
 }
 
 // Individual checkboxes
