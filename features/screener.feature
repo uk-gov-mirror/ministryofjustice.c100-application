@@ -12,10 +12,10 @@ Feature: Screener
     And I click the "Continue" button
 
     Then I should see "Are you a parent of the child or children?"
-    And I choose "yes"
+    And I choose "Yes"
 
     Then I should see "Do you have a signed draft court order you want the court to consider making legally binding?"
-    And I choose "no"
+    And I choose "No"
 
     Then I should see "Are you willing to be contacted by email about your experience using this service?"
     And I choose "Yes" and fill in "Email address" with "smoketest@example.com"
@@ -66,7 +66,7 @@ Feature: Screener
     And I click the "Continue" button
 
     Then I should see "Are you a parent of the child or children?"
-    And I choose "no"
+    And I choose "No"
 
     Then I should see "Sorry, you’re not eligible to apply online"
     And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"

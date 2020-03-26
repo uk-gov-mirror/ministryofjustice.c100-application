@@ -14,7 +14,7 @@
     </div>
 
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_collection_radio_buttons :written_agreement, GenericYesNo.values, :value, :to_s, inline: true %>
+      <%= f.govuk_collection_radio_buttons :written_agreement, GenericYesNo.values, :value, nil, inline: true %>
 
       <%= f.continue_button %>
     <% end %>
