@@ -1133,6 +1133,20 @@ en:
       # attending court redesign -- end
 
     label:
+      # begin screener
+      steps_screener_postcode_form:
+        children_postcodes: Postcode
+      steps_screener_parent_form:
+        parent:
+          <<: *YESNO
+      steps_screener_written_agreement_form:
+        written_agreement:
+          <<: *YESNO
+      steps_screener_email_consent_form:
+        email_address: Email address
+        email_consent:
+          <<: *YESNO
+      # end screener
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
       steps_shared_relationship_form:
@@ -1370,10 +1384,6 @@ en:
         phone_number: Phone number
         fax_number: Fax number
         email: Email address
-      steps_screener_postcode_form:
-        children_postcodes: Postcode
-      steps_screener_email_consent_form:
-        email_address: Email address
       user:
         email: Your email address
         password: Choose password
