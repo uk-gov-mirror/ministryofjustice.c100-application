@@ -2,11 +2,13 @@
 # on classes that match. Example: `rake mutant TaxTribs::ZendeskSender`
 #
 task :mutant => :environment do
-  # Do not run mutant on CI master branch.
+  current_ci_branch = ENV['CIRCLE_BRANCH']
+
+  # Do not run mutant on CI master or develop branches.
   # Mutant will only run on pull requests against modified files.
   #
-  if ENV['CIRCLE_BRANCH'] == 'master'
-    puts "> CI master branch -- mutant will not run"
+  if %w(master develop).include?(current_ci_branch)
+    puts "> CI #{current_ci_branch} branch -- mutant will not run"
     exit
   end
 
@@ -17,11 +19,11 @@ task :mutant => :environment do
 
   # When running on CI, a very high number of concurrent jobs seem to make some
   # mutations fail randomly. Reducing the number of jobs minimise this problem.
-  flags.push('--jobs 24') if ENV.key?('CIRCLE_BRANCH')
+  flags.push('--jobs 24') if current_ci_branch.present?
 
   # This is to avoid running the mutant with flag `--since master` when
   # we are already on master, as otherwise it will not work as expected.
-  current_branch = ENV['CIRCLE_BRANCH'] || `git rev-parse --abbrev-ref HEAD`
+  current_branch = current_ci_branch || `git rev-parse --abbrev-ref HEAD`
 
   if mutation_type == 'master'
     puts "> current branch: #{current_branch}"
