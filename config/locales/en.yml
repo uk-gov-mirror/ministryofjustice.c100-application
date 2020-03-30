@@ -578,8 +578,9 @@ en:
       child_protection_cases:
         edit:
           page_title: Child protection cases
-          heading: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
-          info_html: These will often involve a local authority.
+          details:
+            summary: Why we use the term ‘children’
+            text_html: We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.
     petition:
       orders:
         edit:
@@ -1137,16 +1138,19 @@ en:
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_parent_form:
-        parent:
+        parent_options:
           <<: *YESNO
       steps_screener_written_agreement_form:
-        written_agreement:
+        written_agreement_options:
           <<: *YESNO
       steps_screener_email_consent_form:
         email_address: Email address
-        email_consent:
+        email_consent_options:
           <<: *YESNO
       # end screener
+      steps_miam_child_protection_cases_form:
+        child_protection_cases_options:
+          <<: *YESNO
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
       steps_shared_relationship_form:
@@ -1231,7 +1235,8 @@ en:
       steps_alternatives_court_form:
         court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
-        miam_acknowledgement: I understand that I have to attend a MIAM or provide a valid reason for not attending.
+        miam_acknowledgement_options:
+          'true': I understand that I have to attend a MIAM or provide a valid reason for not attending.
       steps_miam_certification_details_form:
         miam_certification_number: Mediator registration number (URN)
         miam_certification_service_name: Family mediation service name
@@ -1397,6 +1402,8 @@ en:
       user:
         password: Must be at least 10 characters
         current_password: We need your current password to confirm your changes
+      steps_miam_child_protection_cases_form:
+        child_protection_cases: These will often involve a local authority
       steps_application_court_proceedings_form:
         proceedings_date: Add approximate date if unsure
         case_number: Leave blank if you don’t know
@@ -1502,6 +1509,8 @@ en:
     legend:
       steps_screener_parent_form:
         parent: Are you a parent of the child or children?
+      steps_miam_child_protection_cases_form:
+        child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
 
     submit:
       continue: Continue
@@ -1549,15 +1558,6 @@ en:
       order_issue: What date was it made?
       order_issue_hint: For example, 31 3 2015
       certification_date_hint: For example, 25 9 2018
-    why_we_use_children_html: |
-      <details style="margin-top: 0;">
-        <summary>
-          <span class="summary" data-ga-category="explanations" data-ga-label="children term">Why we use the term ‘children’</span>
-        </summary>
-        <div class="panel panel-border-narrow">
-          <p>We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.</p>
-        </div>
-      </details>
     cafcass:
       safety_title: Why do we need this information and what will we do with it?
       safety_content_html: |
