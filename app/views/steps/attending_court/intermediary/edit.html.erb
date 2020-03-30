@@ -1,26 +1,22 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <p class="app__section_heading"><%=t '.section' %></p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%= t '.lead_text' %></p>
-    </div>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_radio_buttons_fieldset(:intermediary_help, legend: { size: 'xl' }) do %>
+        <p class="govuk-body"><%= t('.lead_text') %></p>
 
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.radio_button_fieldset :intermediary_help, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES, panel_id: :intermediary_help_panel)
-          fieldset.radio_input(GenericYesNo::NO)
-          fieldset.revealing_panel(:intermediary_help_panel) do |panel|
-            panel.text_area :intermediary_help_details, size: '40x4', class: 'form-control-3-4'
-          end
-        end
-      %>
+        <%= f.govuk_radio_button :intermediary_help, GenericYesNo::YES, link_errors: true do
+          f.govuk_text_area :intermediary_help_details
+        end %>
+
+        <%= f.govuk_radio_button :intermediary_help, GenericYesNo::NO %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>

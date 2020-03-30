@@ -813,12 +813,10 @@ en:
         edit:
           page_title: Language help
           section: *attending_court
-          heading: Does anyone in this application have special language requirements?
       intermediary:
         edit:
           page_title: Intermediary help
           section: *attending_court
-          heading: Does anyone in this application need an intermediary to help them in court?
           lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       special_arrangements:
         edit:
@@ -831,7 +829,6 @@ en:
         edit:
           page_title: Special assistance
           section: *attending_court
-          heading: Does anyone in this application need assistance or special facilities when attending court?
     # attending court redesign -- end
     international:
       resident:
@@ -1124,14 +1121,6 @@ en:
         dob_unknown_html: ""
       steps_application_declaration_form:
         declaration_signee_capacity_html: ""
-      # attending court redesign -- begin
-      steps_attending_court_language_form:
-        help_with_language: *one_of_the_people_needs
-      steps_attending_court_special_arrangements_form:
-        special_arrangements: *one_of_the_people_needs
-      steps_attending_court_special_assistance_form:
-        special_assistance: *one_of_the_people_needs
-      # attending court redesign -- end
 
     label:
       # begin screener
@@ -1190,29 +1179,32 @@ en:
         intermediary_help:
           <<: *YESNO
       # attending court redesign -- begin
+      steps_attending_court_intermediary_form:
+        intermediary_help_details: *provide_details
+        intermediary_help_options:
+          <<: *YESNO
       steps_attending_court_language_form:
-        language_interpreter: An interpreter
-        sign_language_interpreter: A sign language interpreter
-        welsh_language: To speak Welsh at a court hearing, or read court documents in Welsh
+        language_options_options:
+          language_interpreter: An interpreter
+          sign_language_interpreter: A sign language interpreter
+          welsh_language: To speak Welsh at a court hearing, or read court documents in Welsh
         language_interpreter_details: Give details of who needs an interpreter and the language they require (including dialect, if applicable)
         sign_language_interpreter_details: Give details of who needs a British Sign Language interpreter
         welsh_language_details: Give details of who needs to speak or read in Welsh
-      steps_attending_court_intermediary_form:
-        intermediary_help_details: *provide_details
-        intermediary_help:
-          <<: *YESNO
       steps_attending_court_special_arrangements_form:
-        separate_waiting_rooms: Separate waiting rooms
-        separate_entrance_exit: Separate exits and entrances
-        protective_screens: Protective screens - this needs to be approved by a judge
-        video_link: Video links - this needs to be approved by a judge
         special_arrangements_details: You can add more detail if neccessary
+        special_arrangements_options:
+          separate_waiting_rooms: Separate waiting rooms
+          separate_entrance_exit: Separate exits and entrances
+          protective_screens: Protective screens - this needs to be approved by a judge
+          video_link: Video links - this needs to be approved by a judge
       steps_attending_court_special_assistance_form:
-        hearing_loop: A hearing loop
-        braille_documents: Documents in Braille
-        advance_court_viewing: Advance viewing of the court
-        other_assistance: Other assistance or facilities
         special_assistance_details: You can add more detail if neccessary
+        special_assistance_options:
+          hearing_loop: A hearing loop
+          braille_documents: Documents in Braille
+          advance_court_viewing: Advance viewing of the court
+          other_assistance: Other assistance or facilities
       # attending court redesign -- end
       steps_application_payment_form:
         payment_type:
@@ -1505,12 +1497,24 @@ en:
       steps_solicitor_contact_details_form:
         address: Enter the full address including postcode
         dx_number: This is a secure document exchange system used by the legal profession
+      steps_attending_court_language_form:
+        language_options: *one_of_the_people_needs
+      steps_attending_court_special_arrangements_form:
+        special_arrangements: *one_of_the_people_needs
+      steps_attending_court_special_assistance_form:
+        special_assistance: *one_of_the_people_needs
 
     legend:
       steps_screener_parent_form:
         parent: Are you a parent of the child or children?
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
+      steps_attending_court_intermediary_form:
+        intermediary_help: Does anyone in this application need an intermediary to help them in court?
+      steps_attending_court_language_form:
+        language_options: Does anyone in this application have special language requirements?
+      steps_attending_court_special_assistance_form:
+        special_assistance: Does anyone in this application need assistance or special facilities when attending court?
 
     submit:
       continue: Continue

@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/zheileman/govuk_design_system_formbuilder.git
-  revision: c07008e25f4d21d90c73d759e426d5c973a54f1a
+  revision: ee9ccfd413026095d9b96c981d3bf71d581de7c3
   specs:
-    govuk_design_system_formbuilder (1.1.6)
+    govuk_design_system_formbuilder (1.1.7)
       actionview (>= 5.2)
       activemodel (>= 5.2)
       activesupport (>= 5.2)
@@ -234,7 +234,7 @@ GEM
       mutant (~> 0.8.24)
       rspec-core (>= 3.4.0, < 4.0.0)
     nio4r (2.5.2)
-    nokogiri (1.10.8)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     notifications-ruby-client (5.1.2)
       jwt (>= 1.5, < 3)
