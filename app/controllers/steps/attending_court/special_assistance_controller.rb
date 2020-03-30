@@ -10,6 +10,12 @@ module Steps
       def update
         update_and_advance(SpecialAssistanceForm, as: :special_assistance)
       end
+
+      private
+
+      def additional_permitted_params
+        [special_assistance: []]
+      end
     end
   end
 end

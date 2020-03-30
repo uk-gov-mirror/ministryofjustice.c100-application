@@ -3,23 +3,22 @@ require 'spec_helper'
 RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    video_link: '1',
-    separate_entrance_exit: '0',
+    special_arrangements: ['video_link'],
     special_arrangements_details: 'details',
   } }
 
   let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
-  let(:court_arrangement) { CourtArrangement.new(special_arrangements: ['video_link'], special_arrangements_details: 'details') }
+  let(:court_arrangement) { CourtArrangement.new }
 
   subject { described_class.new(arguments) }
 
-  describe 'custom getters override' do
+  describe 'custom query getter override' do
     it 'returns true if the attribute is in the list' do
-      expect(subject.video_link).to eq(true)
+      expect(subject.video_link?).to eq(true)
     end
 
     it 'returns false if the attribute is not in the list' do
-      expect(subject.separate_entrance_exit).to eq(false)
+      expect(subject.separate_entrance_exit?).to eq(false)
     end
   end
 
@@ -35,7 +34,7 @@ RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
     context 'when form is valid' do
       it 'saves the record' do
         expect(court_arrangement).to receive(:update).with(
-          special_arrangements: [:video_link],
+          special_arrangements: ['video_link'],
           special_arrangements_details: 'details'
         ).and_return(true)
 
