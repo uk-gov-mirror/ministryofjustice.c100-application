@@ -540,18 +540,10 @@ en:
           attributes:
             application_details:
               blank: *blank_details_error
-        steps/application/language_form:
-          attributes:
-            language_help:
-              inclusion: Select yes if anyone needs help
-            language_help_details:
-              blank: *blank_details_error
         steps/application/litigation_capacity_form:
           attributes:
             reduced_litigation_capacity:
               inclusion: *yes_no_error
-            language_help_details:
-              blank: *blank_details_error
         steps/application/intermediary_form:
           attributes:
             intermediary_help:

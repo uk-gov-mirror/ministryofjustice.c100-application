@@ -723,12 +723,6 @@ en:
               <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
-      language:
-        edit:
-          page_title: Language help
-          section: *attending_court
-          heading: Does anyone in this application need help with language?
-          info_html: You can ask for an interpreter. In Wales you have the right to speak Welsh at any court hearing
       intermediary:
         edit:
           page_title: Intermediary help
@@ -1177,8 +1171,6 @@ en:
         special_arrangements_details: *provide_details
       steps_application_details_form:
         application_details: *provide_details
-      steps_application_language_form:
-        language_help_details: *provide_details
       steps_application_intermediary_form:
         intermediary_help_details: *provide_details
         intermediary_help:
@@ -1414,8 +1406,6 @@ en:
       steps_application_without_notice_details_form:
         without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
         without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.
-      steps_application_language_form:
-        language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain (within the meaning of the Mental Capacity Act 2005)
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem

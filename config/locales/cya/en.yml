@@ -551,12 +551,6 @@ en:
       question: ''
     application_details:
       question: 'Why are you making this application?'
-    language_help:
-      question: ''
-      answers:
-        <<: *YESNO
-    language_help_details:
-      question: ''
     reduced_litigation_capacity:
       question: Are there any factors that may affect any adult in this application taking part in the court proceedings?
       answers:
