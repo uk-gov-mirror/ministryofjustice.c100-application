@@ -99,13 +99,10 @@ module Summary
     describe '`language_assistance` answer values' do
       before do
         allow(c100_application).to receive(:court_arrangement).and_return(court_arrangement)
-        allow(c100_application).to receive(:language_help).and_return(language_help)
       end
 
-      let(:language_help) { nil }
       let(:court_arrangement) { nil }
 
-      # new version
       context 'when we have a `court_arrangement` record' do
         let(:court_arrangement) { instance_double(CourtArrangement, language_options: language_options) }
 
@@ -126,12 +123,9 @@ module Summary
         end
       end
 
-      # old version
       context 'when we do not have a `court_arrangement` record' do
-        let(:language_help) { 'yes' }
-
-        it 'returns the question value' do
-          expect(answers[5].value).to eq('yes')
+        it 'returns the default value' do
+          expect(answers[5].value).to eq(GenericYesNo::NO)
         end
       end
     end

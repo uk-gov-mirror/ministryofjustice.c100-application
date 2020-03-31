@@ -1,6 +1,6 @@
 module C100App
   class ApplicationDecisionTree < BaseDecisionTree
-    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/MethodLength
     def destination
       return next_step if next_step
 
@@ -22,15 +22,7 @@ module C100App
       when :litigation_capacity
         after_litigation_capacity
       when :litigation_capacity_details
-        intermediary_step_for_version
-      when :intermediary
-        edit(:language)
-      when :language
-        edit(:special_arrangements)
-      when :special_arrangements
-        edit(:special_assistance)
-      when :special_assistance
-        edit(:payment)
+        start_attending_court_journey
       when :payment
         edit(:submission)
       when :submission
@@ -41,7 +33,7 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
+    # rubocop:enable Metrics/MethodLength
 
     private
 
@@ -73,7 +65,7 @@ module C100App
       if question(:reduced_litigation_capacity).yes?
         edit(:litigation_capacity_details)
       else
-        intermediary_step_for_version
+        start_attending_court_journey
       end
     end
 
@@ -98,13 +90,8 @@ module C100App
       edit('/steps/international/resident')
     end
 
-    # TODO: leave this until all applications are migrated to version >= 5
-    def intermediary_step_for_version
-      if c100_application.version >= 5
-        edit('/steps/attending_court/intermediary')
-      else
-        edit(:intermediary)
-      end
+    def start_attending_court_journey
+      edit('/steps/attending_court/intermediary')
     end
   end
 end
