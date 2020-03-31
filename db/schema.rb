@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_155024) do
+ActiveRecord::Schema.define(version: 2020_03_31_112122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -119,17 +119,9 @@ ActiveRecord::Schema.define(version: 2020_03_17_155024) do
     t.text "participation_capacity_details"
     t.text "participation_referral_or_assessment_details"
     t.text "participation_other_factors_details"
-    t.string "special_assistance"
-    t.text "special_assistance_details"
-    t.string "special_arrangements"
-    t.text "special_arrangements_details"
     t.string "consent_order"
     t.string "child_protection_cases"
     t.text "application_details"
-    t.string "language_help"
-    t.text "language_help_details"
-    t.string "intermediary_help"
-    t.text "intermediary_help_details"
     t.string "miam_certification_service_name"
     t.string "miam_certification_sole_trader_name"
     t.string "miam_exemption_claim"

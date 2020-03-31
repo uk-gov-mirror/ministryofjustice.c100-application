@@ -700,19 +700,6 @@ en:
         edit:
           page_title: Factors affecting ability to participate
           heading: Factors affecting ability to participate
-      special_assistance:
-        edit:
-          page_title: Special Assistance
-          section: *attending_court
-          heading: Does anyone in this application need assistance or special facilities when attending court?
-          lead_text: For example they need a hearing loop or documents in braille.
-      special_arrangements:
-        edit:
-          page_title: Special Arrangements
-          section: *attending_court
-          heading: Do you or the children need specific safety arrangements at court?
-          lead_text: For example you need a separate waiting room to the other person, video link or protective screen due to safety concerns.
-          court_contact: The court will contact you to discuss safety arrangements before your hearing.
       details:
         edit:
           page_title: Application details
@@ -726,18 +713,6 @@ en:
               <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
-      language:
-        edit:
-          page_title: Language help
-          section: *attending_court
-          heading: Does anyone in this application need help with language?
-          info_html: You can ask for an interpreter. In Wales you have the right to speak Welsh at any court hearing
-      intermediary:
-        edit:
-          page_title: Intermediary help
-          section: *attending_court
-          heading: Does anyone in this application need an intermediary to help them in court?
-          lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       payment:
         edit:
           page_title: Payment type
@@ -1166,19 +1141,8 @@ en:
         participation_capacity_details: Details of any adult in this application who lacks the mental capacity to conduct these court proceedings (if applicable)
         participation_other_factors_details: Details of anything else that could affect any adult in this application taking part in these court proceedings (if applicable)
         participation_referral_or_assessment_details: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was (if you know)
-      steps_application_special_assistance_form:
-        special_assistance_details: *provide_details
-      steps_application_special_arrangements_form:
-        special_arrangements_details: *provide_details
       steps_application_details_form:
         application_details: *provide_details
-      steps_application_language_form:
-        language_help_details: *provide_details
-      steps_application_intermediary_form:
-        intermediary_help_details: *provide_details
-        intermediary_help:
-          <<: *YESNO
-      # attending court redesign -- begin
       steps_attending_court_intermediary_form:
         intermediary_help_details: *provide_details
         intermediary_help_options:
@@ -1205,7 +1169,6 @@ en:
           braille_documents: Documents in Braille
           advance_court_viewing: Advance viewing of the court
           other_assistance: Other assistance or facilities
-      # attending court redesign -- end
       steps_application_payment_form:
         payment_type:
           help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
@@ -1408,8 +1371,6 @@ en:
       steps_application_without_notice_details_form:
         without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
         without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.
-      steps_application_language_form:
-        language_help_details: Give the names of everyone who needs help and the language they require (including dialect, if applicable)
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain (within the meaning of the Mental Capacity Act 2005)
         participation_other_factors_details: For example, a learning disability or other mental or physical health problem

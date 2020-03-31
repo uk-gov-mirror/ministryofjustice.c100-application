@@ -38,12 +38,10 @@ module Summary
         ].detect { |answer| answer.eql?(GenericYesNo::YES.to_s) }
       end
 
-      # TODO: maintain for a while until all applications are using the new table
       def language_assistance_value
-        return c100.language_help if arrangement.nil?
-        return GenericYesNo::YES  if (LanguageHelp.string_values & arrangement.language_options).any?
+        return if arrangement.nil?
 
-        default_value
+        GenericYesNo::YES if (LanguageHelp.string_values & arrangement.language_options).any?
       end
 
       def default_value

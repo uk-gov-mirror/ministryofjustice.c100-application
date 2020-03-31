@@ -76,9 +76,8 @@ RSpec.describe C100App::ApplicationDecisionTree do
   end
 
   context 'when the step is `litigation_capacity`' do
-    let(:c100_application) { instance_double(C100Application, version: version, reduced_litigation_capacity: answer) }
+    let(:c100_application) { instance_double(C100Application, reduced_litigation_capacity: answer) }
     let(:step_params) { { litigation_capacity: 'whatever' } }
-    let(:version) { 5 }
 
     context 'and the answer is `yes`' do
       let(:answer) { 'yes' }
@@ -87,63 +86,13 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and the answer is `no`' do
       let(:answer) { 'no' }
-
-      context 'when C100 application version is < 5' do
-        let(:version) { 4 }
-        it { is_expected.to have_destination(:intermediary, :edit) }
-      end
-
-      context 'when C100 application version is = 5' do
-        let(:version) { 5 }
-        it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
-      end
-
-      context 'when C100 application version is > 5' do
-        let(:version) { 6 }
-        it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
-      end
+      it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
     end
   end
 
   context 'when the step is `litigation_capacity_details`' do
-    let(:c100_application) { instance_double(C100Application, version: version) }
     let(:step_params) { { litigation_capacity_details: 'anything' } }
-    let(:version) { 5 }
-
-    context 'when C100 application version is < 5' do
-      let(:version) { 4 }
-      it { is_expected.to have_destination(:intermediary, :edit) }
-    end
-
-    context 'when C100 application version is = 5' do
-      let(:version) { 5 }
-      it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
-    end
-
-    context 'when C100 application version is > 5' do
-      let(:version) { 6 }
-      it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
-    end
-  end
-
-  context 'when the step is `intermediary`' do
-    let(:step_params) { { intermediary: 'anything' } }
-    it { is_expected.to have_destination(:language, :edit) }
-  end
-
-  context 'when the step is `language`' do
-    let(:step_params) { { language: 'anything' } }
-    it { is_expected.to have_destination(:special_arrangements, :edit) }
-  end
-
-  context 'when the step is `special_arrangements`' do
-    let(:step_params) { { special_arrangements: 'anything' } }
-    it { is_expected.to have_destination(:special_assistance, :edit) }
-  end
-
-  context 'when the step is `special_assistance`' do
-    let(:step_params) { { special_assistance: 'anything' } }
-    it { is_expected.to have_destination(:payment, :edit) }
+    it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
   end
 
   context 'when the step is `payment`' do
