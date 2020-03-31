@@ -558,7 +558,7 @@ en:
       question: Details of anything else that could affect any adult in this application taking part in these court proceedings
     participation_referral_or_assessment_details:
       question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was
-    # attending court redesign -- begin
+
     intermediary_help:
       question: ''
       answers:
@@ -592,9 +592,6 @@ en:
       question: ''
       absence_answer: None selected
       answers:
-        # old version
-        <<: *YESNO
-        # new version
         separate_waiting_rooms: Separate waiting rooms
         separate_entrance_exit: Separate exits and entrances
         protective_screens: Protective screens
@@ -606,16 +603,13 @@ en:
       question: ''
       absence_answer: None selected
       answers:
-        # old version
-        <<: *YESNO
-        # new version
         hearing_loop: A hearing loop
         braille_documents: Documents in Braille
         advance_court_viewing: Advance viewing of the court
         other_assistance: Other assistance or facilities
     special_assistance_details:
       question: Additional details
-    # attending court redesign -- end
+
     hwf_reference_number:
       question: Reference number
     solicitor_account_number:

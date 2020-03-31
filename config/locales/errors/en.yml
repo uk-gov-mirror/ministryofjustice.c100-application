@@ -544,19 +544,6 @@ en:
           attributes:
             reduced_litigation_capacity:
               inclusion: *yes_no_error
-        steps/application/special_assistance_form:
-          attributes:
-            special_assistance:
-              inclusion: *yes_no_error
-            special_assistance_details:
-              blank: *blank_details_error
-        steps/application/special_arrangements_form:
-          attributes:
-            special_arrangements:
-              inclusion: Select yes if you need specific safety arrangements
-            special_arrangements_details:
-              blank: *blank_details_error
-        # attending court redesign -- begin
         steps/attending_court/language_form:
           attributes:
             language_interpreter_details:
@@ -571,7 +558,6 @@ en:
               inclusion: Select yes if an intermediary is needed in court
             intermediary_help_details:
               blank: You must give details of who needs help in court
-        # attending court redesign -- end
         steps/application/payment_form:
           attributes:
             payment_type:

@@ -130,8 +130,6 @@ Rails.application.routes.draw do
       edit_step :details
       edit_step :litigation_capacity
       edit_step :litigation_capacity_details
-      edit_step :special_arrangements
-      edit_step :special_assistance
       edit_step :payment
       edit_step :submission
       show_step :receipt_email_check
