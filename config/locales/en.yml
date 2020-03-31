@@ -723,12 +723,6 @@ en:
               <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
-      intermediary:
-        edit:
-          page_title: Intermediary help
-          section: *attending_court
-          heading: Does anyone in this application need an intermediary to help them in court?
-          lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       payment:
         edit:
           page_title: Payment type
@@ -1171,10 +1165,6 @@ en:
         special_arrangements_details: *provide_details
       steps_application_details_form:
         application_details: *provide_details
-      steps_application_intermediary_form:
-        intermediary_help_details: *provide_details
-        intermediary_help:
-          <<: *YESNO
       # attending court redesign -- begin
       steps_attending_court_language_form:
         language_interpreter: An interpreter

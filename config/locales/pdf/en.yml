@@ -371,12 +371,6 @@ en:
       question: Details of anything else that could affect any adult in this application taking part in these court proceedings
     participation_referral_or_assessment_details:
       question: Details of anyone in this application who has been referred to or assessed by an Adult Learning Disability team or any adult health service and what the outcome was
-    language_help:
-      question: Does anyone in this application require any language help?
-      answers:
-        <<: *YESNO
-    language_help_details:
-      question: *details
     # attending court redesign -- begin
     intermediary_help:
       question: Are you aware of whether an intermediary will be required?

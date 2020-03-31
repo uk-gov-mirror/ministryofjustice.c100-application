@@ -544,12 +544,6 @@ en:
           attributes:
             reduced_litigation_capacity:
               inclusion: *yes_no_error
-        steps/application/intermediary_form:
-          attributes:
-            intermediary_help:
-              inclusion: Select yes if an intermediary is needed in court
-            intermediary_help_details:
-              blank: You must give details of who needs help in court
         steps/application/special_assistance_form:
           attributes:
             special_assistance:

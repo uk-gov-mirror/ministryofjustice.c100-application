@@ -107,14 +107,11 @@ en:
       without_notice_hearing_details: Without notice hearing details
       international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
       international_request: Has a request for information or other assistance involving the children been made to or by another country?
-      language_help: Does anyone in this application need help with language?
       litigation_capacity: Factors affecting ability to participate
       intermediary: Does anyone in this application need an intermediary to help them in court?
+      language_interpreter: Does anyone in this application have special language requirements?
       special_assistance: Does anyone in this application need assistance or special facilities when attending court?
       special_arrangements: Do you or the children need specific safety arrangements at court?
-      # attending court redesign -- begin
-      language_interpreter: Does anyone in this application have special language requirements?
-      # attending court redesign -- end
       help_with_fees: Do you have a ‘Help with fees’ reference number?
       payment_type: Payment type
       submission_type: Submission type
