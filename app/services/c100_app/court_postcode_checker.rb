@@ -3,7 +3,7 @@ require 'c100_app/courtfinder_api'
 module C100App
   class CourtPostcodeChecker
     AREA_OF_LAW = "Children".freeze
-    COURT_SLUGS_USING_THIS_APP = YAML.load_file(
+    COURT_SLUGS = YAML.load_file(
       File.join(Rails.root, 'config', 'court_slugs.yml')
     ).freeze
 
@@ -23,6 +23,10 @@ module C100App
       choose_from(possible_courts)
     end
 
+    def court_slugs_blacklist
+      COURT_SLUGS.fetch('blacklist')
+    end
+
     private
 
     def choose_from(possible_courts)
@@ -30,7 +34,7 @@ module C100App
       first_with_slug = possible_courts.find do |court|
         slug = court[:slug] || court['slug']
       end
-      first_with_slug if COURT_SLUGS_USING_THIS_APP.include?(slug)
+      first_with_slug unless court_slugs_blacklist.include?(slug)
     end
   end
 end

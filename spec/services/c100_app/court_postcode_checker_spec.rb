@@ -1,9 +1,13 @@
 require 'rails_helper'
 
 describe C100App::CourtPostcodeChecker do
-  describe 'COURT_SLUGS_USING_THIS_APP' do
-    it 'returns the expected number' do
-      expect(described_class::COURT_SLUGS_USING_THIS_APP.size).to eq(105)
+  describe '#court_slugs_blacklist' do
+    it 'returns the blacklisted slugs' do
+      expect(
+        subject.court_slugs_blacklist
+      ).to match_array(%w(
+        blacklisted-slug-example
+      ))
     end
   end
 
@@ -104,30 +108,29 @@ describe C100App::CourtPostcodeChecker do
 
   describe '#choose_from' do
     let(:result){ subject.send(:choose_from,arg) }
-    let(:valid_slug){ C100App::CourtPostcodeChecker::COURT_SLUGS_USING_THIS_APP.first }
 
     context 'given an array of hashes' do
       context 'with at least one hash that has a :slug key' do
-        context 'when the first slug is in the COURT_SLUGS_USING_THIS_APP' do
+        context 'when the first slug is not blacklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {slug: valid_slug},
-              {slug: 'slug-1'},
+              {slug: 'a-valid-slug'},
+              {slug: 'another-slug'},
             ]
           }
 
           it 'returns the hash' do
-            expect(result).to eq({slug: valid_slug})
+            expect(result).to eq({slug: 'a-valid-slug'})
           end
         end
 
-        context 'when the first slug is not in the COURT_SLUGS_USING_THIS_APP' do
+        context 'when the first slug is blacklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {slug: 'slug-1'},
-              {slug: valid_slug},
+              {slug: 'blacklisted-slug-example'},
+              {slug: 'another-slug'},
             ]
           }
           it 'returns nil' do
@@ -135,59 +138,33 @@ describe C100App::CourtPostcodeChecker do
           end
         end
       end
-
 
       context 'with no hash that has a :slug key, but at least one that has a "slug" key' do
-        context 'when the first slug is in the COURT_SLUGS_USING_THIS_APP' do
+        context 'when the first slug is not blacklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {'slug' => valid_slug},
-              {'slug' => 'slug-1'},
+              {'slug' => 'a-valid-slug'},
+              {'slug' => 'another-slug'},
             ]
           }
 
           it 'returns the hash' do
-            expect(result).to eq({'slug' => valid_slug})
+            expect(result).to eq({'slug' => 'a-valid-slug'})
           end
         end
 
-        context 'when the first slug is not in the COURT_SLUGS_USING_THIS_APP' do
+        context 'when the first slug is blacklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {'slug' => 'slug-1'},
-              {'slug' => valid_slug},
+              {'slug' => 'blacklisted-slug-example'},
+              {'slug' => 'another-slug'},
             ]
           }
 
           it 'returns nil' do
             expect(result).to eq(nil)
-          end
-        end
-      end
-
-      context 'with a hash that has a :slug key, and one that has a "slug" key' do
-        context 'when the string key is first' do
-          let(:arg){
-            [
-              {'slug' => valid_slug},
-              {slug: 'slug-1'},
-            ]
-          }
-          it 'only considers the first value' do
-            expect(result).to eq({'slug' => valid_slug})
-          end
-        end
-        context 'when the string key is first' do
-          let(:arg){
-            [
-              {slug: valid_slug},
-              {'slug' => 'slug-1'},
-            ]
-          }
-          it 'only considers the first value' do
-            expect(result).to eq({slug: valid_slug})
           end
         end
       end
