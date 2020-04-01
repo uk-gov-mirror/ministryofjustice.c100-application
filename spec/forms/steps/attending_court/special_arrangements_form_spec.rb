@@ -3,9 +3,11 @@ require 'spec_helper'
 RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    special_arrangements: ['video_link'],
+    special_arrangements: special_arrangements,
     special_arrangements_details: 'details',
   } }
+
+  let(:special_arrangements) { ['video_link'] }
 
   let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
   let(:court_arrangement) { CourtArrangement.new }
@@ -19,6 +21,13 @@ RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
 
     it 'returns false if the attribute is not in the list' do
       expect(subject.separate_entrance_exit?).to eq(false)
+    end
+  end
+
+  context 'validations' do
+    context 'invalid option is selected (tampering)' do
+      let(:special_arrangements) { %w(video_link foobar) }
+      it { expect(subject).to_not be_valid }
     end
   end
 

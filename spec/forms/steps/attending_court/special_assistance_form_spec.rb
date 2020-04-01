@@ -3,9 +3,11 @@ require 'spec_helper'
 RSpec.describe Steps::AttendingCourt::SpecialAssistanceForm do
   let(:arguments) { {
     c100_application: c100_application,
-    special_assistance: ['hearing_loop'],
+    special_assistance: special_assistance,
     special_assistance_details: 'details',
   } }
+
+  let(:special_assistance) { ['hearing_loop'] }
 
   let(:c100_application) { instance_double(C100Application, court_arrangement: court_arrangement) }
   let(:court_arrangement) { CourtArrangement.new }
@@ -19,6 +21,13 @@ RSpec.describe Steps::AttendingCourt::SpecialAssistanceForm do
 
     it 'returns false if the attribute is not in the list' do
       expect(subject.braille_documents?).to eq(false)
+    end
+  end
+
+  context 'validations' do
+    context 'invalid option is selected (tampering)' do
+      let(:special_assistance) { %w(hearing_loop foobar) }
+      it { expect(subject).to_not be_valid }
     end
   end
 

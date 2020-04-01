@@ -43,6 +43,11 @@ RSpec.describe Steps::AttendingCourt::LanguageForm do
     end
 
     context 'validations' do
+      context 'invalid option is selected (tampering)' do
+        let(:language_options) { %w(language_interpreter foobar) }
+        it { expect(subject).to_not be_valid }
+      end
+
       context 'when `language_interpreter` is checked' do
         let(:language_options) { ['language_interpreter'] }
         it { should validate_presence_of(:language_interpreter_details) }

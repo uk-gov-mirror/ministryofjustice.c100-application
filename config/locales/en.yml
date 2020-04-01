@@ -797,7 +797,6 @@ en:
         edit:
           page_title: Special arrangements
           section: *attending_court
-          heading: Do you or the children need specific safety arrangements at court?
           lead_text: Not every court has the facilities listed here, and some need to be agreed by a judge, for example the use of protective screens.
           court_contact: The court will contact you to discuss safety arrangements before your hearing.
       special_assistance:
@@ -1478,6 +1477,8 @@ en:
         intermediary_help: Does anyone in this application need an intermediary to help them in court?
       steps_attending_court_language_form:
         language_options: Does anyone in this application have special language requirements?
+      steps_attending_court_special_arrangements_form:
+        special_arrangements: Do you or the children need specific safety arrangements at court?
       steps_attending_court_special_assistance_form:
         special_assistance: Does anyone in this application need assistance or special facilities when attending court?
 
