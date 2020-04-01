@@ -915,7 +915,6 @@ en:
       written_agreement:
         edit:
           page_title: Consent order
-          heading: Do you have a signed draft court order you want the court to consider making legally binding?
           lead_text: If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding. This is known as a consent order.
           info_notice: |
             This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.
@@ -927,7 +926,6 @@ en:
       email_consent:
         edit:
           page_title: Contact by email
-          heading: Are you willing to be contacted by email about your experience using this service?
           lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
           details:
             summary: What happens if you choose to be contacted
@@ -1468,8 +1466,14 @@ en:
     legend:
       steps_screener_parent_form:
         parent: Are you a parent of the child or children?
+      steps_screener_written_agreement_form:
+        written_agreement: Do you have a signed draft court order you want the court to consider making legally binding?
+      steps_screener_email_consent_form:
+        email_consent: Are you willing to be contacted by email about your experience using this service?
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
+      steps_miam_acknowledgement_form:
+        miam_acknowledgement: Attending a MIAM
       steps_attending_court_intermediary_form:
         intermediary_help: Does anyone in this application need an intermediary to help them in court?
       steps_attending_court_language_form:
