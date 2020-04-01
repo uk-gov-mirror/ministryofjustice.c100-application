@@ -201,15 +201,15 @@ workflows:
           requires:
             - tag_production
 
-  smoke-tests:
-    jobs:
-      - test:
-          name: smoke-tests
-          test_command: bundle exec cucumber -p smoke
-    triggers:
-      - schedule:
-          cron: "0 6 * * *"
-          filters:
-            branches:
-              only:
-                - master
+#  smoke-tests:
+#    jobs:
+#      - test:
+#          name: smoke-tests
+#          test_command: bundle exec cucumber -p smoke
+#    triggers:
+#      - schedule:
+#          cron: "0 6 * * *"
+#          filters:
+#            branches:
+#              only:
+#                - master
