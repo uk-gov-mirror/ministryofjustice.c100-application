@@ -2,7 +2,7 @@
 
 <p class="govuk-body"><%= t '.what_to_do_now.copy' %></p>
 
-<%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'govuk-button ga-pageLink', role: 'button', draggable: false, data: { module: 'govuk-button', ga_category: 'screener kickout', ga_label: 'paper form' } %>
+<%= link_button t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'ga-pageLink', data: { module: 'govuk-button', ga_category: 'screener kickout', ga_label: 'paper form' } %>
 
 <% unless local_assigns.fetch(:hide_cait_info, false) %>
   <p class="govuk-body"><%=t '.cait_info_html' %></p>
