@@ -17,7 +17,7 @@
 
     <p class="govuk-body govuk-!-margin-bottom-6"><%= t '.what_to_do_now.copy' %></p>
 
-    <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'govuk-button govuk-!-margin-right-1 ga-pageLink', role: 'button', draggable: false, data: { module: 'govuk-button', ga_category: 'postcode error', ga_label: 'paper form' } %>
-    <%= link_to t('.go_back'), '/steps/screener/postcode', class: 'govuk-button govuk-button--secondary', role: 'button', draggable: false, data: { module: 'govuk-button' } %>
+    <%= link_button t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'govuk-!-margin-right-1 ga-pageLink', data: { module: 'govuk-button', ga_category: 'postcode error', ga_label: 'paper form' } %>
+    <%= link_button t('.go_back'), '/steps/screener/postcode', class: 'govuk-button--secondary' %>
   </div>
 </div>
