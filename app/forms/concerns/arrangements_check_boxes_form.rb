@@ -10,6 +10,9 @@ module ArrangementsCheckBoxesForm
     def setup_attributes_for(value_object, attribute_name:)
       attribute attribute_name, Array[String]
 
+      # Ensure no tampering with the option values
+      validates attribute_name, checkbox_options: { valid_values: value_object.string_values }
+
       # Define the query method for each of the attributes
       # rubocop:disable Performance/HashEachMethods
       value_object.values.each do |name|
