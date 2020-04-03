@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/zheileman/govuk_design_system_formbuilder.git
-  revision: ee9ccfd413026095d9b96c981d3bf71d581de7c3
+  revision: f4bc4d3ad4ba1a2babe5f18483ac85e44cc93170
   specs:
     govuk_design_system_formbuilder (1.1.7)
       actionview (>= 5.2)
@@ -387,7 +387,7 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)

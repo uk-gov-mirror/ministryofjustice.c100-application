@@ -8,6 +8,11 @@
 # Old design system (`govuk_elements_form_builder`)
 ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
 
+GOVUKDesignSystemFormBuilder.configure do |config|
+  config.default_legend_tag  = 'h1'
+  config.default_legend_size = 'xl'
+end
+
 # We must maintain backwards compatibility until all forms are migrated
 GovukElementsFormBuilder::FormBuilder.class_eval do
   include CustomFormHelpers

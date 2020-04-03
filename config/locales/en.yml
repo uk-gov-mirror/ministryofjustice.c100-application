@@ -522,10 +522,9 @@ en:
       attended:
         edit:
           page_title: MIAM attended
-          heading: Have you attended a MIAM?
           miam_info_html: |
-            <p>The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
-            <ul class="list list-bullet">
+            <p class="govuk-body">The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>taken place within the past 4 months</li>
               <li>been about the same or a very similar issue about the children</li>
             </ul>
@@ -544,15 +543,11 @@ en:
       certification:
         edit:
           page_title: MIAM certification
-          heading: Have you got a document signed by the mediator?
-          body_html: |
-            <p>Your mediator should have signed a document confirming your MIAM attendance.
-            You may need to go back to the mediator and ask for a signed document if you don't have one.</p>
+          lead_text: Your mediator should have signed a document confirming your MIAM attendance. You may need to go back to the mediator and ask for a signed document if you don't have one.
       certification_date:
         edit:
           page_title: MIAM certification date
-          heading: When did you attend the MIAM?
-          body_html: <p>You can find the date at the bottom of the document your mediator signed.</p>
+          lead_text: You can find the date at the bottom of the document your mediator signed.
       certification_details:
         edit:
           page_title: MIAM certification details
@@ -935,7 +930,7 @@ en:
               <h3 class="govuk-heading-m">Why we use this information</h3>
               <p class="govuk-body">To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
               <h3 class="govuk-heading-m">Data and your rights</h3>
-              <p class="govuk-body">You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent" class: "govuk-link">privacy policy</a>.</p>
+              <p class="govuk-body">You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent" class="govuk-link">privacy policy</a>.</p>
       warning:
         show:
           page_title: Application in progress
@@ -1095,7 +1090,7 @@ en:
         declaration_signee_capacity_html: ""
 
     label:
-      # begin screener
+      # Screener steps
       steps_screener_postcode_form:
         children_postcodes: Postcode
       steps_screener_parent_form:
@@ -1108,10 +1103,18 @@ en:
         email_address: Email address
         email_consent_options:
           <<: *YESNO
-      # end screener
+
+      # MIAM steps
       steps_miam_child_protection_cases_form:
         child_protection_cases_options:
           <<: *YESNO
+      steps_miam_attended_form:
+        miam_attended_options:
+          <<: *YESNO
+      steps_miam_certification_form:
+        miam_certification_options:
+          <<: *YESNO
+
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
       steps_shared_relationship_form:
@@ -1356,6 +1359,8 @@ en:
         current_password: We need your current password to confirm your changes
       steps_miam_child_protection_cases_form:
         child_protection_cases: These will often involve a local authority
+      steps_miam_certification_date_form:
+        miam_certification_date: For example, 31 3 2020
       steps_application_court_proceedings_form:
         proceedings_date: Add approximate date if unsure
         case_number: Leave blank if you don’t know
@@ -1463,16 +1468,27 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the child or children?
       steps_screener_written_agreement_form:
         written_agreement: Do you have a signed draft court order you want the court to consider making legally binding?
       steps_screener_email_consent_form:
         email_consent: Are you willing to be contacted by email about your experience using this service?
+
+      # MIAM steps
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       steps_miam_acknowledgement_form:
         miam_acknowledgement: Attending a MIAM
+      steps_miam_attended_form:
+        miam_attended: Have you attended a MIAM?
+      steps_miam_certification_form:
+        miam_certification: Have you got a document signed by the mediator?
+      steps_miam_certification_date_form:
+        miam_certification_date: When did you attend the MIAM?
+
+      # Attending court steps
       steps_attending_court_intermediary_form:
         intermediary_help: Does anyone in this application need an intermediary to help them in court?
       steps_attending_court_language_form:
@@ -1527,7 +1543,6 @@ en:
       dob_child_hint: For example, 31 3 2010
       order_issue: What date was it made?
       order_issue_hint: For example, 31 3 2015
-      certification_date_hint: For example, 25 9 2018
     cafcass:
       safety_title: Why do we need this information and what will we do with it?
       safety_content_html: |
