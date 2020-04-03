@@ -1,48 +1,44 @@
 <% title 'MIAM is out of date' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Your MIAM is out of date</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Your MIAM is out of date</h1>
-
-    <p class="app__lede lede gv-u-text-lede">You’re legally required to attend a
-      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> within 4 months of your application, unless
-      you have a valid reason.
+    <p class="govuk-body-l">
+      You’re legally required to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> within
+      4 months of your application, unless you have a valid reason.
     </p>
 
-    <div class=" govuk-govspeak gv-s-prose">
-      <p>
-        <a href="/about/miam_exemptions" target="_blank">Check if you have
-          a valid reason</a> before you continue with your application.</p>
+    <p class="govuk-body">
+      <a href="/about/miam_exemptions" target="_blank" class="govuk-link">Check if you have a valid reason</a> before
+      you continue with your application.
+    </p>
 
-      <h2 class="heading-medium">If you don’t have a valid reason</h2>
+    <h2 class="govuk-heading-l">If you don’t have a valid reason</h2>
 
-      <section class="numbered-list">
-        <ol class="list list-number">
-          <li>
-            <a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" rel="external" target="_blank">Find
-              a mediator</a> and book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
-          </li>
-          <li>Attend the <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></li>
-          <li>Ask the mediator for a document confirming your attendance</li>
-        </ol>
-      </section>
+    <section class="numbered-list">
+      <ol class="govuk-list govuk-list--number">
+        <li>
+          <a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" class="govuk-link" rel="external" target="_blank">Find
+            a mediator</a> and book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
+        </li>
+        <li>Attend the <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></li>
+        <li>Ask the mediator for a document confirming your attendance</li>
+      </ol>
+    </section>
 
-      <p>You can then return to this form to continue with your application.</p>
+    <p class="govuk-body">You can then return to this form to continue with your application.</p>
 
-      <h2 class="heading-medium">If you are unsure, or think you have a valid reason</h2>
-      <p>You can continue using this service and we’ll try and work out if you have a valid reason based on your answers.</p>
+    <h2 class="govuk-heading-l">If you are unsure, or think you have a valid reason</h2>
 
-      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-        <p>If you do not have a valid reason you will not be able to make the application and will be directed to attend
-          a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
-        </p>
-      </div>
+    <p class="govuk-body">You can continue using this service and we’ll try and work out if you have a valid reason based on your answers.</p>
+
+    <div class="govuk-inset-text">
+      If you do not have a valid reason you will not be able to make the application and will be directed to attend a
+      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
     </div>
 
-    <div class="xform-group form-submit">
-      <%= link_to 'Confirm and continue', edit_steps_miam_exemption_claim_path, class: 'button', role: 'button' %>
-    </div>
+    <%= link_button 'Confirm and continue', edit_steps_miam_exemption_claim_path %>
   </div>
 </div>
