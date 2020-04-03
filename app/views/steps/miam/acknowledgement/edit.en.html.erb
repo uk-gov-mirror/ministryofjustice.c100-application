@@ -79,7 +79,7 @@
 
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
       <%=
-        f.govuk_check_boxes_fieldset :miam_acknowledgement, legend: { tag: 'h3' } do
+        f.govuk_check_boxes_fieldset :miam_acknowledgement, legend: { tag: 'h3', size: 's' } do
           f.govuk_check_box(:miam_acknowledgement, true, multiple: false, link_errors: true)
         end
       %>
