@@ -1,14 +1,9 @@
 module Steps
   module Miam
     class CertificationDateForm < BaseForm
-      include GovUkDateFields::ActsAsGovUkDate
-
-      attribute :miam_certification_date, Date
-
-      acts_as_gov_uk_date :miam_certification_date
+      attribute :miam_certification_date, MultiParamDate
 
       validates_presence_of :miam_certification_date
-
       validates :miam_certification_date, sensible_date: true
 
       private
