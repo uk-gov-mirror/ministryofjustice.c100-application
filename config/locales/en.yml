@@ -461,62 +461,57 @@ en:
         edit:
           page_title: Risk of abduction
           section: Safety concerns
-          heading: Are the children at risk of being abducted?
           lead_text: For example, there is a chance they may be taken or kept outside the UK without your consent.
       substance_abuse:
         edit:
           page_title: Substance abuse
           section: Safety concerns
-          heading: Do you have any concerns about drug, alcohol or substance abuse?
           lead_text: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       children_abuse:
         edit:
           page_title: Children abuse
           section: Safety concerns
           heading: Have the children suffered or are they at risk of suffering domestic or child abuse?
+          info_note: Only include abuse by the people in this application or someone connected to them who has contact with the children.
           info_html: |
-            <p>This includes any action that causes harm to a child. Harm includes seeing or hearing the ill-treatment of others.</p>
-            <p>Examples include:</p>
-            <ul class="list list-bullet">
+            <p class="govuk-body">This includes any action that causes harm to a child. Harm includes seeing or hearing the ill-treatment of others.</p>
+            <p class="govuk-body">Examples include:</p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>emotional or psychological abuse</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
               <li>witnessing domestic violence or abuse</li>
             </ul>
-            <p><a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" rel="external" target="_blank">Find out about the signs of child abuse</a></p>
-          info_note_html: |
-            <p>Only include abuse by the people in this application or someone connected to them who has contact with the children.</p>
+            <p class="govuk-body"><a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" class="govuk-link" rel="external" target="_blank">Find out about the signs of child abuse</a></p>
       domestic_abuse:
         edit:
           page_title: Domestic violence or abuse
           section: Safety concerns
           heading: Have you suffered or are you at risk of suffering domestic violence or abuse?
+          info_note: Only include abuse by the people in this application or someone connected to them.
           info_html: |
-            <p>Domestic violence or abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
-            <p>Examples include, but are not limited to:</p>
-            <ul class="list list-bullet">
+            <p class="govuk-body">Domestic violence or abuse includes any incident or pattern of incidents of controlling, coercive or threatening behaviour, violence or abuse between those aged 16 or over who are, or have been, intimate partners or family members, regardless of gender or sexuality.</p>
+            <p class="govuk-body">Examples include, but are not limited to:</p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>psychological abuse</li>
               <li>financial abuse (withholding child maintenance payments isn't considered financial abuse)</li>
               <li>emotional abuse</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
             </ul>
-          additional_info: It also includes culturally specific forms of abuse including, but not limited to, forced marriage, honour-based violence, dowry-related abuse and transnational marriage abandonment.
-          info_note_html: |
-            <p>Only include abuse by the people in this application or someone connected to them.</p>
+            <p class="govuk-body">It also includes culturally specific forms of abuse including, but not limited to, forced marriage, honour-based violence, dowry-related abuse and transnational marriage abandonment.</p>
       other_abuse:
         edit:
           page_title: Other concerns
           section: Safety concerns
-          heading: Do you have any other safety concerns about you or the children?
       address_confidentiality:
         edit:
           page_title: Address confidentiality
           section: Safety concerns
           heading: Keeping your contact details private
           lead_text_html: |
-            <p>A copy of your court application will be sent to all the other people named in the application (the respondents). This will include your contact details.</p>
-            <p>If you think the other people pose a threat to the safety of you or the children, you can ask the court to keep your contact details private.</p>
+            <p class="govuk-body-l">A copy of your court application will be sent to all the other people named in the application (the respondents). This will include your contact details.</p>
+            <p class="govuk-body">If you think the other people pose a threat to the safety of you or the children, you can ask the court to keep your contact details private.</p>
 
     miam:
       attended:
@@ -1028,8 +1023,6 @@ en:
         passport_possesion_html: "Who is in possession of the children’s passports?"
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved_html: "Were the police, private investigators or any other organisation involved?"
-      steps_safety_questions_address_confidentiality_form:
-        address_confidentiality_html: "Do you want to keep your contact details private from the other people named in the application (the respondents)?"
       steps_abuse_concerns_contact_form:
         concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
         concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
@@ -1109,6 +1102,27 @@ en:
           <<: *YESNO
       steps_miam_exemption_claim_form:
         miam_exemption_claim_options:
+          <<: *YESNO
+
+      # Safety questions steps
+      steps_safety_questions_address_confidentiality_form:
+        address_confidentiality_options:
+          <<: *YESNO
+      steps_safety_questions_risk_of_abduction_form:
+        risk_of_abduction_options:
+          <<: *YESNO
+      steps_safety_questions_substance_abuse_form:
+        substance_abuse_details: Give a short description of the drug, alcohol or substance abuse
+        substance_abuse_options:
+          <<: *YESNO
+      steps_safety_questions_children_abuse_form:
+        children_abuse_options:
+          <<: *YESNO
+      steps_safety_questions_domestic_abuse_form:
+        domestic_abuse_options:
+          <<: *YESNO
+      steps_safety_questions_other_abuse_form:
+        other_abuse_options:
           <<: *YESNO
 
       steps_shared_under_age_form:
@@ -1283,8 +1297,6 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
-      steps_safety_questions_substance_abuse_form:
-        substance_abuse_details: Give a short description of the drug, alcohol or substance abuse
       steps_abuse_concerns_details_form:
         behaviour_description: Briefly describe what happened and who was involved, if you feel able to
         behaviour_start: When did this behaviour start?
@@ -1486,6 +1498,20 @@ en:
       steps_miam_exemption_claim_form:
         miam_exemption_claim: Do you have a valid reason for not attending a MIAM?
 
+      # Safety questions
+      steps_safety_questions_address_confidentiality_form:
+        address_confidentiality: Do you want to keep your contact details private from the other people named in the application (the respondents)?
+      steps_safety_questions_risk_of_abduction_form:
+        risk_of_abduction: Are the children at risk of being abducted?
+      steps_safety_questions_substance_abuse_form:
+        substance_abuse: Do you have any concerns about drug, alcohol or substance abuse?
+      steps_safety_questions_children_abuse_form:
+        children_abuse: Have the children suffered or are they at risk of suffering domestic or child abuse?
+      steps_safety_questions_domestic_abuse_form:
+        domestic_abuse: Have you suffered or are you at risk of suffering domestic violence or abuse?
+      steps_safety_questions_other_abuse_form:
+        other_abuse: Do you have any other safety concerns about you or the children?
+
       # Attending court steps
       steps_attending_court_intermediary_form:
         intermediary_help: Does anyone in this application need an intermediary to help them in court?
@@ -1544,12 +1570,12 @@ en:
     cafcass:
       safety_title: Why do we need this information and what will we do with it?
       safety_content_html: |
-        <p>The court needs to know if any of the other people in this application, or anyone connected to them who has contact with the children, poses a risk to the safety of the children.</p>
-        <p>If you provide information about this now, it will make it easier for the court and Cafcass to make sure your case is dealt with appropriately at the earliest opportunity. If you do not want to provide details of the abuse at this stage, you will be able to do so when you speak to Cafcass or at a later stage in the court proceedings.</p>
-        <p>The <a href="https://www.cafcass.gov.uk/" rel="external" target="_blank">Children and Family Court Advisory and Support Service (Cafcass)</a>, in England, and <a href="https://cafcass.gov.wales/" rel="external" target="_blank">Cafcass Cymru</a>, in Wales, protect and promote the interests of children involved in family court cases. An advisor from Cafcass or Cafcass Cymru will look at your answers as part of their safeguarding checks, and may need to ask you further questions.</p>
-        <p>As part of their enquiries they will contact organisations such as the police and local authorities for any relevant information about you, any other person and the children.</p>
-        <p>They will submit information to the court before your first hearing. Their assessment helps the judge make a decision that is in the best interests of the children.</p>
-        <p>The information you provide in this section will also be shared with the respondents so that they have the opportunity to respond to your allegations.</p>
+        <p class="govuk-body">The court needs to know if any of the other people in this application, or anyone connected to them who has contact with the children, poses a risk to the safety of the children.</p>
+        <p class="govuk-body">If you provide information about this now, it will make it easier for the court and Cafcass to make sure your case is dealt with appropriately at the earliest opportunity. If you do not want to provide details of the abuse at this stage, you will be able to do so when you speak to Cafcass or at a later stage in the court proceedings.</p>
+        <p class="govuk-body">The <a href="https://www.cafcass.gov.uk/" class="govuk-link" rel="external" target="_blank">Children and Family Court Advisory and Support Service (Cafcass)</a>, in England, and <a href="https://cafcass.gov.wales/" class="govuk-link" rel="external" target="_blank">Cafcass Cymru</a>, in Wales, protect and promote the interests of children involved in family court cases. An advisor from Cafcass or Cafcass Cymru will look at your answers as part of their safeguarding checks, and may need to ask you further questions.</p>
+        <p class="govuk-body">As part of their enquiries they will contact organisations such as the police and local authorities for any relevant information about you, any other person and the children.</p>
+        <p class="govuk-body">They will submit information to the court before your first hearing. Their assessment helps the judge make a decision that is in the best interests of the children.</p>
+        <p class="govuk-body">The information you provide in this section will also be shared with the respondents so that they have the opportunity to respond to your allegations.</p>
 
   session:
     note:
