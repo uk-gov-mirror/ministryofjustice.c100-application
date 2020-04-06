@@ -1,37 +1,28 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading"><%=t '.section' %></p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-      <%=t '.info_note_html' %>
-    </div>
+    <div class="govuk-inset-text"><%=t '.info_note' %></div>
+    <%=t '.info_html' %>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <%=t('.info_html')%>
-    </div>
-
-    <div class="govuk-govspeak gv-s-prose">
-      <%=t('.additional_info')%>
-    </div>
-
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :domestic_abuse, legend_options: { class: 'visually-hidden', text: t('.heading') }, inline: true, choices: GenericYesNo.values %>
-
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :domestic_abuse, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 's', hidden: true } %>
       <%= f.continue_button %>
     <% end %>
 
-    <details data-block-name="safety-concerns-reasons">
-      <summary>
-        <span class="summary" data-ga-category="explanations" data-ga-label="safety questions">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="safety questions">
           <%=t 'shared.cafcass.safety_title' %>
         </span>
       </summary>
-      <div class="panel panel-border-narrow">
+      <div class="govuk-details__text">
         <%=t 'shared.cafcass.safety_content_html' %>
       </div>
     </details>
