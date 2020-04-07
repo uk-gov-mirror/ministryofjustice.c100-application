@@ -615,32 +615,28 @@ en:
         edit:
           page_title: Do the children have a passport?
           section: Safety concerns
-          heading: Do any of the children have a passport?
       international:
         edit:
           page_title: Have the police been notified?
           section: Safety concerns
-          heading: Have the police been notified?
-          contact_info_html: If you think the children are at risk of being abducted abroad you should contact the police immediately.
+          contact_info: If you think the children are at risk of being abducted abroad you should contact the police immediately.
       previous_attempt:
         edit:
           page_title: Previous abduction attempts
           section: Safety concerns
-          heading: Have the children been abducted or kept outside the UK without your consent before?
       previous_attempt_details:
         edit:
           page_title: Previous abduction details
           section: Safety concerns
           heading: Provide details of the previous abductions
-          lead_text: Include any previous attempts or threats to abduct them.
       risk_details:
         edit:
           page_title: Abduction risk details
           section: Safety concerns
           heading: Why do you think the children may be abducted or kept outside the UK without your consent?
           info_html: |
-            <p>Briefly explain your concerns, including:</p>
-            <ul class="list list-bullet">
+            <p class="govuk-body">Briefly explain your concerns, including:</p>
+            <ul class="govuk-list govuk-list--bullet">
               <li>who might take them</li>
               <li>where they might be taken or kept</li>
             </ul>
@@ -1015,14 +1011,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_abduction_passport_details_form:
-        children_multiple_passports_html: "Do the children have more than one passport?"
-        passport_possesion_html: "Who is in possession of the children’s passports?"
-      steps_abduction_international_form:
-        children_multiple_passports_html: "Do the children have more than one passport?"
-        passport_possesion_html: "Who is in possession of the children’s passports?"
-      steps_abduction_previous_attempt_details_form:
-        previous_attempt_agency_involved_html: "Were the police, private investigators or any other organisation involved?"
       steps_abuse_concerns_contact_form:
         concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
         concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
@@ -1123,6 +1111,32 @@ en:
           <<: *YESNO
       steps_safety_questions_other_abuse_form:
         other_abuse_options:
+          <<: *YESNO
+
+      # Abduction questions
+      steps_abduction_international_form:
+        passport_office_notified_options:
+          <<: *YESNO
+      steps_abduction_children_have_passport_form:
+        children_have_passport_options:
+          <<: *YESNO
+      steps_abduction_passport_details_form:
+        children_multiple_passports_options:
+          <<: *YESNO
+        passport_possession_mother_options:
+          'true': Mother
+        passport_possession_father_options:
+          'true': Father
+        passport_possession_other_options:
+          'true': Other
+        passport_possession_other_details: Provide more details
+      steps_abduction_previous_attempt_form:
+        previous_attempt_options:
+          <<: *YESNO
+      steps_abduction_previous_attempt_details_form:
+        previous_attempt_details: Give a short description of the previous abductions
+        previous_attempt_agency_details: Provide more details
+        previous_attempt_agency_involved_options:
           <<: *YESNO
 
       steps_shared_under_age_form:
@@ -1227,14 +1241,6 @@ en:
         orders_additional_details: Briefly provide more details
       steps_petition_protection_form:
         protection_orders_details: Please give details
-      steps_abduction_passport_details_form:
-        passport_possession_mother: Mother
-        passport_possession_father: Father
-        passport_possession_other: Other
-        passport_possession_other_details: Provide more details
-      steps_abduction_previous_attempt_details_form:
-        previous_attempt_details: Give a short description of the previous abductions
-        previous_attempt_agency_details: Provide more details
       steps_abduction_risk_details_form:
         risk_details: Briefly explain your concerns about abduction
         current_location: Where are the children now?
@@ -1391,10 +1397,11 @@ en:
       steps_application_submission_form:
         receipt_email: We’ll send a copy of your application to this email address. You can also download a copy on the confirmation page.
       steps_abduction_passport_details_form:
-        passport_possesion: *select_all_that_apply
+        passport_possession: *select_all_that_apply
       steps_abduction_risk_details_form:
         current_location: If they're outside England or Wales, include what country they're in and how long they've been there. You don't need to include any addresses.
       steps_abduction_previous_attempt_details_form:
+        previous_attempt_details: Include any previous attempts or threats to abduct them
         previous_attempt_agency_involved: Including in the UK or abroad
       steps_petition_orders_form:
         orders: *select_all_that_apply
@@ -1511,6 +1518,19 @@ en:
         domestic_abuse: Have you suffered or are you at risk of suffering domestic violence or abuse?
       steps_safety_questions_other_abuse_form:
         other_abuse: Do you have any other safety concerns about you or the children?
+
+      # Abduction questions
+      steps_abduction_international_form:
+        passport_office_notified: Have the police been notified?
+      steps_abduction_children_have_passport_form:
+        children_have_passport: Do any of the children have a passport?
+      steps_abduction_passport_details_form:
+        children_multiple_passports: Do the children have more than one passport?
+        passport_possession: Who is in possession of the children’s passports?
+      steps_abduction_previous_attempt_form:
+        previous_attempt: Have the children been abducted or kept outside the UK without your consent before?
+      steps_abduction_previous_attempt_details_form:
+        previous_attempt_agency_involved: Were the police, private investigators or any other organisation involved?
 
       # Attending court steps
       steps_attending_court_intermediary_form:

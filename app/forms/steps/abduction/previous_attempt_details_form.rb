@@ -20,7 +20,9 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         record_to_persist.update(
-          attributes_map
+          attributes_map.merge(
+            previous_attempt_agency_details: (previous_attempt_agency_details if previous_attempt_agency_involved.yes?)
+          )
         )
       end
     end

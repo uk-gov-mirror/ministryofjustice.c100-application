@@ -67,10 +67,19 @@ class StepController < ApplicationController
   def form_attribute_names(form_class)
     form_class.attribute_set.map do |attr|
       attr_name = attr.name
-      primitive = attr.primitive
+      attr_type = attr.type.to_s
 
-      primitive.eql?(Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
-    end.flatten
+      # TODO: to maintain backwards compatibility with old form builder gems
+      # Once we've migrated everything, we can simplify this
+      case attr_type
+      when 'Axiom::Types::Date'
+        %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy]
+      when 'Axiom::Types::Boolean'
+        [attr_name, attr_name => []]
+      else
+        attr_name
+      end
+    end
   end
 
   # Converts multi-param Rails date attributes to an array that can be coerced more easily.
