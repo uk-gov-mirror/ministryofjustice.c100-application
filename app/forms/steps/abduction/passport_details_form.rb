@@ -6,9 +6,9 @@ module Steps
       has_one_association :abduction_detail
 
       attribute :children_multiple_passports, YesNo
-      attribute :passport_possession_mother, Boolean
-      attribute :passport_possession_father, Boolean
-      attribute :passport_possession_other, Boolean
+      attribute :passport_possession_mother, CheckboxBoolean
+      attribute :passport_possession_father, CheckboxBoolean
+      attribute :passport_possession_other, CheckboxBoolean
       attribute :passport_possession_other_details, String
 
       validates_inclusion_of :children_multiple_passports, in: GenericYesNo.values
