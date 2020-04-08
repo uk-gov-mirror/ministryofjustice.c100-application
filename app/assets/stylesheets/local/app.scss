@@ -4,8 +4,19 @@ div.sentry-error-embed-wrapper p.powered-by {
   display: none;
 }
 
+// App specific custom styles follow. Always prepend `app-` prefix to make
+// it clear this is a custom style not part of the design system.
+//
+.app-sidebar-grey {
+  background: govuk-colour("light-grey");
+}
+
+.app-sidebar-blue-bar {
+  background-color: govuk-colour("blue");
+  padding: 3px;
+}
+
 @import 'app/developer_tools';
 @import 'app/pros_cons';
-@import 'app/sidebar';
 @import 'app/backoffice';
 @import 'app/pending_migration';

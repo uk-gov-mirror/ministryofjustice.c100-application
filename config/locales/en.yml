@@ -106,16 +106,16 @@ en:
     # The specific copy is in their corresponding sections.
     ABUSE_CONCERNS: &ABUSE_CONCERNS
       physical_html: |
-        <p>Physical abuse includes actions such as:</p>
-        <ul class="list list-bullet">
+        <p class="govuk-body">Physical abuse includes actions such as:</p>
+        <ul class="govuk-list govuk-list--bullet">
           <li>punching</li>
           <li>choking</li>
           <li>kicking</li>
           <li>hitting with an object</li>
         </ul>
       psychological_html: |
-        <p>Psychological abuse is when someone is subjected to a situation that can lead to:</p>
-        <ul class="list list-bullet">
+        <p class="govuk-body">Psychological abuse is when someone is subjected to a situation that can lead to:</p>
+        <ul class="govuk-list govuk-list--bullet">
           <li>anxiety</li>
           <li>depression</li>
           <li>post-traumatic stress disorder</li>
@@ -204,7 +204,7 @@ en:
           heading: Is there anyone else who should know about your application?
           info_html: |
             <p>For example, you should tell everyone who:</p>
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as foster care or a children's home)</li>
               <li>is currently involved in another court case or named in a current court order that concerns the children and is relevant to this application</li>
               <li>the child has lived with for at least 3 years prior to this application</li>
@@ -311,15 +311,15 @@ en:
           page_title: Safety concerns start
           section: Safety concerns
           heading: You and the children
-          you_told_us_html: |
-            <p>You told us:</p>
+          you_told_us: 'You told us:'
           further_questions_info_html: |
-            <p>We’ll need to ask you some further questions about your concerns.</p>
-            <p>Your answers will help the court consider any risks to you or the children. This information forms part of your court application and will be dealt with sensitively.</p>
-            <p>You may find some of the following questions difficult or upsetting to answer. Please complete them as best you can.</p>
+            <p class="govuk-body">We’ll need to ask you some further questions about your concerns.</p>
+            <p class="govuk-body">Your answers will help the court consider any risks to you or the children. This information forms part of your court application and will be dealt with sensitively.</p>
+            <p class="govuk-body">You may find some of the following questions difficult or upsetting to answer. Please complete them as best you can.</p>
           continue: Continue
       question:
         edit:
+          section: Safety concerns
           page_title:
             applicant:
               physical: Concerns about physical abuse
@@ -354,58 +354,59 @@ en:
             applicant:
               <<: *ABUSE_CONCERNS
               sexual_html: |
-                <p>Examples of sexual abuse include:</p>
-                <ul class="list list-bullet">
+                <p class="govuk-body">Examples of sexual abuse include:</p>
+                <ul class="govuk-list govuk-list--bullet">
                   <li>being forced or pressured to have sex without consent</li>
                   <li>threatening someone into an unwanted sexual activity</li>
                   <li>unwanted touching or groping</li>
                 </ul>
               emotional_html: |
-                <p>Emotional abuse can be verbal or non-verbal.</p>
-                <p>Examples include:</p>
-                <ul class="list list-bullet">
+                <p class="govuk-body">Emotional abuse can be verbal or non-verbal.</p>
+                <p class="govuk-body">Examples include:</p>
+                <ul class="govuk-list govuk-list--bullet">
                   <li>name calling</li>
                   <li>constant criticism</li>
                   <li>controlling behaviour</li>
                   <li>not letting them have an opinion</li>
                 </ul>
               financial_html: |
-                <p>Examples of financial abuse include:</p>
-                <ul class="list list-bullet">
+                <p class="govuk-body">Examples of financial abuse include:</p>
+                <ul class="govuk-list govuk-list--bullet">
                   <li>not allowing a person to work</li>
                   <li>stopping someone saving their own money</li>
                   <li>withholding money or credit cards</li>
                 </ul>
-                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                <div class="govuk-inset-text">
+                  Withholding child maintenance payments isn’t considered financial abuse.
                 </div>
               other_html: ""
 
             children:
               <<: *ABUSE_CONCERNS
               sexual_html: |
-                <p>A child is sexually abused when they are forced or persuaded to take part in sexual activities, including online. It may not necessarily involve a high level of violence, and the child may or may not be aware of what's happening.</p>
-                <p>There are 2 types of child sexual abuse:</p>
-                <ul class="list list-bullet">
+                <p class="govuk-body">A child is sexually abused when they are forced or persuaded to take part in sexual activities, including online. It may not necessarily involve a high level of violence, and the child may or may not be aware of what's happening.</p>
+                <p class="govuk-body">There are 2 types of child sexual abuse:</p>
+                <ul class="govuk-list govuk-list--bullet">
                   <li>contact abuse (where an abuser makes physical contact)</li>
                   <li>non-contact abuse (for example grooming or exploitation)</li>
                 </ul>
               emotional_html: |
-                <p>Examples of emotional abuse can include making the children feel:</p>
-                <ul class="list list-bullet">
+                <p class="govuk-body">Examples of emotional abuse can include making the children feel:</p>
+                <ul class="govuk-list govuk-list--bullet">
                   <li>unloved</li>
                   <li>worthless</li>
                   <li>humiliated</li>
                   <li>ignored</li>
                 </ul>
               financial_html: |
-                <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-                  <p>Withholding child maintenance payments isn’t considered financial abuse.</p>
+                <div class="govuk-inset-text">
+                  Withholding child maintenance payments isn’t considered financial abuse.
                 </div>
               other_html: |
-                <p>For example, their basic needs are not being met (known as child neglect) or you’re worried about someone they may have contact with.</p>
+                <p class="govuk-body">For example, their basic needs are not being met (known as child neglect) or you’re worried about someone they may have contact with.</p>
       details:
         edit:
+          section: Safety concerns
           page_title:
             applicant:
               physical: About the physical abuse
@@ -550,7 +551,7 @@ en:
               <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
               <p>This is known as a Consent Order.</p>
               <p>You can only ask for a consent order if:</p>
-              <ul class="list list-bullet">
+              <ul class="govuk-list govuk-list--bullet">
                 <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
                 <li>you are not in dispute with the other person</li>
                 <li>the court has no concerns about the safety or welfare of anyone involved</li>
@@ -604,7 +605,7 @@ en:
           lead_text_html: |
             <div class="govuk-govspeak gv-s-prose">
               <p>This can include:</p>
-              <ul class="list list-bullet">
+              <ul class="govuk-list govuk-list--bullet">
                 <li>that the person must not be violent or threaten or harass by any means (Non-Molestation Order)</li>
                 <li>preventing a person doing a particular action (Prohibited Steps Order)</li>
                 <li>making a decision about a specific issue on which you and the other person can’t decide (Specific Issue Order)</li>
@@ -685,7 +686,7 @@ en:
           heading: Why are you making this application?
           info_html: |
             <p>You should include details of any of the following (if they apply):</p>
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>your reasons for bringing this application to court</li>
               <li>what you want the court to decide (what outcome you want)</li>
               <li>why the other person disagrees</li>
@@ -736,19 +737,19 @@ en:
           heading: Do you need an urgent hearing?
           lead_text: 'A hearing will usually take place within 5 or 6 weeks of the court processing your application. You can ask for a hearing to take place sooner and a court will consider if there’s good reason for the urgency, for example:'
           examples_html: |
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>there’s a risk of harm to you or the children</li>
               <li>the children are at risk of abduction</li>
             </ul>
           reasons_title: Examples of when a court may consider an urgent hearing
           reasons_content_html: |
             <p>There is:</p>
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>risk to the life, liberty or physical safety of you, your family or your home</li>
               <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
             </ul>
             <p>Any delay would cause:</p>
-            <ul class="list list-bullet">
+            <ul class="govuk-list govuk-list--bullet">
               <li>a risk of harm to the children</li>
               <li>unreasonable hardship for you</li>
               <li>a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales</li>
@@ -1011,9 +1012,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_abuse_concerns_contact_form:
-        concerns_contact_type_html: "Do you agree to the children spending time with the other people in this application?"
-        concerns_contact_other_html: "Do you agree to the other people in this application being in touch with the children in other ways?"
       steps_court_orders_details_form:
         <<: *COURT_ORDER_TYPES
         non_molestation_is_current: *order_current
@@ -1022,10 +1020,6 @@ en:
         restraining_is_current: *order_current
         injunctive_is_current: *order_current
         undertaking_is_current: *order_current
-      steps_abuse_concerns_details_form:
-        behaviour_ongoing_html: Is the behaviour still ongoing?
-        asked_for_help_html: Have you ever asked for help?
-        help_provided_html: Did they help you?
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
       steps_alternatives_mediation_form:
@@ -1137,6 +1131,30 @@ en:
         previous_attempt_details: Give a short description of the previous abductions
         previous_attempt_agency_details: Provide more details
         previous_attempt_agency_involved_options:
+          <<: *YESNO
+
+      # Abuse concerns
+      steps_abuse_concerns_question_form:
+        answer_options:
+          <<: *YESNO
+      steps_abuse_concerns_details_form:
+        behaviour_description: Briefly describe what happened and who was involved, if you feel able to
+        behaviour_start: When did this behaviour start?
+        behaviour_stop: When did the behaviour stop?
+        help_party: Who did you ask for help?
+        help_description: What did they do?
+        behaviour_ongoing_options:
+          <<: *YESNO
+        asked_for_help_options:
+          <<: *YESNO
+        help_provided_options:
+          <<: *YESNO
+      steps_abuse_concerns_contact_form:
+        concerns_contact_type_options:
+          unsupervised: 'Yes'
+          supervised: Yes, but it must be supervised
+          none: No, I do not want the other person to spend time with the children
+        concerns_contact_other_options:
           <<: *YESNO
 
       steps_shared_under_age_form:
@@ -1303,25 +1321,6 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
-      steps_abuse_concerns_details_form:
-        behaviour_description: Briefly describe what happened and who was involved, if you feel able to
-        behaviour_start: When did this behaviour start?
-        behaviour_stop: When did the behaviour stop?
-        help_party: Who did you ask for help?
-        help_description: What did they do?
-        behaviour_ongoing:
-          <<: *YESNO
-        asked_for_help:
-          <<: *YESNO
-        help_provided:
-          <<: *YESNO
-      steps_abuse_concerns_contact_form:
-        concerns_contact_type:
-          unsupervised: 'Yes'
-          supervised: Yes, but it must be supervised
-          none: No, I do not want the other person to spend time with the children
-        concerns_contact_other:
-          <<: *YESNO
       steps_court_orders_has_orders_form:
         has_court_orders:
           <<: *YESNO
@@ -1531,6 +1530,15 @@ en:
         previous_attempt: Have the children been abducted or kept outside the UK without your consent before?
       steps_abduction_previous_attempt_details_form:
         previous_attempt_agency_involved: Were the police, private investigators or any other organisation involved?
+
+      # Abuse concerns
+      steps_abuse_concerns_details_form:
+        behaviour_ongoing: Is the behaviour still ongoing?
+        asked_for_help: Have you ever asked for help?
+        help_provided: Did they help you?
+      steps_abuse_concerns_contact_form:
+        concerns_contact_type: Do you agree to the children spending time with the other people in this application?
+        concerns_contact_other: Do you agree to the other people in this application being in touch with the children in other ways?
 
       # Attending court steps
       steps_attending_court_intermediary_form:
