@@ -11,7 +11,7 @@ Feature: Screener
     And I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
 
-    Then I should see "Are you a parent of the child or children?"
+    Then I should see "Are you a parent of the children or a solicitor representing a parent?"
     And I choose "Yes"
 
     Then I should see "Do you have a signed draft court order you want the court to consider making legally binding?"
@@ -53,7 +53,7 @@ Feature: Screener
     And I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
 
-    Then I should see "Are you a parent of the child or children?"
+    Then I should see "Are you a parent of the children or a solicitor representing a parent?"
     And I choose "No"
 
     Then I should see "Sorry, you’re not eligible to apply online"
