@@ -785,7 +785,6 @@ en:
       resident:
         edit:
           page_title: International resident
-          heading: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
           lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
       jurisdiction:
         edit:
@@ -1356,10 +1355,15 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
+
+      # International quetions steps
       steps_international_jurisdiction_form:
         international_jurisdiction_details: *provide_details
       steps_international_request_form:
         international_request_details: *provide_details
+      steps_international_resident_form:
+        international_resident_options:
+          <<: *YESNO
       steps_solicitor_personal_details_form:
         full_name: Full name
         firm_name: Name of firm
@@ -1574,6 +1578,8 @@ en:
         special_arrangements: Do you or the children need specific safety arrangements at court?
       steps_attending_court_special_assistance_form:
         special_assistance: Does anyone in this application need assistance or special facilities when attending court?
+      steps_international_resident_form:
+        international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
 
     submit:
       continue: Continue
