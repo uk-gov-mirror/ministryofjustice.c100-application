@@ -244,6 +244,59 @@ RSpec.describe Steps::CourtOrders::DetailsForm do
       end
     end
 
+    # Only do a test sampling on a date attribute, as all behave the same
+    context 'date validation' do
+      let(:non_molestation) { 'yes' }
+
+      context 'when date is not given' do
+        let(:non_molestation_issue_date) { nil }
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:non_molestation_issue_date, :blank)).to eq(true)
+        end
+      end
+
+      context 'when date is invalid' do
+        let(:non_molestation_issue_date) { Date.new(18, 10, 31) } # 2-digits year (18)
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:non_molestation_issue_date, :invalid)).to eq(true)
+        end
+      end
+
+      context 'when date is in the future' do
+        let(:non_molestation_issue_date) { Date.tomorrow }
+
+        it 'has a validation error on the field' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:non_molestation_issue_date, :future)).to eq(true)
+        end
+      end
+
+      context 'casting the date from multi parameters' do
+        before do
+          subject.valid?
+        end
+
+        context 'when date is valid' do
+          let(:non_molestation_issue_date) { [nil, 2008, 11, 22] }
+          it { expect(subject.errors.include?(:non_molestation_issue_date)).to eq(false) }
+        end
+
+        context 'when date is not valid' do
+          let(:non_molestation_issue_date) { [nil, 18, 11, 22] } # 2-digits year (18)
+          it { expect(subject.errors.include?(:non_molestation_issue_date)).to eq(true) }
+        end
+
+        context 'when a part is missing (nil or zero)' do
+          let(:non_molestation_issue_date) { [nil, 2008, 0, 22] }
+          it { expect(subject.errors.include?(:non_molestation_issue_date)).to eq(true) }
+        end
+      end
+    end
+
     context 'for valid details' do
       it_behaves_like 'a has-one-association form',
                       association_name: :court_order,

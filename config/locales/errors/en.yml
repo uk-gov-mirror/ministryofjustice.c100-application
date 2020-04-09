@@ -219,6 +219,8 @@ en:
               blank: Enter the case number of the non-molestation order
             non_molestation_issue_date:
               blank: Enter the date the non-molestation order was made
+              invalid: Enter a valid non-molestation order date
+              future: The non-molestation order date must be in the past
             non_molestation_length:
               blank: Enter how long the non-molestation order was for
             non_molestation_is_current:
@@ -232,6 +234,8 @@ en:
               blank: Enter the case number of the occupation order
             occupation_issue_date:
               blank: Enter the date the occupation order was made
+              invalid: Enter a valid occupation order date
+              future: The occupation order date must be in the past
             occupation_length:
               blank: Enter how long the occupation order was for
             occupation_is_current:
@@ -245,6 +249,8 @@ en:
               blank: Enter the case number of the forced marriage protection order
             forced_marriage_protection_issue_date:
               blank: Enter the date the forced marriage protection order was made
+              invalid: Enter a valid forced marriage protection order date
+              future: The forced marriage protection order date must be in the past
             forced_marriage_protection_length:
               blank: Enter how long the forced marriage protection order was for
             forced_marriage_protection_is_current:
@@ -258,6 +264,8 @@ en:
               blank: Enter the case number of the restraining order
             restraining_issue_date:
               blank: Enter the date the restraining order was made
+              invalid: Enter a valid restraining order date
+              future: The restraining order date must be in the past
             restraining_length:
               blank: Enter how long the restraining order was for
             restraining_is_current:
@@ -271,6 +279,8 @@ en:
               blank: Enter the case number of the injunctive order
             injunctive_issue_date:
               blank: Enter the date the injunctive order was made
+              invalid: Enter a valid injunctive order date
+              future: The injunctive order date must be in the past
             injunctive_length:
               blank: Enter how long the injunctive order was for
             injunctive_is_current:
@@ -284,6 +294,8 @@ en:
               blank: Enter the case number of the undertaking in place of an order
             undertaking_issue_date:
               blank: Enter the date the undertaking in place of an order was made
+              invalid: Enter a valid undertaking in place of an order date
+              future: The undertaking in place of an order date must be in the past
             undertaking_length:
               blank: Enter how long the undertaking in place of an order was for
             undertaking_is_current:

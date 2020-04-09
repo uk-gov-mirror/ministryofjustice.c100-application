@@ -449,14 +449,11 @@ en:
         edit:
           page_title: Have you had court orders made?
           section: Safety concerns
-          heading: Have you had or do you currently have any court orders made for your protection?
-          lead_text: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order.
       details:
         edit:
           page_title: Orders details
           section: Safety concerns
           heading: What orders have been made?
-          lead_text: *select_all_that_apply
     safety_questions:
       risk_of_abduction:
         edit:
@@ -1012,14 +1009,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_court_orders_details_form:
-        <<: *COURT_ORDER_TYPES
-        non_molestation_is_current: *order_current
-        occupation_is_current: *order_current
-        forced_marriage_protection_is_current: *order_current
-        restraining_is_current: *order_current
-        injunctive_is_current: *order_current
-        undertaking_is_current: *order_current
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
       steps_alternatives_mediation_form:
@@ -1156,6 +1145,52 @@ en:
           none: No, I do not want the other person to spend time with the children
         concerns_contact_other_options:
           <<: *YESNO
+      steps_court_orders_has_orders_form:
+        has_court_orders_options:
+          <<: *YESNO
+      steps_court_orders_details_form:
+        non_molestation_options:
+          <<: *YESNO
+        occupation_options:
+          <<: *YESNO
+        forced_marriage_protection_options:
+          <<: *YESNO
+        restraining_options:
+          <<: *YESNO
+        injunctive_options:
+          <<: *YESNO
+        undertaking_options:
+          <<: *YESNO
+        non_molestation_is_current_options:
+          <<: *YESNO
+        occupation_is_current_options:
+          <<: *YESNO
+        forced_marriage_protection_is_current_options:
+          <<: *YESNO
+        restraining_is_current_options:
+          <<: *YESNO
+        injunctive_is_current_options:
+          <<: *YESNO
+        undertaking_is_current_options:
+          <<: *YESNO
+        non_molestation_case_number: *order_case_number
+        non_molestation_length: *order_length
+        non_molestation_court_name: *order_court_name
+        occupation_case_number: *order_case_number
+        occupation_length: *order_length
+        occupation_court_name: *order_court_name
+        forced_marriage_protection_case_number: *order_case_number
+        forced_marriage_protection_length: *order_length
+        forced_marriage_protection_court_name: *order_court_name
+        restraining_case_number: *order_case_number
+        restraining_length: *order_length
+        restraining_court_name: *order_court_name
+        injunctive_case_number: *order_case_number
+        injunctive_length: *order_length
+        injunctive_court_name: *order_court_name
+        undertaking_case_number: *order_case_number
+        undertaking_length: *order_length
+        undertaking_court_name: *order_court_name
 
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
@@ -1321,28 +1356,6 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
-      steps_court_orders_has_orders_form:
-        has_court_orders:
-          <<: *YESNO
-      steps_court_orders_details_form:
-        non_molestation_case_number: *order_case_number
-        non_molestation_length: *order_length
-        non_molestation_court_name: *order_court_name
-        occupation_case_number: *order_case_number
-        occupation_length: *order_length
-        occupation_court_name: *order_court_name
-        forced_marriage_protection_case_number: *order_case_number
-        forced_marriage_protection_length: *order_length
-        forced_marriage_protection_court_name: *order_court_name
-        restraining_case_number: *order_case_number
-        restraining_length: *order_length
-        restraining_court_name: *order_court_name
-        injunctive_case_number: *order_case_number
-        injunctive_length: *order_length
-        injunctive_court_name: *order_court_name
-        undertaking_case_number: *order_case_number
-        undertaking_length: *order_length
-        undertaking_court_name: *order_court_name
       steps_international_jurisdiction_form:
         international_jurisdiction_details: *provide_details
       steps_international_request_form:
@@ -1449,6 +1462,8 @@ en:
         asked_for_help: For example, your GP
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
+      steps_court_orders_has_orders_form:
+        has_court_orders: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order
       steps_court_orders_details_form:
         restraining: Under the Protection from Harassment Act 1997
         non_molestation_case_number: *order_case_number_hint
@@ -1539,6 +1554,16 @@ en:
       steps_abuse_concerns_contact_form:
         concerns_contact_type: Do you agree to the children spending time with the other people in this application?
         concerns_contact_other: Do you agree to the other people in this application being in touch with the children in other ways?
+      steps_court_orders_has_orders_form:
+        has_court_orders: Have you had or do you currently have any court orders made for your protection?
+      steps_court_orders_details_form:
+        <<: *COURT_ORDER_TYPES
+        non_molestation_is_current: *order_current
+        occupation_is_current: *order_current
+        forced_marriage_protection_is_current: *order_current
+        restraining_is_current: *order_current
+        injunctive_is_current: *order_current
+        undertaking_is_current: *order_current
 
       # Attending court steps
       steps_attending_court_intermediary_form:
