@@ -17,6 +17,10 @@ class ValueObject
     values.map(&:to_s)
   end
 
+  def self.sym_values
+    values.map(&:to_sym)
+  end
+
   def hash
     [ValueObject, self.class, value].hash
   end

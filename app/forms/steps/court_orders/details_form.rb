@@ -1,7 +1,6 @@
 module Steps
   module CourtOrders
     class DetailsForm < BaseForm
-      include GovUkDateFields::ActsAsGovUkDate
       include HasOneAssociationForm
 
       has_one_association :court_order
@@ -9,7 +8,7 @@ module Steps
       NON_MOLESTATION_ATTRIBUTES = {
         non_molestation: YesNo,
         non_molestation_case_number: String,
-        non_molestation_issue_date: Date,
+        non_molestation_issue_date: MultiParamDate,
         non_molestation_length: String,
         non_molestation_is_current: YesNo,
         non_molestation_court_name: String
@@ -18,7 +17,7 @@ module Steps
       OCCUPATION_ATTRIBUTES = {
         occupation: YesNo,
         occupation_case_number: String,
-        occupation_issue_date: Date,
+        occupation_issue_date: MultiParamDate,
         occupation_length: String,
         occupation_is_current: YesNo,
         occupation_court_name: String
@@ -27,7 +26,7 @@ module Steps
       FORCED_MARRIAGE_PROTECTION_ATTRIBUTES = {
         forced_marriage_protection: YesNo,
         forced_marriage_protection_case_number: String,
-        forced_marriage_protection_issue_date: Date,
+        forced_marriage_protection_issue_date: MultiParamDate,
         forced_marriage_protection_length: String,
         forced_marriage_protection_is_current: YesNo,
         forced_marriage_protection_court_name: String
@@ -36,7 +35,7 @@ module Steps
       RESTRAINING_ATTRIBUTES = {
         restraining: YesNo,
         restraining_case_number: String,
-        restraining_issue_date: Date,
+        restraining_issue_date: MultiParamDate,
         restraining_length: String,
         restraining_is_current: YesNo,
         restraining_court_name: String
@@ -45,7 +44,7 @@ module Steps
       INJUNCTIVE_ATTRIBUTES = {
         injunctive: YesNo,
         injunctive_case_number: String,
-        injunctive_issue_date: Date,
+        injunctive_issue_date: MultiParamDate,
         injunctive_length: String,
         injunctive_is_current: YesNo,
         injunctive_court_name: String
@@ -54,16 +53,14 @@ module Steps
       UNDERTAKING_ATTRIBUTES = {
         undertaking: YesNo,
         undertaking_case_number: String,
-        undertaking_issue_date: Date,
+        undertaking_issue_date: MultiParamDate,
         undertaking_length: String,
         undertaking_is_current: YesNo,
         undertaking_court_name: String
       }.freeze.each { |name, type| attribute(name, type) }
 
       # rubocop:disable AmbiguousOperator
-      acts_as_gov_uk_date *CourtOrderType.string_values.map { |name| "#{name}_issue_date" }
-
-      validates_inclusion_of *CourtOrderType.string_values, in: GenericYesNo.values
+      validates_inclusion_of *CourtOrderType.sym_values, in: GenericYesNo.values
 
       validates_presence_of(
         *NON_MOLESTATION_ATTRIBUTES.except(:non_molestation_is_current).keys,
@@ -100,6 +97,8 @@ module Steps
         if: -> { undertaking&.yes? }
       )
       validates_inclusion_of :undertaking_is_current, in: GenericYesNo.values, if: -> { undertaking&.yes? }
+
+      validates *CourtOrderType.string_values.map { |name| "#{name}_issue_date" }, sensible_date: true
       # rubocop:enable AmbiguousOperator
 
       private
