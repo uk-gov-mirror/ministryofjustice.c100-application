@@ -785,18 +785,15 @@ en:
       resident:
         edit:
           page_title: International resident
-          heading: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
           lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
       jurisdiction:
         edit:
           page_title: International jurisdiction
-          heading: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
-          info_html: For example, because a court in another country has the power to act (has jurisdiction)
+          lead_text: For example, because a court in another country has the power to act (has jurisdiction)
       request:
         edit:
           page_title: International request
-          heading: Has a request for information or other assistance involving the children been made to or by another country?
-          info_html: This may be due to child protection concerns, needing to enforce an order abroad, to return a child to England or Wales or to assist with a request from a court in other family proceedings.
+          lead_text: This may be due to child protection concerns, needing to enforce an order abroad, to return a child to England or Wales or to assist with a request from a court in other family proceedings.
     miam_exemptions:
       domestic:
         edit:
@@ -1356,10 +1353,19 @@ en:
         children_protection_plan:
           <<: *YESNO
         children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
+
+      # International quetions steps
       steps_international_jurisdiction_form:
+        international_jurisdiction_options:
+          <<: *YESNO
         international_jurisdiction_details: *provide_details
       steps_international_request_form:
+        international_request_options:
+          <<: *YESNO
         international_request_details: *provide_details
+      steps_international_resident_form:
+        international_resident_options:
+          <<: *YESNO
       steps_solicitor_personal_details_form:
         full_name: Full name
         firm_name: Name of firm
@@ -1574,6 +1580,14 @@ en:
         special_arrangements: Do you or the children need specific safety arrangements at court?
       steps_attending_court_special_assistance_form:
         special_assistance: Does anyone in this application need assistance or special facilities when attending court?
+
+      # International steps
+      steps_international_jurisdiction_form:
+        international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
+      steps_international_request_form:
+        international_request: Has a request for information or other assistance involving the children been made to or by another country?
+      steps_international_resident_form:
+        international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
 
     submit:
       continue: Continue
