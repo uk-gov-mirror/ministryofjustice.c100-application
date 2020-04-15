@@ -16,6 +16,16 @@ div.sentry-error-embed-wrapper p.powered-by {
   padding: 3px;
 }
 
+.app-list--lower-roman {
+  @extend %govuk-list--number;
+  list-style-type: lower-roman;
+}
+
+.app-list--lower-alpha {
+  @extend %govuk-list--number;
+  list-style-type: lower-alpha;
+}
+
 @import 'app/developer_tools';
 @import 'app/pros_cons';
 @import 'app/backoffice';

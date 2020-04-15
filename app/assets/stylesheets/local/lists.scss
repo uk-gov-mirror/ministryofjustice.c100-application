@@ -1,18 +1,3 @@
-ul.buttons {
-  li {
-    margin-bottom: $gutter;
-  }
-}
-
-// Second level lists get circles instead of bullets
-li li {
-  list-style: circle;
-}
-// Third level lists get squares instead of bullets
-li li li {
-  list-style: square;
-}
-
 section.numbered-list h3 {
   margin-top: 0;
 }
