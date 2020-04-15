@@ -3,8 +3,7 @@ require 'spec_helper'
 RSpec.describe Steps::MiamExemptions::ProtectionForm do
   let(:arguments) { {
     c100_application: c100_application,
-    authority_enquiring: '1',
-    authority_protection_order: '0',
+    protection: ['authority_enquiring'],
   } }
 
   let(:c100_application) { instance_double(C100Application, miam_exemption: miam_exemption_record) }
@@ -12,13 +11,9 @@ RSpec.describe Steps::MiamExemptions::ProtectionForm do
 
   subject { described_class.new(arguments) }
 
-  describe 'custom getters override' do
-    it 'returns true if the exemption is in the list' do
-      expect(subject.authority_enquiring).to eq(true)
-    end
-
-    it 'returns false if the exemption is not in the list' do
-      expect(subject.authority_protection_order).to eq(false)
+  describe 'custom getter override' do
+    it 'returns all the exemptions in all attributes' do
+      expect(subject.exemptions_collection).to eq(['authority_enquiring'])
     end
   end
 
@@ -28,16 +23,6 @@ RSpec.describe Steps::MiamExemptions::ProtectionForm do
 
       it 'raises an error' do
         expect { subject.save }.to raise_error(BaseForm::C100ApplicationNotFound)
-      end
-    end
-
-    context 'when form is valid' do
-      it 'saves the record' do
-        expect(miam_exemption_record).to receive(:update).with(
-          protection: [:authority_enquiring],
-        ).and_return(true)
-
-        expect(subject.save).to be(true)
       end
     end
 
@@ -53,7 +38,36 @@ RSpec.describe Steps::MiamExemptions::ProtectionForm do
 
       it 'has a validation error' do
         expect(subject).to_not be_valid
-        expect(subject.errors[:protection_none]).to_not be_empty
+        expect(subject.errors.added?(:protection, :blank)).to eq(true)
+      end
+    end
+
+    context 'when invalid checkbox values are submitted' do
+      context 'in `protection` attribute' do
+        let(:arguments) { {
+          c100_application: c100_application,
+          protection: ['foobar'],
+        } }
+
+        it 'does not save the record' do
+          expect(miam_exemption_record).not_to receive(:update)
+          expect(subject.save).to be(false)
+        end
+
+        it 'has a validation error' do
+          expect(subject).to_not be_valid
+          expect(subject.errors.added?(:protection, :blank)).to eq(true)
+        end
+      end
+    end
+
+    context 'when form is valid' do
+      it 'saves the record' do
+        expect(miam_exemption_record).to receive(:update).with(
+          protection: %w(authority_enquiring),
+        ).and_return(true)
+
+        expect(subject.save).to be(true)
       end
     end
   end

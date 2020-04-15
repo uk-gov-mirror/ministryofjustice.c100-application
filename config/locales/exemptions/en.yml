@@ -43,8 +43,8 @@ en:
       domestic_none: *none_of_these
 
     PROTECTION_EXEMPTIONS: &PROTECTION_EXEMPTIONS
-      authority_enquiring_html: A local authority is carrying out enquiries or assessment about any of the children in this application, or other child in the household
-      authority_protection_order_html: Any of the children in this application, or other child in the household, is the subject of a child protection plan
+      authority_enquiring: A local authority is carrying out enquiries or assessment about any of the children in this application, or other child in the household
+      authority_protection_order: Any of the children in this application, or other child in the household, is the subject of a child protection plan
       protection_none: *none_of_these
 
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
@@ -201,7 +201,10 @@ en:
         exemptions_collection_options:
           <<: *DOMESTIC_EXEMPTIONS
       steps_miam_exemptions_protection_form:
-        <<: *PROTECTION_EXEMPTIONS
+        protection_options:
+          <<: *PROTECTION_EXEMPTIONS
+        exemptions_collection_options:
+          <<: *PROTECTION_EXEMPTIONS
       steps_miam_exemptions_urgency_form:
         <<: *URGENCY_EXEMPTIONS
       steps_miam_exemptions_adr_form:
@@ -209,15 +212,14 @@ en:
       steps_miam_exemptions_misc_form:
         <<: *MISC_EXEMPTIONS
     hint:
-      shared:
-        select_all_that_apply: *select_all_that_apply
-        select_all_that_apply_or_none: *select_all_that_apply_or_none
       steps_miam_exemptions_domestic_form:
         domestic: *select_all_that_apply_or_none
         domestic_options:
           <<: *DOMESTIC_EXEMPTIONS_HINTS
         exemptions_collection_options:
           <<: *DOMESTIC_EXEMPTIONS_HINTS
+      steps_miam_exemptions_protection_form:
+        protection: *select_all_that_apply_or_none
 
   playback:
     exemptions_claimed:

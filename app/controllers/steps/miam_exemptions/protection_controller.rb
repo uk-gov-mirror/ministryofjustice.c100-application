@@ -10,6 +10,12 @@ module Steps
       def update
         update_and_advance(ProtectionForm, as: :protection)
       end
+
+      private
+
+      def additional_permitted_params
+        [protection: []]
+      end
     end
   end
 end
