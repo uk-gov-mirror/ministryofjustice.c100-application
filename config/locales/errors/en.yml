@@ -471,7 +471,7 @@ en:
 
         steps/miam_exemptions/domestic_form:
           attributes:
-            domestic_none:
+            domestic:
               blank: *blank_exemptions_error
         steps/miam_exemptions/protection_form:
           attributes:
