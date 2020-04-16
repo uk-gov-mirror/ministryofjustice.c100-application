@@ -1,31 +1,26 @@
 <% title 'Alternative ways to reach an agreement' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Alternative ways to reach an agreement</h1>
 
-    <div class="grid_content_header">
-      <h1 class="heading-xlarge gv-u-heading-xxlarge">Alternative ways to reach an agreement</h1>
-    </div>
+    <p class="govuk-body">
+      As you have no safety concerns you should see if there’s a more suitable
+      way to agree child arrangements than going to court.
+    </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>As you have no safety concerns you should see if there’s a more suitable way to agree child arrangements than
-        going to court.</p>
+    <p class="govuk-body">Evidence shows it’s usually better for the children if you can reach an agreement another way.</p>
 
-      <p>Evidence shows it’s usually better for the children if you can reach an agreement another way.</p>
+    <p class="govuk-body">By reaching an agreement out of court you may be able to:</p>
 
-      <p>By reaching an agreement out of court you may be able to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>make the situation less stressful for the children</li>
+      <li>help the children continue family relationships</li>
+      <li>save time and money</li>
+      <li>reduce conflict with the other person</li>
+    </ul>
 
-      <ul class="list list-bullet">
-        <li>make the situation less stressful for the children</li>
-        <li>help the children continue family relationships</li>
-        <li>save time and money</li>
-        <li>reduce conflict with the other person</li>
-      </ul>
-    </div>
-
-    <div class="xform-group form-submit">
-      <%= link_to 'Continue', edit_steps_alternatives_negotiation_tools_path, class: 'button', role: 'button' %>
-    </div>
+    <%= link_button 'Continue', edit_steps_alternatives_negotiation_tools_path %>
   </div>
 </div>
