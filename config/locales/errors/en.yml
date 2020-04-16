@@ -475,7 +475,7 @@ en:
               blank: *blank_exemptions_error
         steps/miam_exemptions/protection_form:
           attributes:
-            protection_none:
+            protection:
               blank: *blank_exemptions_error
         steps/miam_exemptions/urgency_form:
           attributes:
