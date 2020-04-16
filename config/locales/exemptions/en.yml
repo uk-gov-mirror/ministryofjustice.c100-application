@@ -58,25 +58,11 @@ en:
       urgency_none: *none_of_these
 
     ADR_EXEMPTIONS: &ADR_EXEMPTIONS
-      ## GROUP PREVIOUS ADR ##
-      group_previous_adr_html: |
-        <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or are taking part in another form of non-court resolution</span>
-        <span class="form-hint">The MIAM must have taken place within the past 4 months (or your attendance at another type of non-court resolution must be ongoing) and have been about the same child arrangements issue.</span>
-      previous_attendance_html: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or a very similar dispute
-      ongoing_attendance_html: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
-      existing_proceedings_attendance_html: The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings
-      ## GROUP PREVIOUS MIAM ##
-      group_previous_miam_html:
-        <span class="heading-small gv-u-heading-small">You had a valid reason for not attending a MIAM previously</span>
-        <span class="form-hint">For example:<p></p>
-          <ul class="list list-bullet">
-            <li>you’ve made another court application within the last 4 months about the same or a very similar dispute and you had a confirmed valid reason for not attending a MIAM before making that application</li>
-            <li>you’re involved in other ongoing family court proceedings where the applicant in those proceedings had a confirmed valid reason for not attending a MIAM</li>
-          </ul>
-        </span>
-      previous_exemption_html: In the 4 months prior to making the application, the person filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
-      existing_proceedings_exemption_html: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
-      ## ADR NONE ##
+      previous_attendance: In the 4 months prior to making the application, you attended a MIAM or participated in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      ongoing_attendance: At the time of making the application, you are participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      existing_proceedings_attendance: The application would be made in existing proceedings which are continuing and you attended a MIAM before initiating those proceedings
+      previous_exemption: In the 4 months prior to making the application, you filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
+      existing_proceedings_exemption: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
       adr_none: *none_of_these
 
     MISC_EXEMPTIONS: &MISC_EXEMPTIONS
@@ -206,7 +192,8 @@ en:
         urgency_options:
           <<: *URGENCY_EXEMPTIONS
       steps_miam_exemptions_adr_form:
-        <<: *ADR_EXEMPTIONS
+        adr_options:
+          <<: *ADR_EXEMPTIONS
       steps_miam_exemptions_misc_form:
         <<: *MISC_EXEMPTIONS
     hint:
@@ -220,6 +207,8 @@ en:
         protection: *select_all_that_apply_or_none
       steps_miam_exemptions_urgency_form:
         urgency: *select_all_that_apply_or_none
+      steps_miam_exemptions_adr_form:
+        adr: *select_all_that_apply_or_none
 
   playback:
     exemptions_claimed:

@@ -483,7 +483,7 @@ en:
               blank: *blank_exemptions_error
         steps/miam_exemptions/adr_form:
           attributes:
-            adr_none:
+            adr:
               blank: *blank_exemptions_error
         steps/miam_exemptions/misc_form:
           attributes:

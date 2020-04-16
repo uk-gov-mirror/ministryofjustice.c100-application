@@ -986,9 +986,6 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_miam_exemptions_adr_form:
-        adr_exemptions_html: "Do you confirm any of the following reasons for not attending a MIAM?"
-        exemptions_group_html: ""
       steps_miam_exemptions_misc_form:
         misc_exemptions_html: "Do you have any other valid reasons for not attending a MIAM?"
         exemptions_group_html: ""
@@ -1468,8 +1465,6 @@ en:
         restraining_case_number: *order_case_number_hint
         injunctive_case_number: *order_case_number_hint
         undertaking_case_number: *order_case_number_hint
-      steps_miam_exemptions_adr_form:
-        adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
         misc_exemptions: *select_all_that_apply_or_none
       steps_miam_certification_details_form:
@@ -1516,6 +1511,8 @@ en:
         protection: Do you confirm any of the following child protection concerns?
       steps_miam_exemptions_urgency_form:
         urgency: Do you confirm any of the following urgency reasons?
+      steps_miam_exemptions_adr_form:
+        adr: Do you confirm any of the following reasons for not attending a MIAM?
 
       # Safety questions
       steps_safety_questions_address_confidentiality_form:
