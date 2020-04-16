@@ -801,19 +801,16 @@ en:
           section: *miam_exemptions
           heading: Providing evidence of domestic violence or abuse concerns
           lead_text: You’ve told us you have a valid reason for not attending a MIAM. The following questions will ask what evidence you have in support of this.
-          or: or
       protection:
         edit:
           page_title: Child protection concerns
           section: *miam_exemptions
           heading: Confirming child protection concerns
-          or: or
       urgency:
         edit:
           page_title: Urgent application
           section: *miam_exemptions
           heading: Confirming why your application is urgent
-          or: or
       adr:
         edit:
           page_title: Previous valid reason or non-court resolution attendance
@@ -989,8 +986,6 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_miam_exemptions_urgency_form:
-        urgency_exemptions_html: "Do you confirm any of the following urgency reasons?"
       steps_miam_exemptions_adr_form:
         adr_exemptions_html: "Do you confirm any of the following reasons for not attending a MIAM?"
         exemptions_group_html: ""
@@ -1473,8 +1468,6 @@ en:
         restraining_case_number: *order_case_number_hint
         injunctive_case_number: *order_case_number_hint
         undertaking_case_number: *order_case_number_hint
-      steps_miam_exemptions_urgency_form:
-        urgency_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_adr_form:
         adr_exemptions: *select_all_that_apply_or_none
       steps_miam_exemptions_misc_form:
@@ -1521,6 +1514,8 @@ en:
         domestic: Do you have any of the following evidence of domestic violence or abuse?
       steps_miam_exemptions_protection_form:
         protection: Do you confirm any of the following child protection concerns?
+      steps_miam_exemptions_urgency_form:
+        urgency: Do you confirm any of the following urgency reasons?
 
       # Safety questions
       steps_safety_questions_address_confidentiality_form:

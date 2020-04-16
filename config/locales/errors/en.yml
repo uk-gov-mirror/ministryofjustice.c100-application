@@ -479,7 +479,7 @@ en:
               blank: *blank_exemptions_error
         steps/miam_exemptions/urgency_form:
           attributes:
-            urgency_none:
+            urgency:
               blank: *blank_exemptions_error
         steps/miam_exemptions/adr_form:
           attributes:

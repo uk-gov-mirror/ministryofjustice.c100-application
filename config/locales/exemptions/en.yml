@@ -1,6 +1,5 @@
 en:
   dictionary:
-    select_all_that_apply: &select_all_that_apply "Select all that apply"
     select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     none_of_these: &none_of_these "None of these"
 
@@ -48,13 +47,13 @@ en:
       protection_none: *none_of_these
 
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
-      risk_applicant_html: There is risk to the life, liberty or physical safety of you, your family or your home
-      unreasonable_hardship_html: Any delay caused by attending a MIAM would cause unreasonable hardship for you
-      risk_children_html: Any delay caused by attending a MIAM would cause a risk of harm to the children
-      risk_unlawful_removal_retention_html: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales
-      miscarriage_justice_html: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
-      irretrievable_problems_html: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
-      international_proceedings_html: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
+      risk_applicant: There is risk to the life, liberty or physical safety of you, your family or your home
+      unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship for you
+      risk_children: Any delay caused by attending a MIAM would cause a risk of harm to the children
+      risk_unlawful_removal_retention: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales
+      miscarriage_justice: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
+      irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
+      international_proceedings: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
       ## URGENCY NONE ##
       urgency_none: *none_of_these
 
@@ -203,10 +202,9 @@ en:
       steps_miam_exemptions_protection_form:
         protection_options:
           <<: *PROTECTION_EXEMPTIONS
-        exemptions_collection_options:
-          <<: *PROTECTION_EXEMPTIONS
       steps_miam_exemptions_urgency_form:
-        <<: *URGENCY_EXEMPTIONS
+        urgency_options:
+          <<: *URGENCY_EXEMPTIONS
       steps_miam_exemptions_adr_form:
         <<: *ADR_EXEMPTIONS
       steps_miam_exemptions_misc_form:
@@ -220,6 +218,8 @@ en:
           <<: *DOMESTIC_EXEMPTIONS_HINTS
       steps_miam_exemptions_protection_form:
         protection: *select_all_that_apply_or_none
+      steps_miam_exemptions_urgency_form:
+        urgency: *select_all_that_apply_or_none
 
   playback:
     exemptions_claimed:
