@@ -1006,6 +1006,9 @@ en:
         declaration_signee_capacity_html: ""
 
     label:
+      steps_alternatives_court_form:
+        court_acknowledgement_options:
+          'true': I understand what’s involved if I decide to go to court
       steps_alternatives_collaborative_law_form:
         alternative_collaborative_law_options:
           <<: *YESNO
@@ -1236,8 +1239,6 @@ en:
         declaration_signee_capacity:
           applicant: I am the applicant and I believe that the facts stated in this application are true.
           representative: I am the solicitor. The applicant believes that the facts stated in this application are true and I have been given the authority to make this declaration.
-      steps_alternatives_court_form:
-        court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
         miam_acknowledgement_options:
           'true': I understand that I have to attend a MIAM or provide a valid reason for not attending.
@@ -1468,6 +1469,8 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_alternatives_court_form:
+        court_acknowledgement: Going to court
       steps_alternatives_collaborative_law_form:
         alternative_collaborative_law: Have you tried collaborative law?
       steps_alternatives_lawyer_negotiation_form:
