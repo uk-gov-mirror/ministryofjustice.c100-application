@@ -976,8 +976,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_alternatives_mediation_form:
-        alternative_mediation: Have you tried professional mediation?
       steps_alternatives_lawyer_negotiation_form:
         alternative_lawyer_negotiation: Have you tried lawyer negotiation?
       steps_alternatives_collaborative_law_form:
@@ -1012,6 +1010,9 @@ en:
         declaration_signee_capacity_html: ""
 
     label:
+      steps_alternatives_mediation_form:
+        alternative_mediation_options:
+          <<: *YESNO
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools_options:
           <<: *YESNO
@@ -1465,6 +1466,8 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_alternatives_mediation_form:
+        alternative_mediation: Have you tried professional mediation?
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
       # Screener steps
