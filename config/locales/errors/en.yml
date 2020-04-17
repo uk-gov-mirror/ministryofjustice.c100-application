@@ -487,7 +487,7 @@ en:
               blank: *blank_exemptions_error
         steps/miam_exemptions/misc_form:
           attributes:
-            misc_none:
+            misc:
               blank: *blank_exemptions_error
 
         steps/application/previous_proceedings_form:

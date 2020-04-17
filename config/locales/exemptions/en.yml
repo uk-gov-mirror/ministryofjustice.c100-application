@@ -54,7 +54,6 @@ en:
       miscarriage_justice: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
       irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
       international_proceedings: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
-      ## URGENCY NONE ##
       urgency_none: *none_of_these
 
     ADR_EXEMPTIONS: &ADR_EXEMPTIONS
@@ -66,54 +65,17 @@ en:
       adr_none: *none_of_these
 
     MISC_EXEMPTIONS: &MISC_EXEMPTIONS
-      no_respondent_address_html: |
-        <span class="gv-u-heading-small">You don’t have sufficient contact details for the other people in this application (the respondents)</span>
-        <span class="form-hint">The other people can’t be contacted to arrange a MIAM.</span>
-      without_notice_html: |
-        <span class="gv-u-heading-small">You’re applying for a without notice hearing</span>
-        <span class="form-hint">Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</span>
+      no_respondent_address: You don’t have sufficient contact details for the other people in this application (the respondents) to enable a family mediator to contact any of them for the purpose of scheduling the MIAM
+      without_notice: You’re applying for a without notice hearing
       ## GROUP MIAM ACCESS ##
-      group_miam_access_html: |
-        <span class="heading-small gv-u-heading-small">You can’t access a mediator</span>
-        <span class="form-hint">Examples of not being able to access a mediator include:<p></p>
-          <ul class="list list-bullet">
-            <li>you live further than 15 miles from a mediator</li>
-            <li>you’ve contacted all the mediators with an office within 15 miles of where you live (or at least 3, if there are more) and can’t get an appointment for a MIAM within 15 working days</li>
-            <li>you or any of the other people in this application (the respondents) have a disability and there are no mediators within 15 miles who can offer disabled facilities</li>
-          </ul>
-        </span>
-      no_disabled_facilities_html: |
-        <span class="gv-u-heading-small">You or the other person has a disability and the mediator doesn’t have disabled facilities</span>
-        <span class="sublabel">You will need to provide:<p></p>
-          <ul class="list list-bullet">
-            <li>evidence you’ve contacted 3 mediators who all state they don’t have disabled facilities</li>
-            <li>names and contact details of the mediators, including dates of contact</li>
-          </ul>
-        </span>
-      no_appointment_html: |
-        <span class="gv-u-heading-small">You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days</span>
-        <span class="sublabel">You will need to provide:<p></p>
-          <ul class="list list-bullet">
-            <li>evidence you’ve contacted 3 mediators who all state they can’t offer an appointment within 15 days</li>
-            <li>names and contact details of the mediators, including dates of contact</li>
-          </ul>
-        </span>
-      no_mediator_nearby_html: There is no authorised family mediator with an office within 15 miles of your home
+      group_miam_access: You can’t access a mediator
+      no_disabled_facilities: You or the other person has a disability and the mediator doesn’t have disabled facilities
+      no_appointment: You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days
+      no_mediator_nearby: There is no authorised family mediator with an office within 15 miles of your home
       ## END GROUP ##
-      access_prohibited_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) can’t attend a MIAM because one of you is:</span>
-        <ul class="list list-bullet">
-          <li>in prison or any other institution</li>
-          <li>subject to bail conditions that prevent contact with each other</li>
-          <li>subject to a licence with a prohibited contact with each other</li>
-        </ul>
-        </span>
-      non_resident_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) don’t live in England and Wales</span>
-        <span class="form-hint">You don’t need to attend a MIAM if the lives of you or the other people involved are mainly based outside England or Wales. This may include working, owning property, having children in school or if family life mainly takes place outside England or Wales.</span>
-      applicant_under_age_html: |
-        <span class="gv-u-heading-small">The applicant or any of the other people in this application (the respondents) are under 18 years old</span>
-        <span class="form-hint">You don’t need to attend a MIAM if you or any other person who is a respondent in this application is under 18</span>
+      access_prohibited: You or all of the prospective respondents can’t attend a MIAM because one of you is in prison or any other institution; subject to bail conditions that prevent contact with each other; or subject to a licence with a prohibited contact with each other
+      non_resident: You or all of the prospective respondents are not habitually resident in England and Wales
+      applicant_under_age: You or the prospective respondents are under 18 years old
       ## MISC NONE ##
       misc_none: *none_of_these
 
@@ -178,6 +140,23 @@ en:
           <li>they sought admission to the refuge because of allegations of domestic violence by the prospective party referred to in paragraph (i)</li>
         </ol>
 
+    MISC_EXEMPTIONS_HINTS: &MISC_EXEMPTIONS_HINTS
+      without_notice: Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm)
+      group_miam_access: For example you live further than 15 miles from a mediator, you are not able to get an appointment for a MIAM within 15 working days or you or the other people in this application (the respondents) have a disability and the mediator doesn’t have disabled facilities
+      no_disabled_facilities_html: |
+        You will need to provide:
+        <ul class="govuk-list govuk-list--bullet govuk-hint govuk-!-margin-top-2">
+          <li>evidence you’ve contacted 3 mediators who all state they don’t have disabled facilities</li>
+          <li>names and contact details of the mediators, including dates of contact</li>
+        </ul>
+      no_appointment_html: |
+        You will need to provide:
+        <ul class="govuk-list govuk-list--bullet govuk-hint govuk-!-margin-top-2">
+          <li>evidence you’ve contacted 3 mediators who all state they can’t offer an appointment within 15 days</li>
+          <li>names and contact details of the mediators, including dates of contact</li>
+        </ul>
+      non_resident: This may include working, owning property, having children in school or if family life mainly takes place outside England or Wales
+
   helpers:
     label:
       steps_miam_exemptions_domestic_form:
@@ -195,7 +174,11 @@ en:
         adr_options:
           <<: *ADR_EXEMPTIONS
       steps_miam_exemptions_misc_form:
-        <<: *MISC_EXEMPTIONS
+        misc_options:
+          <<: *MISC_EXEMPTIONS
+        exemptions_collection_options:
+          <<: *MISC_EXEMPTIONS
+
     hint:
       steps_miam_exemptions_domestic_form:
         domestic: *select_all_that_apply_or_none
@@ -209,6 +192,12 @@ en:
         urgency: *select_all_that_apply_or_none
       steps_miam_exemptions_adr_form:
         adr: *select_all_that_apply_or_none
+      steps_miam_exemptions_misc_form:
+        misc: *select_all_that_apply_or_none
+        misc_options:
+          <<: *MISC_EXEMPTIONS_HINTS
+        exemptions_collection_options:
+          <<: *MISC_EXEMPTIONS_HINTS
 
   playback:
     exemptions_claimed:
