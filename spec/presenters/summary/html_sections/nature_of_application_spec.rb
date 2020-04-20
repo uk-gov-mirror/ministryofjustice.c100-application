@@ -46,7 +46,7 @@ module Summary
         expect(answers[0].value).to eq(
           ['child_arrangements_home', 'child_arrangements_time']
         )
-        expect(answers[0].change_path).to eq('/steps/petition/orders#steps_petition_orders_form_group_child_arrangements_home')
+        expect(answers[0].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-child-arrangements-home-field')
 
         expect(answers[1]).to be_an_instance_of(MultiAnswer)
         expect(answers[1].question).to eq(:prohibited_steps_orders)
@@ -57,7 +57,7 @@ module Summary
             'prohibited_steps_moving'
           ]
         )
-        expect(answers[1].change_path).to eq('/steps/petition/orders#steps_petition_orders_form_group_prohibited_steps')
+        expect(answers[1].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-group-prohibited-steps-field')
 
         expect(answers[2]).to be_an_instance_of(MultiAnswer)
         expect(answers[2].question).to eq(:specific_issues_orders)
@@ -66,12 +66,12 @@ module Summary
           'specific_issues_religion',
           'specific_issues_names'
         ])
-        expect(answers[2].change_path).to eq('/steps/petition/orders#steps_petition_orders_form_group_specific_issues')
+        expect(answers[2].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-group-specific-issues-field')
 
         expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[3].question).to eq(:other_issue_details)
         expect(answers[3].value).to eq('orders detail')
-        expect(answers[3].change_path).to eq('/steps/petition/orders#steps_petition_orders_form_other_issue')
+        expect(answers[3].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-other-issue-field')
 
         expect(answers[4]).to be_an_instance_of(AnswersGroup)
         expect(answers[4].name).to eq(:protection_orders)

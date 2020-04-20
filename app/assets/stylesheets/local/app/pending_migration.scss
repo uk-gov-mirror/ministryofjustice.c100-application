@@ -6,23 +6,6 @@
 // and once we have completed the migration we can get back to these and
 // refactor/replace with standard styling or remove the ones not needed.
 //
-#new_steps_alternatives_court_form {
-  margin-top: 6rem;
-}
-
-#new_steps_petition_orders_form > .form-group {
-  margin-bottom: 0;
-  & > fieldset {
-    & > .multiple-choice {
-      min-height: 6rem;
-    }
-    & > .panel {
-      margin-top: -2rem;
-      margin-bottom: 3rem;
-    }
-  }
-}
-
 .dont-know {
   margin-top: -5px;
   @media (min-width: 641px) {

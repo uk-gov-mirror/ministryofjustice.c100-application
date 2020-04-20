@@ -8,6 +8,12 @@ module Steps
       def update
         update_and_advance(OrdersForm, as: :orders)
       end
+
+      private
+
+      def additional_permitted_params
+        [orders: [], orders_collection: []]
+      end
     end
   end
 end
