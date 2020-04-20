@@ -1,74 +1,103 @@
 <% title 'Going to court' %>
+<% step_header %>
 
-<div class="grid-row gv-o-grid-row">
-  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <div class="grid_content_header">
-      <h1 class="heading-xlarge gv-u-heading-xxlarge">Going to court</h1>
+    <h1 class="govuk-heading-xl">Going to court</h1>
+
+    <p class="govuk-body">
+      Before you continue with your application you should consider what the court process might involve and whether you need to go.
+    </p>
+
+    <div class="govuk-inset-text">
+      It is often better to agree arrangements for the children outside of court, unless you have safety concerns.
     </div>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>Before you continue with your application you should consider what the court process might involve and whether you need to go.</p>
-      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-        <p>It is often better to agree arrangements for the children outside of court, unless you have safety concerns.</p>
-      </div>
-       <h2 class="gv-u-heading-xlarge">What happens at court</h2>
-      <p>A judge must, by law, put the children first. The court will decide on what it thinks is best for the children. If you apply to court you must be prepared to follow the court’s decision, even if you don’t agree with it.</p>
-      <p>The court’s decision will be set out in a ‘court order’ which you must stick to.</p>
-      <p><a href="https://helpwithchildarrangements.service.justice.gov.uk/going-to-court" rel="external" target="_blank">Find
-        out more about going to court </a></p>
-       <h2 class="gv-u-heading-xlarge">Changing or enforcing an order</h2>
-      <p>A court order is not flexible. You’ll need to apply to court again if your situation changes.</p>
-      <p>You or the other people involved can apply to court to enforce the order if any of you is not following the terms.</p>
-       <h2 class="gv-u-heading-xlarge">Representing yourself in court</h2>
-      <p>Most people no longer qualify for free legal help (legal aid). If you don’t qualify, or can’t afford a lawyer, you will need to learn
-        <a href="https://www.gov.uk/represent-yourself-in-court" rel="external" target="_blank">how to represent yourself in
-          court</a> before you apply.</p>
-       <h2 class="gv-u-heading-xlarge">Domestic violence or abuse and child abuse</h2>
-      <p>You might be able to get legal aid if you have evidence that you or the children have been victims of abuse.</p>
-      <p>GOV.UK has more information on <a href="https://www.gov.uk/legal-aid/domestic-abuse-or-violence" rel="external" target="_blank">legal aid and domestic violence or abuse</a>.</p>
-      <p>Find out more about <a href="https://www.refuge.org.uk/get-help-now/help-for-women/recognising-abuse/" rel="external" target="_blank">domestic violence or abuse</a> and <a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/">child abuse</a>.</p>
-    </div>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <div>
-        <div class="ProsCons">
-          <div class="Pros">
-            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
-              <span data-block-name="ProsCons__heading--pros">Pros</span>
-            </h2>
-            <ul class="ProsCons__list ProsCons__list--pros">
-              <li class="ProsCons__item ProsCons__item--pros">legally binding outcome</li>
-              <li class="ProsCons__item ProsCons__item--pros">a decision is made in the best interests of the children</li>
-            </ul>
-          </div>
+    <h2 class="govuk-heading-l">What happens at court</h2>
+    <p class="govuk-body">
+      A judge must, by law, put the children first.
+      The court will decide on what it thinks is best for the children.
+      If you apply to court you must be prepared to follow the court’s decision, even if you don’t agree with it.
+    </p>
 
-          <div class="Cons">
-            <h2 class="ProsCons__heading ProsCons__heading--cons heading-small gv-u-heading-small" aria-label="Cons of ">
-              <span data-block-name="ProsCons__heading--cons">Cons</span>
-            </h2>
-            <ul class="ProsCons__list ProsCons__list--cons">
-              <li class="ProsCons__item ProsCons__item--cons">can be expensive</li>
-              <li class="ProsCons__item ProsCons__item--cons">court process can take a long time</li>
-              <li class="ProsCons__item ProsCons__item--cons">you may not feel in a control - a judge makes the
-                decision
-              </li>
-              <li class="ProsCons__item ProsCons__item--cons">can be more stressful for you and the children</li>
-              <li class="ProsCons__item ProsCons__item--cons">may increase conflict between you and the other person
-              </li>
-            </ul>
-          </div>
-        </div>
+    <p class="govuk-body">
+      The court’s decision will be set out in a ‘court order’ which you must stick to.
+    </p>
 
-        <%= step_form @form_object do |f| %>
-          <%= f.single_check_box :court_acknowledgement, class: 'util_mt-large' %>
-          <%= f.continue_button %>
-        <% end %>
-      </div>
-    </div>
+    <p class="govuk-body">
+      <a href="https://helpwithchildarrangements.service.justice.gov.uk/going-to-court" class="govuk-link" rel="external" target="_blank">
+        Find out more about going to court</a>
+    </p>
+
+    <h2 class="govuk-heading-l">Changing or enforcing an order</h2>
+    <p class="govuk-body">
+      A court order is not flexible.
+      You’ll need to apply to court again if your situation changes.
+    </p>
+
+    <p class="govuk-body">
+      You or the other people involved can apply to court
+      to enforce the order if any of you is not following the terms.
+    </p>
+
+    <h2 class="govuk-heading-l">Representing yourself in court</h2>
+    <p class="govuk-body">
+      Most people no longer qualify for free legal help (legal aid).
+      If you don’t qualify, or can’t afford a lawyer, you will need to learn
+      <a href="https://www.gov.uk/represent-yourself-in-court" class="govuk-link" rel="external" target="_blank">
+        how to represent yourself in court</a>
+      before you apply.
+    </p>
+
+    <h2 class="govuk-heading-l">Domestic violence or abuse and child abuse</h2>
+    <p class="govuk-body">
+      You might be able to get legal aid if you have
+      evidence that you or the children have been victims of abuse.
+    </p>
+    <p class="govuk-body">
+      GOV.UK has more information on
+      <a href="https://www.gov.uk/legal-aid/domestic-abuse-or-violence" class="govuk-link" rel="external" target="_blank">
+        legal aid and domestic violence or abuse</a>.
+    </p>
+    <p class="govuk-body">
+      Find out more about
+      <a href="https://www.refuge.org.uk/get-help-now/help-for-women/recognising-abuse/" class="govuk-link" rel="external" target="_blank">
+        domestic violence or abuse</a>
+      and
+      <a href="https://www.nspcc.org.uk/preventing-abuse/child-abuse-and-neglect/" class="govuk-link" rel="external" target="_blank">child abuse</a>.
+    </p>
+
+
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%=
+        f.govuk_check_boxes_fieldset :court_acknowledgement, legend: { tag: 'span', size: 'm' } do
+          f.govuk_check_box(:court_acknowledgement, true, multiple: false, link_errors: true)
+        end
+      %>
+
+      <%= f.continue_button %>
+    <% end %>
   </div>
 
-  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  <div class="govuk-grid-column-one-third">
+    <div class="app-sidebar-grey govuk-!-padding-3 govuk-!-margin-bottom-5">
+      <h3 class="govuk-heading-m">Pros</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>legally binding outcome</li>
+        <li>a decision is made in the best interests of the children</li>
+      </ul>
+
+      <h3 class="govuk-heading-m">Cons</h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>can be expensive</li>
+        <li>court process can take a long time</li>
+        <li>you may not feel in a control - a judge makes the decision</li>
+        <li>can be more stressful for you and the children</li>
+        <li>may increase conflict between you and the other person</li>
+      </ul>
+    </div>
   </div>
 </div>

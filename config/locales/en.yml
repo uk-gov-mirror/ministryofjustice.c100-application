@@ -687,7 +687,7 @@ en:
               <li>your reasons for bringing this application to court</li>
               <li>what you want the court to decide (what outcome you want)</li>
               <li>why the other person disagrees</li>
-              <li>any previous <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
+              <li>any previous <a href="https://www.cafcass.gov.uk/grown-ups/parents-and-carers/divorce-and-separation/parenting-plan/" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
       payment:
@@ -976,14 +976,6 @@ en:
         orders_html: ""
         orders_prohibited_steps_html: ""
         orders_specific_issues_html: ""
-      steps_alternatives_negotiation_tools_form:
-        alternative_negotiation_tools: Have you tried any negotiation tools or services?
-      steps_alternatives_mediation_form:
-        alternative_mediation: Have you tried professional mediation?
-      steps_alternatives_lawyer_negotiation_form:
-        alternative_lawyer_negotiation: Have you tried lawyer negotiation?
-      steps_alternatives_collaborative_law_form:
-        alternative_collaborative_law: Have you tried collaborative law?
       steps_applicant_personal_details_form:
         has_previous_name: Have you changed your name?
         gender: Sex
@@ -1014,6 +1006,22 @@ en:
         declaration_signee_capacity_html: ""
 
     label:
+      steps_alternatives_court_form:
+        court_acknowledgement_options:
+          'true': I understand what’s involved if I decide to go to court
+      steps_alternatives_collaborative_law_form:
+        alternative_collaborative_law_options:
+          <<: *YESNO
+      steps_alternatives_lawyer_negotiation_form:
+        alternative_lawyer_negotiation_options:
+          <<: *YESNO
+      steps_alternatives_mediation_form:
+        alternative_mediation_options:
+          <<: *YESNO
+      steps_alternatives_negotiation_tools_form:
+        alternative_negotiation_tools_options:
+          <<: *YESNO
+
       # Screener steps
       steps_screener_postcode_form:
         children_postcodes: Postcode
@@ -1231,8 +1239,6 @@ en:
         declaration_signee_capacity:
           applicant: I am the applicant and I believe that the facts stated in this application are true.
           representative: I am the solicitor. The applicant believes that the facts stated in this application are true and I have been given the authority to make this declaration.
-      steps_alternatives_court_form:
-        court_acknowledgement: I understand what’s involved if I decide to go to court
       steps_miam_acknowledgement_form:
         miam_acknowledgement_options:
           'true': I understand that I have to attend a MIAM or provide a valid reason for not attending.
@@ -1463,6 +1469,16 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_alternatives_court_form:
+        court_acknowledgement: Going to court
+      steps_alternatives_collaborative_law_form:
+        alternative_collaborative_law: Have you tried collaborative law?
+      steps_alternatives_lawyer_negotiation_form:
+        alternative_lawyer_negotiation: Have you tried lawyer negotiation?
+      steps_alternatives_mediation_form:
+        alternative_mediation: Have you tried professional mediation?
+      steps_alternatives_negotiation_tools_form:
+        alternative_negotiation_tools: Have you tried any negotiation tools or services?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
