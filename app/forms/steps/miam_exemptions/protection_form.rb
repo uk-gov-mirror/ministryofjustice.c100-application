@@ -1,7 +1,7 @@
 module Steps
   module MiamExemptions
     class ProtectionForm < BaseForm
-      include MiamExemptionsCheckBoxesForm
+      include MiamExemptionsForm
       setup_attributes_for ProtectionExemptions, attribute_name: :protection
     end
   end
