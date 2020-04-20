@@ -816,40 +816,26 @@ en:
           page_title: Previous valid reason or non-court resolution attendance
           heading: Confirming that you’ve previously been to a MIAM or had a valid reason for not attending one
           section: *miam_exemptions
-          or: or
       misc:
         edit:
           page_title: Other valid reasons for not attending
           heading: Confirming other valid reasons for not attending
           section: *miam_exemptions
-          or: or
       reasons_playback:
         show:
           page_title: You don’t have to attend a MIAM
           heading: You don’t have to attend a MIAM
-          lead_text: "You’ve said you have a valid reason for not attending a MIAM."
-          info_text_html: "The reasons you’ve given are:"
-          info_notice_html: |
-            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>You’ll be asked to provide more information about your circumstances at the first court hearing.
-              Where evidence is needed to support an exemption, this should be taken to the hearing. If the court is
-              not satisfied that you’re exempt, you may be directed to attend a MIAM.</p>
-            </div>
+          lead_text: You’ve said you have a valid reason for not attending a MIAM.
+          you_told_us: "The reasons you’ve given are:"
+          info_notice: You’ll be asked to provide more information about your circumstances at the first court hearing. Where evidence is needed to support an exemption, this should be taken to the hearing. If the court is not satisfied that you’re exempt, you may be directed to attend a MIAM.
           continue: Continue
       safety_playback:
         show:
           page_title: You don’t have to attend a MIAM
           heading: You don’t have to attend a MIAM
           lead_text: You have safety concerns.
-          you_told_us_html: |
-            <div class=" govuk-govspeak gv-s-prose">
-              <p>You’ve told us:</p>
-            </div>
-          info_notice_html: |
-            <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-              <p>The court will review your situation and may contact you to discuss your concerns.
-              You may still need to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> if valid reasons aren’t provided.</p>
-            </div>
+          you_told_us: 'You’ve told us:'
+          info_notice: The court will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM if valid reasons aren’t provided.
           continue: Continue
     screener:
       postcode:
