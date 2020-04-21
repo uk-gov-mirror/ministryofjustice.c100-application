@@ -23,8 +23,6 @@ en:
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
-      child_arrangements_contact: Decide how and when the children are involved with each person
-      child_arrangements_access: Allow the children to spend time with you
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
       prohibited_steps_moving: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)

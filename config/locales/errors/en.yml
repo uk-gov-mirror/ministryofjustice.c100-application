@@ -312,12 +312,8 @@ en:
 
         steps/petition/orders_form:
           attributes:
-            base:
-              blank_orders: Select what you’re asking the court to decide
-            group_prohibited_steps:
-              blank_orders: Select what you’re asking the court to stop the other person doing
-            group_specific_issues:
-              blank_orders: Select what specific issue you’re asking the court to resolve
+            orders:
+              blank: Select what you’re asking the court to decide
             orders_additional_details:
               blank: *blank_details_error
         steps/children/orders_form:

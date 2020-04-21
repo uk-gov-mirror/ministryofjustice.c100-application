@@ -1,62 +1,61 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
     <% if @petition.child_arrangements_orders.any? %>
-      <p class="lede"><%=t '.lead_text', count: 0 %></p>
-      <ul class="list list-bullet">
+      <h3 class="govuk-heading-m">
+        <%=t '.petition_header', count: 0 %>
+      </h3>
+      <ul class="govuk-list govuk-list--bullet">
         <% @petition.child_arrangements_orders.each do |order| %>
-          <%= content_tag :li, t(".#{order}_html") %>
+          <%= content_tag :li, t(".orders.#{order}") %>
         <% end %>
       </ul>
-      <p><%= t('.aka.child_arrangements_order') %></p>
+      <p class="govuk-body"><%= t('.aka.child_arrangements_order') %></p>
     <% end %>
 
     <% if @petition.prohibited_steps_orders.any? %>
-      <p class="lede">
-        <%=t '.lead_text_stop', count: @petition.count_for(
+      <h3 class="govuk-heading-m">
+        <%=t '.petition_header_stop', count: @petition.count_for(
           :child_arrangements_orders
         ) %>
-      </p>
-      <ul class="list list-bullet">
+      </h3>
+      <ul class="govuk-list govuk-list--bullet">
         <% @petition.prohibited_steps_orders.each do |order| %>
-          <%= content_tag :li, t(".#{order}_html") %>
+          <%= content_tag :li, t(".orders.#{order}") %>
         <% end %>
       </ul>
-      <p><%= t('.aka.prohibited_steps_order') %></p>
+      <p class="govuk-body"><%= t('.aka.prohibited_steps_order') %></p>
     <% end %>
 
     <% if @petition.specific_issues_orders.any? %>
-        <p class="lede">
-          <%=t '.lead_text_issues', count: @petition.count_for(
-            :child_arrangements_orders, :prohibited_steps_orders
-          ) %>
-        </p>
-        <ul class="list list-bullet">
-          <% @petition.specific_issues_orders.each do |order| %>
-              <%= content_tag :li, t(".#{order}_html") %>
-          <% end %>
-        </ul>
-        <p><%= t('.aka.specific_issues_order') %></p>
+      <h3 class="govuk-heading-m">
+        <%=t '.petition_header_issues', count: @petition.count_for(
+          :child_arrangements_orders, :prohibited_steps_orders
+        ) %>
+      </h3>
+      <ul class="govuk-list govuk-list--bullet">
+        <% @petition.specific_issues_orders.each do |order| %>
+            <%= content_tag :li, t(".orders.#{order}") %>
+        <% end %>
+      </ul>
+      <p class="govuk-body"><%= t('.aka.specific_issues_order') %></p>
     <% end %>
 
     <% if @petition.other_issue? %>
-      <p class="lede">
-        <%=t '.lead_text_other', count: @petition.count_for(
+      <h3 class="govuk-heading-m">
+        <%=t '.petition_header_other', count: @petition.count_for(
           :child_arrangements_orders, :prohibited_steps_orders, :specific_issues_orders
         ) %>
-      </p>
-      <div class="panel">
+      </h3>
+      <div class="govuk-inset-text">
         <%= @petition.other_issue_details %>
       </div>
     <% end %>
 
-    <div class="xform-group form-submit">
-      <%= link_to t('.continue'), @next_step_path, class: 'button', role: 'button' %>
-    </div>
+    <%= link_button t('.continue'), @next_step_path %>
   </div>
 </div>
