@@ -601,16 +601,13 @@ en:
       protection:
         edit:
           page_title: Protection orders
-          heading: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
           lead_text_html: |
-            <div class="govuk-govspeak gv-s-prose">
-              <p>This can include:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>that the person must not be violent or threaten or harass by any means (Non-Molestation Order)</li>
-                <li>preventing a person doing a particular action (Prohibited Steps Order)</li>
-                <li>making a decision about a specific issue on which you and the other person can’t decide (Specific Issue Order)</li>
-              </ul>
-            </div>
+            <p class="govuk-body govuk-!-margin-top-3">This can include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>that the person must not be violent or threaten or harass by any means (Non-Molestation Order)</li>
+              <li>preventing a person doing a particular action (Prohibited Steps Order)</li>
+              <li>making a decision about a specific issue on which you and the other person can’t decide (Specific Issue Order)</li>
+            </ul>
     abduction:
       children_have_passport:
         edit:
@@ -1253,6 +1250,8 @@ en:
         orders_additional_details: Briefly provide more details
       steps_petition_protection_form:
         protection_orders_details: Please give details
+        protection_orders_options:
+          <<: *YESNO
       steps_abduction_risk_details_form:
         risk_details: Briefly explain your concerns about abduction
         current_location: Where are the children now?
@@ -1458,16 +1457,6 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
-      steps_alternatives_court_form:
-        court_acknowledgement: Going to court
-      steps_alternatives_collaborative_law_form:
-        alternative_collaborative_law: Have you tried collaborative law?
-      steps_alternatives_lawyer_negotiation_form:
-        alternative_lawyer_negotiation: Have you tried lawyer negotiation?
-      steps_alternatives_mediation_form:
-        alternative_mediation: Have you tried professional mediation?
-      steps_alternatives_negotiation_tools_form:
-        alternative_negotiation_tools: Have you tried any negotiation tools or services?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
@@ -1547,6 +1536,22 @@ en:
         restraining_is_current: *order_current
         injunctive_is_current: *order_current
         undertaking_is_current: *order_current
+
+      # Petition steps (nature of application)
+      steps_petition_protection_form:
+        protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
+
+      # Alternatives to court steps
+      steps_alternatives_court_form:
+        court_acknowledgement: Going to court
+      steps_alternatives_collaborative_law_form:
+        alternative_collaborative_law: Have you tried collaborative law?
+      steps_alternatives_lawyer_negotiation_form:
+        alternative_lawyer_negotiation: Have you tried lawyer negotiation?
+      steps_alternatives_mediation_form:
+        alternative_mediation: Have you tried professional mediation?
+      steps_alternatives_negotiation_tools_form:
+        alternative_negotiation_tools: Have you tried any negotiation tools or services?
 
       # Attending court steps
       steps_attending_court_intermediary_form:
