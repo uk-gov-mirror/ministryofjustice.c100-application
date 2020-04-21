@@ -1,17 +1,13 @@
 <% heading = t('.heading', person_name: form_object.record.person.full_name, child_name:  form_object.record.minor.full_name) %>
 
-<h1 class="heading-xlarge gv-u-heading-xxlarge">
-  <%=  heading %>
-</h1>
-
-<%= step_form form_object do |f| %>
-  <%=
-    f.radio_button_fieldset :relation, { legend_options: { class: 'visually-hidden', text: heading } } do |fieldset|
-      fieldset.radio_input Relation::MOTHER
-      fieldset.radio_input Relation::FATHER
-      fieldset.radio_input(Relation::OTHER) { f.text_field :relation_other_value }
-    end
-  %>
+<%= step_form form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+  <%= f.govuk_radio_buttons_fieldset :relation, legend: { text: heading } do %>
+    <%= f.govuk_radio_button :relation, Relation::MOTHER, link_errors: true %>
+    <%= f.govuk_radio_button :relation, Relation::FATHER %>
+    <%= f.govuk_radio_button :relation, Relation::OTHER do %>
+      <%= f.govuk_text_field :relation_other_value, label: { size: 's'} %>
+    <% end %>
+  <% end %>
 
   <%= f.continue_button %>
 <% end %>
