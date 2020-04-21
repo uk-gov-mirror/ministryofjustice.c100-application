@@ -1,14 +1,13 @@
 <%= person.hidden_field :id %>
 
-<fieldset class="fieldset-compact">
-  <legend class="form-label-bold">
-    <%= legend %>
+<fieldset class="govuk-fieldset">
+  <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+    <span class="govuk-fieldset__heading"><%= legend %></span>
   </legend>
 
-  <%= person.text_field :first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-  <%= person.text_field :last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
+  <%= person.govuk_text_field :first_name, width: 'one-half' %>
+  <%= person.govuk_text_field :last_name, width: 'one-half' %>
 
-  <%= names_form.button t('.remove_name', legend: legend.downcase), type: :submit,
-                        class: %w(button-remove link-button),
-                        name: :remove_name, value: person.object.id %>
+  <%= person.button t('.remove_name', legend: legend.downcase), type: :submit, name: :remove_name, value: person.object.id,
+                    class: %w(govuk-button govuk-button--warning), data: { module: 'govuk-button' } %>
 </fieldset>

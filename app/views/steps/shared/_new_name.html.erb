@@ -1,4 +1,8 @@
-<fieldset class="fieldset-compact">
-  <%= names_form.text_field :new_first_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-  <%= names_form.text_field :new_last_name, class: 'narrow', label_options: { class: 'form-label-normal' } %>
-</fieldset>
+<%= names_form.govuk_fieldset do %>
+  <%= names_form.govuk_text_field :new_first_name, width: 'one-half' %>
+  <%= names_form.govuk_text_field :new_last_name, width: 'one-half' %>
+
+  <%= names_form.button button_text, type: :submit, value: :add_another_name,
+                        class: %w(govuk-button govuk-button--secondary govuk-!-margin-bottom-8),
+                        data: { module: 'govuk-button' } %>
+<% end %>
