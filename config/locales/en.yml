@@ -1167,7 +1167,7 @@ en:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
       steps_shared_relationship_form:
         relation_other_value: Please specify
-        relation:
+        relation_options:
           <<: *RELATIONS
       steps_application_court_proceedings_form:
         children_names: Names of children involved
