@@ -57,6 +57,12 @@ div.sentry-error-embed-wrapper p.powered-by {
   }
 }
 
+.app-fieldset--compact {
+  .govuk-form-group {
+    margin-bottom: 0.8em;
+  }
+}
+
 @import 'app/developer_tools';
 @import 'app/backoffice';
 @import 'app/pending_migration';

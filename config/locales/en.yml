@@ -144,8 +144,8 @@ en:
           page_title: Applicant names
           heading: Enter the applicant’s name
           body_info_html: |
-            You and anyone else making this application are known as the applicants.<p></p>
-            The other people who will receive this application are known as the respondents. We will ask for their details later.
+            <p>You and anyone else making this application are known as the applicants.</p>
+            <p>The other people who will receive this application are known as the respondents. We will ask for their details later.</p>
           record_index: "Applicant %{index}"
           btn_add_another: Add another applicant
       personal_details:
