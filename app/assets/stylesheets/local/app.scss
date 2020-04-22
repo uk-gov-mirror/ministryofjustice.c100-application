@@ -63,6 +63,12 @@ div.sentry-error-embed-wrapper p.powered-by {
   }
 }
 
+.app-fieldset--compact-first-group {
+  div.govuk-form-group:first-of-type {
+    margin-bottom: 0.4em;
+  }
+}
+
 @import 'app/developer_tools';
 @import 'app/backoffice';
 @import 'app/pending_migration';

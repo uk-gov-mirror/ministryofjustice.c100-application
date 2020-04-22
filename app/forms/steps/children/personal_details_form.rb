@@ -1,17 +1,13 @@
 module Steps
   module Children
     class PersonalDetailsForm < BaseForm
-      include GovUkDateFields::ActsAsGovUkDate
-
       attribute :gender, GenderAttribute
-      attribute :dob, Date
+      attribute :dob, MultiParamDate
       attribute :dob_unknown, Boolean
       attribute :age_estimate, StrippedString
 
-      acts_as_gov_uk_date :dob
-
-      validates_inclusion_of :gender, in: Gender.values
       validates_presence_of :dob, unless: :dob_unknown?
+      validates_inclusion_of :gender, in: Gender.values
 
       validates :dob, sensible_date: true, unless: :dob_unknown?
 
