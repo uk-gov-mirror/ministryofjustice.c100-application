@@ -1,24 +1,25 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+    <h1 class="govuk-heading-xl"><%= t('.heading', name: @form_object.record.full_name) %></h1>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.text_field :address_line_1 %>
-      <%= f.text_field :address_line_2, label_options: { class: 'visually-hidden' } %>
-      <%= f.text_field :town %>
-      <%= f.text_field :country %>
-      <%= f.text_field :postcode %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_text_field :address_line_1 %>
+      <%= f.govuk_text_field :address_line_2, label: { hidden: true } %>
+      <%= f.govuk_text_field :town, width: 'one-half' %>
+      <%= f.govuk_text_field :country, width: 'one-half' %>
+      <%= f.govuk_text_field :postcode, width: 'one-third' %>
 
-      <%=
-        f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
-          fieldset.radio_input(GenericYesNo::YES)
-          fieldset.radio_input(GenericYesNo::NO) { f.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
-        end
-      %>
+      <%= f.govuk_radio_buttons_fieldset :residence_requirement_met, legend: { tag: 'span', size: 'm' } do %>
+        <%= f.govuk_radio_button :residence_requirement_met, GenericYesNo::YES, link_errors: true %>
+        <%= f.govuk_radio_button :residence_requirement_met, GenericYesNo::NO do %>
+          <%= f.govuk_text_area :residence_history %>
+        <% end %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>
