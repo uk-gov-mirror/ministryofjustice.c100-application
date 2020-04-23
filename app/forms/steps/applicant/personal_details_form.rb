@@ -6,7 +6,7 @@ module Steps
       attribute :has_previous_name, YesNo
       attribute :previous_name, StrippedString
       attribute :gender, GenderAttribute
-      attribute :dob, Date
+      attribute :dob, MultiParamDate
       attribute :birthplace, StrippedString
 
       acts_as_gov_uk_date :dob
