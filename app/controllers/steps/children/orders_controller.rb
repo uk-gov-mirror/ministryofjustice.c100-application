@@ -6,7 +6,8 @@ module Steps
       def edit
         @form_object = OrdersForm.new(
           c100_application: current_c100_application,
-          record: current_record
+          orders: current_record.child_order.try(:orders),
+          record: current_record,
         )
       end
 
@@ -22,6 +23,10 @@ module Steps
 
       def set_petition_orders
         @petition = PetitionPresenter.new(current_c100_application)
+      end
+
+      def additional_permitted_params
+        [orders: []]
       end
     end
   end

@@ -318,8 +318,8 @@ en:
               blank: *blank_details_error
         steps/children/orders_form:
           attributes:
-            base:
-              blank_orders: Select a decision
+            orders:
+              blank: Select at least a decision
         steps/petition/protection_form:
           attributes:
             protection_orders:

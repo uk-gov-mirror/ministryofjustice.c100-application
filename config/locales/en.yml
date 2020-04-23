@@ -1316,7 +1316,8 @@ en:
         <<: *PERSONAL_DETAILS_FIELDS
         age_estimate: Approximate age or year child was born
       steps_children_orders_form:
-        <<: *PETITION_ORDERS
+        orders_options:
+          <<: *PETITION_ORDERS
       steps_children_additional_details_form:
         children_known_to_authorities:
           <<: *YESNO
