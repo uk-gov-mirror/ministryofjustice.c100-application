@@ -22,7 +22,7 @@ en:
       dob:
         blank: Enter the date of birth
         invalid: Date of birth is not valid
-        future: Date of birth is in the future
+        future: Date of birth must be in the past
       gender:
         inclusion: Select the sex
       birthplace:

@@ -4,6 +4,7 @@ en:
 
   dictionary:
     dont_know: &dont_know "Don't know"
+    leave_blank_if_unknown: &leave_blank_if_unknown "Leave blank if you don’t know"
     previous_name_hint: &previous_name_hint "This should be the full legal name (including any middle names)"
     birthplace_hint: &birthplace_hint "For example, town or city"
     middle_names_hint: &middle_names_hint "Include all middle names here"
@@ -71,11 +72,19 @@ en:
       has_previous_name:
         <<: *YESNO
       previous_name: Enter their previous name
+      # old version (to be removed once all type of people are migrated)
+      dob_unknown: I don’t know their date of birth
       gender:
         female: Female
         male: Male
         unspecified: Unspecified
-      dob_unknown: I don't know their date of birth
+      # new version
+      dob_unknown_options:
+        'true': I don’t know their date of birth
+      gender_options:
+        female: Female
+        male: Male
+        unspecified: Unspecified
       age_estimate: Approximate age or year born
       birthplace: Place of birth
 
@@ -1356,8 +1365,8 @@ en:
         miam_certification_date: For example, 31 3 2020
       steps_application_court_proceedings_form:
         proceedings_date: Add approximate date if unsure
-        case_number: Leave blank if you don’t know
-        cafcass_details: Leave blank if you don’t know
+        case_number: *leave_blank_if_unknown
+        cafcass_details: *leave_blank_if_unknown
         order_types: For example, an Emergency protection order, Supervision order, Care order or any orders related to child abduction
         previous_details: Try and include as many details as possible, for example case number, date and name of court
       steps_application_urgent_hearing_details_form:
@@ -1418,6 +1427,8 @@ en:
       steps_children_additional_details_form:
         children_protection_plan_html: |
           A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
+      steps_children_personal_details_form:
+        dob: For example, 31 3 2016
       steps_children_residence_form:
         person_ids_html: *select_all_that_apply
       steps_children_orders_form:
@@ -1443,7 +1454,7 @@ en:
         injunctive_case_number: *order_case_number_hint
         undertaking_case_number: *order_case_number_hint
       steps_miam_certification_details_form:
-        miam_certification_sole_trader_name: Leave blank if you don’t know
+        miam_certification_sole_trader_name: *leave_blank_if_unknown
       steps_solicitor_personal_details_form:
         reference: This is the reference for this case
       steps_solicitor_contact_details_form:
@@ -1552,6 +1563,12 @@ en:
         alternative_mediation: Have you tried professional mediation?
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
+
+      # Children steps
+      steps_children_personal_details_form:
+        dob: Date of birth
+        dob_unknown: Date of birth unknown
+        gender: Sex
 
       # Attending court steps
       steps_attending_court_intermediary_form:
