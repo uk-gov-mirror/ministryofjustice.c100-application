@@ -1,18 +1,16 @@
 <% title t('.page_title') %>
 <% heading = t(".heading", count: current_c100_application.applicants.count) %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      <%= heading %>
-    </h1>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :has_solicitor, GenericYesNo.values, :value, nil, legend: { text: heading } do %>
+        <p class="govuk-body"><%= t('.lead_text') %></p>
+      <% end %>
 
-    <p class="govuk-govspeak gv-s-prose"><%=t '.lead_text' %></p>
-
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :has_solicitor, inline: true, legend_options: { class: 'visually-hidden', text: heading }, choices: GenericYesNo.values %>
       <%= f.continue_button %>
     <% end %>
   </div>

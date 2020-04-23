@@ -1300,6 +1300,9 @@ en:
         residence_history: Provide details and dates of all previous addresses for the last 5 years
         residence_requirement_met_options:
           <<: *YESNO
+      steps_applicant_has_solicitor_form:
+        has_solicitor_options:
+          <<: *YESNO
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_contact_details_form:
