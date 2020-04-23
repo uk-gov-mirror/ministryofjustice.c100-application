@@ -992,8 +992,6 @@ en:
       steps_applicant_personal_details_form:
         has_previous_name: Have you changed your name?
         gender: Sex
-      steps_applicant_contact_details_form:
-        voicemail_consent: Can the court leave you a voicemail?
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
@@ -1294,7 +1292,7 @@ en:
         previous_name: Enter your previous name
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
-        voicemail_consent:
+        voicemail_consent_options:
           'yes': Yes, the court can leave me a voicemail
           'no': No, the court cannot leave me a voicemail
       steps_applicant_address_details_form:
@@ -1479,6 +1477,8 @@ en:
     legend:
       steps_applicant_address_details_form:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
