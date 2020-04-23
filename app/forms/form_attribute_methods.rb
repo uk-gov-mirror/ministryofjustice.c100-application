@@ -19,12 +19,6 @@ module FormAttributeMethods
     def attributes_map
       self.class.attributes_map(self)
     end
-
-    # Returns an array of attributes with a `true` value (this is meant to
-    # be used to return an array of selected checkboxes, for example).
-    def selected_options
-      attributes_map.select { |_name, selected| selected.is_a?(TrueClass) }.keys
-    end
   end
 
   module ClassMethods
