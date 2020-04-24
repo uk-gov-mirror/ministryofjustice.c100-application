@@ -112,6 +112,10 @@ en:
       country: Country
       postcode: Postcode
       address_unknown: I don’t know where they currently live
+      residence_requirement_met:
+        <<: *YESNO
+      residence_requirement_met_options:
+        <<: *YESNO
 
     # Fields shared in all the split first/last name forms
     NAMES_FORM_FIELDS: &NAMES_FORM_FIELDS
@@ -1298,10 +1302,6 @@ en:
       steps_applicant_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
-        residence_requirement_met:
-          <<: *YESNO
-        residence_requirement_met_options:
-          <<: *YESNO
       steps_applicant_has_solicitor_form:
         has_solicitor_options:
           <<: *YESNO
