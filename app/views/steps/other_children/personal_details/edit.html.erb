@@ -1,28 +1,4 @@
 <% title t('.page_title') %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      <%=t '.heading', name: @form_object.record.full_name %>
-    </h1>
-
-    <%= step_form @form_object do |f| %>
-      <%= f.gov_uk_date_field :dob,
-        placeholders: true,
-        legend_text: t('shared.form_elements.dob'),
-        form_hint_text: t('shared.form_elements.dob_child_hint') %>
-
-      <%=
-        f.check_box_fieldset :dob_unknown, [:dob_unknown] do |fieldset|
-          fieldset.check_box_input(:dob_unknown) { f.text_field :age_estimate }
-        end
-      %>
-
-      <%= f.radio_button_fieldset :gender, choices: Gender.values %>
-
-      <%= f.continue_button %>
-    <% end %>
-  </div>
-</div>
+<%= render partial: 'steps/shared/children_personal_details',
+           locals: { form_object: @form_object } %>
