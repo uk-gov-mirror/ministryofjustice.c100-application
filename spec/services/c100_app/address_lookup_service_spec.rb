@@ -143,4 +143,26 @@ RSpec.describe C100App::AddressLookupService do
       end
     end
   end
+
+  describe '.results_select_option' do
+    subject { described_class.results_select_option(results) }
+
+    context 'when there are no results' do
+      let(:results) { [] }
+      it { expect(subject.address_lines).to eq('No addresses found') }
+      it { expect(subject.tokenized_value).to be_nil }
+    end
+
+    context 'when there is 1 result' do
+      let(:results) { ['result'] }
+      it { expect(subject.address_lines).to eq('1 address found') }
+      it { expect(subject.tokenized_value).to be_nil }
+    end
+
+    context 'when there are more than 1 result' do
+      let(:results) { %w(result1 result2) }
+      it { expect(subject.address_lines).to eq('2 addresses found') }
+      it { expect(subject.tokenized_value).to be_nil }
+    end
+  end
 end
