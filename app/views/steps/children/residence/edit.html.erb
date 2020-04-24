@@ -1,17 +1,13 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<% heading = t '.heading', name: @form_object.record.child.full_name %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">
-      <%= heading %>
-    </h1>
-
-    <%= step_form @form_object do |f| %>
-      <%= f.collection_check_boxes :person_ids, @form_object.people, :id, :full_name, legend_options: { class: 'visually-hidden', text: heading } %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_check_boxes :person_ids, @form_object.people, :id, :full_name,
+                                         legend: { text: t('.heading', name: @form_object.record.child.full_name) } %>
 
       <%= f.continue_button %>
     <% end %>

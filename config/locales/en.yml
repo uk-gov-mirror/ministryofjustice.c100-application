@@ -247,7 +247,6 @@ en:
       has_other_children:
         edit:
           page_title: Other children
-          heading: Do you or any respondents have other children who are not part of this application?
       orders:
         edit:
           page_title: Which orders apply to the child
@@ -997,9 +996,6 @@ en:
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
-      steps_children_additional_details_form:
-        children_known_to_authorities: Are any of the children known to social services?
-        children_protection_plan: Are any of the children the subject of a child protection plan?
       steps_other_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1319,13 +1315,16 @@ en:
         orders_options:
           <<: *PETITION_ORDERS
       steps_children_additional_details_form:
-        children_known_to_authorities:
+        children_known_to_authorities_options:
           <<: *YESNO
-        children_protection_plan:
+        children_protection_plan_options:
           <<: *YESNO
-        children_known_to_authorities_details: State which child and the name of the local authority and social worker (if known)
+        children_known_to_authorities_details: State which child and the name of the local authority and social worker, if known
+      steps_children_has_other_children_form:
+        has_other_children_options:
+          <<: *YESNO
 
-      # International quetions steps
+      # International questions steps
       steps_international_jurisdiction_form:
         international_jurisdiction_options:
           <<: *YESNO
@@ -1570,6 +1569,11 @@ en:
         dob: Date of birth
         dob_unknown: Date of birth unknown
         gender: Sex
+      steps_children_additional_details_form:
+        children_known_to_authorities: Are any of the children known to social services?
+        children_protection_plan: Are any of the children the subject of a child protection plan?
+      steps_children_has_other_children_form:
+        has_other_children: Do you or any respondents have other children who are not part of this application?
 
       # Attending court steps
       steps_attending_court_intermediary_form:
