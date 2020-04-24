@@ -67,6 +67,12 @@ en:
       injunctive: Other injunctive order
       undertaking: Undertaking in place of an order
 
+    # This is a compilation of all possible legends shared between all different parties
+    PERSONAL_DETAILS_LEGENDS: &PERSONAL_DETAILS_LEGENDS
+      dob: Date of birth
+      dob_unknown: Date of birth unknown
+      gender: Sex
+
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
       has_previous_name:
@@ -147,6 +153,8 @@ en:
           target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
       existing_names:
         remove_name: "Remove %{legend}"
+      children_personal_details:
+        heading: "Provide details for %{name}"
     applicant:
       names:
         edit:
@@ -239,7 +247,6 @@ en:
       personal_details:
         edit:
           page_title: Child personal details
-          heading: "Provide details for %{name}"
       additional_details:
         edit:
           page_title: Further information about the children
@@ -266,7 +273,6 @@ en:
       personal_details:
         edit:
           page_title: Other child personal details
-          heading: "Provide details for %{name}"
     other_party:
       names:
         edit:
@@ -1433,6 +1439,8 @@ en:
         person_ids_html: *select_all_that_apply
       steps_children_orders_form:
         orders_html: *select_all_that_apply
+      steps_other_children_personal_details_form:
+        dob: For example, 31 3 2016
       steps_other_party_personal_details_form:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
@@ -1566,14 +1574,16 @@ en:
 
       # Children steps
       steps_children_personal_details_form:
-        dob: Date of birth
-        dob_unknown: Date of birth unknown
-        gender: Sex
+        <<: *PERSONAL_DETAILS_LEGENDS
       steps_children_additional_details_form:
         children_known_to_authorities: Are any of the children known to social services?
         children_protection_plan: Are any of the children the subject of a child protection plan?
       steps_children_has_other_children_form:
         has_other_children: Do you or any respondents have other children who are not part of this application?
+
+      # Other children steps
+      steps_other_children_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
 
       # Attending court steps
       steps_attending_court_intermediary_form:
