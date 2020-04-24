@@ -19,6 +19,14 @@ module C100App
       last_exception.nil?
     end
 
+    def self.results_select_option(results)
+      Struct.new(:results_size, :tokenized_value) do
+        def address_lines
+          I18n.translate!(:results, count: results_size, scope: [:steps, :shared, :address_lookup])
+        end
+      end.new(results.size)
+    end
+
     private
 
     def query_params

@@ -1,28 +1,18 @@
-<% if successful_lookup %>
-
-  <p class="lede">
+<p class="govuk-body-l">
+  <% if successful_lookup %>
     Although the postcode you entered looks like it’s in the right format, no addresses were found. This can happen
     sometimes if it’s a very new or old postcode.
-  </p>
-
-<% else %>
-
-  <p class="lede">
+  <% else %>
     We’re having some trouble connecting to our postcode lookup at the moment - this could be a temporary problem, and
     it might work if you try again.
-  </p>
+  <% end %>
+</p>
 
-<% end %>
+<h3 class="govuk-heading-m">What to do now</h3>
 
-<section id="what-to-do-now" class="moj-Section moj-Section--2" data-block-name="what-to-do-now">
-  <h2 class="gv-u-heading-xlarge">What to do now</h2>
+<p class="govuk-body govuk-!-margin-bottom-6">
+  You can go back and try again, change the postcode, or continue to enter the address manually.
+</p>
 
-  <div class="Section__content govuk-govspeak gv-s-prose">
-    <p>You can go back and try again, change the postcode, or continue to enter the address manually.</p>
-  </div>
-</section>
-
-<div class="xform-group form-submit">
-  <%= link_to 'Continue', person_url_for(record, step: :address_details), class: 'button ga-pageLink', role: 'button', data: { ga_category: 'address lookup', ga_label: 'no results continue' } %>
-  <%= link_to 'Go back and try again', edit_steps_address_lookup_path(record), class: 'button button-secondary ga-pageLink', role: 'button', data: { ga_category: 'address lookup', ga_label: 'no results retry' } %>
-</div>
+<%= link_button 'Continue', person_url_for(record, step: :address_details), class: 'ga-pageLink', data: { module: 'govuk-button', ga_category: 'address lookup', ga_label: 'no results continue' } %>
+<%= link_button 'Go back and try again', edit_steps_address_lookup_path(record), class: 'govuk-button--secondary ga-pageLink', data: { module: 'govuk-button', ga_category: 'address lookup', ga_label: 'no results retry' } %>
