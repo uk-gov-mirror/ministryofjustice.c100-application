@@ -67,15 +67,7 @@
   <%= yield(:back_link) %>
 
   <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
-    <% if flash[:alert].present? %>
-      <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
-        <div class="govuk-error-summary__body">
-          <ul class="govuk-list govuk-error-summary__list">
-            <li><%= flash[:alert] %></li>
-          </ul>
-        </div>
-      </div>
-    <% end %>
+    <%= yield(:flash_alert) %>
 
     <%# TODO: to be removed once all views are migrated %>
     <%= yield(:old_error_summary) %>

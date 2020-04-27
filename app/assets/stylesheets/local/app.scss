@@ -16,6 +16,11 @@ div.sentry-error-embed-wrapper p.powered-by {
   padding: 3px;
 }
 
+.app-error-summary--alert {
+  @include govuk-typography-weight-bold;
+  color: $govuk-error-colour;
+}
+
 .app-list--lower-roman {
   @extend %govuk-list--number;
   list-style-type: lower-roman;
@@ -66,6 +71,13 @@ div.sentry-error-embed-wrapper p.powered-by {
 .app-fieldset--compact-first-group {
   div.govuk-form-group:first-of-type {
     margin-bottom: 0.4em;
+  }
+}
+
+// Used in `javascripts/modules/password-toggle.js`
+.app-js--toggle-password {
+  a {
+    @extend %govuk-link;
   }
 }
 
