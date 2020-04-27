@@ -29,7 +29,7 @@
       <%= f.govuk_radio_buttons_fieldset :behaviour_ongoing, legend: { tag: 'span', size: 'm' } do %>
         <%= f.govuk_radio_button :behaviour_ongoing, GenericYesNo::YES, link_errors: true %>
         <%= f.govuk_radio_button :behaviour_ongoing, GenericYesNo::NO do %>
-          <%= f.govuk_email_field :behaviour_stop, label: { size: 's' } %>
+          <%= f.govuk_text_field :behaviour_stop, label: { size: 's' } %>
         <% end %>
       <% end %>
 

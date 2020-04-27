@@ -20,14 +20,12 @@
                  html: { class: 'ga-submitForm', data: { ga_category: 'save and return', ga_label: 'login' } },
                  builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |f| %>
 
-      <%= f.govuk_email_field :email, name: 'user[email]', width: 'one-half', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
-      <%= f.govuk_password_field :password, name: 'user[password]', width: 'one-half', autocomplete: 'current-password', spellcheck: 'false' %>
-
-      <p class="govuk-body govuk-!-margin-bottom-5">
-        <%= link_to t('.forgot_password'), new_user_password_path, class: 'govuk-link' %>
-      </p>
+      <%= f.govuk_email_field :email, name: 'user[email]', width: 'two-thirds', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
+      <%= f.govuk_password_field :password, name: 'user[password]', width: 'two-thirds', autocomplete: 'current-password', spellcheck: 'false' %>
 
       <%= f.govuk_submit t('helpers.submit.sign_in') %>
     <% end %>
+
+    <%= link_to t('.forgot_password'), new_user_password_path, class: 'govuk-link' %>
   </div>
 </div>

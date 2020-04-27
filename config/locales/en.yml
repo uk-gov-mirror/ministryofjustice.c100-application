@@ -1358,12 +1358,12 @@ en:
         email: Email address
       user:
         email: Your email address
-        password: Choose password
+        password: Create a password
         password_confirmation: Confirm password
         current_password: Old password
       user_signin:
         email: Your email address
-        password: Enter password
+        password: Enter your password
 
     hint:
       user:
@@ -1620,8 +1620,8 @@ en:
       update: Continue
       cancel: Cancel
       save_and_come_back_later: Save and come back later
-      create_account: Save draft
-      sign_in: Sign in
+      create_account: Create account
+      sign_in: Continue
       reset_password: Reset password
       change_password: Change my password
       save_and_continue: Save and continue
@@ -1760,9 +1760,9 @@ en:
         page_title: Password updated
     passwords:
       new:
-        heading: Forgot your password
-        sign_in: Go back and sign in
-        lead_text: Enter your email address and we'll send you a link to reset your password.
+        heading: Forgot your password?
+        sign_in: Sign in to an existing account
+        lead_text: Enter your email address and we’ll send you a link to reset your password.
         account_text: Remember, if you have not signed in for %{expire_in_days} days we delete your account for security reasons.
         page_title: Forgot password
       edit:
@@ -1773,7 +1773,7 @@ en:
         lead_text: We’ve sent you an email with a link to reset your password. Please check your inbox and spam folder.
         account_purge_info: *account_purge_info
         page_title: Reset link sent
-        <<: *START_FINISH
+        continue: Continue
       reset_confirmation:
         heading: Your password has been changed
         lead_text: You have set a new password successfully.

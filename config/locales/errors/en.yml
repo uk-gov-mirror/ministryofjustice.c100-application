@@ -75,7 +75,7 @@ en:
               blank: Enter the password again
               too_short: Your password must be at least %{count} characters
               too_long: Your password must be no longer than %{count} characters
-              confirmation: The password confirmation doesn't match
+              confirmation: The password confirmation doesn’t match
             current_password:
               blank: Enter your current password
               invalid: The password is not valid

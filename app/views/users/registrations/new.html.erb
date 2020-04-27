@@ -19,8 +19,8 @@
                  html: { class: 'verify-password-form ga-submitForm', data: { ga_category: 'save and return', ga_label: 'signup' } },
                  builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |f| %>
 
-      <%= f.govuk_email_field :email, width: 'one-half', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
-      <%= f.govuk_password_field :password, width: 'one-half', autocomplete: 'new-password', spellcheck: 'false' %>
+      <%= f.govuk_email_field :email, width: 'two-thirds', autocomplete: 'email', spellcheck: 'false', autofocus: true %>
+      <%= f.govuk_password_field :password, width: 'two-thirds', autocomplete: 'new-password', spellcheck: 'false' %>
 
       <%= f.govuk_submit t('helpers.submit.create_account') %>
     <% end %>
