@@ -23,6 +23,10 @@
   <%= render partial: 'layouts/phase_banner' %>
 <% end %>
 
+<% content_for(:flash_alert) do %>
+  <%= render partial: 'layouts/flash_alert' if flash[:alert].present? %>
+<% end %>
+
 <% content_for(:content) do %>
   <%= yield %>
 <% end %>
