@@ -13,13 +13,6 @@
   }
 }
 
-[data-target="dob_unknown_panel"] {
-  margin-top: -15px;
-  @media (min-width: 641px) {
-    margin-top: -30px;
-  }
-}
-
 #court-contact-details {
   dt {
     margin-top: 15px;
@@ -55,10 +48,6 @@
 }
 
 form {
-  .app_heading {
-    margin-bottom: 3rem;
-  }
-
   &.button_to {
     padding-bottom: 0;
 
@@ -88,21 +77,8 @@ form {
   }
 }
 
-/* Tweaks */
-
 .form-submit {
   margin-top: 3rem;
-}
-
-.error {
-  margin-right: 15px;
-  border-left: 4px solid $error-colour;
-  padding-left: 10px;
-
-  @media (min-width: 641px) {
-    border-left: 5px solid $error-colour;
-    padding-left: 15px;
-  }
 }
 
 fieldset + .form-group {
@@ -118,11 +94,14 @@ fieldset + .form-group {
   }
 }
 
-.form-hint {
-  &:empty {
-    display: none
-  }
-  .form-date & {
-    margin-bottom: 0;
-  }
+.panel-border-wide {
+  padding: 16px 32px;
+  padding: 1rem 2rem;
+  border-left: solid 10px #bfc1c3;
+  margin: 16px 0 32px;
+  margin: 1rem 0 2rem;
+}
+
+.panel-border-wide > p:last-child {
+  margin-bottom: 0;
 }

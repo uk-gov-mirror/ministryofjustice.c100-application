@@ -1620,7 +1620,7 @@ en:
       update: Continue
       cancel: Cancel
       save_and_come_back_later: Save and come back later
-      create_account: Save
+      create_account: Save draft
       sign_in: Sign in
       reset_password: Reset password
       change_password: Change my password
@@ -1743,8 +1743,7 @@ en:
       new:
         heading: Save your application
         existing_account: Sign in to an existing account
-        account_warning_html: |
-          <p>Choose an email address and password so you can sign in and complete your application later.</p>
+        account_warning: Choose an email address and password so you can sign in and complete your application later.
         email_confirmation: "An email will be sent to:"
         page_title: Sign up
       save_confirmation:
