@@ -81,6 +81,21 @@ div.sentry-error-embed-wrapper p.powered-by {
   }
 }
 
+// Used in `javascripts/modules/check-email-address.js`
+.app-js--email-confirmation-panel {
+  @extend .govuk-inset-text;
+
+  margin-top: govuk-spacing(2);
+
+  p.govuk-hint {
+    margin-bottom: govuk-spacing(2);
+  }
+
+  p.govuk-body {
+    font-weight: $govuk-font-weight-bold;
+  }
+}
+
 @import 'app/developer_tools';
 @import 'app/backoffice';
 @import 'app/pending_migration';
