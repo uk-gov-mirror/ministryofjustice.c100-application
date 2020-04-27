@@ -74,6 +74,13 @@ div.sentry-error-embed-wrapper p.powered-by {
   }
 }
 
+// Used in `javascripts/modules/password-toggle.js`
+.app-js--toggle-password {
+  a {
+    @extend %govuk-link;
+  }
+}
+
 @import 'app/developer_tools';
 @import 'app/backoffice';
 @import 'app/pending_migration';

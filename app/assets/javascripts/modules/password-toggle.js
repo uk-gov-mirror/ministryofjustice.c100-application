@@ -1,12 +1,12 @@
 'use strict';
 
 moj.Modules.passwordToggle = {
-  element_class: 'js-toggleable-password',
-  link_class: 'js-toggle-password',
+  password_element: 'input[name="user[password]"]',
+  link_class: 'app-js--toggle-password',
 
   init: function() {
     var self = this,
-        $toggleablePasswords = $('.' + self.element_class);
+        $toggleablePasswords = $(self.password_element);
 
     if($toggleablePasswords.length) {
       self.injectLinks($toggleablePasswords);
@@ -25,7 +25,7 @@ moj.Modules.passwordToggle = {
         $el = $el.closest('p');
       }
       e.preventDefault();
-      $el.find('.toggle').toggleClass('js-hidden');
+      $el.find('.toggle').toggleClass('govuk-!-display-none');
       self.togglePassword($el);
     });
   },
@@ -33,12 +33,17 @@ moj.Modules.passwordToggle = {
   injectLinks: function($els) {
     var self = this;
 
-    $els.after('<p class="' + self.link_class + '"><a href="#" class="show toggle">' + moj.Modules.showPasswordText + '</a><a href="#" class="hide toggle js-hidden">' + moj.Modules.hidePasswordText + '</a></p>');
+    $els.after(
+        '<p class="' + self.link_class + '">' +
+        '<a href="#" class="show toggle">' + moj.Modules.showPasswordText + '</a>' +
+        '<a href="#" class="govuk-!-display-none hide toggle">' + moj.Modules.hidePasswordText + '</a>' +
+        '</p>'
+    );
   },
 
   togglePassword: function($link) {
     var self = this,
-        $el = $link.siblings('.' + self.element_class),
+        $el = $link.siblings(self.password_element),
         elType = $el.attr('type'),
         newType = (elType === 'password' ? 'text' : 'password');
 
