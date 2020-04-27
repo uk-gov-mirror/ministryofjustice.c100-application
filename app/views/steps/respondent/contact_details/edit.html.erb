@@ -1,19 +1,18 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
-    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-      <p><%=t '.body_info' %></p>
-    </div>
+    <div class="govuk-inset-text"><p><%=t '.body_info' %></p></div>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.email_field :email %>
-      <%= f.text_field :home_phone %>
-      <%= f.text_field :mobile_phone %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_email_field :email %>
+      <%= f.govuk_phone_field :home_phone, width: 'one-half' %>
+      <%= f.govuk_phone_field :mobile_phone, width: 'one-half' %>
 
       <%= f.continue_button %>
     <% end %>
