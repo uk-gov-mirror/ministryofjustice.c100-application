@@ -1314,6 +1314,9 @@ en:
       steps_respondent_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
+      steps_respondent_has_other_parties_form:
+        has_other_parties_options:
+          <<: *YESNO
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_other_party_personal_details_form:
