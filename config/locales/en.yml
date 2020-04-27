@@ -112,6 +112,8 @@ en:
       country: Country
       postcode: Postcode
       address_unknown: I don’t know where they currently live
+      address_unknown_options:
+        'true': I don’t know where they currently live
       residence_requirement_met:
         <<: *YESNO
       residence_requirement_met_options:
