@@ -998,10 +998,15 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_respondent_personal_details_form:
-        has_previous_name: Have they changed their name?
+      steps_applicant_personal_details_form:
+        has_previous_name: Have you changed your name?
         gender: Sex
-        dob_unknown_html: ""
+      steps_applicant_address_details_form:
+        residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
+      steps_respondent_address_details_form:
+        residence_requirement_met: Have they lived at this address for more than 5 years?
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1618,6 +1623,10 @@ en:
         international_request: Has a request for information or other assistance involving the children been made to or by another country?
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+
+      steps_respondent_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+        has_previous_name: Have they changed their name?
 
     submit:
       continue: Continue

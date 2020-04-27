@@ -1,17 +1,13 @@
 module Steps
   module Respondent
     class PersonalDetailsForm < BaseForm
-      include GovUkDateFields::ActsAsGovUkDate
-
       attribute :has_previous_name, YesNoUnknown
       attribute :previous_name, StrippedString
       attribute :gender, GenderAttribute
-      attribute :dob, Date
+      attribute :dob, MultiParamDate
       attribute :dob_unknown, Boolean
       attribute :age_estimate, StrippedString
       attribute :birthplace, StrippedString
-
-      acts_as_gov_uk_date :dob
 
       validates_inclusion_of :gender, in: Gender.values
       validates_inclusion_of :has_previous_name, in: GenericYesNoUnknown.values
