@@ -71,11 +71,14 @@ en:
     PERSONAL_DETAILS_LEGENDS: &PERSONAL_DETAILS_LEGENDS
       dob: Date of birth
       dob_unknown: Date of birth unknown
+      has_previous_name: Have you changed your name?
       gender: Sex
 
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
       has_previous_name:
+        <<: *YESNO
+      has_previous_name_options:
         <<: *YESNO
       previous_name: Enter their previous name
       # old version (to be removed once all type of people are migrated)
@@ -110,6 +113,8 @@ en:
       postcode: Postcode
       address_unknown: I don’t know where they currently live
       residence_requirement_met:
+        <<: *YESNO
+      residence_requirement_met_options:
         <<: *YESNO
 
     # Fields shared in all the split first/last name forms
@@ -991,19 +996,10 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_applicant_personal_details_form:
-        has_previous_name: Have you changed your name?
-        gender: Sex
-      steps_applicant_address_details_form:
-        residence_requirement_met: Have you lived at your current address for more than 5 years?
-      steps_applicant_contact_details_form:
-        voicemail_consent: Can the court leave you a voicemail?
       steps_respondent_personal_details_form:
         has_previous_name: Have they changed their name?
         gender: Sex
         dob_unknown_html: ""
-      steps_respondent_address_details_form:
-        residence_requirement_met: Have they lived at this address for more than 5 years?
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1300,12 +1296,15 @@ en:
         previous_name: Enter your previous name
       steps_applicant_contact_details_form:
         <<: *PERSONAL_CONTACT_FIELDS
-        voicemail_consent:
+        voicemail_consent_options:
           'yes': Yes, the court can leave me a voicemail
           'no': No, the court cannot leave me a voicemail
       steps_applicant_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Provide details and dates of all previous addresses for the last 5 years
+      steps_applicant_has_solicitor_form:
+        has_solicitor_options:
+          <<: *YESNO
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_respondent_contact_details_form:
@@ -1413,6 +1412,7 @@ en:
         has_previous_name: For example, through marriage or adoption or by deed poll. This includes first name, surname and any middle names
         previous_name: *previous_name_hint
         birthplace: *birthplace_hint
+        dob: For example, 31 3 2016
       steps_applicant_address_details_form:
         residence_history: Start with the most recent
       steps_applicant_contact_details_form:
@@ -1481,6 +1481,12 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_applicant_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+      steps_applicant_address_details_form:
+        residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
