@@ -1733,8 +1733,7 @@ en:
         heading: You have signed out
         lead_text: You can return to a saved draft using the link sent in the email.
         more_text_html: A draft expires %{expire_in_days} days after it was created.
-        sign_in: Sign in
-        new_application: Start a new application
+        continue: Continue
       save_confirmation:
         heading: Your application has been saved
         your_drafts: Go to your saved drafts
@@ -1800,8 +1799,10 @@ en:
         how_to_submit: How to submit
     shared:
       application_saved:
-        lead_text_html: A confirmation email has been sent to:<br><strong>%{email_address}</strong>
-        expire_warning_html: We will keep a draft for <strong>%{expire_in_days} days</strong>.
+        lead_text_html: |
+          A confirmation email has been sent to: <span class="govuk-!-font-weight-bold">%{email_address}</span>
+        expire_warning_html: |
+          We will keep a draft for <span class="govuk-!-font-weight-bold">%{expire_in_days} days</span>.
           Any information will be automatically deleted for your security after this time.
         return_info: You can return to continue your application at any time.
 
