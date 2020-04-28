@@ -1,11 +1,11 @@
 <% content_for(:footer_top) do %>
-  <details class="govuk-details developer-tools" data-module="govuk-details">
+  <details class="govuk-details" data-module="govuk-details">
     <summary class="govuk-details__summary">
       <span class="govuk-details__summary-text">
         Developer Tools
       </span>
     </summary>
-    <div class="govuk-details__text">
+    <div class="govuk-details__text app-util--inline-buttons">
       <% if current_c100_application %>
         <h4 class="govuk-heading-s">Current Application ID</h4>
         <p><%= current_c100_application.id %></p>

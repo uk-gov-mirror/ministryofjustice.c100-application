@@ -96,6 +96,49 @@ div.sentry-error-embed-wrapper p.powered-by {
   }
 }
 
-@import 'app/developer_tools';
+table.app-saved-drafts {
+  .govuk-button {
+    margin-top: govuk-spacing(1);
+    margin-bottom: govuk-spacing(1);
+  }
+
+  td {
+    vertical-align: middle;
+    font-weight: normal;
+  }
+
+  tr {
+    vertical-align: middle;
+
+    &.expires-today, &.expires-soon {
+      td.timeliness {
+        color: govuk-colour("red");
+
+        padding-left: 30px;
+        background: image-url('alert-red.png') no-repeat left center;
+
+        @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+          background: image-url('alert-red-2x.png') no-repeat left center;
+          background-size: 24px;
+        }
+      }
+    }
+  }
+}
+
+.app-util--inline-buttons {
+  form {
+    display: inline;
+  }
+}
+
+.app-util--no-wrap {
+  white-space: nowrap;
+}
+
+.app-util--disabled-color {
+  color: govuk-colour("mid-grey");
+}
+
 @import 'app/backoffice';
 @import 'app/pending_migration';
