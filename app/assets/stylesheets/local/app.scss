@@ -16,6 +16,22 @@ div.sentry-error-embed-wrapper p.powered-by {
   padding: 3px;
 }
 
+.app-header__logout-link {
+  // 1. Remove any button styling
+  padding: 0;
+  border: 0;
+  margin: 0;
+  outline: none;
+  box-sizing: unset;
+  background-color: transparent;
+
+  // 2. Apply header link styling
+  @include govuk-font($size: 16, $weight: bold);
+  color: govuk-colour("white");
+  white-space: nowrap;
+  cursor: pointer;
+}
+
 .app-error-summary--alert {
   @include govuk-typography-weight-bold;
   color: $govuk-error-colour;
