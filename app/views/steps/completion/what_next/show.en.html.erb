@@ -1,81 +1,63 @@
 <% title 'Send your application' %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">How to submit your application</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">How to submit your application</h1>
 
-    <div role="note" aria-label="Warning" class="notice gv-c-notice">
-      <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
-        <span class="visually-hidden gv-c-notice__icon-fallback-text">Warning</span>
-      </i>
-      <strong class="bold-small gv-c-notice__text">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
         The court will not receive your application until you complete the steps below.
       </strong>
     </div>
 
-    <!-- TODO: remove the `section` wrapper when updating this view to new design system
-         and move class `app-list--icon-steps` to the `ol` element -->
-    <section class="app-list--icon-steps">
-      <h2 class="visuallyhidden">Steps</h2>
-      <div class="govuk-govspeak gv-s-prose">
-        <ol class="list list-number">
-          <li class="util_mt-medium">
-            <h3 class="heading-medium">Download your application</h3>
-            <p>
-              This will be a PDF. If you cannot open the PDF after downloading, try using
-              <a href="https://get.adobe.com/uk/reader/" rel="external" target="_blank">Adobe Acrobat Reader</a>.
-            </p>
+    <h2 class="govuk-visually-hidden">Steps</h2>
 
-            <% unless user_signed_in? %>
-              <div class="panel panel-border-narrow">
-                <p>To avoid losing your application, you must download it now. You cannot return to a completed application.</p>
-              </div>
-            <% end %>
+    <ol class="govuk-list govuk-list--number app-list--icon-steps">
+      <li>
+        <h3 class="govuk-heading-m">Download your application</h3>
+        <%= render partial: 'steps/shared/download_pdf_copy', locals: {
+          callout: 'To avoid losing your application, you must download it now. You cannot return to a completed application.'
+        } %>
+      </li>
 
-            <p>
-              <%= link_to 'Download your PDF application',
-                          steps_completion_summary_path(format: :pdf),
-                          class: 'button ga-pageLink',
-                          data: {ga_category: 'completion', ga_label: 'download application'} %>
-            </p>
-          </li>
+      <li>
+        <h3 class="govuk-heading-m">Print your application</h3>
+        <p class="govuk-body">
+          Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
+          person, keep one copy, and return one copy to you.
+        </p>
+      </li>
 
-          <li class="util_mt-medium">
-            <h3 class="heading-medium">Print your application</h3>
-            <p>Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
-              person, keep one copy, and return one copy to you.</p>
-          </li>
+      <% if @c100_application.applicants.under_age? %>
+        <li>
+          <h3 class="govuk-heading-m">
+            Send certificate of suitability or court order appointing a litigation friend
+          </h3>
 
-          <% if current_c100_application.applicants.under_age? %>
-            <li class="util_mt-medium">
-              <h3 class="heading-medium">
-                Send certificate of suitability or court order appointing a litigation friend
-              </h3>
+          <%= render partial: 'steps/shared/under_age_section' %>
 
-              <%= render partial: 'steps/shared/under_age_section' %>
+          <p class="govuk-body">
+            Include your application reference code. The court will not be able to process your application until these documents have been received.
+          </p>
+        </li>
+      <% end %>
 
-               Include your application reference code. The court will not be able to process your application until these documents have been received.
-            </li>
-          <% end %>
+      <li>
+        <h3 class="govuk-heading-m">Post it to the court</h3>
+        <%= render partial: 'steps/shared/post_instructions', locals: {
+          c100_application: @c100_application, court: @court
+        } %>
+      </li>
 
-          <li class="util_mt-medium">
-            <h3 class="heading-medium">Post it to the court</h3>
-            <%= render partial: 'steps/shared/post_instructions', locals: {
-              c100_application: @c100_application, court: @court
-            } %>
-          </li>
-
-          <li class="util_mt-medium">
-            <h3 class="heading-medium">Pay the application fee</h3>
-            <%= render partial: 'steps/shared/payment_instructions', locals: {
-              c100_application: @c100_application
-            } %>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <hr/>
+      <li>
+        <h3 class="govuk-heading-m">Pay the application fee</h3>
+        <%= render partial: 'steps/shared/payment_instructions', locals: {
+          c100_application: @c100_application
+        } %>
+      </li>
+    </ol>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 
