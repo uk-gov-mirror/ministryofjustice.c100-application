@@ -72,8 +72,6 @@ class StepController < ApplicationController
       # TODO: to maintain backwards compatibility with old form builder gems
       # Once we've migrated everything, we can simplify this
       case attr_type
-      when 'Axiom::Types::Date'
-        %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy]
       when 'Axiom::Types::Boolean'
         [attr_name, attr_name => []]
       else
