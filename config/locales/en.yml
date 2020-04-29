@@ -1614,6 +1614,8 @@ en:
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
 
+      steps_other_party_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
         has_previous_name: Have they changed their name?
