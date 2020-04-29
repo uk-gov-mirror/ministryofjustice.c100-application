@@ -27,10 +27,6 @@ en:
       'no': 'No'
       unknown: *dont_know
 
-    START_FINISH: &START_FINISH
-      start_again: Start again
-      finish: Finish
-
     RELATIONS: &RELATIONS
       mother: Mother
       father: Father
@@ -951,45 +947,39 @@ en:
   errors:
     invalid_session:
       heading: Sorry, you'll have to start again
-      <<: *START_FINISH
       lead_text: Your session automatically ends if you don't use the service for %{session_timeout} minutes.
       more_text: We do this for your security. Any unsaved details will be deleted.
       page_title: Invalid session
     unhandled:
       heading: Sorry, something went wrong with our service
-      <<: *START_FINISH
       lead_text: To keep this service secure, any information you have entered hasn't been saved.
-      more_text: You'll need to start again.
+      more_text: You can go back and try again, or start from the homepage.
       page_title: Unexpected error
     application_not_found:
       page_title: Application not found
       heading: Sorry, this application no longer exists
       lead_text: If you copied a web address, please check it’s correct.
       more_text: "Please note: a draft application expires %{expire_in_days} days after it was created, and is automatically removed from the service."
-      <<: *START_FINISH
     application_screening:
       page_title: Application screening
       heading: You need to complete the eligibility criteria process
       lead_text: This is a new online service and you need to meet some criteria to be able to apply online.
       more_info_text: It seems you've not completed yet this process or some information is missing. You will need to start again.
-      <<: *START_FINISH
     application_completed:
       page_title: Application completed
       heading: You have already completed this application
-      lead_text: The court will not receive your application until you submit it. If you want to make changes you will need to start a new application.
       how_to_submit: How to submit your application
+      lead_text_print: The court will not receive your application until you submit it. If you want to make changes you will need to start a new application.
       lead_text_online: Your application has been submitted to the court. You cannot make any further changes.
       application_submitted: Application submitted
-      <<: *START_FINISH
     not_found:
       page_title: Page not found
       heading: Page not found
       lead_text: If you copied a web address, please check it’s correct.
       paper_form_html: |
-        <p>You can also try starting again from the homepage.</p>
-        <p>If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" rel="external" target="_blank">download and
+        <p class="govuk-body">You can also try starting again from the homepage.</p>
+        <p class="govuk-body">If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" class="govuk-link" rel="external" target="_blank">download and
         complete a C100 paper application form</a>, print it and send it by post.</p>
-      <<: *START_FINISH
 
   helpers:
     fieldset:
@@ -1663,7 +1653,8 @@ en:
       other: '%{count} days'
 
   shared:
-    <<: *START_FINISH
+    start_again: Start again
+    finish: Finish
     back_link: Back
     password_toggle:
       show_password: Show password
@@ -1816,9 +1807,9 @@ en:
     shared:
       application_saved:
         lead_text_html: |
-          A confirmation email has been sent to: <span class="govuk-!-font-weight-bold">%{email_address}</span>
+          A confirmation email has been sent to: <strong>%{email_address}</strong>
         expire_warning_html: |
-          We will keep a draft for <span class="govuk-!-font-weight-bold">%{expire_in_days} days</span>.
+          We will keep a draft for <strong>%{expire_in_days} days</strong>.
           Any information will be automatically deleted for your security after this time.
         return_info: You can return to continue your application at any time.
 
