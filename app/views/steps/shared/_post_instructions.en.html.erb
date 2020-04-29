@@ -4,6 +4,4 @@
   <p class="govuk-body">Post all 3 printed copies of your application to:</p>
 <% end %>
 
-<div class="govuk-inset-text">
-  <%= simple_format(court.full_address.join("\n")) %>
-</div>
+<%= simple_format(court.full_address.join("\n"), { class: 'govuk-inset-text' }, { wrapper_tag: :div }) %>

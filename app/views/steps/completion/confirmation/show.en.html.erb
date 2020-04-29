@@ -29,19 +29,9 @@
     <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
     <h2 class="govuk-heading-l">Download a copy of your application</h2>
-    <p class="govuk-body">
-      This will be a PDF. If you cannot open the PDF after downloading, try using
-      <a href="https://get.adobe.com/uk/reader/" class="govuk-link" rel="external" target="_blank">Adobe Acrobat Reader</a>.
-    </p>
-
-    <% unless user_signed_in? || @c100_application.receipt_email? %>
-      <div class="govuk-inset-text">
-        If you want to keep a copy, you must download it now. You cannot return to a submitted application.
-      </div>
-    <% end %>
-
-    <%= link_button 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'ga-pageLink',
-                    data: { module: 'govuk-button', ga_category: 'completion', ga_label: 'download application' } %>
+    <%= render partial: 'steps/shared/download_pdf_copy', locals: {
+      callout: 'If you want to keep a copy, you must download it now. You cannot return to a submitted application.'
+    } %>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 

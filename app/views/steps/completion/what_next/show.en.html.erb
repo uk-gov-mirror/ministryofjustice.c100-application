@@ -12,63 +12,52 @@
       </strong>
     </div>
 
-    <h2 class="visuallyhidden">Steps</h2>
-    <div class="govuk-govspeak gv-s-prose">
-      <ol class="list list-number app-list--icon-steps">
-        <li class="util_mt-medium">
-          <h3 class="govuk-heading-m">Download your application</h3>
+    <h2 class="govuk-visually-hidden">Steps</h2>
+
+    <ol class="govuk-list govuk-list--number app-list--icon-steps">
+      <li>
+        <h3 class="govuk-heading-m">Download your application</h3>
+        <%= render partial: 'steps/shared/download_pdf_copy', locals: {
+          callout: 'To avoid losing your application, you must download it now. You cannot return to a completed application.'
+        } %>
+      </li>
+
+      <li>
+        <h3 class="govuk-heading-m">Print your application</h3>
+        <p class="govuk-body">
+          Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
+          person, keep one copy, and return one copy to you.
+        </p>
+      </li>
+
+      <% if @c100_application.applicants.under_age? %>
+        <li>
+          <h3 class="govuk-heading-m">
+            Send certificate of suitability or court order appointing a litigation friend
+          </h3>
+
+          <%= render partial: 'steps/shared/under_age_section' %>
+
           <p class="govuk-body">
-            This will be a PDF. If you cannot open the PDF after downloading, try using
-            <a href="https://get.adobe.com/uk/reader/" rel="external" target="_blank">Adobe Acrobat Reader</a>.
-          </p>
-
-          <% unless user_signed_in? %>
-            <div class="govuk-inset-text">
-              To avoid losing your application, you must download it now. You cannot return to a completed application.
-            </div>
-          <% end %>
-
-          <p class="govuk-body">
-            <%= link_to 'Download your PDF application',
-                        steps_completion_summary_path(format: :pdf),
-                        class: 'button ga-pageLink',
-                        data: {ga_category: 'completion', ga_label: 'download application'} %>
+            Include your application reference code. The court will not be able to process your application until these documents have been received.
           </p>
         </li>
+      <% end %>
 
-        <li class="util_mt-medium">
-          <h3 class="govuk-heading-m">Print your application</h3>
-          <p class="govuk-body">Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
-            person, keep one copy, and return one copy to you.</p>
-        </li>
+      <li>
+        <h3 class="govuk-heading-m">Post it to the court</h3>
+        <%= render partial: 'steps/shared/post_instructions', locals: {
+          c100_application: @c100_application, court: @court
+        } %>
+      </li>
 
-        <% if current_c100_application.applicants.under_age? %>
-          <li class="util_mt-medium">
-            <h3 class="govuk-heading-m">
-              Send certificate of suitability or court order appointing a litigation friend
-            </h3>
-
-            <%= render partial: 'steps/shared/under_age_section' %>
-
-             Include your application reference code. The court will not be able to process your application until these documents have been received.
-          </li>
-        <% end %>
-
-        <li class="util_mt-medium">
-          <h3 class="govuk-heading-m">Post it to the court</h3>
-          <%= render partial: 'steps/shared/post_instructions', locals: {
-            c100_application: @c100_application, court: @court
-          } %>
-        </li>
-
-        <li class="util_mt-medium">
-          <h3 class="govuk-heading-m">Pay the application fee</h3>
-          <%= render partial: 'steps/shared/payment_instructions', locals: {
-            c100_application: @c100_application
-          } %>
-        </li>
-      </ol>
-    </div>
+      <li>
+        <h3 class="govuk-heading-m">Pay the application fee</h3>
+        <%= render partial: 'steps/shared/payment_instructions', locals: {
+          c100_application: @c100_application
+        } %>
+      </li>
+    </ol>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 
