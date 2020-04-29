@@ -4,14 +4,14 @@
 <p class="govuk-body">
   You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
   need to
-  <a href="https://www.gov.uk/find-a-legal-adviser" rel="external" target="_blank">find a legal advisor</a> if
+  <a href="https://www.gov.uk/find-a-legal-adviser" class="govuk-link" rel="external" target="_blank">find a legal advisor</a> if
   you have any issues.
 </p>
 
-<dl id="court-contact-details">
+<dl>
   <dt><strong>Email</strong></dt>
-  <dd><%= mail_to court.email, court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
+  <dd><%= mail_to court.email, court.email, class: 'ga-pageLink govuk-link', data: { ga_category: 'completion', ga_label: 'email court' } %></dd>
 
-  <dt><strong>More information</strong></dt>
-  <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), rel: 'external', target: '_blank' %></dd>
+  <dt class="govuk-!-margin-top-3"><strong>More information</strong></dt>
+  <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), class: 'govuk-link', rel: 'external', target: '_blank' %></dd>
 </dl>
