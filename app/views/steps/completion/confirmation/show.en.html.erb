@@ -1,14 +1,22 @@
 <% title 'Application submitted' %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <div class="grid_content_header govuk-box-highlight">
-      <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your application has been submitted</h1>
-      <p class="display-block util_mt-none util_mb-none">Your reference code is:</p>
-      <h3 class="heading-medium util_mt-none util_mb-medium"><%= current_c100_application.reference_code %></h3>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Your application
+        <br>
+        has been submitted
+      </h1>
+      <div class="govuk-panel__body">
+        Your reference code is:
+        <br>
+        <strong><%= current_c100_application.reference_code %></strong>
+      </div>
+
     </div>
 
-    <p class="lede gv-u-text-lede util_mt-large">
+    <p class="govuk-body-l">
       Your application has been sent to <%= @court.name %>.
 
       <% if current_c100_application.receipt_email? %>
@@ -17,12 +25,10 @@
       <% end %>
     </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <h2 class="heading-large gv-u-heading-large">Pay the application fee</h2>
-      <%= render partial: 'steps/shared/payment_instructions', locals: {
-        c100_application: @c100_application
-      } %>
-    </div>
+    <h2 class="govuk-heading-l">Pay the application fee</h2>
+    <%= render partial: 'steps/shared/payment_instructions', locals: {
+      c100_application: @c100_application
+    } %>
 
     <%= render partial: 'under_age_section' %>
 
@@ -34,7 +40,7 @@
       </p>
 
       <% unless user_signed_in? || current_c100_application.receipt_email? %>
-        <div class="panel panel-border-narrow">
+        <div class="govuk-inset-text">
           <p>If you want to keep a copy, you must download it now. You cannot return to a submitted application.</p>
         </div>
       <% end %>
@@ -46,8 +52,6 @@
                     data: {ga_category: 'completion', ga_label: 'download application'} %>
       </p>
     </div>
-
-    <hr>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 

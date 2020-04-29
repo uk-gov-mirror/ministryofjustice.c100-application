@@ -1,17 +1,17 @@
-<div class="govuk-govspeak gv-s-prose">
-  <h2 class="heading-large gv-u-heading-large">If you need help</h2>
-  <p>
-    You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
-    need to
-    <a href="https://www.gov.uk/find-a-legal-adviser" rel="external" target="_blank">find a legal advisor</a> if
-    you have any issues.
-  </p>
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-  <dl id="court-contact-details">
-    <dt><strong>Email</strong></dt>
-    <dd><%= mail_to court.email, court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
+<h2 class="govuk-heading-l">If you need help</h2>
+<p class="govuk-body">
+  You can contact the court if you need help with your application. Court staff can’t give legal advice so you’ll
+  need to
+  <a href="https://www.gov.uk/find-a-legal-adviser" rel="external" target="_blank">find a legal advisor</a> if
+  you have any issues.
+</p>
 
-    <dt><strong>More information</strong></dt>
-    <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), rel: 'external', target: '_blank' %></dd>
-  </dl>
-</div>
+<dl id="court-contact-details">
+  <dt><strong>Email</strong></dt>
+  <dd><%= mail_to court.email, court.email, class: 'ga-pageLink', data: {ga_category: 'completion', ga_label: 'email court'} %></dd>
+
+  <dt><strong>More information</strong></dt>
+  <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), rel: 'external', target: '_blank' %></dd>
+</dl>
