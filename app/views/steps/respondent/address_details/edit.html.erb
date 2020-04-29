@@ -18,7 +18,7 @@
       <%= f.govuk_text_field :country, width: 'one-half' %>
       <%= f.govuk_text_field :postcode, width: 'one-third' %>
 
-      <%= f.govuk_check_boxes_fieldset :residence_requirement_met, legend: { tag: 'span', size: 'm', hidden: true } do %>
+      <%= f.govuk_check_boxes_fieldset :address_unknown, legend: { tag: 'span', size: 'm', hidden: true } do %>
         <%= f.govuk_check_box :address_unknown, true, multiple: false %>
       <% end %>
 
