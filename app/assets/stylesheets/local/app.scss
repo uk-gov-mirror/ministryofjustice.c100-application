@@ -4,6 +4,14 @@ div.sentry-error-embed-wrapper p.powered-by {
   display: none;
 }
 
+address {
+  font-style: normal;
+}
+
+strong {
+  font-weight: $govuk-font-weight-bold;
+}
+
 // App specific custom styles follow. Always prepend `app-` prefix to make
 // it clear this is a custom style not part of the design system.
 //
