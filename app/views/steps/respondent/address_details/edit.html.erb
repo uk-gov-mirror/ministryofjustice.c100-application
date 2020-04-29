@@ -1,32 +1,34 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
-    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-      <p><%=t '.body_info' %></p>
+    <div class="govuk-inset-text">
+      <%=t '.body_info' %>
     </div>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.text_field :address_line_1 %>
-      <%= f.text_field :address_line_2, label_options: { class: 'visually-hidden' } %>
-      <%= f.text_field :town %>
-      <%= f.text_field :country %>
-      <%= f.text_field :postcode %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_text_field :address_line_1 %>
+      <%= f.govuk_text_field :address_line_2, label: { hidden: true } %>
+      <%= f.govuk_text_field :town, width: 'one-half' %>
+      <%= f.govuk_text_field :country, width: 'one-half' %>
+      <%= f.govuk_text_field :postcode, width: 'one-third' %>
 
-      <%= f.single_check_box :address_unknown, class: 'util_mb-large dont-know' %>
+      <%= f.govuk_check_boxes_fieldset :residence_requirement_met, legend: { tag: 'span', size: 'm', hidden: true } do %>
+        <%= f.govuk_check_box :address_unknown, true, multiple: false %>
+      <% end %>
 
-      <%=
-        f.radio_button_fieldset :residence_requirement_met, inline: true do |fieldset|
-          fieldset.radio_input GenericYesNoUnknown::YES
-          fieldset.radio_input GenericYesNoUnknown::NO, panel_id: :residence_history_panel
-          fieldset.radio_input GenericYesNoUnknown::UNKNOWN
-          fieldset.revealing_panel(:residence_history_panel) { |panel| panel.text_area :residence_history, size: '40x4', class: 'form-control-3-4' }
-        end
-      %>
+      <%= f.govuk_radio_buttons_fieldset :residence_requirement_met, legend: { tag: 'span', size: 'm' } do %>
+        <%= f.govuk_radio_button :residence_requirement_met, GenericYesNo::YES, link_errors: true %>
+        <%= f.govuk_radio_button :residence_requirement_met, GenericYesNo::NO do %>
+          <%= f.govuk_text_area :residence_history %>
+        <% end %>
+        <%= f.govuk_radio_button :residence_requirement_met, GenericYesNoUnknown::UNKNOWN %>
+      <% end %>
       <%= f.continue_button %>
     <% end %>
   </div>

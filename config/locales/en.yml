@@ -112,6 +112,8 @@ en:
       country: Country
       postcode: Postcode
       address_unknown: I don’t know where they currently live
+      address_unknown_options:
+        'true': I don’t know where they currently live
       residence_requirement_met:
         <<: *YESNO
       residence_requirement_met_options:
@@ -232,7 +234,7 @@ en:
           page_title: Other parties who should know about the application
           heading: Is there anyone else who should know about your application?
           info_html: |
-            <p>For example, you should tell everyone who:</p>
+            <p class="govuk-body">For example, you should tell everyone who:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as foster care or a children's home)</li>
               <li>is currently involved in another court case or named in a current court order that concerns the children and is relevant to this application</li>
@@ -996,10 +998,15 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_respondent_personal_details_form:
-        has_previous_name: Have they changed their name?
+      steps_applicant_personal_details_form:
+        has_previous_name: Have you changed your name?
         gender: Sex
-        dob_unknown_html: ""
+      steps_applicant_address_details_form:
+        residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
+      steps_respondent_address_details_form:
+        residence_requirement_met: Have they lived at this address for more than 5 years?
       steps_children_personal_details_form:
         dob_unknown_html: ""
         gender: Sex
@@ -1312,6 +1319,9 @@ en:
       steps_respondent_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
         residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
+      steps_respondent_has_other_parties_form:
+        has_other_parties_options:
+          <<: *YESNO
       steps_other_children_personal_details_form:
         <<: *PERSONAL_DETAILS_FIELDS
       steps_other_party_personal_details_form:
@@ -1613,6 +1623,12 @@ en:
         international_request: Has a request for information or other assistance involving the children been made to or by another country?
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+
+      steps_respondent_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+        has_previous_name: Have they changed their name?
+      steps_respondent_has_other_parties_form:
+        has_other_parties: Is there anyone else who should know about your application?
 
     submit:
       continue: Continue
