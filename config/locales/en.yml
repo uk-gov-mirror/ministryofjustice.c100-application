@@ -234,7 +234,7 @@ en:
           page_title: Other parties who should know about the application
           heading: Is there anyone else who should know about your application?
           info_html: |
-            <p>For example, you should tell everyone who:</p>
+            <p class="govuk-body">For example, you should tell everyone who:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>cares for the children (but is not their parent), including social services if the children are in local authority accommodation (such as foster care or a children's home)</li>
               <li>is currently involved in another court case or named in a current court order that concerns the children and is relevant to this application</li>
@@ -1627,6 +1627,8 @@ en:
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
         has_previous_name: Have they changed their name?
+      steps_respondent_has_other_parties_form:
+        has_other_parties: Is there anyone else who should know about your application?
 
     submit:
       continue: Continue
