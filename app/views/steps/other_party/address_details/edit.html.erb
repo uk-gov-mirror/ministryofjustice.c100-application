@@ -1,19 +1,22 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading', name: @form_object.record.full_name %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading', name: @form_object.record.full_name %></h1>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.text_field :address_line_1 %>
-      <%= f.text_field :address_line_2, label_options: { class: 'visually-hidden' } %>
-      <%= f.text_field :town %>
-      <%= f.text_field :country %>
-      <%= f.text_field :postcode %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_text_field :address_line_1 %>
+      <%= f.govuk_text_field :address_line_2, label: { hidden: true } %>
+      <%= f.govuk_text_field :town, width: 'one-half' %>
+      <%= f.govuk_text_field :country, width: 'one-half' %>
+      <%= f.govuk_text_field :postcode, width: 'one-third' %>
 
-      <%= f.single_check_box :address_unknown, class: 'dont-know' %>
+      <%= f.govuk_check_boxes_fieldset :address_unknown, legend: { tag: 'span', size: 'm', hidden: true } do %>
+        <%= f.govuk_check_box :address_unknown, true, multiple: false %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>
