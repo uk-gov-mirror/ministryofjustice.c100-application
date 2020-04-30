@@ -177,8 +177,8 @@ en:
           page_title: Applicant names
           heading: Enter the applicant’s name
           body_info_html: |
-            <p>You and anyone else making this application are known as the applicants.</p>
-            <p>The other people who will receive this application are known as the respondents. We will ask for their details later.</p>
+            <p class="govuk-body">You and anyone else making this application are known as the applicants.</p>
+            <p class="govuk-body">The other people who will receive this application are known as the respondents. We will ask for their details later.</p>
           record_index: "Applicant %{index}"
           btn_add_another: Add another applicant
       personal_details:
@@ -706,18 +706,17 @@ en:
           page_title: Application details
           heading: Why are you making this application?
           info_html: |
-            <p>You should include details of any of the following (if they apply):</p>
+            <p class="govuk-body">You should include details of any of the following (if they apply):</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>your reasons for bringing this application to court</li>
               <li>what you want the court to decide (what outcome you want)</li>
               <li>why the other person disagrees</li>
-              <li>any previous <a href="https://www.cafcass.gov.uk/grown-ups/parents-and-carers/divorce-and-separation/parenting-plan/" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
+              <li>any previous <a href="https://www.cafcass.gov.uk/grown-ups/parents-and-carers/divorce-and-separation/parenting-plan/" class="govuk-link" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
           timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
       payment:
         edit:
           page_title: Payment type
-          heading: How will you pay the application fee?
           lead_text: The court fee is £215. Only the person applying to court (the applicant) or their solicitor needs to pay.
       submission:
         edit:
@@ -1215,11 +1214,11 @@ en:
           advance_court_viewing: Advance viewing of the court
           other_assistance: Other assistance or facilities
       steps_application_payment_form:
-        payment_type:
-          help_with_fees_html: '<strong>Help with fees</strong><br>You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number.'
-          solicitor_html: '<strong>Through a solicitor’s fee account</strong><br>If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’.'
-          self_payment_card_html: '<strong>I am paying myself by credit or debit card</strong><br>Court staff will contact you within 3 working days to take payment over the phone.'
-          self_payment_cheque_html: '<strong>I am paying myself by cheque or cash</strong><br>You can send a cheque or pay in person at the court.'
+        payment_type_options:
+          help_with_fees: Help with fees
+          solicitor: Through a solicitor’s fee account
+          self_payment_card: I am paying myself by credit or debit card
+          self_payment_cheque: I am paying myself by cheque or cash
         hwf_reference_number: Reference number
         solicitor_account_number: Solicitor’s fee account number
       steps_application_submission_form:
@@ -1380,6 +1379,12 @@ en:
         application_details: You do not have to give a full statement although you may be asked to provide one later.
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
+        payment_type_options:
+          help_with_fees_html: |
+            You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number
+          solicitor: If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’
+          self_payment_card: Court staff will contact you within 3 working days to take payment over the phone
+          self_payment_cheque: You can send a cheque or pay in person at the court
       steps_application_submission_form:
         receipt_email: We’ll send a copy of your application to this email address. You can also download a copy on the confirmation page.
       steps_abduction_passport_details_form:
@@ -1625,6 +1630,10 @@ en:
         international_request: Has a request for information or other assistance involving the children been made to or by another country?
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+
+      # Payment step
+      steps_application_payment_form:
+        payment_type: How will you pay the application fee?
 
     submit:
       continue: Continue

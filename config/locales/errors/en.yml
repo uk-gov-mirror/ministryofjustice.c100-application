@@ -552,7 +552,7 @@ en:
         steps/application/details_form:
           attributes:
             application_details:
-              blank: *blank_details_error
+              blank: Enter why are you making this application
         steps/application/litigation_capacity_form:
           attributes:
             reduced_litigation_capacity:
