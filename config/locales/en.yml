@@ -1169,6 +1169,8 @@ en:
 
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
+        under_age_options:
+          'true': I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
       steps_shared_relationship_form:
         relation_other_value: Please specify
         relation_options:
@@ -1482,6 +1484,8 @@ en:
         residence_requirement_met: Have you lived at your current address for more than 5 years?
       steps_applicant_contact_details_form:
         voicemail_consent: Can the court leave you a voicemail?
+      steps_shared_under_age_form:
+        under_age: Litigation friend representation
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
