@@ -666,7 +666,6 @@ en:
         edit:
           page_title: Previous proceedings
           section: Previous proceedings
-          heading: Have any of the children in this application been involved in other family court proceedings?
           lead_text: For example an emergency protection order or supervision order. Include any ongoing cases.
       court_proceedings:
         edit:
@@ -1167,6 +1166,11 @@ en:
         undertaking_length: *order_length
         undertaking_court_name: *order_court_name
 
+      # Previous proceedings
+      steps_application_previous_proceedings_form:
+        children_previous_proceedings_options:
+          <<: *YESNO
+
       steps_shared_under_age_form:
         under_age: I understand I need to be represented by a litigation friend, and that my application won’t be processed until the court receives a certificate of suitability or copy of the court order appointing a litigation friend.
         under_age_options:
@@ -1604,6 +1608,10 @@ en:
         special_arrangements: Do you or the children need specific safety arrangements at court?
       steps_attending_court_special_assistance_form:
         special_assistance: Does anyone in this application need assistance or special facilities when attending court?
+
+      # Previous proceedings
+      steps_application_previous_proceedings_form:
+        children_previous_proceedings: Have any of the children in this application been involved in other family court proceedings?
 
       # International steps
       steps_international_jurisdiction_form:
