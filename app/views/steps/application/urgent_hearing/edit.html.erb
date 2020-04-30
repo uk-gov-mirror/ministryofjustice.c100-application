@@ -1,31 +1,31 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%=t '.lead_text' %></p>
-      <%=t '.examples_html' %>
+    <p class="govuk-body"><%=t '.lead_text' %></p>
+    <%=t '.examples_html' %>
+
+
+    <div class="govuk-inset-text">
+      <%= t '.warning' %>
     </div>
 
-    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
-      <p><%= t '.warning' %></p>
-    </div>
-
-    <details>
-      <summary>
-        <span class="summary" data-ga-category="explanations" data-ga-label="urgent hearing"><%=t '.reasons_title' %></span>
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="urgent hearing"><%=t '.reasons_title' %></span>
       </summary>
-      <div class="panel panel-border-narrow">
+      <div class="govuk-details__text">
         <%=t '.reasons_content_html' %>
       </div>
     </details>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :urgent_hearing, inline: true, choices: GenericYesNo.values, legend_options: { class: 'visually-hidden', text: t('.heading') } %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :urgent_hearing, GenericYesNo.values, :value, nil, legend: { text: t('.heading'), tag: 'span', size: 's', hidden: true } %>
 
       <%= f.continue_button %>
     <% end %>

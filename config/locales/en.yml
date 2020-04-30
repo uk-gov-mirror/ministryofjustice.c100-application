@@ -762,12 +762,12 @@ en:
             </ul>
           reasons_title: Examples of when a court may consider an urgent hearing
           reasons_content_html: |
-            <p>There is:</p>
+            <p class="govuk-body">There is:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>risk to the life, liberty or physical safety of you, your family or your home</li>
               <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
             </ul>
-            <p>Any delay would cause:</p>
+            <p class="govuk-body">Any delay would cause:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>a risk of harm to the children</li>
               <li>unreasonable hardship for you</li>
@@ -1176,6 +1176,9 @@ en:
         urgent_hearing_details: Give details of why you’re asking for an urgent hearing
         urgent_hearing_when: How soon do you need an urgent hearing?
         urgent_hearing_short_notice_details: What have you done to tell each respondent of this application?
+      steps_application_urgent_hearing_form:
+        urgent_hearing_options:
+          <<: *YESNO
       steps_application_without_notice_details_form:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
