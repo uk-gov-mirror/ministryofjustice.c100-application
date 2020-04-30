@@ -9,8 +9,6 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_respondent_id)
       when :personal_details
-        after_personal_details(age_check: false)
-      when :under_age
         edit_first_child_relationships
       when :relationship
         children_relationships
