@@ -14,6 +14,9 @@ en:
         blank: Enter the last name
 
     # This is a compilation of all possible errors shared between different parties
+    # Please note some errors refer to "you" (applicant) and others to "they" (respondent, etc)
+    # To customise these, overwrite them in their corresponding locale sections
+    #
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
       has_previous_name:
         inclusion: Select if they’ve changed their name
@@ -28,11 +31,13 @@ en:
       birthplace:
         blank: Enter their place of birth
       address_line_1:
-        blank: Enter the first line of the address
+        blank: Enter the first line of the address or select if you don’t know where they live
       town:
-        blank: Enter the town or city
+        blank: Enter the town or city or select if you don’t know where they live
       country:
         blank: Enter the country
+      residence_requirement_met:
+        inclusion: Select yes if they’ve lived at the address for more than 5 years
       residence_history:
         blank: Enter details and dates of previous addresses
 
@@ -371,11 +376,21 @@ en:
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+            has_previous_name:
+              inclusion: Select if you’ve changed your name
+            previous_name:
+              blank: Enter your previous name
+            birthplace:
+              blank: Enter your place of birth
         steps/applicant/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
             residence_requirement_met:
               inclusion: Select yes if you’ve lived at the address for more than 5 years
+            address_line_1:
+              blank: Enter the first line of the address
+            town:
+              blank: Enter the town or city
         steps/applicant/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -394,12 +409,6 @@ en:
         steps/respondent/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-            residence_requirement_met:
-              inclusion: Select if they’ve lived at the address for more than 5 years
-            address_line_1:
-              blank: Enter the first line of the address or select if you don’t know where they live
-            town:
-              blank: Enter the town or city or select if you don’t know where they live
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -412,10 +421,6 @@ en:
         steps/other_party/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-            address_line_1:
-              blank: Enter the first line of the address or select if you don’t know where they live
-            town:
-              blank: Enter the town or city or select if you don’t know where they live
         steps/solicitor/personal_details_form:
           attributes:
             full_name:

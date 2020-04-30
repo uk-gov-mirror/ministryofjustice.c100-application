@@ -96,12 +96,6 @@ ol.app-list--icon-steps {
   }
 }
 
-.app-fieldset--compact-first-group {
-  div.govuk-form-group:first-of-type {
-    margin-bottom: 0.4em;
-  }
-}
-
 // Used in `javascripts/modules/password-toggle.js`
 .app-js--toggle-password {
   a {
@@ -166,6 +160,12 @@ table.app-saved-drafts {
 
 .app-util--disabled-color {
   color: govuk-colour("mid-grey");
+}
+
+.app-util--compact-form-group {
+  div.govuk-form-group {
+    margin-bottom: 0.4em;
+  }
 }
 
 @import 'app/backoffice';

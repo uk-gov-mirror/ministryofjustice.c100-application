@@ -18,12 +18,7 @@
 
       <%= f.govuk_collection_radio_buttons :gender, Gender.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
 
-      <%= f.govuk_date_field :dob, legend: { tag: 'span', size: 'm' } %>
-      <%= f.govuk_check_boxes_fieldset :dob_unknown, small: true, legend: { tag: 'span', size: 's', hidden: true } do %>
-        <%= f.govuk_check_box :dob_unknown, true, multiple: false do
-          f.govuk_text_field :age_estimate, width: 'one-half'
-        end %>
-      <% end %>
+      <%= render partial: 'steps/shared/dob_form_element', locals: { form_object: f } %>
 
       <%= f.continue_button %>
     <% end %>

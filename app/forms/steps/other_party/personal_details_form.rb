@@ -8,12 +8,12 @@ module Steps
       attribute :dob_unknown, Boolean
       attribute :age_estimate, StrippedString
 
-      validates_inclusion_of :gender, in: Gender.values
       validates_inclusion_of :has_previous_name, in: GenericYesNoUnknown.values
-
       validates_presence_of  :previous_name, if: -> { has_previous_name&.yes? }
-      validates_presence_of  :dob, unless: :dob_unknown?
 
+      validates_inclusion_of :gender, in: Gender.values
+
+      validates_presence_of  :dob, unless: :dob_unknown?
       validates :dob, sensible_date: true, unless: :dob_unknown?
 
       private
