@@ -1616,6 +1616,8 @@ en:
 
       steps_other_party_personal_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
+      steps_respondent_address_details_form:
+        address_unknown: Current address unknown
       steps_respondent_personal_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
         has_previous_name: Have they changed their name?
