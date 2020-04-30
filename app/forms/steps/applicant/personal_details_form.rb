@@ -8,10 +8,11 @@ module Steps
       attribute :birthplace, StrippedString
 
       validates_inclusion_of :has_previous_name, in: GenericYesNo.values
+      validates_presence_of  :previous_name, if: -> { has_previous_name&.yes? }
+
       validates_inclusion_of :gender, in: Gender.values
 
-      validates_presence_of :birthplace, :dob
-      validates_presence_of :previous_name, if: -> { has_previous_name&.yes? }
+      validates_presence_of :dob, :birthplace
 
       validates :dob, sensible_date: true
 

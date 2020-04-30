@@ -64,13 +64,21 @@ en:
       undertaking: Undertaking in place of an order
 
     # This is a compilation of all possible legends shared between all different parties
+    # Please note some locales refer to "you" (applicant) and others to "they" (respondent, etc)
+    # To customise these, overwrite them in their corresponding locale sections
+    #
     PERSONAL_DETAILS_LEGENDS: &PERSONAL_DETAILS_LEGENDS
+      gender: Sex
       dob: Date of birth
       dob_unknown: Date of birth unknown
-      has_previous_name: Have you changed your name?
-      gender: Sex
+      address_unknown: Current address unknown
+      has_previous_name: Have they changed their name?
+      residence_requirement_met: Have they lived at this address for more than 5 years?
 
     # This is a compilation of all possible fields shared between Applicants, Respondents and Children
+    # Please note some locales refer to "you" (applicant) and others to "they" (respondent, etc)
+    # To customise these, overwrite them in their corresponding locale sections
+    #
     PERSONAL_DETAILS_FIELDS: &PERSONAL_DETAILS_FIELDS
       has_previous_name:
         <<: *YESNO
@@ -982,27 +990,6 @@ en:
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_applicant_personal_details_form:
-        has_previous_name: Have you changed your name?
-        gender: Sex
-      steps_applicant_address_details_form:
-        residence_requirement_met: Have you lived at your current address for more than 5 years?
-      steps_applicant_contact_details_form:
-        voicemail_consent: Can the court leave you a voicemail?
-      steps_respondent_address_details_form:
-        residence_requirement_met: Have they lived at this address for more than 5 years?
-      steps_children_personal_details_form:
-        dob_unknown_html: ""
-        gender: Sex
-      steps_other_children_personal_details_form:
-        dob_unknown_html: ""
-        gender: Sex
-      steps_other_party_personal_details_form:
-        has_previous_name: Have they changed their name?
-        gender: Sex
-        dob_unknown_html: ""
-      steps_application_declaration_form:
-        declaration_signee_capacity_html: ""
 
     label:
       steps_alternatives_court_form:
@@ -1309,7 +1296,7 @@ en:
         <<: *PERSONAL_CONTACT_FIELDS
       steps_respondent_address_details_form:
         <<: *PERSONAL_ADDRESS_FIELDS
-        residence_history: Please provide details of all previous addresses for the last 5 years below (if known, including the dates and starting with the most recent)
+        residence_history: Please provide details of all previous addresses for the last 5 years below, including the dates and starting with the most recent
       steps_respondent_has_other_parties_form:
         has_other_parties_options:
           <<: *YESNO
@@ -1424,6 +1411,7 @@ en:
         birthplace: *birthplace_hint
       steps_respondent_address_details_form:
         address_line_1: Court documents will be sent here
+        residence_history: *leave_blank_if_unknown
       steps_other_party_address_details_form:
         address_line_1: Court documents may be sent here
       steps_applicant_names_split_form:
@@ -1482,14 +1470,6 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
-      steps_applicant_personal_details_form:
-        <<: *PERSONAL_DETAILS_LEGENDS
-      steps_applicant_address_details_form:
-        residence_requirement_met: Have you lived at your current address for more than 5 years?
-      steps_applicant_contact_details_form:
-        voicemail_consent: Can the court leave you a voicemail?
-      steps_shared_under_age_form:
-        under_age: Litigation friend representation
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
@@ -1586,7 +1566,7 @@ en:
       steps_alternatives_negotiation_tools_form:
         alternative_negotiation_tools: Have you tried any negotiation tools or services?
 
-      # Children steps
+      # Children
       steps_children_personal_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
       steps_children_additional_details_form:
@@ -1595,8 +1575,33 @@ en:
       steps_children_has_other_children_form:
         has_other_children: Do you or any respondents have other children who are not part of this application?
 
-      # Other children steps
+      # Other children
       steps_other_children_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+
+      # Applicant
+      steps_applicant_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+        has_previous_name: Have you changed your name?
+      steps_applicant_address_details_form:
+        residence_requirement_met: Have you lived at your current address for more than 5 years?
+      steps_applicant_contact_details_form:
+        voicemail_consent: Can the court leave you a voicemail?
+      steps_shared_under_age_form:
+        under_age: Litigation friend representation
+
+      # Respondent
+      steps_respondent_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+      steps_respondent_address_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+      steps_respondent_has_other_parties_form:
+        has_other_parties: Is there anyone else who should know about your application?
+
+      # Other party
+      steps_other_party_personal_details_form:
+        <<: *PERSONAL_DETAILS_LEGENDS
+      steps_other_party_address_details_form:
         <<: *PERSONAL_DETAILS_LEGENDS
 
       # Attending court steps
@@ -1620,16 +1625,6 @@ en:
         international_request: Has a request for information or other assistance involving the children been made to or by another country?
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
-
-      steps_other_party_personal_details_form:
-        <<: *PERSONAL_DETAILS_LEGENDS
-      steps_respondent_address_details_form:
-        address_unknown: Current address unknown
-      steps_respondent_personal_details_form:
-        <<: *PERSONAL_DETAILS_LEGENDS
-        has_previous_name: Have they changed their name?
-      steps_respondent_has_other_parties_form:
-        has_other_parties: Is there anyone else who should know about your application?
 
     submit:
       continue: Continue
