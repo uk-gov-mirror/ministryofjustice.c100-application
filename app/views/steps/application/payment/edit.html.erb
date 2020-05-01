@@ -1,22 +1,28 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_radio_buttons_fieldset :payment_type do %>
+        <p class="govuk-body-l"><%=t '.lead_text' %></p>
 
-    <p class="lede gv-u-text-lede"><%=t '.lead_text' %></p>
+        <%= f.govuk_radio_button :payment_type, PaymentType::SELF_PAYMENT_CARD, link_errors: true %>
 
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.radio_button_fieldset :payment_type, legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
-          fieldset.radio_input(PaymentType::SELF_PAYMENT_CARD)
-          fieldset.radio_input(PaymentType::SELF_PAYMENT_CHEQUE)
-          fieldset.radio_input(PaymentType::HELP_WITH_FEES) { f.text_field :hwf_reference_number, class: 'narrow' }
-          fieldset.radio_input(PaymentType::SOLICITOR) { f.text_field :solicitor_account_number, class: 'narrow' } if current_c100_application.has_solicitor?
-        end
-      %>
+        <%= f.govuk_radio_button :payment_type, PaymentType::SELF_PAYMENT_CHEQUE %>
+
+        <%= f.govuk_radio_button :payment_type, PaymentType::HELP_WITH_FEES do %>
+          <%= f.govuk_text_field :hwf_reference_number, width: 'one-half', label: { size: 's' } %>
+        <% end %>
+
+        <% if current_c100_application.has_solicitor? %>
+          <%= f.govuk_radio_button :payment_type, PaymentType::SOLICITOR do %>
+            <%= f.govuk_text_field :solicitor_account_number, width: 'one-half', label: { size: 's' } %>
+          <% end %>
+        <% end %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>
