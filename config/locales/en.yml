@@ -695,7 +695,6 @@ en:
       litigation_capacity:
         edit:
           page_title: Factors affecting taking part in court proceedings
-          heading: Are there any factors that may affect any adult in this application taking part in the court proceedings?
           lead_text: For example, they may lack the capacity to conduct legal proceedings, or suffer from a mental or physical impairment or other health problem
       litigation_capacity_details:
         edit:
@@ -1182,6 +1181,9 @@ en:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
         without_notice_impossible_details: *provide_details
+      steps_application_litigation_capacity_form:
+        reduced_litigation_capacity_options:
+          <<: *YESNO
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: Details of any adult in this application who lacks the mental capacity to conduct these court proceedings (if applicable)
         participation_other_factors_details: Details of anything else that could affect any adult in this application taking part in these court proceedings (if applicable)
@@ -1476,6 +1478,8 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_application_litigation_capacity_form:
+        reduced_litigation_capacity: Are there any factors that may affect any adult in this application taking part in the court proceedings?
       steps_application_urgent_hearing_details_form:
         urgent_hearing_short_notice: Do you need a hearing within the next 48 hours?
       # Screener steps
