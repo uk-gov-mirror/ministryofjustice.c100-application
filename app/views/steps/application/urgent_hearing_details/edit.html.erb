@@ -15,10 +15,11 @@
       </div>
 
       <%= f.govuk_radio_buttons_fieldset :urgent_hearing_short_notice, legend: { tag: 'span', size: 'm' } do %>
-        <%= f.govuk_radio_button :urgent_hearing_short_notice, GenericYesNo::YES, link_errors: true %>
-        <%= f.govuk_radio_button :urgent_hearing_short_notice, GenericYesNo::NO do%>
+        <%= f.govuk_radio_button :urgent_hearing_short_notice, GenericYesNo::YES, link_errors: true do %>
           <%= f.govuk_text_area :urgent_hearing_short_notice_details %>
         <% end %>
+
+        <%= f.govuk_radio_button :urgent_hearing_short_notice, GenericYesNo::NO %>
       <% end %>
 
       <%= f.continue_button %>
