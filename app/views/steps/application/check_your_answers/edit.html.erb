@@ -1,52 +1,55 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <%= govuk_error_summary %>
 
-<h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-<p class="lede"><%=t '.lead_text' %></p>
+    <p class="govuk-body-l"><%=t '.lead_text' %></p>
 
-<%= render @presenter.sections %>
+    <%= render @presenter.sections %>
 
-<%= render partial: 'fulfilment_summary',
-           locals: { errors: @presenter.errors } if @presenter.errors.any? %>
+    <%= render partial: 'fulfilment_errors',
+               locals: { errors: @presenter.errors } if @presenter.errors.any? %>
 
-<%= step_form @form_object,
-              html: { class: 'util_mt-large ga-submitForm' },
-              data: { ga_category: 'application completed', ga_label: 'declaration' } do |f| %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder, html: { class: 'ga-submitForm' },
+                  data: { ga_category: 'application completed', ga_label: 'declaration' } do |f| %>
 
-  <div class="declaration-box util_mt-medium">
-    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge util_mb-medium"><%=t '.declaration_heading' %></h1>
+      <div id="cya-declaration-box">
+        <h2 class="govuk-heading-l"><%=t '.declaration_heading' %></h2>
 
-    <% unless current_c100_application.has_solicitor? %>
-      <p class="lede gv-u-text-lede"><%= t '.declaration_lead_text' %></p>
-    <% end %>
+        <% unless current_c100_application.has_solicitor? %>
+          <p class="govuk-body-l"><%= t '.declaration_lead_text' %></p>
+        <% end %>
 
-    <div role="note" aria-label="Warning" class="notice gv-c-notice util_mb-medium">
-      <i class="icon icon-important gv-c-notice__icon gv-c-notice__icon--important">
-        <span class="visually-hidden gv-c-notice__icon-fallback-text"><%= t '.warning_title' %></span>
-      </i>
-      <strong class=" bold-small gv-c-notice__text">
-        <%= t '.false_information_warning' %>
-      </strong>
-    </div>
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-warning-text__assistive"><%= t '.warning_title' %></span>
+            <%= t '.false_information_warning' %>
+          </strong>
+        </div>
 
-    <%= f.text_field :declaration_signee, class: 'narrow' %>
+        <%= f.govuk_text_field :declaration_signee, width: 'one-half' %>
 
-    <% if current_c100_application.has_solicitor? %>
-      <%= f.radio_button_fieldset :declaration_signee_capacity, choices: UserType.values %>
-    <% else %>
-      <%# No need to ask the capacity if the applicant does not have a solicitor, so we default to `applicant` %>
-      <%= f.hidden_field :declaration_signee_capacity, value: UserType::APPLICANT %>
+        <% if current_c100_application.has_solicitor? %>
+          <%= f.govuk_collection_radio_buttons :declaration_signee_capacity, UserType.values, :value, nil, legend: { tag: 'span', size: 'm', hidden: true } %>
+        <% else %>
+          <%# No need to ask the capacity if the applicant does not have a solicitor, so we default to `applicant` %>
+          <%= f.hidden_field :declaration_signee_capacity, value: UserType::APPLICANT %>
+        <% end %>
+      </div>
+
+      <div class="govuk-inset-text">
+        <%=t @presenter.before_submit_warning %>
+      </div>
+
+      <%= f.continue_button(
+        continue: @presenter.submit_button_label,
+        save_and_continue: @presenter.submit_button_label
+      ) %>
     <% end %>
   </div>
-
-  <div class="panel panel-border-narrow util_mt-medium">
-    <p><%=t @presenter.before_submit_warning %></p>
-  </div>
-
-  <%= f.continue_button(
-    continue: @presenter.submit_button_label,
-    save_and_continue: @presenter.submit_button_label
-  ) %>
-<% end %>
+</div>

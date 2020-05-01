@@ -1,11 +1,16 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-<p class="lede"><%=t '.lead_text' %></p>
+    <p class="govuk-body-l"><%=t '.lead_text' %></p>
 
-<%= render @presenter.sections %>
+    <%= render @presenter.sections %>
 
-<div class="xform-group form-submit util_mt-medium">
-  <%= link_to t('.resume'), previous_step_path, class: 'button', role: 'button' %>
+    <p class="govuk-body govuk-!-margin-top-6">
+      <%= link_button t('.resume'), previous_step_path %>
+    </p>
+  </div>
 </div>
