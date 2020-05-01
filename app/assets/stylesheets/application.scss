@@ -42,6 +42,5 @@ $govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
 // Import these after the front end styles as this is custom css
 // that sometimes override some of the styles above.
 //
-@import 'local/check_answers';
 @import 'local/pdf_summary';
 @import 'local/app';

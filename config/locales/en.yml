@@ -744,11 +744,10 @@ en:
         resume:
           page_title: Resume application
           heading: Resume application
-          lead_text: Review your current progress and resume this application
+          lead_text: Review your current progress and resume this application.
           resume: Resume application
-        fulfilment_summary:
+        fulfilment_errors:
           heading: You must enter the following information before your application can be submitted
-        fulfilment_error:
           change_link: Add missing information
       urgent_hearing:
         edit:
@@ -1230,7 +1229,7 @@ en:
         receipt_email: Enter an email address if you would like to get a confirmation
       steps_application_declaration_form:
         declaration_signee: Enter your full name
-        declaration_signee_capacity:
+        declaration_signee_capacity_options:
           applicant: I am the applicant and I believe that the facts stated in this application are true.
           representative: I am the solicitor. The applicant believes that the facts stated in this application are true and I have been given the authority to make this declaration.
       steps_miam_acknowledgement_form:
@@ -1640,6 +1639,10 @@ en:
         submission_type: How would you like to submit your application to court?
       steps_application_payment_form:
         payment_type: How will you pay the application fee?
+
+      # CYA step
+      steps_application_declaration_form:
+        declaration_signee_capacity: Who is making this declaration?
 
     submit:
       continue: Continue
