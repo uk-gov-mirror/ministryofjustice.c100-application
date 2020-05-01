@@ -15,6 +15,17 @@ strong {
 // App specific custom styles follow. Always prepend `app-` prefix to make
 // it clear this is a custom style not part of the design system.
 //
+@mixin app-button-reset {
+  padding: 0;
+  margin: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  box-sizing: unset;
+  background-color: transparent;
+}
+
 .app-sidebar-grey {
   background: govuk-colour("light-grey");
 }
@@ -26,18 +37,11 @@ strong {
 
 .app-header__logout-link {
   // 1. Remove any button styling
-  padding: 0;
-  border: 0;
-  margin: 0;
-  outline: none;
-  box-sizing: unset;
-  background-color: transparent;
+  @include app-button-reset;
 
   // 2. Apply header link styling
   @include govuk-font($size: 16, $weight: bold);
-  color: govuk-colour("white");
   white-space: nowrap;
-  cursor: pointer;
 }
 
 .app-error-summary--alert {

@@ -721,7 +721,6 @@ en:
       submission:
         edit:
           page_title: How would you submit your application?
-          heading: How would you like to submit your application to court?
           lead_text: Your completed application can be sent straight to the court electronically, or you can print it and send it by post if you prefer.
       receipt_email_check:
         show:
@@ -1222,7 +1221,7 @@ en:
         hwf_reference_number: Reference number
         solicitor_account_number: Solicitor’s fee account number
       steps_application_submission_form:
-        submission_type:
+        submission_type_options:
           online: Submit electronically
           print_and_post: Print and send by post
         receipt_email: Enter an email address if you would like to get a confirmation
@@ -1631,7 +1630,9 @@ en:
       steps_international_resident_form:
         international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
 
-      # Payment step
+      # Submission and payment steps
+      steps_application_submission_form:
+        submission_type: How would you like to submit your application to court?
       steps_application_payment_form:
         payment_type: How will you pay the application fee?
 
