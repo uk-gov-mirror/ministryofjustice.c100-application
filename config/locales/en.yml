@@ -980,11 +980,6 @@ en:
         complete a C100 paper application form</a>, print it and send it by post.</p>
 
   helpers:
-    fieldset:
-      steps_application_without_notice_details_form:
-        without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
-        without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-
     label:
       steps_alternatives_court_form:
         court_acknowledgement_options:
@@ -1184,6 +1179,10 @@ en:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
         without_notice_impossible_details: *provide_details
+        without_notice_frustrate_options:
+          <<: *YESNO
+        without_notice_impossible_options:
+          <<: *YESNO
       steps_application_litigation_capacity_form:
         reduced_litigation_capacity_options:
           <<: *YESNO
@@ -1485,6 +1484,9 @@ en:
         reduced_litigation_capacity: Are there any factors that may affect any adult in this application taking part in the court proceedings?
       steps_application_without_notice_form:
         without_notice: Are you asking for a without notice hearing?
+      steps_application_without_notice_details_form:
+        without_notice_frustrate: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
+        without_notice_impossible: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
       steps_application_urgent_hearing_details_form:
         urgent_hearing_short_notice: Do you need a hearing within the next 48 hours?
       # Screener steps
