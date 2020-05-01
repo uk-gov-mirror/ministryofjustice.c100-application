@@ -762,12 +762,12 @@ en:
             </ul>
           reasons_title: Examples of when a court may consider an urgent hearing
           reasons_content_html: |
-            <p>There is:</p>
+            <p class="govuk-body">There is:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>risk to the life, liberty or physical safety of you, your family or your home</li>
               <li>significant risk that proceedings relating to the dispute will be brought in another country</li>
             </ul>
-            <p>Any delay would cause:</p>
+            <p class="govuk-body">Any delay would cause:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>a risk of harm to the children</li>
               <li>unreasonable hardship for you</li>
@@ -780,7 +780,7 @@ en:
         edit:
           page_title: Details of urgent hearing
           heading: Details of urgent hearing
-          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" rel="external" target="_blank">contact your nearest family court</a> for assistance.
+          court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" rel="external" target="_blank" class="govuk-link">contact your nearest family court</a> for assistance.
     # attending court redesign -- begin
     attending_court:
       language:
@@ -983,8 +983,6 @@ en:
 
   helpers:
     fieldset:
-      steps_application_urgent_hearing_details_form:
-        urgent_hearing_short_notice_html: Do you need a hearing within the next 48 hours?
       steps_application_without_notice_details_form:
         without_notice_frustrate_html: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
         without_notice_impossible_html: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
@@ -1176,6 +1174,11 @@ en:
         urgent_hearing_details: Give details of why you’re asking for an urgent hearing
         urgent_hearing_when: How soon do you need an urgent hearing?
         urgent_hearing_short_notice_details: What have you done to tell each respondent of this application?
+        urgent_hearing_short_notice_options:
+          <<: *YESNO
+      steps_application_urgent_hearing_form:
+        urgent_hearing_options:
+          <<: *YESNO
       steps_application_without_notice_details_form:
         without_notice_details: Give details of why you’re asking for a without notice hearing
         without_notice_frustrate_details: *provide_details
@@ -1474,6 +1477,8 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_short_notice: Do you need a hearing within the next 48 hours?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
