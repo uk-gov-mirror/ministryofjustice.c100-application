@@ -569,18 +569,15 @@ en:
       consent_order:
         edit:
           page_title: Consent order
-          heading: Do you have a written agreement you want the court to consider making legally binding?
           lead_text_html: |
-            <div class="govuk-govspeak gv-s-prose">
-              <p>If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
-              <p>This is known as a Consent Order.</p>
-              <p>You can only ask for a consent order if:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
-                <li>you are not in dispute with the other person</li>
-                <li>the court has no concerns about the safety or welfare of anyone involved</li>
-              </ul>
-            </div>
+            <p class="govuk-body-l">If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
+            <p class="govuk-body">This is known as a Consent Order.</p>
+            <p class="govuk-body">You can only ask for a consent order if:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
+              <li>you are not in dispute with the other person</li>
+              <li>the court has no concerns about the safety or welfare of anyone involved</li>
+            </ul>
           info_notice: |
             This question only applies to any new agreement. Don’t include any previous agreements or orders the court may have made.
       child_protection_cases:
@@ -1012,6 +1009,9 @@ en:
           <<: *YESNO
 
       # MIAM steps
+      steps_miam_consent_order_form:
+        consent_order_options:
+          <<: *YESNO
       steps_miam_child_protection_cases_form:
         child_protection_cases_options:
           <<: *YESNO
@@ -1480,15 +1480,6 @@ en:
         special_assistance: *one_of_the_people_needs
 
     legend:
-      steps_application_litigation_capacity_form:
-        reduced_litigation_capacity: Are there any factors that may affect any adult in this application taking part in the court proceedings?
-      steps_application_without_notice_form:
-        without_notice: Are you asking for a without notice hearing?
-      steps_application_without_notice_details_form:
-        without_notice_frustrate: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
-        without_notice_impossible: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
-      steps_application_urgent_hearing_details_form:
-        urgent_hearing_short_notice: Do you need a hearing within the next 48 hours?
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
@@ -1498,6 +1489,8 @@ en:
         email_consent: Are you willing to be contacted by email about your experience using this service?
 
       # MIAM steps
+      steps_miam_consent_order_form:
+        consent_order: Do you have a written agreement you want the court to consider making legally binding?
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       steps_miam_acknowledgement_form:
@@ -1633,9 +1626,18 @@ en:
       steps_attending_court_special_assistance_form:
         special_assistance: Does anyone in this application need assistance or special facilities when attending court?
 
-      # Previous proceedings
+      # Miscellanea final application steps
       steps_application_previous_proceedings_form:
         children_previous_proceedings: Have any of the children in this application been involved in other family court proceedings?
+      steps_application_litigation_capacity_form:
+        reduced_litigation_capacity: Are there any factors that may affect any adult in this application taking part in the court proceedings?
+      steps_application_without_notice_form:
+        without_notice: Are you asking for a without notice hearing?
+      steps_application_without_notice_details_form:
+        without_notice_frustrate: Are you asking for a without notice hearing because the other person or people may do something that would obstruct the order you are asking for if they knew about the application?
+        without_notice_impossible: Are you asking for a without notice hearing because there is literally no time to give notice of the application to the other person or people?
+      steps_application_urgent_hearing_details_form:
+        urgent_hearing_short_notice: Do you need a hearing within the next 48 hours?
 
       # International steps
       steps_international_jurisdiction_form:
