@@ -6,31 +6,6 @@
 // and once we have completed the migration we can get back to these and
 // refactor/replace with standard styling or remove the ones not needed.
 //
-.dont-know {
-  margin-top: -5px;
-  @media (min-width: 641px) {
-    margin-top: -20px;
-  }
-}
-
-.gv-c-notice .gv-c-notice__icon {
-  top: 0;
-  margin-top: 0;
-}
-
-.link-button-secondary {
-  display: inline-block;
-  margin: 2rem 0 0;
-  padding: 0;
-  font-size: 1em;
-  line-height: 1.25;
-
-  @media (min-width: 641px) {
-    margin-top: 1rem;
-    margin-left: 6rem;
-  }
-}
-
 .button-secondary {
   @media (min-width: 641px) {
     margin-left: 6rem;

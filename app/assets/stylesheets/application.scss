@@ -27,8 +27,6 @@
 @import 'elements/components';
 @import 'elements/shame';
 
-@import 'local/tables';
-@import 'local/inputs';
 @import 'local/buttons';
 @import 'local/typography';
 @import 'local/utilities';
@@ -42,5 +40,4 @@ $govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
 // Import these after the front end styles as this is custom css
 // that sometimes override some of the styles above.
 //
-@import 'local/pdf_summary';
 @import 'local/app';
