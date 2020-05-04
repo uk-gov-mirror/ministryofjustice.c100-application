@@ -1,26 +1,21 @@
 <% title 'Consent order sought' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You do not have to attend a MIAM</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">You do not have to attend a
-      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr></h1>
+    <p class="govuk-body-l">As you're applying for a consent order you do not have to attend a MIAM.</p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>As you're applying for a consent order you do not have to attend a
-        <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.</p>
-      <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-        <p>You will need to send 3 copies of your proposed agreement along with your application.</p>
-      </div>
-       <h2 class="gv-u-heading-xlarge">Changing or enforcing an order</h2>
-      <p>A court order isn’t flexible. You’ll need to apply to court again if you want to change it.</p>
-      <p>You or the other person can apply to court to enforce the order if either of you aren’t following the
-        terms.</p>
+    <div class="govuk-inset-text">
+      You will need to send 3 copies of your proposed agreement along with your application.
     </div>
 
-    <div class="xform-group form-submit">
-      <%= link_to 'Continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
-    </div>
+    <h3 class="govuk-heading-m">Changing or enforcing an order</h3>
+
+    <p class="govuk-body">A court order isn’t flexible. You’ll need to apply to court again if you want to change it.</p>
+    <p class="govuk-body">You or the other person can apply to court to enforce the order if either of you aren’t following the terms.</p>
+
+    <%= link_button 'Continue', steps_safety_questions_start_path %>
   </div>
 </div>
