@@ -13,7 +13,7 @@
                     end
   %>
 
-  <%= link_to question.change_path, class: 'ga-pageLink', data: { ga_category: 'check your answers', ga_label: 'change link' } do %>
+  <%= link_to question.change_path, class: 'govuk-link govuk-link--no-visited-state ga-pageLink', data: { ga_category: 'check your answers', ga_label: 'change link' } do %>
     <%= t('check_answers_html.change_link_html', a11y_question: a11y_question) %>
   <% end %>
 <% end %>

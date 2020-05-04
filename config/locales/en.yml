@@ -732,7 +732,7 @@ en:
         edit:
           page_title: Check your answers
           heading: Check your answers
-          lead_text: Please review your answers before you finish your application
+          lead_text: Please review your answers before you finish your application.
           declaration_heading: Declaration
           declaration_lead_text: By entering your full name, you confirm that the facts stated in this application are true.
           warning_title: Warning

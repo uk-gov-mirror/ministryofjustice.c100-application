@@ -1,13 +1,13 @@
-<dl class="answers-group" id="<%= answers_group.name %>">
-  <dt class="question">
+<div class="govuk-summary-list__row app-cya--answers-group" id="<%= answers_group.name %>">
+  <dt class="govuk-summary-list__key app-cya--answers-group__key">
     <%=t "check_answers_html.groups.#{answers_group.name}" %>
   </dt>
-  <dd class="answer">
-    <dl class="answers-group-inner">
+  <dd class="govuk-summary-list__value">
+    <dl class="govuk-summary-list">
       <%= render answers_group.answers %>
     </dl>
   </dd>
-  <dd class="change">
+  <dd class="govuk-summary-list__actions">
     <%= render partial: 'steps/completion/shared/change_link', locals: { question: answers_group } %>
   </dd>
-</dl>
+</div>
