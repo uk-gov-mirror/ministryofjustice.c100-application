@@ -7,6 +7,7 @@ module Summary
         children_known_to_authorities: 'yes',
         children_known_to_authorities_details: 'details',
         children_protection_plan: 'no',
+        has_other_children: 'yes',
       )
     }
 
@@ -22,7 +23,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(3)
+        expect(answers.count).to eq(4)
       end
 
       it 'has the correct rows in the right order' do
@@ -40,6 +41,11 @@ module Summary
         expect(answers[2].question).to eq(:children_protection_plan)
         expect(answers[2].change_path).to eq('/steps/children/additional_details')
         expect(answers[2].value).to eq('no')
+
+        expect(answers[3]).to be_an_instance_of(Answer)
+        expect(answers[3].question).to eq(:has_other_children)
+        expect(answers[3].change_path).to eq('/steps/children/has_other_children')
+        expect(answers[3].value).to eq('yes')
       end
     end
   end

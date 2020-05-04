@@ -4,7 +4,6 @@ module Summary
   describe HtmlSections::OtherChildrenDetails do
     let(:c100_application) {
       instance_double(C100Application,
-        has_other_children: 'yes',
         other_children: [other_child],
       )
     }
@@ -36,31 +35,26 @@ module Summary
     #
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(4)
+        expect(answers.count).to eq(3)
       end
 
       it 'has the correct rows in the right order' do
-        expect(answers[0]).to be_an_instance_of(Answer)
-        expect(answers[0].question).to eq(:has_other_children)
-        expect(answers[0].change_path).to eq('/steps/children/has_other_children')
-        expect(answers[0].value).to eq('yes')
+        expect(answers[0]).to be_an_instance_of(Separator)
+        expect(answers[0].title).to eq('other_children_details_index_title')
+        expect(answers[0].i18n_opts).to eq({index: 1})
 
-        expect(answers[1]).to be_an_instance_of(Separator)
-        expect(answers[1].title).to eq('other_children_details_index_title')
-        expect(answers[1].i18n_opts).to eq({index: 1})
+        expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(answers[1].question).to eq(:person_full_name)
+        expect(answers[1].value).to eq('name')
+        expect(answers[1].change_path).to eq('/steps/other_children/names/')
 
-        expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[2].question).to eq(:person_full_name)
-        expect(answers[2].value).to eq('name')
-        expect(answers[2].change_path).to eq('/steps/other_children/names/')
-
-        expect(answers[3]).to be_an_instance_of(AnswersGroup)
-        expect(answers[3].name).to eq(:person_personal_details)
-        expect(answers[3].change_path).to eq('/steps/other_children/personal_details/uuid-123')
-        expect(answers[3].answers.count).to eq(2)
+        expect(answers[2]).to be_an_instance_of(AnswersGroup)
+        expect(answers[2].name).to eq(:person_personal_details)
+        expect(answers[2].change_path).to eq('/steps/other_children/personal_details/uuid-123')
+        expect(answers[2].answers.count).to eq(2)
 
           # personal_details group answers ###
-          details = answers[3].answers
+          details = answers[2].answers
 
           expect(details[0]).to be_an_instance_of(DateAnswer)
           expect(details[0].question).to eq(:person_dob)
