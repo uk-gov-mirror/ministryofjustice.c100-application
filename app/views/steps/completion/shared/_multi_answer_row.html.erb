@@ -1,10 +1,10 @@
-<dl id="<%= multi_answer_row.question %>">
-  <dt class="question">
+<div class="govuk-summary-list__row" id="<%= multi_answer_row.question %>">
+  <dt class="govuk-summary-list__key govuk-!-width-one-third">
     <%=t "check_answers_html.#{multi_answer_row.question}.question" %>
   </dt>
-  <dd class="answer">
+  <dd class="govuk-summary-list__value">
     <% if Array(multi_answer_row.value).any? %>
-      <ul class="list list-bullet">
+      <ul class="govuk-list govuk-list--bullet">
         <% multi_answer_row.value.each do |value| %>
           <li>
             <%= t("check_answers_html.#{multi_answer_row.question}.answers.#{value}") %>
@@ -16,7 +16,7 @@
       <%=t "check_answers_html.#{multi_answer_row.question}.absence_answer" %>
     <% end %>
   </dd>
-  <dd class="change">
+  <dd class="govuk-summary-list__actions">
     <%= render partial: 'steps/completion/shared/change_link', locals: { question: multi_answer_row } %>
   </dd>
-</dl>
+</div>

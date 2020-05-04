@@ -52,7 +52,7 @@
         ) %>
       </h3>
       <div class="govuk-inset-text">
-        <%= @petition.other_issue_details %>
+        <%= simple_format(@petition.other_issue_details, { class: 'govuk-body' }) %>
       </div>
     <% end %>
 
