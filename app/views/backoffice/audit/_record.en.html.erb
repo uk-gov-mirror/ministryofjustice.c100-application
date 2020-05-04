@@ -1,19 +1,19 @@
-<tr>
-  <td valign="middle" width="220"><%= record.created_at %></td>
-  <td valign="middle" width="200"><%= record.action.upcase %></td>
-  <td valign="middle"><%= record.author %></td>
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell"><%= record.created_at %></td>
+  <td class="govuk-table__cell"><%= record.action.upcase %></td>
+  <td class="govuk-table__cell"><%= record.author %></td>
 </tr>
 
 <% if record.details.present? %>
-  <tr>
-    <td valign="middle" colspan="3" class="xsmall no-border">
-      <details data-block-name="audit-details">
-        <summary>
-          <span class="summary">
+  <tr class="govuk-table__row">
+    <td class="govuk-table__cell xsmall no-border" colspan="3">
+      <details class="govuk-details govuk-!-margin-bottom-0" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
             show details
           </span>
         </summary>
-        <div class="panel panel-border-narrow">
+        <div class="govuk-details__text">
           <%= record.details %>
         </div>
       </details>

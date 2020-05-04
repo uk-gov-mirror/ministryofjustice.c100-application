@@ -1,21 +1,11 @@
 table.backoffice-table {
   td {
-    font-size: 85%;
+    font-size: 90%;
   }
-  td.xsmall {
-    font-size: 75%;
+  div.govuk-details__text {
+    font-size: 85%;
   }
   td.no-border {
     border: 0;
-  }
-}
-
-div.application-extra-details {
-  dt {
-    font-weight: bold;
-  }
-  dd {
-    padding-left: 1em;
-    margin-bottom: 0.4em;
   }
 }
