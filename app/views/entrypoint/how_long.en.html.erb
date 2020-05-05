@@ -1,28 +1,28 @@
 <% title 'How long it takes' %>
 <% step_header(path: '/entrypoint/what_is_needed') %>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-xl">Before you continue</span>
-    <h1 class="govuk-heading-xl">How long it takes to apply</h1>
+<div class="govuk-grid-row app-inverted--card app-inverted-text">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl app-inverted-text">Before you continue</span>
+    <h1 class="govuk-heading-xl app-inverted-text">How long it takes to apply</h1>
 
-    <p class="govuk-body">
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
       It usually takes around 45 minutes to complete an application. It may take longer if your situation is more
       complex - for example if you’ve been involved in a previous family court case.
     </p>
 
-    <h2 class="govuk-heading-l">Saving your progress</h2>
+    <h2 class="govuk-heading-l app-inverted-text">Saving your progress</h2>
 
-    <p class="govuk-body">
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
       You can save your application and return at any time. You just need your email address and a password of your
       choice.
     </p>
 
-    <p class="govuk-body">
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
       We’ll save your draft for <%= Rails.configuration.x.drafts.expire_in_days %> days. For security reasons, we’ll
       delete any information after this time.
     </p>
 
-    <%= link_button 'Continue', edit_steps_miam_child_protection_cases_path, class: 'govuk-!-margin-top-3' %>
+    <%= link_button 'Continue', edit_steps_miam_child_protection_cases_path, class: 'app-button--l app-button--inverted govuk-!-margin-top-3 govuk-!-margin-bottom-1' %>
   </div>
 </div>
