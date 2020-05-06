@@ -9,3 +9,15 @@ table.backoffice-table {
     border: 0;
   }
 }
+
+div.application-extra-details {
+  dt {
+    font-weight: bold;
+    font-size: 14px;
+  }
+  dd {
+    padding-left: 1em;
+    margin-bottom: 0.4em;
+    font-size: 14px;
+  }
+}
