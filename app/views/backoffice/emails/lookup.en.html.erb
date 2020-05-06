@@ -1,28 +1,28 @@
 <% title 'Back office: emails' %>
 
-<div class="grid-row">
-  <div class="column-full">
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: emails</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">Back office: emails</h1>
 
     <%= render partial: 'lookup_form', locals: { reference_code: @reference_code, email_address: @email_address } %>
 
-    <table class="backoffice-table">
-      <thead>
-        <tr>
-          <th>Reference</th>
-          <th>Created at</th>
-          <th>Sent at</th>
-          <th>Completed at</th>
-          <th>Status</th>
+    <table class="govuk-table backoffice-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header">Reference</th>
+          <th class="govuk-table__header">Created at</th>
+          <th class="govuk-table__header">Sent at</th>
+          <th class="govuk-table__header">Completed at</th>
+          <th class="govuk-table__header">Status</th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody class="govuk-table__body">
         <% if @report.any? %>
           <%= render partial: 'results_table', collection: @report, as: :result %>
         <% else %>
-          <tr>
-            <td colspan="5">No emails were found</td>
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell" colspan="5">No emails were found</td>
           </tr>
         <% end %>
       </tbody>

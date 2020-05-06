@@ -1,21 +1,19 @@
-<tr>
-  <td valign="middle"><%= failure.sent_at %></td>
-  <td valign="middle"><%= failure.reference %></td>
-  <td valign="middle"><%= failure.type %></td>
-  <td valign="middle"><%= failure.error %></td>
-  <td valign="middle">
-    <%= button_to 'Resend email', backoffice_email_resend_path(failure.record, type: failure.type), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
+<% no_border = failure.address.nil? ? '' : 'no-border'%>
+
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell <%= no_border %>"><%= failure.sent_at %></td>
+  <td class="govuk-table__cell <%= no_border %>"><%= failure.reference %></td>
+  <td class="govuk-table__cell <%= no_border %>"><%= failure.type %></td>
+  <td class="govuk-table__cell <%= no_border %>"><%= failure.error %></td>
+  <td class="govuk-table__cell <%= no_border %>">
+    <%= button_to 'Resend email', backoffice_email_resend_path(failure.record, type: failure.type), method: :put, data: { confirm: 'Are you sure?' }, class: 'govuk-button' %>
   </td>
 </tr>
 
 <% if failure.address %>
-  <tr>
-    <td colspan="5" class="no-border">
+  <tr class="govuk-table__row">
+    <td colspan="5" class="govuk-table__cell">
       <strong>Recipient:</strong> <%= failure.address %>
     </td>
   </tr>
 <% end %>
-
-<tr>
-  <td valign="middle" colspan="5" class="no-border"></td>
-</tr>
