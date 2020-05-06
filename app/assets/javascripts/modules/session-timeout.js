@@ -43,10 +43,10 @@ moj.Modules.sessionTimeout = {
     if(isNaN(moj.Modules.sessionLength) || isNaN(moj.Modules.sessionWarnWhenRemaining)) return;
 
     // Bind buttons in modal
-    $(self.config.$modalContainer + " .js-extend").click(function() {
+    $(self.config.$modalContainer + " .app-js--extend").click(function() {
       self.extend();
     });
-    $(self.config.$modalContainer + " .js-abort").click(function() {
+    $(self.config.$modalContainer + " .app-js--abort").click(function() {
       self.abort();
     });
 

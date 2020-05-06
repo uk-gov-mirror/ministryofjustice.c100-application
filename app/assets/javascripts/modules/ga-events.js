@@ -1,8 +1,8 @@
 'use strict';
 
 moj.Modules.gaEvents = {
-    radioFormClass: '.multiple-choice input[type="radio"]',
-    checkboxClass:  '.multiple-choice input[type="checkbox"]',
+    radioFormClass: '.govuk-radios input[type="radio"]',
+    checkboxClass:  '.govuk-checkboxes input[type="checkbox"]',
     linkClass: '.ga-pageLink',
     clickActionClass: '.ga-clickAction',
     revealingLinkClass: 'summary span',
@@ -22,7 +22,6 @@ moj.Modules.gaEvents = {
             if ($(self.submitButtons).length) {
                 self.addSubmitValueParamOnClick();
             }
-
             if ($(self.radioFormClass).length) {
                 self.trackRadioForms();
             }
