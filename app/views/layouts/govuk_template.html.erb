@@ -68,10 +68,6 @@
 
   <main class="govuk-main-wrapper app-main-class" id="main-content" role="main">
     <%= yield(:flash_alert) %>
-
-    <%# TODO: to be removed once all views are migrated %>
-    <%= yield(:old_error_summary) %>
-
     <%= yield(:content) %>
   </main>
 </div>

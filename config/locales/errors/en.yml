@@ -60,7 +60,6 @@ en:
       inclusion: Select an option
     error_summary:
       heading: There is a problem on this page
-      text: ''
     page_title_prefix: 'Error: '
 
   activerecord:

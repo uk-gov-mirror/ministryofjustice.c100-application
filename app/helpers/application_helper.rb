@@ -18,40 +18,13 @@ module ApplicationHelper
 
   # Render a back link pointing to the user's previous step
   def step_header(path: nil)
-    # TODO: remove the error summary from here once we've migrated all the views
-    content_for(:old_error_summary, &method(:error_summary))
-
     render partial: 'layouts/step_header', locals: {
       path: path || controller.previous_step_path
     }
   end
 
-  # Old design system, to be removed once we've migrated all the views
-  def error_summary(form_object = @form_object)
-    return unless GovukElementsErrorsHelper.errors_exist?(form_object)
-
-    content_for(:page_title, flush: true) do
-      content_for(:page_title).insert(0, t('errors.page_title_prefix'))
-    end
-
-    GovukElementsErrorsHelper.error_summary(
-      form_object,
-      t('errors.error_summary.heading'),
-      t('errors.error_summary.text')
-    )
-  end
-
-  # New design error summary
   def govuk_error_summary(form_object = @form_object)
-    # TODO: to be removed once not needed
-    content_for(:old_error_summary, '', flush: true)
-
-    # TODO: can be removed once we use this builder globally
-    options = {
-      builder: GOVUKDesignSystemFormBuilder::FormBuilder
-    }
-
-    fields_for(form_object, form_object, options) do |f|
+    fields_for(form_object, form_object) do |f|
       f.govuk_error_summary t('errors.error_summary.heading')
     end
   end

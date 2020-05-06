@@ -9,12 +9,12 @@ class TestHelper < ActionView::Base
 end
 
 # The module `CustomFormHelpers` gets mixed in and extends the helpers already
-# provided by `GovukElementsFormBuilder::FormBuilder`. These are app-specific
+# provided by `GOVUKDesignSystemFormBuilder::FormBuilder`. These are app-specific
 # form helpers so can be coupled to application business and logic.
 #
 # Refer to: `config/initializers/form_builder.rb`
 #
-RSpec.describe GovukElementsFormBuilder::FormBuilder do
+RSpec.describe GOVUKDesignSystemFormBuilder::FormBuilder do
   let(:helper) { TestHelper.new }
 
   describe '#continue_button' do
@@ -32,7 +32,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button' do
         expect(
           html_output
-        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /></div>')
+        ).to eq('<input type="submit" name="commit" value="Continue" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" />')
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the continue button' do
         expect(
           html_output
-        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /></div>')
+        ).to eq('<input type="submit" name="commit" value="Continue" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" />')
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
       it 'outputs the save and continue button' do
         expect(
           html_output
-        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Save and continue" class="button" data-disable-with="Save and continue" /></div>')
+        ).to eq('<input type="submit" name="commit" value="Save and continue" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and continue" />')
       end
 
       context 'with button value customised' do
@@ -63,16 +63,16 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
         it 'outputs the custom value' do
           expect(
             html_output
-          ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Confirm and finish" class="button" data-disable-with="Confirm and finish" /></div>')
+          ).to eq('<input type="submit" name="commit" value="Confirm and finish" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Confirm and finish" />')
         end
       end
     end
 
     context 'for a logged out user' do
-      it 'outputs the continue button with a link to sign-up' do
+      it 'outputs the continue button together with a save draft button' do
         expect(
           html_output
-        ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Continue" class="button" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="button button-secondary commit-draft-link" data-disable-with="Save and come back later" /></div>')
+        ).to eq('<input type="submit" name="commit" value="Continue" class="govuk-button govuk-!-margin-right-1" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later">')
       end
 
       context 'with button value customised' do
@@ -81,32 +81,8 @@ RSpec.describe GovukElementsFormBuilder::FormBuilder do
         it 'outputs the custom value' do
           expect(
             html_output
-          ).to eq('<div class="form-submit"><input type="submit" name="commit" value="Confirm and finish" class="button" data-disable-with="Confirm and finish" /><input type="submit" name="commit_draft" value="Save and come back later" class="button button-secondary commit-draft-link" data-disable-with="Save and come back later" /></div>')
+          ).to eq('<input type="submit" name="commit" value="Confirm and finish" class="govuk-button govuk-!-margin-right-1" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Confirm and finish" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later">')
         end
-      end
-    end
-  end
-
-  describe '#single_check_box' do
-    let(:c100_application) { C100Application.new }
-    let(:builder) { described_class.new :c100_application, c100_application, helper, {} }
-    let(:html_output) { builder.single_check_box(:miam_acknowledgement) }
-
-    it 'outputs the check box' do
-      expect(
-        html_output
-      ).to eq('<div class="multiple-choice single-cb"><input name="c100_application[miam_acknowledgement]" type="hidden" value="0" /><input type="checkbox" value="1" name="c100_application[miam_acknowledgement]" id="c100_application_miam_acknowledgement" /><label for="c100_application_miam_acknowledgement">Miam acknowledgement</label></div>')
-    end
-
-    context 'when there are errors' do
-      before do
-        c100_application.errors.add(:miam_acknowledgement, :blank)
-      end
-
-      it 'outputs the check box with the error markup' do
-        expect(
-          html_output
-        ).to eq('<div class="multiple-choice single-cb" id="error_c100_application_miam_acknowledgement"><input name="c100_application[miam_acknowledgement]" type="hidden" value="0" /><input aria-describedby="error_message_c100_application_miam_acknowledgement" type="checkbox" value="1" name="c100_application[miam_acknowledgement]" id="c100_application_miam_acknowledgement" /><label for="c100_application_miam_acknowledgement">Miam acknowledgement<span class="error-message" id="error_message_c100_application_miam_acknowledgement">Enter an answer</span></label></div>')
       end
     end
   end

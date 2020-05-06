@@ -44,11 +44,6 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#step_header' do
     let(:form_object) { double('Form object') }
 
-    # TODO: to be removed once not needed
-    before do
-      allow(helper).to receive(:content_for).with(:old_error_summary, any_args)
-    end
-
     it 'renders the expected content' do
       expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/foo/bar'}).and_return('foobar')
       assign(:form_object, form_object)
@@ -62,47 +57,6 @@ RSpec.describe ApplicationHelper, type: :helper do
         assign(:form_object, form_object)
 
         expect(helper.step_header(path: '/another/step')).to eq('foobar')
-      end
-    end
-  end
-
-  describe '#error_summary' do
-    context 'when no form object is given' do
-      let(:form_object) { nil }
-
-      it 'returns nil' do
-        expect(helper.error_summary(form_object)).to be_nil
-      end
-    end
-
-    context 'when a form object without errors is given' do
-      let(:form_object) { double('form object', errors: []) }
-
-      it 'returns nil' do
-        expect(helper.error_summary(form_object)).to be_nil
-      end
-    end
-
-    context 'when a form object with errors is given' do
-      let(:form_object) { double('form object', errors: [:blank]) }
-      let(:summary) { double('error summary') }
-
-      let(:title) { helper.content_for(:page_title) }
-
-      before do
-        helper.title('A page')
-      end
-
-      it 'delegates to GovukElementsErrorsHelper' do
-        expect(GovukElementsErrorsHelper).to receive(:error_summary).with(form_object, anything, anything).and_return(summary)
-
-        expect(helper.error_summary(form_object)).to eq(summary)
-      end
-
-      it 'prepends the page title with an error hint' do
-        expect(GovukElementsErrorsHelper).to receive(:error_summary)
-        helper.error_summary(form_object)
-        expect(title).to start_with('Error: A page')
       end
     end
   end
