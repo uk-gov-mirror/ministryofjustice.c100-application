@@ -1,14 +1,14 @@
 <% title 'What is required' %>
 <% step_header(path: '/entrypoint/v1') %>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <span class="govuk-caption-xl">Before you continue</span>
-    <h1 class="govuk-heading-xl">What you’ll need to complete your application</h1>
+<div class="govuk-grid-row app-inverted--card app-inverted-text">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl app-inverted-text">Before you continue</span>
+    <h1 class="govuk-heading-xl app-inverted-text">What you’ll need to complete your application</h1>
 
-    <p class="govuk-body">You will need the following:</p>
+    <p class="govuk-body app-inverted-text">You will need the following:</p>
 
-    <ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet app-inverted-text app-inverted-narrow-width">
       <li>details of the other people (the respondents), including their date of birth</li>
       <li>contact details of the respondents, including their current address</li>
       <li>solicitor details (if you have asked one to represent you)</li>
@@ -21,7 +21,7 @@
         <%= link_to(
           'certificate of suitability',
           'https://www.gov.uk/government/publications/form-fp9-certificate-of-suitability-of-litigation-friend',
-          class: 'govuk-link',
+          class: 'govuk-link app-link--inverted',
           target: :_blank,
           rel: :external
           )
@@ -33,10 +33,10 @@
       </li>
     </ul>
 
-    <div class="govuk-inset-text">
+    <div class="govuk-inset-text app-inset-text--inverted app-inverted-narrow-width">
       If you do not know all of the details you can still complete your application but it will take longer to process.
     </div>
 
-    <%= link_button 'Continue', entrypoint_how_long_path, class: 'govuk-!-margin-top-3' %>
+    <%= link_button 'Continue', entrypoint_how_long_path, class: 'app-button--l app-button--inverted govuk-!-margin-top-3 govuk-!-margin-bottom-1' %>
   </div>
 </div>
