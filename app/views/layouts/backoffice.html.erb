@@ -12,6 +12,10 @@
   <%= render partial: 'backoffice/shared/menu' %>
 <% end %>
 
+<% content_for(:flash_alert) do %>
+  <%= render partial: 'backoffice/shared/flash_alert' if flash[:alert].present? %>
+<% end %>
+
 <% content_for(:content) do %>
   <%= yield %>
 <% end %>
