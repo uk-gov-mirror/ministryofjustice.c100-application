@@ -16,7 +16,7 @@
     </p>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-                 html: { class: 'verify-password-form ga-submitForm', data: { ga_category: 'save and return', ga_label: 'signup' } },
+                 html: { class: 'app-js--verify-password-form ga-submitForm', data: { ga_category: 'save and return', ga_label: 'signup' } },
                  builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |f| %>
 
       <%= f.govuk_email_field :email, width: 'two-thirds', autocomplete: 'email', spellcheck: 'false', autofocus: true %>

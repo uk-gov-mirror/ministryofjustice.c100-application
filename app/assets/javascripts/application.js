@@ -11,21 +11,17 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require_tree .
-
-// from govuk_frontend_toolkit gem
-//= require vendor/polyfills/bind
-//= require govuk_toolkit
-//= stub govuk/selection-buttons
-
+//= require rails-ujs
+//
 // GOV.UK Frontend
+// https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md
+//
 //= require govuk-frontend/govuk/all
 
-$(document).ready(function() {
-  // Show and hide toggled content
-  new GOVUK.ShowHideContent().init();
+//= require moj
+//= require_tree ./modules
 
-  // Initialize JS in /modules
-  window.moj.init();
+$(document).ready(function() {
+  // Initialize custom modules
+  moj.init();
 });

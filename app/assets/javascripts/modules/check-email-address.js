@@ -1,7 +1,7 @@
 'use strict';
 
 moj.Modules.checkEmail = {
-  container: 'verify-password-form',
+  container: 'app-js--verify-password-form',
   email_element: 'input[name="user[email]"]',
   confirmation_panel_class: 'app-js--email-confirmation-panel',
 
@@ -44,7 +44,7 @@ moj.Modules.checkEmail = {
     }
 
     el.removeClass('govuk-!-display-none').find('.govuk-body').text(val);
-    self.$emailField.closest('.govuk-form-group').addClass('govuk-!-margin-bottom-1');
+    self.$emailField.closest('.govuk-form-group').addClass('govuk-!-margin-bottom-0');
   },
 
   createConfirmationPanel: function() {
@@ -63,6 +63,6 @@ moj.Modules.checkEmail = {
         el = $('.' + self.confirmation_panel_class);
 
     el.addClass('govuk-!-display-none');
-    self.$emailField.closest('.govuk-form-group').removeClass('govuk-!-margin-bottom-1');
+    self.$emailField.closest('.govuk-form-group').removeClass('govuk-!-margin-bottom-0');
   }
 };
