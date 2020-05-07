@@ -1,45 +1,43 @@
 <% title 'Back office: emails' %>
 
-<div class="grid-row">
-  <div class="column-full">
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: emails</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">Back office: emails</h1>
 
     <%= render partial: 'lookup_form' %>
 
-    <p class="heading-medium">
+    <h3 class="govuk-heading-m">
       Failed emails (last 7 days)
+    </h3>
+
+    <p class="govuk-body">
+      This is a report of any failed submission emails (court or applicant confirmation), in the last 7 days.
     </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>
-        This is a report of any failed submission emails (court or applicant confirmation), in the last 7 days.
-      </p>
+    <p class="govuk-body">
+      <strong>
+        After resending a failed email, wait a few seconds and reload this page. The failure should be gone if the
+        email was sent successfully, otherwise a new error will show.
+      </strong>
+    </p>
 
-      <p>
-        <strong>
-          After resending a failed email, wait a few seconds and reload this page. The failure should be gone if the
-          email was sent successfully, otherwise a new error will show.
-        </strong>
-      </p>
+    <p class="govuk-body">
+      Please note some failures might be genuine, for instance, due to a typo in the applicant's email address. Do
+      not retry these emails as they will fail again.
+    </p>
 
-      <p>
-        Please note some failures might be genuine, for instance, due to a typo in the applicant's email address. Do
-        not retry these emails as they will fail again.
-      </p>
-    </div>
-
-    <table class="backoffice-table">
-      <thead>
-        <tr>
-          <th>Sent at</th>
-          <th>Reference</th>
-          <th>Type</th>
-          <th>Error</th>
-          <th></th>
+    <table class="govuk-table backoffice-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header">Sent at</th>
+          <th class="govuk-table__header">Reference</th>
+          <th class="govuk-table__header">Type</th>
+          <th class="govuk-table__header">Error</th>
+          <th class="govuk-table__header"></th>
         </tr>
       </thead>
 
-      <tbody>
+      <tbody class="govuk-table__body">
         <%= render partial: 'failure', collection: @report, as: :failure %>
       </tbody>
     </table>
