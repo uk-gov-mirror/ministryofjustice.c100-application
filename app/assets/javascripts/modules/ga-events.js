@@ -338,7 +338,7 @@ moj.Modules.gaEvents = {
         // transformed to:
         //      `steps_miam_exemptions_domestic_form[domestic]`
         //
-        const regex = /^steps_miam_exemptions_([a-z]+)_form\[[\D]+\]$/;
+        var regex = /^steps_miam_exemptions_([a-z]+)_form\[[\D]+\]$/;
         normalisedAttr = normalisedAttr.replace(regex, "steps_miam_exemptions_$1_form[$1]");
 
         return normalisedAttr;
