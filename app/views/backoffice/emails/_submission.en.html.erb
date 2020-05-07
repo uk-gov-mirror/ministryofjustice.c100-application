@@ -21,7 +21,8 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><%= submission.to_address %></td>
         <td class="govuk-table__cell">
-          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'court'), method: :put, data: { confirm: 'Are you sure?' }, class: 'govuk-button' %>
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'court'), method: :put,
+                        data: { confirm: 'Are you sure?' }, class: 'govuk-button govuk-!-margin-bottom-0' %>
         </td>
       </tr>
     <% end %>
@@ -30,7 +31,8 @@
       <tr class="govuk-table__row">
         <td class="govuk-table__cell"><%= submission.email_copy_to %></td>
         <td class="govuk-table__cell">
-          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'user'), method: :put, data: { confirm: 'Are you sure?' }, class: 'govuk-button' %>
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'user'), method: :put,
+                        data: { confirm: 'Are you sure?' }, class: 'govuk-button govuk-!-margin-bottom-0' %>
         </td>
       </tr>
     <% end %>

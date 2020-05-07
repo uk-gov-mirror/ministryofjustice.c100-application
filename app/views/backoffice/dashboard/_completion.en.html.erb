@@ -10,7 +10,7 @@
 
   <tr class="govuk-table__row">
     <td colspan="4" class="no-border govuk-table__cell">
-      <div class="panel panel-border-narrow application-extra-details">
+      <div class="govuk-inset-text application-extra-details">
         <table class="govuk-table">
           <tr class="govuk-table__row">
             <td class="govuk-table__cell no-border">
@@ -44,7 +44,7 @@
 
                 <% if c100 %>
                   <dt>Court receipt email address</dt>
-                  <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank' %></dd>
+                  <dd><%= c100.screener_answers_court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.new.court_url(c100.screener_answers_court.slug), rel: 'external', target: '_blank', class: 'govuk-link govuk-link--no-visited-state' %></dd>
                   <dt>Applicant receipt email address</dt>
                   <dd><%= c100.receipt_email || 'none' %></dd>
                 <% else %>
