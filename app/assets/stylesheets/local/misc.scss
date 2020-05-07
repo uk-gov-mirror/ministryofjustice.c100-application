@@ -1,20 +1,3 @@
-// This will hide the Sentry user-feedback attribution. There is a setting
-// to hide it but currently it is not working, so this is an alternative.
-div.sentry-error-embed-wrapper p.powered-by {
-  display: none;
-}
-
-address {
-  font-style: normal;
-}
-
-strong {
-  font-weight: $govuk-font-weight-bold;
-}
-
-// App specific custom styles follow. Always prepend `app-` prefix to make
-// it clear this is a custom style not part of the design system.
-//
 @mixin app-button-reset {
   padding: 0;
   margin: 0;
@@ -102,9 +85,8 @@ ol.app-list--icon-steps {
 
 // Used in `javascripts/modules/password-toggle.js`
 .app-js--toggle-password {
-  a {
-    @extend %govuk-link;
-  }
+  @extend .govuk-\!-font-size-19;
+  margin-top: 5px;
 }
 
 // Used in `javascripts/modules/check-email-address.js`
@@ -151,34 +133,3 @@ table.app-saved-drafts {
     }
   }
 }
-
-.app-util--inline-buttons {
-  form {
-    display: inline;
-  }
-}
-
-.app-util--no-wrap {
-  white-space: nowrap;
-}
-
-.app-util--disabled-color {
-  color: govuk-colour("mid-grey");
-}
-
-.app-util--compact-form-group {
-  div.govuk-form-group {
-    margin-bottom: 0.4em;
-  }
-}
-
-.app-util--border-box {
-  border: 2px solid govuk-colour("black");
-  padding: govuk-spacing(3);
-  margin-bottom: govuk-spacing(5);
-}
-
-@import 'app/timeout_modal';
-@import 'app/check_answers';
-@import 'app/intro_card';
-@import 'app/backoffice';
