@@ -234,18 +234,21 @@ en:
       question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
       answers:
         <<: *YESNO
+    international_resident_details:
+      question: *details
     international_jurisdiction:
       question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)?
       answers:
         <<: *YESNO
     international_jurisdiction_details:
-      question: ''
+      question: *details
     international_request:
       question: Has a request been made or should a request be made to a Central Authority or other competent authority in a foreign state or a consular authority in England and Wales?
       answers:
         <<: *YESNO
     international_request_details:
-      question: ''
+      question: *details
+
     child_full_name:
       question: Full name
     child_dob:

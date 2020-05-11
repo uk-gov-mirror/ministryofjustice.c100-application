@@ -5,6 +5,7 @@ module Summary
         :international_element
       end
 
+      # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def answers
         [
           AnswersGroup.new(
@@ -33,6 +34,7 @@ module Summary
           ),
         ].select(&:show?)
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
     end
   end
 end
