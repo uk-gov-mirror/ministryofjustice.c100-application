@@ -6,9 +6,9 @@
     <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
     <% if @petition.child_arrangements_orders.any? %>
-      <h3 class="govuk-heading-m">
+      <h2 class="govuk-heading-m">
         <%=t '.petition_header', count: 0 %>
-      </h3>
+      </h2>
       <ul class="govuk-list govuk-list--bullet">
         <% @petition.child_arrangements_orders.each do |order| %>
           <%= content_tag :li, t(".orders.#{order}") %>
@@ -18,11 +18,11 @@
     <% end %>
 
     <% if @petition.prohibited_steps_orders.any? %>
-      <h3 class="govuk-heading-m">
+      <h2 class="govuk-heading-m">
         <%=t '.petition_header_stop', count: @petition.count_for(
           :child_arrangements_orders
         ) %>
-      </h3>
+      </h2>
       <ul class="govuk-list govuk-list--bullet">
         <% @petition.prohibited_steps_orders.each do |order| %>
           <%= content_tag :li, t(".orders.#{order}") %>
@@ -32,11 +32,11 @@
     <% end %>
 
     <% if @petition.specific_issues_orders.any? %>
-      <h3 class="govuk-heading-m">
+      <h2 class="govuk-heading-m">
         <%=t '.petition_header_issues', count: @petition.count_for(
           :child_arrangements_orders, :prohibited_steps_orders
         ) %>
-      </h3>
+      </h2>
       <ul class="govuk-list govuk-list--bullet">
         <% @petition.specific_issues_orders.each do |order| %>
             <%= content_tag :li, t(".orders.#{order}") %>
@@ -46,11 +46,11 @@
     <% end %>
 
     <% if @petition.other_issue? %>
-      <h3 class="govuk-heading-m">
+      <h2 class="govuk-heading-m">
         <%=t '.petition_header_other', count: @petition.count_for(
           :child_arrangements_orders, :prohibited_steps_orders, :specific_issues_orders
         ) %>
-      </h3>
+      </h2>
       <div class="govuk-inset-text">
         <%= simple_format(@petition.other_issue_details, { class: 'govuk-body' }) %>
       </div>
