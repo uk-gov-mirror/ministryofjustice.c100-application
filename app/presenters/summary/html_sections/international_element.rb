@@ -7,7 +7,14 @@ module Summary
 
       def answers
         [
-          Answer.new(:international_resident, c100.international_resident, change_path: edit_steps_international_resident_path),
+          AnswersGroup.new(
+            :international_resident,
+            [
+              Answer.new(:international_resident, c100.international_resident),
+              FreeTextAnswer.new(:international_resident_details, c100.international_resident_details),
+            ],
+            change_path: edit_steps_international_resident_path
+          ),
           AnswersGroup.new(
             :international_jurisdiction,
             [
