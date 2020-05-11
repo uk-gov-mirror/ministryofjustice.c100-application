@@ -802,11 +802,11 @@ en:
       resident:
         edit:
           page_title: International resident
-          lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales
+          lead_text: Including for example, a grandparent or any other close relative. This may include them working, owning property, having children in school or their main family life taking place outside England or Wales.
       jurisdiction:
         edit:
           page_title: International jurisdiction
-          lead_text: For example, because a court in another country has the power to act (has jurisdiction)
+          lead_text: For example, because a court in another country has the power to act (has jurisdiction).
       request:
         edit:
           page_title: International request
@@ -1338,6 +1338,7 @@ en:
       steps_international_resident_form:
         international_resident_options:
           <<: *YESNO
+        international_resident_details: *provide_details
       steps_solicitor_personal_details_form:
         full_name: Full name
         firm_name: Name of firm

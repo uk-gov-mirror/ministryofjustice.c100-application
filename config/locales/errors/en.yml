@@ -536,6 +536,8 @@ en:
           attributes:
             international_resident:
               inclusion: *yes_no_error
+            international_resident_details:
+              blank: *blank_details_error
         steps/international/jurisdiction_form:
           attributes:
             international_jurisdiction:
