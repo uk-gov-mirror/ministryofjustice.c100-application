@@ -10,11 +10,11 @@
 
   <tr class="govuk-table__row">
     <td colspan="4" class="no-border govuk-table__cell">
-      <div class="govuk-inset-text application-extra-details">
+      <div class="govuk-inset-text backoffice-extra-details">
         <table class="govuk-table">
           <tr class="govuk-table__row">
             <td class="govuk-table__cell no-border">
-                <dl class="govuk-summary-list govuk-summary-list--no-border">
+                <dl class="app-description-list">
                   <dt>Application started at</dt>
                   <dd><%= completion.started_at %> (v:<%= completion.metadata['v'] || '1-3' %>)</dd>
                   <dt>Saved for later?</dt>
@@ -32,7 +32,7 @@
                 </dl>
             </td>
             <td class="govuk-table__cell no-border">
-              <dl class="govuk-summary-list govuk-summary-list--no-border">
+              <dl class="app-description-list">
                 <dt>Postcode</dt>
                 <dd><%= completion.metadata['postcode'] %></dd>
                 <dt>C1A form?</dt>

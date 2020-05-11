@@ -133,3 +133,20 @@ table.app-saved-drafts {
     }
   }
 }
+
+dl.app-description-list {
+  @extend .govuk-summary-list;
+
+  dt {
+    font-weight: $govuk-font-weight-bold;
+  }
+
+  dd {
+    margin-bottom: govuk-spacing(3);
+    margin-left: govuk-spacing(3);
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}

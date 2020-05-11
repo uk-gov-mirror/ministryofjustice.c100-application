@@ -8,10 +8,10 @@
   you have any issues.
 </p>
 
-<dl>
-  <dt><strong>Email</strong></dt>
+<dl class="app-description-list">
+  <dt>Email</dt>
   <dd><%= mail_to court.email, court.email, class: 'ga-pageLink govuk-link', data: { ga_category: 'completion', ga_label: 'email court' } %></dd>
 
-  <dt class="govuk-!-margin-top-3"><strong>More information</strong></dt>
+  <dt>More information</dt>
   <dd><%= link_to court.name, C100App::CourtfinderAPI.new.court_url(court.slug), class: 'govuk-link', rel: 'external', target: '_blank' %></dd>
 </dl>
