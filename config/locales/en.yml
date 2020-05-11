@@ -320,7 +320,7 @@ en:
           page_title: Select an address
           heading: "Select address of %{name}"
           current_postcode: Current postcode
-          change_postcode: Change
+          change_postcode: Change postcode
           address_not_listed: I can’t find the address in the list
     solicitor:
       personal_details:
