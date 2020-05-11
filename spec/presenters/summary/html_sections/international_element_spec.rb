@@ -5,6 +5,7 @@ module Summary
     let(:c100_application) {
       instance_double(C100Application,
         international_resident: 'yes',
+        international_resident_details: 'international resident details',
         international_jurisdiction: 'yes',
         international_jurisdiction_details: 'international jurisdiction details',
         international_request: 'yes',
@@ -26,9 +27,8 @@ module Summary
       end
 
       it 'has the correct rows in the right order' do
-        expect(answers[0]).to be_an_instance_of(Answer)
-        expect(answers[0].question).to eq(:international_resident)
-        expect(answers[0].value).to eq('yes')
+        expect(answers[0]).to be_an_instance_of(AnswersGroup)
+        expect(answers[0].name).to eq(:international_resident)
         expect(answers[0].change_path).to eq('/steps/international/resident')
 
         expect(answers[1]).to be_an_instance_of(AnswersGroup)
@@ -38,6 +38,20 @@ module Summary
         expect(answers[2]).to be_an_instance_of(AnswersGroup)
         expect(answers[2].name).to eq(:international_request)
         expect(answers[2].change_path).to eq('/steps/international/request')
+      end
+    end
+
+    describe 'the international_resident group' do
+      let(:group){ answers[0] }
+
+      it 'has the right questions in the right order' do
+        expect(group.answers[0]).to be_an_instance_of(Answer)
+        expect(group.answers[0].question).to eq(:international_resident)
+        expect(group.answers[0].value).to eq('yes')
+
+        expect(group.answers[1]).to be_an_instance_of(FreeTextAnswer)
+        expect(group.answers[1].question).to eq(:international_resident_details)
+        expect(group.answers[1].value).to eq('international resident details')
       end
     end
 

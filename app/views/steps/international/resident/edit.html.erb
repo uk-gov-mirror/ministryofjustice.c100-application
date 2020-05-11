@@ -6,8 +6,13 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_collection_radio_buttons :international_resident, GenericYesNo.values, :value, nil do %>
+      <%= f.govuk_radio_buttons_fieldset :international_resident do %>
         <p class="govuk-body-l"><%=t '.lead_text' %></p>
+
+        <%= f.govuk_radio_button :international_resident, GenericYesNo::YES, link_errors: true do %>
+          <%= f.govuk_text_area :international_resident_details %>
+        <% end %>
+        <%= f.govuk_radio_button :international_resident, GenericYesNo::NO %>
       <% end %>
 
       <%= f.continue_button %>
