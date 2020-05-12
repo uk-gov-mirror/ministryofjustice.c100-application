@@ -14,7 +14,7 @@
 
     <div class="govuk-grid-column-one-third">
       <%# We only show the link in the first error, in case there are more than one %>
-      <%= link_to t('.change_link'), errors.first.change_path, class: 'govuk-link govuk-link--no-visited-state ga-pageLink',
+      <%= link_to t('.change_link'), errors.first.change_path, class: 'govuk-link govuk-link--no-visited-state ga-pageLink govuk-body-m',
                   data: { ga_category: 'check your answers', ga_label: "fulfilment error: #{errors.first.attribute}" } %>
     </div>
   </div>
