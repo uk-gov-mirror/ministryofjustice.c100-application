@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/zheileman/govuk_design_system_formbuilder.git
   revision: 688db4625512d3244b638a16ba498b358b1264bf
+  branch: backup
   specs:
     govuk_design_system_formbuilder (1.1.10)
       actionview (>= 5.2)
