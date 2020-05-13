@@ -14,4 +14,4 @@ Feature: Errors
 
     Then I click the "Enter a full postcode, with or without a space" link
     And I should see "Enter a full postcode, with or without a space" error in the form
-    And "#steps_screener_postcode_form_children_postcodes" has focus
+    And "steps-screener-postcode-form-children-postcodes-field-error" has focus
