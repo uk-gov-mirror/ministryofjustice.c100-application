@@ -51,17 +51,17 @@ end
 
 # Errors
 When(/^I should see "([^"]*)" in the error summary$/) do |text|
-  page.find("div.govuk-error-summary > h2").has_content? text
+  expect(page.find("div.govuk-error-summary > h2")).to have_text(text)
 end
 
 When(/^I should see "([^"]*)" error in the form$/) do |text|
-  page.find("span.govuk-error-message").has_content? text
+  expect(page.find("span.govuk-error-message")).to have_text(text)
 end
 
 When(/^Page has title "([^"]*)"/) do |text|
-  page.has_title? text
+  expect(page).to have_title(text)
 end
 
 When(/^"([^"]*)" has focus/) do |text|
-  page.evaluate_script("document.activeElement.id") == text
+  expect(page.evaluate_script("document.activeElement.id")).to eq(text)
 end
