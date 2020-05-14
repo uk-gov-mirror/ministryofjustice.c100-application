@@ -531,7 +531,7 @@ en:
           section: Safety concerns
       address_confidentiality:
         edit:
-          page_title: Address confidentiality
+          page_title: Contact details confidentiality
           section: Safety concerns
           heading: Keeping your contact details private
           lead_text_html: |
@@ -590,7 +590,6 @@ en:
       orders:
         edit:
           page_title: What are you asking the court to decide?
-          heading: What are you asking the court to decide about the children involved?
       other_issue:
         edit:
           page_title: Provide details of the issue
@@ -1564,6 +1563,8 @@ en:
         undertaking_is_current: *order_current
 
       # Petition steps (nature of application)
+      steps_petition_orders_form:
+        orders: What are you asking the court to decide about the children involved?
       steps_petition_protection_form:
         protection_orders: Is there anything else you are asking the court to decide, specifically to protect the safety of you or the children?
 
