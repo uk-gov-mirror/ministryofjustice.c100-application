@@ -3,6 +3,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
     <span class="govuk-caption-l">Alternative ways to reach an agreement</span>
     <h1 class="govuk-heading-xl">Collaborative law</h1>
@@ -11,21 +12,19 @@
     <p class="govuk-body">The collaborative process involves several steps but is usually quicker and cheaper than going to court.</p>
     <p class="govuk-body">Collaborative law is suitable for people who can still communicate with each other but may have complex legal issues to resolve.</p>
 
-
-    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_radio_buttons_fieldset :alternative_collaborative_law, legend: { tag: 'span', size: 'm' } do %>
-        <%= f.govuk_radio_button :alternative_collaborative_law, GenericYesNo::YES, link_errors: true %>
-        <%= f.govuk_radio_button :alternative_collaborative_law, GenericYesNo::NO %>
-      <% end %>
-
-      <%= f.continue_button %>
-    <% end %>
+    <p class="govuk-body">
+      <a href="https://helpwithchildarrangements.service.justice.gov.uk/collaborative-law" class="govuk-link" rel="external" target="_blank">
+        Find out more about collaborative law
+      </a>
+    </p>
   </div>
 
   <div class="govuk-grid-column-one-third">
-    <div class="app-sidebar-grey govuk-!-padding-3 govuk-!-margin-bottom-5">
+    <div class="app-sidebar-blue-bar"></div>
+    <div class="app-sidebar-grey govuk-!-padding-3">
       <h2 class="govuk-heading-m">Pros</h2>
-      <ul class="govuk-list govuk-list--bullet">
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>everyone is committed to not going to court</li>
         <li>quicker and less stressful than court</li>
         <li>you and the other parent set the agenda</li>
@@ -34,10 +33,20 @@
       </ul>
 
       <h2 class="govuk-heading-m">Cons</h2>
-      <ul class="govuk-list govuk-list--bullet">
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>can be an expensive process</li>
         <li>won’t work unless you can trust the other parent and co-operate with them</li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :alternative_collaborative_law, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>

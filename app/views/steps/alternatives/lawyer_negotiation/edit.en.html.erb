@@ -3,6 +3,7 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
     <span class="govuk-caption-l">Alternative ways to reach an agreement</span>
     <h1 class="govuk-heading-xl">Lawyer negotiation</h1>
@@ -16,33 +17,35 @@
         Find out more about lawyer negotiation
       </a>
     </p>
-
-    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_radio_buttons_fieldset :alternative_lawyer_negotiation, legend: { tag: 'span', size: 'm' } do %>
-        <%= f.govuk_radio_button :alternative_lawyer_negotiation, GenericYesNo::YES, link_errors: true %>
-        <%= f.govuk_radio_button :alternative_lawyer_negotiation, GenericYesNo::NO %>
-      <% end %>
-
-      <%= f.continue_button %>
-    <% end %>
   </div>
 
   <div class="govuk-grid-column-one-third">
-    <div class="app-sidebar-grey govuk-!-padding-3 govuk-!-margin-bottom-5">
+    <div class="app-sidebar-blue-bar"></div>
+    <div class="app-sidebar-grey govuk-!-padding-3">
       <h2 class="govuk-heading-m">Pros</h2>
 
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>your lawyer supports you throughout</li>
         <li>quicker and less stressful than court</li>
         <li>you don’t deal directly with the other parent</li>
       </ul>
 
       <h2 class="govuk-heading-m">Cons</h2>
-      <ul class="govuk-list govuk-list--bullet">
+
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>can be a more expensive process</li>
         <li>you may feel you’re not in control</li>
         <li>can be seen as a confrontational approach</li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :alternative_lawyer_negotiation, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>

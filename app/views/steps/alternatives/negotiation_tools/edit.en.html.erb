@@ -23,22 +23,14 @@
         Find out more about negotiation tools and services
       </a>
     </p>
-
-    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_radio_buttons_fieldset :alternative_negotiation_tools, legend: { tag: 'span', size: 'm' } do %>
-        <%= f.govuk_radio_button :alternative_negotiation_tools, GenericYesNo::YES, link_errors: true %>
-        <%= f.govuk_radio_button :alternative_negotiation_tools, GenericYesNo::NO %>
-      <% end %>
-
-      <%= f.continue_button %>
-    <% end %>
   </div>
 
   <div class="govuk-grid-column-one-third">
-    <div class="app-sidebar-grey govuk-!-padding-3 govuk-!-margin-bottom-5">
+    <div class="app-sidebar-blue-bar"></div>
+    <div class="app-sidebar-grey govuk-!-padding-3">
       <h2 class="govuk-heading-m">Pros</h2>
 
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>cheapest and quickest option</li>
         <li>you and the other parent are in control</li>
         <li>helps children continue family relationships</li>
@@ -47,10 +39,19 @@
 
       <h2 class="govuk-heading-m">Cons</h2>
 
-      <ul class="govuk-list govuk-list--bullet">
+      <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16">
         <li>you’ll need a consent order to make agreement legally binding</li>
         <li>process heavily relies on parent co-operation</li>
       </ul>
     </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :alternative_negotiation_tools, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>
