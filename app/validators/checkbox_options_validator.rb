@@ -13,6 +13,6 @@ class CheckboxOptionsValidator < ActiveModel::EachValidator
   private
 
   def valid_values?(selected_options)
-    selected_options.all? { |value| @_valid_values.include?(value) }
+    selected_options.all? { |value| @_valid_values.include?(value) || value.eql?('') }
   end
 end

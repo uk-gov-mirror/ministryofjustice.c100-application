@@ -5,11 +5,8 @@
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
 
-    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
-
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_check_boxes_fieldset :orders, legend: { tag: 'span', size: 'm' } do %>
-
+      <%= f.govuk_check_boxes_fieldset :orders do %>
         <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_HOME.to_s, link_errors: true %>
         <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_TIME.to_s %>
 
