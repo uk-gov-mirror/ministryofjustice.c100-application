@@ -491,7 +491,6 @@ en:
         edit:
           page_title: Substance abuse
           section: Safety concerns
-          lead_text: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       children_abuse:
         edit:
           page_title: Children abuse
@@ -785,7 +784,6 @@ en:
         edit:
           page_title: Intermediary help
           section: *attending_court
-          lead_text: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       special_arrangements:
         edit:
           page_title: Special arrangements
@@ -805,7 +803,6 @@ en:
       jurisdiction:
         edit:
           page_title: International jurisdiction
-          lead_text: For example, because a court in another country has the power to act (has jurisdiction).
       request:
         edit:
           page_title: International request
@@ -898,7 +895,6 @@ en:
       email_consent:
         edit:
           page_title: Contact by email
-          lead_text: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
           details:
             summary: What happens if you choose to be contacted
             text_html: |
@@ -1357,6 +1353,10 @@ en:
       user:
         password: Must be at least 10 characters
         current_password: We need your current password to confirm your changes
+      steps_screener_email_consent_form:
+        email_consent: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
+      steps_international_jurisdiction_form:
+        international_jurisdiction: For example, because a court in another country has the power to act (has jurisdiction).
       steps_miam_child_protection_cases_form:
         child_protection_cases: These will often involve a local authority
       steps_miam_certification_date_form:
@@ -1371,7 +1371,7 @@ en:
         urgent_hearing_details: A court will only hear your case urgently if you can give good reason for the urgency.
         urgent_hearing_short_notice_details: The court will expect you to tell the other people involved that you are making this application, unless you have a reason not to.
       steps_application_without_notice_details_form:
-        without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place
+        without_notice_details: A judge will need to be sure that there is a good reason why the other people in the application should not be told about the application before the hearing takes place.
         without_notice_impossible: This may be relevant in cases of exceptional urgency where the order is needed to prevent a threatened wrongful act. In some cases you may still be expected to have tried to give informal notice for example by telephone, text message, or email.
       steps_application_litigation_capacity_details_form:
         participation_capacity_details: This means they are unable to make a decision for themselves because of an impairment or disturbance of their mind or brain (within the meaning of the Mental Capacity Act 2005)
@@ -1388,6 +1388,8 @@ en:
           self_payment_cheque: You can send a cheque or pay in person at the court
       steps_application_submission_form:
         receipt_email: We’ll send a copy of your application to this email address. You can also download a copy on the confirmation page.
+      steps_safety_questions_substance_abuse_form:
+        substance_abuse: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       steps_abduction_passport_details_form:
         passport_possession: *select_all_that_apply
       steps_abduction_risk_details_form:
@@ -1432,7 +1434,7 @@ en:
         new_first_name_html: *middle_names_hint
       steps_children_additional_details_form:
         children_protection_plan_html: |
-          A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family
+          A child protection plan is prepared by a local authority where a child is thought to be at risk of significant harm. It sets out steps to be taken to protect the child and support the family.
       steps_children_personal_details_form:
         dob: For example, 31 3 2016
       steps_children_residence_form:
@@ -1452,7 +1454,7 @@ en:
       steps_abuse_concerns_contact_form:
         concerns_contact_other: For example, by phone, text or email
       steps_court_orders_has_orders_form:
-        has_court_orders: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order
+        has_court_orders: For example, a restraining order, non-molestation order, occupation order or forced marriage protection order.
       steps_court_orders_details_form:
         restraining: Under the Protection from Harassment Act 1997
         non_molestation_case_number: *order_case_number_hint
@@ -1468,6 +1470,8 @@ en:
       steps_solicitor_contact_details_form:
         address: Enter the full address including postcode
         dx_number: This is a secure document exchange system used by the legal profession
+      steps_attending_court_intermediary_form:
+        intermediary_help: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.
       steps_attending_court_language_form:
         language_options: *one_of_the_people_needs
       steps_attending_court_special_arrangements_form:

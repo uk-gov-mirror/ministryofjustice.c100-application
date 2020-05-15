@@ -7,10 +7,6 @@
 
     <%= step_form @form_object do |f| %>
       <%= f.govuk_radio_buttons_fieldset :email_consent do %>
-        <p class="govuk-body-l govuk-!-margin-top-3">
-          <%=t '.lead_text' %>
-        </p>
-
         <%= f.govuk_radio_button :email_consent, GenericYesNo::YES, link_errors: true do %>
           <%= f.govuk_email_field :email_address, width: 'three-quarters', autocomplete: 'email', spellcheck: false %>
         <% end  %>
