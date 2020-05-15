@@ -11,6 +11,7 @@
 
 .app-sidebar-grey {
   background: govuk-colour("light-grey");
+  margin-bottom: govuk-spacing(5);
 }
 
 .app-sidebar-blue-bar {
@@ -74,6 +75,40 @@ ol.app-list--icon-steps {
     &:nth-child(5) {
       background-image: image-url('icon-step-5.png');
     }
+  }
+}
+
+ul.app-list--pros-cons {
+  @extend .govuk-\!-font-size-16;
+
+  & > li {
+    list-style-type: none;
+    padding-left: 1.4em;
+    padding-bottom: 0.3em;
+    background-repeat: no-repeat;
+  }
+
+  & > li.app-list--item--pros {
+    background-image: image-url('icon-tick.svg');
+    background-position: 0 0.22em;
+
+    @include govuk-media-query($from: tablet) {
+      background-position: 0 0.26em;
+    }
+  }
+
+  & > li.app-list--item--cons {
+    background-image: image-url('icon-cross.svg');
+    background-position: 0 0.32em;
+
+    @include govuk-media-query($from: tablet) {
+      background-position: 0 0.36em;
+    }
+  }
+
+  li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 }
 
