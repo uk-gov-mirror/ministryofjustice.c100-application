@@ -67,12 +67,11 @@ class StepController < ApplicationController
   def form_attribute_names(form_class)
     form_class.attribute_set.map do |attr|
       attr_name = attr.name
-      attr_type = attr.type.to_s
+      primitive = attr.primitive.to_s
 
-      # TODO: to maintain backwards compatibility with old form builder gems
-      # Once we've migrated everything, we can simplify this
-      case attr_type
-      when 'Axiom::Types::Boolean'
+      # Avoid having to declare collection attributes `Array[String]` in permitted params.
+      case primitive
+      when 'Array'
         [attr_name, attr_name => []]
       else
         attr_name

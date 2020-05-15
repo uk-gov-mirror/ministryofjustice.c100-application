@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(MiscForm, as: :misc)
       end
-
-      private
-
-      def additional_permitted_params
-        [misc: [], exemptions_collection: []]
-      end
     end
   end
 end

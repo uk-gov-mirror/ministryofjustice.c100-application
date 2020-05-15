@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(SpecialArrangementsForm, as: :special_arrangements)
       end
-
-      private
-
-      def additional_permitted_params
-        [special_arrangements: []]
-      end
     end
   end
 end
