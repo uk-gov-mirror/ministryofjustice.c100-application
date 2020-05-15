@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_091814) do
+ActiveRecord::Schema.define(version: 2020_05_15_095359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_091814) do
     t.text "risk_details"
     t.uuid "c100_application_id"
     t.text "current_location"
+    t.string "passport_possession", default: [], array: true
     t.index ["c100_application_id"], name: "index_abduction_details_on_c100_application_id", unique: true
   end
 

@@ -30,9 +30,7 @@ RSpec.describe Steps::Abduction::ChildrenHavePassportForm do
                       expected_attributes: {
                         children_have_passport: GenericYesNo::NO,
                         children_multiple_passports: nil,
-                        passport_possession_mother: nil,
-                        passport_possession_father: nil,
-                        passport_possession_other: nil,
+                        passport_possession: nil,
                         passport_possession_other_details: nil,
                       }
     end

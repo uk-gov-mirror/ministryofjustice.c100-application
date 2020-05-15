@@ -1055,12 +1055,8 @@ en:
       steps_abduction_passport_details_form:
         children_multiple_passports_options:
           <<: *YESNO
-        passport_possession_mother_options:
-          'true': Mother
-        passport_possession_father_options:
-          'true': Father
-        passport_possession_other_options:
-          'true': Other
+        passport_possession_options:
+          <<: *RELATIONS
         passport_possession_other_details: Provide more details
       steps_abduction_previous_attempt_form:
         previous_attempt_options:
