@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(PassportDetailsForm, as: :passport_details)
       end
-
-      private
-
-      def additional_permitted_params
-        [passport_possession: []]
-      end
     end
   end
 end

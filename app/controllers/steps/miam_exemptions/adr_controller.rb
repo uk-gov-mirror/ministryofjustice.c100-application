@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(AdrForm, as: :adr)
       end
-
-      private
-
-      def additional_permitted_params
-        [adr: []]
-      end
     end
   end
 end

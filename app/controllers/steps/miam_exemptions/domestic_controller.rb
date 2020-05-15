@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(DomesticForm, as: :domestic)
       end
-
-      private
-
-      def additional_permitted_params
-        [domestic: [], exemptions_collection: []]
-      end
     end
   end
 end

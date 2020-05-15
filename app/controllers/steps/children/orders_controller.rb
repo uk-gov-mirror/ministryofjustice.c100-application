@@ -24,10 +24,6 @@ module Steps
       def set_petition_orders
         @petition = PetitionPresenter.new(current_c100_application)
       end
-
-      def additional_permitted_params
-        [orders: []]
-      end
     end
   end
 end

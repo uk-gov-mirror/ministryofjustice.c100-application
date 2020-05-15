@@ -10,12 +10,6 @@ module Steps
       def update
         update_and_advance(UrgencyForm, as: :urgency)
       end
-
-      private
-
-      def additional_permitted_params
-        [urgency: []]
-      end
     end
   end
 end
