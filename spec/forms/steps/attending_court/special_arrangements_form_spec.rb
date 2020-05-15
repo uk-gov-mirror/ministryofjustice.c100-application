@@ -24,13 +24,6 @@ RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
     end
   end
 
-  context 'validations' do
-    context 'invalid option is selected (tampering)' do
-      let(:special_arrangements) { %w(video_link foobar) }
-      it { expect(subject).to_not be_valid }
-    end
-  end
-
   describe '#save' do
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
@@ -48,6 +41,19 @@ RSpec.describe Steps::AttendingCourt::SpecialArrangementsForm do
         ).and_return(true)
 
         expect(subject.save).to be(true)
+      end
+
+      context 'filters out invalid options (tampering)' do
+        let(:special_arrangements) { ['foobar'] }
+
+        it 'saves the record' do
+          expect(court_arrangement).to receive(:update).with(
+            special_arrangements: [],
+            special_arrangements_details: 'details'
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
       end
     end
   end
