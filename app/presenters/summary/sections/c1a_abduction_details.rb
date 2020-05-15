@@ -23,8 +23,8 @@ module Summary
           FreeTextAnswer.new(:c1a_abduction_children_current_location, abduction.current_location),
           Answer.new(:c1a_abduction_passport_office_notified, abduction.passport_office_notified),
           Answer.new(:c1a_abduction_children_multiple_passports, abduction.children_multiple_passports),
-          MultiAnswer.new(:c1a_abduction_passport_possession, passport_possession),
-          FreeTextAnswer.new(:c1a_abduction_passport_possession_other, passport_possession_other),
+          MultiAnswer.new(:c1a_abduction_passport_possession, abduction.passport_possession),
+          FreeTextAnswer.new(:c1a_abduction_passport_possession_other, abduction.passport_possession_other_details),
           Answer.new(:c1a_abduction_previous_attempt_agency_involved, abduction.previous_attempt_agency_involved),
           FreeTextAnswer.new(:c1a_abduction_previous_attempt_agency_details, abduction.previous_attempt_agency_details),
         ].select(&:show?)
@@ -35,18 +35,6 @@ module Summary
 
       def abduction
         @_abduction ||= c100.abduction_detail
-      end
-
-      def passport_possession
-        [
-          :passport_possession_mother,
-          :passport_possession_father,
-          :passport_possession_other
-        ].select { |person| abduction[person] }
-      end
-
-      def passport_possession_other
-        abduction.passport_possession_other_details if abduction.passport_possession_other
       end
     end
   end

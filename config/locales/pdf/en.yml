@@ -620,9 +620,7 @@ en:
     c1a_abduction_passport_possession:
       question: Who is in possession of the child(ren)’s passport(s)?
       answers:
-        passport_possession_mother: Mother
-        passport_possession_father: Father
-        passport_possession_other: Other
+        <<: *RELATIONS
     c1a_abduction_passport_possession_other:
       question: 'Details of other:'
     c1a_abduction_previous_attempt_agency_involved:
