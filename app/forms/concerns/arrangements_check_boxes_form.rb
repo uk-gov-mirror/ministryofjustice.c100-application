@@ -7,11 +7,13 @@ module ArrangementsCheckBoxesForm
   end
 
   class_methods do
-    def setup_attributes_for(value_object, attribute_name:)
-      attribute attribute_name, Array[String]
+    attr_accessor :attribute_name, :allowed_values
 
-      # Ensure no tampering with the option values
-      validates attribute_name, checkbox_options: { valid_values: value_object.string_values }
+    def setup_attributes_for(value_object, attribute_name:)
+      self.attribute_name = attribute_name
+      self.allowed_values = value_object.string_values
+
+      attribute attribute_name, Array[String]
 
       # Define the query method for each of the attributes
       # rubocop:disable Performance/HashEachMethods
@@ -30,11 +32,17 @@ module ArrangementsCheckBoxesForm
     {}
   end
 
+  def selected_options
+    public_send(self.class.attribute_name) & self.class.allowed_values
+  end
+
   def persist!
     raise BaseForm::C100ApplicationNotFound unless c100_application
 
     record_to_persist.update(
       attributes_map.merge(
+        self.class.attribute_name => selected_options
+      ).merge(
         additional_attributes_map
       )
     )

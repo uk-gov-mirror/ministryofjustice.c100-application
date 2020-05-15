@@ -566,14 +566,6 @@ en:
               blank: You must give sign language requirements
             welsh_language_details:
               blank: You must give Welsh language requirements
-        steps/attending_court/special_arrangements_form:
-          attributes:
-            special_arrangements:
-              invalid: Select valid safety arrangements
-        steps/attending_court/special_assistance_form:
-          attributes:
-            special_assistance:
-              invalid: Select valid assistance or special facilities
         steps/attending_court/intermediary_form:
           attributes:
             intermediary_help:
