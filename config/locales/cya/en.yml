@@ -298,9 +298,7 @@ en:
     abduction_passport_possession:
       question: Who is in possession of the passports?
       answers:
-        passport_possession_mother: Mother
-        passport_possession_father: Father
-        passport_possession_other: Other
+        <<: *RELATIONS
     abduction_passport_possession_other:
       question: ''
     abduction_previous_attempt:
