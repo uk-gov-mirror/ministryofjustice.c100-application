@@ -12,9 +12,9 @@
       <%= f.govuk_collection_radio_buttons :children_multiple_passports, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
 
       <%= f.govuk_check_boxes_fieldset :passport_possession, legend: { tag: 'span', size: 'm' } do %>
-        <%= f.govuk_check_box :passport_possession_mother, true %>
-        <%= f.govuk_check_box :passport_possession_father, true %>
-        <%= f.govuk_check_box :passport_possession_other, true do
+        <%= f.govuk_check_box :passport_possession, Relation::MOTHER.to_s %>
+        <%= f.govuk_check_box :passport_possession, Relation::FATHER.to_s %>
+        <%= f.govuk_check_box :passport_possession, Relation::OTHER.to_s do
           f.govuk_text_area :passport_possession_other_details
         end %>
       <% end %>
