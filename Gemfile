@@ -5,7 +5,7 @@ ruby '2.6.5'
 
 gem 'devise', '~> 4.7.1'
 gem 'email_validator', '< 2.0.0'
-gem 'govuk_design_system_formbuilder', github: 'zheileman/govuk_design_system_formbuilder', branch: 'backup'
+gem 'govuk_design_system_formbuilder', github: 'zheileman/govuk_design_system_formbuilder'
 gem 'govuk_notify_rails', '~> 2.1.0'
 gem 'jquery-rails'
 gem 'omniauth-auth0', '~> 2.2'
@@ -43,7 +43,6 @@ end
 
 group :development, :test do
   gem 'dotenv-rails'
-  gem 'launchy'
   gem 'mutant', '< 0.9.0'
   gem 'mutant-rspec'
   gem 'pry-byebug'
