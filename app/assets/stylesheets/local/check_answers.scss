@@ -30,6 +30,10 @@
 
     .govuk-summary-list__value {
       display: block;
+
+      @include govuk-if-ie8 {
+        width: 100%;
+      }
     }
 
     // Give a sense of hierarchy by adding a bit of inset to sub-questions (only on mobile)

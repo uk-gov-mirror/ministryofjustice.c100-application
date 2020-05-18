@@ -45,15 +45,20 @@
 
 ol.app-list--icon-steps {
   padding-left: 0;
+  list-style-type: none;
 
   h3 {
     margin-bottom: 0.5em;
   }
 
+  @include govuk-if-ie8 {
+    list-style-type: decimal;
+    padding-left: 1em;
+  }
+
   & > li {
     background-position: 0 0.8em;
     background-repeat: no-repeat;
-    list-style-type: none;
     padding: 0.87em 0 0.75em 2.2em;
 
     @include govuk-media-query($from: tablet) {
@@ -81,11 +86,17 @@ ol.app-list--icon-steps {
 ul.app-list--pros-cons {
   @extend .govuk-\!-font-size-16;
 
-  & > li {
-    list-style-type: none;
-    padding-left: 1.4em;
-    padding-bottom: 0.3em;
-    background-repeat: no-repeat;
+  @include govuk-if-ie8 {
+    list-style-type: disc;
+    padding-left: 1em;
+  }
+
+  @include govuk-not-ie8 {
+    & > li {
+      padding-left: 1.4em;
+      padding-bottom: 0.3em;
+      background-repeat: no-repeat;
+    }
   }
 
   & > li.app-list--item--pros {
