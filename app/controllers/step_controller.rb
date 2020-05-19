@@ -12,7 +12,7 @@ class StepController < ApplicationController
   private
 
   def update_and_advance(form_class, opts = {})
-    hash = permitted_params(form_class).to_h
+    hash = extract_parameters(form_class)
     record = opts[:record]
 
     @next_step   = params[:next_step].presence
@@ -42,6 +42,12 @@ class StepController < ApplicationController
     end
   end
 
+  def extract_parameters(form_class)
+    normalise_date_attributes!(
+      permitted_params(form_class).to_h
+    )
+  end
+
   def permitted_params(form_class)
     params
       .fetch(form_class.model_name.singular, {})
@@ -61,10 +67,41 @@ class StepController < ApplicationController
   def form_attribute_names(form_class)
     form_class.attribute_set.map do |attr|
       attr_name = attr.name
-      primitive = attr.primitive
+      primitive = attr.primitive.to_s
 
-      primitive.eql?(Date) ? %W[#{attr_name}_dd #{attr_name}_mm #{attr_name}_yyyy] : attr_name
-    end.flatten
+      # Avoid having to declare collection attributes `Array[String]` in permitted params.
+      case primitive
+      when 'Array'
+        [attr_name, attr_name => []]
+      else
+        attr_name
+      end
+    end
+  end
+
+  # Converts multi-param Rails date attributes to an array that can be coerced more easily.
+  # Uses the `(1i)` part to know the position in the array (index 0 being nil).
+  #
+  # Example: {'birth_date(1i)' => '2008', 'birth_date(2i)' => '11', 'birth_date(3i)' => '22'}
+  # will be converted to an array attribute named `birth_date` with values: [nil, 2008, 11, 22]
+  #
+  def normalise_date_attributes!(hash)
+    regex = /(?<name>.+)\((?<index>[1-3])i\)$/ # captures the attribute name and index (1 to 3)
+    new_hash = {}
+
+    hash.each do |key, value|
+      next unless key =~ regex
+
+      hash.delete(key)
+
+      name  = Regexp.last_match(:name)
+      index = Regexp.last_match(:index).to_i
+
+      new_hash[name] ||= []
+      new_hash[name][index] = value.to_i
+    end.merge!(
+      new_hash
+    )
   end
 
   def update_navigation_stack

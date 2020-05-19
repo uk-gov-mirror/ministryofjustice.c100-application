@@ -23,8 +23,6 @@ en:
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
-      child_arrangements_contact: Decide how and when the children are involved with each person
-      child_arrangements_access: Allow the children to spend time with you
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
       prohibited_steps_moving: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
@@ -105,6 +103,7 @@ en:
       other_court_cases_details: Other proceedings details
       urgent_hearing_details: Urgent hearing details
       without_notice_hearing_details: Without notice hearing details
+      international_resident: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
       international_jurisdiction: Do you think another person in this application may be able to apply for a similar order in a country outside England or Wales?
       international_request: Has a request for information or other assistance involving the children been made to or by another country?
       litigation_capacity: Factors affecting ability to participate
@@ -188,7 +187,7 @@ en:
       question_a11y: Who %{child_name} lives with
 
     miam_exemptions_domestic:
-      question: Evidence of domestic abuse and violence
+      question: Domestic abuse and violence
       answers:
         police_arrested: Evidence that a prospective party has been arrested for a relevant domestic violence offence
         police_caution: Evidence of a relevant police caution for a domestic violence offence
@@ -233,7 +232,7 @@ en:
         urgency_none: *none_selected
 
     miam_exemptions_adr:
-      question: Previously attended a MIAM or had a valid reason for not attending
+      question: Previous MIAM attendance or MIAM exemption
       answers:
         previous_attendance: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or a very similar dispute
         ongoing_attendance: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
@@ -243,7 +242,7 @@ en:
         adr_none: *none_selected
 
     miam_exemptions_misc:
-      question: Other reasons
+      question: Other exemptions
       answers:
         no_respondent_address: You don’t have sufficient contact details for the other people in this application (the respondents)
         without_notice: You’re applying for a without notice hearing
@@ -299,9 +298,7 @@ en:
     abduction_passport_possession:
       question: Who is in possession of the passports?
       answers:
-        passport_possession_mother: Mother
-        passport_possession_father: Father
-        passport_possession_other: Other
+        <<: *RELATIONS
     abduction_passport_possession_other:
       question: ''
     abduction_previous_attempt:
@@ -531,9 +528,11 @@ en:
       question: Details
 
     international_resident:
-      question: Is the life of the child or children, a parent, or anyone significant to the children mainly based in a country outside England or Wales?
+      question: ''
       answers:
         <<: *YESNO
+    international_resident_details:
+      question: ''
     international_jurisdiction:
       question: ''
       answers:

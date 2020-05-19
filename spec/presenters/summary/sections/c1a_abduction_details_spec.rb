@@ -16,9 +16,7 @@ module Summary
         passport_office_notified: 'yes',
         children_have_passport: 'yes',
         children_multiple_passports: 'yes',
-        passport_possession_mother: true,
-        passport_possession_father: false,
-        passport_possession_other: true,
+        passport_possession: %w(mother other),
         passport_possession_other_details: 'friend',
         previous_attempt: 'yes',
         previous_attempt_details: 'previous_attempt_details',
@@ -75,7 +73,7 @@ module Summary
 
         expect(answers[7]).to be_an_instance_of(MultiAnswer)
         expect(answers[7].question).to eq(:c1a_abduction_passport_possession)
-        expect(answers[7].value).to eq([:passport_possession_mother, :passport_possession_other])
+        expect(answers[7].value).to eq(%w(mother other))
 
         expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[8].question).to eq(:c1a_abduction_passport_possession_other)

@@ -1,20 +1,19 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <p class="app__section_heading"><%=t '.section' %></p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%= t '.lead_text' %></p>
-      <p><%= t '.court_contact' %></p>
-    </div>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_check_boxes :special_arrangements, SpecialArrangements.values, :to_s, :to_s do %>
+        <p class="govuk-body-l"><%=t '.lead_text' %></p>
+        <p class="govuk-body"><%=t '.court_contact' %></p>
+      <% end %>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.check_box_fieldset :special_arrangements, SpecialArrangements.values %>
-      <%= f.text_area :special_arrangements_details, size: '40x4', class: 'form-control-3-4' %>
+      <%= f.govuk_text_area :special_arrangements_details %>
 
       <%= f.continue_button %>
     <% end %>

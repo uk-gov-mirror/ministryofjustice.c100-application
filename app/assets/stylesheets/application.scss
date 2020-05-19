@@ -1,56 +1,11 @@
-// From GDS's alphagov/govuk_frontend_toolkit
-@import 'colours';
-@import 'font_stack';
-@import 'measurements';
-@import 'conditionals';
-@import 'device-pixels';
-@import 'grid_layout';
-@import 'typography';
-@import 'shims';
+// GOV.UK Frontend
+// https://frontend.design-system.service.gov.uk
 
-@import 'design-patterns/alpha-beta';
-@import 'design-patterns/buttons';
-@import 'design-patterns/breadcrumbs';
+// Style paragraphs (`<p>`) and links (`<a>`) without explicitly having to apply `govuk-body` and `govuk-link` classes
+$govuk-global-styles: true;
 
-// From GDS's alphagov/govuk_elements
-@import 'elements/helpers';
-@import 'elements/reset';
-@import 'elements/layout';
-@import 'elements/elements-typography';
-@import 'elements/buttons';
-@import 'elements/icons';
-@import 'elements/lists';
-@import 'elements/tables';
-@import 'elements/details';
-@import 'elements/panels';
-@import 'elements/forms';
-@import 'elements/forms/form-multiple-choice';
-@import 'elements/forms/form-date';
-@import 'elements/forms/form-validation';
-@import 'elements/breadcrumbs';
-@import 'elements/phase-banner';
-@import 'elements/components';
-@import 'elements/shame';
+$govuk-assets-path: '/assets/govuk-frontend/govuk/assets/';
+@import 'govuk-frontend/govuk/all';
 
-// From MOJ gov_uk_date_fields
-@import 'govuk_date_fields';
-
-@import 'local/tables';
-@import 'local/lists';
-@import 'local/inputs';
-@import 'local/buttons';
-@import 'local/forms';
-@import 'local/typography';
-@import 'local/header';
-@import 'local/panels';
-@import 'local/banners';
-@import 'local/utilities';
-@import 'local/timeout_modal';
-@import 'local/spinner';
-@import 'local/developer_tools';
-@import 'local/js_enabled';
-
-@import 'local/check_answers';
-@import 'local/pdf_summary';
-
-@import 'local/app';
+// App-specific custom styles and overrides
+@import 'local/all';

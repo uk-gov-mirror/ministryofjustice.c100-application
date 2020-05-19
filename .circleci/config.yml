@@ -46,6 +46,7 @@ jobs:
           name: install dependencies
           command: |
             bundle install --jobs=4 --retry=3 --path vendor/bundle
+            npm install
 
       - save_cache:
           paths:
@@ -63,8 +64,11 @@ jobs:
           name: run tests
           command: << parameters.test_command >>
 
-  build_staging:
+  build_image:
     <<: *cloud_container
+    parameters:
+      env_name:
+        type: string
     steps:
       - checkout
 
@@ -95,11 +99,14 @@ jobs:
             docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
             docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
-            docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:staging.latest"
-            docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:staging.latest"
+            docker tag app "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:<< parameters.env_name >>.latest"
+            docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:<< parameters.env_name >>.latest"
 
-  deploy_staging:
+  deploy_image:
     <<: *cloud_container
+    parameters:
+      env_name:
+        type: string
     steps:
       - checkout
 
@@ -107,24 +114,24 @@ jobs:
           name: kubectl use context
           command: |
             setup-kube-auth
-            kubectl config use-context staging
+            kubectl config use-context << parameters.env_name >>
 
       - deploy:
-          name: rolling update image to staging
+          name: rolling update image
           command: |
             export BUILD_DATE=$(date -Is) >> $BASH_ENV
             source $BASH_ENV
 
-            kubectl set image -n c100-application-staging \
-                    deployment/c100-application-deployment-staging \
+            kubectl set image -n c100-application-<< parameters.env_name >> \
+                    deployment/c100-application-deployment-<< parameters.env_name >> \
                     webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
-            kubectl set image -n c100-application-staging \
-                    deployment/c100-application-sidekiq-staging \
+            kubectl set image -n c100-application-<< parameters.env_name >> \
+                    deployment/c100-application-sidekiq-<< parameters.env_name >> \
                     sidekiq="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
 
-            kubectl annotate -n c100-application-staging \
-                    deployment/c100-application-deployment-staging \
+            kubectl annotate -n c100-application-<< parameters.env_name >> \
+                    deployment/c100-application-deployment-<< parameters.env_name >> \
                     kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
 
   tag_production:
@@ -148,57 +155,49 @@ jobs:
 
             docker push "${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:production.latest"
 
-  deploy_production:
-    <<: *cloud_container
-    steps:
-      - checkout
-
-      - run:
-          name: kubectl use context
-          command: |
-            setup-kube-auth
-            kubectl config use-context production
-
-      - deploy:
-          name: rolling update image to production
-          command: |
-            export BUILD_DATE=$(date -Is) >> $BASH_ENV
-            source $BASH_ENV
-
-            kubectl set image -n c100-application-production \
-                    deployment/c100-application-deployment-production \
-                    webapp="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-
-            kubectl set image -n c100-application-production \
-                    deployment/c100-application-sidekiq-production \
-                    sidekiq="${ECR_ENDPOINT}/${GITHUB_TEAM_NAME_SLUG}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-
-            kubectl annotate -n c100-application-production \
-                    deployment/c100-application-deployment-production \
-                    kubernetes.io/change-cause="${BUILD_DATE} set image ${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1} via CircleCI"
-
-
 workflows:
   test-build-deploy:
     jobs:
       - test
-      - build_staging:
+      ### dev ###
+      - build_image:
+          name: build-dev
+          env_name: dev
+          requires:
+            - test
+          filters:
+            branches:
+              only: develop
+      - deploy_image:
+          name: deploy-dev
+          env_name: dev
+          requires:
+            - build-dev
+      ### staging ###
+      - build_image:
+          name: build-staging
+          env_name: staging
           requires:
             - test
           filters:
             branches:
               only: master
-      - deploy_staging:
+      - deploy_image:
+          name: deploy-staging
+          env_name: staging
           requires:
-            - build_staging
+            - build-staging
+      ### production ###
       - approve_production:
           type: approval
           requires:
-            - deploy_staging
+            - deploy-staging
       - tag_production:
           requires:
             - approve_production
-      - deploy_production:
+      - deploy_image:
+          name: deploy-production
+          env_name: production
           requires:
             - tag_production
 

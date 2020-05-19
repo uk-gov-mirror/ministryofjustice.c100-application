@@ -1,53 +1,37 @@
 <% title 'Application submitted' %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <div class="grid_content_header govuk-box-highlight">
-      <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge">Your application has been submitted</h1>
-      <p class="display-block util_mt-none util_mb-none">Your reference code is:</p>
-      <h3 class="heading-medium util_mt-none util_mb-medium"><%= current_c100_application.reference_code %></h3>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title">
+        Your application has been submitted
+      </h1>
+      <div class="govuk-panel__body">
+        <span class="app-util--no-wrap">Your reference code is:</span>
+        <strong><%= @c100_application.reference_code %></strong>
+      </div>
     </div>
 
-    <p class="lede gv-u-text-lede util_mt-large">
+    <p class="govuk-body-l govuk-!-margin-top-6">
       Your application has been sent to <%= @court.name %>.
 
-      <% if current_c100_application.receipt_email? %>
+      <% if @c100_application.receipt_email? %>
         We’ve emailed a confirmation of this with a copy of your application to
-        <strong><%= current_c100_application.receipt_email %></strong>
+        <strong><%= @c100_application.receipt_email %></strong>
       <% end %>
     </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <h2 class="heading-large gv-u-heading-large">Pay the application fee</h2>
-      <%= render partial: 'steps/shared/payment_instructions', locals: {
-        c100_application: @c100_application
-      } %>
-    </div>
+    <h2 class="govuk-heading-l">Pay the application fee</h2>
+    <%= render partial: 'steps/shared/payment_instructions', locals: {
+      c100_application: @c100_application
+    } %>
 
-    <%= render partial: 'under_age_section' %>
+    <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <h2 class="heading-large gv-u-heading-large">Download a copy of your application</h2>
-      <p>
-        This will be a PDF. If you cannot open the PDF after downloading, try using
-        <a href="https://get.adobe.com/uk/reader/" rel="external" target="_blank">Adobe Acrobat Reader</a>.
-      </p>
-
-      <% unless user_signed_in? || current_c100_application.receipt_email? %>
-        <div class="panel panel-border-narrow">
-          <p>If you want to keep a copy, you must download it now. You cannot return to a submitted application.</p>
-        </div>
-      <% end %>
-
-      <p>
-        <%= link_to 'Download your PDF application',
-                    steps_completion_summary_path(format: :pdf),
-                    class: 'button ga-pageLink',
-                    data: {ga_category: 'completion', ga_label: 'download application'} %>
-      </p>
-    </div>
-
-    <hr>
+    <h2 class="govuk-heading-l">Download a copy of your application</h2>
+    <%= render partial: 'steps/shared/download_pdf_copy', locals: {
+      callout: 'If you want to keep a copy, you must download it now. You cannot return to a submitted application.'
+    } %>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 

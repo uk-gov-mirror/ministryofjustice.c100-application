@@ -18,8 +18,8 @@ module Summary
             :abduction_passport_possession,
             [
               Answer.new(:abduction_children_multiple_passports, abduction.children_multiple_passports),
-              MultiAnswer.new(:abduction_passport_possession, passport_possession),
-              FreeTextAnswer.new(:abduction_passport_possession_other, passport_possession_other),
+              MultiAnswer.new(:abduction_passport_possession, abduction.passport_possession),
+              FreeTextAnswer.new(:abduction_passport_possession_other, abduction.passport_possession_other_details),
             ],
             change_path: edit_steps_abduction_passport_details_path
           ),
@@ -49,18 +49,6 @@ module Summary
 
       def abduction
         @_abduction ||= c100.abduction_detail
-      end
-
-      def passport_possession
-        [
-          :passport_possession_mother,
-          :passport_possession_father,
-          :passport_possession_other
-        ].select { |person| abduction[person] }
-      end
-
-      def passport_possession_other
-        abduction.passport_possession_other_details if abduction.passport_possession_other
       end
     end
   end

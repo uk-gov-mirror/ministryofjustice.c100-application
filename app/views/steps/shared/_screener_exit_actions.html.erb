@@ -1,14 +1,9 @@
-<section id="what-to-do-now" class="moj-Section moj-Section--2" data-block-name="what-to-do-now">
-  <h2 class="gv-u-heading-xlarge"><%= t '.what_to_do_now.heading' %></h2>
-  <div class="Section__content govuk-govspeak gv-s-prose">
-    <p><%= t '.what_to_do_now.copy' %></p>
-  </div>
-</section>
+<h2 class="govuk-heading-l"><%= t '.what_to_do_now.heading' %></h2>
 
-<div class="xform-group form-submit">
-  <%= link_to t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'button ga-pageLink', role: 'button', data: {ga_category: 'screener kickout', ga_label: 'paper form'} %>
-</div>
+<p class="govuk-body"><%= t '.what_to_do_now.copy' %></p>
+
+<%= link_button t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'ga-pageLink', data: { module: 'govuk-button', ga_category: 'screener kickout', ga_label: 'paper form' } %>
 
 <% unless local_assigns.fetch(:hide_cait_info, false) %>
-  <p class="util_mt-large"><%=t '.cait_info_html' %></p>
+  <p class="govuk-body"><%=t '.cait_info_html' %></p>
 <% end %>

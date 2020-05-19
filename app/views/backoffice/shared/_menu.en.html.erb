@@ -1,19 +1,25 @@
-<nav id="proposition-menu">
-  <ul id="proposition-links" aria-label="Top Level Navigation">
-    <li>
-      <%= link_to_unless_current 'Applications', backoffice_dashboard_index_path %>
-    </li>
-    <li>
-      <%= link_to_unless_current 'Emails', backoffice_emails_path %>
-    </li>
-    <li>
-      <%= link_to_unless_current 'Audit', backoffice_audit_index_path %>
-    </li>
-    <li>
-      <%= link_to_unless_current 'Users', backoffice_users_path %>
-    </li>
-    <li class="util_ml-medium">
-      <%= link_to 'Logout', backoffice_auth0_logout_path, method: :delete %> (<%= admin_name %>)
-    </li>
-  </ul>
-</nav>
+<% if admin_signed_in? %>
+  <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+  <nav>
+    <ul id="navigation" class="govuk-header__navigation" aria-label="Top Level Navigation">
+      <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if current_page?(backoffice_dashboard_index_path) %>">
+        <%= link_to 'Applications', backoffice_dashboard_index_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if current_page?(backoffice_emails_path) %>">
+        <%= link_to 'Emails', backoffice_emails_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if current_page?(backoffice_audit_index_path) %>">
+        <%= link_to 'Audit', backoffice_audit_index_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item <%= 'govuk-header__navigation-item--active' if current_page?(backoffice_users_path) %>">
+        <%= link_to 'Users', backoffice_users_path, class: 'govuk-header__link' %>
+      </li>
+      <li class="govuk-header__navigation-item">
+        <%= button_to 'Logout', backoffice_auth0_logout_path, class: 'govuk-header__link app-header__logout-link', method: :delete %>
+      </li>
+      <li class="govuk-header__navigation-item">
+        (<%= admin_name %>)
+      </li>
+    </ul>
+  </nav>
+<% end %>

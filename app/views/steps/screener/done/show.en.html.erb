@@ -1,19 +1,16 @@
 <% title 'Screener completed' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You’re eligible to apply online</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">You're eligible to apply online</h1>
+    <p class="govuk-body-l">Based on your answers, you can use this online service.</p>
 
-    <p class="lede">Based on your answers, you can use this online service.</p>
-
-    <div role="note" aria-label="Information" class="panel panel-border-wide info-notice">
+    <div class="govuk-inset-text">
       <p>If you’re a solicitor representing a parent, complete this application on their behalf.</p>
     </div>
 
-    <div class="xform-group form-submit">
-      <%= link_to 'Continue', entrypoint_v1_path, class: 'button', role: 'button' %>
-    </div>
+    <%= link_button 'Continue', entrypoint_v1_path %>
   </div>
 </div>

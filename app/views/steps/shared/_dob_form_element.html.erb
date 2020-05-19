@@ -1,0 +1,17 @@
+<% if form_object.object.respond_to?(:dob_unknown) %>
+
+  <div class="app-util--compact-form-group">
+    <%= form_object.govuk_date_field :dob, legend: { tag: 'span', size: 'm' } %>
+  </div>
+
+  <%= form_object.govuk_check_boxes_fieldset :dob_unknown, small: true, legend: { tag: 'span', size: 's', hidden: true } do %>
+    <%= form_object.govuk_check_box :dob_unknown, true, multiple: false do
+      form_object.govuk_text_field :age_estimate, width: 'one-half'
+    end %>
+  <% end %>
+
+<% else %>
+
+  <%= form_object.govuk_date_field :dob, legend: { tag: 'span', size: 'm' } %>
+
+<% end %>

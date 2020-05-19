@@ -27,8 +27,6 @@ en:
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
-      child_arrangements_contact: Decide how and when the children are involved with each person
-      child_arrangements_access: Allow the children to spend time with you
     PROHIBITED_STEPS_ORDERS: &PROHIBITED_STEPS_ORDERS
       prohibited_steps_moving: Relocating the children to a different area in England and Wales
       prohibited_steps_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
@@ -236,18 +234,21 @@ en:
       question: Do you have any reason to believe that any child, parent or potentially significant adult in the child’s life may be habitually resident in another state?
       answers:
         <<: *YESNO
+    international_resident_details:
+      question: *details
     international_jurisdiction:
       question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)?
       answers:
         <<: *YESNO
     international_jurisdiction_details:
-      question: ''
+      question: *details
     international_request:
       question: Has a request been made or should a request be made to a Central Authority or other competent authority in a foreign state or a consular authority in England and Wales?
       answers:
         <<: *YESNO
     international_request_details:
-      question: ''
+      question: *details
+
     child_full_name:
       question: Full name
     child_dob:
@@ -619,9 +620,7 @@ en:
     c1a_abduction_passport_possession:
       question: Who is in possession of the child(ren)’s passport(s)?
       answers:
-        passport_possession_mother: Mother
-        passport_possession_father: Father
-        passport_possession_other: Other
+        <<: *RELATIONS
     c1a_abduction_passport_possession_other:
       question: 'Details of other:'
     c1a_abduction_previous_attempt_agency_involved:

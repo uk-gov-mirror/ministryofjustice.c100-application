@@ -60,6 +60,23 @@ RSpec.describe Steps::Miam::CertificationDateForm do
           expect(subject.errors.added?(:miam_certification_date, :future)).to eq(true)
         end
       end
+
+      context 'casting the date from multi parameters' do
+        context 'when date is valid' do
+          let(:miam_certification_date) { [nil, 2008, 11, 22] }
+          it { expect(subject).to be_valid }
+        end
+
+        context 'when date is not valid' do
+          let(:miam_certification_date) { [nil, 18, 11, 22] } # 2-digits year (18)
+          it { expect(subject).not_to be_valid }
+        end
+
+        context 'when a part is missing (nil or zero)' do
+          let(:miam_certification_date) { [nil, 2008, 0, 22] }
+          it { expect(subject).not_to be_valid }
+        end
+      end
     end
 
     context 'when form is valid' do

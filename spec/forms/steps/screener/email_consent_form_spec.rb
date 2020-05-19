@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Steps::Screener::EmailConsentForm do
-  let(:email_consent){ GenericYesNo::NO }
+  let(:email_consent){ GenericYesNo::YES }
   let(:email_address){ 'my.email@example.com' }
   let(:arguments) { {
     c100_application: c100_application,
@@ -45,12 +45,27 @@ RSpec.describe Steps::Screener::EmailConsentForm do
         end
       end
     end
-    it_behaves_like 'a has-one-association form',
-                    association_name: :screener_answers,
-                    expected_attributes: {
-                      email_consent: GenericYesNo::NO,
-                      email_address: 'my.email@example.com'
-                    }
 
+    context 'when answer is yes' do
+      let(:email_consent){ GenericYesNo::YES }
+
+      it_behaves_like 'a has-one-association form',
+                      association_name: :screener_answers,
+                      expected_attributes: {
+                        email_consent: GenericYesNo::YES,
+                        email_address: 'my.email@example.com'
+                      }
+    end
+
+    context 'when answer is no' do
+      let(:email_consent){ GenericYesNo::NO }
+
+      it_behaves_like 'a has-one-association form',
+                      association_name: :screener_answers,
+                      expected_attributes: {
+                        email_consent: GenericYesNo::NO,
+                        email_address: nil
+                      }
+    end
   end
 end

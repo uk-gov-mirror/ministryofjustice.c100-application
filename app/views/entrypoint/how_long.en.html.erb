@@ -1,28 +1,28 @@
 <% title 'How long it takes' %>
+<% step_header(path: '/entrypoint/what_is_needed') %>
 
-<a class="link-back" href="/entrypoint/what_is_needed">Back</a>
+<div class="govuk-grid-row app-inverted--card app-inverted-text">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl app-inverted-text">Before you continue</span>
+    <h1 class="govuk-heading-xl app-inverted-text">How long it takes to apply</h1>
 
-<div data-block-name="route:application-requirements" class="flash-card">
-  <div class=" grid-row gv-o-grid-row">
-    <div class=" column-two-thirds gv-o-grid-item gv-u-two-thirds">
-      <div class="grid_content_header">
-        <p class="app__section_heading">Before you continue</p>
-        <h1 class="app__heading  heading-xlarge gv-u-heading-xxlarge">How long it takes to apply</h1>
-      </div>
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
+      It usually takes around 45 minutes to complete an application. It may take longer if your situation is more
+      complex - for example if you’ve been involved in a previous family court case.
+    </p>
 
-      <div class=" govuk-govspeak gv-s-prose">
-        <p>It usually takes around 45 minutes to complete an application. It may take longer if your situation is more
-          complex - for example if you’ve been involved in a previous family court case.</p>
-        <h2 class="gv-u-heading-xlarge">Saving your progress</h2>
-        <p>You can save your application and return at any time. You just need your email address and a
-          password of your choice.</p>
-        <p>We’ll save your draft for <%= Rails.configuration.x.drafts.expire_in_days %> days. For security reasons, we’ll delete
-          any information after this time.</p>
-      </div>
+    <h2 class="govuk-heading-l app-inverted-text">Saving your progress</h2>
 
-      <div class="xform-group form-submit">
-        <%= link_to 'Continue', edit_steps_miam_child_protection_cases_path, class: 'button', role: 'button' %>
-      </div>
-    </div>
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
+      You can save your application and return at any time. You just need your email address and a password of your
+      choice.
+    </p>
+
+    <p class="govuk-body app-inverted-text app-inverted-narrow-width">
+      We’ll save your draft for <%= Rails.configuration.x.drafts.expire_in_days %> days. For security reasons, we’ll
+      delete any information after this time.
+    </p>
+
+    <%= link_button 'Continue', edit_steps_miam_child_protection_cases_path, class: 'app-button--l app-button--inverted govuk-!-margin-top-3 govuk-!-margin-bottom-1' %>
   </div>
 </div>

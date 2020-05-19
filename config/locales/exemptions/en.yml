@@ -1,197 +1,203 @@
 en:
   dictionary:
+    select_all_that_apply_or_none: &select_all_that_apply_or_none "Select all that apply or ‘None of these’"
     none_of_these: &none_of_these "None of these"
 
+    ### LABELS ###
     DOMESTIC_EXEMPTIONS: &DOMESTIC_EXEMPTIONS
       ## GROUP POLICE ##
-      group_police_html: |
-        <span class="heading-small gv-u-heading-small">The police have been involved</span>
-        <span class="form-hint">For example, you or the other people in this application (the respondents) have been arrested, cautioned, charged or convicted for domestic or child abuse offences.</span>
-      police_arrested_html: Evidence that a prospective party has been arrested for a relevant domestic violence offence
-      police_caution_html: Evidence of a relevant police caution for a domestic violence offence
-      police_ongoing_proceedings_html: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
-      police_conviction_html: Evidence of a relevant conviction for a domestic violence offence
-      police_dvpn_html: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
+      group_police: The police have been involved
+      police_arrested: Evidence that a prospective party has been arrested for a relevant domestic violence offence
+      police_caution: Evidence of a relevant police caution for a domestic violence offence
+      police_ongoing_proceedings: Evidence of relevant criminal proceedings for a domestic violence offence which have not concluded
+      police_conviction: Evidence of a relevant conviction for a domestic violence offence
+      police_dvpn: A domestic violence protection notice issued under section 24 of the Crime and Security Act 2010 against a prospective party
       ## GROUP COURT ##
-      group_court_html: |
-        <span class="heading-small gv-u-heading-small">A court has already been involved</span>
-        <span class="form-hint">For example, a court has made an order relating to you, the other people in this application (the respondents) or somebody close to you or them in connection with domestic violence or abuse.</span>
-      court_bound_over_html: A court order binding a prospective party over in connection with a domestic violence offence
-      court_protective_injunction_html: A relevant protective injunction
-      court_undertaking_html: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
-      court_finding_of_fact_html: A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
-      court_expert_report_html: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
+      group_court: A court has already been involved
+      court_bound_over: A court order binding a prospective party over in connection with a domestic violence offence
+      court_protective_injunction: A relevant protective injunction
+      court_undertaking: An undertaking given in England and Wales under section 46 or 63E of the Family Law Act 1996 (or given in Scotland or Northern Ireland in place of a protective injunction) by a prospective party, provided that a cross-undertaking relating to domestic violence was not given by another prospective party
+      court_finding_of_fact: A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
+      court_expert_report: An expert report produced as evidence in proceedings in the United Kingdom for the benefit of a court or tribunal confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party
       ## GROUP SPECIALIST ##
-      group_specialist_html: |
-        <span class="heading-small gv-u-heading-small">A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic violence or abuse</span>
-        <span class="form-hint">For example, a health professional or specialist has confirmed injuries that are or were a result of domestic violence or abuse.</span>
-      specialist_examination_html: |
-        <span class="labelLine">A letter or report from an appropriate health professional confirming that-<p></p>
-          <p>(i) that professional, or another appropriate health professional, has examined a prospective party in person; and</p>
-          <p>(ii) in the reasonable professional judgment of the author or the examining appropriate health professional, that prospective party has, or has had, injuries or a condition consistent with being a victim of domestic violence</p>
-        </span>
-      specialist_referral_html: |
-        <span class="labelLine">a letter or report from-<p></p>
-          <p>(i) the appropriate health professional who made the referral described below;</p>
-          <p>(ii) an appropriate health professional who has access to the medical records of the prospective party referred to below; or</p>
-          <p>(iii) the person to whom the referral described below was made; confirming that there was a referral by an appropriate health professional of a prospective party to a person who provides specialist support or assistance for victims of, or those at risk of, domestic violence</p>
-        </span>
+      group_specialist: A letter confirms you or the other people in this application (the respondents) are or have been a victim of domestic violence or abuse
+      specialist_examination: A letter or report from an appropriate health professional
+      specialist_referral: A letter or report confirming that there was a referral by an appropriate health professional of a prospective party to a person who provides specialist support or assistance for victims of, or those at risk of, domestic violence
       ## GROUP LOCAL AUTHORITY ##
-      group_local_authority_html: |
-        <span class="heading-small gv-u-heading-small">A letter from a local authority or other agency confirms a risk of harm</span>
-        <span class="form-hint">For example, a local authority or housing association has confirmed there is or has been a risk of domestic violence or abuse.</span>
-      local_authority_marac_html: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
-      local_authority_la_ha_html: |
-        <span class="labelLine">A letter from an officer employed by a local authority or housing association (or their equivalent in Scotland or Northern Ireland) for the purpose of supporting tenants containing-<p></p>
-          <p>(i) a statement to the effect that, in their reasonable professional judgment, a person with whom a prospective party is or has been in a family relationship is, or is at risk of being, a victim of domestic violence by that prospective party;</p>
-          <p>(ii) a description of the specific matters relied upon to support that judgment; and</p>
-          <p>(iii) a description of the support they provided to the victim of domestic violence or the person at risk of domestic violence by that prospective party</p>
-        </span>
-      local_authority_public_authority_html: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
+      group_local_authority: A letter from a local authority or other agency confirms a risk of harm
+      local_authority_marac: A letter from any person who is a member of a multi-agency risk assessment conference (or other suitable local safeguarding forum) confirming that a prospective party, or a person with whom that prospective party is in a family relationship, is or has been at risk of harm from domestic violence by another prospective party
+      local_authority_la_ha: A letter from an officer employed by a local authority or housing association (or their equivalent in Scotland or Northern Ireland) for the purpose of supporting tenants
+      local_authority_public_authority: A letter from a public authority confirming that a person with whom a prospective party is or was in a family relationship, was assessed as being, or at risk of being, a victim of domestic violence by that prospective party (or a copy of that assessment)
       ## GROUP DA SERVICE ##
-      group_da_service_html: |
-        <span class="heading-small gv-u-heading-small">You have a letter from a domestic violence or abuse support service, specialist or organisation</span>
-        <span class="form-hint">For example, an independent domestic violence or abuse adviser has confirmed support to you or the other people in this application (the respondents).</span>
-      da_service_idva_html: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
-      da_service_isva_html: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
-      da_service_organisation_html: |
-        <span class="labelLine">a letter which-<p></p>
-          <p>(i) is from an organisation providing domestic violence support services, or a registered charity, which letter confirms that it-</p>
-          <p>(a) is situated in England and Wales,</p>
-          <p>(b) has been operating for an uninterrupted period of six months or more; and</p>
-          <p>(c) provided a prospective party with support in relation to that person’s needs as a victim, or a person at risk, of domestic violence; and</p>
-          <p>(ii) contains-</p>
-          <p>(a) a statement to the effect that, in the reasonable professional judgment of the author of the letter, the prospective party is, or is at risk of being, a victim of domestic violence;</p>
-          <p>(b) a description of the specific matters relied upon to support that judgment;</p>
-          <p>(c) a description of the support provided to the prospective party; and</p>
-          <p>(d) a statement of the reasons why the prospective party needed that support;</p>
-        </span>
-      da_service_refuge_refusal_html: |
-        <span class="labelLine">A letter or report from an organisation providing domestic violence support services in the United Kingdom confirming-<p></p>
-          <p>(i) that a person with whom a prospective party is or was in a family relationship was refused admission to a refuge;</p>
-          <p>(ii) the date on which they were refused admission to the refuge; and</p>
-          <p>(iii) they sought admission to the refuge because of allegations of domestic violence by the prospective party referred to in paragraph (i)</p>
-        </span>
+      group_da_service: You have a letter from a domestic violence or abuse support service, specialist or organisation
+      da_service_idva: A letter from an independent domestic violence advisor confirming that they are providing support to a prospective party
+      da_service_isva: A letter from an independent sexual violence advisor confirming that they are providing support to a prospective party relating to sexual violence by another prospective party
+      da_service_organisation: A letter from an organisation providing domestic violence support services, or a registered charity
+      da_service_refuge_refusal: A letter or report from an organisation providing domestic violence support services in the United Kingdom
       ## RIGHT TO REMAIN ##
-      right_to_remain_html: |
-        <span class="heading-small gv-u-heading-small">You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic violence or abuse</span>
-        <span class="form-hint">A letter from the Home Office will have confirmed that the leave was granted under paragraph 289B of the Immigration Rules.</span>
+      right_to_remain: You or any of the other people in this application (the respondents) have been granted indefinite leave to remain in the UK as a victim of domestic violence or abuse
       ## FINANCIAL ABUSE ##
-      financial_abuse_html: |
-        <span class="heading-small gv-u-heading-small">You have evidence that you or the other people in this application (the respondents) have been, or are at risk of being, financially abused by the other</span>
-        <span class="form-hint">Financial abuse is a way of controlling someone being able to earn, spend or keep their own money. For example, preventing someone going to work, withholding money, or putting debts in someone else’s name.<p></p>
-        <p>Evidence could include:</p>
-        <ul class="list list-bullet">
-          <li>a copy of a credit card account, loan document or bank statements</li>
-          <li>a letter from a domestic violence support organisation</li>
-          <li>emails, text messages or a diary kept by the victim</li>
-        </ul>
-        </span>
+      financial_abuse: You have evidence that you or the other people in this application (the respondents) have been, or are at risk of being, financially abused by the other
       ## DOMESTIC NONE ##
       domestic_none: *none_of_these
 
     PROTECTION_EXEMPTIONS: &PROTECTION_EXEMPTIONS
-      authority_enquiring_html: A local authority is carrying out enquiries or assessment about any of the children in this application, or other child in the household
-      authority_protection_order_html: Any of the children in this application, or other child in the household, is the subject of a child protection plan
+      authority_enquiring: A local authority is carrying out enquiries or assessment about any of the children in this application, or other child in the household
+      authority_protection_order: Any of the children in this application, or other child in the household, is the subject of a child protection plan
       protection_none: *none_of_these
 
     URGENCY_EXEMPTIONS: &URGENCY_EXEMPTIONS
-      risk_applicant_html: There is risk to the life, liberty or physical safety of you, your family or your home
-      unreasonable_hardship_html: Any delay caused by attending a MIAM would cause unreasonable hardship for you
-      risk_children_html: Any delay caused by attending a MIAM would cause a risk of harm to the children
-      risk_unlawful_removal_retention_html: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales
-      miscarriage_justice_html: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
-      irretrievable_problems_html: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
-      international_proceedings_html: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
-      ## URGENCY NONE ##
+      risk_applicant: There is risk to the life, liberty or physical safety of you, your family or your home
+      unreasonable_hardship: Any delay caused by attending a MIAM would cause unreasonable hardship for you
+      risk_children: Any delay caused by attending a MIAM would cause a risk of harm to the children
+      risk_unlawful_removal_retention: Any delay caused by attending a MIAM would cause a risk of unlawful removal of a child from the UK, or a risk of unlawful retention of a child who is currently outside England and Wales
+      miscarriage_justice: Any delay caused by attending a MIAM would cause a significant risk of a miscarriage of justice
+      irretrievable_problems: Any delay caused by attending a MIAM would cause irretrievable problems in dealing with the dispute (including the irretrievable loss of significant evidence)
+      international_proceedings: There is a significant risk that in the period necessary to schedule and attend a MIAM, proceedings relating to the dispute will be brought in another state in which a valid claim to jurisdiction may exist, such that a court in that other State would be seized of the dispute before a court in England and Wales
       urgency_none: *none_of_these
 
     ADR_EXEMPTIONS: &ADR_EXEMPTIONS
-      ## GROUP PREVIOUS ADR ##
-      group_previous_adr_html: |
-        <span class="heading-small gv-u-heading-small">You’ve already been to a MIAM or are taking part in another form of non-court resolution</span>
-        <span class="form-hint">The MIAM must have taken place within the past 4 months (or your attendance at another type of non-court resolution must be ongoing) and have been about the same child arrangements issue.</span>
-      previous_attendance_html: In the 4 months prior to making the application, the person attended a MIAM or participated in another form of non-court dispute resolution relating to the same or a very similar dispute
-      ongoing_attendance_html: At the time of making the application, the person is participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
-      existing_proceedings_attendance_html: The application would be made in existing proceedings which are continuing and the prospective applicant attended a MIAM before initiating those proceedings
-      ## GROUP PREVIOUS MIAM ##
-      group_previous_miam_html:
-        <span class="heading-small gv-u-heading-small">You had a valid reason for not attending a MIAM previously</span>
-        <span class="form-hint">For example:<p></p>
-          <ul class="list list-bullet">
-            <li>you’ve made another court application within the last 4 months about the same or a very similar dispute and you had a confirmed valid reason for not attending a MIAM before making that application</li>
-            <li>you’re involved in other ongoing family court proceedings where the applicant in those proceedings had a confirmed valid reason for not attending a MIAM</li>
-          </ul>
-        </span>
-      previous_exemption_html: In the 4 months prior to making the application, the person filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
-      existing_proceedings_exemption_html: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
-      ## ADR NONE ##
+      previous_attendance: In the 4 months prior to making the application, you attended a MIAM or participated in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      ongoing_attendance: At the time of making the application, you are participating in another form of non-court dispute resolution relating to the same or substantially the same dispute
+      existing_proceedings_attendance: The application would be made in existing proceedings which are continuing and you attended a MIAM before initiating those proceedings
+      previous_exemption: In the 4 months prior to making the application, you filed a relevant family application confirming that a MIAM exemption applied and that application related to the same or substantially the same dispute
+      existing_proceedings_exemption: The application would be made in existing proceedings which are continuing and a MIAM exemption applied to the application for those proceedings
       adr_none: *none_of_these
 
     MISC_EXEMPTIONS: &MISC_EXEMPTIONS
-      no_respondent_address_html: |
-        <span class="gv-u-heading-small">You don’t have sufficient contact details for the other people in this application (the respondents)</span>
-        <span class="form-hint">The other people can’t be contacted to arrange a MIAM.</span>
-      without_notice_html: |
-        <span class="gv-u-heading-small">You’re applying for a without notice hearing</span>
-        <span class="form-hint">Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm).</span>
+      no_respondent_address: You don’t have sufficient contact details for the other people in this application (the respondents) to enable a family mediator to contact any of them for the purpose of scheduling the MIAM
+      without_notice: You’re applying for a without notice hearing
       ## GROUP MIAM ACCESS ##
-      group_miam_access_html: |
-        <span class="heading-small gv-u-heading-small">You can’t access a mediator</span>
-        <span class="form-hint">Examples of not being able to access a mediator include:<p></p>
-          <ul class="list list-bullet">
-            <li>you live further than 15 miles from a mediator</li>
-            <li>you’ve contacted all the mediators with an office within 15 miles of where you live (or at least 3, if there are more) and can’t get an appointment for a MIAM within 15 working days</li>
-            <li>you or any of the other people in this application (the respondents) have a disability and there are no mediators within 15 miles who can offer disabled facilities</li>
-          </ul>
-        </span>
-      no_disabled_facilities_html: |
-        <span class="gv-u-heading-small">You or the other person has a disability and the mediator doesn’t have disabled facilities</span>
-        <span class="sublabel">You will need to provide:<p></p>
-          <ul class="list list-bullet">
-            <li>evidence you’ve contacted 3 mediators who all state they don’t have disabled facilities</li>
-            <li>names and contact details of the mediators, including dates of contact</li>
-          </ul>
-        </span>
-      no_appointment_html: |
-        <span class="gv-u-heading-small">You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days</span>
-        <span class="sublabel">You will need to provide:<p></p>
-          <ul class="list list-bullet">
-            <li>evidence you’ve contacted 3 mediators who all state they can’t offer an appointment within 15 days</li>
-            <li>names and contact details of the mediators, including dates of contact</li>
-          </ul>
-        </span>
-      no_mediator_nearby_html: There is no authorised family mediator with an office within 15 miles of your home
+      group_miam_access: You can’t access a mediator
+      no_disabled_facilities: You or the other person has a disability and the mediator doesn’t have disabled facilities
+      no_appointment: You or the other person has contacted 3 mediators within 15 miles and can’t get an appointment within 15 working days
+      no_mediator_nearby: There is no authorised family mediator with an office within 15 miles of your home
       ## END GROUP ##
-      access_prohibited_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) can’t attend a MIAM because one of you is:</span>
-        <ul class="list list-bullet">
-          <li>in prison or any other institution</li>
-          <li>subject to bail conditions that prevent contact with each other</li>
-          <li>subject to a licence with a prohibited contact with each other</li>
-        </ul>
-        </span>
-      non_resident_html: |
-        <span class="gv-u-heading-small">You or the other people in this application (the respondents) don’t live in England and Wales</span>
-        <span class="form-hint">You don’t need to attend a MIAM if the lives of you or the other people involved are mainly based outside England or Wales. This may include working, owning property, having children in school or if family life mainly takes place outside England or Wales.</span>
-      applicant_under_age_html: |
-        <span class="gv-u-heading-small">The applicant or any of the other people in this application (the respondents) are under 18 years old</span>
-        <span class="form-hint">You don’t need to attend a MIAM if you or any other person who is a respondent in this application is under 18</span>
+      access_prohibited: You or all of the prospective respondents can’t attend a MIAM because one of you is in prison or any other institution; subject to bail conditions that prevent contact with each other; or subject to a licence with a prohibited contact with each other
+      non_resident: You or all of the prospective respondents are not habitually resident in England and Wales
+      applicant_under_age: You or the prospective respondents are under 18 years old
       ## MISC NONE ##
       misc_none: *none_of_these
+
+    ### HINTS ###
+    DOMESTIC_EXEMPTIONS_HINTS: &DOMESTIC_EXEMPTIONS_HINTS
+      group_police: For example, you or the other people in this application (the respondents) have been arrested, cautioned, charged or convicted for domestic or child abuse offences
+      group_court: For example, a court has made an order relating to you, the other people in this application (the respondents) or somebody close to you or them in connection with domestic violence or abuse
+      group_specialist: For example, a health professional or specialist has confirmed injuries that are or were a result of domestic violence or abuse
+      group_local_authority: For example, a local authority or housing association has confirmed there is or has been a risk of domestic violence or abuse
+      group_da_service: For example, an independent domestic violence or abuse adviser has confirmed support to you or the other people in this application (the respondents)
+      right_to_remain: A letter from the Home Office will have confirmed that the leave was granted under paragraph 289B of the Immigration Rules
+      financial_abuse_html: |
+        Financial abuse is a way of controlling someone being able to earn, spend or keep their own money. For example, preventing someone going to work, withholding money, or putting debts in someone else’s name. Evidence could include:
+        <ul class="govuk-list govuk-list--bullet govuk-hint govuk-!-margin-top-2">
+          <li>a copy of a credit card account, loan document or bank statements</li>
+          <li>a letter from a domestic violence support organisation</li>
+          <li>emails, text messages or a diary kept by the victim</li>
+        </ul>
+      specialist_examination_html: |
+        The letter or report must confirm:
+        <ol class="govuk-list app-list--lower-roman govuk-hint govuk-!-margin-top-2">
+          <li>that professional, or another appropriate health professional, has examined a prospective party in person; and</li>
+          <li>in the reasonable professional judgment of the author or the examining appropriate health professional, that prospective party has, or has had, injuries or a condition consistent with being a victim of domestic violence</li>
+        </ol>
+      specialist_referral_html: |
+        The letter or report must be from:
+        <ol class="govuk-list app-list--lower-roman govuk-hint govuk-!-margin-top-2">
+          <li>the appropriate health professional who made the referral;</li>
+          <li>an appropriate health professional who has access to the medical records of the prospective party referred to; or</li>
+          <li>the person to whom the referral was made</li>
+        </ol>
+      local_authority_la_ha_html: |
+        The letter must contain:
+        <ol class="govuk-list app-list--lower-roman govuk-hint govuk-!-margin-top-2">
+          <li>a statement to the effect that, in their reasonable professional judgment, a person with whom a prospective party is or has been in a family relationship is, or is at risk of being, a victim of domestic violence by that prospective party;</li>
+          <li>a description of the specific matters relied upon to support that judgment; and</li>
+          <li>a description of the support they provided to the victim of domestic violence or the person at risk of domestic violence by that prospective party</li>
+        </ol>
+      da_service_organisation_html: |
+        <ol class="govuk-list app-list--lower-roman govuk-hint govuk-!-margin-top-2">
+          <li>The letter confirms that it-
+            <ol class="govuk-list app-list--lower-alpha govuk-hint">
+              <li>is situated in England and Wales;</li>
+              <li>has been operating for an uninterrupted period of six months or more; and</li>
+              <li>provided a prospective party with support in relation to that person’s needs as a victim, or a person at risk, of domestic violence; and</li>
+            </ol>
+          </li>
+          <li>The letter contains-
+            <ol class="govuk-list app-list--lower-alpha govuk-hint">
+              <li>a statement to the effect that, in the reasonable professional judgment of the author of the letter, the prospective party is, or is at risk of being, a victim of domestic violence;</li>
+              <li>a description of the specific matters relied upon to support that judgment;</li>
+              <li>a description of the support provided to the prospective party; and</li>
+              <li>a statement of the reasons why the prospective party needed that support</li>
+            </ol>
+          </li>
+        </ol>
+      da_service_refuge_refusal_html: |
+        The letter or report must confirm:
+        <ol class="govuk-list app-list--lower-roman govuk-hint govuk-!-margin-top-2">
+          <li>that a person with whom a prospective party is or was in a family relationship was refused admission to a refuge;</li>
+          <li>the date on which they were refused admission to the refuge; and</li>
+          <li>they sought admission to the refuge because of allegations of domestic violence by the prospective party referred to in paragraph (i)</li>
+        </ol>
+
+    MISC_EXEMPTIONS_HINTS: &MISC_EXEMPTIONS_HINTS
+      without_notice: Hearings which take place without notice to the other people will only be justified where your case is exceptionally urgent or there is good reason not to tell the other people about your application (either because they could take steps to obstruct the application or because doing so may expose you or the children to a risk of harm)
+      group_miam_access: For example you live further than 15 miles from a mediator, you are not able to get an appointment for a MIAM within 15 working days or you or the other people in this application (the respondents) have a disability and the mediator doesn’t have disabled facilities
+      no_disabled_facilities_html: |
+        You will need to provide:
+        <ul class="govuk-list govuk-list--bullet govuk-hint govuk-!-margin-top-2">
+          <li>evidence you’ve contacted 3 mediators who all state they don’t have disabled facilities</li>
+          <li>names and contact details of the mediators, including dates of contact</li>
+        </ul>
+      no_appointment_html: |
+        You will need to provide:
+        <ul class="govuk-list govuk-list--bullet govuk-hint govuk-!-margin-top-2">
+          <li>evidence you’ve contacted 3 mediators who all state they can’t offer an appointment within 15 days</li>
+          <li>names and contact details of the mediators, including dates of contact</li>
+        </ul>
+      non_resident: This may include working, owning property, having children in school or if family life mainly takes place outside England or Wales
 
   helpers:
     label:
       steps_miam_exemptions_domestic_form:
-        <<: *DOMESTIC_EXEMPTIONS
+        domestic_options:
+          <<: *DOMESTIC_EXEMPTIONS
+        exemptions_collection_options:
+          <<: *DOMESTIC_EXEMPTIONS
       steps_miam_exemptions_protection_form:
-        <<: *PROTECTION_EXEMPTIONS
+        protection_options:
+          <<: *PROTECTION_EXEMPTIONS
       steps_miam_exemptions_urgency_form:
-        <<: *URGENCY_EXEMPTIONS
+        urgency_options:
+          <<: *URGENCY_EXEMPTIONS
       steps_miam_exemptions_adr_form:
-        <<: *ADR_EXEMPTIONS
+        adr_options:
+          <<: *ADR_EXEMPTIONS
       steps_miam_exemptions_misc_form:
-        <<: *MISC_EXEMPTIONS
+        misc_options:
+          <<: *MISC_EXEMPTIONS
+        exemptions_collection_options:
+          <<: *MISC_EXEMPTIONS
+
+    hint:
+      steps_miam_exemptions_domestic_form:
+        domestic: *select_all_that_apply_or_none
+        domestic_options:
+          <<: *DOMESTIC_EXEMPTIONS_HINTS
+        exemptions_collection_options:
+          <<: *DOMESTIC_EXEMPTIONS_HINTS
+      steps_miam_exemptions_protection_form:
+        protection: *select_all_that_apply_or_none
+      steps_miam_exemptions_urgency_form:
+        urgency: *select_all_that_apply_or_none
+      steps_miam_exemptions_adr_form:
+        adr: *select_all_that_apply_or_none
+      steps_miam_exemptions_misc_form:
+        misc: *select_all_that_apply_or_none
+        misc_options:
+          <<: *MISC_EXEMPTIONS_HINTS
+        exemptions_collection_options:
+          <<: *MISC_EXEMPTIONS_HINTS
 
   playback:
     exemptions_claimed:
@@ -217,8 +223,8 @@ en:
           <<: *MISC_EXEMPTIONS
 
     safety_concerns_claimed:
-      domestic_abuse_html: you have been abused
-      risk_of_abduction_html: the children are at risk of being abducted
-      children_abuse_html: the children have been abused
-      substance_abuse_html: you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem
-      other_abuse_html: you have concerns about you or the children’s safety or welfare
+      domestic_abuse: you have been abused
+      risk_of_abduction: the children are at risk of being abducted
+      children_abuse: the children have been abused
+      substance_abuse: you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem
+      other_abuse: you have concerns about you or the children’s safety or welfare

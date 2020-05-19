@@ -1,18 +1,17 @@
 <% title 'Child protection info' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You do not have to attend a MIAM</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">You do not have to attend a MIAM</h1>
+    <p class="govuk-body-l">
+      As there are or have been safety concerns about the children, you do not have to attend a
+      <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.
+    </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>As there are or have been safety concerns about the children, you do not have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>.</p>
-      <p>We will ask you about these concerns later in the application.</p>
-    </div>
+    <p class="govuk-body">We will ask you about these concerns later in the application.</p>
 
-    <div class="xform-group form-submit">
-      <%= link_to 'Continue', steps_safety_questions_start_path, class: 'button', role: 'button' %>
-    </div>
+    <%= link_button 'Continue', steps_safety_questions_start_path %>
   </div>
 </div>

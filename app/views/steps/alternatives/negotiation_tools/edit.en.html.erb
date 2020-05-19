@@ -1,59 +1,57 @@
 <% title 'Negotiation tools and services' %>
+<% step_header %>
 
-<div class="grid-row gv-o-grid-row">
-  <div class="column-two-thirds gv-o-grid-item gv-u-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading">Alternative ways to reach an agreement</p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Negotiation tools and services</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>If you still communicate with the other person, and there are no concerns about domestic or child abuse, the
-        cheapest and easiest way to make arrangements is to negotiate with each other.</p>
-      <p>There are free tools and services such as
-        <a href="https://www.splittingup-putkidsfirst.org.uk/home" rel="external" target="_blank">parenting plans</a> that can
-        help you reach an agreement.</p>
-    </div>
+    <span class="govuk-caption-l">Alternative ways to reach an agreement</span>
+    <h1 class="govuk-heading-xl">Negotiation tools and services</h1>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <div>
-        <div class="ProsCons">
-          <div class="Pros">
-            <h2 class="ProsCons__heading ProsCons__heading--pros heading-small gv-u-heading-small" aria-label="Pros of ">
-              <span data-block-name="ProsCons__heading--pros">Pros</span>
-            </h2>
+    <p class="govuk-body">
+      If you still communicate with the other person, and there are no concerns about domestic or child abuse, the
+      cheapest and easiest way to make arrangements is to negotiate with each other.
+    </p>
+    <p class="govuk-body">
+      There are free tools and services such as
+      <a href="https://www.cafcass.gov.uk/grown-ups/parents-and-carers/divorce-and-separation/parenting-plan/" class="govuk-link" rel="external" target="_blank">parenting plans</a>
+      that can help you reach an agreement.
+    </p>
 
-            <ul class="ProsCons__list ProsCons__list--pros">
-              <li class="ProsCons__item ProsCons__item--pros">cheapest and quickest option</li>
-              <li class="ProsCons__item ProsCons__item--pros">you and the other parent are in control</li>
-              <li class="ProsCons__item ProsCons__item--pros">helps children continue family relationships</li>
-              <li class="ProsCons__item ProsCons__item--pros">agreements are flexible</li>
-            </ul>
-          </div>
-
-          <div class="Cons">
-            <h2 class="ProsCons__heading ProsCons__heading--cons  heading-small gv-u-heading-small" aria-label="Cons of ">
-              <span data-block-name="ProsCons__heading--cons">Cons</span>
-            </h2>
-
-            <ul class="ProsCons__list ProsCons__list--cons">
-              <li class="ProsCons__item ProsCons__item--cons">you’ll need a consent order to make agreement legally binding</li>
-              <li class="ProsCons__item ProsCons__item--cons">process heavily relies on parent co-operation</li>
-            </ul>
-          </div>
-        </div>
-
-        <p class="CallToAction">
-          <a class="CallToAction__link" href="https://helpwithchildarrangements.service.justice.gov.uk/negotiating-between-parents" rel="external" target="_blank">Find
-            out more about negotiation tools and services</a></p>
-
-        <%= step_form @form_object do |f| %>
-            <%= f.radio_button_fieldset :alternative_negotiation_tools, inline: true, choices: GenericYesNo.values %>
-            <%= f.continue_button %>
-        <% end %>
-      </div>
-    </div>
+    <p class="govuk-body">
+      <a href="https://helpwithchildarrangements.service.justice.gov.uk/negotiating-between-parents" class="govuk-link" rel="external" target="_blank">
+        Find out more about negotiation tools and services
+      </a>
+    </p>
   </div>
 
-  <div class=" column-one-third gv-o-grid-item gv-u-one-third">
+  <div class="govuk-grid-column-one-third">
+    <div class="app-sidebar-blue-bar"></div>
+    <div class="app-sidebar-grey govuk-!-padding-3">
+      <h2 class="govuk-heading-m">Pros</h2>
+
+      <ul class="govuk-list app-list--pros-cons">
+        <li class="app-list--item--pros">cheapest and quickest option</li>
+        <li class="app-list--item--pros">you and the other parent are in control</li>
+        <li class="app-list--item--pros">helps children continue family relationships</li>
+        <li class="app-list--item--pros">agreements are flexible</li>
+      </ul>
+
+      <h2 class="govuk-heading-m">Cons</h2>
+
+      <ul class="govuk-list app-list--pros-cons">
+        <li class="app-list--item--cons">you’ll need a consent order to make agreement legally binding</li>
+        <li class="app-list--item--cons">process heavily relies on parent co-operation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :alternative_negotiation_tools, GenericYesNo.values, :value, nil, legend: { tag: 'span', size: 'm' } %>
+      <%= f.continue_button %>
+    <% end %>
   </div>
 </div>

@@ -38,16 +38,6 @@ RSpec.describe C100App::RespondentDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) { double('Respondent', id: 1) }
 
-    it 'does not run an age check' do
-      expect(subject).to receive(:after_personal_details).with(age_check: false)
-      subject.destination
-    end
-  end
-
-  context 'when the step is `under_age`' do
-    let(:step_params) {{'under_age' => 'anything'}}
-    let(:record) {double('Respondent', id: 1)}
-
     it 'goes to edit the first child relationship for the current record' do
       expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
     end

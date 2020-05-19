@@ -1,14 +1,12 @@
 <% title 'Back office: dashboard' %>
 
-<div class="grid-row">
-  <div class="column-full">
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">Back office: applications</h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-xl">Back office: applications</h1>
 
     <%= render partial: 'lookup_form' %>
 
-    <p class="heading-medium">
-      Last 50 completed applications
-    </p>
+    <h3 class="govuk-heading-m">Last 50 completed applications</h3>
 
     <%= render partial: 'results_table', locals: { report: @report } %>
   </div>

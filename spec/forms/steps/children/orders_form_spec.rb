@@ -4,36 +4,35 @@ RSpec.describe Steps::Children::OrdersForm do
   let(:arguments) { {
     c100_application: c100_application,
     record: child,
-    child_arrangements_home: '1',
-    specific_issues_school: '0',
-    specific_issues_medical: '1',
+    orders: orders,
   } }
 
   let(:c100_application) { instance_double(C100Application) }
   let(:child) { instance_double(Child, child_order: child_order) }
   let(:child_order) { nil }
 
+  let(:orders) { %w(child_arrangements_home specific_issues_medical) }
+
   subject { described_class.new(arguments) }
 
-  describe 'custom getters override' do
-    let(:child_order) { double('child_order', orders: ['child_arrangements_home']) }
+  describe 'validations' do
+    let(:child_order) { double('child_order', orders: []) }
 
-    it 'returns true if the order is in the list' do
-      expect(subject.child_arrangements_home).to eq(true)
-    end
-
-    it 'returns false if the order is not in the list' do
-      expect(subject.specific_issues_school).to eq(false)
-    end
-  end
-
-  context 'validations' do
-    context 'no orders selected' do
-      let(:arguments) { { c100_application: c100_application, record: child } }
+    context 'when no checkboxes are selected' do
+      let(:orders) { nil }
 
       it 'has a validation error' do
         expect(subject).to_not be_valid
-        expect(subject.errors.added?(:base, :blank_orders)).to eq(true)
+        expect(subject.errors.added?(:orders, :blank)).to eq(true)
+      end
+    end
+
+    context 'when invalid checkbox values are submitted' do
+      let(:orders) { ['foobar'] }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:orders, :blank)).to eq(true)
       end
     end
   end
@@ -48,8 +47,6 @@ RSpec.describe Steps::Children::OrdersForm do
     end
 
     context 'for valid details' do
-      let(:expected_attributes) { { orders: [:child_arrangements_home, :specific_issues_medical] } }
-
       context 'when child_order does not exist' do
         let(:child_order) { nil }
         let(:new_child_order) { double }
@@ -58,7 +55,7 @@ RSpec.describe Steps::Children::OrdersForm do
           expect(child).to receive(:build_child_order).and_return(new_child_order)
 
           expect(new_child_order).to receive(:update).with(
-            expected_attributes
+            orders: orders
           ).and_return(true)
 
           expect(subject.save).to be(true)
@@ -72,7 +69,7 @@ RSpec.describe Steps::Children::OrdersForm do
           expect(child).to receive(:child_order).and_return(child_order)
 
           expect(child_order).to receive(:update).with(
-            expected_attributes
+            orders: orders
           ).and_return(true)
 
           expect(subject.save).to be(true)

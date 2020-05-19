@@ -1,0 +1,27 @@
+table.backoffice-table {
+  margin-top: 30px;
+
+  td {
+    font-size: 90%;
+  }
+  div.govuk-details__text {
+    font-size: 85%;
+  }
+  td.no-border {
+    border: 0;
+  }
+}
+
+div.backoffice-extra-details {
+  margin-top: 0;
+
+  dl {
+    margin-bottom: 0;
+  }
+  dt {
+    font-size: 1rem;
+  }
+  dd {
+    font-size: 1rem;
+  }
+}

@@ -9,17 +9,6 @@ module Summary
         c100.other_children
       end
 
-      def answers
-        [
-          Answer.new(
-            :has_other_children,
-            c100.has_other_children,
-            change_path: edit_steps_children_has_other_children_path
-          ),
-          super,
-        ].flatten.select(&:show?)
-      end
-
       protected
 
       def names_path

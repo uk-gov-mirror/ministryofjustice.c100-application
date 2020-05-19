@@ -14,6 +14,9 @@ en:
         blank: Enter the last name
 
     # This is a compilation of all possible errors shared between different parties
+    # Please note some errors refer to "you" (applicant) and others to "they" (respondent, etc)
+    # To customise these, overwrite them in their corresponding locale sections
+    #
     PERSONAL_DETAILS_ERRORS: &PERSONAL_DETAILS_ERRORS
       has_previous_name:
         inclusion: Select if they’ve changed their name
@@ -22,17 +25,19 @@ en:
       dob:
         blank: Enter the date of birth
         invalid: Date of birth is not valid
-        future: Date of birth is in the future
+        future: Date of birth must be in the past
       gender:
         inclusion: Select the sex
       birthplace:
         blank: Enter their place of birth
       address_line_1:
-        blank: Enter the first line of the address
+        blank: Enter the first line of the address or select if you don’t know where they live
       town:
-        blank: Enter the town or city
+        blank: Enter the town or city or select if you don’t know where they live
       country:
         blank: Enter the country
+      residence_requirement_met:
+        inclusion: Select yes if they’ve lived at the address for more than 5 years
       residence_history:
         blank: Enter details and dates of previous addresses
 
@@ -55,7 +60,6 @@ en:
       inclusion: Select an option
     error_summary:
       heading: There is a problem on this page
-      text: ''
     page_title_prefix: 'Error: '
 
   activerecord:
@@ -75,7 +79,7 @@ en:
               blank: Enter the password again
               too_short: Your password must be at least %{count} characters
               too_long: Your password must be no longer than %{count} characters
-              confirmation: The password confirmation doesn't match
+              confirmation: The password confirmation doesn’t match
             current_password:
               blank: Enter your current password
               invalid: The password is not valid
@@ -219,6 +223,8 @@ en:
               blank: Enter the case number of the non-molestation order
             non_molestation_issue_date:
               blank: Enter the date the non-molestation order was made
+              invalid: Enter a valid non-molestation order date
+              future: The non-molestation order date must be in the past
             non_molestation_length:
               blank: Enter how long the non-molestation order was for
             non_molestation_is_current:
@@ -232,6 +238,8 @@ en:
               blank: Enter the case number of the occupation order
             occupation_issue_date:
               blank: Enter the date the occupation order was made
+              invalid: Enter a valid occupation order date
+              future: The occupation order date must be in the past
             occupation_length:
               blank: Enter how long the occupation order was for
             occupation_is_current:
@@ -245,6 +253,8 @@ en:
               blank: Enter the case number of the forced marriage protection order
             forced_marriage_protection_issue_date:
               blank: Enter the date the forced marriage protection order was made
+              invalid: Enter a valid forced marriage protection order date
+              future: The forced marriage protection order date must be in the past
             forced_marriage_protection_length:
               blank: Enter how long the forced marriage protection order was for
             forced_marriage_protection_is_current:
@@ -258,6 +268,8 @@ en:
               blank: Enter the case number of the restraining order
             restraining_issue_date:
               blank: Enter the date the restraining order was made
+              invalid: Enter a valid restraining order date
+              future: The restraining order date must be in the past
             restraining_length:
               blank: Enter how long the restraining order was for
             restraining_is_current:
@@ -271,6 +283,8 @@ en:
               blank: Enter the case number of the injunctive order
             injunctive_issue_date:
               blank: Enter the date the injunctive order was made
+              invalid: Enter a valid injunctive order date
+              future: The injunctive order date must be in the past
             injunctive_length:
               blank: Enter how long the injunctive order was for
             injunctive_is_current:
@@ -284,6 +298,8 @@ en:
               blank: Enter the case number of the undertaking in place of an order
             undertaking_issue_date:
               blank: Enter the date the undertaking in place of an order was made
+              invalid: Enter a valid undertaking in place of an order date
+              future: The undertaking in place of an order date must be in the past
             undertaking_length:
               blank: Enter how long the undertaking in place of an order was for
             undertaking_is_current:
@@ -300,18 +316,14 @@ en:
 
         steps/petition/orders_form:
           attributes:
-            base:
-              blank_orders: Select what you’re asking the court to decide
-            group_prohibited_steps:
-              blank_orders: Select what you’re asking the court to stop the other person doing
-            group_specific_issues:
-              blank_orders: Select what specific issue you’re asking the court to resolve
+            orders:
+              blank: Select what you’re asking the court to decide
             orders_additional_details:
               blank: *blank_details_error
         steps/children/orders_form:
           attributes:
-            base:
-              blank_orders: Select a decision
+            orders:
+              blank: Select at least a decision
         steps/petition/protection_form:
           attributes:
             protection_orders:
@@ -363,11 +375,21 @@ en:
         steps/applicant/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
+            has_previous_name:
+              inclusion: Select if you’ve changed your name
+            previous_name:
+              blank: Enter your previous name
+            birthplace:
+              blank: Enter your place of birth
         steps/applicant/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
             residence_requirement_met:
               inclusion: Select yes if you’ve lived at the address for more than 5 years
+            address_line_1:
+              blank: Enter the first line of the address
+            town:
+              blank: Enter the town or city
         steps/applicant/contact_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -386,12 +408,6 @@ en:
         steps/respondent/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-            residence_requirement_met:
-              inclusion: Select if they’ve lived at the address for more than 5 years
-            address_line_1:
-              blank: Enter the first line of the address or select if you don’t know where they live
-            town:
-              blank: Enter the town or city or select if you don’t know where they live
         steps/children/personal_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
@@ -404,10 +420,6 @@ en:
         steps/other_party/address_details_form:
           attributes:
             <<: *PERSONAL_DETAILS_ERRORS
-            address_line_1:
-              blank: Enter the first line of the address or select if you don’t know where they live
-            town:
-              blank: Enter the town or city or select if you don’t know where they live
         steps/solicitor/personal_details_form:
           attributes:
             full_name:
@@ -459,23 +471,23 @@ en:
 
         steps/miam_exemptions/domestic_form:
           attributes:
-            domestic_none:
+            domestic:
               blank: *blank_exemptions_error
         steps/miam_exemptions/protection_form:
           attributes:
-            protection_none:
+            protection:
               blank: *blank_exemptions_error
         steps/miam_exemptions/urgency_form:
           attributes:
-            urgency_none:
+            urgency:
               blank: *blank_exemptions_error
         steps/miam_exemptions/adr_form:
           attributes:
-            adr_none:
+            adr:
               blank: *blank_exemptions_error
         steps/miam_exemptions/misc_form:
           attributes:
-            misc_none:
+            misc:
               blank: *blank_exemptions_error
 
         steps/application/previous_proceedings_form:
@@ -524,6 +536,8 @@ en:
           attributes:
             international_resident:
               inclusion: *yes_no_error
+            international_resident_details:
+              blank: *blank_details_error
         steps/international/jurisdiction_form:
           attributes:
             international_jurisdiction:
@@ -539,7 +553,7 @@ en:
         steps/application/details_form:
           attributes:
             application_details:
-              blank: *blank_details_error
+              blank: Enter why are you making this application
         steps/application/litigation_capacity_form:
           attributes:
             reduced_litigation_capacity:
@@ -580,4 +594,4 @@ en:
             declaration_signee_capacity:
               inclusion: Select who is making this declaration
             c100_application:
-              invalid: "" # do not show this error message, we show the specific ones
+              invalid: Some information is missing # fulfilment validation error

@@ -8,20 +8,27 @@ module MiamExemptionsForm
   end
 
   class_methods do
-    attr_accessor :group_name, :none_name
+    attr_accessor :attribute_name, :allowed_values
 
-    def setup_attributes_for(value_object, group_name:, none_name: nil)
-      self.group_name = group_name
-      self.none_name  = none_name || :"#{group_name}_none"
+    def setup_attributes_for(value_object, attribute_name:)
+      self.attribute_name = attribute_name
+      self.allowed_values = value_object.string_values
 
-      attributes value_object.values, Axiom::Types::Boolean
-
-      # We override the getter methods for each of the exemption attributes so we
-      # can retrieve their state (checked/unchecked) from the DB array column.
-      attribute_names.each do |name|
-        define_method(name) { record_to_persist[group_name].include?(name.to_s) }
-      end
+      attribute attribute_name, Array[String]
+      attribute :exemptions_collection, Array[String]
     end
+  end
+
+  # Custom getter and setter so we always have both attributes synced,
+  # as one attribute is the main categories and the other are subcategories.
+  # Needed to make the revealing check boxes work nice with errors, etc.
+  #
+  def exemptions_collection
+    super | public_send(self.class.attribute_name)
+  end
+
+  def exemptions_collection=(values)
+    super(Array(values) | Array(public_send(self.class.attribute_name)))
   end
 
   private
@@ -33,15 +40,19 @@ module MiamExemptionsForm
     selected_options.grep_v(/\Agroup_/)
   end
 
+  def selected_options
+    exemptions_collection & self.class.allowed_values
+  end
+
   def at_least_one_checkbox_validation
-    errors.add(self.class.none_name, :blank) unless valid_options.any?
+    errors.add(self.class.attribute_name, :blank) unless valid_options.any?
   end
 
   def persist!
     raise BaseForm::C100ApplicationNotFound unless c100_application
 
     record_to_persist.update(
-      self.class.group_name => selected_options
+      self.class.attribute_name => selected_options
     )
   end
 end

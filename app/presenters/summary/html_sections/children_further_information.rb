@@ -5,6 +5,7 @@ module Summary
         :children_further_information
       end
 
+      # rubocop:disable Metrics/MethodLength
       def answers
         [
           Answer.new(
@@ -22,8 +23,14 @@ module Summary
             c100.children_protection_plan,
             change_path: edit_steps_children_additional_details_path
           ),
+          Answer.new(
+            :has_other_children,
+            c100.has_other_children,
+            change_path: edit_steps_children_has_other_children_path
+          ),
         ].select(&:show?)
       end
+      # rubocop:enable Metrics/MethodLength
     end
   end
 end

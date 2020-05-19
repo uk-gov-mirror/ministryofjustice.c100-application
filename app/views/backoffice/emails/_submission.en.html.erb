@@ -1,37 +1,38 @@
-<p class="heading-medium">
+<h3 class="govuk-heading-m">
   Resend emails
+</h3>
+
+<p class="govuk-body">
+  Emails can be triggered again up to 28 days after the application was created. Use this functionality when, for
+  whatever reason, an application was not received or can't be found.
 </p>
 
-<div class="govuk-govspeak gv-s-prose">
-  <p>
-    Emails can be triggered again up to 28 days after the application was created. Use this functionality when, for
-    whatever reason, an application was not received or can't be found.
-  </p>
-</div>
 
-<table class="backoffice-table">
-  <thead>
-    <tr>
-      <th>Recipient</th>
-      <th></th>
+<table class="govuk-table backoffice-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header">Recipient</th>
+      <th class="govuk-table__header"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody class="govuk-table__body">
     <% if submission.to_address %>
-      <tr>
-        <td><%= submission.to_address %></td>
-        <td valign="middle">
-          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'court'), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><%= submission.to_address %></td>
+        <td class="govuk-table__cell">
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'court'), method: :put,
+                        data: { confirm: 'Are you sure?' }, class: 'govuk-button govuk-!-margin-bottom-0' %>
         </td>
       </tr>
     <% end %>
 
     <% if submission.email_copy_to %>
-      <tr>
-        <td><%= submission.email_copy_to %></td>
-        <td valign="middle">
-          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'user'), method: :put, data: { confirm: 'Are you sure?' }, class: 'button' %>
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell"><%= submission.email_copy_to %></td>
+        <td class="govuk-table__cell">
+          <%= button_to 'Resend email', backoffice_email_resend_path(submission, type: 'user'), method: :put,
+                        data: { confirm: 'Are you sure?' }, class: 'govuk-button govuk-!-margin-bottom-0' %>
         </td>
       </tr>
     <% end %>

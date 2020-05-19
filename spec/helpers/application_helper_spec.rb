@@ -45,51 +45,58 @@ RSpec.describe ApplicationHelper, type: :helper do
     let(:form_object) { double('Form object') }
 
     it 'renders the expected content' do
-      expect(helper).to receive(:render).with(partial: 'step_header', locals: {path: '/foo/bar'}).and_return('foo')
-
+      expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/foo/bar'}).and_return('foobar')
       assign(:form_object, form_object)
-      expect(helper).to receive(:error_summary).with(form_object).and_return('bar')
 
       expect(helper.step_header).to eq('foobar')
     end
+
+    context 'a specific path is provided' do
+      it 'renders the back link with provided path' do
+        expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/another/step'}).and_return('foobar')
+        assign(:form_object, form_object)
+
+        expect(helper.step_header(path: '/another/step')).to eq('foobar')
+      end
+    end
   end
 
-  describe '#error_summary' do
+  describe '#govuk_error_summary' do
     context 'when no form object is given' do
       let(:form_object) { nil }
 
       it 'returns nil' do
-        expect(helper.error_summary(form_object)).to be_nil
+        expect(helper.govuk_error_summary(form_object)).to be_nil
       end
     end
 
     context 'when a form object without errors is given' do
-      let(:form_object) { double('form object', errors: []) }
+      let(:form_object) { BaseForm.new }
 
       it 'returns nil' do
-        expect(helper.error_summary(form_object)).to be_nil
+        expect(helper.govuk_error_summary(form_object)).to be_nil
       end
     end
 
     context 'when a form object with errors is given' do
-      let(:form_object) { double('form object', errors: [:blank]) }
-      let(:summary) { double('error summary') }
-
+      let(:form_object) { BaseForm.new }
       let(:title) { helper.content_for(:page_title) }
 
       before do
         helper.title('A page')
+        form_object.errors.add(:base, :blank)
       end
 
-      it 'delegates to GovukElementsErrorsHelper' do
-        expect(GovukElementsErrorsHelper).to receive(:error_summary).with(form_object, anything, anything).and_return(summary)
-
-        expect(helper.error_summary(form_object)).to eq(summary)
+      it 'returns the summary' do
+        expect(
+          helper.govuk_error_summary(form_object)
+        ).to eq(
+          '<div class="govuk-error-summary" tabindex="-1" role="alert" data-module="govuk-error-summary" aria-labelledby="error-summary-title"><h2 id="error-summary-title" class="govuk-error-summary__title">There is a problem on this page</h2><div class="govuk-error-summary__body"><ul class="govuk-list govuk-error-summary__list"><li><a data-turbolinks="false" href="#base-form-base-field-error">Enter an answer</a></li></ul></div></div>'
+        )
       end
 
       it 'prepends the page title with an error hint' do
-        expect(GovukElementsErrorsHelper).to receive(:error_summary)
-        helper.error_summary(form_object)
+        helper.govuk_error_summary(form_object)
         expect(title).to start_with('Error: A page')
       end
     end
@@ -155,6 +162,20 @@ RSpec.describe ApplicationHelper, type: :helper do
     it 'should call #title with a blank value' do
       expect(helper).to receive(:title).with('')
       helper.fallback_title
+    end
+  end
+
+  describe '#link_button' do
+    it 'builds the link markup styled as a button' do
+      expect(
+        helper.link_button('Continue', root_path)
+      ).to eq('<a class="govuk-button" role="button" draggable="false" data-module="govuk-button" href="/">Continue</a>')
+    end
+
+    it 'appends to the default attributes where possible, otherwise overwrite them' do
+      expect(
+        helper.link_button('Continue', root_path, class: 'ga-pageLink', draggable: true, data: { module: 'govuk-button', ga_category: 'category', ga_label: 'label' })
+      ).to eq('<a class="govuk-button ga-pageLink" role="button" draggable="true" data-module="govuk-button" data-ga-category="category" data-ga-label="label" href="/">Continue</a>')
     end
   end
 

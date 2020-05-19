@@ -1,24 +1,25 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading"><%=t '.section' %></p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%=t '.lead_text' %></p>
-      <div role="note" class=" panel panel-border-wide info-notice">
-        <p><%=t '.info_notice' %></p>
-      </div>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
+
+    <p class="govuk-body-l"><%=t '.lead_text' %></p>
+
+    <div class="govuk-inset-text">
+      <%=t '.info_notice' %>
     </div>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :concerns_contact_type,
-          choices: ConcernsContactType.values %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :concerns_contact_type, ConcernsContactType.values, :value, nil,
+                                           legend: { tag: 'span', size: 's' } %>
 
-      <%= f.radio_button_fieldset :concerns_contact_other, inline: true,
-          choices: GenericYesNo.values %>
+      <%= f.govuk_collection_radio_buttons :concerns_contact_other, GenericYesNo.values, :value, nil,
+                                           legend: { tag: 'span', size: 's' } %>
 
       <%= f.continue_button %>
     <% end %>

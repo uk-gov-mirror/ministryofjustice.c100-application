@@ -1,9 +1,9 @@
-<p>
-  <strong><%=t "playback.exemptions_claimed.#{exemption.group_name}.header" %></strong>
-</p>
+<h2 class="govuk-heading-m">
+  <%=t "playback.exemptions_claimed.#{exemption.group_name}.header" %>
+</h2>
 
-<ul class="list list-bullet">
+<ul class="govuk-list govuk-list--bullet">
   <% exemption.collection.each do |name| %>
-    <li><%=t "playback.exemptions_claimed.#{exemption.group_name}.exemptions.#{name}_html" %></li>
+    <li><%=t "playback.exemptions_claimed.#{exemption.group_name}.exemptions.#{name}" %></li>
   <% end %>
 </ul>

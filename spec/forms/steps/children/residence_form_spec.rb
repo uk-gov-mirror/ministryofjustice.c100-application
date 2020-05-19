@@ -10,7 +10,7 @@ RSpec.describe Steps::Children::ResidenceForm do
   let(:c100_application) { instance_double(C100Application) }
 
   let(:record) { double('Residence') }
-  let(:person_ids) { %w(1 2) }
+  let(:person_ids) {%w(123 456)}
 
   subject { described_class.new(arguments) }
 
@@ -25,8 +25,29 @@ RSpec.describe Steps::Children::ResidenceForm do
   end
 
   describe 'validations' do
-    context 'no people selected, filtering out blanks' do
-      let(:person_ids) { [nil, ''] }
+    before do
+      allow(subject).to receive(:people).and_return([double(id: '12345')])
+    end
+
+    context 'when a valid checkbox is selected' do
+      let(:person_ids) { '12345' }
+
+      it 'has no validation error' do
+        expect(subject).to be_valid
+      end
+    end
+
+    context 'when no checkboxes are selected' do
+      let(:person_ids) { nil }
+
+      it 'has a validation error' do
+        expect(subject).to_not be_valid
+        expect(subject.errors.added?(:person_ids, :blank)).to eq(true)
+      end
+    end
+
+    context 'when invalid checkbox values are submitted' do
+      let(:person_ids) { ['foobar'] }
 
       it 'has a validation error' do
         expect(subject).to_not be_valid
@@ -36,6 +57,15 @@ RSpec.describe Steps::Children::ResidenceForm do
   end
 
   describe '#save' do
+    before do
+      allow(subject).to receive(:people).and_return(
+        [
+          double(id: '123'),
+          double(id: '456'),
+        ]
+      )
+    end
+
     context 'when no c100_application is associated with the form' do
       let(:c100_application) { nil }
 
@@ -47,7 +77,7 @@ RSpec.describe Steps::Children::ResidenceForm do
     context 'for valid details' do
       it 'updates the record' do
         expect(record).to receive(:update).with(
-          person_ids: %w(1 2),
+          person_ids: person_ids,
         ).and_return(true)
 
         expect(subject.save).to be(true)

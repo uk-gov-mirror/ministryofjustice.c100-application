@@ -1,131 +1,64 @@
-.heading-bottom-border {
-  border-bottom: 1px solid $border-colour;
-  padding-bottom: $gutter/6;
-  margin-bottom: 0;
-}
-
-.check-your-answers {
-  > * {
-    position: relative;
-    border-bottom: 1px solid $border-colour;
-
-    > * {
-      display: block;
-    }
-  }
-
-  .question {
-    font-weight: bold;
-    margin: em(12, 19) 4em $gutter/6 0;
-    // top: from Elements' td
-    // right: due to length of "change" link (adjust if you change the link to be much longer)
-    // bottom: by eye (~4-5px)
-    // using margin instead of padding because of easier absolutely positioning of .change
-  }
-
-  .answer {
-    padding-bottom: em(9, 19); // from Elements' td
-
-    p.user-free-text:last-of-type {
-      margin-bottom: 5px;
-    }
-  }
-
-  .change {
-    text-align: right;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-
-  .subsection-header {
-    border-bottom-width: 1px;
-    display: table-row;
-    > * {
-      
-    }
-  }
-
-  @include media(desktop) {
-    display: table;
-
-    > * {
-      display: table-row;
-      border-bottom-width: 0;
-
-      > * {
-        display: table-cell;
-        border-bottom: 1px solid $border-colour;
-        padding: em(12, 19) em(20, 19) em(9, 19) 0; // copied from Elements' td padding
-        margin: 0;
-      }
-    }
-
-    // to make multiple sections' items line up horizontally
-    &.multiple-sections {
-      width: 100%;
-
-      // depending on length of keys and values, services might need to override this value
-      .question {
-        width: 50%;
-      }
-
-      dl.answers-group-inner {
-        .question {
-          width: 100%;
-          padding-bottom: 0;
-          margin-bottom: 0;
-          margin-top: 0;
-        }
-        .answer {
-          padding-bottom: 0;
-          margin-bottom: 10px;
-        }
-        .change {
-          display: none;
-        }
-      }
-    }
-
-    .change {
-      position: static;
-      padding-right: 0;
+#cya-fulfilment-errors {
+  @include govuk-media-query($from: tablet) {
+    .govuk-grid-column-one-third {
+      text-align: right;
     }
   }
 }
 
-.fulfilment-errors-summary {
-  // BEGIN -- override some styles from `check-your-answers` class
-  // This is to make sure the error message and the 'Add missing information'
-  // link do not overlap on smaller devices or resized screens apart from
-  // some minor visual differences like padding or removing borders.
-  dl, dt, dd {
-    border: none;
-    padding-top: 0.1em;
-    padding-bottom: 0.2em;
-  }
-  dt {
-    padding-right: 6em;
-  }
-  .change {
-    width: 35%;
-  }
-  // END -- override some styles from `check-your-answers` class
-
-  &.form-group-error {
-    margin-right: 0;
-  }
-
-  .fulfilment-errors {
-    width: 100%;
-  }
-}
-
-div.declaration-box {
-  padding: 1px 20px 20px;
+#cya-declaration-box {
+  padding: govuk-spacing(4);
+  margin-top: govuk-spacing(8);
   background-color: #ddd;
+}
 
-  label {
-    font-weight: normal;
+// Custom styles for groups of question-answer, partial `_answers_group.html.erb`
+//
+.app-cya--answers-group {
+  dl {
+    // This is the secondary (embedded) definition list
+    dt, dd {
+      width: unset !important;
+      padding-right: unset;
+      display: unset;
+      border: none;
+    }
+
+    .govuk-summary-list__row {
+      border: none;
+      width: 100%;
+    }
+
+    .govuk-summary-list__key {
+      width: 100%;
+    }
+
+    .govuk-summary-list__value {
+      display: block;
+      width: 100%;
+    }
+
+    // Give a sense of hierarchy by adding a bit of inset to sub-questions (only on mobile)
+    @include govuk-media-query($until: tablet) {
+      margin-left: govuk-spacing(4);
+    }
+  }
+
+  @include govuk-media-query($until: tablet) {
+    .app-cya--answers-group__key {
+      margin-bottom: govuk-spacing(3);
+    }
   }
 }
+
+// BEGIN -- Overrides for design system styles. Use with caution.
+//
+.govuk-summary-list {
+  table-layout: unset;
+}
+
+.govuk-summary-list__actions {
+  // Reduce the column width of the 'Change' link in CYA to give more space to the answers
+  width: 10%;
+}
+// END -- Overrides for design system.

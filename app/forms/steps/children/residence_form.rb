@@ -3,7 +3,7 @@ module Steps
     class ResidenceForm < BaseForm
       attribute :person_ids, Array[String]
 
-      validate :at_least_one_checkbox_validation
+      validate :at_least_one_person_validation
 
       # These are all the parties available to choose from
       def people
@@ -16,15 +16,19 @@ module Steps
 
       private
 
-      def at_least_one_checkbox_validation
-        errors.add(:person_ids, :blank) unless person_ids.map(&:presence).any?
+      def selected_person_ids
+        person_ids & people.map(&:id)
+      end
+
+      def at_least_one_person_validation
+        errors.add(:person_ids, :blank) unless selected_person_ids.any?
       end
 
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
         record.update(
-          person_ids: person_ids,
+          person_ids: selected_person_ids,
         )
       end
     end

@@ -1,5 +1,10 @@
-ActionView::Base.default_form_builder = GovukElementsFormBuilder::FormBuilder
+ActionView::Base.default_form_builder = GOVUKDesignSystemFormBuilder::FormBuilder
 
-ActionView::Base.default_form_builder.class_eval do
+GOVUKDesignSystemFormBuilder.configure do |config|
+  config.default_legend_tag  = 'h1'
+  config.default_legend_size = 'xl'
+end
+
+GOVUKDesignSystemFormBuilder::FormBuilder.class_eval do
   include CustomFormHelpers
 end

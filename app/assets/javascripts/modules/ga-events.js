@@ -1,11 +1,11 @@
 'use strict';
 
 moj.Modules.gaEvents = {
-    radioFormClass: '.multiple-choice input[type="radio"]',
-    checkboxClass:  '.multiple-choice input[type="checkbox"]',
+    radioFormClass: '.govuk-radios input[type="radio"]',
+    checkboxClass:  '.govuk-checkboxes input[type="checkbox"]',
     linkClass: '.ga-pageLink',
     clickActionClass: '.ga-clickAction',
-    revealingLinkClass: 'summary span.summary',
+    revealingLinkClass: 'summary span',
     submitFormClass: '.ga-submitForm',
     submitButtons: 'button[type="submit"], input[type="submit"]',
 
@@ -22,7 +22,6 @@ moj.Modules.gaEvents = {
             if ($(self.submitButtons).length) {
                 self.addSubmitValueParamOnClick();
             }
-
             if ($(self.radioFormClass).length) {
                 self.trackRadioForms();
             }
@@ -105,7 +104,7 @@ moj.Modules.gaEvents = {
 
             e.preventDefault(); // [1]
 
-            eventDataArray = self.getCheckboxFormData($form);
+            eventDataArray = self.getCheckboxFormData($form, self);
 
             if (eventDataArray.length) {
                 // there could be multiple GA checkboxes that are checked and need a
@@ -256,7 +255,7 @@ moj.Modules.gaEvents = {
         return eventDataArray;
     },
 
-    getCheckboxFormData: function ($form) {
+    getCheckboxFormData: function ($form, self) {
         var checkedCheckboxes = $form.find('input[type="checkbox"]:checked'),
             eventDataArray = [];
 
@@ -266,9 +265,9 @@ moj.Modules.gaEvents = {
 
             eventData = {
                 hitType: 'event',
-                eventCategory: $checkbox.attr('name'),
+                eventCategory: self.normaliseCheckboxAttribute($checkbox.attr('name')),
                 eventAction: 'checkbox',
-                eventLabel: $checkbox.data('ga-label')
+                eventLabel: $checkbox.data('ga-label') || $checkbox.val()
             };
 
             eventDataArray.push(eventData);
@@ -312,6 +311,37 @@ moj.Modules.gaEvents = {
                 }
             })
         });
+    },
+
+    normaliseCheckboxAttribute: function(attrName) {
+        // Some steps introduce 2 levels of check boxes, the 2nd level being a subgroup of options.
+        // Normalise the attribute names so, analytics-wise, these become a single collection.
+        //
+        // Example:
+        //      `steps_petition_orders_form[orders_collection]`
+        // transformed to:
+        //      `steps_petition_orders_form[orders]`
+        //
+        var normalisedAttr = attrName.replace('_collection]', ']');
+
+        // Instead of sending a collection with all the selected options as the label, we send one event
+        // per selected checkbox, which makes it easier to count and extract metrics for dashboards.
+        // Removes the collection suffix `foobar[attr][]` leaving it as `foobar[attr]`
+        //
+        normalisedAttr = normalisedAttr.replace('[]', '');
+
+        // Finally, if this is an exemptions checkbox, as there are 5 pages of exemptions with different
+        // attribute names, we unify them to simplify aggregated metrics.
+        //
+        // Example:
+        //      `steps_miam_exemptions_domestic_form[exemptions]`
+        // transformed to:
+        //      `steps_miam_exemptions_domestic_form[domestic]`
+        //
+        var regex = /^steps_miam_exemptions_([a-z]+)_form\[[\D]+\]$/;
+        normalisedAttr = normalisedAttr.replace(regex, "steps_miam_exemptions_$1_form[$1]");
+
+        return normalisedAttr;
     },
 
     createFunctionWithTimeout: function (callback, opt_timeout) {

@@ -1,18 +1,17 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading"><%=t '.section' %></p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%=t '.lead_text' %></p>
-    </div>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :children_previous_proceedings, GenericYesNo.values, :value, nil do %>
+        <p class="govuk-body-l"><%=t '.lead_text' %></p>
+      <% end %>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :children_previous_proceedings, inline: true, choices: GenericYesNo.values, legend_options: { class: 'visually-hidden', text: t('.heading') } %>
       <%= f.continue_button %>
     <% end %>
   </div>

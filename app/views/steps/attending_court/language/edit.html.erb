@@ -1,26 +1,24 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <p class="app__section_heading"><%=t '.section' %></p>
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
 
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.check_box_fieldset :help_with_language, LanguageHelp.values do |fieldset|
-          fieldset.check_box_input(:language_interpreter) {
-            f.text_area :language_interpreter_details, size: '40x4', class: 'form-control-3-4'
-          }
-          fieldset.check_box_input(:sign_language_interpreter) {
-            f.text_area :sign_language_interpreter_details, size: '40x4', class: 'form-control-3-4'
-          }
-          fieldset.check_box_input(:welsh_language) {
-            f.text_area :welsh_language_details, size: '40x4', class: 'form-control-3-4'
-          }
-        end
-      %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_check_boxes_fieldset :language_options do %>
+        <%= f.govuk_check_box :language_options, LanguageHelp::LANGUAGE_INTERPRETER.to_s do
+          f.govuk_text_area :language_interpreter_details
+        end %>
+        <%= f.govuk_check_box :language_options, LanguageHelp::SIGN_LANGUAGE_INTERPRETER.to_s do
+          f.govuk_text_area :sign_language_interpreter_details
+        end %>
+        <%= f.govuk_check_box :language_options, LanguageHelp::WELSH_LANGUAGE.to_s do
+          f.govuk_text_area :welsh_language_details
+        end %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>

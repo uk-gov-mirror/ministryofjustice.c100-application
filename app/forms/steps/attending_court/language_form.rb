@@ -2,7 +2,7 @@ module Steps
   module AttendingCourt
     class LanguageForm < BaseForm
       include ArrangementsCheckBoxesForm
-      setup_attributes_for LanguageHelp, group_name: :language_options
+      setup_attributes_for LanguageHelp, attribute_name: :language_options
 
       # any other attributes
       attribute :language_interpreter_details, String

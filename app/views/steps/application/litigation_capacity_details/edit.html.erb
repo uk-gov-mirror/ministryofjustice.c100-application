@@ -1,15 +1,16 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <%= step_form @form_object do |f| %>
-      <%= f.text_area :participation_capacity_details, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_area :participation_other_factors_details, size: '40x4', class: 'form-control-3-4' %>
-      <%= f.text_area :participation_referral_or_assessment_details, size: '40x4', class: 'form-control-3-4' %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_text_area :participation_capacity_details %>
+      <%= f.govuk_text_area :participation_other_factors_details %>
+      <%= f.govuk_text_area :participation_referral_or_assessment_details %>
 
       <%= f.continue_button %>
     <% end %>

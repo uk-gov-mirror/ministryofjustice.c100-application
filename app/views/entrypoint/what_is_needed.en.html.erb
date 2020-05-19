@@ -1,45 +1,42 @@
 <% title 'What is required' %>
+<% step_header(path: '/entrypoint/v1') %>
 
-<a class="link-back" href="/entrypoint/v1">Back</a>
+<div class="govuk-grid-row app-inverted--card app-inverted-text">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl app-inverted-text">Before you continue</span>
+    <h1 class="govuk-heading-xl app-inverted-text">What you’ll need to complete your application</h1>
 
-<div data-block-name="route:application-requirements" class="flash-card">
-  <div class=" grid-row gv-o-grid-row">
-    <div class=" column-two-thirds gv-o-grid-item gv-u-two-thirds">
-      <div class="grid_content_header">
-        <p class="app__section_heading">Before you continue</p>
-        <h1 class="app__heading  heading-xlarge gv-u-heading-xxlarge">What you’ll need to complete your application</h1>
-      </div>
+    <p class="govuk-body app-inverted-text">You will need the following:</p>
 
-      <div class=" govuk-govspeak gv-s-prose">
-        <p>You will need the following:</p>
-        <ul class="list list-bullet">
-          <li>details of the other people (the respondents), including their date of birth</li>
-          <li>contact details of the respondents, including their current address</li>
-          <li>solicitor details (if you have asked one to represent you)</li>
-          <li>details of any previous family court cases</li>
-          <li>signed document confirming <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> attendance (if applicable)</li>
-          <li>
-            completed and signed
-            <%= link_to(
-              'certificate of suitability',
-              'https://www.gov.uk/government/publications/form-fp9-certificate-of-suitability-of-litigation-friend',
-              target: :_blank,
-              rel: :external
-              )
-            %> or copy of the court order appointing a ‘litigation friend’ if any of the people making this application are under 18 
-          </li>
-          <li>the child’s or children’s details, including date of birth</li>
-          <li>email account if you want confirmation when your application has been submitted electronically, or a printer if you’d prefer to send by post</li>
-        </ul>
+    <ul class="govuk-list govuk-list--bullet app-inverted-text app-inverted-narrow-width">
+      <li>details of the other people (the respondents), including their date of birth</li>
+      <li>contact details of the respondents, including their current address</li>
+      <li>solicitor details (if you have asked one to represent you)</li>
+      <li>details of any previous family court cases</li>
+      <li>signed document confirming <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> attendance
+        (if applicable)
+      </li>
+      <li>
+        completed and signed
+        <%= link_to(
+          'certificate of suitability',
+          'https://www.gov.uk/government/publications/form-fp9-certificate-of-suitability-of-litigation-friend',
+          class: 'govuk-link app-link--inverted',
+          target: :_blank,
+          rel: :external
+          )
+        %> or copy of the court order appointing a ‘litigation friend’ if any of the people making this application are under 18
+      </li>
+      <li>the child’s or children’s details, including date of birth</li>
+      <li>email account if you want confirmation when your application has been submitted electronically, or a printer
+        if you’d prefer to send by post
+      </li>
+    </ul>
 
-        <div role="note" aria-label="Information" class=" panel panel-border-wide info-notice TODO">
-          <p>If you do not know all of the details you can still complete your application but it will take longer to process.</p>
-        </div>
-      </div>
-
-      <div class="xform-group form-submit">
-        <%= link_to 'Continue', entrypoint_how_long_path, class: 'button', role: 'button' %>
-      </div>
+    <div class="govuk-inset-text app-inset-text--inverted app-inverted-narrow-width">
+      If you do not know all of the details you can still complete your application but it will take longer to process.
     </div>
+
+    <%= link_button 'Continue', entrypoint_how_long_path, class: 'app-button--l app-button--inverted govuk-!-margin-top-3 govuk-!-margin-bottom-1' %>
   </div>
 </div>

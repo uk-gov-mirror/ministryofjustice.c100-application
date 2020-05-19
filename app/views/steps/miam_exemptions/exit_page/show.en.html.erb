@@ -1,38 +1,35 @@
 <% title 'You must attend a MIAM' %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You must attend a MIAM</h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge">You must attend a MIAM</h1>
-
-    <p class="lede">
+    <p class="govuk-body-l">
       You have not provided a valid reason for not attending a MIAM. You’re legally required to attend one if you want to
       go to court to resolve a dispute involving the children.
     </p>
 
-    <div class="govuk-govspeak gv-s-prose">
-      <p>You need to follow these steps before continuing with your application:</p>
-      <section class="numbered-list">
-        <ol class="list list-number">
-          <li>
-            <form class="fmc-lookup-form" action="https://www.familymediationcouncil.org.uk/find-local-mediator/" target="_blank">
-              <input type="hidden" name="di" value="5">
-              <div class="form-group util_mb-small">
-                <label class="form-label" for="pc">Enter your postcode to find a mediator</label>
-                <input class="form-control narrow" type="text" name="pc" id="pc" required>
-              </div>
-              <input type="submit" class="button ga-clickAction" value="Find a mediator" data-disable-with="Find a mediator" data-ga-category="miam kickout" data-ga-action="submit" data-ga-label="fmc postcode"/>
-            </form>
-          </li>
-          <li>Book initial meeting with mediator</li>
-          <li>Attend the MIAM</li>
-          <li>Ask the mediator for a document confirming your attendance</li>
-        </ol>
-      </section>
-    </div>
+    <p class="govuk-body">You need to follow these steps before continuing with your application:</p>
 
-    <p><%=t 'steps.shared.screener_exit_actions.cait_info_html' %></p>
+    <ol class="govuk-list govuk-list--number app-list--icon-steps">
+      <li>
+        <form action="https://www.familymediationcouncil.org.uk/find-local-mediator/" target="_blank">
+          <input type="hidden" name="di" value="5">
+          <div class="govuk-form-group govuk-!-margin-bottom-3">
+            <label for="postcode-field" class="govuk-label">Enter your postcode to find a mediator</label>
+            <input id="postcode-field" class="govuk-input govuk-!-width-one-third" autocomplete="postal-code" type="text" value="" name="pc"/>
+          </div>
+          <input type="submit" name="commit" value="Find a mediator" class="govuk-button govuk-!-margin-bottom-1 ga-clickAction" formnovalidate="formnovalidate"
+                 data-module="govuk-button" data-ga-action="submit" data-ga-label="fmc postcode" data-prevent-double-click="true" data-disable-with="Find a mediator"/>
+        </form>
+      </li>
+      <li>Book initial meeting with mediator</li>
+      <li>Attend the MIAM</li>
+      <li>Ask the mediator for a document confirming your attendance</li>
+    </ol>
+
+    <p class="govuk-body"><%=t 'steps.shared.screener_exit_actions.cait_info_html' %></p>
 
     <%= render partial: 'steps/shared/kickout_survey' %>
   </div>

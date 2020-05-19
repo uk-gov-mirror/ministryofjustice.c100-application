@@ -20,10 +20,6 @@ module Steps
       def residence_record
         current_record.child_residence || current_record.build_child_residence
       end
-
-      def additional_permitted_params
-        [person_ids: []]
-      end
     end
   end
 end

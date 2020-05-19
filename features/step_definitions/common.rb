@@ -50,18 +50,18 @@ When(/^I pause for "([^"]*)" seconds$/) do |seconds|
 end
 
 # Errors
-When(/^I should see "([^"]*)" in a "([^"]*)" element/) do |text, element|
-  page.find(".error-summary > #{element}").has_content? text
+When(/^I should see "([^"]*)" in the error summary$/) do |text|
+  expect(page.find("div.govuk-error-summary > h2")).to have_text(text)
 end
 
-When(/^I should see "([^"]*)" in the form label/) do |text|
-  page.find("label > #error_message_steps_screener_postcode_form_children_postcodes").has_content? text
+When(/^I should see "([^"]*)" error in the form$/) do |text|
+  expect(page.find("span.govuk-error-message")).to have_text(text)
 end
 
 When(/^Page has title "([^"]*)"/) do |text|
-  page.has_title? text
+  expect(page).to have_title(text)
 end
 
 When(/^"([^"]*)" has focus/) do |text|
-  page.evaluate_script("document.activeElement.id") == text
+  expect(page.evaluate_script("document.activeElement.id")).to eq(text)
 end

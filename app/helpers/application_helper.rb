@@ -17,26 +17,23 @@ module ApplicationHelper
   end
 
   # Render a back link pointing to the user's previous step
-  def step_header
-    capture do
-      render partial: 'step_header', locals: {
-        path: controller.previous_step_path
-      }
-    end + error_summary(@form_object)
+  def step_header(path: nil)
+    render partial: 'layouts/step_header', locals: {
+      path: path || controller.previous_step_path
+    }
   end
 
-  def error_summary(form_object)
-    return unless GovukElementsErrorsHelper.errors_exist?(form_object)
+  def govuk_error_summary(form_object = @form_object)
+    return unless form_object.try(:errors).present?
 
+    # Prepend page title so screen readers read it out as soon as possible
     content_for(:page_title, flush: true) do
       content_for(:page_title).insert(0, t('errors.page_title_prefix'))
     end
 
-    GovukElementsErrorsHelper.error_summary(
-      form_object,
-      t('errors.error_summary.heading'),
-      t('errors.error_summary.text')
-    )
+    fields_for(form_object, form_object) do |f|
+      f.govuk_error_summary t('errors.error_summary.heading')
+    end
   end
 
   def analytics_tracking_id
@@ -59,6 +56,25 @@ module ApplicationHelper
     Raven.capture_exception(exception)
 
     title ''
+  end
+
+  def link_button(name, href, options = {})
+    html_options = {
+      class: 'govuk-button',
+      role: 'button',
+      draggable: false,
+      data: { module: 'govuk-button' },
+    }.merge(options) do |_key, old_value, new_value|
+      if new_value.is_a?(String) || new_value.is_a?(Array)
+        # For strings or array attributes, merge (union) both values
+        Array(old_value) | Array(new_value)
+      else
+        # For other attributes do not merge, override (i.e. draggable and data)
+        new_value
+      end
+    end
+
+    link_to name, href, html_options
   end
 
   # Use this to feature-flag code that should only show in test environments

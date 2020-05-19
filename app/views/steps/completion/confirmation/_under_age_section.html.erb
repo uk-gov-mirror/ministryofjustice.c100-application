@@ -1,27 +1,24 @@
-<% if current_c100_application.applicants.under_age? %>
-  <div class="govuk-govspeak gv-s-prose">
-    <h2 class="heading-large gv-u-heading-large">
-      Send certificate of suitability or court order appointing a litigation friend
-    </h2>
+<h2 class="govuk-heading-l">
+  Send certificate of suitability or court order appointing a litigation friend
+</h2>
 
-    <%= render partial: 'steps/shared/under_age_section' %>
+<%= render partial: 'steps/shared/under_age_section' %>
 
-    <%
-      court_and_tribunal_finder_url = link_to(
-        'Court and tribunal finder',
-        C100App::CourtfinderAPI.new.court_url(@court.slug),
-        target: :_blank,
-        rel: :external
-      )
-    %>
+<%
+  court_and_tribunal_finder_url = link_to(
+    'Court and tribunal finder',
+    C100App::CourtfinderAPI.new.court_url(@court.slug),
+    class: 'govuk-link',
+    target: :_blank,
+    rel: :external
+  )
+%>
 
-    <p>
-      You need to send documents to: <%= @court.name %>. See <%= court_and_tribunal_finder_url %> for contact details.
-      Include your application reference code.
-    </p>
+<p class="govuk-body">
+  You need to send documents to: <%= @court.name %>. See <%= court_and_tribunal_finder_url %> for contact details.
+  Include your application reference code.
+</p>
 
-    <p>
-      The court will not be able to process your application until these documents have been received.
-    </p>
-  </div>
-<% end %>
+<p class="govuk-body">
+  The court will not be able to process your application until these documents have been received.
+</p>

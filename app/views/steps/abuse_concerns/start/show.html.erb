@@ -1,37 +1,32 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading"><%=t '.section' %></p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <p class="govuk-body">
+      <%=t '.you_told_us' %>
+    </p>
 
-    <div class=" govuk-govspeak gv-s-prose">
-      <%=t '.you_told_us_html' %>
+    <ul class="govuk-list govuk-list--bullet">
+      <%= render @presenter.concerns %>
+    </ul>
 
-      <ul class="list list-bullet">
-        <%= render @presenter.concerns %>
-      </ul>
+    <%=t '.further_questions_info_html' %>
 
-      <%=t '.further_questions_info_html' %>
-    </div>
+    <%= link_button t('.continue'), steps_abuse_concerns_children_info_path %>
 
-    <div class="xform-group form-submit">
-      <%= link_to t('.continue'), steps_abuse_concerns_children_info_path, class: 'button', role: 'button' %>
-    </div>
-
-    <div class="govuk-govspeak gv-s-prose util_mt-medium">
-      <details data-block-name="safety-concerns-reasons">
-        <summary>
-        <span class="summary" data-ga-category="explanations" data-ga-label="safety concerns">
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="safety concerns">
           <%=t 'shared.cafcass.safety_title' %>
         </span>
-        </summary>
-        <div class="panel panel-border-narrow">
-          <%=t 'shared.cafcass.safety_content_html' %>
-        </div>
-      </details>
-    </div>
+      </summary>
+      <div class="govuk-details__text">
+        <%=t 'shared.cafcass.safety_content_html' %>
+      </div>
+    </details>
   </div>
 </div>

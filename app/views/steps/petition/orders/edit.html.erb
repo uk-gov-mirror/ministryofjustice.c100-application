@@ -1,27 +1,27 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_check_boxes_fieldset :orders do %>
+        <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_HOME.to_s, link_errors: true %>
+        <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_TIME.to_s %>
 
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.check_box_fieldset :orders, :base, legend_options: { class: 'visually-hidden', text: t('.heading') } do |fieldset|
-          fieldset.check_box_input(PetitionOrder::CHILD_ARRANGEMENTS_HOME)
-          fieldset.check_box_input(PetitionOrder::CHILD_ARRANGEMENTS_TIME)
-          fieldset.check_box_input(PetitionOrder::GROUP_PROHIBITED_STEPS) {
-            f.check_box_fieldset :orders_prohibited_steps, PetitionOrder::PROHIBITED_STEPS
-          }
-          fieldset.check_box_input(PetitionOrder::GROUP_SPECIFIC_ISSUES) {
-            f.check_box_fieldset :orders_specific_issues, PetitionOrder::SPECIFIC_ISSUES
-          }
-          fieldset.check_box_input(PetitionOrder::OTHER_ISSUE) {
-            f.text_area :orders_additional_details, size: '40x4', class: 'form-control-3-4'
-          }
-        end
-      %>
+        <%= f.govuk_check_box :orders, PetitionOrder::GROUP_PROHIBITED_STEPS.to_s do %>
+          <%= f.govuk_collection_check_boxes :orders_collection, PetitionOrder::PROHIBITED_STEPS, :to_s, :to_s %>
+        <% end %>
+
+        <%= f.govuk_check_box :orders, PetitionOrder::GROUP_SPECIFIC_ISSUES.to_s do %>
+          <%= f.govuk_collection_check_boxes :orders_collection, PetitionOrder::SPECIFIC_ISSUES, :to_s, :to_s %>
+        <% end %>
+
+        <%= f.govuk_check_box :orders, PetitionOrder::OTHER_ISSUE.to_s do
+          f.govuk_text_area :orders_additional_details
+        end %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>

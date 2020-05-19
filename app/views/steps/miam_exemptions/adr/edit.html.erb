@@ -1,34 +1,26 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
-    <p class="app__section_heading"><%=t '.section' %></p>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="app__heading heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
+    <span class="govuk-caption-xl"><%=t '.section' %></span>
+    <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <div class="miam_exemptions or-block__shift">
-    <%= step_form @form_object do |f| %>
-      <%=
-        f.check_box_fieldset :adr_exemptions, [
-          AdrExemptions::GROUP_PREVIOUS_ADR,
-          AdrExemptions::GROUP_PREVIOUS_MIAM
-        ] do |fieldset|
-          fieldset.check_box_input(AdrExemptions::GROUP_PREVIOUS_ADR) {
-            f.check_box_fieldset :exemptions_group, AdrExemptions::PREVIOUS_ADR
-          }
-          fieldset.check_box_input(AdrExemptions::GROUP_PREVIOUS_MIAM) {
-            f.check_box_fieldset :exemptions_group, AdrExemptions::PREVIOUS_MIAM
-          }
-        end
-      %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_check_boxes_fieldset :adr, legend: { tag: 'span', size: 'm' } do %>
 
-      <p class="form-block or-block"><%=t '.or' %></p>
+        <% AdrExemptions.values.without(AdrExemptions::ADR_NONE).each.with_index do |value, index| %>
+          <%= f.govuk_check_box :adr, value.to_s, link_errors: index.zero? %>
+        <% end %>
 
-      <%= f.single_check_box AdrExemptions::ADR_NONE %>
+        <%= f.govuk_radio_divider %>
+
+        <%= f.govuk_check_box :adr, AdrExemptions::ADR_NONE.to_s %>
+      <% end %>
 
       <%= f.continue_button %>
     <% end %>
-    </div>
   </div>
 </div>

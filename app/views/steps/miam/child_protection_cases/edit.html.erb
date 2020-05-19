@@ -1,21 +1,25 @@
 <% title t('.page_title') %>
+<% step_header %>
 
-<div class="grid-row">
-  <div class="column-two-thirds">
-    <%= step_header %>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <%= govuk_error_summary %>
 
-    <h1 class="heading-xlarge gv-u-heading-xxlarge"><%=t '.heading' %></h1>
-
-    <div class="govuk-govspeak gv-s-prose">
-      <p><%=t '.info_html' %></p>
-    </div>
-
-    <%= step_form @form_object do |f| %>
-      <%= f.radio_button_fieldset :child_protection_cases, inline: true, choices: GenericYesNo.values, legend_options: { class: 'visually-hidden', text: t('.heading') } %>
+    <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
+      <%= f.govuk_collection_radio_buttons :child_protection_cases, GenericYesNo.values, :value, nil %>
 
       <%= f.continue_button %>
     <% end %>
 
-    <%=t 'shared.why_we_use_children_html' %>
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text" data-ga-category="explanations" data-ga-label="children term">
+          <%=t '.details.summary' %>
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <%=t '.details.text_html' %>
+      </div>
+    </details>
   </div>
 </div>

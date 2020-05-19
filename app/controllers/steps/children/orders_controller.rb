@@ -6,7 +6,8 @@ module Steps
       def edit
         @form_object = OrdersForm.new(
           c100_application: current_c100_application,
-          record: current_record
+          orders: current_record.child_order.try(:orders),
+          record: current_record,
         )
       end
 
