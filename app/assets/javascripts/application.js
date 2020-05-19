@@ -22,6 +22,9 @@
 //= require_tree ./modules
 
 $(document).ready(function() {
+  // Initialize frontend toolkit
+  window.GOVUKFrontend.initAll();
+
   // Initialize custom modules
   moj.init();
 });
