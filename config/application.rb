@@ -53,6 +53,11 @@ class Application < Rails::Application
     :govuk_notify_templates, env: ENV.fetch('GOVUK_NOTIFY_ENV', 'integration')
   ).with_indifferent_access
 
+  # Toggle on/off the `email consent` screener question (used to gather emails
+  # of users for research purposes).
+  # Disabled by default. Set this ENV variable to enable the question.
+  config.x.screener.show_email_consent_step = ENV.key?('SHOW_EMAIL_CONSENT_STEP')
+
   config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 60).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 

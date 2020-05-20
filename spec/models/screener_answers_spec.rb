@@ -9,15 +9,11 @@ RSpec.describe ScreenerAnswers, type: :model do
     it 'returns only the attributes that should be validated' do
       expect(
         described_class.attributes_to_validate
-      ).to match_array(%w(
-        id
-        c100_application_id
+      ).to match_array(%w[
         children_postcodes
-        local_court
         parent
         written_agreement
-        email_consent
-      ))
+      ])
     end
   end
 

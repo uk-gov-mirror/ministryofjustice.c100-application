@@ -89,7 +89,19 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and written_agreement is "no"' do
       let(:written_agreement){ GenericYesNo::NO }
 
-      it { is_expected.to have_destination(:email_consent, :edit) }
+      before do
+        allow(Rails.configuration.x.screener).to receive(:show_email_consent_step).and_return(show_consent)
+      end
+
+      context 'and the email consent step is enabled' do
+        let(:show_consent) { true }
+        it { is_expected.to have_destination(:email_consent, :edit) }
+      end
+
+      context 'and the email consent step is disabled' do
+        let(:show_consent) { false }
+        it { is_expected.to have_destination(:done, :show) }
+      end
     end
 
     context 'and written_agreement is "yes"' do
