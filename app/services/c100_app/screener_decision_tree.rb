@@ -44,11 +44,10 @@ module C100App
     end
 
     def after_written_agreement
-      if question(:written_agreement, c100_application.screener_answers).no?
-        edit(:email_consent)
-      else
-        show(:written_agreement_exit)
-      end
+      return show(:written_agreement_exit) if question(:written_agreement, c100_application.screener_answers).yes?
+      return edit(:email_consent)          if Rails.configuration.x.screener.show_email_consent_step
+
+      show(:done)
     end
   end
 end

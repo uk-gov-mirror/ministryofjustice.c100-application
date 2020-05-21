@@ -17,9 +17,6 @@ Feature: Screener
     Then I should see "Do you have a signed draft court order you want the court to consider making legally binding?"
     And I choose "No"
 
-    Then I should see "Are you willing to be contacted by email about your experience using this service?"
-    And I choose "Yes" and fill in "Email address" with "smoketest@example.com"
-
     Then I should see "You’re eligible to apply online"
 
     And I click the "Continue" link
