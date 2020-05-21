@@ -1,4 +1,4 @@
-<%= names_form.govuk_fieldset do %>
+<%= names_form.govuk_fieldset legend: { text: t('.fieldset_legend'), tag: 'span', size: 'm' } do %>
   <%= names_form.govuk_text_field :new_first_name, width: 'one-half' %>
   <%= names_form.govuk_text_field :new_last_name, width: 'one-half' %>
 

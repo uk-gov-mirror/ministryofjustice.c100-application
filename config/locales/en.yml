@@ -169,6 +169,8 @@ en:
           other: "%{count} addresses found"
       existing_names:
         remove_name: "Remove %{legend}"
+      new_name:
+        fieldset_legend: Enter a new name
       children_personal_details:
         heading: "Provide details for %{name}"
     applicant:
