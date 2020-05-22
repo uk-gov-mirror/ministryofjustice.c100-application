@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_095359) do
+ActiveRecord::Schema.define(version: 2020_05_22_082810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(version: 2020_05_15_095359) do
     t.string "children_have_passport"
     t.string "passport_office_notified"
     t.string "children_multiple_passports"
-    t.boolean "passport_possession_mother"
-    t.boolean "passport_possession_father"
-    t.boolean "passport_possession_other"
     t.text "passport_possession_other_details"
     t.string "previous_attempt"
     t.text "previous_attempt_details"
