@@ -1,3 +1,5 @@
+# General and frequently used navigation steps, handling of links and page expectations
+#
 When(/^I visit "([^"]*)"$/) do |path|
   visit path
 end
@@ -18,50 +20,40 @@ Then(/^I should see a "([^"]*)" link to "([^"]*)"$/) do |text, href|
   expect(page).to have_link(text, href: href)
 end
 
+Then(/^I should see the save draft button$/) do
+  expect(page).to have_selector(:button, 'Save and come back later')
+end
+
 When(/^I click the "([^"]*)" link$/) do |text|
   click_link(text)
+end
+
+When(/^I open the "([^"]*)" summary details$/) do |text|
+  find('details > summary > span', text: text).click
 end
 
 When(/^I click the "([^"]*)" button$/) do |text|
   find("input[value='#{text}']").click
 end
 
-When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
-  fill_in(field, with: value)
+When(/^I bypass the screener$/) do
+  step %[I open the "Developer Tools" summary details]
+  find('button', text: 'Bypass screener').click
 end
 
-When(/^I click the radio button "([^"]*)"$/) do |text|
-  find('label', text: text).click
-end
-
-When(/^I choose "([^"]*)"$/) do |text|
-  step %[I click the radio button "#{text}"]
-  find('[name=commit]').click
-end
-
-And(/^I choose "([^"]*)" and fill in "([^"]*)" with "([^"]*)"$/) do |text, field, value|
-  step %[I click the radio button "#{text}"]
-  step %[I fill in "#{field}" with "#{value}"]
-  find('[name=commit]').click
+When(/^I have started an application$/) do
+  step %[I visit "/"]
+  step %[I bypass the screener]
+  step %[I click the "Start application" link]
+  step %[I click the "Continue" link] # Before you continue
+  step %[I click the "Continue" link] # How long it takes
+  step %[I should be on "/steps/miam/child_protection_cases"]
 end
 
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|
   sleep seconds.to_i
 end
 
-# Errors
-When(/^I should see "([^"]*)" in the error summary$/) do |text|
-  expect(page.find("div.govuk-error-summary > h2")).to have_text(text)
-end
-
-When(/^I should see "([^"]*)" error in the form$/) do |text|
-  expect(page.find("span.govuk-error-message")).to have_text(text)
-end
-
-When(/^Page has title "([^"]*)"/) do |text|
+And(/^Page has title "([^"]*)"/) do |text|
   expect(page).to have_title(text)
-end
-
-When(/^"([^"]*)" has focus/) do |text|
-  expect(page.evaluate_script("document.activeElement.id")).to eq(text)
 end
