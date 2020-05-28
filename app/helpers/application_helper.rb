@@ -79,6 +79,6 @@ module ApplicationHelper
 
   # Use this to feature-flag code that should only show in test environments
   def dev_tools_enabled?
-    Rails.env.development? || %w[true yes 1].include?(ENV['DEV_TOOLS_ENABLED'])
+    Rails.env.development? || Rails.env.test? || %w[true yes 1].include?(ENV['DEV_TOOLS_ENABLED'])
   end
 end
