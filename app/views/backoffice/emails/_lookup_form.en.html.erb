@@ -6,8 +6,8 @@
 </p>
 
 
-<%= form_with(url: lookup_backoffice_emails_path, local: true, class: 'govuk-!-margin-bottom-3', builder: GOVUKDesignSystemFormBuilder::FormBuilder) do |f| %>
-  <%= f.govuk_text_field :reference_code, width: 'one-half', value: @reference_code, label: { text: 'Reference code' } %>
-  <%= f.govuk_text_field :email_address, width: 'one-half', value: @email_address, label: { text: 'Email address' } %>
+<%= form_for(@form, url: lookup_backoffice_emails_path, html: { class: 'govuk-!-margin-bottom-5' }) do |f| %>
+  <%= f.govuk_text_field :reference_code, width: 'one-half', label: { text: 'Reference code' } %>
+  <%= f.govuk_text_field :email_address, width: 'one-half', label: { text: 'Email address (optional)' } %>
   <%= f.govuk_submit 'Lookup emails'%>
 <% end %>
