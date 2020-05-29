@@ -96,6 +96,13 @@ en:
   activemodel:
     errors:
       models:
+        # Back office
+        backoffice/lookup_form:
+          attributes:
+            reference_code:
+              blank: Enter a reference code
+              invalid: The reference code format is invalid
+
         # Begin screener
         steps/screener/parent_form:
           attributes:
