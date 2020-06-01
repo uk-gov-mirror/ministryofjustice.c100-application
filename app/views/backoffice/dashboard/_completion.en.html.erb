@@ -5,7 +5,8 @@
   <td class="govuk-table__cell"><%= completion.court %></td>
 </tr>
 
-<% if defined?(@reference_code) %>
+<%# Only show extra details when a specific reference code is searched %>
+<% if controller.action_name == 'lookup' %>
   <% c100 = completion.c100_application %>
 
   <tr class="govuk-table__row">
