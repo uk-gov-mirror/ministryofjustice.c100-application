@@ -5,7 +5,7 @@ module Backoffice
     attr_accessor :reference_code, :email_address
 
     validates_presence_of :reference_code
-    validate :reference_code_format
+    validates :reference_code, c100_reference_code: true, allow_blank: true
 
     # Email is optional, and in some places we don't even ask for it
     validates :email_address, email: true, allow_blank: true
@@ -19,14 +19,6 @@ module Backoffice
       #
       @reference_code.try(:strip!)
       @email_address.try(:strip!)
-    end
-
-    private
-
-    def reference_code_format
-      # Very high level format validation for now, as the reference codes
-      # might need to change soon with online payments.
-      errors.add(:reference_code, :invalid) unless reference_code.count('/') > 1
     end
   end
 end
