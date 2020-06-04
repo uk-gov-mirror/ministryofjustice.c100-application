@@ -26,6 +26,7 @@ class Application < Rails::Application
 
   config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
 
+  routes.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
   config.action_mailer.default_url_options = { host: ENV.fetch('EXTERNAL_URL') }
 
   # Don't generate system test files.

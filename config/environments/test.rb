@@ -26,6 +26,7 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   # So we can always expect the same value in tests
+  routes.default_url_options = { host: 'https://c100.justice.uk' }
   config.action_mailer.default_url_options = { host: 'https://c100.justice.uk' }
 
   # NB: Because of the way the form builder works, and hence the

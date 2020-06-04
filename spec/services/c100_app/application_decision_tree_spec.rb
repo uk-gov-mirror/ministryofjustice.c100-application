@@ -128,8 +128,16 @@ RSpec.describe C100App::ApplicationDecisionTree do
       let(:submission_type) { SubmissionType::ONLINE }
       let(:queue) { double.as_null_object }
 
+      let(:dev_tools_enabled) { false }
+      let(:payment_type) { nil }
+      let(:declaration_signee) { nil }
+
       before do
         allow(C100App::OnlineSubmissionQueue).to receive(:new).and_return(queue)
+
+        allow(subject).to receive(:dev_tools_enabled?).and_return(dev_tools_enabled)
+        allow(c100_application).to receive(:payment_type).and_return(payment_type)
+        allow(c100_application).to receive(:declaration_signee).and_return(declaration_signee)
       end
 
       it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
@@ -140,6 +148,49 @@ RSpec.describe C100App::ApplicationDecisionTree do
         expect(queue).to receive(:process)
 
         subject.destination
+      end
+
+      # TODO: to be removed or refactored. Payments proof of concept.
+      # Mutant wants all this to be tested... sic.
+      #
+      context 'payments POC' do
+        let(:payment_double) { double(payment_url: 'https://test.com') }
+
+        before do
+          allow(C100App::OnlinePayments).to receive(:new).with(c100_application).and_return(payment_double)
+        end
+
+        context 'criteria is met' do
+          let(:dev_tools_enabled) { true }
+          let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
+          let(:declaration_signee) { 'John Doe' }
+
+          it { expect(subject.destination).to eq('https://test.com') }
+        end
+
+        context 'criteria is not met due to environment' do
+          let(:dev_tools_enabled) { false }
+          let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
+          let(:declaration_signee) { 'John Doe' }
+
+          it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+        end
+
+        context 'criteria is not met due to payment' do
+          let(:dev_tools_enabled) { true }
+          let(:payment_type) { PaymentType::SELF_PAYMENT_CHEQUE.to_s }
+          let(:declaration_signee) { 'John Doe' }
+
+          it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+        end
+
+        context 'criteria is not met due to declaration signee' do
+          let(:dev_tools_enabled) { true }
+          let(:payment_type) { PaymentType::SELF_PAYMENT_CARD.to_s }
+          let(:declaration_signee) { 'Foo Bar' }
+
+          it { is_expected.to have_destination('/steps/completion/confirmation', :show) }
+        end
       end
     end
 
