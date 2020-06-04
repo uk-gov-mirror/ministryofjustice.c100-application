@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/ministryofjustice/govuk-pay-ruby-client.git
+  revision: dce34532a45ee50f19124c008ea532a43af1e0b9
+  specs:
+    govuk-pay-ruby-client (0.1.0)
+      faraday (~> 1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -79,7 +86,7 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    coderay (1.1.2)
+    coderay (1.1.3)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     combine_pdf (1.0.16)
@@ -88,11 +95,11 @@ GEM
       adamantium (~> 0.2.0)
       equalizer (~> 0.0.9)
     concurrent-ruby (1.1.6)
-    connection_pool (2.2.2)
+    connection_pool (2.2.3)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.6)
-    cucumber (3.1.2)
+    cucumber (3.2.0)
       builder (>= 2.1.2)
       cucumber-core (~> 3.2.0)
       cucumber-expressions (~> 6.0.1)
@@ -134,9 +141,9 @@ GEM
     equalizer (0.0.11)
     erubi (1.9.0)
     execjs (2.7.0)
-    faraday (0.17.3)
+    faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
-    ffi (1.12.2)
+    ffi (1.13.0)
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -295,7 +302,7 @@ GEM
     regexp_parser (1.7.0)
     request_store (1.5.0)
       rack (>= 1.4)
-    responders (3.0.0)
+    responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
     rspec-core (3.9.2)
@@ -344,8 +351,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sentry-raven (2.13.0)
-      faraday (>= 0.7.6, < 1.0)
+    sentry-raven (3.0.0)
+      faraday (>= 1.0)
     sidekiq (6.0.7)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -397,9 +404,9 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    websocket-driver (0.7.1)
+    websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     wicked_pdf (1.4.0)
       activesupport
     wkhtmltopdf-binary-edge-alpine (0.12.5.0)
@@ -415,11 +422,12 @@ DEPENDENCIES
   brakeman
   capybara
   combine_pdf (~> 1.0)
-  cucumber
+  cucumber (< 4.0.0)
   cucumber-rails
   devise (~> 4.7.1)
   dotenv-rails
   email_validator (< 2.0.0)
+  govuk-pay-ruby-client!
   govuk_design_system_formbuilder (~> 1.1.11)
   govuk_notify_rails (~> 2.1.0)
   i18n-debug
@@ -444,7 +452,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (< 6.0.0)
   selenium-webdriver
-  sentry-raven (~> 2.0)
+  sentry-raven (~> 3.0)
   sidekiq (~> 6.0)
   simplecov
   simplecov-rcov
