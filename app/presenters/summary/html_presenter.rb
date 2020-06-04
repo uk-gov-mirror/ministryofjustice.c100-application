@@ -20,7 +20,7 @@ module Summary
         HtmlSections::InternationalElement.new(c100_application),
         HtmlSections::ApplicationReasons.new(c100_application),
         *litigation_and_assistance_sections,
-        *payment_and_submission_sections,
+        *submission_and_payment_sections,
       ].flatten.select(&:show?)
     end
 
@@ -88,10 +88,10 @@ module Summary
       ]
     end
 
-    def payment_and_submission_sections
+    def submission_and_payment_sections
       [
-        HtmlSections::Payment.new(c100_application),
         HtmlSections::Submission.new(c100_application),
+        HtmlSections::Payment.new(c100_application),
       ]
     end
 

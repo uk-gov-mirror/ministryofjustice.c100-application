@@ -23,10 +23,10 @@ module C100App
         after_litigation_capacity
       when :litigation_capacity_details
         start_attending_court_journey
-      when :payment
-        edit(:submission)
       when :submission
         after_submission_type
+      when :payment
+        edit(:check_your_answers)
       when :declaration
         after_declaration
       else
@@ -73,7 +73,7 @@ module C100App
       if c100_application.receipt_email.present?
         show(:receipt_email_check)
       else
-        edit(:check_your_answers)
+        edit(:payment)
       end
     end
 

@@ -95,11 +95,6 @@ RSpec.describe C100App::ApplicationDecisionTree do
     it { is_expected.to have_destination('/steps/attending_court/intermediary', :edit) }
   end
 
-  context 'when the step is `payment`' do
-    let(:step_params) { { payment: 'anything' } }
-    it { is_expected.to have_destination(:submission, :edit) }
-  end
-
   context 'when the step is `submission`' do
     let(:step_params) { { submission: 'anything' } }
     let(:c100_application) { instance_double(C100Application, receipt_email: receipt_email) }
@@ -111,13 +106,18 @@ RSpec.describe C100App::ApplicationDecisionTree do
 
     context 'and user left blank the confirmation email' do
       let(:receipt_email) { '' }
-      it { is_expected.to have_destination(:check_your_answers, :edit) }
+      it { is_expected.to have_destination(:payment, :edit) }
     end
 
     context 'and user do not want online submission' do
       let(:receipt_email) { nil }
-      it { is_expected.to have_destination(:check_your_answers, :edit) }
+      it { is_expected.to have_destination(:payment, :edit) }
     end
+  end
+
+  context 'when the step is `payment`' do
+    let(:step_params) { { payment: 'anything' } }
+    it { is_expected.to have_destination(:check_your_answers, :edit) }
   end
 
   context 'when the step is `declaration`' do
