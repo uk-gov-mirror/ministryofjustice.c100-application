@@ -28,6 +28,7 @@ class SessionsController < ApplicationController
     raise 'For development use only' unless helpers.dev_tools_enabled?
 
     find_or_create_screener_answers
+    find_or_create_people
     c100_application.update(status: 1)
 
     redirect_to edit_steps_application_check_your_answers_path
@@ -46,6 +47,14 @@ class SessionsController < ApplicationController
       screener.update(
         screener_answers_fixture(screener)
       ) unless screener.valid?(:completion)
+    end
+  end
+
+  def find_or_create_people
+    [Child, Applicant, Respondent].each do |klass|
+      klass.find_or_initialize_by(c100_application_id: c100_application.id).tap do |record|
+        record.update(first_name: record.type, last_name: 'Test') unless record.persisted?
+      end
     end
   end
 
