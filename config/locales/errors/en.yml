@@ -92,6 +92,10 @@ en:
               blank: You must add at least one applicant
             respondents:
               blank: You must add at least one respondent
+            payment_type:
+              blank: You must specify what payment method you would like to use
+            submission_type:
+              blank: You must specify what submission method you would like to use
 
   activemodel:
     errors:
