@@ -130,9 +130,9 @@ Rails.application.routes.draw do
       edit_step :details
       edit_step :litigation_capacity
       edit_step :litigation_capacity_details
-      edit_step :payment
       edit_step :submission
       show_step :receipt_email_check
+      edit_step :payment
       edit_step :check_your_answers do
         get :resume, action: :resume
       end

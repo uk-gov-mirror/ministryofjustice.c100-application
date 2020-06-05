@@ -84,8 +84,8 @@ describe Summary::HtmlPresenter do
         Summary::HtmlSections::ApplicationReasons,
         Summary::HtmlSections::LitigationCapacity,
         Summary::HtmlSections::AttendingCourtV2,
-        Summary::HtmlSections::Payment,
         Summary::HtmlSections::Submission,
+        Summary::HtmlSections::Payment,
       ])
     end
 
