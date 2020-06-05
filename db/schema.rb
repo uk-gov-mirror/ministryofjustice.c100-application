@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_082810) do
+ActiveRecord::Schema.define(version: 2020_06_05_081246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -269,6 +269,17 @@ ActiveRecord::Schema.define(version: 2020_05_22_082810) do
     t.index ["c100_application_id"], name: "index_miam_exemptions_on_c100_application_id", unique: true
   end
 
+  create_table "payment_intents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "nonce"
+    t.string "payment_id"
+    t.string "status", default: "ready", null: false
+    t.datetime "finished_at"
+    t.uuid "c100_application_id"
+    t.index ["c100_application_id"], name: "index_payment_intents_on_c100_application_id", unique: true
+  end
+
   create_table "people", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -374,6 +385,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_082810) do
   add_foreign_key "court_proceedings", "c100_applications"
   add_foreign_key "email_submissions", "c100_applications"
   add_foreign_key "miam_exemptions", "c100_applications"
+  add_foreign_key "payment_intents", "c100_applications"
   add_foreign_key "people", "c100_applications"
   add_foreign_key "relationships", "c100_applications"
   add_foreign_key "relationships", "people"
