@@ -288,6 +288,10 @@ Rails.application.routes.draw do
     post :notify
   end
 
+  resources :payments, only: [] do
+    get :destination, on: :member
+  end
+
   resource :errors, only: [] do
     get :invalid_session
     get :application_not_found

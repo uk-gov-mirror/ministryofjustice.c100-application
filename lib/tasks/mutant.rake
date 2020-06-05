@@ -80,6 +80,7 @@ def models
     User
     Court
     Person
+    PaymentIntent
     CompletedApplicationsAudit
   ).freeze
 end

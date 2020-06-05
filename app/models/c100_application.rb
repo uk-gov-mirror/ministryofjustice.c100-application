@@ -19,6 +19,7 @@ class C100Application < ApplicationRecord
   has_one  :miam_exemption,     dependent: :destroy
   has_one  :screener_answers,   dependent: :destroy
   has_one  :email_submission,   dependent: :destroy
+  has_one  :payment_intent,     dependent: :destroy
 
   has_many :abuse_concerns,     dependent: :destroy
   has_many :relationships,      dependent: :destroy
@@ -48,6 +49,11 @@ class C100Application < ApplicationRecord
 
   def online_submission?
     submission_type.eql?(SubmissionType::ONLINE.to_s)
+  end
+
+  # TODO: change when we introduce the 'real' online payment method
+  def online_payment?
+    payment_type.eql?(PaymentType::SELF_PAYMENT_CARD.to_s)
   end
 
   def confidentiality_enabled?
