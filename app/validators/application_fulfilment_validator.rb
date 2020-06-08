@@ -19,6 +19,8 @@ class ApplicationFulfilmentValidator < ActiveModel::Validator
       ->(record) { [:children, :blank, edit_steps_children_names_path(id: '')] unless record.children.any? },
       ->(record) { [:applicants, :blank, edit_steps_applicant_names_path(id: '')] unless record.applicants.any? },
       ->(record) { [:respondents, :blank, edit_steps_respondent_names_path(id: '')] unless record.respondents.any? },
+      ->(record) { [:submission_type, :blank, edit_steps_application_submission_path] unless record.submission_type.present? },
+      ->(record) { [:payment_type, :blank, edit_steps_application_payment_path] unless record.payment_type.present? },
     ]
   end
 end
