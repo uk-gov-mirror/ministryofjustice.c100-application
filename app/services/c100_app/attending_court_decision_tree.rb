@@ -11,7 +11,7 @@ module C100App
       when :special_arrangements
         edit(:special_assistance)
       when :special_assistance
-        edit('/steps/application/payment')
+        edit('/steps/application/submission')
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
