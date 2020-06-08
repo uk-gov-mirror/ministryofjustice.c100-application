@@ -289,7 +289,7 @@ Rails.application.routes.draw do
   end
 
   resources :payments, only: [] do
-    get :destination, on: :member
+    get :validate, on: :member
   end
 
   resource :errors, only: [] do
