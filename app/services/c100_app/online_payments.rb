@@ -1,7 +1,5 @@
 module C100App
   class OnlinePayments
-    class UnknownPaymentStatus < StandardError; end
-
     STATUSES_ENUM_MAP = {
       created: %w[created],
       pending: %w[started submitted capturable],
@@ -56,16 +54,12 @@ module C100App
 
     def choose_status(status)
       case status
-      when *STATUSES_ENUM_MAP.fetch(:created)
-        :created
-      when *STATUSES_ENUM_MAP.fetch(:pending)
-        :pending
-      when *STATUSES_ENUM_MAP.fetch(:success)
-        :success
-      when *STATUSES_ENUM_MAP.fetch(:failed)
-        :failed
+      when *STATUSES_ENUM_MAP.fetch(:created) then :created
+      when *STATUSES_ENUM_MAP.fetch(:pending) then :pending
+      when *STATUSES_ENUM_MAP.fetch(:success) then :success
+      when *STATUSES_ENUM_MAP.fetch(:failed)  then :failed
       else
-        raise UnknownPaymentStatus, status
+        status
       end
     end
 

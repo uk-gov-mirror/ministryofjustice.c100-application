@@ -67,8 +67,6 @@ RSpec.describe C100App::OnlinePayments do
       allow(
         PaymentsApi::Requests::CreateCardPayment
       ).to receive(:new).with(payload).and_return(response_double)
-
-      allow(payment_intent).to receive(:update)
     end
 
     context 'payment intent' do
@@ -91,6 +89,11 @@ RSpec.describe C100App::OnlinePayments do
           it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :pending); do_request }
         end
 
+        context 'success statuses' do
+          let(:status) { 'success' }
+          it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :success); do_request }
+        end
+
         context 'failed statuses' do
           let(:status) { 'cancelled' }
           it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :failed); do_request }
@@ -99,10 +102,9 @@ RSpec.describe C100App::OnlinePayments do
         context 'for an unknown status' do
           let(:status) { 'weird_status' }
 
-          it 'raises an exception' do
-            expect {
-              do_request
-            }.to raise_error(described_class::UnknownPaymentStatus).with_message('weird_status')
+          it 'propagates the status, without mapping it' do
+            expect(payment_intent).to receive(:update).with(payment_id: nil, status: 'weird_status')
+            do_request
           end
         end
       end
@@ -110,7 +112,7 @@ RSpec.describe C100App::OnlinePayments do
   end
 
   describe '#retrieve_payment' do
-    subject { described_class.retrieve_payment(payment_intent) }
+    subject(:do_request) { described_class.retrieve_payment(payment_intent) }
 
     let(:response_double) {
       double(call: double('Response', payment_id: payment_id, status: 'success'))
@@ -126,7 +128,7 @@ RSpec.describe C100App::OnlinePayments do
 
     context 'payment details response' do
       it 'returns the response' do
-        expect(subject.status).to eq('success')
+        expect(do_request.status).to eq('success')
       end
     end
 
@@ -136,7 +138,7 @@ RSpec.describe C100App::OnlinePayments do
           payment_intent
         ).to receive(:update).with(payment_id: payment_id, status: :success)
 
-        expect(subject).not_to be_nil
+        expect(do_request).not_to be_nil
       end
     end
   end
