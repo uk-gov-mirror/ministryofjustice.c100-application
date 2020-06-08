@@ -27,6 +27,6 @@ RSpec.describe C100App::AttendingCourtDecisionTree do
 
   context 'when the step is `special_assistance`' do
     let(:step_params) { { special_assistance: 'anything' } }
-    it { is_expected.to have_destination('/steps/application/payment', :edit) }
+    it { is_expected.to have_destination('/steps/application/submission', :edit) }
   end
 end
