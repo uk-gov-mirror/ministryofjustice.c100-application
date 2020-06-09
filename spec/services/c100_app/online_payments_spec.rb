@@ -6,6 +6,7 @@ RSpec.describe C100App::OnlinePayments do
   let(:payment_intent) {
     instance_double(
       PaymentIntent,
+      state: {},
       status: 'ready',
       c100_application: c100_application,
       payment_id: payment_id,
@@ -38,12 +39,20 @@ RSpec.describe C100App::OnlinePayments do
     end
   end
 
-  describe '#create_payment' do
+  describe 'NON_RETRYABLE_CODES' do
+    it 'returns the expected codes' do
+      expect(described_class::NON_RETRYABLE_CODES).to match_array(%w[P0030 P0050])
+    end
+  end
+
+  describe '.create_payment' do
     subject(:do_request) { described_class.create_payment(payment_intent) }
 
     let(:court_double) { double('Court', name: 'Test court', email: 'court@example.com') }
     let(:response_double) {
-      double(call: double('Response', payment_id: payment_id, status: 'created', payment_url: 'https://payments.example.com'))
+      double(call: double(
+        'Response', payment_id: payment_id, status: status, state: { foo: 'bar' }, payment_url: 'https://payments.example.com'
+      ))
     }
 
     let(:payload) do
@@ -70,40 +79,38 @@ RSpec.describe C100App::OnlinePayments do
     end
 
     context 'payment intent' do
+      let(:status) { 'created' }
+
       it 'updates the payment intent' do
         expect(
           payment_intent
-        ).to receive(:update).with(payment_id: payment_id, status: :created)
+        ).to receive(:update).with(payment_id: payment_id, status: :created, state: { foo: 'bar' })
 
         expect(do_request.payment_url).to eq('https://payments.example.com')
       end
 
       # mutant killer
       context 'for statuses other than created' do
-        let(:response_double) {
-          double(call: double('Response', payment_id: nil, status: status))
-        }
-
         context 'pending statuses' do
           let(:status) { 'submitted' }
-          it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :pending); do_request }
+          it { expect(payment_intent).to receive(:update).with(hash_including(status: :pending)); do_request }
         end
 
         context 'success statuses' do
           let(:status) { 'success' }
-          it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :success); do_request }
+          it { expect(payment_intent).to receive(:update).with(hash_including(status: :success)); do_request }
         end
 
         context 'failed statuses' do
           let(:status) { 'cancelled' }
-          it { expect(payment_intent).to receive(:update).with(payment_id: nil, status: :failed); do_request }
+          it { expect(payment_intent).to receive(:update).with(hash_including(status: :failed)); do_request }
         end
 
         context 'for an unknown status' do
           let(:status) { 'weird_status' }
 
           it 'propagates the status, without mapping it' do
-            expect(payment_intent).to receive(:update).with(payment_id: nil, status: 'weird_status')
+            expect(payment_intent).to receive(:update).with(hash_including(status: status))
             do_request
           end
         end
@@ -111,11 +118,11 @@ RSpec.describe C100App::OnlinePayments do
     end
   end
 
-  describe '#retrieve_payment' do
+  describe '.retrieve_payment' do
     subject(:do_request) { described_class.retrieve_payment(payment_intent) }
 
     let(:response_double) {
-      double(call: double('Response', payment_id: payment_id, status: 'success'))
+      double(call: double('Response', payment_id: payment_id, status: 'success', state: { foo: 'bar' }))
     }
 
     before do
@@ -136,9 +143,29 @@ RSpec.describe C100App::OnlinePayments do
       it 'updates the payment intent' do
         expect(
           payment_intent
-        ).to receive(:update).with(payment_id: payment_id, status: :success)
+        ).to receive(:update).with(payment_id: payment_id, status: :success, state: { foo: 'bar' })
 
         expect(do_request).not_to be_nil
+      end
+    end
+  end
+
+  describe '.non_retryable_state?' do
+    let(:payment_intent) { instance_double(PaymentIntent, state: { 'code' => state_code }) }
+
+    context 'non-retryable state code' do
+      let(:state_code) { 'P0030' }
+
+      it 'returns true for a non-retryable state code' do
+        expect(described_class.non_retryable_state?(payment_intent)).to eq(true)
+      end
+    end
+
+    context 'any other state code' do
+      let(:state_code) { 'P0010' }
+
+      it 'returns false for any other state code' do
+        expect(described_class.non_retryable_state?(payment_intent)).to eq(false)
       end
     end
   end

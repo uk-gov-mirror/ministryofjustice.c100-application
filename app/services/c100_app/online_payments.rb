@@ -7,6 +7,13 @@ module C100App
       failed:  %w[failed cancelled error],
     }.freeze
 
+    # Failure codes that indicate either the user do not want to proceed,
+    # or the payments provider is having technical issues.
+    NON_RETRYABLE_CODES = %w[
+      P0030
+      P0050
+    ].freeze
+
     attr_reader :payment_intent
     delegate :c100_application, to: :payment_intent
 
@@ -22,6 +29,10 @@ module C100App
 
       def retrieve_payment(payment_intent)
         new(payment_intent).retrieve_payment
+      end
+
+      def non_retryable_state?(payment_intent)
+        NON_RETRYABLE_CODES.include?(payment_intent.state['code'])
       end
     end
 
@@ -49,6 +60,7 @@ module C100App
       payment_intent.update(
         payment_id: response.payment_id,
         status: choose_status(response.status),
+        state: response.state,
       )
     end
 
