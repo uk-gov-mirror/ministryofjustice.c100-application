@@ -17,21 +17,21 @@ module C100App
         payment_intent.finish!(with_status: :offline_type)
         confirmation_url
       end
+    rescue StandardError => exception
+      raise Errors::PaymentUnexpectedError, exception
     end
 
-    # Returning users after paying (or failing/cancelling)
-    # TODO: create specific error pages for different scenarios
-    #
     def next_url
       OnlinePayments.retrieve_payment(payment_intent)
 
-      case payment_intent.status
-      when 'success'
+      if payment_intent.success?
         payment_intent.finish!
         confirmation_url
       else
-        unhandled_errors_path
+        payment_error_errors_path
       end
+    rescue StandardError => exception
+      raise Errors::PaymentUnexpectedError, exception
     end
 
     def confirmation_url

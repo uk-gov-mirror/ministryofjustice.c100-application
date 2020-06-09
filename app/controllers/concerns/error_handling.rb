@@ -12,6 +12,10 @@ module ErrorHandling
         redirect_to application_screening_errors_path
       when Errors::ApplicationCompleted
         redirect_to application_completed_errors_path
+      when Errors::PaymentError
+        # Payment errors are reported to Sentry as it is important to know
+        Raven.capture_exception(exception)
+        redirect_to payment_error_errors_path
       else
         raise if Rails.application.config.consider_all_requests_local
 

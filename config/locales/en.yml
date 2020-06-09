@@ -972,6 +972,11 @@ en:
         <p class="govuk-body">You can also try starting again from the homepage.</p>
         <p class="govuk-body">If the problem continues, you can <a href="https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf" class="govuk-link" rel="external" target="_blank">download and
         complete a C100 paper application form</a>, print it and send it by post.</p>
+    payment_error:
+      page_title: Payment error
+      heading: There was a problem with your payment
+      lead_text: It seems you attempted to make a payment but the payment did not complete.
+      more_text: No money has been taken from your account. You can retry the payment with the same or other card details, or choose a different payment method.
 
   helpers:
     label:
@@ -1695,6 +1700,7 @@ en:
 
   shared:
     start_again: Start again
+    retry_payment: Try payment again
     finish: Finish
     back_link: Back
     password_toggle:
