@@ -1,6 +1,4 @@
 class PaymentsController < ApplicationController
-  before_action :check_intent_presence
-
   def validate
     payment_intent.revoke_nonce!
 
@@ -11,13 +9,12 @@ class PaymentsController < ApplicationController
 
   private
 
+  # Raises an `ActiveRecord::RecordNotFound` error when there is no intent,
+  # and is captured, reported to Sentry and handled in the superclass.
+  #
   def payment_intent
-    @_payment_intent ||= PaymentIntent.not_finished.find_by(
+    @_payment_intent ||= PaymentIntent.not_finished.find_by!(
       id: params.require(:id), nonce: params.require(:nonce), c100_application: current_c100_application
     )
-  end
-
-  def check_intent_presence
-    raise Errors::InvalidSession unless payment_intent
   end
 end

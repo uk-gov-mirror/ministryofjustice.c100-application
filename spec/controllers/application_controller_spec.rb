@@ -7,6 +7,7 @@ RSpec.describe ApplicationController do
     def application_not_found; raise Errors::ApplicationNotFound; end
     def application_completed; raise Errors::ApplicationCompleted; end
     def application_screening; raise Errors::ApplicationScreening; end
+    def payment_error; raise Errors::PaymentError; end
     def another_exception; raise Exception; end
   end
 
@@ -143,6 +144,17 @@ RSpec.describe ApplicationController do
 
         get :application_completed
         expect(response).to redirect_to(application_completed_errors_path)
+      end
+    end
+
+    context 'Errors::PaymentError' do
+      it 'should report the exception, and redirect to the payment error page' do
+        routes.draw { get 'payment_error' => 'anonymous#payment_error' }
+
+        expect(Raven).to receive(:capture_exception)
+
+        get :payment_error
+        expect(response).to redirect_to(payment_error_errors_path)
       end
     end
 

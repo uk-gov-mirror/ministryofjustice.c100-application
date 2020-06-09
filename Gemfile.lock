@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ministryofjustice/govuk-pay-ruby-client.git
-  revision: 32a58b48e4557818b41ffdc91c989691b3693717
+  revision: ad6ecbc9fe5766be11d2bb97664d2290ebfeb46a
   specs:
     govuk-pay-ruby-client (0.1.0)
       faraday (~> 1.0)
@@ -299,7 +299,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.1.4)
-    regexp_parser (1.7.0)
+    regexp_parser (1.7.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)

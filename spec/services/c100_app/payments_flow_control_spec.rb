@@ -15,9 +15,7 @@ RSpec.describe C100App::PaymentsFlowControl do
   let(:payment_type) { PaymentType::SELF_PAYMENT_CARD }
   let(:declaration_signee) { 'John Doe' }
 
-  let(:payment_intent) {
-    instance_double(PaymentIntent, status: intent_status)
-  }
+  let(:payment_intent) { PaymentIntent.new(status: intent_status) }
   let(:intent_status) { 'ready' }
 
   before do
@@ -64,6 +62,20 @@ RSpec.describe C100App::PaymentsFlowControl do
         end
       end
     end
+
+    context 'when there is an exception' do
+      before do
+        allow(
+          C100App::OnlinePayments
+        ).to receive(:create_payment).and_raise(ArgumentError.new('boom!'))
+      end
+
+      it 'bubbles up as a `PaymentUnexpectedError` exception' do
+        expect {
+          subject.payment_url
+        }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
+      end
+    end
   end
 
   describe '#next_url' do
@@ -91,7 +103,21 @@ RSpec.describe C100App::PaymentsFlowControl do
 
       it 'returns an error page' do
         expect(payment_intent).not_to receive(:finish!)
-        expect(subject.next_url).to eq('/errors/unhandled')
+        expect(subject.next_url).to eq('/errors/payment_error')
+      end
+    end
+
+    context 'when there is an exception' do
+      before do
+        allow(
+          C100App::OnlinePayments
+        ).to receive(:retrieve_payment).and_raise(ArgumentError.new('boom!'))
+      end
+
+      it 'bubbles up as a `PaymentUnexpectedError` exception' do
+        expect {
+          subject.next_url
+        }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
       end
     end
   end

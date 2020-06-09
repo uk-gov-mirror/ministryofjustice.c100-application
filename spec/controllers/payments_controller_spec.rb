@@ -14,20 +14,22 @@ RSpec.describe PaymentsController, type: :controller do
     context 'when there is no application in the session' do
       let(:c100_application) { nil }
 
-      it 'redirects to the invalid session error page' do
-        get :validate, params: { id: 'uuid', nonce: '123456' }
-        expect(response).to redirect_to(invalid_session_errors_path)
+      it 'raises an exception' do
+        expect {
+          get :validate, params: { id: 'intent-uuid', nonce: '123456' }
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
     context 'when there is an application in the session but details do not match' do
-      it 'redirects to the invalid session error page' do
-        get :validate, params: { id: 'intent-uuid', nonce: '123456' }
-        expect(response).to redirect_to(invalid_session_errors_path)
+      it 'raises an exception' do
+        expect {
+          get :validate, params: { id: 'intent-uuid', nonce: '123456' }
+        }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
-    context 'for an invalid request' do
+    context 'for a request with missing mandatory params' do
       it 'redirects to the invalid session error page' do
         expect {
           get :validate, params: { id: 'intent-uuid' } # nonce param is omitted
@@ -41,7 +43,7 @@ RSpec.describe PaymentsController, type: :controller do
 
         allow(
           intent_scope
-        ).to receive(:find_by).with(
+        ).to receive(:find_by!).with(
           id: 'intent-uuid', nonce: '123456', c100_application: c100_application
         ).and_return(payment_intent)
 

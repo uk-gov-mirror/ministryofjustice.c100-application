@@ -297,6 +297,7 @@ Rails.application.routes.draw do
     get :application_not_found
     get :application_screening
     get :application_completed
+    get :payment_error
     get :unhandled
     get :not_found
   end
