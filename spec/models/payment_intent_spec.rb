@@ -15,20 +15,15 @@ RSpec.describe PaymentIntent, type: :model do
       ).to match_array(%w(
         ready
         created
-        finished
-        offline_method
+        pending
+        success
+        failed
+        offline_type
       ))
     end
   end
 
-  describe '#online_payment?' do
-    it 'delegates method to the c100_application' do
-      expect(c100_application).to receive(:online_payment?)
-      subject.online_payment?
-    end
-  end
-
-  describe '#destination_url' do
+  describe '#return_url' do
     let(:nonce) { '123456' }
 
     before do
@@ -42,37 +37,34 @@ RSpec.describe PaymentIntent, type: :model do
 
     it 'sets the nonce' do
       expect {
-        subject.destination_url
+        subject.return_url
       }.to change { subject.nonce }.from(nil).to(nonce)
     end
 
-    it 'returns the destination url with the nonce parameter' do
+    it 'returns the url with the nonce parameter' do
       expect(
-        subject.destination_url
-      ).to eq("https://c100.justice.uk/payments/#{subject.id}/destination?nonce=#{nonce}")
+        subject.return_url
+      ).to eq("https://c100.justice.uk/payments/#{subject.id}/validate?nonce=#{nonce}")
     end
   end
 
-  describe '#offline_method!' do
+  describe '#finish!' do
     before do
       travel_to Time.at(0)
-      subject.save
     end
 
-    after do
-      subject.destroy
+    context 'when a status is passed' do
+      it 'sets the status and the finished_at' do
+        expect(subject).to receive(:update).with(status: :foobar, finished_at: Time.at(0))
+        subject.finish!(with_status: :foobar)
+      end
     end
 
-    it 'changes the status' do
-      expect {
-        subject.offline_method!
-      }.to change { subject.status }.from('ready').to('offline_method')
-    end
-
-    it 'changes the finished_at' do
-      expect {
-        subject.offline_method!
-      }.to change { subject.finished_at }.from(nil).to(Time.at(0))
+    context 'when no status is passed' do
+      it 'sets the status to the default, and the finished_at' do
+        expect(subject).to receive(:update).with(status: :success, finished_at: Time.at(0))
+        subject.finish!
+      end
     end
   end
 

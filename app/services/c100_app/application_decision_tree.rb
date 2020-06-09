@@ -28,7 +28,7 @@ module C100App
       when :payment
         edit(:check_your_answers)
       when :declaration
-        after_declaration
+        proceed_to_payment
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -77,20 +77,8 @@ module C100App
       end
     end
 
-    def after_declaration
-      if c100_application.online_submission?
-        #
-        # TODO: dirty proof of concept for online payments.
-        # Pending to clean up and deal with returning users to the service after pay,
-        # processing of confirmation emails and PDF, as well as error handling.
-        #
-        return OnlinePayments.new(c100_application).payment_url if show_me_the_pay_poc?
-
-        OnlineSubmissionQueue.new(c100_application).process
-        show('/steps/completion/confirmation')
-      else
-        show('/steps/completion/what_next')
-      end
+    def proceed_to_payment
+      PaymentsFlowControl.new(c100_application).payment_url
     end
 
     def start_international_journey
@@ -99,15 +87,6 @@ module C100App
 
     def start_attending_court_journey
       edit('/steps/attending_court/intermediary')
-    end
-
-    # TODO: For now, we only show the proof of concept if some criteria is met,
-    # to avoid genuine tests or demos on staging to go to the online journey inadvertently.
-    #
-    def show_me_the_pay_poc?
-      dev_tools_enabled? &&
-        c100_application.payment_type.eql?(PaymentType::SELF_PAYMENT_CARD.to_s) &&
-        c100_application.declaration_signee.eql?('John Doe')
     end
   end
 end
