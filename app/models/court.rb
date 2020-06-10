@@ -1,5 +1,5 @@
 class Court
-  attr_reader :name, :slug, :email, :address
+  attr_reader :name, :slug, :email, :address, :gbs
 
   # Using `fetch` so an exception is raised and we are alerted if the json
   # schema ever changes, instead of silently let the user continue, as all
@@ -11,6 +11,7 @@ class Court
     @address = data.fetch('address')
     # The email, if not already present, comes from a separate API request
     @email = data['email'] || best_enquiries_email
+    @gbs = data['gbs'] || retrieve_gbs_from_api
   rescue StandardError => ex
     log_and_raise(ex, data)
   end
@@ -59,6 +60,10 @@ class Court
 
   def fallback_address(emails)
     emails.find { |e| e['address'] =~ /enquiries/i } || emails.first
+  end
+
+  def retrieve_gbs_from_api
+    court_data.fetch('gbs')
   end
 
   def retrieve_emails_from_api

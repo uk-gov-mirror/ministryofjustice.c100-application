@@ -69,7 +69,7 @@ module C100App
         # Optional details
         email: c100_application.receipt_email,
         metadata: {
-          court_gbs_code: 'TBD',
+          court_gbs: c100_application.screener_answers_court.gbs,
           court_name: c100_application.screener_answers_court.name,
           court_email: c100_application.screener_answers_court.email,
         }
