@@ -39,9 +39,9 @@ RSpec.describe StatusController, type: :controller do
     context 'for a non healthy service' do
       let(:success) { false }
 
-      it 'has a 503 response code' do
+      it 'has a 500 response code' do
         get :index, format: :json
-        expect(response.status).to eq(503)
+        expect(response.status).to eq(500)
       end
 
       it 'returns json' do

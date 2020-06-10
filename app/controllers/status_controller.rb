@@ -14,7 +14,7 @@ class StatusController < BareApplicationController
   #
   def index
     check = C100App::Status.new
-    status_code = check.success? ? :ok : :service_unavailable
+    status_code = check.success? ? :ok : :internal_server_error
 
     respond_with(check.response, status: status_code)
   end
