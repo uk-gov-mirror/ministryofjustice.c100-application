@@ -15,7 +15,7 @@ RSpec.describe C100App::PaymentsFlowControl do
   let(:payment_type) { PaymentType::SELF_PAYMENT_CARD }
   let(:declaration_signee) { 'John Doe' }
 
-  let(:payment_intent) { PaymentIntent.new(status: intent_status) }
+  let(:payment_intent) { PaymentIntent.new(status: intent_status, payment_id: 'xyz123') }
   let(:intent_status) { 'ready' }
 
   before do
@@ -100,10 +100,37 @@ RSpec.describe C100App::PaymentsFlowControl do
 
     context 'for a failed payment status' do
       let(:intent_status) { 'failed' }
+      let(:error_to_report) { Errors::PaymentError.new(payment_state) }
 
-      it 'returns an error page' do
-        expect(payment_intent).not_to receive(:finish!)
-        expect(subject.next_url).to eq('/errors/payment_error')
+      before do
+        allow(payment_intent).to receive(:state).and_return(payment_state)
+      end
+
+      context 'for a non-retryable state code' do
+        let(:payment_state) { {'code' => 'P0030'} }
+
+        it 'reports the error and returns to the error page' do
+          expect(Raven).to receive(:capture_exception).with(
+            error_to_report, level: 'info', tags: { payment_id: 'xyz123' }
+          )
+
+          expect(payment_intent).not_to receive(:finish!)
+          expect(subject.next_url).to eq('/errors/payment_error')
+        end
+      end
+
+      context 'for any other state code' do
+        let(:payment_state) { {'code' => 'P0010'} }
+
+        it 'reports the error and returns to the payments journey' do
+          expect(Raven).to receive(:capture_exception).with(
+            error_to_report, level: 'info', tags: { payment_id: 'xyz123' }
+          )
+
+          expect(payment_intent).not_to receive(:finish!)
+          expect(subject).to receive(:payment_url)
+          subject.next_url
+        end
       end
     end
 

@@ -21,14 +21,24 @@ module C100App
       raise Errors::PaymentUnexpectedError, exception
     end
 
+    # Returning users after paying (or failing/cancelling)
     def next_url
       OnlinePayments.retrieve_payment(payment_intent)
 
       if payment_intent.success?
         payment_intent.finish!
-        confirmation_url
-      else
+        return confirmation_url
+      end
+
+      # For a while, until we are confident, let's log these failures
+      log_failure_info
+
+      if OnlinePayments.non_retryable_state?(payment_intent)
+        # Let the user change payment method
         payment_error_errors_path
+      else
+        # Re-enter the online payment journey
+        payment_url
       end
     rescue StandardError => exception
       raise Errors::PaymentUnexpectedError, exception
@@ -48,6 +58,13 @@ module C100App
     def payment_intent
       @_payment_intent ||= PaymentIntent.find_or_create_by!(
         c100_application: c100_application
+      )
+    end
+
+    def log_failure_info
+      Raven.capture_exception(
+        Errors::PaymentError.new(payment_intent.state),
+        level: 'info', tags: { payment_id: payment_intent.payment_id }
       )
     end
 

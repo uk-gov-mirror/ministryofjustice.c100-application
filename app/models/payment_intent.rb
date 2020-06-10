@@ -5,6 +5,9 @@ class PaymentIntent < ApplicationRecord
 
   scope :not_finished, -> { where(finished_at: nil) }
 
+  # Non-persisted attribute, contains the `state` raw data.
+  attribute :state, :jsonb, default: {}
+
   enum status: {
     ready: 'ready',
     created: 'created',
