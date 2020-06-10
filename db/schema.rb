@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_05_081246) do
+ActiveRecord::Schema.define(version: 2020_06_10_133254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(version: 2020_06_05_081246) do
     t.string "declaration_signee"
     t.string "declaration_signee_capacity"
     t.text "international_resident_details"
+    t.string "reminder_status"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end

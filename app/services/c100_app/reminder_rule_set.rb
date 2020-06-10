@@ -17,7 +17,7 @@ module C100App
     def self.first_reminder
       new(
         created_days_ago: 23,
-        status: :in_progress,
+        status: nil,
         status_transition_to: :first_reminder_sent,
         email_template_name: 'draft_first_reminder'
       )
@@ -37,7 +37,8 @@ module C100App
     def rule_query
       C100Application
         .with_owner
-        .where(status: status)
+        .not_completed
+        .where(reminder_status: status)
         .where('created_at <= ?', created_days_ago.days.ago)
     end
   end

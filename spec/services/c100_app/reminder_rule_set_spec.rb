@@ -5,7 +5,7 @@ RSpec.describe C100App::ReminderRuleSet do
     subject { described_class.first_reminder }
 
     it { expect(subject.created_days_ago).to eq(23) }
-    it { expect(subject.status).to eq(:in_progress) }
+    it { expect(subject.status).to eq(nil) }
     it { expect(subject.status_transition_to).to eq(:first_reminder_sent) }
     it { expect(subject.email_template_name).to eq('draft_first_reminder') }
   end
@@ -38,7 +38,8 @@ RSpec.describe C100App::ReminderRuleSet do
 
     it 'filters the c100 applications' do
       expect(C100Application).to receive(:with_owner).and_return(finder_double)
-      expect(finder_double).to receive(:where).with(status: :test_status).and_return(finder_double)
+      expect(finder_double).to receive(:not_completed).and_return(finder_double)
+      expect(finder_double).to receive(:where).with(reminder_status: :test_status).and_return(finder_double)
       expect(finder_double).to receive(:where).with('created_at <= ?', 3.days.ago).and_return(finder_double)
       subject.find_each
     end
