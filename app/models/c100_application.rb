@@ -1,12 +1,17 @@
 class C100Application < ApplicationRecord
+  include ApplicationInquiryMethods
   include ApplicationReference
 
   enum status: {
     screening: 0,
     in_progress: 1,
-    first_reminder_sent: 5,
-    last_reminder_sent: 6,
+    pending_payment: 8,
     completed: 10,
+  }
+
+  enum reminder_status: {
+    first_reminder_sent: 'first_reminder_sent',
+    last_reminder_sent: 'last_reminder_sent',
   }
 
   belongs_to :user, optional: true
@@ -45,32 +50,5 @@ class C100Application < ApplicationRecord
 
   def self.purge!(date)
     where('c100_applications.created_at <= :date', date: date).destroy_all
-  end
-
-  def online_submission?
-    submission_type.eql?(SubmissionType::ONLINE.to_s)
-  end
-
-  # TODO: change when we introduce the 'real' online payment method
-  def online_payment?
-    payment_type.eql?(PaymentType::SELF_PAYMENT_CARD.to_s)
-  end
-
-  def confidentiality_enabled?
-    address_confidentiality.eql?(GenericYesNo::YES.to_s)
-  end
-
-  def has_solicitor?
-    has_solicitor.eql?(GenericYesNo::YES.to_s)
-  end
-
-  def has_safety_concerns?
-    [
-      domestic_abuse,
-      risk_of_abduction,
-      children_abuse,
-      substance_abuse,
-      other_abuse
-    ].any? { |concern| concern.eql?(GenericYesNo::YES.to_s) }
   end
 end

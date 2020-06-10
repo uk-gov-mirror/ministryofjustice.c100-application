@@ -11,9 +11,19 @@ RSpec.describe C100Application, type: :model do
       ).to eq(
         'screening' => 0,
         'in_progress' => 1,
-        'first_reminder_sent' => 5,
-        'last_reminder_sent' => 6,
+        'pending_payment' => 8,
         'completed' => 10,
+      )
+    end
+  end
+
+  describe 'reminder_status enum' do
+    it 'has the right values' do
+      expect(
+        described_class.reminder_statuses
+      ).to eq(
+        'first_reminder_sent' => 'first_reminder_sent',
+        'last_reminder_sent' => 'last_reminder_sent',
       )
     end
   end
