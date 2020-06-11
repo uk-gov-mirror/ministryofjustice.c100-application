@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_133254) do
+ActiveRecord::Schema.define(version: 2020_06_11_113210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -275,9 +275,8 @@ ActiveRecord::Schema.define(version: 2020_06_10_133254) do
     t.datetime "updated_at", null: false
     t.string "nonce"
     t.string "payment_id"
-    t.string "status", default: "ready", null: false
-    t.datetime "finished_at"
     t.uuid "c100_application_id"
+    t.jsonb "state", default: {}, null: false
     t.index ["c100_application_id"], name: "index_payment_intents_on_c100_application_id", unique: true
   end
 

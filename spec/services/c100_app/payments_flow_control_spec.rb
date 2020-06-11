@@ -15,8 +15,7 @@ RSpec.describe C100App::PaymentsFlowControl do
   let(:payment_type) { PaymentType::SELF_PAYMENT_CARD }
   let(:declaration_signee) { 'John Doe' }
 
-  let(:payment_intent) { PaymentIntent.new(status: intent_status, payment_id: 'xyz123') }
-  let(:intent_status) { 'ready' }
+  let(:payment_intent) { PaymentIntent.new(payment_id: 'xyz123') }
 
   before do
     allow(

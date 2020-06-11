@@ -3,24 +3,7 @@ require 'rails_helper'
 RSpec.describe PaymentIntent, type: :model do
   subject { described_class.new(c100_application: c100_application) }
 
-  let(:c100_application) { C100Application.new(payment_type: payment_type) }
-  let(:payment_type) { 'foobar' }
-
-  context 'status enumeration' do
-    it 'maps all the neccessary statuses' do
-      expect(PaymentIntent.statuses.keys).to eq(PaymentIntent.statuses.values)
-
-      expect(
-        PaymentIntent.statuses.keys
-      ).to match_array(%w(
-        ready
-        created
-        pending
-        success
-        failed
-      ))
-    end
-  end
+  let(:c100_application) { C100Application.new }
 
   describe '#return_url' do
     let(:nonce) { '123456' }
