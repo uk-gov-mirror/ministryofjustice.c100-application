@@ -18,7 +18,6 @@ RSpec.describe PaymentIntent, type: :model do
         pending
         success
         failed
-        offline_type
       ))
     end
   end
@@ -45,26 +44,6 @@ RSpec.describe PaymentIntent, type: :model do
       expect(
         subject.return_url
       ).to eq("https://c100.justice.uk/payments/#{subject.id}/validate?nonce=#{nonce}")
-    end
-  end
-
-  describe '#finish!' do
-    before do
-      travel_to Time.at(0)
-    end
-
-    context 'when a status is passed' do
-      it 'sets the status and the finished_at' do
-        expect(subject).to receive(:update).with(status: :foobar, finished_at: Time.at(0))
-        subject.finish!(with_status: :foobar)
-      end
-    end
-
-    context 'when no status is passed' do
-      it 'sets the status to the default, and the finished_at' do
-        expect(subject).to receive(:update).with(status: :success, finished_at: Time.at(0))
-        subject.finish!
-      end
     end
   end
 

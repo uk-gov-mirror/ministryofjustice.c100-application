@@ -12,9 +12,9 @@ module C100App
       return confirmation_url unless payments_enabled?
 
       if c100_application.online_payment?
+        c100_application.payment_in_progress!
         OnlinePayments.create_payment(payment_intent).payment_url
       else
-        payment_intent.finish!(with_status: :offline_type)
         confirmation_url
       end
     rescue StandardError => exception
@@ -23,10 +23,7 @@ module C100App
 
     # Returning users after paying (or failing/cancelling)
     def next_url
-      OnlinePayments.retrieve_payment(payment_intent)
-
-      if payment_intent.success?
-        payment_intent.finish!
+      if OnlinePayments.retrieve_payment(payment_intent).success?
         return confirmation_url
       end
 
