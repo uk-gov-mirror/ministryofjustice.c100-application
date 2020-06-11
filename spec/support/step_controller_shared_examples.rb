@@ -236,18 +236,32 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#update' do
+    let(:status) { 'screening' }
+
     let!(:existing_c100) {
-      C100Application.create(status: :screening, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
+      C100Application.create(status: status, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
     }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
     end
 
-    it 'changes the status to `in_progress`' do
-      expect {
-        put :update, params: {}
-      }.to change { existing_c100.status }.from('screening').to('in_progress')
+    context 'for an application in the screening status' do
+      it 'changes the status to `in_progress`' do
+        expect {
+          put :update, params: {}
+        }.to change { existing_c100.status }.from('screening').to('in_progress')
+      end
+    end
+
+    context 'for an application in any other status' do
+      let(:status) { 'completed' }
+
+      it 'does not change the status to `in_progress`' do
+        expect {
+          put :update, params: {}
+        }.not_to change { existing_c100.status }
+      end
     end
 
     context 'for a not yet completed, or invalid, screener' do
