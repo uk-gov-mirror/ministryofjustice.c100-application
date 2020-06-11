@@ -26,7 +26,7 @@ module SavepointStep
   def mark_in_progress
     # The step including this concern will mark the current application
     # as `in progress`, meaning it has passed the screening and can be drafted.
-    current_c100_application.in_progress!
+    current_c100_application.in_progress! if current_c100_application.screening?
   end
 
   def save_application_for_later

@@ -11,7 +11,7 @@ RSpec.describe C100Application, type: :model do
       ).to eq(
         'screening' => 0,
         'in_progress' => 1,
-        'pending_payment' => 8,
+        'payment_in_progress' => 8,
         'completed' => 10,
       )
     end

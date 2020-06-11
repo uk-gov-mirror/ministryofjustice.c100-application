@@ -13,7 +13,7 @@ class PaymentsController < ApplicationController
   # and is captured, reported to Sentry and handled in the superclass.
   #
   def payment_intent
-    @_payment_intent ||= PaymentIntent.not_finished.find_by!(
+    @_payment_intent ||= PaymentIntent.find_by!(
       id: params.require(:id), nonce: params.require(:nonce), c100_application: current_c100_application
     )
   end

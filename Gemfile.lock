@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ministryofjustice/govuk-pay-ruby-client.git
-  revision: ad6ecbc9fe5766be11d2bb97664d2290ebfeb46a
+  revision: 70d5f61e7a0bc168b864e0b9a7b869300f32f3b2
   specs:
     govuk-pay-ruby-client (0.1.0)
       faraday (~> 1.0)

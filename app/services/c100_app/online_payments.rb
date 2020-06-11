@@ -1,12 +1,5 @@
 module C100App
   class OnlinePayments
-    STATUSES_ENUM_MAP = {
-      created: %w[created],
-      pending: %w[started submitted capturable],
-      success: %w[success],
-      failed:  %w[failed cancelled error],
-    }.freeze
-
     # Failure codes that indicate either the user do not want to proceed,
     # or the payments provider is having technical issues.
     NON_RETRYABLE_CODES = %w[
@@ -59,20 +52,8 @@ module C100App
     def update_intent!(response)
       payment_intent.update(
         payment_id: response.payment_id,
-        status: choose_status(response.status),
         state: response.state,
       )
-    end
-
-    def choose_status(status)
-      case status
-      when *STATUSES_ENUM_MAP.fetch(:created) then :created
-      when *STATUSES_ENUM_MAP.fetch(:pending) then :pending
-      when *STATUSES_ENUM_MAP.fetch(:success) then :success
-      when *STATUSES_ENUM_MAP.fetch(:failed)  then :failed
-      else
-        status
-      end
     end
 
     # TODO: hardcoded values to a better place, i.e. constants/config

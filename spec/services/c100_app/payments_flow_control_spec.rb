@@ -15,8 +15,7 @@ RSpec.describe C100App::PaymentsFlowControl do
   let(:payment_type) { PaymentType::SELF_PAYMENT_CARD }
   let(:declaration_signee) { 'John Doe' }
 
-  let(:payment_intent) { PaymentIntent.new(status: intent_status, payment_id: 'xyz123') }
-  let(:intent_status) { 'ready' }
+  let(:payment_intent) { PaymentIntent.new(payment_id: 'xyz123') }
 
   before do
     allow(
@@ -44,20 +43,22 @@ RSpec.describe C100App::PaymentsFlowControl do
       context 'and payment is offline' do
         let(:payment_type) { PaymentType::HELP_WITH_FEES }
 
-        it 'sets the payment_intent as finished and skips to confirmation' do
-          expect(payment_intent).to receive(:finish!).with(with_status: :offline_type)
+        it 'skips to confirmation' do
           expect(subject.payment_url).to eq('confirmation-page')
         end
       end
 
       context 'and payment is online' do
-        it 'calls the API to create the payment' do
-          expect(
+        before do
+          allow(
             C100App::OnlinePayments
           ).to receive(:create_payment).with(payment_intent).and_return(
             double(payment_url: 'https://payments.example.com')
           )
+        end
 
+        it 'sets `payment_in_progress` status and calls the API to create the payment' do
+          expect(c100_application).to receive(:payment_in_progress!)
           expect(subject.payment_url).to eq('https://payments.example.com')
         end
       end
@@ -84,22 +85,23 @@ RSpec.describe C100App::PaymentsFlowControl do
       allow(subject).to receive(:confirmation_url).and_return('confirmation-page')
 
       # We also test this separately
-      expect(C100App::OnlinePayments).to receive(:retrieve_payment).with(payment_intent)
+      allow(
+        C100App::OnlinePayments
+      ).to receive(:retrieve_payment).with(payment_intent).and_return(payment_response)
     end
 
-    let(:payment_response) { nil }
+    let(:payment_response) { double('Payment Response', success?: success) }
 
     context 'for a success payment status' do
-      let(:intent_status) { 'success' }
+      let(:success) { true }
 
-      it 'sets the payment_intent as finished and continue to confirmation' do
-        expect(payment_intent).to receive(:finish!)
+      it 'continues to confirmation' do
         expect(subject.next_url).to eq('confirmation-page')
       end
     end
 
     context 'for a failed payment status' do
-      let(:intent_status) { 'failed' }
+      let(:success) { false }
       let(:error_to_report) { Errors::PaymentError.new(payment_state) }
 
       before do
@@ -114,7 +116,6 @@ RSpec.describe C100App::PaymentsFlowControl do
             error_to_report, level: 'info', tags: { payment_id: 'xyz123' }
           )
 
-          expect(payment_intent).not_to receive(:finish!)
           expect(subject.next_url).to eq('/errors/payment_error')
         end
       end
@@ -127,7 +128,6 @@ RSpec.describe C100App::PaymentsFlowControl do
             error_to_report, level: 'info', tags: { payment_id: 'xyz123' }
           )
 
-          expect(payment_intent).not_to receive(:finish!)
           expect(subject).to receive(:payment_url)
           subject.next_url
         end
@@ -135,10 +135,12 @@ RSpec.describe C100App::PaymentsFlowControl do
     end
 
     context 'when there is an exception' do
+      let(:success) { false }
+
       before do
         allow(
           C100App::OnlinePayments
-        ).to receive(:retrieve_payment).and_raise(ArgumentError.new('boom!'))
+        ).to receive(:retrieve_payment).with(payment_intent).and_raise(ArgumentError.new('boom!'))
       end
 
       it 'bubbles up as a `PaymentUnexpectedError` exception' do

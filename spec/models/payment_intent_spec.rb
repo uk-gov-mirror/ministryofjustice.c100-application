@@ -3,25 +3,7 @@ require 'rails_helper'
 RSpec.describe PaymentIntent, type: :model do
   subject { described_class.new(c100_application: c100_application) }
 
-  let(:c100_application) { C100Application.new(payment_type: payment_type) }
-  let(:payment_type) { 'foobar' }
-
-  context 'status enumeration' do
-    it 'maps all the neccessary statuses' do
-      expect(PaymentIntent.statuses.keys).to eq(PaymentIntent.statuses.values)
-
-      expect(
-        PaymentIntent.statuses.keys
-      ).to match_array(%w(
-        ready
-        created
-        pending
-        success
-        failed
-        offline_type
-      ))
-    end
-  end
+  let(:c100_application) { C100Application.new }
 
   describe '#return_url' do
     let(:nonce) { '123456' }
@@ -45,26 +27,6 @@ RSpec.describe PaymentIntent, type: :model do
       expect(
         subject.return_url
       ).to eq("https://c100.justice.uk/payments/#{subject.id}/validate?nonce=#{nonce}")
-    end
-  end
-
-  describe '#finish!' do
-    before do
-      travel_to Time.at(0)
-    end
-
-    context 'when a status is passed' do
-      it 'sets the status and the finished_at' do
-        expect(subject).to receive(:update).with(status: :foobar, finished_at: Time.at(0))
-        subject.finish!(with_status: :foobar)
-      end
-    end
-
-    context 'when no status is passed' do
-      it 'sets the status to the default, and the finished_at' do
-        expect(subject).to receive(:update).with(status: :success, finished_at: Time.at(0))
-        subject.finish!
-      end
     end
   end
 

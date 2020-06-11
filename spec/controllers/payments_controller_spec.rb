@@ -2,8 +2,6 @@ require 'rails_helper'
 
 RSpec.describe PaymentsController, type: :controller do
   let(:c100_application) { instance_double(C100Application) }
-
-  let(:intent_scope) { double(PaymentIntent) }
   let(:payment_intent) { instance_double(PaymentIntent) }
 
   describe '#validate' do
@@ -39,10 +37,8 @@ RSpec.describe PaymentsController, type: :controller do
 
     context 'for a valid request' do
       before do
-        allow(PaymentIntent).to receive(:not_finished).and_return(intent_scope)
-
         allow(
-          intent_scope
+          PaymentIntent
         ).to receive(:find_by!).with(
           id: 'intent-uuid', nonce: '123456', c100_application: c100_application
         ).and_return(payment_intent)

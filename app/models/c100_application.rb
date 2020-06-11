@@ -5,7 +5,7 @@ class C100Application < ApplicationRecord
   enum status: {
     screening: 0,
     in_progress: 1,
-    pending_payment: 8,
+    payment_in_progress: 8,
     completed: 10,
   }
 
