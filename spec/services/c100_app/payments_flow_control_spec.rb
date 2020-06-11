@@ -154,6 +154,10 @@ RSpec.describe C100App::PaymentsFlowControl do
   describe '#confirmation_url' do
     let(:queue) { double.as_null_object }
 
+    before do
+      expect(c100_application).to receive(:mark_as_completed!)
+    end
+
     context 'for an online submission' do
       let(:submission_type) { SubmissionType::ONLINE }
 
