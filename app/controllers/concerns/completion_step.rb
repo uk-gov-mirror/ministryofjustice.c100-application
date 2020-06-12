@@ -1,12 +1,8 @@
-# The step including this concern will mark the application as `completed`,
-# meaning it can't be drafted anymore, also can't be submitted again by mistake,
-# and we save an audit record of this submission and the court it was sent to.
-#
 module CompletionStep
   extend ActiveSupport::Concern
 
   included do
-    before_action :mark_completed, unless: :completed?
+    before_action :check_application_is_completed
   end
 
   def show
@@ -16,15 +12,9 @@ module CompletionStep
 
   private
 
-  def completed?
-    current_c100_application.completed?
-  end
+  def check_application_is_completed
+    return if current_c100_application.completed?
 
-  def mark_completed
-    current_c100_application.completed!
-
-    CompletedApplicationsAudit.log!(
-      current_c100_application
-    )
+    redirect_to steps_screener_warning_path
   end
 end

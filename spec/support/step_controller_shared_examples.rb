@@ -461,12 +461,11 @@ end
 RSpec.shared_examples 'a completion step controller' do
   describe '#show' do
     let!(:existing_c100) { C100Application.create(status: status, navigation_stack: ['/not', '/empty']) }
-    let(:status) { :in_progress }
+    let(:status) { :completed }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
       allow(existing_c100).to receive(:screener_answers_court).and_return('court data')
-      allow(CompletedApplicationsAudit).to receive(:log!)
     end
 
     context 'when no case exists in the session' do
@@ -482,33 +481,20 @@ RSpec.shared_examples 'a completion step controller' do
       end
     end
 
-    it 'assigns the court data' do
-      get :show, session: { c100_application_id: existing_c100.id }
-      expect(assigns[:court]).to eq('court data')
-      expect(assigns[:c100_application]).to eq(existing_c100)
+    context 'when the application is not in a completed state' do
+      let(:status) { :in_progress }
+
+      it 'redirects to the warning page' do
+        get :show
+        expect(response).to redirect_to(steps_screener_warning_path)
+      end
     end
 
-    describe 'marking as completed and saving audit' do
-      context 'when the application is not already marked as `completed`' do
-        it 'changes the status to `completed`' do
-          expect {
-            get :show, session: {c100_application_id: existing_c100.id}
-          }.to change {existing_c100.status}.from('in_progress').to('completed')
-        end
-
-        it 'saves the audit record' do
-          expect(CompletedApplicationsAudit).to receive(:log!).with(existing_c100)
-          get :show, session: {c100_application_id: existing_c100.id}
-        end
-      end
-
-      context 'when the application is already marked as `completed`' do
-        let(:status) { :completed }
-
-        it 'does not call the `mark_completed` method' do
-          expect(controller).not_to receive(:mark_completed)
-          get :show, session: {c100_application_id: existing_c100.id}
-        end
+    context 'when a completed application exists in the session' do
+      it 'assigns the court data' do
+        get :show, session: { c100_application_id: existing_c100.id }
+        expect(assigns[:court]).to eq('court data')
+        expect(assigns[:c100_application]).to eq(existing_c100)
       end
     end
   end

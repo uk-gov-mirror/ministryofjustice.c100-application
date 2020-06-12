@@ -144,4 +144,13 @@ RSpec.describe C100Application, type: :model do
       subject.screener_answers_court
     end
   end
+
+  describe '#mark_as_completed!' do
+    it 'marks the application as completed and saves the audit record' do
+      expect(subject).to receive(:completed!).and_return(true)
+      expect(CompletedApplicationsAudit).to receive(:log!).with(subject)
+
+      subject.mark_as_completed!
+    end
+  end
 end

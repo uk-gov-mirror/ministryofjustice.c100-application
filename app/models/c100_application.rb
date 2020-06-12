@@ -51,4 +51,8 @@ class C100Application < ApplicationRecord
   def self.purge!(date)
     where('c100_applications.created_at <= :date', date: date).destroy_all
   end
+
+  def mark_as_completed!
+    completed! && CompletedApplicationsAudit.log!(self)
+  end
 end

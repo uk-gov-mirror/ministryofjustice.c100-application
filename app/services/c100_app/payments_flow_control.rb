@@ -42,6 +42,8 @@ module C100App
     end
 
     def confirmation_url
+      c100_application.mark_as_completed!
+
       if c100_application.online_submission?
         OnlineSubmissionQueue.new(c100_application).process
         steps_completion_confirmation_path
