@@ -307,6 +307,53 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 end
 
+# Note: this shared examples don't need to be included in every single controller, just a
+# small sample is enough, as any child of superclass `StepController` will inherit this behaviour.
+RSpec.shared_examples 'a controller that checks the application payment status' do |options|
+  context 'when no case exists in the session yet' do
+    let(:action) { options.fetch(:for_action) }
+
+    before do
+      allow(controller).to receive(:current_c100_application).and_return(nil)
+    end
+
+    it 'does nothing' do
+      expect(C100App::PaymentsFlowControl).not_to receive(:new)
+      get action
+    end
+  end
+
+  context 'when a case exists in the session' do
+    let(:action) { options.fetch(:for_action) }
+    let(:existing_case) { C100Application.new(status: status) }
+
+    before do
+      allow(controller).to receive(:current_c100_application).and_return(existing_case)
+    end
+
+    context 'with any status other than payment pending' do
+      let(:status) { 'in_progress' }
+
+      it 'does nothing' do
+        expect(C100App::PaymentsFlowControl).not_to receive(:new)
+        get action
+      end
+    end
+
+    context 'with a `payment_in_progress` status' do
+      let(:status) { 'payment_in_progress' }
+      let(:flow_control) { double(next_url: 'whatever/path') }
+
+      it 'calls the PaymentsFlowControl service object' do
+        expect(C100App::PaymentsFlowControl).to receive(:new).with(existing_case).and_return(flow_control)
+
+        get action
+        expect(response).to redirect_to('whatever/path')
+      end
+    end
+  end
+end
+
 RSpec.shared_examples 'an intermediate step controller' do |form_class, decision_tree_class|
   include_examples 'a generic step controller', form_class, decision_tree_class
 

@@ -1701,6 +1701,7 @@ en:
   shared:
     start_again: Start again
     retry_payment: Try payment again
+    change_payment: Change payment method
     finish: Finish
     back_link: Back
     password_toggle:

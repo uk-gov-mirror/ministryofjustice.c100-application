@@ -1,6 +1,8 @@
 class StepController < ApplicationController
   before_action :check_c100_application_presence
+  before_action :check_application_payment_status
   before_action :check_application_not_completed, :check_application_not_screening, except: [:show]
+
   before_action :update_navigation_stack, only: [:show, :edit]
 
   def previous_step_path

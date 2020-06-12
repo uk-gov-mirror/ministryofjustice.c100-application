@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Steps::Screener::StartController, type: :controller do
-  let!(:existing_c100) { C100Application.create(status: status, navigation_stack: navigation_stack) }
+  it_behaves_like 'a controller that checks the application payment status', for_action: :show
 
   describe '#show' do
+    let!(:existing_c100) { C100Application.create(status: status, navigation_stack: navigation_stack) }
+
     context 'when an existing application in progress exists' do
       let(:status) { :in_progress }
 
