@@ -38,4 +38,18 @@ module ErrorHandling
   def check_application_not_screening
     raise Errors::ApplicationScreening if current_c100_application.screening?
   end
+
+  # If the application was left in a `payment_in_progress` status, we need to check
+  # if the payment went ahead successfully, or not, for the edge cases where the
+  # redirect from payments website failed.
+  # This complements the automated mop-up job running periodically.
+  #
+  # We might not have an application in the session at this point, as some actions
+  # or controllers can skip the `check_c100_application_presence` callback.
+  #
+  def check_application_payment_status
+    redirect_to C100App::PaymentsFlowControl.new(
+      current_c100_application
+    ).next_url if current_c100_application.try(:payment_in_progress?)
+  end
 end

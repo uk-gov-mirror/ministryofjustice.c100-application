@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Steps::Miam::ChildProtectionCasesController, type: :controller do
+  it_behaves_like 'a controller that checks the application payment status', for_action: :edit
   it_behaves_like 'a savepoint step controller'
 
   # Following examples will stub the screener sanity check for simplicity,

@@ -30,13 +30,10 @@ module C100App
       # For a while, until we are confident, let's log these failures
       log_failure_info
 
-      if OnlinePayments.non_retryable_state?(payment_intent)
-        # Let the user change payment method
-        payment_error_errors_path
-      else
-        # Re-enter the online payment journey
-        payment_url
-      end
+      # Revert to `in_progress` as we are certain at this point payment failed
+      c100_application.in_progress!
+
+      payment_error_errors_path
     rescue StandardError => exception
       raise Errors::PaymentUnexpectedError, exception
     end

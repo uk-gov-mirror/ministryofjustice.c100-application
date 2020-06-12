@@ -4,7 +4,7 @@ RSpec.describe Steps::AbuseConcerns::StartController, type: :controller do
   it_behaves_like 'a show step controller'
 
   describe '#show' do
-    let(:c100_application) { instance_double(C100Application).as_null_object }
+    let(:c100_application) { instance_double(C100Application) }
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(c100_application)
