@@ -9,6 +9,7 @@ describe Court do
       "slug" => 'court-slug',
       "email" => 'family@court',
       "address" => address,
+      "gbs" => 'X123',
     }
   }
 
@@ -31,6 +32,10 @@ describe Court do
 
     it 'sets the address' do
       expect(subject.address).to eq(address)
+    end
+
+    it 'sets the gbs code' do
+      expect(subject.gbs).to eq('X123')
     end
 
     context 'log and raise exception when attributes not found' do
@@ -65,6 +70,44 @@ describe Court do
       end
     end
 
+    context 'gbs' do
+      context 'there is a gbs code in the data provided' do
+        it 'sets the gbs' do
+          expect(subject.gbs).to eq('X123')
+        end
+
+        it 'does not request the gbs from the API' do
+          expect(subject).not_to receive(:retrieve_gbs_from_api)
+          subject.gbs
+        end
+      end
+
+      context 'there is no gbs code in the data provided' do
+        let(:data) { super().except('gbs') }
+
+        before do
+          allow_any_instance_of(
+            C100App::CourtfinderAPI
+          ).to receive(:court_lookup).with('court-slug').and_return(api_response)
+        end
+
+        context 'the API returned gbs' do
+          let(:api_response) do
+            { 'gbs' => 'A123' }
+          end
+
+          it 'sets the gbs code' do
+            expect(subject.gbs).to eq('A123')
+          end
+        end
+
+        context 'the API failed to return gbs' do
+          let(:api_response) { {} }
+          it { expect { subject.gbs }.to raise_error(KeyError, 'key not found: "gbs"') }
+        end
+      end
+    end
+
     context 'email' do
       context 'there is an email in the data provided' do
         it 'sets the email' do
@@ -87,7 +130,9 @@ describe Court do
         end
 
         context 'the API returned emails' do
-          let(:api_response) { {'emails' => [{"description" => "applications", "address" => "applications@email"}]} }
+          let(:api_response) do
+            { 'emails' => [{"description" => "applications", "address" => "applications@email"}] }
+          end
 
           it 'sets the email' do
             expect(subject.email).to eq('applications@email')
