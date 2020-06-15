@@ -79,7 +79,7 @@ class SessionsController < ApplicationController
         "name" => "Milton Keynes County Court and Family Court",
         "slug" => "milton-keynes-county-court-and-family-court",
         "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
-        "gbs" => "X123",
+        "gbs" => "Y610",
       }
     }.merge(screener.attributes.symbolize_keys) do |_key, old_value, new_value|
       new_value || old_value

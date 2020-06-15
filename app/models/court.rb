@@ -9,7 +9,7 @@ class Court
     @name = data.fetch('name')
     @slug = data.fetch('slug')
     @address = data.fetch('address')
-    # The email, if not already present, comes from a separate API request
+    # Email and GBS code, if not already present, come from a separate API request
     @email = data['email'] || best_enquiries_email
     @gbs = data['gbs'] || retrieve_gbs_from_api
   rescue StandardError => ex
@@ -63,7 +63,7 @@ class Court
   end
 
   def retrieve_gbs_from_api
-    court_data.fetch('gbs')
+    court_data.fetch('gbs') || 'unknown'
   end
 
   def retrieve_emails_from_api
