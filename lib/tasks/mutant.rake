@@ -59,7 +59,7 @@ def classes_to_mutate(option)
     when 'all', 'master'
       # Complete coverage (very long run time) or only changed classes
       puts '> running complete mutant testing'
-      form_objects + decision_trees_and_services + models
+      form_objects + decision_trees_and_services + models + jobs
     else
       # Individual class testing, very quick
       # we'll take all arguments after the first (which is 'mutant')
@@ -97,4 +97,11 @@ end
 #
 def decision_trees_and_services
   C100App.constants.map { |symbol| C100App.const_get(symbol) }
+end
+
+# Everything inheriting from `ApplicationJob`
+# i.e. all jobs in `/app/jobs/*`
+#
+def jobs
+  ApplicationJob.descendants
 end
