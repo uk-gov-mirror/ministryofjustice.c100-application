@@ -101,6 +101,16 @@ describe Court do
           end
         end
 
+        context 'the API returned a `nil` gbs' do
+          let(:api_response) do
+            { 'gbs' => nil }
+          end
+
+          it 'sets the gbs fallback code' do
+            expect(subject.gbs).to eq('unknown')
+          end
+        end
+
         context 'the API failed to return gbs' do
           let(:api_response) { {} }
           it { expect { subject.gbs }.to raise_error(KeyError, 'key not found: "gbs"') }
