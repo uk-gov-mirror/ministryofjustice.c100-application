@@ -1218,6 +1218,7 @@ en:
           other_assistance: Other assistance or facilities
       steps_application_payment_form:
         payment_type_options:
+          online: Online payment
           help_with_fees: Help with fees
           solicitor: Through a solicitor’s fee account
           self_payment_card: I am paying myself by credit or debit card
@@ -1388,6 +1389,7 @@ en:
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
         payment_type_options:
+          online: You will pay online securely with your credit or debit card
           help_with_fees_html: |
             You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number
           solicitor: If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’
