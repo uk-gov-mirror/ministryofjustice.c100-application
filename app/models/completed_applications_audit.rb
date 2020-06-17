@@ -13,6 +13,10 @@ class CompletedApplicationsAudit < ApplicationRecord
       court: c100_application.screener_answers_court.name,
       metadata: metadata(c100_application),
     )
+  rescue ActiveRecord::RecordNotUnique => ex
+    # Do nothing really, this tends to happen sporadically if the user sent two
+    # server requests quickly in succession. Only one will create the record.
+    logger.warn ex.message
   end
 
   def self.metadata(c100_application)
