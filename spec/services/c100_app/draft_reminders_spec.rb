@@ -20,9 +20,9 @@ RSpec.describe C100App::DraftReminders do
       allow(NotifyMailer).to receive(:draft_expire_reminder).with(c100_application, :template_name).and_return(mailer_double)
     end
 
-    it 'should send the email and update the C100 application status' do
+    it 'should send the email and update the `reminder_status` attribute' do
       expect(mailer_double).to receive(:deliver_later)
-      expect(c100_application).to receive(:update).with(status: :another_status)
+      expect(c100_application).to receive(:update).with(reminder_status: :another_status)
       subject.run
     end
   end
