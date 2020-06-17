@@ -1389,7 +1389,7 @@ en:
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
         payment_type_options:
-          online: You will pay online securely with your credit or debit card
+          online: You will pay online securely using your credit or debit card. Copy TBD
           help_with_fees_html: |
             You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number
           solicitor: If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’
@@ -1865,6 +1865,8 @@ en:
 
   notify_submission_mailer:
     payment_instructions:
+      online: |
+        Online payment copy TBD.
       solicitor: |
         Your solicitor will pay the court fee by direct debit, through their fee account.
       help_with_fees: |

@@ -62,7 +62,7 @@ class NotifySubmissionMailer < NotifyMailer
 
   def payment_instructions
     I18n.translate!(
-      @c100_application.payment_type || PaymentType::SELF_PAYMENT_CARD,
+      @c100_application.payment_type,
       scope: [:notify_submission_mailer, :payment_instructions]
     )
   end

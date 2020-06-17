@@ -9,8 +9,6 @@ module C100App
     end
 
     def payment_url
-      return confirmation_url unless payments_enabled?
-
       if c100_application.online_payment?
         c100_application.payment_in_progress!
         OnlinePayments.create_payment(payment_intent).payment_url
@@ -62,13 +60,6 @@ module C100App
         Errors::PaymentError.new(payment_intent.state),
         level: 'info', tags: { payment_id: payment_intent.payment_id }
       )
-    end
-
-    # TODO: For now, we only run the online payments code if some criteria is met,
-    # to avoid genuine tests or demos on staging while still WIP.
-    #
-    def payments_enabled?
-      c100_application.declaration_signee.eql?('John Doe')
     end
   end
 end

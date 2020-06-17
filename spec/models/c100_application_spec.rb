@@ -65,7 +65,7 @@ RSpec.describe C100Application, type: :model do
 
   describe '#online_payment?' do
     context 'for `online` values' do
-      let(:attributes) { {payment_type: 'self_payment_card'} }
+      let(:attributes) { {payment_type: 'online'} }
       it { expect(subject.online_payment?).to eq(true) }
     end
 

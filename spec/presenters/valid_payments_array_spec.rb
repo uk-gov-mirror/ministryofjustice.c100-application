@@ -42,6 +42,20 @@ RSpec.describe ValidPaymentsArray do
 
   context 'for an online submission' do
     let(:submission_type) { SubmissionType::ONLINE.to_s }
+    let(:pay_enabled) { true }
+
+    before do
+      allow(ENV).to receive(:key?).with('GOVUK_PAY_API_KEY').and_return(pay_enabled)
+    end
+
+    # TODO: temporary feature flag until we release online payments
+    context 'without govuk pay enabled' do
+      let(:pay_enabled) { false }
+
+      it 'does not include the online option' do
+        expect(subject).not_to include(PaymentType::ONLINE)
+      end
+    end
 
     context 'with solicitor' do
       let(:has_solicitor) { 'yes' }

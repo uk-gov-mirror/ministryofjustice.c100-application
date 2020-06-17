@@ -1,4 +1,8 @@
-<% if c100_application.payment_type.eql?(PaymentType::HELP_WITH_FEES.to_s) %>
+<% if c100_application.payment_type.eql?(PaymentType::ONLINE.to_s) %>
+
+  <p class="govuk-body">Online payment copy TBD.</p>
+
+<% elsif c100_application.payment_type.eql?(PaymentType::HELP_WITH_FEES.to_s) %>
 
   <p class="govuk-body">You may not need to pay the full amount if you have a
     <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">‘Help with fees’</a> reference.
