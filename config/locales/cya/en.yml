@@ -616,6 +616,7 @@ en:
     payment_type:
       question: ''
       answers:
+        online: Online payment
         help_with_fees: Help with fees
         solicitor: Through a solicitor’s fee account
         self_payment_card: I am paying myself by credit or debit card

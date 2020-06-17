@@ -7,6 +7,7 @@ RSpec.describe PaymentType do
   describe '.values' do
     it 'returns all possible values' do
       expect(described_class.values.map(&:to_s)).to eq(%w(
+        online
         help_with_fees
         solicitor
         self_payment_card

@@ -16,12 +16,25 @@ RSpec.describe Steps::Application::PaymentForm do
 
   subject { described_class.new(arguments) }
 
+  before do
+    # We test the `ValidPaymentsArray` separately, so here we don't care,
+    # we return just the choices we will use in the following tests.
+    allow(ValidPaymentsArray).to receive(:new).with(c100_application).and_return(
+      %w(self_payment_card help_with_fees solicitor)
+    )
+  end
+
   describe '#save' do
     context 'validations' do
       it { should validate_presence_of(:payment_type, :inclusion) }
 
       it { should_not validate_presence_of(:hwf_reference_number) }
       it { should_not validate_presence_of(:solicitor_account_number) }
+
+      context 'for an invalid payment type' do
+        let(:payment_type) { 'foobar' }
+        it { expect(subject.valid?).to eq(false) }
+      end
 
       context 'when payment type is `help_with_fees`' do
         let(:payment_type) { PaymentType::HELP_WITH_FEES.to_s }
