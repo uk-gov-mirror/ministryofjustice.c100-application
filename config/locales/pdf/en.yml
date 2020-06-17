@@ -505,6 +505,7 @@ en:
     payment_type:
       question: Payment option selected
       answers:
+        online: Online payment
         help_with_fees: Help with fees
         solicitor: Through solicitor
         self_payment_card: Credit or debit card - contact the applicant within 3 working days of receiving application to take payment

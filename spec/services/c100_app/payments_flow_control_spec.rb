@@ -7,13 +7,11 @@ RSpec.describe C100App::PaymentsFlowControl do
     C100Application.new(
       submission_type: submission_type,
       payment_type: payment_type,
-      declaration_signee: declaration_signee,
     )
   }
 
   let(:submission_type) { SubmissionType::ONLINE }
-  let(:payment_type) { PaymentType::SELF_PAYMENT_CARD }
-  let(:declaration_signee) { 'John Doe' }
+  let(:payment_type) { PaymentType::ONLINE }
 
   let(:payment_intent) { PaymentIntent.new(payment_id: 'xyz123') }
 
@@ -31,36 +29,26 @@ RSpec.describe C100App::PaymentsFlowControl do
       allow(subject).to receive(:confirmation_url).and_return('confirmation-page')
     end
 
-    context 'when feature flag is not enabled' do
-      let(:declaration_signee) { 'John FooBar' }
+    context 'when payment is offline' do
+      let(:payment_type) { PaymentType::HELP_WITH_FEES }
 
       it 'skips to confirmation' do
         expect(subject.payment_url).to eq('confirmation-page')
       end
     end
 
-    context 'when feature flag is enabled' do
-      context 'and payment is offline' do
-        let(:payment_type) { PaymentType::HELP_WITH_FEES }
-
-        it 'skips to confirmation' do
-          expect(subject.payment_url).to eq('confirmation-page')
-        end
+    context 'when payment is online' do
+      before do
+        allow(
+          C100App::OnlinePayments
+        ).to receive(:create_payment).with(payment_intent).and_return(
+          double(payment_url: 'https://payments.example.com')
+        )
       end
 
-      context 'and payment is online' do
-        before do
-          allow(
-            C100App::OnlinePayments
-          ).to receive(:create_payment).with(payment_intent).and_return(
-            double(payment_url: 'https://payments.example.com')
-          )
-        end
-
-        it 'sets `payment_in_progress` status and calls the API to create the payment' do
-          expect(c100_application).to receive(:payment_in_progress!)
-          expect(subject.payment_url).to eq('https://payments.example.com')
-        end
+      it 'sets `payment_in_progress` status and calls the API to create the payment' do
+        expect(c100_application).to receive(:payment_in_progress!)
+        expect(subject.payment_url).to eq('https://payments.example.com')
       end
     end
 

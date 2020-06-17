@@ -8,12 +8,11 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       receipt_email: 'receipt@example.com',
       urgent_hearing: 'yes',
       address_confidentiality: address_confidentiality,
-      payment_type: payment_type,
+      payment_type: 'foobar_payment',
       declaration_signee: 'John Doe',
     )
   }
 
-  let(:payment_type) { nil }
   let(:address_confidentiality) { 'no' }
 
   let(:court) {
@@ -89,7 +88,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       allow(c100_application).to receive(:screener_answers_court).and_return(court)
 
       allow(I18n).to receive(:translate!).with(
-        PaymentType::SELF_PAYMENT_CARD, scope: [:notify_submission_mailer, :payment_instructions]
+        'foobar_payment', scope: [:notify_submission_mailer, :payment_instructions]
       ).and_return('payment instructions from locales')
     end
 
@@ -122,22 +121,6 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         payment_instructions: 'payment instructions from locales',
         link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
       })
-    end
-
-    context 'for a specific payment type' do
-      before do
-        allow(I18n).to receive(:translate!).with(
-          'help_with_fees', scope: [:notify_submission_mailer, :payment_instructions]
-        ).and_return('hwf payment instructions')
-      end
-
-      let(:payment_type) { 'help_with_fees' }
-
-      it 'has the right personalisation' do
-        expect(
-          mail.govuk_notify_personalisation
-        ).to include(payment_instructions: 'hwf payment instructions')
-      end
     end
 
     context 'when at least one applicant is under age' do

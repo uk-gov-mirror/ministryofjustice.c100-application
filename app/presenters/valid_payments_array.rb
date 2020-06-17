@@ -24,7 +24,12 @@ class ValidPaymentsArray < SimpleDelegator
   def choices_to_present(c100_application)
     COMMON_CHOICES.dup.tap do |choices|
       choices.append(PaymentType::SOLICITOR) if c100_application.has_solicitor?
-      choices.append(PaymentType::ONLINE)    if c100_application.online_submission?
+      choices.append(PaymentType::ONLINE)    if c100_application.online_submission? && govuk_pay_enabled?
     end
+  end
+
+  # TODO: For now we hide the online payment option in production
+  def govuk_pay_enabled?
+    ENV.key?('GOVUK_PAY_API_KEY')
   end
 end

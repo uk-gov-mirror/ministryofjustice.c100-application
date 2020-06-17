@@ -3,9 +3,8 @@ module ApplicationInquiryMethods
     submission_type.eql?(SubmissionType::ONLINE.to_s)
   end
 
-  # TODO: change when we introduce the 'real' online payment method
   def online_payment?
-    payment_type.eql?(PaymentType::SELF_PAYMENT_CARD.to_s)
+    payment_type.eql?(PaymentType::ONLINE.to_s)
   end
 
   def confidentiality_enabled?
