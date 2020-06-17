@@ -46,6 +46,20 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
 
       described_class.log!(c100_application)
     end
+
+    context 'when the record already exists' do
+      before do
+        allow(described_class).to receive(:create).and_raise(ActiveRecord::RecordNotUnique, 'not unique!')
+      end
+
+      it 'rescues and log the exception but does not blow up' do
+        expect(Rails.logger).to receive(:warn).with('not unique!')
+
+        expect {
+          described_class.log!(c100_application)
+        }.not_to raise_error
+      end
+    end
   end
 
   describe '#c100_application' do
