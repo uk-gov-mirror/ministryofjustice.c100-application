@@ -18,7 +18,7 @@ module C100App
       ).deliver_later
 
       c100_application.update(
-        status: rule_set.status_transition_to
+        reminder_status: rule_set.status_transition_to
       )
     end
   end
