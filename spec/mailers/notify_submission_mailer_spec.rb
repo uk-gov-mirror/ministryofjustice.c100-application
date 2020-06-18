@@ -83,6 +83,9 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
     end
   end
 
+  # We don't send the bundle PDF to the applicant anymore, but the code to be able
+  # to attach documents is still present if we wanted to attach any other documents.
+  #
   describe '#application_to_user' do
     before do
       allow(c100_application).to receive(:screener_answers_court).and_return(court)

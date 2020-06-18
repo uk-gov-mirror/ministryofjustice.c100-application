@@ -1,7 +1,7 @@
 module C100App
   class ApplicantOnlineSubmission < BaseOnlineSubmission
     def process
-      generate_documents && deliver_email && audit_data
+      deliver_email && audit_data
     end
 
     def to_address
@@ -9,12 +9,6 @@ module C100App
     end
 
     private
-
-    def generate_documents
-      documents.store(
-        :bundle, generate_pdf
-      )
-    end
 
     # We use `deliver_now` here, as we want the actions performed in
     # the `process` method to be executed sequentially and the whole job
