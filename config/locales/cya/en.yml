@@ -627,7 +627,7 @@ en:
         online: Electronically
         print_and_post: Print and post
     submission_receipt_email:
-      question: 'A copy of your application will be sent to:'
+      question: 'A confirmation email will be sent to:'
     has_solicitor:
       question: Do you have a solicitor?
       answers:
