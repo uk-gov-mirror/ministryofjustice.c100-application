@@ -16,22 +16,21 @@
       Your application has been sent to <%= @court.name %>.
 
       <% if @c100_application.receipt_email? %>
-        We’ve emailed a confirmation of this with a copy of your application to
-        <strong><%= @c100_application.receipt_email %></strong>
+        You’ll receive a confirmation email to <strong><%= @c100_application.receipt_email %></strong>
       <% end %>
     </p>
-
-    <h2 class="govuk-heading-l">Pay the application fee</h2>
-    <%= render partial: 'steps/shared/payment_instructions', locals: {
-      c100_application: @c100_application
-    } %>
-
-    <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
     <h2 class="govuk-heading-l">Download a copy of your application</h2>
     <%= render partial: 'steps/shared/download_pdf_copy', locals: {
       callout: 'If you want to keep a copy, you must download it now. You cannot return to a submitted application.'
     } %>
+
+    <h2 class="govuk-heading-l govuk-!-margin-top-6">Pay the application fee</h2>
+    <%= render partial: 'steps/shared/payment_instructions', locals: {
+      c100_application: @c100_application
+    } %>
+
+    <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 

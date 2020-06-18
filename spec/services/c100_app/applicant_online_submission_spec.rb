@@ -11,31 +11,12 @@ RSpec.describe C100App::ApplicantOnlineSubmission do
   end
 
   describe '#process' do
-    let(:pdf_presenter) { instance_double(Summary::PdfPresenter, generate: true, to_pdf: 'pdf content') }
-
-    before do
-      allow(Summary::PdfPresenter).to receive(:new).with(c100_application).and_return(pdf_presenter)
-    end
-
-    context '#generate_documents' do
-      before do
-        allow(subject).to receive(:deliver_email) # do not care here about the email
-      end
-
-      it 'generates the PDF' do
-        expect(pdf_presenter).to receive(:generate).with(no_args)
-        subject.process
-
-        expect(subject.documents.size).to eq(1)
-      end
-    end
-
     context '#deliver_email' do
       let(:mailer) { spy('mailer') }
 
       before do
         allow(NotifySubmissionMailer).to receive(:with).with(
-          c100_application: c100_application, documents: { bundle: kind_of(StringIO) }
+          c100_application: c100_application, documents: {}
         ).and_return(mailer)
       end
 

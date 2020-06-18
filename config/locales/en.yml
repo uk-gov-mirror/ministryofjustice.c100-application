@@ -722,7 +722,7 @@ en:
         show:
           page_title: Check your email address
           heading: Is this email address correct?
-          email_info: We’ll send a copy of your application to this email address. Please make sure it’s correct and that you can access the email account.
+          email_info: You’ll receive a confirmation email to this address. Please make sure it’s correct and that you can access the email account.
           continue: Yes, continue
           go_back: No, change it
       check_your_answers:
@@ -1396,7 +1396,7 @@ en:
           self_payment_card: Court staff will contact you within 3 working days to take payment over the phone
           self_payment_cheque: You can send a cheque or pay in person at the court
       steps_application_submission_form:
-        receipt_email: We’ll send a copy of your application to this email address. You can also download a copy on the confirmation page.
+        receipt_email: You can also download a copy on the confirmation page.
       steps_safety_questions_substance_abuse_form:
         substance_abuse: For example, you think the children are affected by being in contact with someone who may have a drug, alcohol or substance problem.
       steps_abduction_passport_details_form:

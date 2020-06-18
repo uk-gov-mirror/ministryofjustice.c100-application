@@ -3,7 +3,7 @@
   <a href="https://get.adobe.com/uk/reader/" class="govuk-link" rel="external" target="_blank">Adobe Acrobat Reader</a>.
 </p>
 
-<% unless user_signed_in? || @c100_application.receipt_email? %>
+<% unless user_signed_in? %>
   <div class="govuk-inset-text">
     <%= callout %>
   </div>
