@@ -9,16 +9,24 @@ module Steps
 
       private
 
+      def changed?
+        !c100_application.submission_type.eql?(submission_type) ||
+          !c100_application.receipt_email.eql?(receipt_email)
+      end
+
       def online_submission?
         submission_type.eql?(SubmissionType::ONLINE.to_s)
       end
 
       def persist!
         raise C100ApplicationNotFound unless c100_application
+        return true unless changed?
 
         c100_application.update(
           submission_type: submission_type,
           receipt_email: (receipt_email if online_submission?),
+          # The following are dependent attributes that need to be reset
+          payment_type: nil,
         )
       end
     end
