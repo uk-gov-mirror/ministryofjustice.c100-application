@@ -7,7 +7,7 @@ RSpec.describe Steps::Application::SubmissionForm do
     receipt_email: receipt_email,
   } }
 
-  let(:c100_application) { instance_double(C100Application) }
+  let(:c100_application) { instance_double(C100Application, submission_type: nil, receipt_email: nil) }
 
   let(:submission_type) { SubmissionType::ONLINE.to_s }
   let(:receipt_email) { nil }
@@ -48,27 +48,67 @@ RSpec.describe Steps::Application::SubmissionForm do
         let(:submission_type) { SubmissionType::ONLINE.to_s }
         let(:receipt_email) { 'test@example.com' }
 
-        it 'saves the record' do
-          expect(c100_application).to receive(:update).with(
-            submission_type: 'online',
-            receipt_email: 'test@example.com',
-          ).and_return(true)
+        context 'when the form has changed' do
+          let(:c100_application) {
+            instance_double(C100Application, submission_type: nil, receipt_email: receipt_email)
+          }
 
-          expect(subject.save).to be(true)
+          it 'saves the record' do
+            expect(c100_application).to receive(:update).with(
+              submission_type: 'online',
+              receipt_email: 'test@example.com',
+              payment_type: nil,
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
+        end
+
+        context 'when the form has not changed' do
+          let(:c100_application) {
+            instance_double(C100Application, submission_type: submission_type, receipt_email: receipt_email)
+          }
+
+          it 'does not save the record but returns true' do
+            # mutant killers
+            expect(submission_type).to receive(:eql?).and_call_original
+            expect(receipt_email).to receive(:eql?).and_call_original
+
+            expect(c100_application).not_to receive(:update)
+            expect(subject.save).to be(true)
+          end
         end
       end
 
       context 'when submission type is `print_and_post`' do
         let(:submission_type) { SubmissionType::PRINT_AND_POST.to_s }
-        let(:receipt_email) { 'test@example.com' }
+        let(:receipt_email) { '' }
 
-        it 'saves the record' do
-          expect(c100_application).to receive(:update).with(
-            submission_type: 'print_and_post',
-            receipt_email: nil,
-          ).and_return(true)
+        context 'when the form has changed' do
+          let(:c100_application) {
+            instance_double(C100Application, submission_type: submission_type, receipt_email: nil)
+          }
 
-          expect(subject.save).to be(true)
+          it 'saves the record' do
+            expect(c100_application).to receive(:update).with(
+              submission_type: 'print_and_post',
+              receipt_email: nil,
+              payment_type: nil,
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
+        end
+
+        context 'when the form has not changed' do
+          let(:c100_application) {
+            instance_double(C100Application, submission_type: submission_type, receipt_email: receipt_email)
+          }
+
+          it 'does not save the record but returns true' do
+            expect(c100_application).not_to receive(:update)
+            expect(subject.save).to be(true)
+          end
         end
       end
     end
