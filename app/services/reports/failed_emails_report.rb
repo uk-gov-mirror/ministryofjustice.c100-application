@@ -98,7 +98,7 @@ module Reports
         recipients = BackofficeUser.active.pluck(:email)
         report = failures.map(&:to_csv).join
 
-        puts "[#{Time.now}] Sending failed emails report to #{recipients.size} recipients..."
+        Rails.logger.info "Sending failed emails report to #{recipients.size} recipients..."
 
         recipients.each do |recipient|
           ReportsMailer.failed_emails_report(report, to_address: recipient).deliver_later

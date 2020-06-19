@@ -1,8 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe PaymentsMopUpJob, type: :job do
+  before do
+    allow(Rails).to receive(:logger).and_return(logger)
+  end
+
+  let(:logger) { instance_double(Logger, info: true) }
+
   describe '.run' do
-    let(:c100_application) { C100Application.new(id: '449362af-0bc3-4953-82a7-1363d479b876') }
+    let(:c100_application) { instance_double(C100Application, id: '12345') }
 
     let(:finder_double) { double.as_null_object }
     let(:time_ago) { 15.minutes.ago }
@@ -26,17 +32,17 @@ RSpec.describe PaymentsMopUpJob, type: :job do
       expect(finder_double).to receive(:each).and_yield(c100_application)
       expect(described_class).to receive(:perform_later).with(c100_application)
 
-      # Mutant kill
-      expect(Rails.logger).to receive(:info).with(
-        'Enqueuing payment status refresh for application 449362af-0bc3-4953-82a7-1363d479b876'
-      )
+      # Mutant killer
+      expect(logger).to receive(:info).with(/application 12345/)
 
       described_class.run(time_ago)
     end
   end
 
   describe '#perform' do
-    let(:c100_application) { instance_double(C100Application, online_submission?: online_submission, payment_intent: payment_intent) }
+    let(:c100_application) {
+      instance_double(C100Application, id: '12345', online_submission?: online_submission, payment_intent: payment_intent)
+    }
     let(:payment_intent) { instance_double(PaymentIntent) }
     let(:payment_result) { double(success?: success) }
 
@@ -53,6 +59,11 @@ RSpec.describe PaymentsMopUpJob, type: :job do
         let(:online_submission) { true }
         let(:queue) { double.as_null_object }
 
+        before do
+          # Mutant killer
+          expect(logger).to receive(:info).twice.with(/application 12345/)
+        end
+
         it 'marks the application as completed and process the application online submission' do
           expect(c100_application).to receive(:mark_as_completed!)
           expect(C100App::OnlineSubmissionQueue).to receive(:new).with(c100_application).and_return(queue)
@@ -66,6 +77,9 @@ RSpec.describe PaymentsMopUpJob, type: :job do
         let(:online_submission) { false }
 
         it 'marks the application as completed' do
+          # Mutant killer
+          expect(logger).to receive(:info).with(/application 12345/)
+
           expect(c100_application).to receive(:mark_as_completed!)
           expect(C100App::OnlineSubmissionQueue).not_to receive(:new)
 
@@ -79,6 +93,9 @@ RSpec.describe PaymentsMopUpJob, type: :job do
       let(:online_submission) { true }
 
       it 'does nothing' do
+        # Mutant killer
+        expect(logger).to receive(:info).with(/application 12345/)
+
         expect(c100_application).not_to receive(:mark_as_completed!)
         expect(C100App::OnlineSubmissionQueue).not_to receive(:new)
 

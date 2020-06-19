@@ -8,7 +8,7 @@ namespace :court_refresh do
   # Note the criteria will only select applications saved (`with_owner`)
   # and not yet completed. We should never change a completed application.
   #
-  task slug: :environment do
+  task slug: [:stdout_environment] do
     ARGV.shift(2)
 
     slug, email = nil
@@ -33,13 +33,13 @@ namespace :court_refresh do
     ).find_each(batch_size: 25) do |record|
       screener = record.screener_answers
 
-      puts "Enqueuing court refresh for ID #{screener.id}..."
+      Rails.logger.info "Enqueuing court refresh for ID #{screener.id}..."
       ScreenerCourtRefreshJob.perform_later(screener)
 
       count += 1
     end
 
-    puts "Finished. Total: #{count}"
+    Rails.logger.info "Finished. Total: #{count}"
     exit(0)
   end
 end

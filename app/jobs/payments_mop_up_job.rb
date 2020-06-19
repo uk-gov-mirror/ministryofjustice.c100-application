@@ -18,15 +18,19 @@ class PaymentsMopUpJob < ApplicationJob
       .where("payment_intents.state ->> 'finished' = 'false'")
       .where("payment_intents.created_at <= :date", date: date)
       .each do |c100_application|
-        logger.info "Enqueuing payment status refresh for application #{c100_application.id}"
+        Rails.logger.info "Enqueuing payment status refresh for application #{c100_application.id}"
         perform_later(c100_application)
       end
   end
 
   def perform(c100_application)
+    Rails.logger.info "Retrieving payment status for application #{c100_application.id}"
+
     return unless C100App::OnlinePayments.retrieve_payment(
       c100_application.payment_intent
     ).success?
+
+    Rails.logger.info "Marking as completed application #{c100_application.id}"
 
     c100_application.mark_as_completed!
 
