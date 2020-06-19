@@ -3,16 +3,16 @@
 #
 # Refer to `app/jobs/payments_mop_up_job.rb` for more details.
 #
-task payments_mop_up: :environment do
-  puts "Starting payments mop-up for intents older than #{mop_up_minutes_ago.iso8601}"
+task payments_mop_up: [:stdout_environment] do
+  Rails.logger.info "Starting payments mop-up for intents older than #{mop_up_minutes_ago.iso8601}"
 
   PaymentsMopUpJob.run(mop_up_minutes_ago)
 
-  puts "Finished payments mop-up for intents older than #{mop_up_minutes_ago.iso8601}"
+  Rails.logger.info "Finished payments mop-up for intents older than #{mop_up_minutes_ago.iso8601}"
 end
 
 private
 
 def mop_up_minutes_ago
-  @_mop_up_minutes_ago ||= ENV.fetch('GOVUK_PAY_MOP_UP_MINUTES_AGO', 60).to_i.minutes.ago
+  @_mop_up_minutes_ago ||= ENV.fetch('GOVUK_PAY_MOP_UP_MINUTES_AGO', 30).to_i.minutes.ago
 end

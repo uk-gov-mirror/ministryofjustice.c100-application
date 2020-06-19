@@ -1,4 +1,4 @@
-task daily_tasks: :environment do
+task daily_tasks: [:stdout_environment] do
   log 'Starting daily tasks'
   log "Users count: #{User.count} / Applications count: #{C100Application.count}"
 
@@ -73,5 +73,5 @@ end
 private
 
 def log(message)
-  puts "[#{Time.now}] #{message}"
+  Rails.logger.info message
 end
