@@ -6,7 +6,7 @@ class ErrorsController < ApplicationController
   ]
 
   def invalid_session
-    respond_with_status(:not_found)
+    respond_with_status(:ok)
   end
 
   def not_found
