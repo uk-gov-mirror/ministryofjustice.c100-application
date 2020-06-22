@@ -1863,19 +1863,28 @@ en:
           Any information will be automatically deleted for your security after this time.
         return_info: You can return to continue your application at any time.
 
+  # Note: empty lines will be honored on Notify emails, to create paragraphs.
   notify_submission_mailer:
     payment_instructions:
       online: |
-        Online payment copy TBD.
+        The court will contact you when a hearing date is set, or if any more information is needed.
       solicitor: |
         Your solicitor will pay the court fee by direct debit, through their fee account.
+
+        The court will not be able to process your application until payment has been received.
       help_with_fees: |
         You may not need to pay the full amount if you have a valid ‘Help with fees’ reference.
+
         The court will phone you (it may look like a ‘private number’) if they require payment.
       self_payment_card: |
         You need to pay the £215 court fee. You’ll either:
         * receive a call from the court in the next 3 working days if you entered your phone number (it may look like a ‘private number’)
         * or you need to contact the court, by phone or in person to make payment
+
+        The court will not be able to process your application until payment has been received.
       self_payment_cheque: |
         You need to pay the £215 court fee. Post a cheque made out to ‘HM Courts and Tribunals Service’. Write your reference code, last name and ‘C100’ on the back of your cheque.
+
         Send your cheque or pay in person within 3 working days.
+
+        The court will not be able to process your application until payment has been received.
