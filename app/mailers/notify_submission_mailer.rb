@@ -1,5 +1,6 @@
 class NotifySubmissionMailer < NotifyMailer
-  #
+  include FeesHelper
+
   # Notify doesn't care about the `from` address, but we use it in the interceptor.
   #
   # It can be `nil`, as the interceptor will then make Notify fail email validation,
@@ -63,7 +64,8 @@ class NotifySubmissionMailer < NotifyMailer
   def payment_instructions
     I18n.translate!(
       @c100_application.payment_type,
-      scope: [:notify_submission_mailer, :payment_instructions]
+      scope: [:notify_submission_mailer, :payment_instructions],
+      fee: fee_amount,
     )
   end
 

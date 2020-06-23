@@ -1,8 +1,6 @@
 class BaseDecisionTree
   class InvalidStep < RuntimeError; end
 
-  include ApplicationHelper
-
   attr_reader :c100_application, :record, :step_params, :as, :next_step
 
   def initialize(c100_application:, record: nil, step_params: {}, as: nil, next_step: nil)

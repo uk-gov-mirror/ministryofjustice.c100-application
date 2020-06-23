@@ -713,7 +713,7 @@ en:
       payment:
         edit:
           page_title: Payment type
-          lead_text: The court fee is £215. Only the person applying to court (the applicant) or their solicitor needs to pay.
+          lead_text: The court fee is %{fee}. Only the person applying to court (the applicant) or their solicitor needs to pay.
       submission:
         edit:
           page_title: How would you submit your application?
@@ -1877,13 +1877,13 @@ en:
 
         The court will phone you (it may look like a ‘private number’) if they require payment.
       self_payment_card: |
-        You need to pay the £215 court fee. You’ll either:
+        You need to pay the %{fee} court fee. You’ll either:
         * receive a call from the court in the next 3 working days if you entered your phone number (it may look like a ‘private number’)
         * or you need to contact the court, by phone or in person to make payment
 
         The court will not be able to process your application until payment has been received.
       self_payment_cheque: |
-        You need to pay the £215 court fee. Post a cheque made out to ‘HM Courts and Tribunals Service’. Write your reference code, last name and ‘C100’ on the back of your cheque.
+        You need to pay the %{fee} court fee. Post a cheque made out to ‘HM Courts and Tribunals Service’. Write your reference code, last name and ‘C100’ on the back of your cheque.
 
         Send your cheque or pay in person within 3 working days.
 

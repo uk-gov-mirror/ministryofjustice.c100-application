@@ -7,7 +7,7 @@
 
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
       <%= f.govuk_radio_buttons_fieldset :payment_type do %>
-        <p class="govuk-body-l"><%=t '.lead_text' %></p>
+        <p class="govuk-body-l"><%=t '.lead_text', fee: fee_amount %></p>
 
         <%# Ugly but we need to set `link_errors: true` only in the first visible radio %>
         <% online_choice = @form_object.choices.include?(PaymentType::ONLINE) %>
