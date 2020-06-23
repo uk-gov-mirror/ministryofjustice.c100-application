@@ -56,11 +56,10 @@ module C100App
       )
     end
 
-    # TODO: hardcoded values to a better place, i.e. constants/config
     def details_payload
       {
-        amount: 215_00,
-        description: 'Court fee for lodging a C100 application',
+        amount: Rails.configuration.x.court_fee.amount_in_pence,
+        description: Rails.configuration.x.court_fee.description,
         reference: c100_application.reference_code,
 
         # One-time return url

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require "rails"
@@ -80,4 +82,9 @@ class Application < Rails::Application
   # very limited retention period. We maintain an audit (with no personal details) of the
   # delivery result of these emails for diagnostic and debug purposes.
   config.x.email_submissions_audit.expire_in_days = 90
+
+  # Court fee configuration.
+  # Not using Fee Register for now as we only have 1 fee, but might be used in the future.
+  config.x.court_fee.amount_in_pence = 215_00
+  config.x.court_fee.description = 'Court fee for a child arrangements application (C100)'
 end
