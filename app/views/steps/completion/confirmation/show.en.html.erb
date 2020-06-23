@@ -25,10 +25,12 @@
       callout: 'If you want to keep a copy, you must download it now. You cannot return to a submitted application.'
     } %>
 
-    <h2 class="govuk-heading-l govuk-!-margin-top-6">Pay the application fee</h2>
-    <%= render partial: 'steps/shared/payment_instructions', locals: {
-      c100_application: @c100_application
-    } %>
+    <% unless @c100_application.online_payment? %>
+      <h2 class="govuk-heading-l govuk-!-margin-top-6">Pay the application fee</h2>
+      <%= render partial: 'steps/shared/payment_instructions', locals: {
+        c100_application: @c100_application
+      } %>
+    <% end %>
 
     <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
