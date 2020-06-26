@@ -48,8 +48,15 @@ class C100Application < ApplicationRecord
   #
   validates_with ApplicationFulfilmentValidator, on: :completion
 
+  # There is a 20 minute grace period, in case an application is being updated
+  # by the time the purge kicks off. If so, will be purged in the next daily run.
+  #
   def self.purge!(date)
-    where('c100_applications.created_at <= :date', date: date).destroy_all
+    where(
+      'c100_applications.created_at <= :date', date: date
+    ).where(
+      'c100_applications.updated_at <= :date', date: 20.minutes.ago
+    ).destroy_all
   end
 
   def mark_as_completed!

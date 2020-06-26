@@ -43,6 +43,16 @@ RSpec.describe C100Application, type: :model do
       described_class.purge!(28.days.ago)
     end
 
+    it 'picks records that have not been updated for the past 20 minutes' do
+      expect(described_class).to receive(:where).and_return(finder_double)
+
+      expect(finder_double).to receive(:where).with(
+        'c100_applications.updated_at <= :date', date: 20.minutes.ago
+      ).and_return(finder_double)
+
+      described_class.purge!(28.days.ago)
+    end
+
     it 'calls #destroy_all on the records it finds' do
       allow(described_class).to receive(:where).and_return(finder_double)
       expect(finder_double).to receive(:destroy_all)
