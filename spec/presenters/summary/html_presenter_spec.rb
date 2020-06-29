@@ -5,40 +5,68 @@ describe Summary::HtmlPresenter do
   subject { described_class.new(c100_application) }
 
   describe '#before_submit_warning' do
-    let(:c100_application) { instance_double(C100Application, submission_type: submission_type) }
+    let(:c100_application) { C100Application.new(submission_type: submission_type, payment_type: payment_type) }
+    let(:submission_type) { nil }
+    let(:payment_type) { nil }
 
     context 'for online submissions' do
-      let(:submission_type) { 'online' }
-      it { expect(subject.before_submit_warning).to eq('.submit_warning.online') }
+      let(:submission_type) { SubmissionType::ONLINE }
+
+      context 'with online payment' do
+        let(:payment_type) { PaymentType::ONLINE }
+        it { expect(subject.before_submit_warning).to eq('.submit_warning.online_payment') }
+      end
+
+      context 'without online payment' do
+        let(:payment_type) { PaymentType::SELF_PAYMENT_CHEQUE }
+        it { expect(subject.before_submit_warning).to eq('.submit_warning.online') }
+      end
+
+      context 'defaults to `online` if `payment_type` is not present' do
+        it { expect(subject.before_submit_warning).to eq('.submit_warning.online') }
+      end
     end
 
     context 'for print and post submissions' do
-      let(:submission_type) { 'print_and_post' }
+      let(:submission_type) { SubmissionType::PRINT_AND_POST }
       it { expect(subject.before_submit_warning).to eq('.submit_warning.print_and_post') }
-    end
 
-    context 'defaults to print and post if `submission_type` is not present' do
-      let(:submission_type) { nil }
-      it { expect(subject.before_submit_warning).to eq('.submit_warning.print_and_post') }
+      context 'defaults to `print_and_post` if `submission_type` is not present' do
+        it { expect(subject.before_submit_warning).to eq('.submit_warning.print_and_post') }
+      end
     end
   end
 
   describe '#submit_button_label' do
-    let(:c100_application) { instance_double(C100Application, submission_type: submission_type) }
+    let(:c100_application) { C100Application.new(submission_type: submission_type, payment_type: payment_type) }
+    let(:submission_type) { nil }
+    let(:payment_type) { nil }
 
     context 'for online submissions' do
-      let(:submission_type) { 'online' }
-      it { expect(subject.submit_button_label).to eq('submit_application.online') }
+      let(:submission_type) { SubmissionType::ONLINE }
+
+      context 'with online payment' do
+        let(:payment_type) { PaymentType::ONLINE }
+        it { expect(subject.submit_button_label).to eq('submit_application.online_payment') }
+      end
+
+      context 'without online payment' do
+        let(:payment_type) { PaymentType::SELF_PAYMENT_CHEQUE }
+        it { expect(subject.submit_button_label).to eq('submit_application.online') }
+      end
+
+      context 'defaults to `online` if `payment_type` is not present' do
+        it { expect(subject.submit_button_label).to eq('submit_application.online') }
+      end
     end
 
     context 'for print and post submissions' do
-      let(:submission_type) { 'print_and_post' }
+      let(:submission_type) { SubmissionType::PRINT_AND_POST }
       it { expect(subject.submit_button_label).to eq('submit_application.print_and_post') }
-    end
 
-    context 'defaults to print and post if `submission_type` is not present' do
-      let(:submission_type) { nil }
-      it { expect(subject.submit_button_label).to eq('submit_application.print_and_post') }
+      context 'defaults to `print_and_post` if `submission_type` is not present' do
+        it { expect(subject.submit_button_label).to eq('submit_application.print_and_post') }
+      end
     end
   end
 

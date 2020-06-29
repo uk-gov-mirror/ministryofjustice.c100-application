@@ -729,6 +729,7 @@ en:
           false_information_warning: You could be fined or imprisoned for contempt of court if you deliberately submit false information, or cause false information to be submitted.
           submit_warning:
             online: Once you submit your application, you cannot make any further changes. You can download a copy of your submitted application on the next page.
+            online_payment: Once you submit your application, you cannot make any further changes. You will be able to download a copy of your application after you have paid the %{fee} court fee.
             print_and_post: Once you continue, you cannot make any further changes to your application. You can download a copy of your application on the next page.
         resume:
           page_title: Resume application
@@ -963,9 +964,9 @@ en:
         complete a C100 paper application form</a>, print it and send it by post.</p>
     payment_error:
       page_title: Payment error
-      heading: There was a problem with your payment
-      lead_text: It seems you attempted to make a payment but the payment did not complete.
-      more_text: No money has been taken from your account. You can retry the payment with the same or other card details, or choose a different payment method.
+      heading: Your payment was not completed
+      lead_text: No money has been taken from your account.
+      more_text: There are a few different reasons that payments fail. You can either try again or choose another way to pay.
 
   helpers:
     label:
@@ -1207,11 +1208,11 @@ en:
           other_assistance: Other assistance or facilities
       steps_application_payment_form:
         payment_type_options:
-          online: Online payment
-          help_with_fees: Help with fees
-          solicitor: Through a solicitor’s fee account
-          self_payment_card: I am paying myself by credit or debit card
-          self_payment_cheque: I am paying myself by cheque or cash
+          online: Pay online
+          help_with_fees: Pay with ‘Help with fees’
+          solicitor: Pay through a solicitor’s fee account
+          self_payment_card: Pay over the phone
+          self_payment_cheque: Pay by cheque or cash
         hwf_reference_number: Reference number
         solicitor_account_number: Solicitor’s fee account number
       steps_application_submission_form:
@@ -1378,11 +1379,11 @@ en:
       steps_application_payment_form:
         hwf_reference_number: 'This will be in the format: HWF-XXX-XXX'
         payment_type_options:
-          online: You will pay online securely using your credit or debit card. Copy TBD
+          online: You will pay online securely using your credit or debit card
           help_with_fees_html: |
             You may be able to <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">get help paying</a> if you’re on a low income, receive certain benefits or have little or no savings. If you do qualify, you’ll need to provide your reference number
           solicitor: If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their ‘fee account number’
-          self_payment_card: Court staff will contact you within 3 working days to take payment over the phone
+          self_payment_card: Court staff will contact you within 3 working days to take payment
           self_payment_cheque: You can send a cheque or pay in person at the court
       steps_application_submission_form:
         receipt_email: You can also download a copy on the confirmation page.
@@ -1699,6 +1700,7 @@ en:
       confirm_and_finish: Confirm and finish
       submit_application:
         online: Submit application
+        online_payment: Pay and submit application
         print_and_post: Continue
 
   number:
