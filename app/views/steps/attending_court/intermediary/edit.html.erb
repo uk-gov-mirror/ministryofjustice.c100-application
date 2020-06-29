@@ -5,8 +5,6 @@
   <div class="govuk-grid-column-two-thirds">
     <%= govuk_error_summary %>
 
-    <span class="govuk-caption-xl"><%=t '.section' %></span>
-
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
       <%= f.govuk_radio_buttons_fieldset :intermediary_help do %>
         <%= f.govuk_radio_button :intermediary_help, GenericYesNo::YES, link_errors: true do
