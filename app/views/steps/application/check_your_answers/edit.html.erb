@@ -43,7 +43,7 @@
       </div>
 
       <div class="govuk-inset-text">
-        <%=t @presenter.before_submit_warning %>
+        <%=t @presenter.before_submit_warning, fee: fee_amount %>
       </div>
 
       <%= f.continue_button(

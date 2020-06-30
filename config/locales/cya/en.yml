@@ -616,11 +616,11 @@ en:
     payment_type:
       question: ''
       answers:
-        online: Online payment
+        online: Online
         help_with_fees: Help with fees
         solicitor: Through a solicitor’s fee account
-        self_payment_card: I am paying myself by credit or debit card
-        self_payment_cheque: I am paying myself by cheque or cash
+        self_payment_card: Over the phone
+        self_payment_cheque: By cheque or cash
     submission_type:
       question: ''
       answers:

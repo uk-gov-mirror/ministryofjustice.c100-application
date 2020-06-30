@@ -29,11 +29,11 @@ module Summary
     end
 
     def before_submit_warning
-      ['.submit_warning', submission_type].join('.')
+      ['.submit_warning', locale_key_for_context].join('.')
     end
 
     def submit_button_label
-      ['submit_application', submission_type].join('.')
+      ['submit_application', locale_key_for_context].join('.')
     end
 
     private
@@ -95,8 +95,16 @@ module Summary
       ]
     end
 
-    def submission_type
-      c100_application.submission_type || SubmissionType::PRINT_AND_POST
+    def locale_key_for_context
+      if c100_application.online_submission?
+        if c100_application.online_payment?
+          :online_payment
+        else
+          :online
+        end
+      else
+        :print_and_post
+      end
     end
   end
 end
