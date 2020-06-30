@@ -1,5 +1,8 @@
 module C100App
   class OnlinePayments
+    # Sent in metadata and used for HMCTS reconciliation.
+    APPLICATION_CODE = 'C100'.freeze
+
     # Failure codes that indicate either the user do not want to proceed,
     # or the payments provider is having technical issues.
     NON_RETRYABLE_CODES = %w[
@@ -61,17 +64,22 @@ module C100App
         amount: Rails.configuration.x.court_fee.amount_in_pence,
         description: Rails.configuration.x.court_fee.description,
         reference: c100_application.reference_code,
+        email: c100_application.receipt_email,
 
         # One-time return url
         return_url: payment_intent.return_url,
 
-        # Optional details
-        email: c100_application.receipt_email,
-        metadata: {
-          court_gbs: c100_application.screener_answers_court.gbs,
-          court_name: c100_application.screener_answers_court.name,
-          court_email: c100_application.screener_answers_court.email,
-        }
+        # Needed for HMCTS reconciliation
+        metadata: metadata
+      }
+    end
+
+    def metadata
+      {
+        application: APPLICATION_CODE,
+        court_gbs: c100_application.screener_answers_court.gbs,
+        court_name: c100_application.screener_answers_court.name,
+        court_email: c100_application.screener_answers_court.email,
       }
     end
   end
