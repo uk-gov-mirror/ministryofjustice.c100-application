@@ -43,10 +43,11 @@ RSpec.describe C100App::OnlinePayments do
       {
         amount: 215_00,
         description: 'Court fee for a child arrangements application (C100)',
-        return_url: 'https://c100.justice.uk',
         reference: '1970/01/449362AF',
         email: 'applicant@test.com',
+        return_url: 'https://c100.justice.uk',
         metadata: {
+          application: 'C100',
           court_gbs: 'X123',
           court_name: 'Test court',
           court_email: 'court@example.com',
