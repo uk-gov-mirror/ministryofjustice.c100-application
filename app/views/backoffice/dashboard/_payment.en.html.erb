@@ -1,0 +1,6 @@
+<tr class="govuk-table__row">
+  <td class="govuk-table__cell govuk-!-width-one-quarter"><%= payment.created_at %></td>
+  <td class="govuk-table__cell govuk-!-width-one-quarter"><%= payment.updated_at %></td>
+  <td class="govuk-table__cell"><%= payment.c100_application_id.split('-').first %></td>
+  <td class="govuk-table__cell"><%= payment.state %></td>
+</tr>
