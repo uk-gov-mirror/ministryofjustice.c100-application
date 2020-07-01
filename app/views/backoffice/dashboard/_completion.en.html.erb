@@ -1,7 +1,7 @@
 <tr class="govuk-table__row">
   <td class="govuk-table__cell"><%= completion.completed_at %></td>
-  <td class="govuk-table__cell"><%= completion.reference_code %></td>
-  <td class="govuk-table__cell"><%= completion.submission_type || 'N/A' %></td>
+  <td class="govuk-table__cell"><%= completion.submission_type %></td>
+  <td class="govuk-table__cell"><%= completion.metadata['payment_type'] %></td>
   <td class="govuk-table__cell"><%= completion.court %></td>
 </tr>
 
@@ -22,14 +22,21 @@
                   <dd><%= completion.metadata['saved_for_later'] %></dd>
                   <dt>Any applicant under 18?</dt>
                   <dd><%= completion.metadata['under_age'] || false %></dd>
-                  <dt>Payment type</dt>
-                  <dd><%= completion.metadata['payment_type'] || 'N/A' %></dd>
                   <dt>Legal representation</dt>
                   <dd><%= completion.metadata['legal_representation'] || 'N/A' %></dd>
                   <dt>Urgent hearing</dt>
                   <dd><%= completion.metadata['urgent_hearing'] || 'N/A' %></dd>
                   <dt>Without notice hearing</dt>
                   <dd><%= completion.metadata['without_notice'] || 'N/A' %></dd>
+
+                  <% if completion.metadata['payment_details'].present? %>
+                    <dt>GBS code</dt>
+                    <dd><%= completion.metadata.dig('payment_details', 'gbs_code') %></dd>
+                    <dt>GOV.UK payment ID</dt>
+                    <dd><%= completion.metadata.dig('payment_details', 'payment_id') %></dd>
+                    <dt>GOV.UK payment reference</dt>
+                    <dd><%= completion.reference_code %></dd>
+                  <% end %>
                 </dl>
             </td>
             <td class="govuk-table__cell no-border">
