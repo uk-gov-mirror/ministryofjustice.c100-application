@@ -4,7 +4,9 @@ module Backoffice
 
     def index
       @form = Backoffice::LookupForm.new
-      @report = CompletedApplicationsAudit.unscoped.order(completed_at: :desc).limit(50)
+
+      @report = completed_report
+      @payments_report = payments_report
     end
 
     def lookup
@@ -25,6 +27,18 @@ module Backoffice
 
     def form_params
       params.require(:backoffice_lookup_form).permit(:reference_code)
+    end
+
+    def default_limit
+      50
+    end
+
+    def completed_report
+      CompletedApplicationsAudit.unscoped.order(completed_at: :desc).limit(default_limit)
+    end
+
+    def payments_report
+      PaymentIntent.order(created_at: :desc).limit(default_limit)
     end
   end
 end

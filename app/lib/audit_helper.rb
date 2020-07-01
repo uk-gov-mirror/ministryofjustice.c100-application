@@ -22,6 +22,7 @@ class AuditHelper
       payment_type: c100.payment_type,
       signee_capacity: c100.declaration_signee_capacity,
       arrangements: arrangements_metadata,
+      payment_details: payment_metadata,
     }
   end
   # rubocop:enable Metrics/AbcSize
@@ -47,5 +48,14 @@ class AuditHelper
       options << arrangement.special_arrangements
       options << arrangement.special_assistance
     end.flatten
+  end
+
+  def payment_metadata
+    return {} unless c100.online_payment?
+
+    {
+      gbs_code: c100.screener_answers_court.gbs,
+      payment_id: c100.payment_intent.payment_id,
+    }
   end
 end
