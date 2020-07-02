@@ -9,8 +9,6 @@ gem 'govuk_design_system_formbuilder', '~> 1.2.3'
 gem 'govuk_notify_rails', '~> 2.1.0'
 gem 'govuk-pay-ruby-client', github: 'ministryofjustice/govuk-pay-ruby-client'
 gem 'jquery-rails'
-gem 'omniauth-auth0', '~> 2.2'
-gem 'omniauth-rails_csrf_protection'
 gem 'pg', '~> 1.1'
 gem 'puma'
 gem 'rails', '~> 5.2.4'
@@ -20,6 +18,10 @@ gem 'sentry-raven', '~> 3.0'
 gem 'uglifier'
 gem 'uk_postcode'
 gem 'virtus'
+
+# Back office
+gem 'omniauth-auth0', '~> 2.2'
+gem 'omniauth-rails_csrf_protection'
 
 # Caching and jobs processing
 gem 'redis'
@@ -59,7 +61,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rubocop', '~> 0.52.1', require: false
-  gem 'rubocop-rspec', require: false
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
