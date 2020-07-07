@@ -64,6 +64,13 @@ RSpec.describe C100App::PaymentsFlowControl do
           subject.payment_url
         }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
       end
+
+      it 'reverts the application status to `in_progress`' do
+        expect(c100_application).to receive(:payment_in_progress!).ordered
+        expect(c100_application).to receive(:in_progress!).ordered
+
+        expect { subject.payment_url }.to raise_error
+      end
     end
   end
 
