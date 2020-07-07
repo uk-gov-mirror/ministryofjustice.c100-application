@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/ministryofjustice/govuk-pay-ruby-client.git
-  revision: 70d5f61e7a0bc168b864e0b9a7b869300f32f3b2
-  specs:
-    govuk-pay-ruby-client (0.1.0)
-      faraday (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -147,6 +140,8 @@ GEM
     gherkin (5.1.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    govuk-pay-ruby-client (1.0.2)
+      faraday (~> 1.0)
     govuk_design_system_formbuilder (1.2.3)
       actionview (>= 5.2)
       activemodel (>= 5.2)
@@ -221,7 +216,7 @@ GEM
       mutant (~> 0.8.24)
       rspec-core (>= 3.4.0, < 4.0.0)
     nio4r (2.5.2)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     notifications-ruby-client (5.1.2)
       jwt (>= 1.5, < 3)
@@ -422,7 +417,7 @@ DEPENDENCIES
   devise (~> 4.7.1)
   dotenv-rails
   email_validator (< 2.0.0)
-  govuk-pay-ruby-client!
+  govuk-pay-ruby-client (~> 1.0.2)
   govuk_design_system_formbuilder (~> 1.2.3)
   govuk_notify_rails (~> 2.1.0)
   i18n-debug
