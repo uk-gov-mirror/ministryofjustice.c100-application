@@ -10,12 +10,13 @@ module C100App
 
     def payment_url
       if c100_application.online_payment?
-        c100_application.payment_in_progress!
+        move_status_to :payment_in_progress
         OnlinePayments.create_payment(payment_intent).payment_url
       else
         confirmation_url
       end
     rescue StandardError => exception
+      move_status_to :in_progress
       raise Errors::PaymentUnexpectedError, exception
     end
 
@@ -29,7 +30,7 @@ module C100App
       log_failure_info
 
       # Revert to `in_progress` as we are certain at this point payment failed
-      c100_application.in_progress!
+      move_status_to :in_progress
 
       payment_error_errors_path
     rescue StandardError => exception
@@ -37,7 +38,7 @@ module C100App
     end
 
     def confirmation_url
-      c100_application.mark_as_completed!
+      move_status_to :completed
 
       if c100_application.online_submission?
         OnlineSubmissionQueue.new(c100_application).process
@@ -53,6 +54,17 @@ module C100App
       @_payment_intent ||= PaymentIntent.find_or_create_by!(
         c100_application: c100_application
       )
+    end
+
+    def move_status_to(status)
+      case status
+      when :in_progress
+        c100_application.in_progress!
+      when :payment_in_progress
+        c100_application.payment_in_progress!
+      when :completed
+        c100_application.mark_as_completed!
+      end
     end
 
     def log_failure_info
