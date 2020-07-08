@@ -11,3 +11,4 @@ Feature: High level form markup smoke tests
     Examples:
       | step_path                         | fixture_file            | errors_fixture_file                 |
       | steps/miam/child_protection_cases | child_protection_cases  | child_protection_cases_with_errors  |
+      | steps/miam/acknowledgement        | miam_acknowledgement    | miam_acknowledgement_with_errors    |
