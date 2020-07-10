@@ -20,7 +20,7 @@
 
       <%= render partial: 'steps/shared/dob_form_element', locals: { form_object: f } %>
 
-      <%= f.govuk_text_field :birthplace, label: { size: 'm' } %>
+      <%= f.govuk_text_field :birthplace, width: 'two-thirds', label: { size: 'm' } %>
 
       <%= f.continue_button %>
     <% end %>
