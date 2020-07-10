@@ -83,9 +83,6 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
     end
   end
 
-  # We don't send the bundle PDF to the applicant anymore, but the code to be able
-  # to attach documents is still present if we wanted to attach any other documents.
-  #
   describe '#application_to_user' do
     before do
       allow(c100_application).to receive(:screener_answers_court).and_return(court)
@@ -95,7 +92,8 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       ).and_return('payment instructions from locales')
     end
 
-    let(:documents) { {bundle: StringIO.new('bundle pdf')} }
+    # We don't send the PDF to the applicant anymore, so this hash is empty
+    let(:documents) { {} }
 
     let(:mail) {
       described_class.with(
@@ -122,7 +120,6 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         court_url: 'https://courttribunalfinder.service.gov.uk/courts/test-court',
         is_under_age: 'no',
         payment_instructions: 'payment instructions from locales',
-        link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
       })
     end
 
