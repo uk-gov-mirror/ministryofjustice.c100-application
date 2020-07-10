@@ -5,7 +5,7 @@ ruby '2.6.5'
 
 gem 'devise', '~> 4.7.1'
 gem 'email_validator', '< 2.0.0'
-gem 'govuk_design_system_formbuilder', '~> 1.2.3'
+gem 'govuk_design_system_formbuilder', '~> 1.2.5'
 gem 'govuk_notify_rails', '~> 2.1.0'
 gem 'govuk-pay-ruby-client', '~> 1.0.2'
 gem 'jquery-rails'
