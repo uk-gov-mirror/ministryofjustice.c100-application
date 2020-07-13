@@ -63,3 +63,21 @@ Then(/^I submit the form details for "([^"]*)"$/) do |heading|
 
   step %[I click the "Continue" button]
 end
+
+# Needed for the children journey
+When(/^I have selected orders for the court to decide$/) do
+  step %[I visit "steps/petition/orders"]
+  step %[I check "Decide how much time they spend with each person"]
+  step %[I click the "Continue" button]
+  step %[I should see "Decide how much time they spend with each person"]
+  step %[I should see "This is known as a Child Arrangements Order"]
+end
+
+# Needed for the applicant and respondent journeys
+When(/^I have entered a child with first name "([^"]*)" and last name "([^"]*)"$/) do |first_name, last_name|
+  step %[I visit "steps/children/names"]
+  step %[I fill in "First name(s)" with "#{first_name}"]
+  step %[I fill in "Last name(s)" with "#{last_name}"]
+  step %[I click the "Continue" button]
+  step %[I should see "Provide details for #{first_name} #{last_name}"]
+end
