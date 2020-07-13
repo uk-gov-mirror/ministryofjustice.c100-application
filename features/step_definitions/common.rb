@@ -50,6 +50,14 @@ When(/^I have started an application$/) do
   step %[I should be on "/steps/miam/child_protection_cases"]
 end
 
+When(/^I have selected orders for the court to decide$/) do
+  step %[I visit "steps/petition/orders"]
+  step %[I check "Decide how much time they spend with each person"]
+  step %[I click the "Continue" button]
+  step %[I should see "Decide how much time they spend with each person"]
+  step %[I should see "This is known as a Child Arrangements Order"]
+end
+
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|
   sleep seconds.to_i
 end
