@@ -1,5 +1,5 @@
-# Add court slugs to the black list if they do not want to take part in
+# Add court slugs to the block list if they do not want to take part in
 # the online service or to temporarily stop them from receiving applications.
 #
-blacklist:
-  - blacklisted-slug-example
+blocklist:
+  - blocklisted-slug-example
