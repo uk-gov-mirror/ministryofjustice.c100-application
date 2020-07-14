@@ -1,7 +1,7 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell"><%= completion.completed_at %></td>
-  <td class="govuk-table__cell"><%= completion.submission_type %></td>
-  <td class="govuk-table__cell"><%= completion.metadata['payment_type'] %></td>
+  <td class="govuk-table__cell app-util--no-wrap"><%= l(completion.completed_at, format: :short) %></td>
+  <td class="govuk-table__cell app-util--no-wrap"><%= t(completion.submission_type, scope: 'backoffice.submission') %></td>
+  <td class="govuk-table__cell app-util--no-wrap"><%= t(completion.metadata['payment_type'], scope: 'backoffice.payment') %></td>
   <td class="govuk-table__cell"><%= completion.court %></td>
 </tr>
 

@@ -1714,6 +1714,8 @@ en:
       short: '%d/%m/%Y'
       long: '%e %B %Y'
   time:
+    formats:
+      short: '%d %b %H:%M:%S'
     draft_expires_in:
       zero: Today
       one: '%{count} day'
