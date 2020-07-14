@@ -1,6 +1,6 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell govuk-!-width-one-quarter"><%= payment.created_at %></td>
-  <td class="govuk-table__cell govuk-!-width-one-quarter"><%= payment.updated_at %></td>
+  <td class="govuk-table__cell app-util--no-wrap"><%= l(payment.created_at, format: :short) %></td>
+  <td class="govuk-table__cell app-util--no-wrap"><%= l(payment.updated_at, format: :short) %></td>
   <td class="govuk-table__cell">
     <strong class="govuk-tag app-tag--<%= payment.state['status'] %>">
       <%= payment.state['status'] %>
@@ -8,7 +8,7 @@
   </td>
   <td class="govuk-table__cell">
     <% if payment.state.key?('code') %>
-      <%= payment.state.slice('code', 'message') %> <em class="app-util--disabled-color">#<%= payment.c100_application_id.split('-').first %></em>
+      <%= payment.state.slice('code', 'message') %> <em class="app-util--disabled-color">Ref. <%= payment.c100_application.reference_code %></em>
     <% end %>
   </td>
 </tr>

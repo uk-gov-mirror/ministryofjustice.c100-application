@@ -1,0 +1,11 @@
+en:
+  backoffice:
+    submission:
+      online: Online
+      print_and_post: Printed
+    payment:
+      online: Online
+      help_with_fees: HWF
+      solicitor: Fee account
+      self_payment_card: Phone
+      self_payment_cheque: Cheque/cash
