@@ -23,8 +23,8 @@ module C100App
       choose_from(possible_courts)
     end
 
-    def court_slugs_blacklist
-      COURT_SLUGS.fetch('blacklist')
+    def court_slugs_blocklist
+      COURT_SLUGS.fetch('blocklist')
     end
 
     private
@@ -34,7 +34,7 @@ module C100App
       first_with_slug = possible_courts.find do |court|
         slug = court[:slug] || court['slug']
       end
-      first_with_slug unless court_slugs_blacklist.include?(slug)
+      first_with_slug unless court_slugs_blocklist.include?(slug)
     end
   end
 end

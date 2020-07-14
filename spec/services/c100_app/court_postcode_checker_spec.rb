@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe C100App::CourtPostcodeChecker do
-  describe '#court_slugs_blacklist' do
-    it 'returns the blacklisted slugs' do
+  describe '#court_slugs_blocklist' do
+    it 'returns the blocklisted slugs' do
       expect(
-        subject.court_slugs_blacklist
+        subject.court_slugs_blocklist
       ).to match_array(%w(
-        blacklisted-slug-example
+        blocklisted-slug-example
       ))
     end
   end
@@ -111,7 +111,7 @@ describe C100App::CourtPostcodeChecker do
 
     context 'given an array of hashes' do
       context 'with at least one hash that has a :slug key' do
-        context 'when the first slug is not blacklisted' do
+        context 'when the first slug is not blocklisted' do
           let(:arg){
             [
               {key: 'value'},
@@ -125,11 +125,11 @@ describe C100App::CourtPostcodeChecker do
           end
         end
 
-        context 'when the first slug is blacklisted' do
+        context 'when the first slug is blocklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {slug: 'blacklisted-slug-example'},
+              {slug: 'blocklisted-slug-example'},
               {slug: 'another-slug'},
             ]
           }
@@ -140,7 +140,7 @@ describe C100App::CourtPostcodeChecker do
       end
 
       context 'with no hash that has a :slug key, but at least one that has a "slug" key' do
-        context 'when the first slug is not blacklisted' do
+        context 'when the first slug is not blocklisted' do
           let(:arg){
             [
               {key: 'value'},
@@ -154,11 +154,11 @@ describe C100App::CourtPostcodeChecker do
           end
         end
 
-        context 'when the first slug is blacklisted' do
+        context 'when the first slug is blocklisted' do
           let(:arg){
             [
               {key: 'value'},
-              {'slug' => 'blacklisted-slug-example'},
+              {'slug' => 'blocklisted-slug-example'},
               {'slug' => 'another-slug'},
             ]
           }
