@@ -12,7 +12,6 @@ RSpec.describe ScreenerAnswers, type: :model do
       ).to match_array(%w[
         children_postcodes
         parent
-        written_agreement
       ])
     end
   end

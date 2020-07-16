@@ -67,7 +67,6 @@ class SessionsController < ApplicationController
     {
       children_postcodes: 'MK9 2DT',
       parent: 'yes',
-      written_agreement: 'no',
       email_consent: 'no',
       local_court: {
         _fixture: true, # this flag indicates the court data is "fake" (bypass)

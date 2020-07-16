@@ -72,23 +72,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and parent is "yes"' do
       let(:parent){ GenericYesNo::YES }
 
-      it { is_expected.to have_destination(:written_agreement, :edit) }
-    end
-
-    context 'and parent is "no"' do
-      let(:parent){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination(:parent_exit, :show) }
-    end
-  end
-
-  context 'when the step is `written_agreement`' do
-    let(:step_params){ {written_agreement: written_agreement} }
-    let(:screener_answers) { double('screener_answers', written_agreement: written_agreement) }
-
-    context 'and written_agreement is "no"' do
-      let(:written_agreement){ GenericYesNo::NO }
-
       before do
         allow(Rails.configuration.x.screener).to receive(:show_email_consent_step).and_return(show_consent)
       end
@@ -104,10 +87,10 @@ RSpec.describe C100App::ScreenerDecisionTree do
       end
     end
 
-    context 'and written_agreement is "yes"' do
-      let(:written_agreement){ GenericYesNo::YES }
+    context 'and parent is "no"' do
+      let(:parent){ GenericYesNo::NO }
 
-      it { is_expected.to have_destination(:written_agreement_exit, :show) }
+      it { is_expected.to have_destination(:parent_exit, :show) }
     end
   end
 

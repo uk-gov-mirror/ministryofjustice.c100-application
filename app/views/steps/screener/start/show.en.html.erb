@@ -10,14 +10,11 @@
 
     <p class="govuk-body">Your application will be sent to a court in the area where your child or children live.</p>
 
-    <p class="govuk-body">To use this service you must:</p>
+    <p class="govuk-body">
+      To use this service you must be a parent of the child or children, or a solicitor representing a parent.
+    </p>
 
-    <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
-      <li>be a parent of the child or children, or a solicitor representing a parent</li>
-      <li>not have a signed draft court order that you want the court to make legally binding</li>
-    </ul>
-
-    <div class="govuk-grid-row">
+    <div class="govuk-grid-row govuk-!-margin-top-6">
       <div class="govuk-grid-column-one-half">
         <%= link_to edit_steps_screener_postcode_path, class: 'govuk-button govuk-button--start', data: { module: 'govuk-button' }, role: 'button', draggable: false do %>
           Check eligibility

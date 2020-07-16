@@ -112,10 +112,6 @@ en:
           attributes:
             parent:
               inclusion: Select yes if you’re a parent
-        steps/screener/written_agreement_form:
-          attributes:
-            written_agreement:
-              inclusion: Select yes if you have a signed draft court order
         steps/screener/email_consent_form:
           attributes:
             email_consent:

@@ -3,7 +3,7 @@ class ScreenerAnswers < ApplicationRecord
 
   # Absolute minimum details needed to consider the screener completed
   def self.attributes_to_validate
-    %w[children_postcodes parent written_agreement]
+    %w[children_postcodes parent]
   end.freeze
 
   validates_presence_of attributes_to_validate, on: :completion

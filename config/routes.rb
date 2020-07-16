@@ -115,8 +115,6 @@ Rails.application.routes.draw do
       show_step :no_court_found
       edit_step :parent
       show_step :parent_exit
-      edit_step :written_agreement
-      show_step :written_agreement_exit
       edit_step :email_consent
       show_step :done
     end
