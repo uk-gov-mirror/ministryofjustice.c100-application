@@ -873,17 +873,6 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if you’re a parent of the children you’re making this application about, or a solicitor representing a parent.
-      written_agreement:
-        edit:
-          page_title: Consent order
-          lead_text: If you’ve made a decision about your child arrangements with the other parent (the respondent) you can ask the court to consider making it legally binding. This is known as a consent order.
-          info_notice: |
-            This question only applies to any new agreement. Do not include any previous agreements or orders the court may have made.
-      written_agreement_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: You can only use this online service if you are not asking the court to consider making a written agreement legally binding.
       email_consent:
         edit:
           page_title: Contact by email
@@ -991,9 +980,6 @@ en:
         children_postcodes: Postcode
       steps_screener_parent_form:
         parent_options:
-          <<: *YESNO
-      steps_screener_written_agreement_form:
-        written_agreement_options:
           <<: *YESNO
       steps_screener_email_consent_form:
         email_address: Email address
@@ -1482,8 +1468,6 @@ en:
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
-      steps_screener_written_agreement_form:
-        written_agreement: Do you have a signed draft court order you want the court to consider making legally binding?
       steps_screener_email_consent_form:
         email_consent: Are you willing to be contacted by email about your experience using this service?
 
