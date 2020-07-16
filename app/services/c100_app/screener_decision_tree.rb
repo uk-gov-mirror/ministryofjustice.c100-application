@@ -8,8 +8,6 @@ module C100App
         check_if_court_is_valid
       when :parent
         after_parent
-      when :written_agreement
-        after_written_agreement
       when :email_consent
         show(:done)
       else
@@ -36,18 +34,13 @@ module C100App
     end
 
     def after_parent
-      if question(:parent, c100_application.screener_answers).yes?
-        edit(:written_agreement)
+      return show(:parent_exit) if question(:parent, c100_application.screener_answers).no?
+
+      if Rails.configuration.x.screener.show_email_consent_step
+        edit(:email_consent)
       else
-        show(:parent_exit)
+        show(:done)
       end
-    end
-
-    def after_written_agreement
-      return show(:written_agreement_exit) if question(:written_agreement, c100_application.screener_answers).yes?
-      return edit(:email_consent)          if Rails.configuration.x.screener.show_email_consent_step
-
-      show(:done)
     end
   end
 end
