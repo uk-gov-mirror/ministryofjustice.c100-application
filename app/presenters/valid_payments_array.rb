@@ -5,6 +5,13 @@ class ValidPaymentsArray < SimpleDelegator
     PaymentType::SELF_PAYMENT_CHEQUE,
   ].freeze
 
+  # This is temporary as we open online payments to a few courts first,
+  # before allowing the rest of courts to use it.
+  COURTS_WITH_ONLINE_PAYMENT = %w[
+    west-london-family-court
+    liverpool-civil-and-family-court
+  ].freeze
+
   def initialize(c100_application)
     super(
       choices_to_present(c100_application)
@@ -24,12 +31,15 @@ class ValidPaymentsArray < SimpleDelegator
   def choices_to_present(c100_application)
     COMMON_CHOICES.dup.tap do |choices|
       choices.append(PaymentType::SOLICITOR) if c100_application.has_solicitor?
-      choices.append(PaymentType::ONLINE)    if c100_application.online_submission? && govuk_pay_enabled?
+      choices.append(PaymentType::ONLINE)    if govuk_pay_enabled_for(c100_application)
     end
   end
 
-  # TODO: For now we hide the online payment option in production
-  def govuk_pay_enabled?
-    ENV.key?('GOVUK_PAY_API_KEY')
+  def govuk_pay_enabled_for(c100_application)
+    return unless c100_application.online_submission?
+
+    COURTS_WITH_ONLINE_PAYMENT.include?(
+      c100_application.screener_answers_court.slug
+    )
   end
 end
