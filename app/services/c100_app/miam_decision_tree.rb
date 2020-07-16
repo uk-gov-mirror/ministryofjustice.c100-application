@@ -76,8 +76,6 @@ module C100App
     end
 
     def after_miam_certification_details
-      # TODO: eventually, we will call an external mediators API to check whether the
-      # reference number is valid or not, and retrieve the mediator details.
       show(:certification_confirmation)
     end
 
