@@ -1,13 +1,9 @@
 Feature: Safety Concerns
   Background:
     Given I have started an application
-    Then I should see "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?"
-    When I choose "Yes"
-    Then I should see "You do not have to attend a MIAM"
-    And I click the "Continue" link
+    When I visit "steps/safety_questions/start"
     Then I should see "Safety concerns"
     And I click the "Continue" link
-
     Then I should see "Keeping your contact details private"
     And I choose "Yes"
 

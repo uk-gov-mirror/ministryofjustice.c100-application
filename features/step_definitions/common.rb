@@ -47,7 +47,7 @@ When(/^I have started an application$/) do
   step %[I click the "Start application" link]
   step %[I click the "Continue" link] # Before you continue
   step %[I click the "Continue" link] # How long it takes
-  step %[I should be on "/steps/miam/child_protection_cases"]
+  step %[I should be on "/steps/miam/consent_order"] # First step
 end
 
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|

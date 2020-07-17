@@ -1,11 +1,9 @@
 Feature: MIAM journey
   Background:
     Given I have started an application
-    Then I should see "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?"
-    And I should see "Why we use the term ‘children’"
-    And I should see the save draft button
-    When I choose "No"
+    When I visit "steps/miam/acknowledgement"
     Then I should see "Attending a Mediation Information and Assessment Meeting (MIAM)"
+    And I should see the save draft button
     And I check "I understand that I have to attend a MIAM or provide a valid reason for not attending."
     And I click the "Continue" button
 
