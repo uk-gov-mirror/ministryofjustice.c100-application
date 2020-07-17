@@ -1,11 +1,8 @@
 module Steps
   module Miam
     class ConsentOrderController < Steps::MiamStepController
-      #
-      # NOTE: this step is not used for now, as we are screening out people,
-      # but we don't want to remove it as it is valid and will be activated
-      # as soon as we can.
-      #
+      include SavepointStep
+
       def edit
         @form_object = ConsentOrderForm.new(
           c100_application: current_c100_application,

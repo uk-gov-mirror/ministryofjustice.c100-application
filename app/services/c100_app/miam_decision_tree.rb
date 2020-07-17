@@ -36,6 +36,11 @@ module C100App
     end
 
     def after_child_protection_cases
+      # If we know is a consent order, then it does not matter the answer
+      # to this question, we bypass MIAM (jump to safety questions)
+      #
+      return start_safety_questions_journey if question(:consent_order).yes?
+
       if question(:child_protection_cases).yes?
         show(:child_protection_info)
       else
@@ -76,8 +81,6 @@ module C100App
     end
 
     def after_miam_certification_details
-      # TODO: eventually, we will call an external mediators API to check whether the
-      # reference number is valid or not, and retrieve the mediator details.
       show(:certification_confirmation)
     end
 

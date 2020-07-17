@@ -22,11 +22,9 @@ Feature: Screener
     And I click the "Start application" link
     Then I should see "What you’ll need to complete your application"
 
+    # Finish here as we already have other scenarios testing the journey from this point onwards
     And I click the "Continue" link
     Then I should see "How long it takes to apply"
-
-    And I click the "Continue" link
-    Then I should see "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?"
 
   @unhappy_path
   Scenario: I don't fill out the postcode
