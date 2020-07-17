@@ -28,17 +28,35 @@ RSpec.describe C100App::MiamDecisionTree do
   end
 
   context 'when the step is `child_protection_cases`' do
-    let(:c100_application) { instance_double(C100Application, child_protection_cases: value) }
+    let(:c100_application) { instance_double(C100Application, child_protection_cases: value, consent_order: consent_value) }
     let(:step_params) { { child_protection_cases: 'anything' } }
 
-    context 'and the answer is `yes`' do
-      let(:value) { 'yes' }
-      it { is_expected.to have_destination(:child_protection_info, :show) }
+    context 'when the answer to the consent order was `yes`' do
+      let(:consent_value) { 'yes' }
+
+      context 'and the answer is `yes`' do
+        let(:value) { 'yes' }
+        it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+      end
+
+      context 'and the answer is `no`' do
+        let(:value) { 'no' }
+        it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+      end
     end
 
-    context 'and the answer is `no`' do
-      let(:value) { 'no' }
-      it { is_expected.to have_destination(:acknowledgement, :edit) }
+    context 'when the answer to the consent order was `no`' do
+      let(:consent_value) { 'no' }
+
+      context 'and the answer is `yes`' do
+        let(:value) { 'yes' }
+        it { is_expected.to have_destination(:child_protection_info, :show) }
+      end
+
+      context 'and the answer is `no`' do
+        let(:value) { 'no' }
+        it { is_expected.to have_destination(:acknowledgement, :edit) }
+      end
     end
   end
 
