@@ -14,8 +14,20 @@ RSpec.describe C100App::AlternativesDecisionTree do
   context 'when the step is `court_acknowledgement`' do
     let(:step_params) {{court_acknowledgement: 'anything'}}
 
-    before do
-      allow(c100_application).to receive(:has_safety_concerns?).and_return(safety_concerns)
+    let(:c100_application) {
+      instance_double(
+        C100Application,
+        consent_order?: consent_order,
+        has_safety_concerns?: safety_concerns,
+      )
+    }
+
+    let(:consent_order) { false }
+    let(:safety_concerns) { false }
+
+    context 'and it is a consent order application' do
+      let(:consent_order) { true }
+      it { is_expected.to have_destination('/steps/children/names', :edit) }
     end
 
     context 'and there are safety concerns' do
@@ -23,8 +35,7 @@ RSpec.describe C100App::AlternativesDecisionTree do
       it { is_expected.to have_destination('/steps/children/names', :edit) }
     end
 
-    context 'and there are no safety concerns' do
-      let(:safety_concerns) { false }
+    context 'and it is not a consent order and there are no safety concerns' do
       it { is_expected.to have_destination(:start, :show) }
     end
   end
