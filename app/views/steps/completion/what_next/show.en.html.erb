@@ -23,11 +23,11 @@
       </li>
 
       <li>
-        <h3 class="govuk-heading-m">Print your application</h3>
-        <p class="govuk-body">
-          Print 3 copies of your whole application on A4 paper, single sided. The court will send one copy to the other
-          person, keep one copy, and return one copy to you.
-        </p>
+
+        <%= render 'with_consent_order' if @c100_application.consent_order? %>
+
+        <%= render 'without_consent_order' unless @c100_application.consent_order? %>
+
       </li>
 
       <% if @c100_application.applicants.under_age? %>
@@ -43,6 +43,7 @@
           </p>
         </li>
       <% end %>
+
 
       <li>
         <h3 class="govuk-heading-m">Post it to the court</h3>
