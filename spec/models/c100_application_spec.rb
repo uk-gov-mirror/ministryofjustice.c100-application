@@ -85,6 +85,40 @@ RSpec.describe C100Application, type: :model do
     end
   end
 
+  describe '#consent_order?' do
+    context 'for a `nil` value' do
+      let(:attributes) { {consent_order: nil} }
+      it { expect(subject.consent_order?).to eq(false) }
+    end
+
+    context 'for a `no` value' do
+      let(:attributes) { {consent_order: 'no'} }
+      it { expect(subject.consent_order?).to eq(false) }
+    end
+
+    context 'for a `yes` value' do
+      let(:attributes) { {consent_order: 'yes'} }
+      it { expect(subject.consent_order?).to eq(true) }
+    end
+  end
+
+  describe '#child_protection_cases?' do
+    context 'for a `nil` value' do
+      let(:attributes) { {child_protection_cases: nil} }
+      it { expect(subject.child_protection_cases?).to eq(false) }
+    end
+
+    context 'for a `no` value' do
+      let(:attributes) { {child_protection_cases: 'no'} }
+      it { expect(subject.child_protection_cases?).to eq(false) }
+    end
+
+    context 'for a `yes` value' do
+      let(:attributes) { {child_protection_cases: 'yes'} }
+      it { expect(subject.child_protection_cases?).to eq(true) }
+    end
+  end
+
   describe '#confidentiality_enabled?' do
     context 'for `yes` values' do
       let(:attributes) { {address_confidentiality: 'yes'} }

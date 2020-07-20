@@ -39,12 +39,23 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     let(:c100_application) { C100Application.new(attributes) }
     let(:attributes) {
       {
+        consent_order: 'no',
         child_protection_cases: 'no',
         miam_certification_number: nil,
         substance_abuse: 'no',
         miam_exemption: nil,
       }
     }
+
+    context 'when asking for a consent order' do
+      let(:attributes) { super().merge(consent_order: 'yes') }
+
+      it {
+        expect(
+          subject.playback_destination
+        ).to eq(controller: '/steps/petition/orders', action: :edit)
+      }
+    end
 
     context 'when children have been involved in court cases' do
       let(:attributes) { super().merge(child_protection_cases: 'yes') }

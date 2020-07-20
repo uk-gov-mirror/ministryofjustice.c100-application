@@ -22,7 +22,7 @@ module C100App
     private
 
     def after_court_acknowledgement
-      if c100_application.has_safety_concerns?
+      if c100_application.consent_order? || c100_application.has_safety_concerns?
         start_children_journey
       else
         show(:start)
