@@ -22,13 +22,29 @@ RSpec.describe Steps::Petition::OrdersForm do
     it 'returns all the orders in all attributes' do
       expect(
         subject.orders_collection
-      ).to eq(%w(
-        prohibited_steps_holiday
-        specific_issues_medical
-        child_arrangements_home
-        group_prohibited_steps
-        group_specific_issues)
-      )
+      ).to eq(orders_collection + orders)
+    end
+
+    # mutant kill
+    context 'when `orders_collection` is nil' do
+      let(:orders_collection) { nil }
+
+      it 'returns all the orders in all attributes' do
+        expect(
+          subject.orders_collection
+        ).to eq(orders)
+      end
+    end
+
+    # mutant kill
+    context 'when `orders` is nil' do
+      let(:orders) { nil }
+
+      it 'returns all the orders in all attributes' do
+        expect(
+          subject.orders_collection
+        ).to eq(orders_collection)
+      end
     end
   end
 
@@ -141,6 +157,23 @@ RSpec.describe Steps::Petition::OrdersForm do
         it 'resets the content `orders_additional_details` attribute' do
           expect(c100_application).to receive(:update).with(
             orders: %w(prohibited_steps_holiday),
+            orders_additional_details: nil,
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'for a consent order' do
+        let(:arguments) { {
+          c100_application: c100_application,
+          orders: %w(consent_order),
+          orders_additional_details: '',
+        } }
+
+        it 'saves the record' do
+          expect(c100_application).to receive(:update).with(
+            orders: %w(consent_order),
             orders_additional_details: nil,
           ).and_return(true)
 

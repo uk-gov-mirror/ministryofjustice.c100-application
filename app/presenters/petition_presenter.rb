@@ -11,6 +11,10 @@ class PetitionPresenter < SimpleDelegator
     selected_orders_from(PetitionOrder::PROHIBITED_STEPS)
   end
 
+  def formalise_arrangements
+    selected_orders_from(PetitionOrder::FORMALISE_ARRANGEMENTS)
+  end
+
   def all_selected_orders
     selected_orders_from(PetitionOrder.values)
   end

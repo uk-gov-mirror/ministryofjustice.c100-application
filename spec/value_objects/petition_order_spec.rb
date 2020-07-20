@@ -24,6 +24,7 @@ RSpec.describe PetitionOrder do
         specific_issues_moving
         specific_issues_moving_abroad
         specific_issues_child_return
+        consent_order
         other_issue
       ))
     end
@@ -77,6 +78,14 @@ RSpec.describe PetitionOrder do
     end
   end
 
+  describe 'FORMALISE_ARRANGEMENTS' do
+    it 'returns the expected values' do
+      expect(described_class::FORMALISE_ARRANGEMENTS.map(&:to_s)).to eq(%w(
+        consent_order
+      ))
+    end
+  end
+
   describe 'OTHER_ISSUE' do
     it 'returns the expected values' do
       expect(described_class::OTHER_ISSUE.to_s).to eq('other_issue')
@@ -100,6 +109,12 @@ RSpec.describe PetitionOrder do
       context 'starting with specific_issues_' do
         it 'returns "specific_issues"' do
           expect(described_class.type_for('specific_issues_foo')).to eq("specific_issues")
+        end
+      end
+
+      context 'exactly matching consent order' do
+        it 'returns "consent_order"' do
+          expect(described_class.type_for('consent_order')).to eq("consent_order")
         end
       end
 
