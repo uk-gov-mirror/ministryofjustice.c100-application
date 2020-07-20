@@ -20,6 +20,7 @@ en:
       father: Father
       other: Other
 
+    # Important: maintain these orders in sync with the rest of locale files
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
@@ -38,13 +39,14 @@ en:
       specific_issues_moving: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       specific_issues_child_return: Returning the children to your care
-    OTHER_ORDER: &OTHER_ORDER
-      other_issue: Deal with another issue not listed
+    FORMALISE_ARRANGEMENTS: &FORMALISE_ARRANGEMENTS
+      consent_order: Consent order
 
     PETITION_ORDER_TYPES: &PETITION_ORDER_TYPES
       child_arrangements: Child Arrangements Order
       prohibited_steps: Prohibited Steps Order
       specific_issues: Specific Issue Order
+      consent_order: Consent order
       other_issue: Other issue
 
     COURT_ORDER_TYPES: &COURT_ORDER_TYPES
@@ -58,7 +60,6 @@ en:
   check_answers_html:
     change_link_html: Change <span class="govuk-visually-hidden">your answer to, %{a11y_question}</span>
     sections:
-      child_protection_cases: Emergency protection, care or supervision proceedings
       miam_requirement: MIAM requirement
       miam_attendance: MIAM attendance
       miam_exemptions: MIAM exemption
@@ -123,6 +124,11 @@ en:
       applicants_details_index_title: Applicant %{index}
       respondents_details_index_title: Respondent %{index}
       other_parties_details_index_title: Other party %{index}
+
+    consent_order_application:
+      question: Do you have a signed draft court order you want the court to consider making legally binding?
+      answers:
+        <<: *YESNO
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       answers:
@@ -414,6 +420,10 @@ en:
       question_a11y: What you’re asking the court to stop the other person from doing
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
+    formalise_arrangements:
+      question: Formalise an agreement
+      answers:
+        <<: *FORMALISE_ARRANGEMENTS
     other_issue_details:
       question: 'You told us that you need help with this dispute:'
       question_a11y: You need help with this dispute

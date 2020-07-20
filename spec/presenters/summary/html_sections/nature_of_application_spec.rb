@@ -89,6 +89,19 @@ module Summary
         expect(protection[1].question).to eq(:protection_orders_details)
         expect(protection[1].value).to eq('protection orders details')
       end
+
+      context 'for a consent order' do
+        let(:orders) { ['consent_order'] }
+
+        it 'has the correct rows' do
+          expect(answers.count).to eq(3)
+
+          expect(answers[0]).to be_an_instance_of(MultiAnswer)
+          expect(answers[0].question).to eq(:formalise_arrangements)
+          expect(answers[0].value).to eq(['consent_order'])
+          expect(answers[0].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-consent-order-field')
+        end
+      end
     end
   end
 end
