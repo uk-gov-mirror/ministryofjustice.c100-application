@@ -52,6 +52,7 @@ en:
       specific_issues_moving: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       specific_issues_child_return: Returning the children to your care
+      consent_order: Formalise an agreement (consent order)
       other_issue: Deal with another issue not listed
 
     # Note: this is duplicated in `locales/summary/en.yml`, due to the way locales work
@@ -610,6 +611,7 @@ en:
             zero: "You told us that you need help with this dispute:"
             one: "You also told us that you need help with this dispute:"
             other: "You also told us that you need help with this dispute:"
+          petition_header_formalise_arrangements: Formalise an agreement (consent order)
           continue: Continue
           orders:
             <<: *PETITION_ORDERS
@@ -617,6 +619,7 @@ en:
             child_arrangements_order: This is known as a Child Arrangements Order.
             specific_issues_order: This is known as a Specific Issue Order.
             prohibited_steps_order: This is known as a Prohibited Steps Order.
+            consent_order: You will need to send your proposed agreement along with your application.
       protection:
         edit:
           page_title: Protection orders

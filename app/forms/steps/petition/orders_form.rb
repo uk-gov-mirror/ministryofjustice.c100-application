@@ -26,7 +26,7 @@ module Steps
       end
 
       def selected_options
-        orders_collection & PetitionOrder.string_values
+        (orders_collection + orders) & PetitionOrder.string_values
       end
 
       def at_least_one_order_validation

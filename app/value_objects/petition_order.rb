@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PetitionOrder < ValueObject
   VALUES = [
     CHILD_ARRANGEMENTS = [
@@ -26,6 +28,11 @@ class PetitionOrder < ValueObject
       new(:specific_issues_child_return),
     ].freeze,
 
+    # Although there is only one, we use an array for consistency with existing code
+    FORMALISE_ARRANGEMENTS = [
+      CONSENT_ORDER = new(:consent_order),
+    ].freeze,
+
     OTHER_ISSUE = new(:other_issue),
   ].flatten.freeze
 
@@ -36,9 +43,11 @@ class PetitionOrder < ValueObject
   def self.type_for(sub_type)
     case sub_type.to_s
     when /^child_arrangements_.*/ then 'child_arrangements'
-    when /^prohibited_steps_.*/ then 'prohibited_steps'
-    when /^specific_issues_.*/ then 'specific_issues'
-    else 'other_issue'
+    when /^prohibited_steps_.*/   then 'prohibited_steps'
+    when /^specific_issues_.*/    then 'specific_issues'
+    when /^consent_order$/        then 'consent_order'
+    else
+      'other_issue'
     end
   end
 end

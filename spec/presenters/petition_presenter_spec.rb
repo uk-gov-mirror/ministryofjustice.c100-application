@@ -46,6 +46,14 @@ RSpec.describe PetitionPresenter do
     end
   end
 
+  describe '#formalise_arrangements' do
+    it 'only returns the orders set to true' do
+      expect(subject.formalise_arrangements).to eq(%w(
+        consent_order
+      ))
+    end
+  end
+
   describe '#all_selected_orders' do
     it 'only returns the orders set to true' do
       expect(subject.all_selected_orders).to eq(%w(
@@ -64,6 +72,7 @@ RSpec.describe PetitionPresenter do
         specific_issues_moving
         specific_issues_moving_abroad
         specific_issues_child_return
+        consent_order
         other_issue
       ))
     end

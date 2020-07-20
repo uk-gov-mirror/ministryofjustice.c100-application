@@ -45,10 +45,17 @@
       <p class="govuk-body"><%= t('.aka.specific_issues_order') %></p>
     <% end %>
 
+    <% if @petition.formalise_arrangements.any? %>
+      <h2 class="govuk-heading-m">
+        <%=t '.petition_header_formalise_arrangements' %>
+      </h2>
+      <p class="govuk-body"><%= t('.aka.consent_order') %></p>
+    <% end %>
+
     <% if @petition.other_issue? %>
       <h2 class="govuk-heading-m">
         <%=t '.petition_header_other', count: @petition.count_for(
-          :child_arrangements_orders, :prohibited_steps_orders, :specific_issues_orders
+          :child_arrangements_orders, :prohibited_steps_orders, :specific_issues_orders, :formalise_arrangements
         ) %>
       </h2>
       <div class="govuk-inset-text">
