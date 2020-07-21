@@ -2,7 +2,7 @@ en:
   backoffice:
     submission:
       online: Online
-      print_and_post: Printed
+      print_and_post: Print & Post
     payment:
       online: Online
       help_with_fees: HWF

@@ -1,8 +1,16 @@
 <tr class="govuk-table__row">
-  <td class="govuk-table__cell app-util--no-wrap"><%= l(completion.completed_at, format: :short) %></td>
-  <td class="govuk-table__cell app-util--no-wrap"><%= t(completion.submission_type, scope: 'backoffice.submission') %></td>
-  <td class="govuk-table__cell app-util--no-wrap"><%= t(completion.metadata['payment_type'], scope: 'backoffice.payment') %></td>
-  <td class="govuk-table__cell"><%= completion.court %></td>
+  <td class="govuk-table__cell app-util--no-wrap">
+    <%= l(completion.completed_at, format: :short) %>
+  </td>
+  <td class="govuk-table__cell app-util--no-wrap">
+    <%= t(completion.submission_type, scope: 'backoffice.submission', default: 'N/A') %>
+  </td>
+  <td class="govuk-table__cell app-util--no-wrap">
+    <%= t(completion.metadata['payment_type'], scope: 'backoffice.payment', default: 'N/A') %>
+  </td>
+  <td class="govuk-table__cell">
+    <%= completion.court %>
+  </td>
 </tr>
 
 <%# Only show extra details when a specific reference code is searched %>
@@ -43,6 +51,8 @@
               <dl class="app-description-list">
                 <dt>Postcode</dt>
                 <dd><%= completion.metadata['postcode'] %></dd>
+                <dt>Consent order</dt>
+                <dd><%= completion.metadata['consent_order'] || 'no' %></dd>
                 <dt>C1A form?</dt>
                 <dd><%= completion.metadata['c1a_form'] %></dd>
                 <dt>C8 form?</dt>
