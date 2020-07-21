@@ -24,6 +24,7 @@ en:
       father: Father
       other: Other
 
+    # Important: maintain these orders in sync with the rest of locale files
     ARRANGEMENT_ORDERS: &ARRANGEMENT_ORDERS
       child_arrangements_home: Decide who they live with and when
       child_arrangements_time: Decide how much time they spend with each person
@@ -42,13 +43,14 @@ en:
       specific_issues_moving: Relocating the children to a different area in England and Wales
       specific_issues_moving_abroad: Relocating the children outside of England and Wales (including Scotland and Northern Ireland)
       specific_issues_child_return: Returning the children to your care
-    OTHER_ORDER: &OTHER_ORDER
-      other_issue: Deal with another issue not listed
+    FORMALISE_ARRANGEMENTS: &FORMALISE_ARRANGEMENTS
+      consent_order: Consent order
 
     PETITION_ORDER_TYPES: &PETITION_ORDER_TYPES
       child_arrangements: Child Arrangements Order
       prohibited_steps: Prohibited Steps Order
       specific_issues: Specific Issue Order
+      consent_order: Consent order
       other_issue: Other issue
 
     # Note: this is duplicated in `locales/en.yml`, due to the way locales work
@@ -182,6 +184,10 @@ en:
       question: 'Prohibited steps order(s):'
       answers:
         <<: *PROHIBITED_STEPS_ORDERS
+    formalise_arrangements:
+      question: 'Formalise an agreement:'
+      answers:
+        <<: *FORMALISE_ARRANGEMENTS
     other_issue_details:
       question: 'Other issue:'
     domestic_abuse:
@@ -293,10 +299,16 @@ en:
         Applicant: Applicant
         Respondent: Respondent
         OtherParty: Other
+    miam_consent_order:
+      question: Are you applying for a consent order?
+      answers:
+        'yes': Yes - MIAM not required
+        'no': 'No'
     miam_child_protection:
       question: "Current or previous proceedings: are/were any of those cases about an emergency protection, care or supervision order?"
       answers:
-        <<: *YESNO
+        'yes': Yes - MIAM not required
+        'no': 'No'
     miam_exemption_claim:
       question: Are you claiming exemption from the requirement to attend a MIAM?
       answers:

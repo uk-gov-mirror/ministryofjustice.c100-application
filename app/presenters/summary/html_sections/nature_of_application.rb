@@ -23,6 +23,11 @@ module Summary
                           change_path: edit_steps_petition_orders_path(
                             anchor: 'steps-petition-orders-form-orders-group-specific-issues-field'
                           )),
+          MultiAnswer.new(:formalise_arrangements,
+                          petition.formalise_arrangements,
+                          change_path: edit_steps_petition_orders_path(
+                            anchor: 'steps-petition-orders-form-orders-consent-order-field'
+                          )),
           FreeTextAnswer.new(:other_issue_details,
                              petition.other_issue_details,
                              change_path: edit_steps_petition_orders_path(
