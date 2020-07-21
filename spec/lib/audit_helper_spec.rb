@@ -4,6 +4,7 @@ describe AuditHelper do
   let(:c100_application) {
     C100Application.new(
       version: 123,
+      consent_order: 'yes',
       has_solicitor: 'yes',
       reduced_litigation_capacity: 'yes',
       urgent_hearing: 'no',
@@ -41,6 +42,7 @@ describe AuditHelper do
         c8_form: false,
         under_age: false,
         saved_for_later: false,
+        consent_order: 'yes',
         legal_representation: 'yes',
         urgent_hearing: 'no',
         without_notice: 'yes',
