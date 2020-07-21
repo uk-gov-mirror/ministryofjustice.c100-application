@@ -126,7 +126,7 @@ en:
       other_parties_details_index_title: Other party %{index}
 
     consent_order_application:
-      question: Do you have a signed draft court order you want the court to consider making legally binding?
+      question: Do you have a written agreement you want the court to consider making legally binding?
       answers:
         <<: *YESNO
     child_protection_cases:

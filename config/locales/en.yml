@@ -569,16 +569,10 @@ en:
         edit:
           page_title: Consent order
           lead_text_html: |
-            <p class="govuk-body-l">If you’ve made a decision about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
-            <p class="govuk-body">This is known as a Consent Order.</p>
-            <p class="govuk-body">You can only ask for a consent order if:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>you have a draft court order and it is signed by everyone (you will need to attach the agreement to your application)</li>
-              <li>you are not in dispute with the other person</li>
-              <li>the court has no concerns about the safety or welfare of anyone involved</li>
-            </ul>
+            <p class="govuk-body-l">If you’ve already made an agreement about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
+            <p class="govuk-body">This is known as applying for a ‘consent order’. The agreement must be signed by both the applicant and the respondent.</p>
           info_notice: |
-            This question only applies to any new agreement. Don’t include any previous agreements or orders the court may have made.
+            This question only applies to new agreements. Don’t include any agreements or orders made by the court.
       child_protection_cases:
         edit:
           page_title: Child protection cases
