@@ -126,6 +126,10 @@ en:
           attributes:
             child_protection_cases:
               inclusion: *yes_no_error
+        steps/miam/consent_order_form:
+          attributes:
+            consent_order:
+              inclusion: *yes_no_error
         steps/miam/acknowledgement_form:
           attributes:
             miam_acknowledgement:
