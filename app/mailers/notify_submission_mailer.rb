@@ -45,6 +45,7 @@ class NotifySubmissionMailer < NotifyMailer
         court_email: court.email,
         court_url: C100App::CourtfinderAPI.new.court_url(court.slug),
         is_under_age: notify_boolean(@c100_application.applicants.under_age?),
+        is_consent_order: @c100_application.consent_order || 'no',
         payment_instructions: payment_instructions,
       )
     )

@@ -6,6 +6,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
       id: '4a362e1c-48eb-40e3-9458-a31ead3f30a4',
       created_at: Time.at(0),
       receipt_email: 'receipt@example.com',
+      consent_order: 'yes',
       urgent_hearing: 'yes',
       address_confidentiality: address_confidentiality,
       payment_type: 'foobar_payment',
@@ -119,6 +120,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         court_email: 'court@example.com',
         court_url: 'https://courttribunalfinder.service.gov.uk/courts/test-court',
         is_under_age: 'no',
+        is_consent_order: 'yes',
         payment_instructions: 'payment instructions from locales',
       })
     end
