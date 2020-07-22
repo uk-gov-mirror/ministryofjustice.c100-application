@@ -15,6 +15,7 @@ class AuditHelper
       c8_form: c100.confidentiality_enabled?,
       under_age: c100.applicants.under_age?,
       saved_for_later: c100.user_id.present?,
+      consent_order: c100.consent_order || 'no',
       legal_representation: c100.has_solicitor,
       urgent_hearing: c100.urgent_hearing,
       without_notice: c100.without_notice,
