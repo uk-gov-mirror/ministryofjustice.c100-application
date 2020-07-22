@@ -18,8 +18,8 @@ class BaseDecisionTree
   end
 
   def question(attribute_name, record = c100_application)
-    value = record.public_send(attribute_name)
-    GenericYesNo.new(value) if value
+    value = record.public_send(attribute_name) || 'na'
+    GenericYesNo.new(value)
   end
 
   def selected?(attribute_name, value: 'yes')
