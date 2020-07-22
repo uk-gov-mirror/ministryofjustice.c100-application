@@ -4,6 +4,11 @@
   "private": true,
   "license": "MIT",
   "dependencies": {
-    "govuk-frontend": "^3.7.0"
+    "@rails/webpacker": "5.1.1",
+    "govuk-frontend": "^3.7.0",
+    "html5shiv": "^3.7.3"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
   }
 }
