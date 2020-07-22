@@ -58,6 +58,20 @@ RSpec.describe C100App::MiamDecisionTree do
         it { is_expected.to have_destination(:acknowledgement, :edit) }
       end
     end
+
+    context 'when there is no consent order value (behaves like `no`)' do
+      let(:consent_value) { nil }
+
+      context 'and the answer is `yes`' do
+        let(:value) { 'yes' }
+        it { is_expected.to have_destination(:child_protection_info, :show) }
+      end
+
+      context 'and the answer is `no`' do
+        let(:value) { 'no' }
+        it { is_expected.to have_destination(:acknowledgement, :edit) }
+      end
+    end
   end
 
   context 'when the step is `miam_acknowledgement`' do
