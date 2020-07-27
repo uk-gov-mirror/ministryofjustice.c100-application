@@ -32,6 +32,14 @@ RSpec.describe Steps::Application::SubmissionForm do
             expect(subject.errors[:receipt_email]).to_not be_empty
           }
         end
+
+        context 'email domain contains a typo' do
+          let(:receipt_email) { 'test@gamil.com' }
+          it {
+            expect(subject).not_to be_valid
+            expect(subject.errors.added?(:receipt_email, :typo)).to eq(true)
+          }
+        end
       end
     end
 

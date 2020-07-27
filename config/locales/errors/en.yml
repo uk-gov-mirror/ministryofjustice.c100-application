@@ -2,6 +2,7 @@ en:
   dictionary:
     invalid_email_error: &invalid_email_error "Enter an email address in the correct format, like name@example.com"
     blank_email_error: &blank_email_error "Enter an email address"
+    email_typo_error: &email_typo_error "The email address seems to have a typing error"
     yes_no_error: &yes_no_error "Select yes or no"
     blank_details_error: &blank_details_error "Enter details"
     blank_exemptions_error: &blank_exemptions_error "Select at least one exemption or ‘None of these’"
@@ -47,9 +48,11 @@ en:
       email:
         invalid: *invalid_email_error
         blank: *blank_email_error
+        typo: *email_typo_error
       email_address:
         invalid: *invalid_email_error
         blank: *blank_email_error
+        typo: *email_typo_error
       children_postcodes:
         invalid: Enter a valid full postcode, with or without a space
         blank: Enter a full postcode, with or without a space
@@ -598,6 +601,7 @@ en:
               inclusion: Select how you’ll submit your application
             receipt_email:
               invalid: *invalid_email_error
+              typo: *email_typo_error
         steps/application/declaration_form:
           attributes:
             declaration_signee:
