@@ -78,7 +78,8 @@ module Steps
         *FORCED_MARRIAGE_PROTECTION_ATTRIBUTES.except(:forced_marriage_protection_is_current).keys,
         if: -> { forced_marriage_protection&.yes? }
       )
-      validates_inclusion_of :forced_marriage_protection_is_current, in: GenericYesNo.values, if: -> { forced_marriage_protection&.yes? }
+      validates_inclusion_of :forced_marriage_protection_is_current, in: GenericYesNo.values,
+                             if: -> { forced_marriage_protection&.yes? }
 
       validates_presence_of(
         *RESTRAINING_ATTRIBUTES.except(:restraining_is_current).keys,

@@ -7,8 +7,10 @@ module Summary
 
       def answers
         [
-          Answer.new(:without_notice_hearing, c100.without_notice, change_path: edit_steps_application_without_notice_path),
-          AnswersGroup.new(:without_notice_hearing_details, without_notice_hearing_details, change_path: edit_steps_application_without_notice_details_path),
+          Answer.new(:without_notice_hearing, c100.without_notice,
+                     change_path: edit_steps_application_without_notice_path),
+          AnswersGroup.new(:without_notice_hearing_details, without_notice_hearing_details,
+                           change_path: edit_steps_application_without_notice_details_path),
         ].select(&:show?)
       end
 

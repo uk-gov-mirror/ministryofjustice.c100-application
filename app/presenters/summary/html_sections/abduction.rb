@@ -12,8 +12,10 @@ module Summary
       # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def answers
         [
-          Answer.new(:abduction_passport_office_notified, abduction.passport_office_notified, change_path: edit_steps_abduction_international_path),
-          Answer.new(:abduction_children_have_passport, abduction.children_have_passport, change_path: edit_steps_abduction_children_have_passport_path),
+          Answer.new(:abduction_passport_office_notified, abduction.passport_office_notified,
+                     change_path: edit_steps_abduction_international_path),
+          Answer.new(:abduction_children_have_passport, abduction.children_have_passport,
+                     change_path: edit_steps_abduction_children_have_passport_path),
           AnswersGroup.new(
             :abduction_passport_possession,
             [
@@ -23,7 +25,8 @@ module Summary
             ],
             change_path: edit_steps_abduction_passport_details_path
           ),
-          Answer.new(:abduction_previous_attempt, abduction.previous_attempt, change_path: edit_steps_abduction_previous_attempt_path),
+          Answer.new(:abduction_previous_attempt, abduction.previous_attempt,
+                     change_path: edit_steps_abduction_previous_attempt_path),
           AnswersGroup.new(
             :abduction_previous_attempt,
             [
