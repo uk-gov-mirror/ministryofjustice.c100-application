@@ -2,7 +2,7 @@ module ApplicationReference
   extend ActiveSupport::Concern
 
   # High level format, can be used for validation purposes
-  REFERENCE_CODE_FORMAT ||= %r(^(\d){4}/(\d){2}/[[:alnum:]]{8}$)
+  REFERENCE_CODE_FORMAT ||= %r(^(\d){4}/(\d){2}/[[:alnum:]]{8}$).freeze
 
   class_methods do
     def find_by_reference_code(ref)
