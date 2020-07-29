@@ -3,6 +3,7 @@ class BaseDecisionTree
 
   attr_reader :c100_application, :record, :step_params, :as, :next_step
 
+  # rubocop:disable Naming/UncommunicativeMethodParamName
   def initialize(c100_application:, record: nil, step_params: {}, as: nil, next_step: nil)
     @c100_application = c100_application
     @record = record
@@ -10,6 +11,7 @@ class BaseDecisionTree
     @as = as
     @next_step = next_step
   end
+  # rubocop:enable Naming/UncommunicativeMethodParamName
 
   private
 

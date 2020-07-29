@@ -22,7 +22,7 @@ module C100App
     def search(area_of_law, postcode)
       safe_postcode = postcode.gsub(/[^a-z0-9]/i, '')
       url = construct_url('search/results', area_of_law, safe_postcode)
-      open(url).read
+      read_url(url)
     end
 
     def court_url(slug, format: nil)
@@ -32,7 +32,7 @@ module C100App
 
     def court_lookup(slug)
       cache.fetch(slug, SLUGS_CACHE_OPTIONS) do
-        JSON.parse(open(court_url(slug, format: :json)).read)
+        JSON.parse(read_url(court_url(slug, format: :json)))
       end
     end
 
@@ -49,6 +49,13 @@ module C100App
     end
 
     private
+
+    # TODO: replace `open` with another alternative
+    # rubocop:disable Security/Open
+    def read_url(url)
+      open(url).read
+    end
+    # rubocop:enable Security/Open
 
     def status
       request = Net::HTTP::Get.new('/healthcheck.json')

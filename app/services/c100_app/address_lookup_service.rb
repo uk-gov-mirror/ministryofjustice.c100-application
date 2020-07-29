@@ -12,7 +12,7 @@ module C100App
     end
 
     def result
-      @result ||= MapAddressLookupResults.call(results)
+      @_result ||= MapAddressLookupResults.call(results)
     end
 
     def success?
@@ -38,7 +38,7 @@ module C100App
     end
 
     def results
-      @results ||= perform_lookup
+      @_results ||= perform_lookup
     end
 
     def perform_lookup

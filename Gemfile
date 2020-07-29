@@ -59,7 +59,7 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
-  gem 'rubocop', '~> 0.52.1', require: false
+  gem 'rubocop'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'

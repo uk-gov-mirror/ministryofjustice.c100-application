@@ -16,13 +16,11 @@ module ArrangementsCheckBoxesForm
       attribute attribute_name, Array[String]
 
       # Define the query method for each of the attributes
-      # rubocop:disable Performance/HashEachMethods
       value_object.values.each do |name|
         define_method("#{name}?") do
           public_send(attribute_name).include?(name.to_s)
         end
       end
-      # rubocop:enable Performance/HashEachMethods
     end
   end
 

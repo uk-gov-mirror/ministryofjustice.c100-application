@@ -7,8 +7,10 @@ module Summary
 
       def answers
         [
-          Answer.new(:urgent_hearing, c100.urgent_hearing, change_path: edit_steps_application_urgent_hearing_path),
-          AnswersGroup.new(:urgent_hearing_details, urgent_hearing_details, change_path: edit_steps_application_urgent_hearing_details_path),
+          Answer.new(:urgent_hearing, c100.urgent_hearing,
+                     change_path: edit_steps_application_urgent_hearing_path),
+          AnswersGroup.new(:urgent_hearing_details, urgent_hearing_details,
+                           change_path: edit_steps_application_urgent_hearing_details_path),
         ].select(&:show?)
       end
 

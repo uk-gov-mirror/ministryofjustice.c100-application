@@ -31,11 +31,11 @@ module Users
     private
 
     def completed_application_from_params
-      @_c100_application ||= current_user.completed_applications.find_by(id: params[:id])
+      @_completed_application_from_params ||= current_user.completed_applications.find_by(id: params[:id])
     end
 
     def draft_from_params
-      @_c100_application ||= current_user.drafts.find_by(id: params[:id]) || (raise Errors::ApplicationNotFound)
+      @_draft_from_params ||= current_user.drafts.find_by(id: params[:id]) || (raise Errors::ApplicationNotFound)
     end
 
     def how_to_submit_or_confirmation_page
