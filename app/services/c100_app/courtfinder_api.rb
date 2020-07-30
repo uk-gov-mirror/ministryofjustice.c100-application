@@ -3,8 +3,23 @@ require 'open-uri'
 
 module C100App
   class CourtfinderAPI
-    API_ROOT ||= "https://courttribunalfinder.service.gov.uk/".freeze
-    API_URL  ||= "#{API_ROOT}%<endpoint>s.json?aol=%<aol>s&postcode=%<pcd>s".freeze
+    API_BASE_URL = "https://courttribunalfinder.service.gov.uk".freeze
+    SEARCH_PATH  = "/search/results.json?aol=%<aol>s&postcode=%<postcode>s".freeze
+    COURT_PATH   = "/courts/%<slug>s.json".freeze
+    HEALTH_CHECK = "/healthcheck.json".freeze
+
+    HTTP_HEADERS = {
+      'Accept' => 'application/json',
+      'User-Agent' => 'child-arrangements-service',
+    }.freeze
+
+    # 60 seconds is the default that Net::HTTP uses internally,
+    # but that is a very long time, so we reduce it.
+    HTTP_OPTIONS = {
+      open_timeout: 10,
+      read_timeout: 20,
+      use_ssl: true,
+    }.freeze
 
     SLUGS_CACHE_OPTIONS ||= {
       namespace: 'courtfinder',
@@ -13,31 +28,27 @@ module C100App
       skip_nil: true
     }.freeze
 
+    def self.court_url(slug)
+      URI.join(API_BASE_URL, '/courts/', slug).to_s
+    end
+
     def court_for(area_of_law, postcode)
-      JSON.parse(search(area_of_law, postcode))
-    rescue StandardError => ex
-      log_and_raise(ex)
-    end
-
-    def search(area_of_law, postcode)
       safe_postcode = postcode.gsub(/[^a-z0-9]/i, '')
-      url = construct_url('search/results', area_of_law, safe_postcode)
-      read_url(url)
-    end
+      path = format(SEARCH_PATH, aol: area_of_law, postcode: safe_postcode)
 
-    def court_url(slug, format: nil)
-      slug_with_extension = [slug, format].compact.join('.')
-      URI.join(API_ROOT, '/courts/', slug_with_extension).to_s
+      get_request(path)
     end
 
     def court_lookup(slug)
+      path = format(COURT_PATH, slug: slug)
+
       cache.fetch(slug, SLUGS_CACHE_OPTIONS) do
-        JSON.parse(read_url(court_url(slug, format: :json)))
+        get_request(path)
       end
     end
 
     def is_ok?
-      status.eql? '200'
+      status
     end
 
     # Very basic cache to save a few API requests.
@@ -50,31 +61,21 @@ module C100App
 
     private
 
-    # TODO: replace `open` with another alternative
-    # rubocop:disable Security/Open
-    def read_url(url)
-      open(url).read
-    end
-    # rubocop:enable Security/Open
-
     def status
-      request = Net::HTTP::Get.new('/healthcheck.json')
-      http_object.request(request).code
+      get_request(HEALTH_CHECK).dig('*', 'status')
+    rescue StandardError
+      false
     end
 
-    def http_object
-      uri = api_root_uri
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = (http.port == 443)
-      http
-    end
+    def get_request(path)
+      request = Net::HTTP::Get.new(path, HTTP_HEADERS)
+      uri = URI.parse(API_BASE_URL)
 
-    def api_root_uri
-      URI.parse(API_ROOT)
-    end
-
-    def construct_url(endpoint, area_of_law, postcode)
-      format(API_URL, endpoint: endpoint, aol: area_of_law, pcd: postcode)
+      Net::HTTP.start(uri.host, uri.port, :ENV, HTTP_OPTIONS) do |http|
+        JSON.parse http.request(request).body
+      end
+    rescue StandardError => ex
+      log_and_raise(ex)
     end
 
     def log_and_raise(exception)

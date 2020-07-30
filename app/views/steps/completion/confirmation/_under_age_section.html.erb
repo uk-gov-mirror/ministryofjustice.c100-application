@@ -7,7 +7,7 @@
 <%
   court_and_tribunal_finder_url = link_to(
     'Court and tribunal finder',
-    C100App::CourtfinderAPI.new.court_url(@court.slug),
+    C100App::CourtfinderAPI.court_url(@court.slug),
     class: 'govuk-link',
     target: :_blank,
     rel: :external
