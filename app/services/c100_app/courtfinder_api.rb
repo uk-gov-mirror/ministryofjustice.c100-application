@@ -1,6 +1,3 @@
-require 'json'
-require 'open-uri'
-
 module C100App
   class CourtfinderAPI
     API_BASE_URL = "https://courttribunalfinder.service.gov.uk".freeze
