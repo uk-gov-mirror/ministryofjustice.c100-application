@@ -18,8 +18,10 @@ module Reports
         self.report_type = :backoffice
         self.failures = []
 
+        # We skip emails created in the last few minutes to give a bit of time
+        # for these recent callbacks to come back.
         EmailSubmission.where(
-          created_at: 1.week.ago.beginning_of_day...Date.current.end_of_day
+          created_at: 1.week.ago.beginning_of_day...10.minutes.ago
         ).joins(:c100_application).find_each(batch_size: 25) do |record|
           reference_code = record.c100_application.reference_code
 
