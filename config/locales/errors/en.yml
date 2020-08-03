@@ -472,6 +472,10 @@ en:
             selected_address:
               blank: Select an address from the list
 
+        steps/children/special_guardianship_order_form:
+          attributes:
+            special_guardianship_order:
+              inclusion: *yes_no_error
         steps/children/residence_form:
           attributes:
             person_ids:
