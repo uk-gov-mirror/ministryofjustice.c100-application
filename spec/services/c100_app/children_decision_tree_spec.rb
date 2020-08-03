@@ -38,6 +38,31 @@ RSpec.describe C100App::ChildrenDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) {double('Child', id: 1)}
 
+    before do
+      allow(c100_application).to receive(:consent_order?).and_return(consent_order)
+    end
+
+    context 'and the application is a consent order' do
+      let(:consent_order) { true }
+
+      it 'goes to edit the orders of the current record' do
+        expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+      end
+    end
+
+    context 'and the application is not a consent order' do
+      let(:consent_order) { false }
+
+      it 'goes to the special guardianship order question for the current record' do
+        expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
+      end
+    end
+  end
+
+  context 'when the step is `special_guardianship_order`' do
+    let(:step_params) { {'special_guardianship_order' => 'anything'} }
+    let(:record) { double('Child', id: 1) }
+
     it 'goes to edit the orders of the current record' do
       expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
     end
