@@ -569,10 +569,15 @@ en:
         edit:
           page_title: Consent order
           lead_text_html: |
-            <p class="govuk-body-l">If you’ve already made an agreement about your child arrangements with the other person (the respondent) you can ask the court to consider making it legally binding.</p>
-            <p class="govuk-body">This is known as applying for a ‘consent order’. The agreement must be signed by both the applicant and the respondent.</p>
+            <p class="govuk-body-l">This is known as applying for a ‘consent order’.</p>
+            <p class="govuk-body">You can only apply for a consent order if you:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>have a written agreement about your child arrangements signed by you and the other person (you will need to send this agreement to the court)</li>
+                  <li>are not in dispute about child arrangements with the other person</li>
+                  <li>do not need a ‘hearing without notice’ (a court hearing without informing the other person)</li>
+                </ul>
           info_notice: |
-            This question only applies to new agreements. Don’t include any agreements or orders made by the court.
+            This question is only about new written agreements for the court to consider. Don’t include other agreements or orders made by the court.
       child_protection_cases:
         edit:
           page_title: Child protection cases
@@ -1470,7 +1475,7 @@ en:
 
       # MIAM steps
       steps_miam_consent_order_form:
-        consent_order: Do you have a written agreement you want the court to consider making legally binding?
+        consent_order: Do you have a written agreement with the other person (respondent) that you want the court to make legally binding?
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       steps_miam_acknowledgement_form:
