@@ -22,6 +22,7 @@ module Summary
             Separator.new(:child_index_title, index: index),
             personal_details(child),
             relationships(child),
+            Answer.new(:special_guardianship_order, child.special_guardianship_order),
             MultiAnswer.new(:child_orders, order_types(child)),
             Partial.row_blank_space,
           ]

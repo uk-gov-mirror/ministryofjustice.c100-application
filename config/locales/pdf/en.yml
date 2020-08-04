@@ -287,6 +287,10 @@ en:
       question: Are any of the children the subject of a child protection plan?
       answers:
         <<: *YESNO
+    special_guardianship_order:
+      question: Special Guardianship Order in force?
+      answers:
+        <<: *YESNO
     applicants_relationships:
       question: Applicant(s)
     respondents_relationships:
