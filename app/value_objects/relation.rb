@@ -2,7 +2,9 @@ class Relation < ValueObject
   VALUES = [
     MOTHER = new(:mother),
     FATHER = new(:father),
-    OTHER  = new(:other),
+    GUARDIAN = new(:guardian),
+    SPECIAL_GUARDIAN = new(:special_guardian),
+    OTHER = new(:other),
   ].freeze
 
   def self.values

@@ -4,6 +4,8 @@
   <%= f.govuk_radio_buttons_fieldset :relation, legend: { text: heading } do %>
     <%= f.govuk_radio_button :relation, Relation::MOTHER, link_errors: true %>
     <%= f.govuk_radio_button :relation, Relation::FATHER %>
+    <%= f.govuk_radio_button :relation, Relation::GUARDIAN %>
+    <%= f.govuk_radio_button :relation, Relation::SPECIAL_GUARDIAN %>
     <%= f.govuk_radio_button :relation, Relation::OTHER do %>
       <%= f.govuk_text_field :relation_other_value, label: { size: 's'} %>
     <% end %>

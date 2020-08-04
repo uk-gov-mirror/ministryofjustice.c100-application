@@ -22,6 +22,8 @@ RSpec.describe Steps::Shared::RelationshipForm do
       expect(described_class.choices).to eq(%w(
         mother
         father
+        guardian
+        special_guardian
         other
       ))
     end
