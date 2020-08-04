@@ -9,7 +9,9 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_child_id)
       when :personal_details
-        edit(:orders, id: record) # TODO: refinement to bypass `orders` when children < 2
+        after_personal_details
+      when :special_guardianship_order
+        choose_orders_step
       when :orders
         after_orders
       when :additional_details
@@ -24,6 +26,15 @@ module C100App
     end
 
     private
+
+    def after_personal_details
+      if c100_application.consent_order?
+        # Bypass SGO if this is a consent order application
+        choose_orders_step
+      else
+        edit(:special_guardianship_order, id: record)
+      end
+    end
 
     def after_has_other_children
       if question(:has_other_children).yes?
@@ -51,6 +62,10 @@ module C100App
       else
         edit('/steps/application/previous_proceedings')
       end
+    end
+
+    def choose_orders_step
+      edit(:orders, id: record)
     end
 
     def next_child_id(current: record)

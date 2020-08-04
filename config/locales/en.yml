@@ -263,6 +263,10 @@ en:
       personal_details:
         edit:
           page_title: Child personal details
+      special_guardianship_order:
+        edit:
+          page_title: Special Guardianship Order
+          heading: "Is there a Special Guardianship Order in force in relation to %{name}?"
       additional_details:
         edit:
           page_title: Further information about the children
@@ -1253,6 +1257,9 @@ en:
         <<: *NAMES_FORM_FIELDS
       steps_other_party_names_split_form[names_attributes]:
         <<: *NAMES_FORM_FIELDS
+      steps_children_special_guardianship_order_form:
+        special_guardianship_order_options:
+          <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode
       steps_address_results_form:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_105743) do
+ActiveRecord::Schema.define(version: 2020_08_03_111915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -307,6 +307,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_105743) do
     t.json "address_data", default: {}
     t.string "voicemail_consent"
     t.boolean "under_age"
+    t.string "special_guardianship_order"
     t.index ["c100_application_id"], name: "index_people_on_c100_application_id"
   end
 
