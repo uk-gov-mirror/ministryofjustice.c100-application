@@ -51,6 +51,13 @@
   }
 }
 
+// Give a bit more space between children
+#children_details, #other_children_details {
+  h3 {
+    margin-top: govuk-spacing(3);
+  }
+}
+
 // BEGIN -- Overrides for design system styles. Use with caution.
 //
 .govuk-summary-list {

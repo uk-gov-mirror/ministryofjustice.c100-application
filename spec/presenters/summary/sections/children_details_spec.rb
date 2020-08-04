@@ -19,6 +19,7 @@ module Summary
         dob: dob,
         age_estimate: age_estimate,
         gender: 'female',
+        special_guardianship_order: special_guardianship_order,
         child_order: child_order,
         relationships: relationships,
       )
@@ -26,6 +27,8 @@ module Summary
 
     let(:dob) { Date.new(2018, 1, 20) }
     let(:age_estimate) { nil }
+    let(:special_guardianship_order) { nil }
+
     let(:child_order) { instance_double(ChildOrder, orders: ['an_order']) }
     let(:relationships) { double('relationships') }
 
@@ -108,6 +111,16 @@ module Summary
           expect(answers[2]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[2].question).to eq(:child_age_estimate)
           expect(answers[2].value).to eq(18)
+        end
+      end
+
+      context 'when the `special_guardianship_order` attribute is not `nil`' do
+        let(:special_guardianship_order) { 'yes' }
+
+        it 'shows the question-answer' do
+          expect(answers[6]).to be_an_instance_of(Answer)
+          expect(answers[6].question).to eq(:special_guardianship_order)
+          expect(answers[6].value).to eq('yes')
         end
       end
     end

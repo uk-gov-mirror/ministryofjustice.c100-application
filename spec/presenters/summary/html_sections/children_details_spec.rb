@@ -15,12 +15,14 @@ module Summary
         dob: dob,
         age_estimate: age_estimate,
         gender: 'female',
+        special_guardianship_order: special_guardianship_order,
         child_order: child_order,
       )
     }
 
     let(:dob) { Date.new(2018, 1, 20) }
     let(:age_estimate) { nil }
+    let(:special_guardianship_order) { nil }
     let(:child_order) { instance_double(ChildOrder, orders: ['an_order']) }
 
     subject { described_class.new(c100_application) }
@@ -87,6 +89,17 @@ module Summary
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
           expect(details[0].question).to eq(:person_age_estimate)
           expect(details[0].value).to eq(18)
+        end
+      end
+
+      context 'when the `special_guardianship_order` attribute is not `nil`' do
+        let(:special_guardianship_order) { 'yes' }
+
+        it 'shows the question-answer' do
+          expect(answers[3]).to be_an_instance_of(Answer)
+          expect(answers[3].question).to eq(:special_guardianship_order)
+          expect(answers[3].value).to eq('yes')
+          expect(answers[3].change_path).to eq('/steps/children/special_guardianship_order/uuid-123')
         end
       end
     end
