@@ -9,15 +9,16 @@ module C100App
     end
 
     def payment_url
-      if c100_application.online_payment?
-        move_status_to :payment_in_progress
-        OnlinePayments.create_payment(payment_intent).payment_url
-      else
-        confirmation_url
+      return confirmation_url unless c100_application.online_payment?
+
+      begin
+        c100_application.transaction do
+          move_status_to :payment_in_progress
+          OnlinePayments.create_payment(payment_intent).payment_url
+        end
+      rescue StandardError => exception
+        raise Errors::PaymentUnexpectedError, exception
       end
-    rescue StandardError => exception
-      move_status_to :in_progress
-      raise Errors::PaymentUnexpectedError, exception
     end
 
     # Returning users after paying (or failing/cancelling)
