@@ -196,5 +196,30 @@ RSpec.describe C100Application, type: :model do
 
       subject.mark_as_completed!
     end
+
+    context 'transaction' do
+      let(:attributes) { {
+        status: :in_progress
+      } }
+
+      # In these tests we are testing DB transactions, so we need to persist
+      # the record, and cleanup after we are finished with it.
+      before do
+        subject.save
+      end
+
+      after do
+        subject.destroy
+      end
+
+      it 'reverts the application status to how it was before (rollbacks)' do
+        expect(subject.status).to eq('in_progress')
+        expect(subject).to receive(:completed!).and_call_original
+
+        expect { subject.mark_as_completed! }.to raise_error
+
+        expect(subject.reload.status).to eq('in_progress')
+      end
+    end
   end
 end

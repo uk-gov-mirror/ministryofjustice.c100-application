@@ -60,6 +60,9 @@ class C100Application < ApplicationRecord
   end
 
   def mark_as_completed!
-    completed! && CompletedApplicationsAudit.log!(self)
+    transaction do
+      completed!
+      CompletedApplicationsAudit.log!(self)
+    end
   end
 end

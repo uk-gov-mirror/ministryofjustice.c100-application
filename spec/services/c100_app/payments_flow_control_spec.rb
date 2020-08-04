@@ -7,6 +7,7 @@ RSpec.describe C100App::PaymentsFlowControl do
     C100Application.new(
       submission_type: submission_type,
       payment_type: payment_type,
+      status: :in_progress,
     )
   }
 
@@ -65,11 +66,25 @@ RSpec.describe C100App::PaymentsFlowControl do
         }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
       end
 
-      it 'reverts the application status to `in_progress`' do
-        expect(c100_application).to receive(:payment_in_progress!).ordered
-        expect(c100_application).to receive(:in_progress!).ordered
+      context 'transaction' do
+        # In these tests we are testing DB transactions, so we need to persist
+        # the record, and cleanup after we are finished with it.
+        before do
+          c100_application.save
+        end
 
-        expect { subject.payment_url }.to raise_error
+        after do
+          c100_application.destroy
+        end
+
+        it 'reverts the application status to how it was before (rollbacks)' do
+          expect(c100_application.status).to eq('in_progress')
+          expect(c100_application).to receive(:payment_in_progress!).and_call_original
+
+          expect { subject.payment_url }.to raise_error
+
+          expect(c100_application.reload.status).to eq('in_progress')
+        end
       end
     end
   end
