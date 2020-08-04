@@ -178,6 +178,10 @@ en:
       question: Orders applied for
       answers:
         <<: *PETITION_ORDER_TYPES
+    special_guardianship_order:
+      question: Special Guardianship Order in force?
+      answers:
+        <<: *YESNO
     children_known_to_authorities:
       question: Are any of the children known to social services?
       answers:

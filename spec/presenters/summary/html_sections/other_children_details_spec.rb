@@ -15,6 +15,7 @@ module Summary
         dob: Date.new(2018, 1, 20),
         age_estimate: nil,
         gender: 'female',
+        special_guardianship_order: nil,
       )
     }
 

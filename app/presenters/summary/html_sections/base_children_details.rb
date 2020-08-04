@@ -25,6 +25,9 @@ module Summary
               personal_details_questions(child),
               change_path: personal_details_path(child)
             ),
+            # SGO only shows if a value is present (will not show for `OtherChild` or consent orders)
+            Answer.new(:special_guardianship_order, child.special_guardianship_order,
+                       change_path: edit_steps_children_special_guardianship_order_path(child)),
             MultiAnswer.new(
               :child_orders,
               order_types(child),
