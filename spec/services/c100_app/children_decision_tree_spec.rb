@@ -53,8 +53,26 @@ RSpec.describe C100App::ChildrenDecisionTree do
     context 'and the application is not a consent order' do
       let(:consent_order) { false }
 
-      it 'goes to the special guardianship order question for the current record' do
-        expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
+      # TODO: feature-flag code to be removed once non-parents is released
+      before do
+        expect(Rails.env).to receive(:production?).and_return(true)
+        expect(ENV).to receive(:[]).with('DEV_TOOLS_ENABLED').and_return(dev_tools_enabled)
+      end
+
+      context 'when non-parents feature is enabled' do
+        let(:dev_tools_enabled) { '1' }
+
+        it 'goes to the special guardianship order question for the current record' do
+          expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
+        end
+      end
+
+      context 'when non-parents feature is disabled' do
+        let(:dev_tools_enabled) { nil }
+
+        it 'goes to edit the orders of the current record' do
+          expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+        end
       end
     end
   end
