@@ -9,7 +9,7 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_applicant_id)
       when :personal_details
-        after_personal_details(age_check: true)
+        after_personal_details
       when :under_age
         edit_first_child_relationships
       when :relationship
@@ -26,6 +26,14 @@ module C100App
     end
 
     private
+
+    def after_personal_details
+      if record.reload.dob > 18.years.ago
+        edit(:under_age, id: record)
+      else
+        edit_first_child_relationships
+      end
+    end
 
     def after_contact_details
       if next_applicant_id
