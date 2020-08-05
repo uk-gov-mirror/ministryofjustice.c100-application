@@ -18,6 +18,8 @@ en:
     RELATIONS: &RELATIONS
       mother: Mother
       father: Father
+      guardian: Guardian
+      special_guardian: Special Guardian
       other: Other
 
     # Important: maintain these orders in sync with the rest of locale files

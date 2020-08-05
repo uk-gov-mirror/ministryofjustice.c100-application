@@ -9,6 +9,8 @@ RSpec.describe Relation do
       expect(described_class.values.map(&:to_s)).to eq(%w(
         mother
         father
+        guardian
+        special_guardian
         other
       ))
     end
