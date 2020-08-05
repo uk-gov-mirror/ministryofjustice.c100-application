@@ -28,7 +28,7 @@ module C100App
     private
 
     def after_personal_details
-      if c100_application.consent_order?
+      if c100_application.consent_order? || hide_non_parents?
         # Bypass SGO if this is a consent order application
         choose_orders_step
       else
@@ -70,6 +70,12 @@ module C100App
 
     def next_child_id(current: record)
       next_record_id(c100_application.child_ids, current: current)
+    end
+
+    # TODO: temporarily until we finish all the neccessary work
+    # Will show on local/test/CI and staging, but not in production
+    def hide_non_parents?
+      Rails.env.production? && ENV['DEV_TOOLS_ENABLED'].nil?
     end
   end
 end
