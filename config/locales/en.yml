@@ -178,6 +178,26 @@ en:
         fieldset_legend: Enter a new name
       children_personal_details:
         heading: "Provide details for %{name}"
+
+    # BEGIN - Non-parents journey
+    # We use the approach of one single controller-view.
+    permission:
+      question:
+        edit:
+          page_title:
+            parental_responsibility: Parental responsibility
+            living_order: Living order
+          heading:
+            parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
+            living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
+          body_text:
+            parental_responsibility_html: |
+              <p class="govuk-body">
+                They could have parental responsibility by making a formal agreement that has been approved by the court, or following a court order.
+              </p>
+            living_order_html: ""
+    # END - Non-parents journey
+
     applicant:
       names:
         edit:
@@ -778,7 +798,6 @@ en:
           page_title: Details of urgent hearing
           heading: Details of urgent hearing
           court_info_html: If you need to go to court now, <a href="https://courttribunalfinder.service.gov.uk/search/" rel="external" target="_blank" class="govuk-link">contact your nearest family court</a> for assistance.
-    # attending court redesign -- begin
     attending_court:
       language:
         edit:
@@ -794,7 +813,6 @@ en:
       special_assistance:
         edit:
           page_title: Special assistance
-    # attending court redesign -- end
     international:
       resident:
         edit:
@@ -1261,6 +1279,12 @@ en:
         <<: *NAMES_FORM_FIELDS
       steps_children_special_guardianship_order_form:
         special_guardianship_order_options:
+          <<: *YESNO
+      steps_permission_parental_responsibility_form:
+        parental_responsibility_options:
+          <<: *YESNO
+      steps_permission_living_order_form:
+        living_order_options:
           <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode

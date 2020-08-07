@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_111915) do
+ActiveRecord::Schema.define(version: 2020_08_06_085153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -317,6 +317,15 @@ ActiveRecord::Schema.define(version: 2020_08_03_111915) do
     t.uuid "minor_id", null: false
     t.uuid "person_id", null: false
     t.uuid "c100_application_id"
+    t.string "parental_responsibility"
+    t.string "living_order"
+    t.string "amendment"
+    t.string "time_order"
+    t.string "living_arrangements"
+    t.string "consent"
+    t.string "family"
+    t.string "local_authority"
+    t.string "relative"
     t.index ["c100_application_id"], name: "index_relationships_on_c100_application_id"
     t.index ["minor_id", "person_id"], name: "index_relationships_on_minor_id_and_person_id", unique: true
   end

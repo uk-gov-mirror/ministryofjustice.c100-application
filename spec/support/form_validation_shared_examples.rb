@@ -125,6 +125,35 @@ RSpec.shared_examples 'a yes-no question form' do |options|
   end
 end
 
+RSpec.shared_examples 'a permission yes-no question form' do |options|
+  include_examples 'a yes-no question form', options do
+    let(:relationship) { instance_double(Relationship) }
+    let(:association) { relationship }
+
+    let(:arguments) {
+      {
+        record: relationship,
+        c100_application: c100_application,
+        question_attribute => answer_value
+      }.merge(linked_attributes)
+    }
+
+    describe '#question_name' do
+      let(:attributes_mock) { {a: '1', b: '2', c: '3'} }
+
+      # mutant kill
+      it 'picks the first attribute in case there are more than one' do
+        expect(subject).to receive(:attributes).and_return(attributes_mock)
+        expect(subject.question_name).to eq(:a)
+      end
+
+      it 'is equal to the yes-no attribute' do
+        expect(subject.question_name).to eq(question_attribute)
+      end
+    end
+  end
+end
+
 RSpec.shared_examples 'a has-one-association form' do |options|
   let(:association_name) { options[:association_name] }
   let(:expected_attributes) { options[:expected_attributes] }
