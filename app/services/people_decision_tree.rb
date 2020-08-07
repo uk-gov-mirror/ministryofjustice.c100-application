@@ -1,20 +1,23 @@
 class PeopleDecisionTree < BaseDecisionTree
+  def children_relationships
+    current_person = record.person
+
+    # This will be `applicant`, `respondent` or `other_party`
+    namespace = current_person.type.underscore
+
+    if next_child_id
+      edit("/steps/#{namespace}/relationship", id: current_person, child_id: next_child_id)
+    elsif show_address_lookup?
+      edit('/steps/address/lookup', id: current_person)
+    else
+      edit("/steps/#{namespace}/address_details", id: current_person)
+    end
+  end
+
   private
 
   def edit_first_child_relationships
     edit(:relationship, id: record, child_id: first_minor_id)
-  end
-
-  def children_relationships
-    current_person = record.person
-
-    if next_child_id
-      edit(:relationship, id: current_person, child_id: next_child_id)
-    elsif show_address_lookup?
-      edit('/steps/address/lookup', id: current_person)
-    else
-      edit(:address_details, id: current_person)
-    end
   end
 
   def edit_contact_details

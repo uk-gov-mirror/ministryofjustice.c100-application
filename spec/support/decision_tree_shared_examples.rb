@@ -57,7 +57,7 @@ RSpec.shared_examples 'address lookup decision tree' do
       let(:address_line_1) { 'address line 1' }
 
       it 'goes to edit the address details of the current person' do
-        expect(subject.destination).to eq(controller: :address_details, action: :edit, id: person)
+        expect(subject.destination).to eq(controller: "/steps/#{namespace}/address_details", action: :edit, id: person)
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.shared_examples 'address lookup decision tree' do
       let(:address_unknown) { true }
 
       it 'goes to edit the address details of the current person' do
-        expect(subject.destination).to eq(controller: :address_details, action: :edit, id: person)
+        expect(subject.destination).to eq(controller: "/steps/#{namespace}/address_details", action: :edit, id: person)
       end
     end
   end
