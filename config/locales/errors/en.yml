@@ -487,6 +487,11 @@ en:
             relation_other_value:
               blank: Enter the relationship
 
+        # This error will apply to all questions in the permission journey
+        # No need to declare the individual errors unless we really want them different
+        steps/permission/question_form:
+          inclusion: *yes_no_error
+
         steps/miam_exemptions/domestic_form:
           attributes:
             domestic:
