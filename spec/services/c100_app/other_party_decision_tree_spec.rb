@@ -38,11 +38,6 @@ RSpec.describe C100App::OtherPartyDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) {double('OtherParty', id: 1)}
 
-    it 'does not run the age check' do
-      expect(subject).to receive(:after_personal_details).with(age_check: false)
-      subject.destination
-    end
-
     it 'goes to edit the first child relationship for the current record' do
       expect(subject.destination).to eq(controller: :relationship, action: :edit, id: record, child_id: 1)
     end
@@ -52,13 +47,13 @@ RSpec.describe C100App::OtherPartyDecisionTree do
     let(:step_params) {{'relationship' => 'anything'}}
     let(:record) { double('Relationship', person: other_party, minor: child) }
 
-    let(:other_party) { double('OtherParty', id: 1) }
+    let(:other_party) { OtherParty.new }
 
     context 'when there are remaining children' do
       let(:child) { double('Child', id: 1) }
 
       it 'goes to edit the relationship of the next child' do
-        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: other_party, child_id: 2)
+        expect(subject.destination).to eq(controller: '/steps/other_party/relationship', action: :edit, id: other_party, child_id: 2)
       end
     end
 
@@ -67,6 +62,7 @@ RSpec.describe C100App::OtherPartyDecisionTree do
 
       include_examples 'address lookup decision tree' do
         let(:person) { other_party }
+        let(:namespace) { 'other_party' }
       end
     end
   end

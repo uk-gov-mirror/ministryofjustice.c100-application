@@ -47,13 +47,13 @@ RSpec.describe C100App::RespondentDecisionTree do
     let(:step_params) {{'relationship' => 'anything'}}
     let(:record) { double('Relationship', person: respondent, minor: child) }
 
-    let(:respondent) { double('Respondent', id: 1) }
+    let(:respondent) { Respondent.new }
 
     context 'when there are remaining children' do
       let(:child) { double('Child', id: 1) }
 
       it 'goes to edit the relationship of the next child' do
-        expect(subject.destination).to eq(controller: :relationship, action: :edit, id: respondent, child_id: 2)
+        expect(subject.destination).to eq(controller: '/steps/respondent/relationship', action: :edit, id: respondent, child_id: 2)
       end
     end
 
@@ -62,6 +62,7 @@ RSpec.describe C100App::RespondentDecisionTree do
 
       include_examples 'address lookup decision tree' do
         let(:person) { respondent }
+        let(:namespace) { 'respondent' }
       end
     end
   end
