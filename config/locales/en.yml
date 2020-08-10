@@ -190,12 +190,14 @@ en:
           heading:
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
+            amendment: "Is %{applicant name} applying to vary or discharge an order which was made on their application to the court?"
           body_text:
             parental_responsibility_html: |
               <p class="govuk-body">
                 They could have parental responsibility by making a formal agreement that has been approved by the court, or following a court order.
               </p>
             living_order_html: ""
+            amendment_html: ""
     # END - Non-parents journey
 
     applicant:
@@ -1285,6 +1287,9 @@ en:
           <<: *YESNO
       steps_permission_living_order_form:
         living_order_options:
+          <<: *YESNO
+      steps_permission_amendment_form:
+        amendment_options:
           <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode
