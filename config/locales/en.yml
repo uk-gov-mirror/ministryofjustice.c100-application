@@ -1500,8 +1500,8 @@ en:
         special_assistance: *one_of_the_people_needs
       steps_shared_relationship_form:
         relation_options:
-          guardian: Someone who represents the rights of a child, appointed by the court
-          special_guardian: Someone who a child lives with, appointed by the court
+          guardian: Someone who represents the rights of a child, may be appointed by a parent, special guardian or the court
+          special_guardian: Someone who represents the rights of a child, appointed by the court
 
     legend:
       # Screener steps
