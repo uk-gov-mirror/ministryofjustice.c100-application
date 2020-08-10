@@ -118,9 +118,9 @@ module Summary
         let(:special_guardianship_order) { 'yes' }
 
         it 'shows the question-answer' do
-          expect(answers[6]).to be_an_instance_of(Answer)
-          expect(answers[6].question).to eq(:special_guardianship_order)
-          expect(answers[6].value).to eq('yes')
+          expect(answers[7]).to be_an_instance_of(Answer)
+          expect(answers[7].question).to eq(:special_guardianship_order)
+          expect(answers[7].value).to eq('yes')
         end
       end
     end

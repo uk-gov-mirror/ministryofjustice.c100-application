@@ -96,10 +96,10 @@ module Summary
         let(:special_guardianship_order) { 'yes' }
 
         it 'shows the question-answer' do
-          expect(answers[3]).to be_an_instance_of(Answer)
-          expect(answers[3].question).to eq(:special_guardianship_order)
-          expect(answers[3].value).to eq('yes')
-          expect(answers[3].change_path).to eq('/steps/children/special_guardianship_order/uuid-123')
+          expect(answers[4]).to be_an_instance_of(Answer)
+          expect(answers[4].question).to eq(:special_guardianship_order)
+          expect(answers[4].value).to eq('yes')
+          expect(answers[4].change_path).to eq('/steps/children/special_guardianship_order/uuid-123')
         end
       end
     end
