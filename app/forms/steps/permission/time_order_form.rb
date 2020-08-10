@@ -1,11 +1,11 @@
 module Steps
   module Permission
-    class LivingOrderForm < QuestionForm
+    class TimeOrderForm < QuestionForm
       include SingleQuestionForm
 
-      yes_no_attribute :living_order,
+      yes_no_attribute :time_order,
                        reset_when_yes: [
-                         :amendment,
+                         # To be added once we have next questions
                        ]
     end
   end

@@ -7,6 +7,10 @@ module C100App
       when :parental_responsibility
         advance_or_exit_journey(next_question: :living_order)
       when :living_order
+        advance_or_exit_journey(next_question: :amendment)
+      when :amendment
+        advance_or_exit_journey(next_question: :time_order)
+      when :time_order
         exit_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
