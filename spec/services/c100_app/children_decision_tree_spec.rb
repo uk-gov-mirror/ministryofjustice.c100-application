@@ -38,6 +38,18 @@ RSpec.describe C100App::ChildrenDecisionTree do
     let(:step_params) {{'personal_details' => 'anything'}}
     let(:record) {double('Child', id: 1)}
 
+    it 'goes to edit the orders of the current record' do
+      expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+    end
+  end
+
+  context 'when the step is `orders`' do
+    let(:step_params) {{'orders' => 'anything'}}
+    let(:record) { double('Child', id: 1, child_order: child_order) }
+    let(:child_order) { instance_double(ChildOrder, orders: orders) }
+
+    let(:orders) { ['foobar_order'] }
+
     before do
       allow(c100_application).to receive(:consent_order?).and_return(consent_order)
     end
@@ -45,8 +57,11 @@ RSpec.describe C100App::ChildrenDecisionTree do
     context 'and the application is a consent order' do
       let(:consent_order) { true }
 
-      it 'goes to edit the orders of the current record' do
-        expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+      it 'goes to edit the next child' do
+        expect(subject).not_to receive(:hide_non_parents?)
+
+        expect(subject).to receive(:next_child_step)
+        subject.destination
       end
     end
 
@@ -62,16 +77,28 @@ RSpec.describe C100App::ChildrenDecisionTree do
       context 'when non-parents feature is enabled' do
         let(:dev_tools_enabled) { '1' }
 
-        it 'goes to the special guardianship order question for the current record' do
-          expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
+        context 'and selected orders include `child_arrangements_home`' do
+          let(:orders) { ['child_arrangements_home'] }
+
+          it 'goes to the special guardianship order question for the current record' do
+            expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
+          end
+        end
+
+        context 'and selected orders does not include `child_arrangements_home`' do
+          it 'goes to edit the next child' do
+            expect(subject).to receive(:next_child_step)
+            subject.destination
+          end
         end
       end
 
       context 'when non-parents feature is disabled' do
         let(:dev_tools_enabled) { nil }
 
-        it 'goes to edit the orders of the current record' do
-          expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
+        it 'goes to edit the next child' do
+          expect(subject).to receive(:next_child_step)
+          subject.destination
         end
       end
     end
@@ -80,14 +107,6 @@ RSpec.describe C100App::ChildrenDecisionTree do
   context 'when the step is `special_guardianship_order`' do
     let(:step_params) { {'special_guardianship_order' => 'anything'} }
     let(:record) { double('Child', id: 1) }
-
-    it 'goes to edit the orders of the current record' do
-      expect(subject.destination).to eq(controller: :orders, action: :edit, id: record)
-    end
-  end
-
-  context 'when the step is `orders`' do
-    let(:step_params) {{'orders' => 'anything'}}
 
     context 'when there are remaining children' do
       let(:record) { double('Child', id: 1) }

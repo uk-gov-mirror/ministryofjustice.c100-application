@@ -9,11 +9,11 @@ module C100App
       when :names_finished
         edit(:personal_details, id: next_child_id)
       when :personal_details
-        after_personal_details
-      when :special_guardianship_order
-        choose_orders_step
+        edit(:orders, id: record)
       when :orders
         after_orders
+      when :special_guardianship_order
+        next_child_step
       when :additional_details
         edit(:has_other_children)
       when :has_other_children
@@ -27,13 +27,15 @@ module C100App
 
     private
 
-    def after_personal_details
-      if c100_application.consent_order? || hide_non_parents?
-        # Bypass SGO if this is a consent order application
-        choose_orders_step
-      else
-        edit(:special_guardianship_order, id: record)
+    # The SGO question is only shown if "home" order is selected,
+    # and this is not a consent order application
+    #
+    def after_orders
+      unless c100_application.consent_order? || hide_non_parents?
+        return edit(:special_guardianship_order, id: record) if cao_home_order?
       end
+
+      next_child_step
     end
 
     def after_has_other_children
@@ -44,7 +46,7 @@ module C100App
       end
     end
 
-    def after_orders
+    def next_child_step
       if next_child_id
         edit(:personal_details, id: next_child_id)
       else
@@ -64,8 +66,10 @@ module C100App
       end
     end
 
-    def choose_orders_step
-      edit(:orders, id: record)
+    def cao_home_order?
+      record.child_order.orders.include?(
+        PetitionOrder::CHILD_ARRANGEMENTS_HOME.to_s
+      )
     end
 
     def next_child_id(current: record)

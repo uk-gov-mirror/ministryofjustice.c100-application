@@ -33,15 +33,6 @@ Feature: Add children to the application
     And I choose "Male"
 
     When I click the "Continue" button
-    Then I should see "Is there a Special Guardianship Order in force in relation to John Doe Junior?"
-
-    # Provoke validation errors
-    When I click the "Continue" button
-    Then Page has title "Error: Special Guardianship Order - Apply to court about child arrangements - GOV.UK"
-    And I should see a "Select yes or no" link to "#steps-children-special-guardianship-order-form-special-guardianship-order-field-error"
-
-    # Fix validation errors and continue
-    And I choose "No"
     Then I should see "Which of the decisions you’re asking the court to resolve relate to John Doe Junior?"
 
     # Provoke validation errors
@@ -56,6 +47,21 @@ Feature: Add children to the application
     Then I should see "Further information"
     And I should see "Are any of the children known to social services?"
     And I should see "Are any of the children the subject of a child protection plan?"
+
+    # Go back and select "home" order to enter the special guardianship question
+    When I click the "Back" link
+    And I check "Decide who they live with and when"
+    When I click the "Continue" button
+    Then I should see "Is there a Special Guardianship Order in force in relation to John Doe Junior?"
+
+    # Provoke validation errors
+    When I click the "Continue" button
+    Then Page has title "Error: Special Guardianship Order - Apply to court about child arrangements - GOV.UK"
+    And I should see a "Select yes or no" link to "#steps-children-special-guardianship-order-form-special-guardianship-order-field-error"
+
+    # Fix validation errors and continue
+    And I choose "No"
+    Then I should see "Further information"
 
     # Provoke validation errors
     When I click the "Continue" button
