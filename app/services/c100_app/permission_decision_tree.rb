@@ -9,8 +9,9 @@ module C100App
       when :living_order
         advance_or_exit_journey(next_question: :amendment)
       when :amendment
+        advance_or_exit_journey(next_question: :time_order)
+      when :time_order
         exit_journey
-
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end

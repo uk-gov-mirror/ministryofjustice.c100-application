@@ -185,12 +185,15 @@ en:
       question:
         edit:
           page_title:
-            parental_responsibility: Parental responsibility
-            living_order: Living order
+            parental_responsibility: Marriage, civil partnership and parental responsibility
+            living_order: Named in current child arrangements order
+            amendment: Applying to vary or discharge
+            time_order: Named in order about spending time
           heading:
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
-            amendment: "Is %{applicant name} applying to vary or discharge an order which was made on their application to the court?"
+            amendment: "Is %{applicant_name} applying to vary or discharge an order which was made on their application to the court?"
+            time_order: "Was %{applicant_name} named in an order about who %{child_name} should spend time with or when that should happen?"
           body_text:
             parental_responsibility_html: |
               <p class="govuk-body">
@@ -198,6 +201,7 @@ en:
               </p>
             living_order_html: ""
             amendment_html: ""
+            time_order_html: ""
     # END - Non-parents journey
 
     applicant:
@@ -1290,6 +1294,9 @@ en:
           <<: *YESNO
       steps_permission_amendment_form:
         amendment_options:
+          <<: *YESNO
+      steps_permission_time_order_form:
+        time_order_options:
           <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode
