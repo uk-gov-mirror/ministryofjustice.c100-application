@@ -67,6 +67,7 @@ end
 # Needed for the children journey
 When(/^I have selected orders for the court to decide$/) do
   step %[I visit "steps/petition/orders"]
+  step %[I check "Decide who they live with and when"]
   step %[I check "Decide how much time they spend with each person"]
   step %[I click the "Continue" button]
   step %[I should see "Decide how much time they spend with each person"]
