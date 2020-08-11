@@ -15,11 +15,23 @@ module Steps
         errors.add(:orders, :blank) unless selected_options.any?
       end
 
+      def changed?
+        !child_order.orders.eql?(selected_options)
+      end
+
       def persist!
         raise C100ApplicationNotFound unless c100_application
+        return true unless changed?
 
         child_order.update(
           orders: selected_options
+        )
+
+        # Reset the SGO flag of the child as this is dependent on the orders the applicant
+        # have selected, and a change in orders require a re-evaluation of this question.
+        #
+        record.update(
+          special_guardianship_order: nil
         )
       end
 
