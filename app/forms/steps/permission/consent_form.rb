@@ -1,11 +1,11 @@
 module Steps
   module Permission
-    class LivingArrangementForm < QuestionForm
+    class ConsentForm < QuestionForm
       include SingleQuestionForm
 
-      yes_no_attribute :living_arrangement,
+      yes_no_attribute :consent,
                        reset_when_yes: [
-                         :consent
+                         # To be added once we have next questions
                        ]
     end
   end
