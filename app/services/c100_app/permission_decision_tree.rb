@@ -15,6 +15,8 @@ module C100App
       when :living_arrangement
         advance_or_exit_journey(next_question: :consent)
       when :consent
+        advance_or_exit_journey(next_question: :family)
+      when :family
         exit_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
