@@ -1,11 +1,11 @@
 module Steps
   module Permission
-    class TimeOrderForm < QuestionForm
+    class LivingArrangementForm < QuestionForm
       include SingleQuestionForm
 
-      yes_no_attribute :time_order,
+      yes_no_attribute :living_arrangement,
                        reset_when_yes: [
-                         :living_arrangement,
+                         :consent
                        ]
     end
   end

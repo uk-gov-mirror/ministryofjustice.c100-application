@@ -11,6 +11,10 @@ module C100App
       when :amendment
         advance_or_exit_journey(next_question: :time_order)
       when :time_order
+        advance_or_exit_journey(next_question: :living_arrangement)
+      when :living_arrangement
+        advance_or_exit_journey(next_question: :consent)
+      when :consent
         exit_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
