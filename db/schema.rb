@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_085153) do
+ActiveRecord::Schema.define(version: 2020_08_11_110454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -321,7 +321,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_085153) do
     t.string "living_order"
     t.string "amendment"
     t.string "time_order"
-    t.string "living_arrangements"
+    t.string "living_arrangement"
     t.string "consent"
     t.string "family"
     t.string "local_authority"
