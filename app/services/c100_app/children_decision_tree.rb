@@ -73,11 +73,5 @@ module C100App
     def next_child_id(current: record)
       next_record_id(c100_application.child_ids, current: current)
     end
-
-    # TODO: temporarily until we finish all the neccessary work
-    # Will show on local/test/CI and staging, but not in production
-    def hide_non_parents?
-      Rails.env.production? && ENV['DEV_TOOLS_ENABLED'].nil?
-    end
   end
 end
