@@ -125,6 +125,28 @@ RSpec.describe C100App::PermissionDecisionTree do
     context 'and the answer is `no`' do
       let(:value) { 'no' }
 
+      it 'advances to the next question' do
+        expect(subject.destination).to eq(controller: :question, action: :edit, question_name: :living_arrangement, relationship_id: record)
+      end
+    end
+  end
+
+  context 'when the step is `living_arrangement`' do
+    let(:step_params) { { living_arrangement: 'anything' } }
+    let(:record) { instance_double(Relationship, living_arrangement: value) }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+
+      it 'exists the journey' do
+        expect(subject).to receive(:exit_journey)
+        subject.destination
+      end
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+
       # TODO: adapt tests when we add new questions
       it 'exists the journey' do
         expect(subject).to receive(:exit_journey)
