@@ -13,7 +13,7 @@ module C100App
       when :under_age
         edit_first_child_relationships
       when :relationship
-        children_relationships
+        after_relationship
       when :address_details
         edit_contact_details
       when :contact_details
@@ -41,6 +41,19 @@ module C100App
       else
         edit(:has_solicitor)
       end
+    end
+
+    def after_relationship
+      # TODO: remove feature-flag to enable the non-parents in production
+      unless hide_non_parents?
+        rules = PermissionRules.new(record)
+
+        return edit(
+          '/steps/permission/question', question_name: :parental_responsibility, relationship_id: record
+        ) if rules.permission_undecided?
+      end
+
+      children_relationships
     end
 
     def after_has_solicitor

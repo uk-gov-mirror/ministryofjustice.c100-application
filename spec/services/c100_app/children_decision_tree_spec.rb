@@ -50,56 +50,37 @@ RSpec.describe C100App::ChildrenDecisionTree do
 
     let(:orders) { ['foobar_order'] }
 
+    # TODO: feature-flag code to be removed once non-parents is released
     before do
-      allow(c100_application).to receive(:consent_order?).and_return(consent_order)
+      expect(Rails.env).to receive(:production?).and_return(true)
+      expect(ENV).to receive(:[]).with('DEV_TOOLS_ENABLED').and_return(dev_tools_enabled)
     end
 
-    context 'and the application is a consent order' do
-      let(:consent_order) { true }
+    context 'when non-parents feature is enabled' do
+      let(:dev_tools_enabled) { '1' }
 
-      it 'goes to edit the next child' do
-        expect(subject).not_to receive(:hide_non_parents?)
+      context 'and selected orders include `child_arrangements_home`' do
+        let(:orders) { ['child_arrangements_home'] }
 
-        expect(subject).to receive(:next_child_step)
-        subject.destination
-      end
-    end
-
-    context 'and the application is not a consent order' do
-      let(:consent_order) { false }
-
-      # TODO: feature-flag code to be removed once non-parents is released
-      before do
-        expect(Rails.env).to receive(:production?).and_return(true)
-        expect(ENV).to receive(:[]).with('DEV_TOOLS_ENABLED').and_return(dev_tools_enabled)
-      end
-
-      context 'when non-parents feature is enabled' do
-        let(:dev_tools_enabled) { '1' }
-
-        context 'and selected orders include `child_arrangements_home`' do
-          let(:orders) { ['child_arrangements_home'] }
-
-          it 'goes to the special guardianship order question for the current record' do
-            expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
-          end
-        end
-
-        context 'and selected orders does not include `child_arrangements_home`' do
-          it 'goes to edit the next child' do
-            expect(subject).to receive(:next_child_step)
-            subject.destination
-          end
+        it 'goes to the special guardianship order question for the current record' do
+          expect(subject.destination).to eq(controller: :special_guardianship_order, action: :edit, id: record)
         end
       end
 
-      context 'when non-parents feature is disabled' do
-        let(:dev_tools_enabled) { nil }
-
+      context 'and selected orders does not include `child_arrangements_home`' do
         it 'goes to edit the next child' do
           expect(subject).to receive(:next_child_step)
           subject.destination
         end
+      end
+    end
+
+    context 'when non-parents feature is disabled' do
+      let(:dev_tools_enabled) { nil }
+
+      it 'goes to edit the next child' do
+        expect(subject).to receive(:next_child_step)
+        subject.destination
       end
     end
   end

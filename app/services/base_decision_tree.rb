@@ -44,4 +44,10 @@ class BaseDecisionTree
       collection_ids.at(pos + 1)
     end
   end
+
+  # TODO: temporarily until we finish all the neccessary work for non-parents
+  # Will show on local/test/CI and staging, but not in production
+  def hide_non_parents?
+    Rails.env.production? && ENV['DEV_TOOLS_ENABLED'].nil?
+  end
 end

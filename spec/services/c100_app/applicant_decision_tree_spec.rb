@@ -75,20 +75,58 @@ RSpec.describe C100App::ApplicantDecisionTree do
 
     let(:applicant) { Applicant.new }
 
-    context 'when there are remaining children' do
-      let(:child) { double('Child', id: 1) }
+    let(:rules_mock) { double(permission_undecided?: rule_result) }
 
-      it 'goes to edit the relationship of the next child' do
-        expect(subject.destination).to eq(controller: '/steps/applicant/relationship', action: :edit, id: applicant, child_id: 2)
+    # TODO: feature-flag code to be removed once non-parents is released
+    before do
+      allow(subject).to receive(:hide_non_parents?).and_return(hide_non_parents)
+    end
+
+    context 'when non-parents feature is enabled' do
+      let(:hide_non_parents) { false }
+
+      before do
+        allow(C100App::PermissionRules).to receive(:new).with(record).and_return(rules_mock)
+      end
+
+      context 'when permission might be needed' do
+        let(:child) { double('Child', id: 1) }
+        let(:rule_result) { true }
+
+        it 'goes to edit the relationship of the next child' do
+          expect(subject.destination).to eq(controller: '/steps/permission/question', action: :edit, question_name: :parental_responsibility, relationship_id: record)
+        end
+      end
+
+      context 'when permission is not needed' do
+        let(:rule_result) { false }
+
+        context 'when there are remaining children' do
+          let(:child) { double('Child', id: 1) }
+
+          it 'goes to edit the relationship of the next child' do
+            expect(subject.destination).to eq(controller: '/steps/applicant/relationship', action: :edit, id: applicant, child_id: 2)
+          end
+        end
+
+        context 'when all child relationships have been edited' do
+          let(:child) { double('Child', id: 3) }
+
+          include_examples 'address lookup decision tree' do
+            let(:person) { applicant }
+            let(:namespace) { 'applicant' }
+          end
+        end
       end
     end
 
-    context 'when all child relationships have been edited' do
-      let(:child) { double('Child', id: 3) }
+    context 'when non-parents feature is disabled' do
+      let(:hide_non_parents) { true }
+      let(:child) { double('Child', id: 1) }
 
-      include_examples 'address lookup decision tree' do
-        let(:person) { applicant }
-        let(:namespace) { 'applicant' }
+      it 'goes to edit the relationship of the next child' do
+        expect(subject).to receive(:children_relationships)
+        subject.destination
       end
     end
   end

@@ -27,11 +27,9 @@ module C100App
 
     private
 
-    # The SGO question is only shown if "home" order is selected,
-    # and this is not a consent order application
-    #
     def after_orders
-      unless c100_application.consent_order? || hide_non_parents?
+      # TODO: remove feature-flag to enable the non-parents in production
+      unless hide_non_parents?
         return edit(:special_guardianship_order, id: record) if cao_home_order?
       end
 
@@ -74,12 +72,6 @@ module C100App
 
     def next_child_id(current: record)
       next_record_id(c100_application.child_ids, current: current)
-    end
-
-    # TODO: temporarily until we finish all the neccessary work
-    # Will show on local/test/CI and staging, but not in production
-    def hide_non_parents?
-      Rails.env.production? && ENV['DEV_TOOLS_ENABLED'].nil?
     end
   end
 end
