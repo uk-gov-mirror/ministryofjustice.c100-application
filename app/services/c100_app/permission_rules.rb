@@ -20,8 +20,11 @@ module C100App
     #
     # In these cases we need to go through further questions to decide
     # if permission will be needed or not.
+    # Consent order applications do not require permission.
     #
     def permission_undecided?
+      return false if consent_order?
+
       !permission_needed? && other_relationship?
     end
 
@@ -41,6 +44,10 @@ module C100App
       relationship.relation.eql?(
         Relation::OTHER.to_s
       )
+    end
+
+    def consent_order?
+      relationship.c100_application.consent_order?
     end
   end
 end
