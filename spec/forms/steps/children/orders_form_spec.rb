@@ -47,9 +47,10 @@ RSpec.describe Steps::Children::OrdersForm do
     end
 
     context 'for valid details' do
+
       context 'when child_order does not exist' do
         let(:child_order) { nil }
-        let(:new_child_order) { double }
+        let(:new_child_order) { instance_double(ChildOrder, orders: []) }
 
         it 'creates the record if it does not exist' do
           expect(child).to receive(:build_child_order).and_return(new_child_order)
@@ -58,21 +59,44 @@ RSpec.describe Steps::Children::OrdersForm do
             orders: orders
           ).and_return(true)
 
+          expect(child).to receive(:update).with(
+            special_guardianship_order: nil
+          ).and_return(true)
+
           expect(subject.save).to be(true)
         end
       end
 
       context 'when record already exists' do
-        let(:child_order) { instance_double(ChildOrder) }
+        let(:child_order) { instance_double(ChildOrder, orders: existing_orders) }
 
-        it 'updates the record if it already exists' do
-          expect(child).to receive(:child_order).and_return(child_order)
+        context 'and there are changes in the orders' do
+          let(:existing_orders) { ['prohibited_steps_holiday'] }
 
-          expect(child_order).to receive(:update).with(
-            orders: orders
-          ).and_return(true)
+          it 'updates the record if it already exists' do
+            expect(child).to receive(:child_order).and_return(child_order)
 
-          expect(subject.save).to be(true)
+            expect(child_order).to receive(:update).with(
+              orders: orders
+            ).and_return(true)
+
+            expect(child).to receive(:update).with(
+              special_guardianship_order: nil
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
+        end
+
+        context 'and there are no changes in the orders' do
+          let(:existing_orders) { orders }
+
+          it 'does not save the record but returns true' do
+            expect(child_order).not_to receive(:update)
+            expect(child).not_to receive(:update)
+
+            expect(subject.save).to be(true)
+          end
         end
       end
     end
