@@ -4,6 +4,8 @@ module Steps
       yes_no_attribute :consent,
                        reset_when_yes: [
                          :family,
+                         :local_authority,
+                         :relative
                        ]
     end
   end

@@ -3,7 +3,10 @@ module Steps
     class LivingArrangementForm < QuestionForm
       yes_no_attribute :living_arrangement,
                        reset_when_yes: [
-                         :consent
+                         :consent,
+                         :family,
+                         :local_authority,
+                         :relative
                        ]
     end
   end

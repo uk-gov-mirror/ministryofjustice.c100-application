@@ -4,6 +4,10 @@ module Steps
       yes_no_attribute :time_order,
                        reset_when_yes: [
                          :living_arrangement,
+                         :consent,
+                         :family,
+                         :local_authority,
+                         :relative
                        ]
     end
   end

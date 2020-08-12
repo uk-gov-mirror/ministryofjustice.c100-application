@@ -5,5 +5,8 @@ RSpec.describe Steps::Permission::LivingArrangementForm do
                   attribute_name: :living_arrangement,
                   reset_when_yes: [
                       :consent,
+                      :family,
+                      :local_authority,
+                      :relative
                   ]
 end

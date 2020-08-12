@@ -3,7 +3,8 @@ module Steps
     class FamilyForm < QuestionForm
       yes_no_attribute :family,
                        reset_when_yes: [
-                         :local_authority
+                         :local_authority,
+                         :relative
                        ]
     end
   end
