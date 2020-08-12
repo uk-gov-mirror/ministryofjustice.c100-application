@@ -8,7 +8,19 @@
   </td>
   <td class="govuk-table__cell">
     <% if payment.state.key?('code') %>
-      <%= payment.state.slice('code', 'message') %> <em class="app-util--disabled-color">Ref. <%= payment.c100_application.reference_code %></em>
+      <% c100_application = payment.c100_application %>
+
+      <%= format("%<message>s (%<code>s)", payment.state.symbolize_keys) %>
+
+      <div class="app-util--disabled-color">
+        <% if c100_application.completed? %>
+          Final payment method: <%= t(c100_application.payment_type, scope: 'backoffice.payment') %>
+        <% else %>
+          Application waiting to be completed
+        <% end %>
+      </div>
+
+      <div class="app-util--disabled-color">Ref. <%= c100_application.reference_code %></div>
     <% end %>
   </td>
 </tr>
