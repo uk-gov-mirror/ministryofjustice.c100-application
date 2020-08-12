@@ -191,6 +191,9 @@ en:
             time_order: Named in order about spending time
             living_arrangement: Living arrangements
             consent: Consent to apply
+            family: Marriage, civil partnership and family
+            local_authority: Local authority and consent
+            relative: Foster parent or relative
           heading:
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
@@ -198,6 +201,9 @@ en:
             time_order: "Was %{applicant_name} named in an order about who %{child_name} should spend time with or when that should happen?"
             living_arrangement: "Has %{child_name} lived with %{applicant_name} for at least 3 years?"
             consent: "Does %{applicant_name} have everyone’s consent to make this application?"
+            family: "Is %{applicant_name} married or in a civil partnership with %{child_name}'s parent and is the child treated as part of their family?"
+            local_authority: "If %{child_name} is being cared for by the Local Authority, does %{applicant_name} have the Local Authority’s consent to make this application?"
+            relative: "Is %{applicant_name} a foster parent or relative of %{child_name}, and has %{child_name} been living with them for at least one year?"
           body_text:
             parental_responsibility_html: |
               <p class="govuk-body">
@@ -208,11 +214,17 @@ en:
             time_order_html: ""
             living_arrangement_html: ""
             consent_html: |
-               <p class="govuk-body">Consent needs to be given by everyone who:</p>
-               <ul class="govuk-list govuk-list--bullet">
-                 <li>is named in a current child arrangements order (which sets out who the children should live with or when)</li>
-                 <li>has parental responsibility for the children</li>
-               </ul>
+              <p class="govuk-body">Consent needs to be given by everyone who:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                  <li>is named in a current child arrangements order (which sets out who the children should live with or when)</li>
+                  <li>has parental responsibility for the children</li>
+                </ul>
+            family_html: |
+               <p class="govuk-body">They could also have been married or in a civil partnership with the child’s parent in the past.</p>
+            local_authority_html: ""
+            relative_html: |
+              <p class="govuk-body">The child must have been living with the applicant immediately before they make this application.</p>
+
 
     # END - Non-parents journey
 
@@ -1315,6 +1327,15 @@ en:
           <<: *YESNO
       steps_permission_consent_form:
         consent_options:
+          <<: *YESNO
+      steps_permission_family_form:
+        family_options:
+          <<: *YESNO
+      steps_permission_local_authority_form:
+        local_authority_options:
+          <<: *YESNO
+      steps_permission_relative_form:
+        relative_options:
           <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode

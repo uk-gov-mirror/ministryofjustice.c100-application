@@ -169,7 +169,72 @@ RSpec.describe C100App::PermissionDecisionTree do
     context 'and the answer is `no`' do
       let(:value) { 'no' }
 
-      # TODO: adapt tests when we add new questions
+      it 'exists the journey' do
+        expect(subject.destination).to eq(controller: :question, action: :edit, question_name: :family, relationship_id: record)
+      end
+    end
+  end
+
+  context 'when the step is `family`' do
+    let(:step_params) { { family: 'anything' } }
+    let(:record) { instance_double(Relationship, family: value) }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+
+      it 'exists the journey' do
+        expect(subject).to receive(:exit_journey)
+        subject.destination
+      end
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+
+      it 'exists the journey' do
+        expect(subject.destination).to eq(controller: :question, action: :edit, question_name: :local_authority, relationship_id: record)
+      end
+    end
+  end
+
+  context 'when the step is `local_authority`' do
+    let(:step_params) { { local_authority: 'anything' } }
+    let(:record) { instance_double(Relationship, local_authority: value) }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+
+      it 'exists the journey' do
+        expect(subject).to receive(:exit_journey)
+        subject.destination
+      end
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+
+      it 'exists the journey' do
+        expect(subject.destination).to eq(controller: :question, action: :edit, question_name: :relative, relationship_id: record)
+      end
+    end
+  end
+
+  context 'when the step is `relative`' do
+    let(:step_params) { { relative: 'anything' } }
+    let(:record) { instance_double(Relationship, relative: value) }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+
+      it 'exists the journey' do
+        expect(subject).to receive(:exit_journey)
+        subject.destination
+      end
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+
       it 'exists the journey' do
         expect(subject).to receive(:exit_journey)
         subject.destination

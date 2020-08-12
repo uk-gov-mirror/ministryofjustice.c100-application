@@ -1,11 +1,11 @@
 module Steps
   module Permission
-    class ConsentForm < QuestionForm
+    class FamilyForm < QuestionForm
       include SingleQuestionForm
 
-      yes_no_attribute :consent,
+      yes_no_attribute :family,
                        reset_when_yes: [
-                         :family,
+                         :local_authority
                        ]
     end
   end
