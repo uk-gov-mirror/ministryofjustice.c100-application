@@ -197,7 +197,7 @@ en:
           heading:
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
-            amendment: "Is %{applicant_name} applying to vary or discharge an order which was made on their application to the court?"
+            amendment: "Is %{applicant_name} applying to change or end (discharge) an existing court order?"
             time_order: "Was %{applicant_name} named in an order about who %{child_name} should spend time with or when that should happen?"
             living_arrangement: "Has %{child_name} lived with %{applicant_name} for at least 3 years?"
             consent: "Does %{applicant_name} have everyone’s consent to make this application?"
@@ -207,7 +207,7 @@ en:
           body_text:
             parental_responsibility_html: |
               <p class="govuk-body">
-                They could have parental responsibility by making a formal agreement that has been approved by the court, or following a court order.
+                They could have parental responsibility by making a formal agreement that has been registered with the court, or following a court order.
               </p>
             living_order_html: ""
             amendment_html: ""
