@@ -5,5 +5,11 @@ RSpec.describe Steps::Permission::LivingOrderForm do
                   attribute_name: :living_order,
                   reset_when_yes: [
                       :amendment,
+                      :time_order,
+                      :living_arrangement,
+                      :consent,
+                      :family,
+                      :local_authority,
+                      :relative
                   ]
 end

@@ -5,5 +5,6 @@ RSpec.describe Steps::Permission::FamilyForm do
                   attribute_name: :family,
                   reset_when_yes: [
                       :local_authority,
+                      :relative
                   ]
 end

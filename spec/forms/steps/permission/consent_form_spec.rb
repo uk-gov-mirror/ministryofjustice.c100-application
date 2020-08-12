@@ -5,5 +5,7 @@ RSpec.describe Steps::Permission::ConsentForm do
                   attribute_name: :consent,
                   reset_when_yes: [
                       :family,
+                      :local_authority,
+                      :relative
                   ]
 end

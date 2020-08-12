@@ -5,5 +5,9 @@ RSpec.describe Steps::Permission::TimeOrderForm do
                   attribute_name: :time_order,
                   reset_when_yes: [
                       :living_arrangement,
+                      :consent,
+                      :family,
+                      :local_authority,
+                      :relative
                   ]
 end

@@ -1,11 +1,10 @@
 module Steps
   module Permission
     class FamilyForm < QuestionForm
-      include SingleQuestionForm
-
       yes_no_attribute :family,
                        reset_when_yes: [
-                         :local_authority
+                         :local_authority,
+                         :relative
                        ]
     end
   end

@@ -5,5 +5,10 @@ RSpec.describe Steps::Permission::AmendmentForm do
                   attribute_name: :amendment,
                   reset_when_yes: [
                       :time_order,
+                      :living_arrangement,
+                      :consent,
+                      :family,
+                      :local_authority,
+                      :relative
                   ]
 end
