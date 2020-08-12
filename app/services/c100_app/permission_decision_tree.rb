@@ -17,6 +17,8 @@ module C100App
       when :consent
         advance_or_exit_journey(next_question: :family)
       when :family
+        advance_or_exit_journey(next_question: :local_authority)
+      when :local_authority
         exit_journey
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"

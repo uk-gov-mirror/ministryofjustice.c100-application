@@ -192,6 +192,7 @@ en:
             living_arrangement: Living arrangements
             consent: Consent to apply
             family: Marriage, civil partnership and family
+            local_authority: Local authority and consent
           heading:
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
@@ -200,6 +201,7 @@ en:
             living_arrangement: "Has %{child_name} lived with %{applicant_name} for at least 3 years?"
             consent: "Does %{applicant_name} have everyone’s consent to make this application?"
             family: "Is %{applicant_name} married or in a civil partnership with %{child_name}'s parent and is the child treated as part of their family?"
+            local_authority: "If %{child_name} is being cared for by the Local Authority, does %{applicant_name} have the Local Authority’s consent to make this application?"
           body_text:
             parental_responsibility_html: |
               <p class="govuk-body">
@@ -217,6 +219,7 @@ en:
                 </ul>
             family_html: |
                <p class="govuk-body">They could also have been married or in a civil partnership with the child’s parent in the past.</p>
+            local_authority_html: ""
 
     # END - Non-parents journey
 
@@ -1322,6 +1325,9 @@ en:
           <<: *YESNO
       steps_permission_family_form:
         family_options:
+          <<: *YESNO
+      steps_permission_local_authority_form:
+        local_authority_options:
           <<: *YESNO
       steps_address_lookup_form:
         postcode: Current postcode

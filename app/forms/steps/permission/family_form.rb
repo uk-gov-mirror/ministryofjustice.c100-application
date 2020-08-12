@@ -5,7 +5,7 @@ module Steps
 
       yes_no_attribute :family,
                        reset_when_yes: [
-                         # To be added once we have next questions
+                         :local_authority
                        ]
     end
   end
