@@ -18,4 +18,6 @@ class Relationship < ApplicationRecord
     local_authority
     relative
   ].freeze
+
+  scope :with_permission_data, -> { where.not(PERMISSION_ATTRIBUTES.first => nil) }
 end

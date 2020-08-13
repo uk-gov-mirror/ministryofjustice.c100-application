@@ -195,8 +195,8 @@ en:
             local_authority: Local authority and consent
             relative: Foster parent or relative
           heading:
-            # NOTE: we have a duplication of these headings in the `cya/en.yml` file
-            # If copy changes here, remember to also change the copy in the other file
+            # NOTE: we have duplications of these headings in the `cya/en.yml` and `pdf/en.yml` files
+            # If copy changes here, remember to also change the copy in the other files
             parental_responsibility: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
             living_order: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
             amendment: "Is %{applicant_name} applying to change or end (discharge) an existing court order?"
