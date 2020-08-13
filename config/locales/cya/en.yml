@@ -176,6 +176,47 @@ en:
       question: Relationship to %{child_name}
       answers:
         <<: *RELATIONS
+
+    # BEGIN - Non-parents permission questions
+    # NOTE: these should match the heading locales in the `en.yml` file
+    child_permission_parental_responsibility:
+      question: "Has %{applicant_name} ever been married to or in a civil partnership with %{child_name}’s parent and do they have parental responsibility?"
+      answers:
+        <<: *YESNO
+    child_permission_living_order:
+      question: "Is %{applicant_name} named in a current child arrangements order as someone who %{child_name} should live with?"
+      answers:
+        <<: *YESNO
+    child_permission_amendment:
+      question: "Is %{applicant_name} applying to change or end (discharge) an existing court order?"
+      answers:
+        <<: *YESNO
+    child_permission_time_order:
+      question: "Was %{applicant_name} named in an order about who %{child_name} should spend time with or when that should happen?"
+      answers:
+        <<: *YESNO
+    child_permission_living_arrangement:
+      question: "Has %{child_name} lived with %{applicant_name} for at least 3 years?"
+      answers:
+        <<: *YESNO
+    child_permission_consent:
+      question: "Does %{applicant_name} have everyone’s consent to make this application?"
+      answers:
+        <<: *YESNO
+    child_permission_family:
+      question: "Is %{applicant_name} married or in a civil partnership with %{child_name}’s parent and is the child treated as part of their family?"
+      answers:
+        <<: *YESNO
+    child_permission_local_authority:
+      question: "If %{child_name} is being cared for by the Local Authority, does %{applicant_name} have the Local Authority’s consent to make this application?"
+      answers:
+        <<: *YESNO
+    child_permission_relative:
+      question: "Is %{applicant_name} a foster parent or relative of %{child_name}, and has %{child_name} been living with them for at least one year?"
+      answers:
+        <<: *YESNO
+    # END - Non-parents permission questions
+
     child_orders:
       question: Orders applied for
       answers:

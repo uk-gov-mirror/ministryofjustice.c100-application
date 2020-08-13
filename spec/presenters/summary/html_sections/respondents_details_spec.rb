@@ -25,7 +25,7 @@ module Summary
         mobile_phone: 'mobile_phone',
         voicemail_consent: nil,
         email: 'email',
-        relationships: [relationships],
+        relationships: [relationship],
       )
     }
 
@@ -38,12 +38,13 @@ module Summary
     let(:has_previous_name) { 'no' }
     let(:previous_name) { nil }
 
-    let(:relationships) {
+    let(:relationship) {
       instance_double(
         Relationship,
         relation: 'mother',
         relation_other_value: nil,
         minor: child,
+        parental_responsibility: nil,
       )
     }
     let(:child) { instance_double(Child, to_param: 'uuid-555', full_name: 'Child Test') }
@@ -170,12 +171,13 @@ module Summary
       end
 
       context 'for `other` children relationship' do
-        let(:relationships) {
+        let(:relationship) {
           instance_double(
             Relationship,
             relation: 'other',
             relation_other_value: 'Aunt',
             minor: child,
+            parental_responsibility: nil,
           )
         }
 
