@@ -25,7 +25,7 @@ module Summary
         home_phone: nil,
         mobile_phone: nil,
         email: nil,
-        relationships: [relationships],
+        relationships: [relationship],
       )
     }
 
@@ -36,12 +36,13 @@ module Summary
 
     subject { described_class.new(c100_application) }
 
-    let(:relationships) {
+    let(:relationship) {
       instance_double(
         Relationship,
         relation: 'mother',
         relation_other_value: nil,
         minor: child,
+        parental_responsibility: nil,
       )
     }
     let(:child) { instance_double(Child, to_param: 'uuid-555', full_name: 'Child Test') }
@@ -143,12 +144,13 @@ module Summary
       end
 
       context 'for `other` children relationship' do
-        let(:relationships) {
+        let(:relationship) {
           instance_double(
             Relationship,
             relation: 'other',
             relation_other_value: 'Aunt',
             minor: child,
+            parental_responsibility: nil,
           )
         }
 

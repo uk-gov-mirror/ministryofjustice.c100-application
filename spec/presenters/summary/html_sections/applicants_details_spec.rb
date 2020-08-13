@@ -12,7 +12,7 @@ module Summary
     let(:applicant) {
       instance_double(Applicant,
         to_param: 'uuid-123',
-        full_name: 'fullname',
+        full_name: 'Applicant Test',
         has_previous_name: has_previous_name,
         previous_name: previous_name,
         dob: Date.new(2018, 1, 20),
@@ -25,12 +25,13 @@ module Summary
         mobile_phone: 'mobile_phone',
         email: 'email',
         voicemail_consent: 'yes',
-        relationships: [relationships],
+        relationships: [relationship],
       )
     }
 
     before do
        allow(applicant).to receive(:full_address).and_return('full address')
+       allow(relationship).to receive(:person).and_return(applicant)
     end
 
     subject { described_class.new(c100_application) }
@@ -38,12 +39,13 @@ module Summary
     let(:has_previous_name) { 'no' }
     let(:previous_name) { nil }
 
-    let(:relationships) {
+    let(:relationship) {
       instance_double(
-          Relationship,
-          relation: 'mother',
-          relation_other_value: nil,
-          minor: child,
+        Relationship,
+        relation: 'mother',
+        relation_other_value: nil,
+        minor: child,
+        parental_responsibility: nil,
       )
     }
     let(:child) { instance_double(Child, to_param: 'uuid-555', full_name: 'Child Test') }
@@ -79,7 +81,7 @@ module Summary
         expect(answers[1]).to be_an_instance_of(FreeTextAnswer)
         expect(answers[1].question).to eq(:person_full_name)
         expect(answers[1].change_path).to eq('/steps/applicant/names/')
-        expect(answers[1].value).to eq('fullname')
+        expect(answers[1].value).to eq('Applicant Test')
 
         expect(answers[2]).to be_an_instance_of(AnswersGroup)
         expect(answers[2].name).to eq(:person_personal_details)
@@ -109,11 +111,6 @@ module Summary
           expect(answers[3].name).to eq(:person_address_details)
           expect(answers[3].change_path).to eq('/steps/applicant/address_details/uuid-123')
           expect(answers[3].answers.count).to eq(3)
-
-          # expect(answers[3]).to be_an_instance_of(AnswersGroup)
-          # expect(answers[3].name).to eq(:person_contact_details)
-          # expect(answers[3].change_path).to eq('/steps/applicant/contact_details/uuid-123')
-          # expect(answers[3].answers.count).to eq(3)
 
           # personal_details group answers ###
           details = answers[3].answers
@@ -180,12 +177,13 @@ module Summary
       end
 
       context 'for `other` children relationship' do
-        let(:relationships) {
+        let(:relationship) {
           instance_double(
             Relationship,
             relation: 'other',
             relation_other_value: 'Aunt',
             minor: child,
+            parental_responsibility: nil,
           )
         }
 
@@ -199,6 +197,49 @@ module Summary
           expect(answers[5].change_path).to eq('/steps/applicant/relationship/uuid-123/child/uuid-555')
           expect(answers[5].value).to eq('Aunt')
           expect(answers[5].i18n_opts).to eq({child_name: 'Child Test'})
+        end
+      end
+
+      context 'for a children relationship with permission questions answered' do
+        let(:relationship) {
+          instance_double(Relationship,
+            to_param: 'uuid-123',
+            relation: 'other',
+            relation_other_value: 'Aunt',
+            minor: child,
+            parental_responsibility: 'no',
+            living_order: 'yes',
+            # nil values will not show
+            amendment: nil,
+            time_order: nil,
+            living_arrangement: nil,
+            consent: nil,
+            family: nil,
+            local_authority: nil,
+            relative: nil,
+          )
+        }
+
+        before do
+          allow(relationship).to receive(:person).and_return(applicant)
+        end
+
+        it 'has the correct number of rows' do
+          expect(answers.count).to eq(8)
+        end
+
+        it 'renders the correct permission values' do
+          expect(answers[6]).to be_an_instance_of(Answer)
+          expect(answers[6].question).to eq('child_permission_parental_responsibility')
+          expect(answers[6].change_path).to eq('/steps/permission/parental_responsibility/relationship/uuid-123')
+          expect(answers[6].value).to eq('no')
+          expect(answers[6].i18n_opts).to eq({ applicant_name: 'Applicant Test', child_name: 'Child Test'})
+
+          expect(answers[7]).to be_an_instance_of(Answer)
+          expect(answers[7].question).to eq('child_permission_living_order')
+          expect(answers[7].change_path).to eq('/steps/permission/living_order/relationship/uuid-123')
+          expect(answers[7].value).to eq('yes')
+          expect(answers[7].i18n_opts).to eq({ applicant_name: 'Applicant Test', child_name: 'Child Test'})
         end
       end
     end

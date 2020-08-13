@@ -1,5 +1,6 @@
 module Summary
   module HtmlSections
+    # rubocop:disable Metrics/ClassLength
     class PeopleDetails < Sections::BaseSectionPresenter
       # :nocov:
       def record_collection
@@ -112,15 +113,45 @@ module Summary
               change_path: child_relationship_path(person, rel.minor),
               i18n_opts: {child_name: rel.minor.full_name}
             ),
+            # The free text value only shows when the relation is `other`
             FreeTextAnswer.new(
               :relationship_to_child,
               rel.relation_other_value,
               change_path: child_relationship_path(person, rel.minor),
               i18n_opts: {child_name: rel.minor.full_name}
-            ), # The free text value only shows when the relation is `other`
+            ),
+            # The following questions only show if present and only apply
+            # to applicant-child relationships (main children)
+            permission_questions_for(rel)
           ]
         end.flatten
       end
+
+      def permission_questions_for(relationship)
+        # As these questions are linear, if the first one is `nil` there is no point
+        # in looping through the rest, as those ones will be also `nil`
+        #
+        return [] unless relationship.try!(permission_attributes.first)
+
+        i18n_opts = {
+          applicant_name: relationship.person.full_name,
+          child_name: relationship.minor.full_name,
+        }
+
+        permission_attributes.map do |attr|
+          Answer.new(
+            "child_permission_#{attr}",
+            relationship.try!(attr),
+            change_path: steps_permission_question_path(question_name: attr, relationship_id: relationship),
+            i18n_opts: i18n_opts
+          )
+        end
+      end
+
+      def permission_attributes
+        Relationship::PERMISSION_ATTRIBUTES
+      end
     end
+    # rubocop:enable Metrics/ClassLength
   end
 end
