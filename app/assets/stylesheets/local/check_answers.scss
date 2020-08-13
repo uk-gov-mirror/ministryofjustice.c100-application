@@ -51,7 +51,8 @@
   }
 }
 
-// Give a bit more space between children
+// Give a bit more space between parties
+#applicants_details, #respondents_details, #other_parties_details,
 #children_details, #other_children_details {
   h3 {
     margin-top: govuk-spacing(3);
