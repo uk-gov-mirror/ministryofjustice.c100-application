@@ -37,6 +37,7 @@ module Summary
           Sections::ChildrenDetails,
           Sections::ChildrenRelationships,
           Sections::ChildrenResidence,
+          Sections::PermissionQuestions,
           Sections::SectionHeader,
           Sections::MiamRequirement,
           Sections::SectionHeader,

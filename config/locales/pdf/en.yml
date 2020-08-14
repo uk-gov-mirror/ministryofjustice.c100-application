@@ -130,6 +130,7 @@ en:
       additional_information: Additional information
       children_details: Summary of children’s details
       children_relationships: Children’s relationship with parties
+      permission_questions: Permission for non-parents to apply
       urgent_hearing: Urgent hearing
       without_notice_hearing: Without notice hearing
       other_children_details: Other children not part of the application
