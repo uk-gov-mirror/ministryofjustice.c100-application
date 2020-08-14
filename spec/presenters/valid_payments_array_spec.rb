@@ -19,8 +19,9 @@ RSpec.describe ValidPaymentsArray do
       expect(
         described_class::COURTS_WITH_ONLINE_PAYMENT
       ).to eq(%w[
+        chelmsford-county-and-family-court
+        chelmsford-magistrates-court-and-family-court
         west-london-family-court
-        liverpool-civil-and-family-court
       ])
     }
   end

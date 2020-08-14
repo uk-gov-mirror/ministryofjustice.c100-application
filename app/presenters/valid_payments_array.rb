@@ -8,8 +8,9 @@ class ValidPaymentsArray < SimpleDelegator
   # This is temporary as we open online payments to a few courts first,
   # before allowing the rest of courts to use it.
   COURTS_WITH_ONLINE_PAYMENT = %w[
+    chelmsford-county-and-family-court
+    chelmsford-magistrates-court-and-family-court
     west-london-family-court
-    liverpool-civil-and-family-court
   ].freeze
 
   def initialize(c100_application)
