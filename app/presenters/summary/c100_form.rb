@@ -39,6 +39,7 @@ module Summary
         Sections::ChildrenDetails.new(c100_application),
         Sections::ChildrenRelationships.new(c100_application),
         Sections::ChildrenResidence.new(c100_application),
+        Sections::PermissionQuestions.new(c100_application),
       ]
     end
 

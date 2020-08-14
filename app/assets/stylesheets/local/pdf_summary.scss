@@ -1,5 +1,6 @@
 #application-details-pdf {
   $light-grey: #cccccc;
+  $very-light-grey: #eeeeee;
   $dark-grey: #6f777b;
 
   $heading-font-size: 16px;
@@ -67,8 +68,9 @@
   h2.main-section-header {
     font-size: $heading-font-size;
     font-weight: bold;
+    background-color: $very-light-grey;
     border-bottom: 1px solid $dark-grey;
-    padding: 2px 0 0 0;
+    padding: 5px;
   }
 
   h3.section-header {
@@ -161,7 +163,11 @@
     }
   }
 
-  #additional_information {
+  // These sections are heavy on long questions with short answers (Yes/No)
+  // so we give more space to the question (90%) and less to the answer (10%)
+  //
+  #additional_information,
+  #permission_questions {
     td {
       border: none;
       padding: 5px 0 0 0;
@@ -202,7 +208,7 @@
   #c100_court_details,
   #c1a_court_details,
   #c8_court_details {
-    background-color: #eee;
+    background-color: $very-light-grey;
     padding: 10px;
     margin-bottom: 20px;
 
