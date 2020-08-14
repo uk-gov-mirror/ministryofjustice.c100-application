@@ -20,10 +20,11 @@ module C100App
     #
     # In these cases we need to go through further questions to decide
     # if permission will be needed or not.
-    # Consent order applications do not require permission.
+    # Consent order applications or 'OtherChild' skip permission rules.
     #
     def permission_undecided?
       return false if consent_order?
+      return false if is_other_child?
 
       !permission_needed? && other_relationship?
     end
@@ -32,6 +33,10 @@ module C100App
 
     def child
       @_child ||= relationship.minor
+    end
+
+    def is_other_child?
+      child.instance_of?(OtherChild)
     end
 
     def special_guardianship_order?
