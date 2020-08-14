@@ -59,6 +59,21 @@ RSpec.describe C100App::PermissionRules do
       end
     end
 
+    context 'when relationship is with other child (`OtherChild`)' do
+      let(:child) { OtherChild.new }
+
+      it 'returns false' do
+        expect(subject.permission_undecided?).to eq(false)
+      end
+
+      it 'does not check any other rules' do
+        expect(subject).not_to receive(:permission_needed?)
+        expect(subject).not_to receive(:other_relationship?)
+
+        subject.permission_undecided?
+      end
+    end
+
     context 'when `special_guardianship_order` is `nil`' do
       it 'returns false' do
         expect(subject.permission_undecided?).to eq(false)
