@@ -25,12 +25,24 @@ module Steps
         relation.eql?(Relation::OTHER.to_s)
       end
 
+      def attributes_to_reset
+        return {} if record.relation.eql?(relation_value.to_s)
+
+        # If the `relation` has changed we need to ensure all the non-parent
+        # attributes are reset as well, in case some were previously set.
+        Hash[Relationship::PERMISSION_ATTRIBUTES.each_slice(1).to_a]
+      end
+
       def persist!
         raise C100ApplicationNotFound unless c100_application
 
         record.update(
-          relation: relation_value,
-          relation_other_value: other_value
+          {
+            relation: relation_value,
+            relation_other_value: other_value
+          }.merge(
+            attributes_to_reset
+          )
         )
       end
     end

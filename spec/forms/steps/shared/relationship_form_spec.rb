@@ -10,7 +10,7 @@ RSpec.describe Steps::Shared::RelationshipForm do
 
   let(:c100_application) { instance_double(C100Application) }
 
-  let(:record) { double('Relationship') }
+  let(:record) { Relationship.new }
   let(:relation) { 'mother' }
   let(:relation_other_value) { nil }
 
@@ -69,22 +69,54 @@ RSpec.describe Steps::Shared::RelationshipForm do
     context 'for valid details' do
       let(:relation_other_value) { 'anything' }
 
-      it 'updates the record' do
-        expect(record).to receive(:update).with(
-          relation: Relation::MOTHER,
-          relation_other_value: nil
-        ).and_return(true)
-
-        expect(subject.save).to be(true)
+      before do
+        allow(record).to receive(:relation).and_return(existing_relation)
       end
 
       context 'for `other` relation' do
+        let(:existing_relation) { 'other' }
         let(:relation) { 'other' }
 
         it 'updates the record' do
           expect(record).to receive(:update).with(
             relation: Relation::OTHER,
-            relation_other_value: 'anything'
+            relation_other_value: 'anything',
+            ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'when there are no changes in the relation' do
+        let(:existing_relation) { 'mother' }
+
+        it 'updates the record' do
+          expect(record).to receive(:update).with(
+            relation: Relation::MOTHER,
+            relation_other_value: nil,
+          ).and_return(true)
+
+          expect(subject.save).to be(true)
+        end
+      end
+
+      context 'when there are changes in the relation' do
+        let(:existing_relation) { 'father' }
+
+        it 'updates the record' do
+          expect(record).to receive(:update).with(
+            relation: Relation::MOTHER,
+            relation_other_value: nil,
+            # non-parents reset
+            parental_responsibility: nil,
+            living_order: nil,
+            amendment: nil,
+            time_order: nil,
+            living_arrangement: nil,
+            consent: nil,
+            family: nil,
+            local_authority: nil,
+            relative: nil,
           ).and_return(true)
 
           expect(subject.save).to be(true)
