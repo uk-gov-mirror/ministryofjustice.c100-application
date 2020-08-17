@@ -573,6 +573,10 @@ en:
               inclusion: *yes_no_error
             international_request_details:
               blank: *blank_details_error
+        steps/application/permission_sought_form:
+          attributes:
+            permission_sought:
+              inclusion: *yes_no_error
         steps/application/details_form:
           attributes:
             application_details:
