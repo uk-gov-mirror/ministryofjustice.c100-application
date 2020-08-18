@@ -626,11 +626,11 @@ en:
       consent_order:
         edit:
           page_title: Application kind
-          lead_text_html: |
-            <p class="govuk-body-l">You can apply to court for the following orders.</p>
+          lead_text: You can apply to court for the following orders.
       child_protection_cases:
         edit:
           page_title: Child protection cases
+          lead_text: These will often involve a local authority.
           details:
             summary: Why we use the term ‘children’
             text_html: We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.
@@ -1447,8 +1447,6 @@ en:
         consent_order_options:
           'no': This includes deciding who the children live with and where; stopping someone doing something; and resolving a specific matter
           'yes': This makes a written agreement legally binding; it must be signed by you (the applicant) and the other person (respondent)
-      steps_miam_child_protection_cases_form:
-        child_protection_cases: These will often involve a local authority
       steps_miam_certification_date_form:
         miam_certification_date: For example, 31 3 2020
       steps_application_court_proceedings_form:
