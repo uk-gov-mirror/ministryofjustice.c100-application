@@ -132,7 +132,7 @@ en:
         steps/miam/consent_order_form:
           attributes:
             consent_order:
-              inclusion: *yes_no_error
+              inclusion: Select what kind of application you want to make
         steps/miam/acknowledgement_form:
           attributes:
             miam_acknowledgement:

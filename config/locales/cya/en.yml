@@ -128,9 +128,10 @@ en:
       other_parties_details_index_title: Other party %{index}
 
     consent_order_application:
-      question: Do you have a written agreement with the other person (respondent) that you want the court to make legally binding?
+      question: What kind of application do you want to make?
       answers:
-        <<: *YESNO
+        'no': Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order
+        'yes': Consent order
     child_protection_cases:
       question: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       answers:
