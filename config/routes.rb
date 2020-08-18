@@ -125,6 +125,7 @@ Rails.application.routes.draw do
       edit_step :urgent_hearing_details
       edit_step :without_notice
       edit_step :without_notice_details
+      edit_step :permission_sought
       edit_step :details
       edit_step :litigation_capacity
       edit_step :litigation_capacity_details
