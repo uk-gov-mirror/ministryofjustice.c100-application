@@ -625,20 +625,12 @@ en:
           lead_text: You can find this information at the bottom of the document your mediator signed.
       consent_order:
         edit:
-          page_title: Consent order
-          lead_text_html: |
-            <p class="govuk-body-l">This is known as applying for a ‘consent order’.</p>
-            <p class="govuk-body">You can only apply for a consent order if you:</p>
-                <ul class="govuk-list govuk-list--bullet">
-                  <li>have a written agreement about your child arrangements signed by you and the other person (you will need to send this agreement to the court)</li>
-                  <li>are not in dispute about child arrangements with the other person</li>
-                  <li>do not need a ‘hearing without notice’ (a court hearing without informing the other person)</li>
-                </ul>
-          info_notice: |
-            This question is only about new written agreements for the court to consider. Don’t include other agreements or orders made by the court.
+          page_title: Application kind
+          lead_text: You can apply to court for the following orders.
       child_protection_cases:
         edit:
           page_title: Child protection cases
+          lead_text: These will often involve a local authority.
           details:
             summary: Why we use the term ‘children’
             text_html: We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.
@@ -1063,7 +1055,8 @@ en:
       # MIAM steps
       steps_miam_consent_order_form:
         consent_order_options:
-          <<: *YESNO
+          'no': Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order
+          'yes': Consent order
       steps_miam_child_protection_cases_form:
         child_protection_cases_options:
           <<: *YESNO
@@ -1450,8 +1443,10 @@ en:
         email_consent: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
       steps_international_jurisdiction_form:
         international_jurisdiction: For example, because a court in another country has the power to act (has jurisdiction).
-      steps_miam_child_protection_cases_form:
-        child_protection_cases: These will often involve a local authority
+      steps_miam_consent_order_form:
+        consent_order_options:
+          'no': This includes deciding who the children live with and where; stopping someone doing something; and resolving a specific matter
+          'yes': This makes a written agreement legally binding; it must be signed by you (the applicant) and the other person (respondent)
       steps_miam_certification_date_form:
         miam_certification_date: For example, 31 3 2020
       steps_application_court_proceedings_form:
@@ -1586,7 +1581,7 @@ en:
 
       # MIAM steps
       steps_miam_consent_order_form:
-        consent_order: Do you have a written agreement with the other person (respondent) that you want the court to make legally binding?
+        consent_order: What kind of application do you want to make?
       steps_miam_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
       steps_miam_acknowledgement_form:
