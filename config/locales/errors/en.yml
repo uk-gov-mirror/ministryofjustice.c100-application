@@ -577,6 +577,10 @@ en:
           attributes:
             permission_sought:
               inclusion: *yes_no_error
+        steps/application/permission_details_form:
+          attributes:
+            permission_details:
+              blank: Enter details to ask for permission to apply
         steps/application/details_form:
           attributes:
             application_details:

@@ -752,8 +752,21 @@ en:
           heading: Factors affecting ability to participate
       permission_sought:
         edit:
-          page_title: Permission to apply details
+          page_title: Permission to apply
           lead_text: You may already have permission from the court, or applied for permission separately. If not, you will be able to apply as part of this application.
+      permission_details:
+        edit:
+          page_title: Permission to apply details
+          heading: Give details to ask for permission to apply
+          lead_text: You need to give details for the court to consider whether to give permission for this application to be made.
+          info_html: |
+            <p class="govuk-body">You could include:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>details of your relationship with the children</li>
+              <li>details of any risk of disruption to the child that may be caused by this application</li>
+              <li>any plans the Local Authority have made for the children (if this applies)</li>
+              <li>the wishes and feelings of the children’s parents (if the child is being looked after by the Local Authority)</li>
+            </ul>
       details:
         edit:
           page_title: Application details
@@ -766,7 +779,6 @@ en:
               <li>why the other person disagrees</li>
               <li>any previous <a href="https://www.cafcass.gov.uk/grown-ups/parents-and-carers/divorce-and-separation/parenting-plan/" class="govuk-link" rel="external" target="_blank">parenting plans</a> or agreements (formal or informal), and why they broke down</li>
             </ul>
-          timeout_warning: For your security, your session ends after %{session_timeout} minutes if there’s no activity on your application. To avoid losing your application, make sure you save it. Any unsaved details will be deleted.
       payment:
         edit:
           page_title: Payment type
@@ -1229,6 +1241,8 @@ en:
       steps_application_permission_sought_form:
         permission_sought_options:
           <<: *YESNO
+      steps_application_permission_details_form:
+        permission_details: Provide details to ask for permission
       steps_application_details_form:
         application_details: *provide_details
       steps_attending_court_intermediary_form:
