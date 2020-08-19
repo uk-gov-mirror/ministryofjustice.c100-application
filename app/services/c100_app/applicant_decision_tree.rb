@@ -46,7 +46,7 @@ module C100App
     def after_relationship
       # TODO: remove feature-flag to enable the non-parents in production
       unless hide_non_parents?
-        rules = PermissionRules.new(record)
+        rules = Permission::RelationshipRules.new(record)
 
         return edit(
           '/steps/permission/question', question_name: :parental_responsibility, relationship_id: record

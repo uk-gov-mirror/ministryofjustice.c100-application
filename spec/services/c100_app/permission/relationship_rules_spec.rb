@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe C100App::PermissionRules do
+RSpec.describe C100App::Permission::RelationshipRules do
   subject { described_class.new(relationship) }
 
   let(:relationship) {
