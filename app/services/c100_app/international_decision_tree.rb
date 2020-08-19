@@ -9,10 +9,19 @@ module C100App
       when :jurisdiction
         edit(:request)
       when :request
-        edit('/steps/application/details')
+        after_request_step
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
+    end
+
+    private
+
+    # TODO: check the permission rules here to decide if we go to
+    # `application/permission_sought` or to `application/details`
+    #
+    def after_request_step
+      edit('/steps/application/permission_sought')
     end
   end
 end
