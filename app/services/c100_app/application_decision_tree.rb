@@ -1,6 +1,6 @@
 module C100App
   class ApplicationDecisionTree < BaseDecisionTree
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
     def destination
       return next_step if next_step
 
@@ -17,6 +17,10 @@ module C100App
         after_without_notice
       when :without_notice_details
         start_international_journey
+      when :permission_sought
+        after_permission_sought
+      when :permission_details
+        edit(:details)
       when :application_details
         edit(:litigation_capacity)
       when :litigation_capacity
@@ -33,7 +37,7 @@ module C100App
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
     end
-    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity
 
     private
 
@@ -61,6 +65,16 @@ module C100App
       end
     end
 
+    def after_permission_sought
+      if question(:permission_sought).yes?
+        # Applicant already has permission or applied separately
+        edit(:details)
+      else
+        # Applicant is seeking permission now
+        edit(:permission_details)
+      end
+    end
+
     def after_litigation_capacity
       if question(:reduced_litigation_capacity).yes?
         edit(:litigation_capacity_details)
@@ -77,16 +91,16 @@ module C100App
       end
     end
 
-    def proceed_to_payment
-      PaymentsFlowControl.new(c100_application).payment_url
-    end
-
     def start_international_journey
       edit('/steps/international/resident')
     end
 
     def start_attending_court_journey
       edit('/steps/attending_court/intermediary')
+    end
+
+    def proceed_to_payment
+      PaymentsFlowControl.new(c100_application).payment_url
     end
   end
 end

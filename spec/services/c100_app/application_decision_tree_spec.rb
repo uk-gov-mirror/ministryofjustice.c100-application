@@ -70,6 +70,26 @@ RSpec.describe C100App::ApplicationDecisionTree do
     it { is_expected.to have_destination('/steps/international/resident', :edit) }
   end
 
+  context 'when the step is `permission_sought`' do
+    let(:c100_application) { instance_double(C100Application, permission_sought: answer) }
+    let(:step_params) { { permission_sought: 'whatever' } }
+
+    context 'and the answer is `yes`' do
+      let(:answer) { 'yes' }
+      it { is_expected.to have_destination(:details, :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:answer) { 'no' }
+      it { is_expected.to have_destination(:permission_details, :edit) }
+    end
+  end
+
+  context 'when the step is `permission_details`' do
+    let(:step_params) { { permission_details: 'anything' } }
+    it { is_expected.to have_destination(:details, :edit) }
+  end
+
   context 'when the step is `application_details`' do
     let(:step_params) { { application_details: 'anything' } }
     it { is_expected.to have_destination(:litigation_capacity, :edit) }
