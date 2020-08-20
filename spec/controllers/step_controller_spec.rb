@@ -19,11 +19,18 @@ RSpec.describe DummyStepController, type: :controller do
   end
 
   describe 'navigation stack' do
-    let!(:c100_application) { C100Application.create(navigation_stack: navigation_stack) }
+    let!(:c100_application) { C100Application.create(navigation_stack: navigation_stack, updated_at: updated_at) }
+    let(:updated_at) { Time.at(0) }
 
     before do
       get :show, session: { c100_application_id: c100_application.id }
       c100_application.reload
+    end
+
+    # In these tests we are persisting the application record,
+    # so we need to cleanup after we are finished with it.
+    after do
+      c100_application.destroy
     end
 
     context 'when the stack is empty' do
@@ -31,6 +38,10 @@ RSpec.describe DummyStepController, type: :controller do
 
       it 'adds the page to the stack' do
         expect(c100_application.navigation_stack).to eq(['/dummy_step'])
+      end
+
+      it 'does not `touch` timestamps on save' do
+        expect(c100_application.updated_at).to eq(updated_at)
       end
     end
 
@@ -56,6 +67,12 @@ RSpec.describe DummyStepController, type: :controller do
 
     before do
       get :show, session: { c100_application_id: c100_application.id }
+    end
+
+    # In these tests we are persisting the application record,
+    # so we need to cleanup after we are finished with it.
+    after do
+      c100_application.destroy
     end
 
     context 'when the stack is empty' do
