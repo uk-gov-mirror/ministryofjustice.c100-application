@@ -17,11 +17,15 @@ module C100App
 
     private
 
-    # TODO: check the permission rules here to decide if we go to
-    # `application/permission_sought` or to `application/details`
-    #
     def after_request_step
-      edit('/steps/application/permission_sought')
+      rules = Permission::ApplicationRules.new(c100_application)
+
+      # Non-parents - permission to apply
+      if rules.permission_needed?
+        edit('/steps/application/permission_sought')
+      else
+        edit('/steps/application/details')
+      end
     end
   end
 end

@@ -22,6 +22,20 @@ RSpec.describe C100App::InternationalDecisionTree do
 
   context 'when the step is `request`' do
     let(:step_params) { { request: 'anything' } }
-    it { is_expected.to have_destination('/steps/application/permission_sought', :edit) }
+    let(:rules_mock)  { double(permission_needed?: rule_result) }
+
+    before do
+      allow(C100App::Permission::ApplicationRules).to receive(:new).with(c100_application).and_return(rules_mock)
+    end
+
+    context 'when permission to apply is needed' do
+      let(:rule_result) { true }
+      it { is_expected.to have_destination('/steps/application/permission_sought', :edit) }
+    end
+
+    context 'when permission to apply is not needed' do
+      let(:rule_result) { false }
+      it { is_expected.to have_destination('/steps/application/details', :edit) }
+    end
   end
 end
