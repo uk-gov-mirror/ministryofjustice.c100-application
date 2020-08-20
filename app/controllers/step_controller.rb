@@ -114,6 +114,6 @@ class StepController < ApplicationController
     end
 
     current_c100_application.navigation_stack = stack_until_current_page + [request.fullpath]
-    current_c100_application.save!
+    current_c100_application.save!(touch: false)
   end
 end
