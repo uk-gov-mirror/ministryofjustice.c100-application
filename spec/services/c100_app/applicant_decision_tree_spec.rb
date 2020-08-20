@@ -86,7 +86,7 @@ RSpec.describe C100App::ApplicantDecisionTree do
       let(:hide_non_parents) { false }
 
       before do
-        allow(C100App::PermissionRules).to receive(:new).with(record).and_return(rules_mock)
+        allow(C100App::Permission::RelationshipRules).to receive(:new).with(record).and_return(rules_mock)
       end
 
       context 'when permission might be needed' do
