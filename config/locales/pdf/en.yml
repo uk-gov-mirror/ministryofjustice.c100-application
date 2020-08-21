@@ -217,7 +217,12 @@ en:
     asking_for_permission:
       question: Asking for permission to make this application, where that is required?
       answers:
-        <<: *YESNO
+        # Note: the stored yes-no values here correspond to the question:
+        # `Have you already applied to the court for permission to make this application?`
+        # so a `no` = `permission now sought`, and a `yes` or `nil` = `not required`
+        not_required: 'No'
+        'yes': 'No'
+        'no': 'Yes'
     urgent_or_without_notice:
       question: An urgent hearing or without notice hearing required?
       answers:
@@ -377,11 +382,14 @@ en:
       question: Sole trader name
     miam_certification_date:
       question: Date
-    applied_for_permission:
+    permission_sought:
       question: Have you applied to the court for permission to make this application?
       answers:
-        'yes': Yes
-        'no': No - permission not required
+        'yes': 'Yes'
+        'no': No - permission now sought
+        'not_required': No - permission not required
+    permission_details:
+      question: Reasons for permission
     application_details:
       question: Why are you making this application?
 
