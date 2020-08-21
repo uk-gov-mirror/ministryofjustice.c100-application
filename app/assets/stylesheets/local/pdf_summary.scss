@@ -181,6 +181,17 @@
     }
   }
 
+  // Reasons for application usually takes up a lot of space as applicants
+  // write a lot of text, so it makes sense to give more space to answers.
+  #application_reasons {
+    td.question {
+      width: 35%;
+    }
+    td.answer {
+      width: 65%;
+    }
+  }
+
   #children_known_to_authorities {
     td {
       padding-top: 15px;

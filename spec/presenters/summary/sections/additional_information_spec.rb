@@ -25,7 +25,7 @@ module Summary
       it 'has the correct rows in the right order' do
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:asking_for_permission)
-        expect(answers[0].value).to eq(GenericYesNo::NO) # Always NO
+        expect(c100_application).to have_received(:permission_sought) # The values of this are tested separated
 
         expect(answers[1]).to be_an_instance_of(Answer)
         expect(answers[1].question).to eq(:urgent_or_without_notice)
@@ -45,6 +45,28 @@ module Summary
 
         expect(answers[5]).to be_an_instance_of(Answer)
         expect(answers[5].question).to eq(:language_assistance)
+      end
+    end
+
+    describe 'asking for permission' do
+      before do
+        expect(c100_application).to receive(:permission_sought).and_return(permission_sought)
+      end
+
+      context 'permission sought is `nil`' do
+        let(:permission_sought) { nil }
+
+        it 'returns the default value' do
+          expect(answers[0].value).to eq(:not_required)
+        end
+      end
+
+      context 'permission sought is not `nil`' do
+        let(:permission_sought) { 'yes' }
+
+        it 'returns the question value' do
+          expect(answers[0].value).to eq('yes')
+        end
       end
     end
 

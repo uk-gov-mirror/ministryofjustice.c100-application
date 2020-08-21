@@ -7,7 +7,7 @@ module Summary
 
       def answers
         [
-          Answer.new(:asking_for_permission,         default_value), # Always NO, as we are screening out people
+          Answer.new(:asking_for_permission,         c100.permission_sought,             default: :not_required),
           Answer.new(:urgent_or_without_notice,      urgent_or_without_notice_value,     default: default_value),
           Answer.new(:children_previous_proceedings, c100.children_previous_proceedings, default: default_value),
           Answer.new(:consent_order,                 c100.consent_order,                 default: default_value),
