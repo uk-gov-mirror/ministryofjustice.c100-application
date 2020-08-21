@@ -605,6 +605,13 @@ en:
       question: ''
     application_details:
       question: 'Why are you making this application?'
+    permission_sought:
+      question: Have you applied to the court for permission to make this application?
+      answers:
+        <<: *YESNO
+    permission_details:
+      question: Reasons for permission
+
     reduced_litigation_capacity:
       question: Are there any factors that may affect any adult in this application taking part in the court proceedings?
       answers:
