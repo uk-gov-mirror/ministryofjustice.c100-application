@@ -1,9 +1,11 @@
 class EmailValidator < ActiveModel::EachValidator
   EMAIL_REGEX = /\A\s*([-\p{L}\d+._]{1,64})@((?:[-\p{L}\d]+\.)+?\p{L}{2,})\s*\z/i.freeze
   COMMON_DOMAIN_TYPOS = %w[
+    cloud.com
     gamil.com
     gmail.con
     gmail.co
+    hotmailco.uk
     hotmial.com
     hotmail.con
     hotmail.co

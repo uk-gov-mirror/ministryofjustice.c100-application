@@ -30,9 +30,11 @@ describe EmailValidator do
       expect(
         described_class::COMMON_DOMAIN_TYPOS
       ).to eq(%w[
+        cloud.com
         gamil.com
         gmail.con
         gmail.co
+        hotmailco.uk
         hotmial.com
         hotmail.con
         hotmail.co
