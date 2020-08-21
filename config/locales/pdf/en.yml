@@ -391,7 +391,7 @@ en:
     permission_details:
       question: Reasons for permission
     application_details:
-      question: Why are you making this application?
+      question: Reasons for application
 
     urgent_hearing:
       question: *details
