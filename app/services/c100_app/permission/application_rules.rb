@@ -40,7 +40,7 @@ module C100App
       #   1. Consent order applications are exempt from permission.
       #
       #   2. If any of the children in the application has a SGO in force,
-      #      permission is required, no ned to check anything else.
+      #      permission is required, no need to check anything else.
       #
       #   3. Finally, we need to check each applicant-child relationship and the
       #      orders they are applying for to decide if permission will be needed.
@@ -50,6 +50,18 @@ module C100App
         return true  if children_with_sgo?
 
         relationships_require_permission?
+      end
+
+      # If for some reason permission was required, and details entered, but later
+      # something changed in the application that made the permission not required,
+      # we wipe/reset these attributes as otherwise showing their values would be
+      # confusing on the CYA page and on the PDF.
+      #
+      def reset_permission_details!
+        c100_application.update(
+          permission_sought: nil,
+          permission_details: nil,
+        )
       end
 
       private

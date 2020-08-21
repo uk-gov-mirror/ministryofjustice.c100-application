@@ -51,6 +51,19 @@ RSpec.describe C100App::Permission::ApplicationRules do
     end
   end
 
+  describe '#reset_permission_details!' do
+    it 'updates with `nil` values the attributes' do
+      expect(
+        c100_application
+      ).to receive(:update).with(
+        permission_sought: nil,
+        permission_details: nil,
+      )
+
+      subject.reset_permission_details!
+    end
+  end
+
   describe '#permission_needed?' do
     context 'when application is a consent order' do
       let(:consent_order) { 'yes' }

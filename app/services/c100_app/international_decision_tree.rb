@@ -24,6 +24,7 @@ module C100App
       if rules.permission_needed?
         edit('/steps/application/permission_sought')
       else
+        rules.reset_permission_details!
         edit('/steps/application/details')
       end
     end
