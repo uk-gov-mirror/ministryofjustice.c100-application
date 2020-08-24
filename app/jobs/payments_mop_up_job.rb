@@ -13,8 +13,7 @@ class PaymentsMopUpJob < ApplicationJob
   queue_as :default
 
   def self.run(date)
-    C100Application.payment_in_progress
-      .joins(:payment_intent)
+    C100Application.joins(:payment_intent)
       .where("payment_intents.state ->> 'finished' = 'false'")
       .where("payment_intents.created_at <= :date", date: date)
       .each do |c100_application|
@@ -30,12 +29,15 @@ class PaymentsMopUpJob < ApplicationJob
       c100_application.payment_intent
     ).success?
 
+    # In case the application was already completed in between job runs
+    return if c100_application.completed?
+
     Rails.logger.info "Marking as completed application #{c100_application.id}"
 
     c100_application.mark_as_completed!
 
     C100App::OnlineSubmissionQueue.new(
       c100_application
-    ).process if c100_application.online_submission?
+    ).process
   end
 end
