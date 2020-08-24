@@ -10,13 +10,15 @@
     <% if payment.state.key?('code') %>
       <% c100_application = payment.c100_application %>
 
-      <%= format("%<message>s (%<code>s)", payment.state.symbolize_keys) %>
+      <strong>
+        <%= format("%<message>s (%<code>s)", payment.state.symbolize_keys) %>
+      </strong>
 
       <div class="app-util--disabled-color">
         <% if c100_application.completed? %>
           Final payment method: <%= t(c100_application.payment_type, scope: 'backoffice.payment') %>
         <% else %>
-          Application waiting to be completed
+          Application pending completion
         <% end %>
       </div>
 
