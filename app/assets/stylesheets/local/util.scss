@@ -17,7 +17,7 @@ strong {
 }
 
 .app-util--disabled-color {
-  color: govuk-colour("mid-grey");
+  color: $govuk-secondary-text-colour;
 }
 
 .app-util--compact-form-group {
