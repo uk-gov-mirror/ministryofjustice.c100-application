@@ -2,6 +2,8 @@ class AuditHelper
   attr_reader :c100_application
   alias_attribute :c100, :c100_application
 
+  PERMISSION_NOT_REQUIRED = 'not_required'.freeze
+
   def initialize(c100_application)
     @c100_application = c100_application
   end
@@ -14,11 +16,13 @@ class AuditHelper
       c1a_form: c100.has_safety_concerns?,
       c8_form: c100.confidentiality_enabled?,
       under_age: c100.applicants.under_age?,
+      children_sgo: c100.children.with_special_guardianship_order?,
       saved_for_later: c100.user_id.present?,
-      consent_order: c100.consent_order || 'no',
+      consent_order: c100.consent_order,
       legal_representation: c100.has_solicitor,
       urgent_hearing: c100.urgent_hearing,
       without_notice: c100.without_notice,
+      permission_sought: c100_application.permission_sought || PERMISSION_NOT_REQUIRED,
       reduced_litigation: c100.reduced_litigation_capacity,
       payment_type: c100.payment_type,
       signee_capacity: c100.declaration_signee_capacity,
