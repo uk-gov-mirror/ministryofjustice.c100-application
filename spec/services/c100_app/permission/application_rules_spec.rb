@@ -8,11 +8,11 @@ RSpec.describe C100App::Permission::ApplicationRules do
 
   let(:consent_order) { 'no' }
   let(:children_scope) { double('children_scope') }
-  let(:children_with_sgo) { [] }
+  let(:children_with_sgo) { false }
 
   before do
     allow(c100_application).to receive(:children).and_return(children_scope)
-    allow(children_scope).to receive(:with_special_guardianship_order).and_return(children_with_sgo)
+    allow(children_scope).to receive(:with_special_guardianship_order?).and_return(children_with_sgo)
   end
 
   describe 'ALL_ORDERS' do
@@ -81,7 +81,7 @@ RSpec.describe C100App::Permission::ApplicationRules do
     end
 
     context 'when at least one child has a special guardianship order in force' do
-      let(:children_with_sgo) { [anything] }
+      let(:children_with_sgo) { true }
 
       it 'returns true' do
         expect(subject.permission_needed?).to eq(true)

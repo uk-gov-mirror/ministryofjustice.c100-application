@@ -9,6 +9,7 @@ describe AuditHelper do
       reduced_litigation_capacity: 'yes',
       urgent_hearing: 'no',
       without_notice: 'yes',
+      permission_sought: nil,
       declaration_signee_capacity: 'applicant',
     )
   }
@@ -41,11 +42,13 @@ describe AuditHelper do
         c1a_form: false,
         c8_form: false,
         under_age: false,
+        children_sgo: false,
         saved_for_later: false,
         consent_order: 'yes',
         legal_representation: 'yes',
         urgent_hearing: 'no',
         without_notice: 'yes',
+        permission_sought: 'not_required',
         reduced_litigation: 'yes',
         payment_type: 'cash',
         signee_capacity: 'applicant',

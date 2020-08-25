@@ -71,7 +71,7 @@ module C100App
       end
 
       def children_with_sgo?
-        c100_application.children.with_special_guardianship_order.any?
+        c100_application.children.with_special_guardianship_order?
       end
 
       # Only loop through relationships that entered the non-parents journey,
