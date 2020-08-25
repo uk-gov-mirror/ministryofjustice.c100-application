@@ -387,7 +387,7 @@ en:
       answers:
         'yes': 'Yes'
         'no': No - permission now sought
-        'not_required': No - permission not required
+        not_required: No - permission not required
     permission_details:
       question: Reasons for permission
     application_details:
