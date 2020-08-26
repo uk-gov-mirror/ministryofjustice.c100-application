@@ -8,8 +8,6 @@ module C100App
         check_if_court_is_valid
       when :parent
         after_parent
-      when :email_consent
-        show(:done)
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -34,10 +32,8 @@ module C100App
     end
 
     def after_parent
-      return show(:parent_exit) if question(:parent, c100_application.screener_answers).no?
-
-      if Rails.configuration.x.screener.show_email_consent_step
-        edit(:email_consent)
+      if question(:parent, c100_application.screener_answers).no?
+        show(:parent_exit)
       else
         show(:done)
       end

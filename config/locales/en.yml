@@ -939,19 +939,6 @@ en:
           page_title: Sorry, you’re not eligible to apply online
           heading: Sorry, you’re not eligible to apply online
           lead_text: You can only use this online service if you’re a parent of the children you’re making this application about, or a solicitor representing a parent.
-      email_consent:
-        edit:
-          page_title: Contact by email
-          details:
-            summary: What happens if you choose to be contacted
-            text_html: |
-              <p class="govuk-body">By choosing to be contacted by the Ministry of Justice (MOJ) you agree that your personal details and any information you give can be used by MOJ for research purposes.</p>
-              <h2 class="govuk-heading-m">The information we use</h2>
-              <p class="govuk-body">MOJ can use any information you provide, including your name and contact information (such as your email address).</p>
-              <h2 class="govuk-heading-m">Why we use this information</h2>
-              <p class="govuk-body">To get your thoughts on this service - for example, we might send you a satisfaction survey.</p>
-              <h2 class="govuk-heading-m">Data and your rights</h2>
-              <p class="govuk-body">You can find out how long we keep your data, your rights and how to contact us in our <a href="/about/privacy_consent" class="govuk-link">privacy policy</a>.</p>
       warning:
         show:
           page_title: Application in progress
@@ -1046,10 +1033,6 @@ en:
         children_postcodes: Postcode
       steps_screener_parent_form:
         parent_options:
-          <<: *YESNO
-      steps_screener_email_consent_form:
-        email_address: Email address
-        email_consent_options:
           <<: *YESNO
 
       # MIAM steps
@@ -1439,8 +1422,6 @@ en:
       user:
         password: Must be at least 10 characters
         current_password: We need your current password to confirm your changes
-      steps_screener_email_consent_form:
-        email_consent: This will help us to improve the service, and your answer here will not affect whether or not you can use this service.
       steps_international_jurisdiction_form:
         international_jurisdiction: For example, because a court in another country has the power to act (has jurisdiction).
       steps_miam_consent_order_form:
@@ -1576,8 +1557,6 @@ en:
       # Screener steps
       steps_screener_parent_form:
         parent: Are you a parent of the children or a solicitor representing a parent?
-      steps_screener_email_consent_form:
-        email_consent: Are you willing to be contacted by email about your experience using this service?
 
       # MIAM steps
       steps_miam_consent_order_form:

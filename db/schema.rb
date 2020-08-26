@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_145208) do
+ActiveRecord::Schema.define(version: 2020_08_26_135016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -339,11 +339,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_145208) do
     t.uuid "c100_application_id"
     t.json "local_court"
     t.string "parent"
-    t.string "email_consent"
-    t.string "email_address"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id", unique: true
-    t.index ["email_address"], name: "index_screener_answers_on_email_address"
-    t.index ["email_consent"], name: "index_screener_answers_on_email_consent"
   end
 
   create_table "short_urls", primary_key: "path", id: :string, force: :cascade do |t|
