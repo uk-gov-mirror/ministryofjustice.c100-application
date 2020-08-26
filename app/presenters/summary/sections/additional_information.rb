@@ -11,7 +11,8 @@ module Summary
           Answer.new(:urgent_or_without_notice,      urgent_or_without_notice_value,     default: default_value),
           Answer.new(:children_previous_proceedings, c100.children_previous_proceedings, default: default_value),
           Answer.new(:consent_order,                 c100.consent_order,                 default: default_value),
-          Answer.new(:international_or_capacity,     international_or_capacity_value,    default: default_value),
+          Answer.new(:international_element_case,    international_element_case_value,   default: default_value),
+          Answer.new(:litigation_capacity_case,      c100.reduced_litigation_capacity,   default: default_value),
           Answer.new(:language_assistance,           language_assistance_value,          default: default_value),
         ]
       end
@@ -29,12 +30,11 @@ module Summary
         ].detect { |answer| answer.eql?(GenericYesNo::YES.to_s) }
       end
 
-      def international_or_capacity_value
+      def international_element_case_value
         [
           c100.international_resident,
           c100.international_jurisdiction,
           c100.international_request,
-          c100.reduced_litigation_capacity,
         ].detect { |answer| answer.eql?(GenericYesNo::YES.to_s) }
       end
 

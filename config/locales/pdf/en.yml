@@ -235,8 +235,12 @@ en:
       question: Applying for an order to formalise an agreement (consent order)?
       answers:
         <<: *YESNO
-    international_or_capacity:
-      question: Case with an international element or factors affecting litigation capacity?
+    international_element_case:
+      question: Case with an international element?
+      answers:
+        <<: *YESNO
+    litigation_capacity_case:
+      question: Case with factors affecting litigation capacity?
       answers:
         <<: *YESNO
     language_assistance:
