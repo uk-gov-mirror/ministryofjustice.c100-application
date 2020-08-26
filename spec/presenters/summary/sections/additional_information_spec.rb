@@ -19,7 +19,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct number of rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(7)
       end
 
       it 'has the correct rows in the right order' do
@@ -40,11 +40,16 @@ module Summary
         expect(c100_application).to have_received(:consent_order)
 
         expect(answers[4]).to be_an_instance_of(Answer)
-        expect(answers[4].question).to eq(:international_or_capacity)
+        expect(answers[4].question).to eq(:international_element_case)
         expect(answers[4].value).to eq(GenericYesNo::NO) # The values of this are tested separated
 
         expect(answers[5]).to be_an_instance_of(Answer)
-        expect(answers[5].question).to eq(:language_assistance)
+        expect(answers[5].question).to eq(:litigation_capacity_case)
+        expect(c100_application).to have_received(:reduced_litigation_capacity)
+
+        expect(answers[6]).to be_an_instance_of(Answer)
+        expect(answers[6].question).to eq(:language_assistance)
+        expect(answers[6].value).to eq(GenericYesNo::NO) # The values of this are tested separated
       end
     end
 
@@ -93,12 +98,11 @@ module Summary
       end
     end
 
-    describe '`international_or_capacity` answer values' do
+    describe '`international_element_case` answer values' do
       before do
         expect(c100_application).to receive(:international_resident).and_return(international_resident)
         expect(c100_application).to receive(:international_jurisdiction)
         expect(c100_application).to receive(:international_request)
-        expect(c100_application).to receive(:reduced_litigation_capacity)
       end
 
       context 'at least one question was answered as `YES`' do
@@ -132,7 +136,7 @@ module Summary
           let(:language_options) { ['language_interpreter'] }
 
           it 'returns a `YES` value' do
-            expect(answers[5].value).to eq(GenericYesNo::YES)
+            expect(answers[6].value).to eq(GenericYesNo::YES)
           end
         end
 
@@ -140,14 +144,14 @@ module Summary
           let(:language_options) { [] }
 
           it 'returns the default value' do
-            expect(answers[5].value).to eq(GenericYesNo::NO)
+            expect(answers[6].value).to eq(GenericYesNo::NO)
           end
         end
       end
 
       context 'when we do not have a `court_arrangement` record' do
         it 'returns the default value' do
-          expect(answers[5].value).to eq(GenericYesNo::NO)
+          expect(answers[6].value).to eq(GenericYesNo::NO)
         end
       end
     end
