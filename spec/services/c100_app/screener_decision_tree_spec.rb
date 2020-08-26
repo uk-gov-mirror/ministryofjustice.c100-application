@@ -72,19 +72,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'and parent is "yes"' do
       let(:parent){ GenericYesNo::YES }
 
-      before do
-        allow(Rails.configuration.x.screener).to receive(:show_email_consent_step).and_return(show_consent)
-      end
-
-      context 'and the email consent step is enabled' do
-        let(:show_consent) { true }
-        it { is_expected.to have_destination(:email_consent, :edit) }
-      end
-
-      context 'and the email consent step is disabled' do
-        let(:show_consent) { false }
-        it { is_expected.to have_destination(:done, :show) }
-      end
+      it { is_expected.to have_destination(:done, :show) }
     end
 
     context 'and parent is "no"' do
@@ -92,10 +80,5 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
       it { is_expected.to have_destination(:parent_exit, :show) }
     end
-  end
-
-  context 'when the step is `email_consent`' do
-    let(:step_params) { { email_consent: 'anything' } }
-    it { is_expected.to have_destination(:done, :show) }
   end
 end

@@ -115,10 +115,6 @@ en:
           attributes:
             parent:
               inclusion: Select yes if you’re a parent
-        steps/screener/email_consent_form:
-          attributes:
-            email_consent:
-              inclusion: Select yes if you’re willing to be contacted about using this service
         # End screener
 
         steps/shared/under_age_form:
