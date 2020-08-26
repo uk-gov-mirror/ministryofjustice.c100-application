@@ -10,9 +10,6 @@ Feature: Screener
     When I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
 
-    Then I should see "Are you a parent of the children or a solicitor representing a parent?"
-    And I choose "Yes"
-
     Then I should see "You’re eligible to apply online"
 
     And I click the "Continue" link
@@ -55,14 +52,3 @@ Feature: Screener
     Then I should see "Something went wrong"
     And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"
     And I should see a "Go back and try again" link to "/steps/screener/postcode"
-
-  @unhappy_path
-  Scenario: Not a parent
-    When I fill in "Postcode" with "MK9 3DX"
-    And I click the "Continue" button
-
-    Then I should see "Are you a parent of the children or a solicitor representing a parent?"
-    And I choose "No"
-
-    Then I should see "Sorry, you’re not eligible to apply online"
-    And I should see a "Download the form (PDF)" link to "https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf"

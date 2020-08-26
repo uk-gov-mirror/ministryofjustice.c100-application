@@ -226,8 +226,6 @@ en:
             local_authority_html: ""
             relative_html: |
               <p class="govuk-body">The child must have been living with the applicant immediately before they make this application.</p>
-
-
     # END - Non-parents journey
 
     applicant:
@@ -931,14 +929,6 @@ en:
             copy: You can go back and try again, or download the C100 paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
           go_back: Go back and try again
           download_c100_link: Download the form (PDF)
-      parent:
-        edit:
-          page_title: Are you a parent of the child or children?
-      parent_exit:
-        show:
-          page_title: Sorry, you’re not eligible to apply online
-          heading: Sorry, you’re not eligible to apply online
-          lead_text: You can only use this online service if you’re a parent of the children you’re making this application about, or a solicitor representing a parent.
       warning:
         show:
           page_title: Application in progress
@@ -1031,9 +1021,6 @@ en:
       # Screener steps
       steps_screener_postcode_form:
         children_postcodes: Postcode
-      steps_screener_parent_form:
-        parent_options:
-          <<: *YESNO
 
       # MIAM steps
       steps_miam_consent_order_form:
@@ -1554,10 +1541,6 @@ en:
           special_guardian: Someone who represents the rights of a child, appointed by the court
 
     legend:
-      # Screener steps
-      steps_screener_parent_form:
-        parent: Are you a parent of the children or a solicitor representing a parent?
-
       # MIAM steps
       steps_miam_consent_order_form:
         consent_order: What kind of application do you want to make?
