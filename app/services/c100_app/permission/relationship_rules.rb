@@ -7,27 +7,20 @@ module C100App
         @relationship = relationship
       end
 
-      # As we only ask the SGO question if the orders for the child include
-      # "home" (decide who they live with and when), and consent orders don't
-      # have "home" in the list of orders to select, we can safely assume
-      # permission is needed if the SGO value equals to 'yes'.
-      #
-      def permission_needed?
-        special_guardianship_order?
-      end
-
       # Permission undecided happens when there is no SGO in force, and the
       # applicant's relation to the child is "other".
       #
       # In these cases we need to go through further questions to decide
       # if permission will be needed or not.
+      #
       # Consent order applications or 'OtherChild' skip permission rules.
       #
       def permission_undecided?
         return false if consent_order?
         return false if is_other_child?
+        return false if special_guardianship_order?
 
-        !permission_needed? && other_relationship?
+        other_relationship?
       end
 
       private
