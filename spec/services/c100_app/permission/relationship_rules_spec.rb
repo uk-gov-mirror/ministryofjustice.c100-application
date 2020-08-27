@@ -19,30 +19,6 @@ RSpec.describe C100App::Permission::RelationshipRules do
   let(:relation)  { 'father' }
   let(:consent_order) { 'no' }
 
-  describe '#permission_needed?' do
-    context 'when `special_guardianship_order` is `nil`' do
-      it 'returns false' do
-        expect(subject.permission_needed?).to eq(false)
-      end
-    end
-
-    context 'when `special_guardianship_order` is `no`' do
-      let(:sgo_order) { 'no' }
-
-      it 'returns false' do
-        expect(subject.permission_needed?).to eq(false)
-      end
-    end
-
-    context 'when `special_guardianship_order` is `yes`' do
-      let(:sgo_order) { 'yes' }
-
-      it 'returns true' do
-        expect(subject.permission_needed?).to eq(true)
-      end
-    end
-  end
-
   describe '#permission_undecided?' do
     context 'when application is a consent order' do
       let(:consent_order) { 'yes' }
@@ -52,7 +28,6 @@ RSpec.describe C100App::Permission::RelationshipRules do
       end
 
       it 'does not check any other rules' do
-        expect(subject).not_to receive(:permission_needed?)
         expect(subject).not_to receive(:other_relationship?)
 
         subject.permission_undecided?
@@ -67,7 +42,6 @@ RSpec.describe C100App::Permission::RelationshipRules do
       end
 
       it 'does not check any other rules' do
-        expect(subject).not_to receive(:permission_needed?)
         expect(subject).not_to receive(:other_relationship?)
 
         subject.permission_undecided?
@@ -77,6 +51,26 @@ RSpec.describe C100App::Permission::RelationshipRules do
     context 'when `special_guardianship_order` is `nil`' do
       it 'returns false' do
         expect(subject.permission_undecided?).to eq(false)
+      end
+
+      it 'keeps running any other rules' do
+        expect(subject).to receive(:other_relationship?)
+
+        subject.permission_undecided?
+      end
+    end
+
+    context 'when `special_guardianship_order` is `yes`' do
+      let(:sgo_order) { 'yes' }
+
+      it 'returns false' do
+        expect(subject.permission_undecided?).to eq(false)
+      end
+
+      it 'does not check any other rules' do
+        expect(subject).not_to receive(:other_relationship?)
+
+        subject.permission_undecided?
       end
     end
 
@@ -94,24 +88,6 @@ RSpec.describe C100App::Permission::RelationshipRules do
 
         it 'returns true' do
           expect(subject.permission_undecided?).to eq(true)
-        end
-      end
-    end
-
-    context 'when `special_guardianship_order` is `yes`' do
-      let(:sgo_order) { 'yes' }
-
-      context 'when the relation is not `other`' do
-        it 'returns false' do
-          expect(subject.permission_undecided?).to eq(false)
-        end
-      end
-
-      context 'when the relation is `other`' do
-        let(:relation) { 'other' }
-
-        it 'returns true' do
-          expect(subject.permission_undecided?).to eq(false)
         end
       end
     end
