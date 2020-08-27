@@ -172,7 +172,6 @@ RSpec.shared_examples 'a savepoint step controller' do
   let(:screener_answers) do
     ScreenerAnswers.new(
       children_postcodes: 'MK9 2DT',
-      parent: 'yes',
       local_court: { name: 'whatever' }
     )
   end

@@ -66,7 +66,6 @@ class SessionsController < ApplicationController
   def screener_answers_fixture(screener)
     {
       children_postcodes: 'MK9 2DT',
-      parent: 'yes',
       local_court: {
         _fixture: true, # this flag indicates the court data is "fake" (bypass)
         "address" => {
