@@ -44,16 +44,14 @@ module C100App
     end
 
     def after_relationship
-      # TODO: remove feature-flag to enable the non-parents in production
-      unless hide_non_parents?
-        rules = Permission::RelationshipRules.new(record)
+      rules = Permission::RelationshipRules.new(record)
 
-        return edit(
-          '/steps/permission/question', question_name: :parental_responsibility, relationship_id: record
-        ) if rules.permission_undecided?
+      # Non-parents - permission to be decided
+      if rules.permission_undecided?
+        edit('/steps/permission/question', question_name: :parental_responsibility, relationship_id: record)
+      else
+        children_relationships
       end
-
-      children_relationships
     end
 
     def after_has_solicitor
