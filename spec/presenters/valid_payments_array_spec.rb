@@ -17,12 +17,8 @@ RSpec.describe ValidPaymentsArray do
   describe 'COURTS_WITH_ONLINE_PAYMENT' do
     it {
       expect(
-        described_class::COURTS_WITH_ONLINE_PAYMENT
-      ).to eq(%w[
-        chelmsford-county-and-family-court
-        chelmsford-magistrates-court-and-family-court
-        west-london-family-court
-      ])
+        described_class::COURTS_WITH_ONLINE_PAYMENT.size
+      ).to eq(9)
     }
   end
 
@@ -68,6 +64,10 @@ RSpec.describe ValidPaymentsArray do
       it 'does not include the online option' do
         expect(subject).not_to include(PaymentType::ONLINE)
       end
+
+      it 'includes the pay by phone option' do
+        expect(subject).to include(PaymentType::SELF_PAYMENT_CARD)
+      end
     end
 
     context 'with solicitor' do
@@ -89,6 +89,10 @@ RSpec.describe ValidPaymentsArray do
 
   context 'for a print and post submission' do
     let(:submission_type) { SubmissionType::PRINT_AND_POST.to_s }
+
+    it 'does not include the pay by phone option' do
+      expect(subject).not_to include(PaymentType::SELF_PAYMENT_CARD)
+    end
 
     context 'with solicitor' do
       let(:has_solicitor) { 'yes' }
