@@ -28,12 +28,11 @@ module C100App
     private
 
     def after_orders
-      # TODO: remove feature-flag to enable the non-parents in production
-      unless hide_non_parents?
-        return edit(:special_guardianship_order, id: record) if cao_home_order?
+      if cao_home_order?
+        edit(:special_guardianship_order, id: record)
+      else
+        next_child_step
       end
-
-      next_child_step
     end
 
     def after_has_other_children
