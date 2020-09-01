@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_135016) do
+ActiveRecord::Schema.define(version: 2020_08_26_152808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -338,7 +338,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_135016) do
     t.datetime "updated_at", null: false
     t.uuid "c100_application_id"
     t.json "local_court"
-    t.string "parent"
     t.index ["c100_application_id"], name: "index_screener_answers_on_c100_application_id", unique: true
   end
 

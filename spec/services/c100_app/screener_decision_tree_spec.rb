@@ -36,7 +36,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
         allow(Court).to receive(:new).and_return(court)
       end
 
-      it { is_expected.to have_destination(:parent, :edit) }
+      it { is_expected.to have_destination(:done, :show) }
 
       it 'creates a Court from the first result' do
         expect(Court).to receive(:new).with(courts.first)
@@ -62,23 +62,6 @@ RSpec.describe C100App::ScreenerDecisionTree do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).and_raise("expected exception for testing, please ignore")
       end
       it { is_expected.to have_destination(:error_but_continue, :show)}
-    end
-  end
-
-  context 'when the step is `parent`' do
-    let(:step_params){ {parent: parent} }
-    let(:screener_answers) { double('screener_answers', parent: parent) }
-
-    context 'and parent is "yes"' do
-      let(:parent){ GenericYesNo::YES }
-
-      it { is_expected.to have_destination(:done, :show) }
-    end
-
-    context 'and parent is "no"' do
-      let(:parent){ GenericYesNo::NO }
-
-      it { is_expected.to have_destination(:parent_exit, :show) }
     end
   end
 end

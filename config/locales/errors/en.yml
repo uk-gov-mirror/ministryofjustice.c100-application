@@ -110,13 +110,6 @@ en:
               blank: Enter a reference code
               invalid: The reference code format is invalid
 
-        # Begin screener
-        steps/screener/parent_form:
-          attributes:
-            parent:
-              inclusion: Select yes if you’re a parent
-        # End screener
-
         steps/shared/under_age_form:
           attributes:
             under_age:

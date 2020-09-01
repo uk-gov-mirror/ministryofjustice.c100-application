@@ -11,7 +11,6 @@ RSpec.describe ScreenerAnswers, type: :model do
         described_class.attributes_to_validate
       ).to match_array(%w[
         children_postcodes
-        parent
       ])
     end
   end
@@ -21,11 +20,11 @@ RSpec.describe ScreenerAnswers, type: :model do
     # for all the attributes that will be run through the validator.
     #
     context 'when context is `completion`' do
-      it { should validate_presence_of(:parent, :blank).on_context(:completion) }
+      it { should validate_presence_of(:children_postcodes, :blank).on_context(:completion) }
     end
 
     context 'when context is not `completion`' do
-      it { should_not validate_presence_of(:parent, :blank) }
+      it { should_not validate_presence_of(:children_postcodes, :blank) }
     end
   end
 
