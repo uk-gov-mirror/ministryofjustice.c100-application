@@ -16,7 +16,6 @@ class ValidPaymentsArray < SimpleDelegator
     leeds-combined-court-centre
     medway-county-court-and-family-court
     nottingham-county-court-and-family-court
-    preston-crown-court-and-family-court-sessions-house
   ].freeze
 
   attr_reader :c100_application
