@@ -18,7 +18,7 @@ RSpec.describe ValidPaymentsArray do
     it {
       expect(
         described_class::COURTS_WITH_ONLINE_PAYMENT.size
-      ).to eq(9)
+      ).to eq(8)
     }
   end
 
