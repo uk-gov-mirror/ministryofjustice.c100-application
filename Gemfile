@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.6'
 
 gem 'devise', '~> 4.7.1'
 gem 'govuk_design_system_formbuilder', '~> 1.2.5'
@@ -60,6 +60,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rubocop'
+  gem 'rubocop-performance'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'

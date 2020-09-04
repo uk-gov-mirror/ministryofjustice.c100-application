@@ -64,7 +64,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         urgent: 'yes',
         c8_included: 'no',
         link_to_c8_pdf: '',
-        link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
+        link_to_pdf: { file: 'YnVuZGxlIHBkZg==', is_csv: false },
       })
     end
 
@@ -77,8 +77,8 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
           mail.govuk_notify_personalisation
         ).to match(hash_including(
           c8_included: 'yes',
-          link_to_c8_pdf: { file: 'YzggZm9ybQ==' },
-          link_to_pdf: { file: 'YnVuZGxlIHBkZg==' },
+          link_to_c8_pdf: { file: 'YzggZm9ybQ==', is_csv: false },
+          link_to_pdf: { file: 'YnVuZGxlIHBkZg==', is_csv: false },
         ))
       end
     end
