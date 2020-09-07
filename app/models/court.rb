@@ -1,4 +1,6 @@
 class Court
+  UNKNOWN_GBS = 'unknown'.freeze
+
   attr_reader :name, :slug, :email, :address, :gbs
 
   # Using `fetch` so an exception is raised and we are alerted if the json
@@ -45,6 +47,10 @@ class Court
     best.fetch('address')
   end
 
+  def gbs_known?
+    !gbs.eql?(UNKNOWN_GBS)
+  end
+
   # No need to memoize, we are using a basic ActiveSupport cache
   def court_data
     C100App::CourtfinderAPI.new.court_lookup(slug)
@@ -63,7 +69,7 @@ class Court
   end
 
   def retrieve_gbs_from_api
-    court_data.fetch('gbs') || 'unknown'
+    court_data.fetch('gbs').presence || UNKNOWN_GBS
   end
 
   def retrieve_emails_from_api
