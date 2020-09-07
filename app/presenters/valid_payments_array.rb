@@ -4,19 +4,9 @@ class ValidPaymentsArray < SimpleDelegator
     PaymentType::SELF_PAYMENT_CHEQUE,
   ].freeze
 
-  # This is temporary as we open online payments to a few courts first,
-  # before allowing the rest of courts to use it.
-  COURTS_WITH_ONLINE_PAYMENT = %w[
-    chelmsford-county-and-family-court
-    chelmsford-magistrates-court-and-family-court
-    west-london-family-court
-
-    bristol-civil-and-family-justice-centre
-    east-london-family-court
-    leeds-combined-court-centre
-    medway-county-court-and-family-court
-    nottingham-county-court-and-family-court
-  ].freeze
+  GOVUK_PAY_CONFIG = YAML.load_file(
+    File.join(Rails.root, 'config', 'govuk_pay.yml')
+  ).freeze
 
   attr_reader :c100_application
 
@@ -32,10 +22,18 @@ class ValidPaymentsArray < SimpleDelegator
     collection.include?(PaymentType.new(other.to_s))
   end
 
+  def pay_blocklist
+    GOVUK_PAY_CONFIG.fetch('blocklist')
+  end
+
   private
 
   def collection
     __getobj__
+  end
+
+  def court
+    @_court ||= c100_application.screener_answers_court
   end
 
   def choices_to_present
@@ -57,9 +55,7 @@ class ValidPaymentsArray < SimpleDelegator
   def govuk_pay_enabled?
     return false unless c100_application.online_submission?
 
-    COURTS_WITH_ONLINE_PAYMENT.include?(
-      c100_application.screener_answers_court.slug
-    )
+    court.gbs_known? && pay_blocklist.exclude?(court.slug)
   end
 
   # Do not show `pay by phone` option if the application can
