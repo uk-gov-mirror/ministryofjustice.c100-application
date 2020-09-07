@@ -43,6 +43,7 @@ describe AuditHelper do
         c8_form: false,
         under_age: false,
         children_sgo: false,
+        relationships: [],
         saved_for_later: false,
         consent_order: 'yes',
         legal_representation: 'yes',
@@ -100,6 +101,32 @@ describe AuditHelper do
         expect(
           subject.metadata
         ).to include(saved_for_later: true)
+      end
+    end
+
+    context 'applicant relationships to children' do
+      let(:scope_double) { double('scope') }
+      let(:relation_result) { %w(father other) }
+
+      before do
+        allow(c100_application).to receive(:applicant_ids).and_return(['123'])
+        allow(c100_application).to receive(:child_ids).and_return(['456'])
+
+        allow(Relationship).to receive(:distinct).and_return(scope_double)
+      end
+
+      it 'returns an array of relations' do
+        expect(scope_double).to receive(:where).with(
+          person_id: ['123'], minor_id: ['456']
+        ).ordered.and_return(scope_double)
+
+        expect(scope_double).to receive(:pluck).with(
+          :relation
+        ).ordered.and_return(relation_result)
+
+        expect(
+          subject.metadata[:relationships]
+        ).to eq(relation_result)
       end
     end
   end

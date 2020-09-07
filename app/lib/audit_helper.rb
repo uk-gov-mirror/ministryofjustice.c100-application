@@ -17,6 +17,7 @@ class AuditHelper
       c8_form: c100.confidentiality_enabled?,
       under_age: c100.applicants.under_age?,
       children_sgo: c100.children.with_special_guardianship_order?,
+      relationships: relationships_to_children,
       saved_for_later: c100.user_id.present?,
       consent_order: c100.consent_order,
       legal_representation: c100.has_solicitor,
@@ -53,6 +54,13 @@ class AuditHelper
       options << arrangement.special_arrangements
       options << arrangement.special_assistance
     end.flatten
+  end
+
+  # Applicant(s) relation to the main child(ren), removing repetitions, i.e. ["father", "other"]
+  def relationships_to_children
+    Relationship.distinct.where(
+      person_id: c100.applicant_ids, minor_id: c100.child_ids
+    ).pluck(:relation)
   end
 
   def payment_metadata
