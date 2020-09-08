@@ -5,14 +5,22 @@
 
 blocklist:
   - blocklisted-slug-example
+
+  # Batch 3 - due 17/09/2020
+  #
+  - york-county-court-and-family-court
+  - barrow-in-furness-county-court-and-family-court
+  - liverpool-civil-and-family-court
+
+  # Temporarily disabled courts due to its name being longer than 50 chars
+  # Awaiting for Pay service to increase the limit in the metadata field
+  #
+  - newport-south-wales-county-court-and-family-court
   - preston-crown-court-and-family-court-sessions-house
   - manchester-civil-justice-centre-civil-and-family-courts
   - newcastle-civil-family-courts-and-tribunals-centre
   - bournemouth-and-poole-county-court-and-family-court
-  - york-county-court-and-family-court
-  - barrow-in-furness-county-court-and-family-court
-  - liverpool-civil-and-family-court
-  #
+
   # Following slugs to be removed in 3 weeks. All these had their GBS code
   # previously set, and now it has been unset, but existing applications
   # in our database will still have it for a while.
