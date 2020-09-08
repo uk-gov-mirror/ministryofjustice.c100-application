@@ -27,6 +27,23 @@ RSpec.describe ValidPaymentsArray do
         york-county-court-and-family-court
         barrow-in-furness-county-court-and-family-court
         liverpool-civil-and-family-court
+        canterbury-combined-court-centre
+        carmarthen-county-court-and-family-court
+        chester-civil-and-family-justice-centre
+        clerkenwell-and-shoreditch-county-court-and-family-court
+        crewe-county-court-and-family-court
+        dartford-county-court-and-family-court
+        dudley-county-court-and-family-court
+        haverfordwest-county-court-and-family-court
+        hertford-county-court-and-family-court
+        isle-of-wight-combined-court
+        maidstone-combined-court-centre
+        staines-county-court-and-family-court
+        thanet-county-court-and-family-court
+        torquay-and-newton-abbot-county-court-and-family-court
+        uxbridge-county-court-and-family-court
+        weymouth-combined-court
+        yeovil-county-family-and-magistrates-court
       ))
     end
   end
