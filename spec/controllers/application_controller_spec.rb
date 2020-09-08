@@ -151,7 +151,9 @@ RSpec.describe ApplicationController do
       it 'should report the exception, and redirect to the payment error page' do
         routes.draw { get 'payment_error' => 'anonymous#payment_error' }
 
-        expect(Raven).to receive(:capture_exception)
+        expect(Raven).to receive(:capture_exception).with(
+          Errors::PaymentError, tags: { c100_application_id: nil }
+        )
 
         get :payment_error
         expect(response).to redirect_to(payment_error_errors_path)
