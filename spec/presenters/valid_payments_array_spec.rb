@@ -14,12 +14,38 @@ RSpec.describe ValidPaymentsArray do
 
   let(:common_choices) { described_class::COMMON_CHOICES }
 
-  describe 'COURTS_WITH_ONLINE_PAYMENT' do
-    it {
+  describe '#pay_blocklist' do
+    it 'returns the blocked slugs' do
       expect(
-        described_class::COURTS_WITH_ONLINE_PAYMENT.size
-      ).to eq(8)
-    }
+        subject.pay_blocklist
+      ).to match_array(%w(
+        blocklisted-slug-example
+        preston-crown-court-and-family-court-sessions-house
+        manchester-civil-justice-centre-civil-and-family-courts
+        newcastle-civil-family-courts-and-tribunals-centre
+        bournemouth-and-poole-county-court-and-family-court
+        york-county-court-and-family-court
+        barrow-in-furness-county-court-and-family-court
+        liverpool-civil-and-family-court
+        canterbury-combined-court-centre
+        carmarthen-county-court-and-family-court
+        chester-civil-and-family-justice-centre
+        clerkenwell-and-shoreditch-county-court-and-family-court
+        crewe-county-court-and-family-court
+        dartford-county-court-and-family-court
+        dudley-county-court-and-family-court
+        haverfordwest-county-court-and-family-court
+        hertford-county-court-and-family-court
+        isle-of-wight-combined-court
+        maidstone-combined-court-centre
+        staines-county-court-and-family-court
+        thanet-county-court-and-family-court
+        torquay-and-newton-abbot-county-court-and-family-court
+        uxbridge-county-court-and-family-court
+        weymouth-combined-court
+        yeovil-county-family-and-magistrates-court
+      ))
+    end
   end
 
   describe '#include?' do
@@ -51,15 +77,38 @@ RSpec.describe ValidPaymentsArray do
   context 'for an online submission' do
     let(:submission_type) { SubmissionType::ONLINE.to_s }
 
-    let(:court_double) { double(slug: court_slug) }
+    let(:court_double) { Court.new(court_data) }
+    let(:court_data) {
+      {
+        'name' => 'Test court',
+        'email' => 'court@example.com',
+        'address' => 'Court address',
+        'slug' => court_slug,
+        'gbs' => court_gbs,
+      }
+    }
+
+    let(:court_gbs) { 'XYZ' }
     let(:court_slug) { 'west-london-family-court' }
 
     before do
       allow(c100_application).to receive(:screener_answers_court).and_return(court_double)
     end
 
-    context 'for a court slug without govuk pay enabled' do
-      let(:court_slug) { 'test-slug' }
+    context 'for a court slug included in the blocklist' do
+      let(:court_slug) { 'blocklisted-slug-example' }
+
+      it 'does not include the online option' do
+        expect(subject).not_to include(PaymentType::ONLINE)
+      end
+
+      it 'includes the pay by phone option' do
+        expect(subject).to include(PaymentType::SELF_PAYMENT_CARD)
+      end
+    end
+
+    context 'for a court without GBS code' do
+      let(:court_gbs) { Court::UNKNOWN_GBS }
 
       it 'does not include the online option' do
         expect(subject).not_to include(PaymentType::ONLINE)

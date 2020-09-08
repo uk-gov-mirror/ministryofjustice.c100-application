@@ -111,6 +111,16 @@ describe Court do
           end
         end
 
+        context 'the API returned a blank gbs' do
+          let(:api_response) do
+            { 'gbs' => '' }
+          end
+
+          it 'sets the gbs fallback code' do
+            expect(subject.gbs).to eq('unknown')
+          end
+        end
+
         context 'the API failed to return gbs' do
           let(:api_response) { {} }
           it { expect { subject.gbs }.to raise_error(KeyError, 'key not found: "gbs"') }
@@ -427,6 +437,21 @@ describe Court do
         it 'returns the first email' do
           expect(subject.best_enquiries_email).to eq('my@email')
         end
+      end
+    end
+  end
+
+  describe '#gbs_known?' do
+    context 'for a valid GBS code' do
+      it 'returns true' do
+        expect(subject.gbs_known?).to eq(true)
+      end
+    end
+
+    context 'for an unknown GBS code' do
+      it 'returns false' do
+        expect(subject).to receive(:gbs).and_return('unknown')
+        expect(subject.gbs_known?).to eq(false)
       end
     end
   end
