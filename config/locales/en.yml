@@ -459,9 +459,6 @@ en:
                   <li>stopping someone saving their own money</li>
                   <li>withholding money or credit cards</li>
                 </ul>
-                <div class="govuk-inset-text">
-                  Withholding child maintenance payments isn’t considered financial abuse.
-                </div>
               other_html: ""
 
             children:
@@ -482,9 +479,6 @@ en:
                   <li>ignored</li>
                 </ul>
               financial_html: |
-                <div class="govuk-inset-text">
-                  Withholding child maintenance payments isn’t considered financial abuse.
-                </div>
               other_html: |
                 <p class="govuk-body">For example, their basic needs are not being met (known as child neglect) or you’re worried about someone they may have contact with.</p>
       details:
@@ -571,7 +565,7 @@ en:
             <p class="govuk-body">Examples include, but are not limited to:</p>
             <ul class="govuk-list govuk-list--bullet">
               <li>psychological abuse</li>
-              <li>financial abuse (withholding child maintenance payments isn't considered financial abuse)</li>
+              <li>financial abuse</li>
               <li>emotional abuse</li>
               <li>physical abuse</li>
               <li>sexual abuse</li>
