@@ -27,9 +27,6 @@ module C100App
         return confirmation_url
       end
 
-      # For a while, until we are confident, let's log these failures
-      log_failure_info
-
       # Revert to `in_progress` as we are certain at this point payment failed
       move_status_to :in_progress
 
@@ -66,13 +63,6 @@ module C100App
       when :completed
         c100_application.mark_as_completed!
       end
-    end
-
-    def log_failure_info
-      Raven.capture_exception(
-        Errors::PaymentError.new(payment_intent.state),
-        level: 'info', tags: { payment_id: payment_intent.payment_id }
-      )
     end
   end
 end
