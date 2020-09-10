@@ -121,10 +121,6 @@ RSpec.describe C100App::PaymentsFlowControl do
       end
 
       it 'reports the error and returns the error page' do
-        expect(Raven).to receive(:capture_exception).with(
-          error_to_report, level: 'info', tags: { payment_id: 'xyz123' }
-        )
-
         expect(c100_application).to receive(:in_progress!)
         expect(subject.next_url).to eq('/errors/payment_error')
       end
