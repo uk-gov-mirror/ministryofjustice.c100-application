@@ -10,13 +10,18 @@ RSpec.describe Steps::Screener::PostcodeForm do
   let(:screener_answers){ instance_double(ScreenerAnswers, children_postcodes: '') }
 
   let(:c100_application) {
-    instance_double(C100Application, screener_answers: screener_answers)
+    instance_double(C100Application, screener_answers: screener_answers, children_postcode: nil)
   }
   let(:children_postcodes)  { 'E3 6AA' }
 
   subject { described_class.new(arguments) }
 
   describe '#save' do
+    # TODO: preparation for future screener removal
+    before do
+      allow(c100_application).to receive(:update).with(children_postcode: children_postcodes).and_return(true)
+    end
+
     it_behaves_like 'a has-one-association form',
                     association_name: :screener_answers,
                     expected_attributes: {
@@ -80,6 +85,11 @@ RSpec.describe Steps::Screener::PostcodeForm do
       it 'saves the record' do
         expect(screener_answers).to receive(:update).with(
           children_postcodes: children_postcodes
+        ).and_return(true)
+
+        # TODO: preparation for future screener removal
+        expect(c100_application).to receive(:update).with(
+          children_postcode: children_postcodes
         ).and_return(true)
 
         expect(subject.save).to be(true)
