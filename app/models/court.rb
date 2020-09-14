@@ -1,21 +1,33 @@
-class Court
+class Court < ApplicationRecord
   UNKNOWN_GBS = 'unknown'.freeze
 
-  attr_reader :name, :slug, :email, :address, :gbs
+  has_many :c100_applications
+
+  alias_attribute :slug, :id
 
   # Using `fetch` so an exception is raised and we are alerted if the json
   # schema ever changes, instead of silently let the user continue, as all
   # details are needed for the application to progress
   #
-  def initialize(data)
-    @name = data.fetch('name')
-    @slug = data.fetch('slug')
-    @address = data.fetch('address')
-    # Email and GBS code, if not already present, come from a separate API request
-    @email = data['email'] || best_enquiries_email
-    @gbs = data['gbs'] || retrieve_gbs_from_api
+  def self.build(data)
+    new(
+      slug: data.fetch('slug'),
+      name: data.fetch('name'),
+      address: data.fetch('address'),
+      # Email and GBS code, if not already present, come from a separate API request
+      email: data['email'],
+      gbs: data['gbs'],
+    )
   rescue StandardError => ex
     log_and_raise(ex, data)
+  end
+
+  def email=(email)
+    self[:email] = email || best_enquiries_email
+  end
+
+  def gbs=(gbs)
+    self[:gbs] = gbs || retrieve_gbs_from_api
   end
 
   def full_address
@@ -56,6 +68,15 @@ class Court
     C100App::CourtfinderAPI.new.court_lookup(slug)
   end
 
+  # TODO: preparation for future screener removal
+  # Maintain backwards compatibility with current stored data,
+  # while we do the refactor of the screener.
+  def as_json(*)
+    super(
+      { only: [:name, :address, :email, :gbs], methods: :slug }
+    )
+  end
+
   private
 
   def best_match_for(emails, node)
@@ -76,9 +97,10 @@ class Court
     court_data.fetch('emails')
   end
 
-  def log_and_raise(exception, data)
+  def self.log_and_raise(exception, data)
     Raven.extra_context(data: data)
     Raven.capture_exception(exception)
     raise
   end
+  private_class_method :log_and_raise
 end

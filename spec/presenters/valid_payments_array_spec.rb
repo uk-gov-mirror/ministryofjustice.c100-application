@@ -75,7 +75,7 @@ RSpec.describe ValidPaymentsArray do
   context 'for an online submission' do
     let(:submission_type) { SubmissionType::ONLINE.to_s }
 
-    let(:court_double) { Court.new(court_data) }
+    let(:court_double) { Court.build(court_data) }
     let(:court_data) {
       {
         'name' => 'Test court',

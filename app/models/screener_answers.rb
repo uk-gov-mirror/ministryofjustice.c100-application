@@ -9,6 +9,6 @@ class ScreenerAnswers < ApplicationRecord
   validates_presence_of attributes_to_validate, on: :completion
 
   def court
-    Court.new(local_court) if local_court
+    Court.build(local_court) if local_court
   end
 end

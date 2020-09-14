@@ -33,7 +33,7 @@ RSpec.describe ScreenerAnswers, type: :model do
       let(:local_court) { { "name" => 'whatever' } }
 
       it 'returns a Court' do
-        expect(Court).to receive(:new).with(local_court)
+        expect(Court).to receive(:build).with(local_court)
         subject.court
       end
     end

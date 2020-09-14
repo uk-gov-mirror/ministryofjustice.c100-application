@@ -19,7 +19,7 @@ module C100App
       if courts.empty?
         show(:no_court_found)
       else
-        court = Court.new(courts.first)
+        court = Court.build(courts.first)
         c100_application.screener_answers.update!(local_court: court)
         show(:done)
       end
