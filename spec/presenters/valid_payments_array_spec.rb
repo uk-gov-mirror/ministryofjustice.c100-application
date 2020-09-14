@@ -25,12 +25,6 @@ RSpec.describe ValidPaymentsArray do
         barrow-in-furness-county-court-and-family-court
         liverpool-civil-and-family-court
 
-        newport-south-wales-county-court-and-family-court
-        preston-crown-court-and-family-court-sessions-house
-        manchester-civil-justice-centre-civil-and-family-courts
-        newcastle-civil-family-courts-and-tribunals-centre
-        bournemouth-and-poole-county-court-and-family-court
-
         canterbury-combined-court-centre
         carmarthen-county-court-and-family-court
         chester-civil-and-family-justice-centre
