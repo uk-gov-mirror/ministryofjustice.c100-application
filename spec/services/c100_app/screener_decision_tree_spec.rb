@@ -33,13 +33,13 @@ RSpec.describe C100App::ScreenerDecisionTree do
       before do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).with(postcodes).and_return(courts)
         allow(screener_answers).to receive(:update!)
-        allow(Court).to receive(:new).and_return(court)
+        allow(Court).to receive(:build).and_return(court)
       end
 
       it { is_expected.to have_destination(:done, :show) }
 
       it 'creates a Court from the first result' do
-        expect(Court).to receive(:new).with(courts.first)
+        expect(Court).to receive(:build).with(courts.first)
         subject.destination
       end
 

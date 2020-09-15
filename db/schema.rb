@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_152808) do
+ActiveRecord::Schema.define(version: 2020_09_14_093114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -145,6 +145,9 @@ ActiveRecord::Schema.define(version: 2020_08_26_152808) do
     t.string "reminder_status"
     t.string "permission_sought"
     t.text "permission_details"
+    t.string "children_postcode"
+    t.string "court_id"
+    t.index ["court_id"], name: "index_c100_applications_on_court_id"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
   end
@@ -239,6 +242,15 @@ ActiveRecord::Schema.define(version: 2020_08_26_152808) do
     t.text "previous_details"
     t.uuid "c100_application_id"
     t.index ["c100_application_id"], name: "index_court_proceedings_on_c100_application_id"
+  end
+
+  create_table "courts", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "gbs", null: false
+    t.jsonb "address", default: {}, null: false
   end
 
   create_table "email_submissions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -383,6 +395,7 @@ ActiveRecord::Schema.define(version: 2020_08_26_152808) do
 
   add_foreign_key "abduction_details", "c100_applications"
   add_foreign_key "abuse_concerns", "c100_applications"
+  add_foreign_key "c100_applications", "courts"
   add_foreign_key "c100_applications", "users"
   add_foreign_key "child_orders", "people", column: "child_id"
   add_foreign_key "child_residences", "people", column: "child_id"

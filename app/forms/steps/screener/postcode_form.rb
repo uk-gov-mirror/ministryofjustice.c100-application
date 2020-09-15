@@ -16,6 +16,15 @@ module Steps
         record_to_persist.update(
           children_postcodes: children_postcodes
         )
+
+        # TODO: preparation for future screener removal.
+        # Soon we will get rid of the `screener_answers` DB table and
+        # refactor the postcode screener question to be part of the main
+        # application. For now, we just copy over this to the new DB field.
+        #
+        c100_application.update(
+          children_postcode: children_postcodes
+        )
       end
     end
   end

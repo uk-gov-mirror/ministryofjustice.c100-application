@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Court do
-  subject { described_class.new(data) }
+  subject { described_class.build(data) }
 
   let(:data) {
     {
@@ -21,7 +21,7 @@ describe Court do
     }
   }
 
-  describe '.new' do
+  describe '.build' do
     it 'sets the name' do
       expect(subject.name).to eq('Court name')
     end
@@ -453,6 +453,22 @@ describe Court do
         expect(subject).to receive(:gbs).and_return('unknown')
         expect(subject.gbs_known?).to eq(false)
       end
+    end
+  end
+
+  # TODO: preparation for future screener removal
+  describe '#as_json' do
+    it 'excludes some attributes' do
+      expect(subject.as_json).not_to include('created_at', 'updated_at', 'id')
+    end
+
+    it 'includes the attributes we need' do
+      expect(subject.as_json).to include('name', 'address', 'email', 'gbs', 'slug')
+    end
+
+    # Mutant killer for arguments
+    it 'can be called with arguments, but we do not use them' do
+      expect(subject.as_json({})).to be_kind_of(Hash)
     end
   end
 end

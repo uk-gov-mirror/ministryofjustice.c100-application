@@ -33,7 +33,7 @@ RSpec.describe ScreenerAnswers, type: :model do
       let(:local_court) { { "name" => 'whatever' } }
 
       it 'returns a Court' do
-        expect(Court).to receive(:new).with(local_court)
+        expect(Court).to receive(:build).with(local_court)
         subject.court
       end
     end
@@ -41,37 +41,6 @@ RSpec.describe ScreenerAnswers, type: :model do
     context 'when there is no local_court' do
       it 'returns nil' do
         expect(subject.court).to eq(nil)
-      end
-    end
-  end
-
-  describe '#refresh_local_court!' do
-    before do
-      allow(subject).to receive(:children_postcodes).and_return('ABC 123')
-    end
-
-    context 'when at least one court was found' do
-      it 'updates the local court' do
-        expect_any_instance_of(
-          C100App::CourtPostcodeChecker
-        ).to receive(:courts_for).with('ABC 123').and_return(%w(foobar another))
-
-        expect(Court).to receive(:new).with('foobar').and_return('foobar')
-        expect(subject).to receive(:update_column).with(:local_court, 'foobar')
-        subject.refresh_local_court!
-      end
-    end
-
-    context 'when no courts were found' do
-      let(:court_results) { [] }
-
-      it 'returns without any update' do
-        expect_any_instance_of(
-          C100App::CourtPostcodeChecker
-        ).to receive(:courts_for).with('ABC 123').and_return([])
-
-        expect(subject).not_to receive(:update_column)
-        subject.refresh_local_court!
       end
     end
   end
