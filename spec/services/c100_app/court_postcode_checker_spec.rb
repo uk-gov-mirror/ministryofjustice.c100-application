@@ -11,61 +11,6 @@ describe C100App::CourtPostcodeChecker do
     end
   end
 
-  describe '#courts_for' do
-    before do
-      allow(subject).to receive(:court_for).and_return( 'call1', 'call2', 'call3' )
-    end
-
-    context 'given several postcodes separated by "\n"' do
-      let(:postcodes) {
-        "A1AAA\nB1BBB\nC1CCC"
-      }
-      it 'calls court_for with each postcode' do
-        expect(subject).to receive(:court_for).once.with('A1AAA')
-        expect(subject).to receive(:court_for).once.with('B1BBB')
-        expect(subject).to receive(:court_for).once.with('C1CCC')
-        subject.courts_for(postcodes)
-      end
-    end
-    context 'when the given postcodes contain blank lines' do
-      let(:postcodes){
-        "\n\nA1AAA\n\nB1BBB\n\n"
-      }
-      it 'does not call court_for with the blank lines' do
-        expect(subject).to_not receive(:court_for).with('')
-        subject.courts_for(postcodes)
-      end
-    end
-    context 'when the given postcodes contain spaces' do
-      let(:postcodes){
-        "B1 BBB"
-      }
-      it 'does not strip the spaces before calling court_for' do
-        expect(subject).to receive(:court_for).with('B1 BBB')
-        subject.courts_for(postcodes)
-      end
-    end
-
-    context 'when given nil' do
-      let(:postcodes){ nil }
-      it 'does not raise an error' do
-        expect{ subject.courts_for(postcodes) }.to_not raise_error
-      end
-    end
-    it 'returns the results of the court_for calls' do
-      expect(subject.courts_for("A1AAA\nB1BBB")).to eq(['call1', 'call2'])
-    end
-
-    context 'when court_for returns nil' do
-      before do
-        allow(subject).to receive(:court_for).and_return(nil)
-      end
-      it 'removes the nils' do
-        expect(subject.courts_for("A1AAA\nB1BBB")).to eq([])
-      end
-    end
-  end
-
   describe '#court_for' do
     let(:dummy_court_objects){
       [{'slug' => 'dummy-court-slug'}]

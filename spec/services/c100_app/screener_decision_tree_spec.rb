@@ -16,30 +16,27 @@ RSpec.describe C100App::ScreenerDecisionTree do
   context 'when the step is `children_postcodes`' do
     let(:step_params) { { children_postcodes: postcodes } }
 
-    context 'and no valid courts are found' do
+    context 'and no valid court is found' do
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).with(postcodes).and_return([])
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(nil)
       end
       it { is_expected.to have_destination(:no_court_found, :show) }
     end
 
-    context 'and at least one valid court is found' do
-      let(:courts){
-        ['i am a court',
-         'i am another court']
-      }
-      let(:court){ instance_double('Court') }
+    context 'and one valid court is found' do
+      let(:found_court) { double('raw court data') }
+      let(:court) { instance_double('Court') }
 
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).with(postcodes).and_return(courts)
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(found_court)
         allow(screener_answers).to receive(:update!)
         allow(Court).to receive(:build).and_return(court)
       end
 
       it { is_expected.to have_destination(:done, :show) }
 
-      it 'creates a Court from the first result' do
-        expect(Court).to receive(:build).with(courts.first)
+      it 'creates a Court from the result' do
+        expect(Court).to receive(:build).with(found_court)
         subject.destination
       end
 
@@ -51,7 +48,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
     context 'when the postcode checker raises an error' do
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).and_raise("expected exception for testing, please ignore")
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).and_raise("expected exception for testing, please ignore")
       end
       it { is_expected.to have_destination(:error_but_continue, :show)}
     end
@@ -59,7 +56,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
     context 'when the children_postcodes are nil' do
       let(:postcodes){ nil }
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:courts_for).and_raise("expected exception for testing, please ignore")
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).and_raise("expected exception for testing, please ignore")
       end
       it { is_expected.to have_destination(:error_but_continue, :show)}
     end
