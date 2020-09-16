@@ -21,10 +21,6 @@ RSpec.describe ValidPaymentsArray do
       ).to match_array(%w(
         blocklisted-slug-example
 
-        york-county-court-and-family-court
-        barrow-in-furness-county-court-and-family-court
-        liverpool-civil-and-family-court
-
         canterbury-combined-court-centre
         carmarthen-county-court-and-family-court
         chester-civil-and-family-justice-centre
