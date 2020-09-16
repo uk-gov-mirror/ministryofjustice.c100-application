@@ -21,6 +21,10 @@ describe Court do
     }
   }
 
+  describe 'REFRESH_DATA_AFTER' do
+    it { expect(described_class::REFRESH_DATA_AFTER).to eq(72.hours) }
+  end
+
   describe '.build' do
     it 'sets the name' do
       expect(subject.name).to eq('Court name')
@@ -162,6 +166,114 @@ describe Court do
         context 'the API failed to return emails' do
           let(:api_response) { {} }
           it { expect { subject.email }.to raise_error(KeyError, 'key not found: "emails"') }
+        end
+      end
+    end
+  end
+
+  describe '.create_or_refresh' do
+    subject { described_class.create_or_refresh(data) }
+
+    let(:slug) { 'court-test-7fb3d126d5e0' }
+    let(:data) {
+      {
+        "slug" => slug,
+        "name" => 'Court Test',
+        "address" => {},
+        "email" => nil,
+        "gbs" => nil,
+      }
+    }
+
+    before do
+      allow_any_instance_of(Court).to receive(:best_enquiries_email).and_return('family@court')
+      allow_any_instance_of(Court).to receive(:retrieve_gbs_from_api).and_return('X123')
+    end
+
+    # Note: following tests are easier and more accurate if we use real records
+    # persisted to database instead of doubles, thus we need to ensure a fresh state.
+    #
+    before { Court.where(slug: 'court-test-7fb3d126d5e0').destroy_all }
+    after  { Court.where(slug: 'court-test-7fb3d126d5e0').destroy_all }
+
+    context 'log and raise exception if an error occurs' do
+      before do
+        allow(Court).to receive(:find_or_initialize_by).and_raise(StandardError, 'boom!')
+      end
+
+      it 'sends the exception to Sentry with extra context' do
+        expect(Raven).to receive(:extra_context).with(data: data)
+        expect(Raven).to receive(:capture_exception).with(an_instance_of(StandardError))
+
+        expect { subject }.to raise_error(StandardError, 'boom!')
+      end
+    end
+
+    context 'for a new court record, not in the database' do
+      it 'creates a new court and returns it' do
+        expect {
+          @court = subject
+        }.to change { Court.where(slug: slug).count }.from(0).to(1)
+
+        expect(
+          @court.attributes
+        ).to include('name' => 'Court Test', 'email' => 'family@court', 'address' => {}, 'gbs' => 'X123')
+      end
+    end
+
+    context 'for an existing court record in the database' do
+      context 'with stale data' do
+        let!(:court) {
+          Court.create(data.merge("email" => 'family@court', "gbs" => 'X123'))
+        }
+
+        before do
+          @updated_at = 4.days.from_now
+          travel_to @updated_at
+        end
+
+        context 'and some data has changed' do
+          before do
+            allow_any_instance_of(Court).to receive(:best_enquiries_email).and_return('updated-email')
+            allow_any_instance_of(Court).to receive(:retrieve_gbs_from_api).and_return('updated-gbs')
+          end
+
+          it 'forces a refresh of the data' do
+            expect(
+              subject.attributes
+            ).to include('email' => 'updated-email', 'gbs' => 'updated-gbs')
+          end
+
+          it 'touches the `updated_at` timestamp' do
+            expect(subject.updated_at.to_i).to eq(@updated_at.to_i)
+          end
+        end
+
+        context 'and the same data is still in use' do
+          it 'maintains the same data' do
+            expect(
+              subject.attributes
+            ).to include('email' => 'family@court', 'gbs' => 'X123')
+          end
+
+          it 'touches the `updated_at` timestamp' do
+            expect(subject.updated_at.to_i).to eq(@updated_at.to_i)
+          end
+        end
+      end
+
+      context 'without stale data' do
+        let(:court) { instance_double(Court) }
+
+        before do
+          allow(Court).to receive(:find_or_initialize_by).and_return(court)
+        end
+
+        it 'does not refresh the data' do
+          expect(court).to receive(:stale?).and_return(false)
+          expect(court).not_to receive(:update_attributes)
+
+          expect(subject).to eq(court)
         end
       end
     end
@@ -452,6 +564,50 @@ describe Court do
       it 'returns false' do
         expect(subject).to receive(:gbs).and_return('unknown')
         expect(subject.gbs_known?).to eq(false)
+      end
+    end
+  end
+
+  describe '#stale?' do
+    before do
+      freeze_time
+      allow(subject).to receive(:updated_at).and_return(updated_at)
+    end
+
+    after { travel_back }
+
+    context 'for an `updated_at` nil (new records)' do
+      let(:updated_at) { nil }
+
+      it 'returns true' do
+        expect(subject.stale?).to eq(true)
+      end
+    end
+
+    context 'for a stale court record' do
+      context 'exact threshold' do
+        let(:updated_at) { 72.hours.ago }
+
+        it 'returns true' do
+          expect(subject.stale?).to eq(true)
+        end
+      end
+
+      # mutant kill
+      context 'older than the threshold' do
+        let(:updated_at) { 73.hours.ago }
+
+        it 'returns true' do
+          expect(subject.stale?).to eq(true)
+        end
+      end
+    end
+
+    context 'for an up to date court record' do
+      let(:updated_at) { 1.day.ago }
+
+      it 'returns false' do
+        expect(subject.stale?).to eq(false)
       end
     end
   end

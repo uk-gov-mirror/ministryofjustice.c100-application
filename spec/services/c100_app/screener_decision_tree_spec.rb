@@ -24,25 +24,23 @@ RSpec.describe C100App::ScreenerDecisionTree do
     end
 
     context 'and one valid court is found' do
-      let(:found_court) { double('raw court data') }
       let(:court) { instance_double('Court') }
 
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(found_court)
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(court)
         allow(screener_answers).to receive(:update!)
-        allow(Court).to receive(:build).and_return(court)
-      end
-
-      it { is_expected.to have_destination(:done, :show) }
-
-      it 'creates a Court from the result' do
-        expect(Court).to receive(:build).with(found_court)
-        subject.destination
+        allow(c100_application).to receive(:update!)
       end
 
       it 'updates the screener_answers with the Court' do
         expect(screener_answers).to receive(:update!).with(local_court: court)
-        subject.destination
+        is_expected.to have_destination(:done, :show)
+      end
+
+      # TODO: preparation for future screener removal
+      it 'assigns the court to the c100 application' do
+        expect(c100_application).to receive(:update!).with(court: court)
+        is_expected.to have_destination(:done, :show)
       end
     end
 

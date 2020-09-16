@@ -1,4 +1,5 @@
 class Court < ApplicationRecord
+  REFRESH_DATA_AFTER = 72.hours
   UNKNOWN_GBS = 'unknown'.freeze
 
   has_many :c100_applications
@@ -18,6 +19,26 @@ class Court < ApplicationRecord
       email: data['email'],
       gbs: data['gbs'],
     )
+  rescue StandardError => ex
+    log_and_raise(ex, data)
+  end
+
+  # If this is the first time we see this court (slug) then we create
+  # a new record in the `courts` table. If we already have this court,
+  # we check if its data has become stale, and if so, we refresh it.
+  #
+  def self.create_or_refresh(data)
+    court = find_or_initialize_by(slug: data.fetch('slug'))
+
+    if court.stale?
+      court.slug_will_change! # Touch `updated_at` on save, even if there are no changes
+
+      court.update_attributes(
+        build(data).attributes.except('created_at', 'updated_at')
+      )
+    end
+
+    court
   rescue StandardError => ex
     log_and_raise(ex, data)
   end
@@ -61,6 +82,10 @@ class Court < ApplicationRecord
 
   def gbs_known?
     !gbs.eql?(UNKNOWN_GBS)
+  end
+
+  def stale?
+    updated_at.nil? || updated_at <= REFRESH_DATA_AFTER.ago
   end
 
   # No need to memoize, we are using a basic ActiveSupport cache

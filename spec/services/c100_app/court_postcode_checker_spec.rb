@@ -16,33 +16,40 @@ describe C100App::CourtPostcodeChecker do
       [{'slug' => 'dummy-court-slug'}]
     }
 
-    it 'calls court_for on the CourtfinderAPI, passing the AREA_OF_LAW and given postcode' do
-      expect_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).
-                                                    once.
-                                                    with(subject.class::AREA_OF_LAW, 'mypostcode').
-                                                    and_return(dummy_court_objects)
-      subject.send(:court_for, 'mypostcode')
-    end
-
     context 'when the CourtfinderAPI does not throw an error' do
       before do
-        allow_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).and_return(dummy_court_objects)
+        expect_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).once.with(
+          described_class::AREA_OF_LAW, 'mypostcode'
+        ).and_return(dummy_court_objects)
+
+        expect(subject).to receive(:choose_from).with(
+          dummy_court_objects
+        ).and_return(candidate_court)
       end
 
-      it 'calls choose_from with the returned objects' do
-        expect(subject).to receive(:choose_from).with(dummy_court_objects)
-        subject.send(:court_for, 'mypostcode')
+      context 'and a candidate court was found' do
+        let(:candidate_court) { 'chosen court' }
+        let(:court) { instance_double(Court) }
+
+        it 'returns a Court instance' do
+          expect(Court).to receive(:create_or_refresh).with(candidate_court).and_return(court)
+          expect(subject.send(:court_for, 'mypostcode')).to eq(court)
+        end
       end
 
-      it 'returns the result of choose_from' do
-        allow(subject).to receive(:choose_from).and_return('chosen court')
-        expect(subject.send(:court_for, 'mypostcode')).to eq('chosen court')
+      context 'and a candidate court was not found' do
+        let(:candidate_court) { nil }
+
+        it 'returns nil' do
+          expect(Court).not_to receive(:create_or_refresh)
+          expect(subject.send(:court_for, 'mypostcode')).to be_nil
+        end
       end
     end
 
     context 'when the CourtfinderAPI throws an error' do
       before do
-        allow_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).and_raise(Exception)
+        allow_any_instance_of(C100App::CourtfinderAPI).to receive(:court_for).and_raise(StandardError)
       end
 
       it 'allows the error to propagate out un-caught' do
