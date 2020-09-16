@@ -13,15 +13,24 @@ module C100App
 
     private
 
-    def check_if_court_is_valid
-      courts = CourtPostcodeChecker.new.courts_for(step_params.fetch(:children_postcodes))
+    # TODO: rename param to be singular, not plural, when removing the screener
+    def children_postcode
+      step_params.fetch(:children_postcodes)
+    end
 
-      if courts.empty?
-        show(:no_court_found)
-      else
-        court = Court.build(courts.first)
+    def check_if_court_is_valid
+      court = CourtPostcodeChecker.new.court_for(children_postcode)
+
+      if court
+        # Still saving to the old table, for the time being
         c100_application.screener_answers.update!(local_court: court)
+
+        # New table association
+        c100_application.update!(court: court)
+
         show(:done)
+      else
+        show(:no_court_found)
       end
     # `CourtPostcodeChecker` and `Court` already log any potential exceptions
     rescue StandardError
