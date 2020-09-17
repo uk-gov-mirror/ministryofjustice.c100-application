@@ -88,11 +88,6 @@ class Court < ApplicationRecord
     updated_at.nil? || updated_at <= REFRESH_DATA_AFTER.ago
   end
 
-  # No need to memoize, we are using a basic ActiveSupport cache
-  def court_data
-    C100App::CourtfinderAPI.new.court_lookup(slug)
-  end
-
   # TODO: preparation for future screener removal
   # Maintain backwards compatibility with current stored data,
   # while we do the refactor of the screener.
@@ -120,6 +115,10 @@ class Court < ApplicationRecord
 
   def retrieve_emails_from_api
     court_data.fetch('emails')
+  end
+
+  def court_data
+    @_court_data ||= C100App::CourtfinderAPI.new.court_lookup(slug)
   end
 
   def self.log_and_raise(exception, data)
