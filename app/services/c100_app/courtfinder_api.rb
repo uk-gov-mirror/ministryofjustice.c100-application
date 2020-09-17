@@ -18,13 +18,6 @@ module C100App
       use_ssl: true,
     }.freeze
 
-    SLUGS_CACHE_OPTIONS ||= {
-      namespace: 'courtfinder',
-      expires_in: 72.hours,
-      compress: false,
-      skip_nil: true
-    }.freeze
-
     def self.court_url(slug)
       URI.join(API_BASE_URL, '/courts/', slug).to_s
     end
@@ -39,21 +32,11 @@ module C100App
     def court_lookup(slug)
       path = format(COURT_PATH, slug: slug)
 
-      cache.fetch(slug, SLUGS_CACHE_OPTIONS) do
-        get_request(path)
-      end
+      get_request(path)
     end
 
     def is_ok?
       status
-    end
-
-    # Very basic cache to save a few API requests.
-    # It uses `MemoryStore` on dev/test by default, and `RedisCacheStore` on prod.
-    # Refer to `config/initializers/cache_store.rb` for more details.
-    #
-    def cache
-      Rails.cache
     end
 
     private

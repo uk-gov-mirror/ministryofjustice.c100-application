@@ -100,10 +100,6 @@ describe C100App::CourtfinderAPI do
       allow(Net::HTTP).to receive(:start)
     end
 
-    it 'uses the memory store on envs that does not declare the `REDIS_URL` variable' do
-      expect(subject.cache).to be_kind_of(ActiveSupport::Cache::MemoryStore)
-    end
-
     it 'builds a GET request' do
       expect(
         Net::HTTP::Get
@@ -114,52 +110,24 @@ describe C100App::CourtfinderAPI do
       subject.court_lookup('my-slug')
     end
 
-    context 'without cache' do
-      before do
-        subject.cache.clear
-      end
-
-      it 'request the court json' do
-        expect(subject).to receive(:get_request).with('/courts/my-slug.json')
-        subject.court_lookup('my-slug')
-      end
-
-      context 'when an error is thrown' do
-        let(:dummy_exception){ StandardError.new('test exception') }
-
-        before do
-          allow(Net::HTTP).to receive(:start).and_raise(dummy_exception)
-        end
-
-        it 'reports the error to Sentry and re-raise it' do
-          expect(Raven).to receive(:capture_exception).with(dummy_exception)
-
-          expect {
-            subject.court_lookup('my-slug')
-          }.to raise_error(dummy_exception)
-        end
-      end
+    it 'request the court json' do
+      expect(subject).to receive(:get_request).with('/courts/my-slug.json')
+      subject.court_lookup('my-slug')
     end
 
-    context 'with cache' do
-      it 'tries to fetch the key from the cache' do
-        expect(subject.cache).to receive(:fetch).with(
-          'my-slug', skip_nil: true, compress: false, expires_in: 72.hours, namespace: 'courtfinder'
-        )
+    context 'when an error is thrown' do
+      let(:dummy_exception){ StandardError.new('test exception') }
 
-        subject.court_lookup('my-slug')
+      before do
+        allow(Net::HTTP).to receive(:start).and_raise(dummy_exception)
       end
 
-      it 'calls the API when key is not found in the cache and stores it' do
-        subject.cache.clear
+      it 'reports the error to Sentry and re-raise it' do
+        expect(Raven).to receive(:capture_exception).with(dummy_exception)
 
-        # first time, it calls the API
-        expect(subject).to receive(:get_request).with('/courts/my-slug.json')
-        subject.court_lookup('my-slug')
-
-        # second time, cache exists, do not call the API
-        expect(subject).not_to receive(:get_request)
-        subject.court_lookup('my-slug')
+        expect {
+          subject.court_lookup('my-slug')
+        }.to raise_error(dummy_exception)
       end
     end
   end
