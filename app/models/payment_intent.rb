@@ -12,6 +12,10 @@ class PaymentIntent < ApplicationRecord
     update_column(:nonce, nil)
   end
 
+  def in_progress?
+    state['finished'].equal?(false)
+  end
+
   private
 
   def init_nonce

@@ -36,4 +36,34 @@ RSpec.describe PaymentIntent, type: :model do
       subject.revoke_nonce!
     end
   end
+
+  describe '#in_progress?' do
+    subject { described_class.new(state: state) }
+
+    context 'there is a finished attribute' do
+      context 'and it is true' do
+        let(:state) { { 'finished' => true } }
+
+        it 'returns false' do
+          expect(subject.in_progress?).to eq(false)
+        end
+      end
+
+      context 'and it is false' do
+        let(:state) { { 'finished' => false } }
+
+        it 'returns true' do
+          expect(subject.in_progress?).to eq(true)
+        end
+      end
+    end
+
+    context 'there is no finished attribute' do
+      let(:state) { {} }
+
+      it 'returns false' do
+        expect(subject.in_progress?).to eq(false)
+      end
+    end
+  end
 end
