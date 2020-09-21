@@ -222,4 +222,23 @@ RSpec.describe C100Application, type: :model do
       end
     end
   end
+
+  # TODO: preparation for future screener removal
+  describe '#court' do
+    context 'when we have a court record' do
+      let(:court) { Court.new(id: 'slug') }
+      let(:attributes) { { court: court } }
+
+      it 'returns the court record' do
+        expect(subject.court).to eq(court)
+      end
+    end
+
+    context 'when we do not have a court record (legacy code)' do
+      it 'returns the court from the screener_answers table' do
+        expect(subject).to receive(:screener_answers_court).and_return('screener answers court')
+        expect(subject.court).to eq('screener answers court')
+      end
+    end
+  end
 end

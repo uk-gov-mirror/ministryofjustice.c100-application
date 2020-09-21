@@ -66,4 +66,11 @@ class C100Application < ApplicationRecord
       CompletedApplicationsAudit.log!(self)
     end
   end
+
+  # TODO: preparation for future screener removal
+  # Once we don't have any records using the old `screener_answers`
+  # table we can remove this method.
+  def court
+    super() || screener_answers_court
+  end
 end
