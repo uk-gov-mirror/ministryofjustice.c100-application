@@ -7,3 +7,7 @@ end
 class String
   include StringExtension
 end
+
+module ActiveRecord::Querying
+  include RelationExtension
+end
