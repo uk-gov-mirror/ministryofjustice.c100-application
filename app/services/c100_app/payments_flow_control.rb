@@ -12,11 +12,15 @@ module C100App
       return confirmation_url unless c100_application.online_payment?
 
       begin
-        c100_application.transaction do
-          move_status_to :payment_in_progress
+        move_status_to :payment_in_progress
+
+        if payment_intent.in_progress?
+          OnlinePayments.retrieve_payment(payment_intent).payment_url
+        else
           OnlinePayments.create_payment(payment_intent).payment_url
         end
       rescue StandardError => exception
+        move_status_to :in_progress
         raise Errors::PaymentUnexpectedError, exception
       end
     end
@@ -49,8 +53,8 @@ module C100App
     private
 
     def payment_intent
-      @_payment_intent ||= PaymentIntent.find_or_create_by!(
-        c100_application: c100_application
+      @_payment_intent ||= PaymentIntent.create_or_find_by!(
+        c100_application_id: c100_application.id
       )
     end
 
