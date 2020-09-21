@@ -5,6 +5,7 @@ RSpec.describe C100App::PaymentsFlowControl do
 
   let(:c100_application) {
     C100Application.new(
+      id: '449362af-0bc3-4953-82a7-1363d479b876',
       submission_type: submission_type,
       payment_type: payment_type,
       status: :in_progress,
@@ -19,8 +20,8 @@ RSpec.describe C100App::PaymentsFlowControl do
   before do
     allow(
       PaymentIntent
-    ).to receive(:find_or_create_by!).with(
-      c100_application: c100_application
+    ).to receive(:create_or_find_by!).with(
+      c100_application_id: c100_application.id
     ).and_return(payment_intent)
   end
 
@@ -40,21 +41,48 @@ RSpec.describe C100App::PaymentsFlowControl do
 
     context 'when payment is online' do
       before do
-        allow(
-          C100App::OnlinePayments
-        ).to receive(:create_payment).with(payment_intent).and_return(
-          double(payment_url: 'https://payments.example.com')
-        )
+        allow(payment_intent).to receive(:in_progress?).and_return(in_progress)
       end
 
-      it 'sets `payment_in_progress` status and calls the API to create the payment' do
-        expect(c100_application).to receive(:payment_in_progress!)
-        expect(subject.payment_url).to eq('https://payments.example.com')
+      context 'when an attempt already exists' do
+        let(:in_progress) { true }
+
+        before do
+          allow(
+            C100App::OnlinePayments
+          ).to receive(:retrieve_payment).with(payment_intent).and_return(
+            double(payment_url: 'https://payments.example.com')
+          )
+        end
+
+        it 'sets `payment_in_progress` status and calls the API to retrieve the payment' do
+          expect(c100_application).to receive(:payment_in_progress!)
+          expect(subject.payment_url).to eq('https://payments.example.com')
+        end
+      end
+
+      context 'when no previous attempts were found' do
+        let(:in_progress) { false }
+
+        before do
+          allow(
+            C100App::OnlinePayments
+          ).to receive(:create_payment).with(payment_intent).and_return(
+            double(payment_url: 'https://payments.example.com')
+          )
+        end
+
+        it 'sets `payment_in_progress` status and calls the API to create the payment' do
+          expect(c100_application).to receive(:payment_in_progress!)
+          expect(subject.payment_url).to eq('https://payments.example.com')
+        end
       end
     end
 
     context 'when there is an exception' do
       before do
+        allow(subject).to receive(:move_status_to)
+
         allow(
           C100App::OnlinePayments
         ).to receive(:create_payment).and_raise(ArgumentError.new('boom!'))
@@ -66,25 +94,11 @@ RSpec.describe C100App::PaymentsFlowControl do
         }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
       end
 
-      context 'transaction' do
-        # In these tests we are testing DB transactions, so we need to persist
-        # the record, and cleanup after we are finished with it.
-        before do
-          c100_application.save
-        end
+      it 'reverts the application status to `in_progress`' do
+        expect(subject).to receive(:move_status_to).with(:payment_in_progress).ordered
+        expect(subject).to receive(:move_status_to).with(:in_progress).ordered
 
-        after do
-          c100_application.destroy
-        end
-
-        it 'reverts the application status to how it was before (rollbacks)' do
-          expect(c100_application.status).to eq('in_progress')
-          expect(c100_application).to receive(:payment_in_progress!).and_call_original
-
-          expect { subject.payment_url }.to raise_error
-
-          expect(c100_application.reload.status).to eq('in_progress')
-        end
+        expect { subject.payment_url }.to raise_error
       end
     end
   end
