@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe C100App::ScreenerDecisionTree do
   let(:postcodes)        { 'anything' }
   let(:local_court)      { {} }
-  let(:screener_answers) { double('screener_answers', children_postcodes: postcodes, local_court: local_court) }
-  let(:c100_application) { double('Object', screener_answers: screener_answers) }
+  let(:c100_application) { double('Object') }
   let(:step_params)      { double('Step') }
   let(:next_step)        { nil }
   let(:as)               { nil }
@@ -28,16 +27,9 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
       before do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(court)
-        allow(screener_answers).to receive(:update!)
         allow(c100_application).to receive(:update!)
       end
 
-      it 'updates the screener_answers with the Court' do
-        expect(screener_answers).to receive(:update!).with(local_court: court)
-        is_expected.to have_destination(:done, :show)
-      end
-
-      # TODO: preparation for future screener removal
       it 'assigns the court to the c100 application' do
         expect(c100_application).to receive(:update!).with(court: court)
         is_expected.to have_destination(:done, :show)

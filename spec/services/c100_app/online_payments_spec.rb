@@ -56,7 +56,7 @@ RSpec.describe C100App::OnlinePayments do
     end
 
     before do
-      allow(c100_application).to receive(:screener_answers_court).and_return(court_double)
+      allow(c100_application).to receive(:court).and_return(court_double)
 
       allow(
         PaymentsApi::Requests::CreateCardPayment

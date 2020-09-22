@@ -6,7 +6,7 @@ module CompletionStep
   end
 
   def show
-    @court = current_c100_application.screener_answers_court
+    @court = current_c100_application.court
     @c100_application = current_c100_application
   end
 

@@ -18,7 +18,7 @@ describe AuditHelper do
   let(:payment_type) { 'cash' }
   let(:court_arrangement) { nil }
 
-  let(:screener_answers_court) { instance_double(Court, name: 'Test Court', gbs: 'X123') }
+  let(:court) { instance_double(Court, name: 'Test Court', gbs: 'X123') }
   let(:screener_answers) { instance_double(ScreenerAnswers, children_postcodes: 'abcd 123') }
 
   subject { described_class.new(c100_application) }
@@ -28,7 +28,7 @@ describe AuditHelper do
     allow(c100_application).to receive(:payment_type).and_return(payment_type)
 
     allow(c100_application).to receive(:screener_answers).and_return(screener_answers)
-    allow(c100_application).to receive(:screener_answers_court).and_return(screener_answers_court)
+    allow(c100_application).to receive(:court).and_return(court)
     allow(c100_application).to receive(:court_arrangement).and_return(court_arrangement)
   end
 

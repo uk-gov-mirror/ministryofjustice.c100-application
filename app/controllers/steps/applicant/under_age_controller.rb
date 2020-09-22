@@ -20,7 +20,7 @@ module Steps
       private
 
       def set_court
-        @court = current_c100_application.screener_answers_court
+        @court = current_c100_application.court
       end
     end
   end

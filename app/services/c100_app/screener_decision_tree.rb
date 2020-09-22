@@ -22,12 +22,7 @@ module C100App
       court = CourtPostcodeChecker.new.court_for(children_postcode)
 
       if court
-        # Still saving to the old table, for the time being
-        c100_application.screener_answers.update!(local_court: court)
-
-        # New table association
         c100_application.update!(court: court)
-
         show(:done)
       else
         show(:no_court_found)

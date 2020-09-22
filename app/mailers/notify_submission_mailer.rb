@@ -76,6 +76,6 @@ class NotifySubmissionMailer < NotifyMailer
   end
 
   def court
-    @c100_application.screener_answers_court
+    @c100_application.court
   end
 end

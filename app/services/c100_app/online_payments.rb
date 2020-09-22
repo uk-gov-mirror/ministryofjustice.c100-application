@@ -77,9 +77,9 @@ module C100App
     def metadata
       {
         application: APPLICATION_CODE,
-        court_gbs: c100_application.screener_answers_court.gbs,
-        court_name: c100_application.screener_answers_court.name,
-        court_email: c100_application.screener_answers_court.email,
+        court_gbs: c100_application.court.gbs,
+        court_name: c100_application.court.name,
+        court_email: c100_application.court.email,
       }
     end
   end

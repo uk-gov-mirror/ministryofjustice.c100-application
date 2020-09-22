@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CompletedApplicationsAudit, type: :model do
-  let(:screener_answers_court) { instance_double(Court, name: 'Test Court') }
+  let(:court) { instance_double(Court, name: 'Test Court') }
 
   let(:c100_application) {
     C100Application.new(
@@ -13,7 +13,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
   }
 
   before do
-    allow(c100_application).to receive(:screener_answers_court).and_return(screener_answers_court)
+    allow(c100_application).to receive(:court).and_return(court)
   end
 
   describe 'db table name' do
