@@ -15,11 +15,13 @@ class SessionsController < ApplicationController
   end
 
   # :nocov:
-  def bypass_screener
+  def bypass_postcode
     raise 'For development use only' unless helpers.dev_tools_enabled?
 
-    find_or_create_screener_answers
-    c100_application.update(status: 1)
+    c100_application.update(
+      court: find_or_initialize_court,
+      status: 1,
+    )
 
     redirect_to entrypoint_v1_path
   end
@@ -27,9 +29,12 @@ class SessionsController < ApplicationController
   def bypass_to_cya
     raise 'For development use only' unless helpers.dev_tools_enabled?
 
-    find_or_create_screener_answers
     find_or_create_people
-    c100_application.update(status: 1)
+
+    c100_application.update(
+      court: find_or_initialize_court,
+      status: 1,
+    )
 
     redirect_to edit_steps_application_check_your_answers_path
   end
@@ -39,15 +44,14 @@ class SessionsController < ApplicationController
 
   # :nocov:
   def c100_application
-    current_c100_application || initialize_c100_application
+    current_c100_application || initialize_c100_application(
+      children_postcode: postcode_fixture
+    )
   end
 
-  def find_or_create_screener_answers
-    ScreenerAnswers.find_or_initialize_by(c100_application_id: c100_application.id).tap do |screener|
-      screener.update(
-        screener_answers_fixture(screener)
-      ) unless screener.valid?(:completion)
-    end
+  # If there is already a court assigned, we maintain it
+  def find_or_initialize_court
+    c100_application.court || Court.find_by(slug: slug_fixture) || Court.new(court_fixture)
   end
 
   def find_or_create_people
@@ -58,29 +62,26 @@ class SessionsController < ApplicationController
     end
   end
 
-  # If there are some answers already present, we maintain these previous
-  # answers (for example, it is possible to answer the postcode question
-  # in the screener, and then do a bypass, maintaining the court data
-  # returned from court tribunal finder).
-  #
-  def screener_answers_fixture(screener)
+  def postcode_fixture
+    'MK9 2DT'.freeze
+  end
+
+  def slug_fixture
+    'milton-keynes-county-court-and-family-court'.freeze
+  end
+
+  def court_fixture
     {
-      children_postcodes: 'MK9 2DT',
-      local_court: {
-        _fixture: true, # this flag indicates the court data is "fake" (bypass)
-        "address" => {
-          "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
-          "town" => "Central Milton Keynes",
-          "postcode" => "MK9 2DT",
-        },
-        "name" => "Milton Keynes County Court and Family Court",
-        "slug" => "milton-keynes-county-court-and-family-court",
-        "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
-        "gbs" => "Y610",
-      }
-    }.merge(screener.attributes.symbolize_keys) do |_key, old_value, new_value|
-      new_value || old_value
-    end
+      "slug" => slug_fixture,
+      "name" => "Milton Keynes County Court and Family Court",
+      "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
+      "gbs" => "Y610",
+      "address" => {
+        "town" => "Central Milton Keynes",
+        "postcode" => "MK9 2DT",
+        "address_lines" => ["351 Silbury Boulevard", "Witan Gate East"],
+      },
+    }
   end
   # :nocov:
 end

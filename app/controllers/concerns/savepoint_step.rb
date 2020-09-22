@@ -4,7 +4,7 @@ module SavepointStep
   included do
     skip_before_action :check_application_not_screening
 
-    before_action :screener_sanity_check
+    before_action :court_sanity_check
     before_action :mark_in_progress, only: [:update]
     before_action :save_application_for_later, if: :user_signed_in?, only: [:update]
   end
@@ -18,9 +18,9 @@ module SavepointStep
     super
   end
 
-  def screener_sanity_check
-    screener = current_c100_application.screener_answers
-    raise Errors::ApplicationScreening unless screener.present? && screener.valid?(:completion)
+  # TODO: refactor the error page and copy as we really don't have a screener anymore
+  def court_sanity_check
+    raise Errors::ApplicationScreening unless current_c100_application.court.present?
   end
 
   def mark_in_progress
