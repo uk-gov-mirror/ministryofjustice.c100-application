@@ -169,22 +169,19 @@ RSpec.shared_examples 'a starting point step controller' do
 end
 
 RSpec.shared_examples 'a savepoint step controller' do
-  let(:screener_answers) do
-    ScreenerAnswers.new(
-      children_postcodes: 'MK9 2DT',
-      local_court: { name: 'whatever' }
-    )
+  let!(:existing_c100) {
+    C100Application.create(status: status, navigation_stack: ['/not', '/empty'])
+  }
+
+  let(:status) { 'screening' }
+  let(:court) { instance_double(Court) }
+
+  before do
+    allow(controller).to receive(:current_c100_application).and_return(existing_c100)
+    allow(existing_c100).to receive(:court).and_return(court)
   end
 
   describe '#edit' do
-    let!(:existing_c100) {
-      C100Application.create(status: :screening, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
-    }
-
-    before do
-      allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-    end
-
     it 'initialises the navigation stack in the session introducing the entrypoint' do
       get :edit
       expect(existing_c100.reload.navigation_stack).to eq(['/entrypoint/v1', controller.request.fullpath])
@@ -202,7 +199,7 @@ RSpec.shared_examples 'a savepoint step controller' do
     end
 
     context 'for a not yet completed, or invalid, screener' do
-      let(:screener_answers) { nil }
+      let(:court) { nil }
 
       it 'redirects to the error page' do
         get :edit
@@ -233,16 +230,6 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#update' do
-    let(:status) { 'screening' }
-
-    let!(:existing_c100) {
-      C100Application.create(status: status, navigation_stack: ['/not', '/empty'], screener_answers: screener_answers)
-    }
-
-    before do
-      allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-    end
-
     context 'for an application in the screening status' do
       it 'changes the status to `in_progress`' do
         expect {
@@ -262,7 +249,7 @@ RSpec.shared_examples 'a savepoint step controller' do
     end
 
     context 'for a not yet completed, or invalid, screener' do
-      let(:screener_answers) { nil }
+      let(:court) { nil }
 
       it 'redirects to the error page' do
         put :update, params: {}
@@ -509,7 +496,7 @@ RSpec.shared_examples 'a completion step controller' do
 
     before do
       allow(controller).to receive(:current_c100_application).and_return(existing_c100)
-      allow(existing_c100).to receive(:screener_answers_court).and_return('court data')
+      allow(existing_c100).to receive(:court).and_return('court data')
     end
 
     context 'when no case exists in the session' do

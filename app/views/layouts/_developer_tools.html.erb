@@ -10,11 +10,11 @@
         <h4 class="govuk-heading-s">Current Application ID</h4>
         <p><%= current_c100_application.id %></p>
 
-        <% if current_c100_application.screener_answers_court %>
+        <% if current_c100_application.court %>
           <h4 class="govuk-heading-s">Current court data</h4>
           <p>
-            <%= current_c100_application.screener_answers_court.name %><br/>
-            <%= current_c100_application.screener_answers_court.email %>
+            <%= current_c100_application.court.name %><br/>
+            <%= current_c100_application.court.email %>
           </p>
         <% end %>
       <% end %>
@@ -29,9 +29,9 @@
       <h3 class="govuk-heading-m">Bypass steps</h3>
       <p>Speed up some common test scenarios by pre-filling some information</p>
 
-      <%= button_to bypass_screener_session_path,
+      <%= button_to bypass_postcode_session_path,
                     class: 'govuk-button govuk-!-margin-right-1',
-                    data: { module: 'govuk-button' } do; 'Bypass screener'; end %>
+                    data: { module: 'govuk-button' } do; 'Bypass postcode'; end %>
 
       <%= button_to bypass_to_cya_session_path,
                     class: 'govuk-button',

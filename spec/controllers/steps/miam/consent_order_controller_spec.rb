@@ -9,7 +9,7 @@ RSpec.describe Steps::Miam::ConsentOrderController, type: :controller do
 
   it_behaves_like 'an intermediate step controller', Steps::Miam::ConsentOrderForm, C100App::MiamDecisionTree do
     before do
-      allow(controller).to receive(:screener_sanity_check).and_return(true)
+      allow(controller).to receive(:court_sanity_check).and_return(true)
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe Steps::Miam::ConsentOrderController, type: :controller do
   # The important thing is to be tested in at least one, as any other will behave the same.
   it_behaves_like 'a step that can be drafted', Steps::Miam::ConsentOrderForm do
     before do
-      allow(controller).to receive(:screener_sanity_check).and_return(true)
+      allow(controller).to receive(:court_sanity_check).and_return(true)
     end
   end
 end

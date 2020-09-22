@@ -282,7 +282,7 @@ Rails.application.routes.draw do
   resource :session, only: [:destroy] do
     member do
       get :ping
-      post :bypass_screener
+      post :bypass_postcode
       post :bypass_to_cya
     end
   end
