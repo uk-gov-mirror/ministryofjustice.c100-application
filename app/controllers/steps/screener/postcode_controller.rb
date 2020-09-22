@@ -4,9 +4,7 @@ module Steps
       include StartingPointStep
 
       def edit
-        @form_object = PostcodeForm.build(
-          c100_application: current_c100_application
-        )
+        @form_object = PostcodeForm.build(current_c100_application)
       end
 
       def update

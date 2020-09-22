@@ -4,7 +4,7 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :children_postcodes
+      when :children_postcode
         check_if_court_is_valid
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
@@ -13,9 +13,8 @@ module C100App
 
     private
 
-    # TODO: rename param to be singular, not plural, when removing the screener
     def children_postcode
-      step_params.fetch(:children_postcodes)
+      step_params.fetch(:children_postcode)
     end
 
     def check_if_court_is_valid

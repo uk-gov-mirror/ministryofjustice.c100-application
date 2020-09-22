@@ -58,6 +58,21 @@ describe AuditHelper do
       )
     end
 
+    # TODO: maintain backwards compatibility until all applications use the new attribute
+    context 'when new `children_postcode` attribute is present' do
+      before do
+        allow(c100_application).to receive(:children_postcode).and_return('XYZ123')
+      end
+
+      it 'returns the expected information' do
+        expect(c100_application).not_to receive(:screener_answers)
+
+        expect(
+          subject.metadata
+        ).to include(postcode: 'XYZ1**')
+      end
+    end
+
     context 'when we have court arrangements' do
       let(:court_arrangement) {
         CourtArrangement.new(

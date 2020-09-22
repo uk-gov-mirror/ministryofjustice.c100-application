@@ -1020,7 +1020,7 @@ en:
 
       # Screener steps
       steps_screener_postcode_form:
-        children_postcodes: Postcode
+        children_postcode: Postcode
 
       # MIAM steps
       steps_miam_consent_order_form:

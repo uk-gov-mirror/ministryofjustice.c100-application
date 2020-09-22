@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe C100App::ScreenerDecisionTree do
-  let(:postcodes)        { 'anything' }
+  let(:postcode)         { 'anything' }
   let(:local_court)      { {} }
   let(:c100_application) { double('Object') }
   let(:step_params)      { double('Step') }
@@ -12,12 +12,12 @@ RSpec.describe C100App::ScreenerDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `children_postcodes`' do
-    let(:step_params) { { children_postcodes: postcodes } }
+  context 'when the step is `children_postcode`' do
+    let(:step_params) { { children_postcode: postcode } }
 
     context 'and no valid court is found' do
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(nil)
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcode).and_return(nil)
       end
       it { is_expected.to have_destination(:no_court_found, :show) }
     end
@@ -26,7 +26,7 @@ RSpec.describe C100App::ScreenerDecisionTree do
       let(:court) { instance_double('Court') }
 
       before do
-        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcodes).and_return(court)
+        allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).with(postcode).and_return(court)
         allow(c100_application).to receive(:update!)
       end
 
@@ -43,8 +43,8 @@ RSpec.describe C100App::ScreenerDecisionTree do
       it { is_expected.to have_destination(:error_but_continue, :show)}
     end
 
-    context 'when the children_postcodes are nil' do
-      let(:postcodes){ nil }
+    context 'when the postcode is nil' do
+      let(:postcode){ nil }
       before do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).and_raise("expected exception for testing, please ignore")
       end
