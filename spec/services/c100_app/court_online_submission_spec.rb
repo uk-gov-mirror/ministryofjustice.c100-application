@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe C100App::CourtOnlineSubmission do
-  let(:c100_application) { instance_double(C100Application, email_submission: email_submission, screener_answers_court: screener_answers_court) }
+  let(:c100_application) { instance_double(C100Application, email_submission: email_submission, court: court) }
   let(:email_submission) { instance_double(EmailSubmission, update: true) }
-  let(:screener_answers_court) { double(email: 'court@email.com') }
+  let(:court) { double(email: 'court@email.com') }
 
   subject { described_class.new(c100_application) }
 

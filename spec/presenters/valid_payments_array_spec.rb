@@ -86,7 +86,7 @@ RSpec.describe ValidPaymentsArray do
     let(:court_slug) { 'west-london-family-court' }
 
     before do
-      allow(c100_application).to receive(:screener_answers_court).and_return(court_double)
+      allow(c100_application).to receive(:court).and_return(court_double)
     end
 
     context 'for a court slug included in the blocklist' do

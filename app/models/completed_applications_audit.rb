@@ -10,7 +10,7 @@ class CompletedApplicationsAudit < ApplicationRecord
       completed_at: c100_application.updated_at,
       reference_code: c100_application.reference_code,
       submission_type: c100_application.submission_type,
-      court: c100_application.screener_answers_court.name,
+      court: c100_application.court.name,
       metadata: metadata(c100_application),
     )
   rescue ActiveRecord::RecordNotUnique => ex

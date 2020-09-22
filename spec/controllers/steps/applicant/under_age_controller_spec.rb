@@ -18,7 +18,7 @@ RSpec.describe Steps::Applicant::UnderAgeController, type: :controller do
     }
 
     before do
-      allow_any_instance_of(C100Application).to receive(:screener_answers_court).and_return(court)
+      allow_any_instance_of(C100Application).to receive(:court).and_return(court)
     end
 
     it 'assigns the court data' do

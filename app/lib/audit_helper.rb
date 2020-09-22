@@ -67,7 +67,7 @@ class AuditHelper
     return {} unless c100.online_payment?
 
     {
-      gbs_code: c100.screener_answers_court.gbs,
+      gbs_code: c100.court.gbs,
       payment_id: c100.payment_intent.payment_id,
     }
   end

@@ -33,7 +33,7 @@ class ValidPaymentsArray < SimpleDelegator
   end
 
   def court
-    @_court ||= c100_application.screener_answers_court
+    @_court ||= c100_application.court
   end
 
   def choices_to_present

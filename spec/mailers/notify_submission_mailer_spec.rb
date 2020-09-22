@@ -86,7 +86,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
 
   describe '#application_to_user' do
     before do
-      allow(c100_application).to receive(:screener_answers_court).and_return(court)
+      allow(c100_application).to receive(:court).and_return(court)
 
       allow(I18n).to receive(:translate!).with(
         'foobar_payment', scope: [:notify_submission_mailer, :payment_instructions], fee: '£215'
