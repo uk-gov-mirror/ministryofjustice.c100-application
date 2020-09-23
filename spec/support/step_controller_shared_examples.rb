@@ -517,7 +517,7 @@ RSpec.shared_examples 'a completion step controller' do
 
       it 'redirects to the warning page' do
         get :show
-        expect(response).to redirect_to(steps_screener_warning_path)
+        expect(response).to redirect_to(steps_opening_warning_path)
       end
     end
 

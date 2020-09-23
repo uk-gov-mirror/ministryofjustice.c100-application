@@ -15,6 +15,6 @@ module CompletionStep
   def check_application_is_completed
     return if current_c100_application.completed?
 
-    redirect_to steps_screener_warning_path
+    redirect_to steps_opening_warning_path
   end
 end

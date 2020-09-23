@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module Test
-  C100ApplicationValidatable = Struct.new(:screener_answers, :children, :applicants, :respondents, :payment_type, :submission_type, keyword_init: true) do
+  C100ApplicationValidatable = Struct.new(:children, :applicants, :respondents, :payment_type, :submission_type, keyword_init: true) do
     include ActiveModel::Validations
     validates_with ApplicationFulfilmentValidator
   end
