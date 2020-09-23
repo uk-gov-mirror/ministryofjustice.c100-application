@@ -107,7 +107,7 @@ Rails.application.routes.draw do
   end
 
   namespace :steps do
-    namespace :screener do
+    namespace :opening do
       show_step :start
       show_step :warning
       edit_step :postcode
@@ -305,7 +305,7 @@ Rails.application.routes.draw do
     get :not_found
   end
 
-  root 'steps/screener/start#show'
+  root 'steps/opening/start#show'
 
   get 'entrypoint/v1'
   get 'entrypoint/what_is_needed'

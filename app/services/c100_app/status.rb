@@ -20,7 +20,7 @@ module C100App
     # Note: `courtfinder` disabled because it is just too unreliable and we don't have
     # any control over it so even if it goes down, we should not consider our service
     # unhealthy. After all, in-progress/saved applications will continue working, it
-    # only affects new applications the check the postcode in the screener.
+    # only affects new applications.
     #
     # rubocop:disable Style/RescueModifier
     def checks

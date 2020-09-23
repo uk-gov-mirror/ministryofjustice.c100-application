@@ -24,6 +24,10 @@ en:
       previous_proceedings: &previous_proceedings "Previous proceedings"
       attending_court: &attending_court "Attending court"
 
+    cait_info_html: &cait_info_html |
+      Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" class="govuk-link" rel="external"
+      target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
+
     YESNO: &YESNO
       'yes': 'Yes'
       'no': 'No'
@@ -159,14 +163,6 @@ en:
       kickout_feedback: Give your feedback. Help improve this service
       relationship_step:
         heading: "What is %{person_name}'s relationship to %{child_name}?"
-      screener_exit_actions:
-        what_to_do_now:
-          heading: What to do now
-          copy: To submit an application in England or Wales, you’ll need to complete the C100 paper form, print it and send it by post.
-        download_c100_link: Download the form (PDF)
-        cait_info_html: |
-          Alternatively you can <a href="https://helpwithchildarrangements.service.justice.gov.uk" class="govuk-link" rel="external"
-          target="_blank">read the child arrangements guide</a> to see if there’s a more suitable option than going to court.
       address_lookup:
         results:
           zero: "No addresses found"
@@ -906,7 +902,11 @@ en:
           you_told_us: 'You’ve told us:'
           info_notice: The court will review your situation and may contact you to discuss your concerns. You may still need to attend a MIAM if valid reasons aren’t provided.
           continue: Continue
-    screener:
+      exit_page:
+        show:
+          cait_info_html: *cait_info_html
+
+    opening:
       postcode:
         edit:
           page_title: Where the children live
@@ -917,6 +917,23 @@ en:
             text_html: |
               You can use <a href="https://www.gov.uk/government/publications/form-c4-application-for-an-order-for-disclosure-of-a-childs-whereabouts"
               class="govuk-link" rel="external" target="_blank">form C4</a> to apply for an order for someone to give a court information about where a child is.
+      no_court_found:
+        show:
+          page_title: Not eligible
+          heading: Sorry, you cannot apply online
+          lead_text: This service is only available in England and Wales.
+          more_info_html: |
+            <p class="govuk-body">
+              If the child or children live in Scotland or Northern Ireland, you will not be able to use this service to submit your application.
+            </p>
+            <p class="govuk-body">
+              If you think there’s been an error finding an appropriate court, you can <a href="/about/contact" class="govuk-link govuk-link--no-visited-state">report the problem</a>.
+            </p>
+          what_to_do_now:
+            heading: What to do now
+            copy: To submit an application in England or Wales, you’ll need to complete the C100 paper form, print it and send it by post.
+          download_c100_link: Download the form (PDF)
+          cait_info_html: *cait_info_html
       error_but_continue:
         show:
           page_title: Where the children live
@@ -1018,8 +1035,8 @@ en:
         alternative_negotiation_tools_options:
           <<: *YESNO
 
-      # Screener steps
-      steps_screener_postcode_form:
+      # Opening steps
+      steps_opening_postcode_form:
         children_postcode: Postcode
 
       # MIAM steps

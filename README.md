@@ -65,9 +65,9 @@ ChromeDriver is needed for the integration tests. It can be installed on Mac usi
 The features can be run manually (these are not part of the default rake task) in any of these forms:
 
 * `bundle exec cucumber features`
-* `bundle exec cucumber features/screener.feature`
-* `bundle exec cucumber features/screener.feature -t @happy_path`
-* `bundle exec cucumber features/screener.feature -t @unhappy_path`
+* `bundle exec cucumber features/miam.feature`
+* `bundle exec cucumber features/miam.feature -t @happy_path`
+* `bundle exec cucumber features/miam.feature -t @unhappy_path`
 
 By default cucumber will start a local server on a random port, run features against that server, and kill the server once the features have finished.
 
