@@ -113,7 +113,6 @@ Rails.application.routes.draw do
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
-      show_step :done
     end
     namespace :application do
       edit_step :previous_proceedings
