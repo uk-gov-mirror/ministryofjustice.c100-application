@@ -306,7 +306,6 @@ Rails.application.routes.draw do
 
   root 'steps/opening/start#show'
 
-  get 'entrypoint/v1'
   get 'entrypoint/what_is_needed'
   get 'entrypoint/how_long'
 

@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe EntrypointController do
-  describe '#v1' do
-    it 'renders the expected page' do
-      get :v1
-      expect(response).to render_template(:v1)
-    end
-  end
-
   describe '#what_is_needed' do
     it 'renders the expected page' do
       get :what_is_needed
