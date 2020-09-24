@@ -86,6 +86,7 @@ describe Summary::HtmlPresenter do
 
     it 'has the right sections in the right order' do
       expect(subject.sections).to match_instances_array([
+        Summary::HtmlSections::OpeningQuestions,
         Summary::HtmlSections::MiamRequirement,
         Summary::HtmlSections::MiamAttendance,
         Summary::HtmlSections::MiamExemptions,

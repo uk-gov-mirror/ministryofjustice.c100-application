@@ -8,6 +8,7 @@ module Summary
 
     def sections
       [
+        HtmlSections::OpeningQuestions.new(c100_application),
         *miam_questions,
         *safety_and_abuse_questions,
         HtmlSections::NatureOfApplication.new(c100_application),
