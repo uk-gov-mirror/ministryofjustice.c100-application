@@ -36,18 +36,11 @@ When(/^I click the "([^"]*)" button$/) do |text|
   find("input[value='#{text}']").click
 end
 
-When(/^I bypass the postcode$/) do
-  step %[I open the "Developer Tools" summary details]
-  find('button', text: 'Bypass postcode').click
-end
-
 When(/^I have started an application$/) do
   step %[I visit "/"]
-  step %[I bypass the postcode]
-  step %[I click the "Start application" link]
-  step %[I click the "Continue" link] # Before you continue
-  step %[I click the "Continue" link] # How long it takes
-  step %[I should be on "/steps/miam/consent_order"] # First step
+  step %[I open the "Developer Tools" summary details]
+  find('button', text: 'Bypass postcode').click
+  step %[I should be on "/steps/opening/consent_order"]
 end
 
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|

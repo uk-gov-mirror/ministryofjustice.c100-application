@@ -1,27 +1,23 @@
 Feature: Opening
   Background:
     When I visit "/"
-    Then I should see "Use this service to make an application for child arrangements in England or Wales"
-    And  I click the "Check eligibility" link
+    Then I should see "You can use this service to apply for a court order about child arrangements."
+    And  I click the "Start application" link
+    Then I should see "What you’ll need to complete your application"
+    And  I click the "Continue" link
+    Then I should see "How long it takes to apply"
+    And  I click the "Continue" link
     Then I should see "Where do the children live?"
 
   @happy_path
   Scenario: Complete the opening
     When I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
-
-    Then I should see "You’re eligible to apply online"
-
-    And I click the "Continue" link
-    Then I should see "The court fee is £215"
-    Then I should see "Before you start your application"
-
-    And I click the "Start application" link
-    Then I should see "What you’ll need to complete your application"
-
-    # Finish here as we already have other scenarios testing the journey from this point onwards
-    And I click the "Continue" link
-    Then I should see "How long it takes to apply"
+    Then I should see "What kind of application do you want to make?"
+    And I choose "Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order"
+    Then I should see "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?"
+    And I choose "No"
+    Then I should see "Attending a Mediation Information and Assessment Meeting (MIAM)"
 
   @unhappy_path
   Scenario: I don't fill out the postcode
