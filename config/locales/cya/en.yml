@@ -62,6 +62,7 @@ en:
   check_answers_html:
     change_link_html: Change <span class="govuk-visually-hidden">your answer to, %{a11y_question}</span>
     sections:
+      opening_questions: Opening questions
       miam_requirement: MIAM requirement
       miam_attendance: MIAM attendance
       miam_exemptions: MIAM exemption
