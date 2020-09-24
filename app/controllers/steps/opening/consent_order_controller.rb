@@ -1,6 +1,6 @@
 module Steps
-  module Miam
-    class ConsentOrderController < Steps::MiamStepController
+  module Opening
+    class ConsentOrderController < Steps::OpeningStepController
       include SavepointStep
 
       def edit

@@ -12,68 +12,6 @@ RSpec.describe C100App::MiamDecisionTree do
 
   it_behaves_like 'a decision tree'
 
-  context 'when the step is `consent_order`' do
-    let(:c100_application) { instance_double(C100Application, consent_order: value) }
-    let(:step_params) { { consent_order: 'anything' } }
-
-    context 'and the answer is `yes`' do
-      let(:value) { 'yes' }
-      it { is_expected.to have_destination(:consent_order_sought, :show) }
-    end
-
-    context 'and the answer is `no`' do
-      let(:value) { 'no' }
-      it { is_expected.to have_destination(:child_protection_cases, :edit) }
-    end
-  end
-
-  context 'when the step is `child_protection_cases`' do
-    let(:c100_application) { instance_double(C100Application, child_protection_cases: value, consent_order: consent_value) }
-    let(:step_params) { { child_protection_cases: 'anything' } }
-
-    context 'when the answer to the consent order was `yes`' do
-      let(:consent_value) { 'yes' }
-
-      context 'and the answer is `yes`' do
-        let(:value) { 'yes' }
-        it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
-      end
-
-      context 'and the answer is `no`' do
-        let(:value) { 'no' }
-        it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
-      end
-    end
-
-    context 'when the answer to the consent order was `no`' do
-      let(:consent_value) { 'no' }
-
-      context 'and the answer is `yes`' do
-        let(:value) { 'yes' }
-        it { is_expected.to have_destination(:child_protection_info, :show) }
-      end
-
-      context 'and the answer is `no`' do
-        let(:value) { 'no' }
-        it { is_expected.to have_destination(:acknowledgement, :edit) }
-      end
-    end
-
-    context 'when there is no consent order value (behaves like `no`)' do
-      let(:consent_value) { nil }
-
-      context 'and the answer is `yes`' do
-        let(:value) { 'yes' }
-        it { is_expected.to have_destination(:child_protection_info, :show) }
-      end
-
-      context 'and the answer is `no`' do
-        let(:value) { 'no' }
-        it { is_expected.to have_destination(:acknowledgement, :edit) }
-      end
-    end
-  end
-
   context 'when the step is `miam_acknowledgement`' do
     let(:step_params) { { miam_acknowledgement: 'anything' } }
     it { is_expected.to have_destination(:attended, :edit) }

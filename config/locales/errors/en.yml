@@ -110,18 +110,20 @@ en:
               blank: Enter a reference code
               invalid: The reference code format is invalid
 
+        # Opening
+        steps/opening/consent_order_form:
+          attributes:
+            consent_order:
+              inclusion: Select what kind of application you want to make
+        steps/opening/child_protection_cases_form:
+          attributes:
+            child_protection_cases:
+              inclusion: *yes_no_error
+
         steps/shared/under_age_form:
           attributes:
             under_age:
               blank: You must confirm you understand
-        steps/miam/child_protection_cases_form:
-          attributes:
-            child_protection_cases:
-              inclusion: *yes_no_error
-        steps/miam/consent_order_form:
-          attributes:
-            consent_order:
-              inclusion: Select what kind of application you want to make
         steps/miam/acknowledgement_form:
           attributes:
             miam_acknowledgement:

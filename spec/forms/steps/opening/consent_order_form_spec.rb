@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Steps::Miam::ConsentOrderForm do
+RSpec.describe Steps::Opening::ConsentOrderForm do
   it_behaves_like 'a yes-no question form',
                   attribute_name: :consent_order,
                   reset_when_yes: [

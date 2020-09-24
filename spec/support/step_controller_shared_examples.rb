@@ -182,11 +182,6 @@ RSpec.shared_examples 'a savepoint step controller' do
   end
 
   describe '#edit' do
-    it 'initialises the navigation stack in the session introducing the entrypoint' do
-      get :edit
-      expect(existing_c100.reload.navigation_stack).to eq(['/entrypoint/v1', controller.request.fullpath])
-    end
-
     it 'does not change the status on edit' do
       expect {
         get :edit

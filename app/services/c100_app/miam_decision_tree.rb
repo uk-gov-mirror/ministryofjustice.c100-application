@@ -4,10 +4,6 @@ module C100App
       return next_step if next_step
 
       case step_name
-      when :consent_order
-        after_consent_order
-      when :child_protection_cases
-        after_child_protection_cases
       when :miam_acknowledgement
         edit(:attended)
       when :miam_attended
@@ -27,32 +23,11 @@ module C100App
 
     private
 
-    def after_consent_order
-      if question(:consent_order).yes?
-        show(:consent_order_sought)
-      else
-        edit(:child_protection_cases)
-      end
-    end
-
-    def after_child_protection_cases
-      # If we know is a consent order, then it does not matter the answer
-      # to this question, we bypass MIAM (jump to safety questions)
-      #
-      return start_safety_questions_journey if question(:consent_order).yes?
-
-      if question(:child_protection_cases).yes?
-        show(:child_protection_info)
-      else
-        edit(:acknowledgement)
-      end
-    end
-
     def after_miam_exemption_claim
       if question(:miam_exemption_claim).yes?
-        start_miam_exemptions_journey
+        edit('/steps/miam_exemptions/domestic')
       else
-        start_safety_questions_journey
+        show('/steps/safety_questions/start')
       end
     end
 
@@ -86,14 +61,6 @@ module C100App
 
     def certification_expired?
       c100_application.miam_certification_date < 4.months.ago.to_date
-    end
-
-    def start_miam_exemptions_journey
-      edit('/steps/miam_exemptions/domestic')
-    end
-
-    def start_safety_questions_journey
-      show('/steps/safety_questions/start')
     end
   end
 end
