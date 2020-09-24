@@ -8,9 +8,9 @@ module Summary
       def answers
         [
           Answer.new(:consent_order_application, c100.consent_order,
-                     change_path: edit_steps_miam_consent_order_path),
+                     change_path: edit_steps_opening_consent_order_path),
           Answer.new(:child_protection_cases, c100.child_protection_cases,
-                     change_path: edit_steps_miam_child_protection_cases_path),
+                     change_path: edit_steps_opening_child_protection_cases_path),
           Answer.new(:miam_attended, c100.miam_attended,
                      change_path: edit_steps_miam_attended_path),
           Answer.new(:miam_certification, c100.miam_certification,

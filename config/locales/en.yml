@@ -617,17 +617,6 @@ en:
           page_title: MIAM certification details
           heading: Enter details of MIAM certification
           lead_text: You can find this information at the bottom of the document your mediator signed.
-      consent_order:
-        edit:
-          page_title: Application kind
-          lead_text: You can apply to court for the following orders.
-      child_protection_cases:
-        edit:
-          page_title: Child protection cases
-          lead_text: These will often involve a local authority.
-          details:
-            summary: Why we use the term ‘children’
-            text_html: We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.
     petition:
       orders:
         edit:
@@ -946,6 +935,17 @@ en:
             copy: You can go back and try again, or download the C100 paper form to print and fill in offline. You can then submit the completed form by post or in person at the court.
           go_back: Go back and try again
           download_c100_link: Download the form (PDF)
+      consent_order:
+        edit:
+          page_title: Application kind
+          lead_text: You can apply to court for the following orders.
+      child_protection_cases:
+        edit:
+          page_title: Child protection cases
+          lead_text: These will often involve a local authority.
+          details:
+            summary: Why we use the term ‘children’
+            text_html: We use ‘children’ as a general term to mean whether you have a child or children. We do this to avoid repetition.
       warning:
         show:
           page_title: Application in progress
@@ -1038,15 +1038,15 @@ en:
       # Opening steps
       steps_opening_postcode_form:
         children_postcode: Postcode
-
-      # MIAM steps
-      steps_miam_consent_order_form:
+      steps_opening_consent_order_form:
         consent_order_options:
           'no': Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order
           'yes': Consent order
-      steps_miam_child_protection_cases_form:
+      steps_opening_child_protection_cases_form:
         child_protection_cases_options:
           <<: *YESNO
+
+      # MIAM steps
       steps_miam_attended_form:
         miam_attended_options:
           <<: *YESNO
@@ -1428,7 +1428,7 @@ en:
         current_password: We need your current password to confirm your changes
       steps_international_jurisdiction_form:
         international_jurisdiction: For example, because a court in another country has the power to act (has jurisdiction).
-      steps_miam_consent_order_form:
+      steps_opening_consent_order_form:
         consent_order_options:
           'no': This includes deciding who the children live with and where; stopping someone doing something; and resolving a specific matter
           'yes': This makes a written agreement legally binding; it must be signed by you (the applicant) and the other person (respondent)
@@ -1558,11 +1558,12 @@ en:
           special_guardian: Someone who represents the rights of a child, appointed by the court
 
     legend:
-      # MIAM steps
-      steps_miam_consent_order_form:
+      steps_opening_consent_order_form:
         consent_order: What kind of application do you want to make?
-      steps_miam_child_protection_cases_form:
+      steps_opening_child_protection_cases_form:
         child_protection_cases: Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?
+
+      # MIAM steps
       steps_miam_acknowledgement_form:
         miam_acknowledgement: Attending a MIAM
       steps_miam_attended_form:

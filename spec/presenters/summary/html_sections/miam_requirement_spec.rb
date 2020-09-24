@@ -25,10 +25,12 @@ module Summary
 
         expect(answers[0]).to be_an_instance_of(Answer)
         expect(answers[0].question).to eq(:consent_order_application)
+        expect(answers[0].change_path).to eq('/steps/opening/consent_order')
         expect(answers[0].value).to eq('no')
 
         expect(answers[1]).to be_an_instance_of(Answer)
         expect(answers[1].question).to eq(:child_protection_cases)
+        expect(answers[1].change_path).to eq('/steps/opening/child_protection_cases')
         expect(answers[1].value).to eq('no')
 
         expect(answers[2]).to be_an_instance_of(Answer)

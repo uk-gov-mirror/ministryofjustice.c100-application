@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       status: 1,
     )
 
-    redirect_to entrypoint_v1_path
+    redirect_to edit_steps_opening_consent_order_path
   end
 
   def bypass_to_cya

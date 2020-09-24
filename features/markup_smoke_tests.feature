@@ -9,9 +9,9 @@ Feature: High level form markup smoke tests
     Then The form markup with errors should match "<errors_fixture_file>"
 
     Examples:
-      | step_path                         | fixture_file            | errors_fixture_file                 |
-      | steps/miam/child_protection_cases | child_protection_cases  | child_protection_cases_with_errors  |
-      | steps/miam/acknowledgement        | miam_acknowledgement    | miam_acknowledgement_with_errors    |
-      | steps/miam/certification_date     | miam_certification_date | miam_certification_date_with_errors |
-      | steps/petition/orders             | nature_of_application   | nature_of_application_with_errors   |
-      | steps/international/jurisdiction  | order_jurisdiction      | order_jurisdiction_with_errors      |
+      | step_path                            | fixture_file            | errors_fixture_file                 |
+      | steps/opening/child_protection_cases | child_protection_cases  | child_protection_cases_with_errors  |
+      | steps/miam/acknowledgement           | miam_acknowledgement    | miam_acknowledgement_with_errors    |
+      | steps/miam/certification_date        | miam_certification_date | miam_certification_date_with_errors |
+      | steps/petition/orders                | nature_of_application   | nature_of_application_with_errors   |
+      | steps/international/jurisdiction     | order_jurisdiction      | order_jurisdiction_with_errors      |

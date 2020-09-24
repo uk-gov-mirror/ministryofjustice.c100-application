@@ -6,6 +6,10 @@ module C100App
       case step_name
       when :children_postcode
         check_if_court_is_valid
+      when :consent_order
+        after_consent_order
+      when :child_protection_cases
+        after_child_protection_cases
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -22,13 +26,33 @@ module C100App
 
       if court
         c100_application.update!(court: court)
-        show(:done)
+        edit(:consent_order)
       else
         show(:no_court_found)
       end
     # `CourtPostcodeChecker` and `Court` already log any potential exceptions
     rescue StandardError
       show(:error_but_continue)
+    end
+
+    def after_consent_order
+      if question(:consent_order).yes?
+        show(:consent_order_sought)
+      else
+        edit(:child_protection_cases)
+      end
+    end
+
+    def after_child_protection_cases
+      # If we know is a consent order, then it does not matter the answer
+      # to this question, we bypass MIAM (jump to safety questions)
+      return show('/steps/safety_questions/start') if question(:consent_order).yes?
+
+      if question(:child_protection_cases).yes?
+        show(:child_protection_info)
+      else
+        edit('/steps/miam/acknowledgement')
+      end
     end
   end
 end

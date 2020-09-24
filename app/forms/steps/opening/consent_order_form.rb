@@ -1,5 +1,5 @@
 module Steps
-  module Miam
+  module Opening
     class ConsentOrderForm < BaseForm
       include SingleQuestionForm
 

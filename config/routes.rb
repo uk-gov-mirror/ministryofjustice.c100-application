@@ -113,7 +113,10 @@ Rails.application.routes.draw do
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
-      show_step :done
+      edit_step :consent_order
+      show_step :consent_order_sought
+      edit_step :child_protection_cases
+      show_step :child_protection_info
     end
     namespace :application do
       edit_step :previous_proceedings
@@ -140,10 +143,6 @@ Rails.application.routes.draw do
       edit_step :protection
     end
     namespace :miam do
-      edit_step :consent_order
-      show_step :consent_order_sought
-      edit_step :child_protection_cases
-      show_step :child_protection_info
       edit_step :acknowledgement
       edit_step :attended
       edit_step :exemption_claim
@@ -307,7 +306,6 @@ Rails.application.routes.draw do
 
   root 'steps/opening/start#show'
 
-  get 'entrypoint/v1'
   get 'entrypoint/what_is_needed'
   get 'entrypoint/how_long'
 
