@@ -15,7 +15,7 @@ RSpec.describe 'steps/opening/error_but_continue/show', type: :view do
     let(:courtfinder_ok) { true }
 
     it 'shows the appropriate error message' do
-      expect(rendered).to match(/our checker didn’t recognize it/)
+      expect(rendered).to match(/our checker didn’t recognise it/)
     end
   end
 
