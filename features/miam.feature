@@ -3,7 +3,6 @@ Feature: MIAM journey
     Given I have started an application
     When I visit "steps/miam/acknowledgement"
     Then I should see "Attending a Mediation Information and Assessment Meeting (MIAM)"
-    And I should see the save draft button
     And I check "I understand that I have to attend a MIAM or provide a valid reason for not attending."
     And I click the "Continue" button
 

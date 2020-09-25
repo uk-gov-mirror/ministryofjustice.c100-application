@@ -8,16 +8,20 @@ Feature: Opening
     Then I should see "How long it takes to apply"
     And  I click the "Continue" link
     Then I should see "Where do the children live?"
+    And  I should not see the save draft button
 
   @happy_path
   Scenario: Complete the opening
     When I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
     Then I should see "What kind of application do you want to make?"
+    And I should not see the save draft button
     And I choose "Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order"
     Then I should see "Are the children involved in any emergency protection, care or supervision proceedings (or have they been)?"
+    And I should not see the save draft button
     And I choose "No"
     Then I should see "Attending a Mediation Information and Assessment Meeting (MIAM)"
+    And I should see the save draft button
 
   @unhappy_path
   Scenario: I don't fill out the postcode

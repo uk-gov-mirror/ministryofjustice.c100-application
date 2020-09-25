@@ -24,6 +24,10 @@ Then(/^I should see the save draft button$/) do
   expect(page).to have_selector(:button, 'Save and come back later')
 end
 
+Then(/^I should not see the save draft button$/) do
+  expect(page).not_to have_selector(:button, 'Save and come back later')
+end
+
 When(/^I click the "([^"]*)" link$/) do |text|
   click_link(text)
 end
