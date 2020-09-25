@@ -928,7 +928,7 @@ en:
           page_title: Where the children live
           heading: Something went wrong
           lead_text:
-            courtfinder_ok: Although the postcode you entered looks like it’s in the right format, our checker didn’t recognize it. This can happen sometimes if it’s a very new or old postcode.
+            courtfinder_ok: Although the postcode you entered looks like it’s in the right format, our checker didn’t recognise it. This can happen sometimes if it’s a very new or old postcode.
             courtfinder_not_ok: We’re having some trouble connecting to our postcode checker at the moment - this could be a temporary problem, and it might work if you try again.
           what_to_do_now:
             heading: What to do now
