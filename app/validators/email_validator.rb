@@ -1,14 +1,27 @@
 class EmailValidator < ActiveModel::EachValidator
   EMAIL_REGEX = /\A\s*([-\p{L}\d+._]{1,64})@((?:[-\p{L}\d]+\.)+?\p{L}{2,})\s*\z/i.freeze
+
   COMMON_DOMAIN_TYPOS = %w[
     cloud.com
     gamil.com
-    gmail.con
-    gmail.co
-    hotmailco.uk
-    hotmial.com
-    hotmail.con
-    hotmail.co
+    gmial.com
+    homail.com
+  ].freeze
+
+  # Gmail only has these 2 valid domains, no others
+  VALID_GMAIL_DOMAINS = %w[
+    gmail.com
+    googlemail.com
+  ].freeze
+
+  # Hotmail has a few legacy valid domains
+  VALID_HOTMAIL_DOMAINS = %w[
+    hotmail.com
+    hotmail.co.uk
+    hotmail.fr
+    hotmail.it
+    hotmail.es
+    hotmail.de
   ].freeze
 
   def validate_each(record, attribute, value)
@@ -27,8 +40,18 @@ class EmailValidator < ActiveModel::EachValidator
 
   # Very simplistic but we see these typos quite frequently
   def domain_typo?(value)
-    COMMON_DOMAIN_TYPOS.include?(
-      value.rpartition('@').last
-    )
+    domain = value.rpartition('@').last.downcase
+
+    # Gmail domain typos
+    if domain.start_with?('gmai', 'goog')
+      return VALID_GMAIL_DOMAINS.exclude?(domain)
+    end
+
+    # Hotmail domain typos
+    if domain.start_with?('hotm')
+      return VALID_HOTMAIL_DOMAINS.exclude?(domain)
+    end
+
+    COMMON_DOMAIN_TYPOS.include?(domain)
   end
 end

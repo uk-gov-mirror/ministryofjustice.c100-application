@@ -32,12 +32,34 @@ describe EmailValidator do
       ).to eq(%w[
         cloud.com
         gamil.com
-        gmail.con
-        gmail.co
-        hotmailco.uk
-        hotmial.com
-        hotmail.con
-        hotmail.co
+        gmial.com
+        homail.com
+      ])
+    end
+  end
+
+  describe 'VALID_GMAIL_DOMAINS' do
+    it 'valid gmail domains' do
+      expect(
+        described_class::VALID_GMAIL_DOMAINS
+      ).to eq(%w[
+        gmail.com
+        googlemail.com
+      ])
+    end
+  end
+
+  describe 'VALID_HOTMAIL_DOMAINS' do
+    it 'valid hotmail domains' do
+      expect(
+        described_class::VALID_HOTMAIL_DOMAINS
+      ).to eq(%w[
+        hotmail.com
+        hotmail.co.uk
+        hotmail.fr
+        hotmail.it
+        hotmail.es
+        hotmail.de
       ])
     end
   end
@@ -47,7 +69,9 @@ describe EmailValidator do
       [
         "a+b@plus-in-local.com",
         "a_b@underscore-in-local.com",
-        "test@example.com",
+        "test@gmail.com",
+        "test@googlemail.com",
+        "test@hotmail.com",
         " user@example.com ",
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@letters-in-local.org",
         "01234567890@numbers-in-local.net",
@@ -115,9 +139,22 @@ describe EmailValidator do
 
     context 'given the silly email typos' do
       %w(
-        test@gamil.com
-        test@gmail.co
+        test@cloud.com
+        TEST@GMIAL.COM
+        test@homail.com
+      ).each do |email|
+        it "#{email.inspect} should not be valid" do
+          expect(TestUser.new(email: email)).not_to be_valid
+        end
+      end
+    end
+
+    context 'given typos for gmail and hotmail domains' do
+      %w(
         test@hotmial.com
+        test@hotmail.couk
+        TEST@GOOGLE.COM
+        test@gmail.co.uk
       ).each do |email|
         it "#{email.inspect} should not be valid" do
           expect(TestUser.new(email: email)).not_to be_valid
