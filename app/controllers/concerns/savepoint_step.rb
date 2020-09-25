@@ -9,14 +9,13 @@ module SavepointStep
 
   private
 
-  # TODO: refactor the error page and copy as we really don't have a screener anymore
+  # TODO: once all applications in the DB use the new `court` attribute,
+  # we can move this validation to `check_application_not_screening`
   def court_sanity_check
     raise Errors::ApplicationScreening unless current_c100_application.court.present?
   end
 
   def mark_in_progress
-    # The step including this concern will mark the current application
-    # as `in progress`, meaning it has passed the opening steps and can be drafted.
     current_c100_application.in_progress! if current_c100_application.screening?
   end
 
