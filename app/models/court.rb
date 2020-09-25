@@ -88,15 +88,6 @@ class Court < ApplicationRecord
     updated_at.nil? || updated_at <= REFRESH_DATA_AFTER.ago
   end
 
-  # TODO: preparation for future screener removal
-  # Maintain backwards compatibility with current stored data,
-  # while we do the refactor of the screener.
-  def as_json(*)
-    super(
-      { only: [:name, :address, :email, :gbs], methods: :slug }
-    )
-  end
-
   private
 
   def best_match_for(emails, node)

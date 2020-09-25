@@ -992,10 +992,10 @@ en:
       lead_text: If you copied a web address, please check it’s correct.
       more_text: "Please note: a draft application expires %{expire_in_days} days after it was created, and is automatically removed from the service."
     application_screening:
-      page_title: Application screening
-      heading: You need to complete the eligibility criteria process
-      lead_text: This is a new online service and you need to meet some criteria to be able to apply online.
-      more_info_text: It seems you've not completed yet this process or some information is missing. You will need to start again.
+      page_title: Application not ready
+      heading: You haven’t entered a postcode
+      lead_text: You need to enter a postcode for where the children live. This is so we can send your application to an appropriate court.
+      enter_postcode: Enter postcode
     application_completed:
       page_title: Application completed
       heading: You have already completed this application
