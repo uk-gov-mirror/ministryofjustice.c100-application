@@ -68,6 +68,15 @@ def classes_to_mutate(option)
   end
 end
 
+# Classes that, for different reasons, mutant can't cope with or gives
+# false positives (for example, due to multi-threading tests, etc.)
+#
+def excluded_constants
+  [
+    C100App::PaymentsFlowControl,
+  ].freeze
+end
+
 # As the current models are just empty shells for ActiveRecord relationships,
 # and we don't even have corresponding spec tests for those, there is no point
 # in including these in the mutation test, and thus we can save some time.
@@ -92,11 +101,11 @@ def form_objects
   BaseForm.descendants.map(&:name).grep(/^Steps::/)
 end
 
-# Everything inside `C100App` namespace
+# Everything inside `C100App` namespace, unless included in `#excluded_constants`
 # i.e. all classes in `/app/services/c100_app/*`
 #
 def decision_trees_and_services
-  C100App.constants.map { |symbol| C100App.const_get(symbol) }
+  C100App.constants.map { |symbol| C100App.const_get(symbol) } - excluded_constants
 end
 
 # Everything inheriting from `ApplicationJob`

@@ -5,7 +5,6 @@ RSpec.describe C100App::PaymentsFlowControl do
 
   let(:c100_application) {
     C100Application.new(
-      id: '449362af-0bc3-4953-82a7-1363d479b876',
       submission_type: submission_type,
       payment_type: payment_type,
       status: :in_progress,
@@ -17,15 +16,28 @@ RSpec.describe C100App::PaymentsFlowControl do
 
   let(:payment_intent) { PaymentIntent.new(payment_id: 'xyz123') }
 
+  # Some of these tests will create DB records to be as accurate as possible,
+  # so we need to do some manual cleaning to not leave leftovers.
+  before { C100Application.destroy_all }
+  after  { C100Application.destroy_all }
+
   before do
-    allow(
-      PaymentIntent
-    ).to receive(:create_or_find_by!).with(
-      c100_application_id: c100_application.id
-    ).and_return(payment_intent)
+    allow_any_instance_of(
+      C100Application
+    ).to receive(:court).and_return(double.as_null_object)
   end
 
   describe '#payment_url' do
+    before do
+      allow(
+        PaymentIntent
+      ).to receive(:create_or_find_by!).with(
+        c100_application_id: c100_application.id
+      ).and_return(payment_intent)
+
+      allow(payment_intent).to receive(:reload)
+    end
+
     before do
       # We test the confirmation URL separately
       allow(subject).to receive(:confirmation_url).and_return('confirmation-page')
@@ -93,18 +105,52 @@ RSpec.describe C100App::PaymentsFlowControl do
           subject.payment_url
         }.to raise_error(Errors::PaymentUnexpectedError).with_message('boom!')
       end
+    end
+  end
 
-      it 'reverts the application status to `in_progress`' do
-        expect(subject).to receive(:move_status_to).with(:payment_in_progress).ordered
-        expect(subject).to receive(:move_status_to).with(:in_progress).ordered
+  describe '#payment_url (race conditions)' do
+    let(:payment_create_response) {
+      double('Payment', payment_id: 'xyz123', state: { 'status' => 'created', 'finished' => false }, payment_url: 'https://payments.example.com')
+    }
+    let(:payment_retrieve_response) {
+      double('Payment', payment_id: 'xyz123', state: { 'status' => 'created', 'finished' => false }, payment_url: 'https://payments.example.com')
+    }
 
-        expect { subject.payment_url }.to raise_error
-      end
+    before do
+      c100_application.save!
+
+      # Mock responses from the Pay API
+      allow_any_instance_of(
+        PaymentsApi::Requests::CreateCardPayment
+      ).to receive(:call).and_return(payment_create_response)
+
+      allow_any_instance_of(
+        PaymentsApi::Requests::GetCardPayment
+      ).to receive(:call).and_return(payment_retrieve_response)
+    end
+
+    it 'does not create duplicate payments (race conditions)' do
+      expect(payment_create_response).to receive(:payment_url).once
+      expect(payment_retrieve_response).to receive(:payment_url).exactly(2).times
+
+      Array.new(3) do
+        ActiveRecord::Base.connection_pool.with_connection do
+          Thread.new do
+            subject.payment_url
+          end
+        end
+      end.each(&:join)
     end
   end
 
   describe '#next_url' do
     before do
+      allow(
+        PaymentIntent
+      ).to receive(:create_or_find_by!).with(
+        c100_application_id: c100_application.id
+      ).and_return(payment_intent)
+
       # We test the confirmation URL separately
       allow(subject).to receive(:confirmation_url).and_return('confirmation-page')
 

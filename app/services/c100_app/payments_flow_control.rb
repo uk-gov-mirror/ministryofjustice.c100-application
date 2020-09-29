@@ -1,3 +1,6 @@
+require 'payment_intent'
+require 'errors'
+
 module C100App
   class PaymentsFlowControl
     include Rails.application.routes.url_helpers
@@ -12,15 +15,19 @@ module C100App
       return confirmation_url unless c100_application.online_payment?
 
       begin
-        move_status_to :payment_in_progress
+        payment_intent.with_lock do
+          move_status_to :payment_in_progress
 
-        if payment_intent.in_progress?
-          OnlinePayments.retrieve_payment(payment_intent).payment_url
-        else
-          OnlinePayments.create_payment(payment_intent).payment_url
+          # Ensure we are always working with an up to date record
+          payment_intent.reload
+
+          if payment_intent.in_progress?
+            OnlinePayments.retrieve_payment(payment_intent).payment_url
+          else
+            OnlinePayments.create_payment(payment_intent).payment_url
+          end
         end
       rescue StandardError => exception
-        move_status_to :in_progress
         raise Errors::PaymentUnexpectedError, exception
       end
     end
