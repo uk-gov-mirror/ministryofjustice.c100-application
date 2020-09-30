@@ -59,7 +59,7 @@ class Application < Rails::Application
   config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 60).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
-  # As part of the postcode screening, an empty C100Application record is created.
+  # As part of the opening postcode step, an empty C100Application record is created.
   # If the postcode is not eligible, these records are left orphans and have no use.
   # We will only leave them for some time. Can be configured here.
   config.x.orphans.expire_in_days = 2
