@@ -38,7 +38,7 @@ module Backoffice
     end
 
     def payments_report
-      PaymentIntent.order(created_at: :desc).limit(default_limit)
+      PaymentIntent.order(updated_at: :desc).limit(default_limit)
     end
   end
 end
