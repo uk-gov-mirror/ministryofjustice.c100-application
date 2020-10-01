@@ -34,6 +34,9 @@ class SessionsController < ApplicationController
     c100_application.update(
       court: find_or_initialize_court,
       status: 1,
+      # fill out the first steps, so `save and return` button shows
+      consent_order: 'no',
+      child_protection_cases: 'no',
     )
 
     redirect_to edit_steps_application_check_your_answers_path

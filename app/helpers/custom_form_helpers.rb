@@ -15,7 +15,7 @@ module CustomFormHelpers
 
   private
 
-  # The `save an return` button will show once the application has advanced
+  # The `save and return` button will show once the application has advanced
   # a few steps, currently 3 steps (`child_protection_cases` attr is present).
   def show_draft_button?
     current_c100_application.try(:child_protection_cases)
