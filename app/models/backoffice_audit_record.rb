@@ -18,4 +18,8 @@ class BackofficeAuditRecord < ApplicationRecord
       details: details
     )
   end
+
+  def self.purge!(date)
+    where('created_at <= :date', date: date).destroy_all
+  end
 end

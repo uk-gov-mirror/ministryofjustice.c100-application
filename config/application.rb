@@ -78,6 +78,10 @@ class Application < Rails::Application
   # delivery result of these emails for diagnostic and debug purposes.
   config.x.email_submissions_audit.expire_in_days = 90
 
+  # The back office maintains an audit trail of all actions performed (for example, resend
+  # an email). It logs who did what and when. We should maintain it for a few weeks/months.
+  config.x.backoffice_audit.expire_in_days = 90
+
   # Court fee configuration.
   # Not using Fee Register for now as we only have 1 fee, but might be used in the future.
   config.x.court_fee.amount_in_pence = 215_00
