@@ -7,6 +7,7 @@ task daily_tasks: [:stdout_environment] do
   Rake::Task['purge:applications'].invoke
   Rake::Task['purge:orphans'].invoke
   Rake::Task['purge:email_submissions_audit'].invoke
+  Rake::Task['purge:backoffice_audit'].invoke
 
   Rake::Task['draft_reminders:first_email'].invoke
   Rake::Task['draft_reminders:last_email'].invoke
@@ -44,6 +45,13 @@ namespace :purge do
     log "Purging email submissions audit older than #{expire_after} days"
     purged = EmailSubmissionsAudit.purge!(expire_after.days.ago)
     log "Purged #{purged.size} email submissions audit records"
+  end
+
+  task backoffice_audit: :environment do
+    expire_after = Rails.configuration.x.backoffice_audit.expire_in_days
+    log "Purging backoffice audit records older than #{expire_after} days"
+    purged = BackofficeAuditRecord.purge!(expire_after.days.ago)
+    log "Purged #{purged.size} backoffice audit records"
   end
 end
 
