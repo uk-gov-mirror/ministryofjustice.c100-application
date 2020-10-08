@@ -7,6 +7,7 @@ class BackofficeAuditRecord < ApplicationRecord
     logout: 'logout',
     forbidden: 'forbidden',
     application_lookup: 'application_lookup',
+    application_completed: 'application_completed',
     email_lookup: 'email_lookup',
     resend_email: 'resend_email',
   }
