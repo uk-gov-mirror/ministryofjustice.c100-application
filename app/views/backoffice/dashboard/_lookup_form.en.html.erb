@@ -4,6 +4,8 @@
 
 <p class="govuk-body">
   This will search the given reference in the historical audit table, no matter how old the application is.
+  <br/>
+  Incomplete applications can also be searched, as long as they are still in the database.
 </p>
 
 <%= form_for(@form, url: lookup_backoffice_dashboard_index_path, html: { class: 'govuk-!-margin-bottom-5' }) do |f| %>

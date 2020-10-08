@@ -69,7 +69,7 @@
                   <dt>Court receipt email address</dt>
                   <dd><%= c100.court.email %> | <%= link_to 'web', C100App::CourtfinderAPI.court_url(c100.court.slug), rel: 'external', target: '_blank', class: 'govuk-link govuk-link--no-visited-state' %></dd>
                   <dt>Applicant receipt email address</dt>
-                  <dd><%= c100.receipt_email || 'none' %></dd>
+                  <dd><%= c100.receipt_email.presence || 'none' %></dd>
                 <% else %>
                   <dt>Court receipt email address</dt>
                   <dd>(purged from database)</dd>
