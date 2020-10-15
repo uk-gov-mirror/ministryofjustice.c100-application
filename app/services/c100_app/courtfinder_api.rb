@@ -16,6 +16,7 @@ module C100App
       open_timeout: 10,
       read_timeout: 20,
       use_ssl: true,
+      verify_mode: OpenSSL::SSL::VERIFY_NONE, # HORRIBLE TEMP WORKAROUND
     }.freeze
 
     def self.court_url(slug)
