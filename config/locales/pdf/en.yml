@@ -370,14 +370,17 @@ en:
       question: Are you claiming exemption from the requirement to attend a MIAM?
       answers:
         <<: *YESNO
+        not_applicable: *not_applicable
     miam_certificate_received:
       question: Have you got a signed document from the mediator?
       answers:
         <<: *YESNO
+        not_applicable: *not_applicable
     miam_attended:
       question: Have you attended a MIAM?
       answers:
         <<: *YESNO
+        not_applicable: *not_applicable
     miam_certification_number:
       question: FMC registration no
     miam_certification_service_name:

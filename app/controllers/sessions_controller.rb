@@ -35,8 +35,9 @@ class SessionsController < ApplicationController
       court: find_or_initialize_court,
       status: 1,
       # fill out the first steps, so `save and return` button shows
-      consent_order: 'no',
-      child_protection_cases: 'no',
+      # if a value already exists we use it
+      consent_order: c100_application.consent_order.presence || 'no',
+      child_protection_cases: c100_application.child_protection_cases.presence || 'no',
     )
 
     redirect_to edit_steps_application_check_your_answers_path
