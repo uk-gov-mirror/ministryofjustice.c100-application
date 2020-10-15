@@ -49,7 +49,7 @@ describe C100App::CourtfinderAPI do
         expect(
           Net::HTTP
         ).to receive(:start).with(
-          'courttribunalfinder.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true, verify_mode: 0 }
+          'courttribunalfinder.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true }
         ).and_return(response_double)
 
         subject.court_for('Children', 'MK9 3DX')
