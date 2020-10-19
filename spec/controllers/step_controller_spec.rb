@@ -19,13 +19,8 @@ RSpec.describe DummyStepController, type: :controller do
   end
 
   describe 'navigation stack' do
-    let!(:c100_application) { C100Application.create(navigation_stack: navigation_stack, updated_at: updated_at) }
-    let(:updated_at) { Time.at(0) }
-
-    before do
-      get :show, session: { c100_application_id: c100_application.id }
-      c100_application.reload
-    end
+    let!(:c100_application) { C100Application.create }
+    let(:navigation_stack) { double.as_null_object }
 
     # In these tests we are persisting the application record,
     # so we need to cleanup after we are finished with it.
@@ -33,32 +28,14 @@ RSpec.describe DummyStepController, type: :controller do
       c100_application.destroy
     end
 
-    context 'when the stack is empty' do
-      let(:navigation_stack) { [] }
+    it 'handles the navigation stack update' do
+      expect(
+        C100App::NavigationStack
+      ).to receive(:new).with(c100_application, anything).and_return(navigation_stack)
 
-      it 'adds the page to the stack' do
-        expect(c100_application.navigation_stack).to eq(['/dummy_step'])
-      end
+      expect(navigation_stack).to receive(:update!)
 
-      it 'does not `touch` timestamps on save' do
-        expect(c100_application.updated_at).to eq(updated_at)
-      end
-    end
-
-    context 'when the current page is on the stack' do
-      let(:navigation_stack) { ['/foo', '/bar', '/dummy_step', '/baz'] }
-
-      it 'rewinds the stack to the appropriate point' do
-        expect(c100_application.navigation_stack).to eq(['/foo', '/bar', '/dummy_step'])
-      end
-    end
-
-    context 'when the current page is not on the stack' do
-      let(:navigation_stack) { ['/foo', '/bar', '/baz'] }
-
-      it 'adds it to the end of the stack' do
-        expect(c100_application.navigation_stack).to eq(['/foo', '/bar', '/baz', '/dummy_step'])
-      end
+      get :show, session: { c100_application_id: c100_application.id }
     end
   end
 

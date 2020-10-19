@@ -107,13 +107,8 @@ class StepController < ApplicationController
   end
 
   def update_navigation_stack
-    return unless current_c100_application
-
-    stack_until_current_page = current_c100_application.navigation_stack.take_while do |path|
-      path != request.fullpath
-    end
-
-    current_c100_application.navigation_stack = stack_until_current_page + [request.fullpath]
-    current_c100_application.save!(touch: false)
+    C100App::NavigationStack.new(
+      current_c100_application, request
+    ).update!
   end
 end
