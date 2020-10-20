@@ -11,13 +11,17 @@ class StepController < ApplicationController
   end
   helper_method :previous_step_path
 
+  def fast_forward_to_cya?
+    navigation_stack.fast_forward_to_cya?
+  end
+  helper_method :fast_forward_to_cya?
+
   private
 
   def update_and_advance(form_class, opts = {})
     hash = extract_parameters(form_class)
     record = opts[:record]
 
-    @next_step   = params[:next_step].presence
     @form_object = form_class.new(
       hash.merge(c100_application: current_c100_application, record: record)
     )
@@ -28,20 +32,26 @@ class StepController < ApplicationController
       @form_object.save!
       redirect_to new_user_registration_path
     elsif @form_object.save
-      destination = decision_tree_class.new(
-        c100_application: current_c100_application,
-        record:        record,
-        step_params:   hash,
-        # Used when the step name in the decision tree is not the same as the first
-        # (and usually only) attribute in the form.
-        as:            opts[:as],
-        next_step:     @next_step
-      ).destination
-
-      redirect_to destination
+      if fast_forward_to_cya?
+        redirect_to edit_steps_application_check_your_answers_path
+      else
+        redirect_to destination(step_params: hash, opts: opts)
+      end
     else
       render opts.fetch(:render, :edit)
     end
+  end
+
+  def destination(step_params:, opts:)
+    decision_tree_class.new(
+      c100_application: current_c100_application,
+      record: opts[:record],
+      step_params: step_params,
+      # Used when the step name in the decision tree is not the same as the first
+      # (and usually only) attribute in the form.
+      as: opts[:as],
+      next_step: params[:next_step].presence
+    ).destination
   end
 
   def extract_parameters(form_class)
@@ -106,9 +116,13 @@ class StepController < ApplicationController
     )
   end
 
-  def update_navigation_stack
-    C100App::NavigationStack.new(
+  def navigation_stack
+    @_navigation_stack ||= C100App::NavigationStack.new(
       current_c100_application, request
-    ).update!
+    )
+  end
+
+  def update_navigation_stack
+    navigation_stack.update!
   end
 end

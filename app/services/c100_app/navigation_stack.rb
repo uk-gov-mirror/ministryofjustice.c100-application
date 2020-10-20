@@ -7,6 +7,11 @@ module C100App
       /steps/application/check_your_answers
     ].freeze
 
+    FAST_FORWARD_STEPS = [
+      %r{^/steps/abuse_concerns/details.*},
+      %r{^/steps/application/details$},
+    ].freeze
+
     def initialize(c100_application, request)
       @c100_application = c100_application
       @request = request
@@ -19,16 +24,25 @@ module C100App
     #      if they've already completed all the steps (thus the funnel).
     #
     #   2. Update the `navigation_stack` record attribute, used for the `back` links.
+    #      Only if the above session flag is not set, otherwise we would be wiping
+    #      parts of the navigation stack when using the "fast forward" functionality.
     #
     def update!
       session[:cya_origin] = CYA_FUNNEL.eql?(
         c100_application.navigation_stack.last(CYA_FUNNEL.size)
       )
 
+      return if fast_forward_to_cya?
+
       stack_until_current_page = c100_application.navigation_stack.take_while { |path| !path.eql?(current_path) }
 
       c100_application.navigation_stack = stack_until_current_page + [current_path]
       c100_application.save!(touch: false)
+    end
+
+    def fast_forward_to_cya?
+      session[:cya_origin] &&
+        Regexp.union(FAST_FORWARD_STEPS).match?(current_path)
     end
 
     private
