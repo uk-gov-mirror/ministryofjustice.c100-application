@@ -17,7 +17,14 @@ module ApplicationHelper
   end
 
   # Render a back link pointing to the user's previous step
+  # or to the CYA page if using the fast-forward functionality.
+  # If a specific path is provided, it takes precedence.
+  #
   def step_header(path: nil)
+    if path.nil? && controller.fast_forward_to_cya?
+      path = edit_steps_application_check_your_answers_path
+    end
+
     render partial: 'layouts/step_header', locals: {
       path: path || controller.previous_step_path
     }

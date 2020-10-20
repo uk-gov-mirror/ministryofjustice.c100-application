@@ -120,6 +120,48 @@ RSpec.shared_examples 'a step that can be drafted' do |form_class|
   end
 end
 
+RSpec.shared_examples 'a step that can fast-forward to check your answers' do |form_class|
+  describe '#update' do
+    let(:form_object) { instance_double(form_class, attributes: { foo: double }) }
+    let(:form_class_params_name) { form_class.name.underscore }
+    let(:expected_params) { { form_class_params_name => { foo: 'bar' } } }
+    let(:existing_case) {
+      C100Application.create(
+        status: :in_progress,
+        navigation_stack: %w(/foo /bar /steps/application/payment /steps/application/check_your_answers)
+      )
+    }
+
+    let(:session) { { c100_application_id: existing_case.id, cya_origin: true } }
+
+    before do
+      allow(form_class).to receive(:new).and_return(form_object)
+    end
+
+    context 'when the form saves successfully' do
+      before do
+        expect(form_object).to receive(:save).and_return(true)
+      end
+
+      it 'redirects the user back to the check your answers page' do
+        put :update, params: expected_params, session: session
+        expect(subject).to redirect_to('/steps/application/check_your_answers')
+      end
+    end
+
+    context 'when the form fails to save' do
+      before do
+        expect(form_object).to receive(:save).and_return(false)
+      end
+
+      it 'renders the question page again' do
+        put :update, params: expected_params, session: session
+        expect(subject).to render_template(:edit)
+      end
+    end
+  end
+end
+
 RSpec.shared_examples 'a starting point step controller' do
   describe '#edit' do
     context 'when no case exists in the session yet' do

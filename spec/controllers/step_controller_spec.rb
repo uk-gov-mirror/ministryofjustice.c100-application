@@ -70,6 +70,27 @@ RSpec.describe DummyStepController, type: :controller do
     end
   end
 
+  describe '#fast_forward_to_cya?' do
+    let(:c100_application) { double('C100Application') }
+    let(:request) { double('Request') }
+    let(:navigation_stack) { double.as_null_object }
+
+    before do
+      allow(subject).to receive(:current_c100_application).and_return(c100_application)
+      allow(subject).to receive(:request).and_return(request)
+    end
+
+    it 'queries the navigation stack to see if fast forward is available' do
+      expect(
+        C100App::NavigationStack
+      ).to receive(:new).with(c100_application, request).and_return(navigation_stack)
+
+      expect(navigation_stack).to receive(:fast_forward_to_cya?)
+
+      subject.fast_forward_to_cya?
+    end
+  end
+
   # Note this method is private as it is used via another method but as the logic
   # is quite self contained it makes sense to test it in isolation.
   #

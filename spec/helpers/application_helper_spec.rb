@@ -5,6 +5,10 @@ class ActionView::TestCase::TestController
   def previous_step_path
     '/foo/bar'
   end
+
+  def fast_forward_to_cya?
+    false
+  end
 end
 
 RSpec.describe ApplicationHelper, type: :helper do
@@ -57,6 +61,17 @@ RSpec.describe ApplicationHelper, type: :helper do
         assign(:form_object, form_object)
 
         expect(helper.step_header(path: '/another/step')).to eq('foobar')
+      end
+    end
+
+    context 'when using fast-forward to CYA' do
+      it 'renders the back link with the check your answers path' do
+        expect(controller).to receive(:fast_forward_to_cya?).and_return(true)
+
+        expect(helper).to receive(:render).with(partial: 'layouts/step_header', locals: {path: '/steps/application/check_your_answers'}).and_return('foobar')
+        assign(:form_object, form_object)
+
+        expect(helper.step_header).to eq('foobar')
       end
     end
   end

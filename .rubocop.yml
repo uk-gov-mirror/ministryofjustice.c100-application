@@ -30,7 +30,7 @@ AbcSize:
   Max: 24
 
 CyclomaticComplexity:
-  Max: 15
+  Max: 12
 
 Documentation:
   Enabled: false

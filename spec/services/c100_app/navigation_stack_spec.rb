@@ -5,12 +5,11 @@ RSpec.describe C100App::NavigationStack do
 
   let(:c100_application) { C100Application.new(navigation_stack: navigation_stack) }
   let(:request) { double('Request', session: session, fullpath: '/dummy_step') }
-  let(:session) { double('Session') }
+  let(:session) { Hash.new } # a session behaves like a hash so for test purposes we use this
 
   let(:navigation_stack) { [] }
 
   before do
-    allow(session).to receive(:[]=)
     allow(c100_application).to receive(:save!)
   end
 
@@ -22,6 +21,11 @@ RSpec.describe C100App::NavigationStack do
 
     it 'sets the CYA origin flag to `false`' do
       expect(session).to receive(:[]=).with(:cya_origin, false)
+      subject.update!
+    end
+
+    it 'does not need to check current path against the regexp list' do
+      expect(Regexp).not_to receive(:union)
       subject.update!
     end
 
@@ -60,6 +64,24 @@ RSpec.describe C100App::NavigationStack do
           expect(session).to receive(:[]=).with(:cya_origin, true)
           subject.update!
         end
+
+        context 'and the target step can do fast forward' do
+          before do
+            allow(request).to receive(:fullpath).and_return('/steps/application/details')
+          end
+
+          it 'does not change the stack' do
+            subject.update!
+            expect(c100_application.navigation_stack).to eq(navigation_stack)
+          end
+        end
+
+        context 'and the target step cannot do fast forward' do
+          it 'changes the stack' do
+            subject.update!
+            expect(c100_application.navigation_stack).to eq(%w(/foo /bar /dummy_step))
+          end
+        end
       end
 
       context 'for an incomplete funnel' do
@@ -68,6 +90,11 @@ RSpec.describe C100App::NavigationStack do
         it 'sets the CYA origin flag to `false`' do
           expect(session).to receive(:[]=).with(:cya_origin, false)
           subject.update!
+        end
+
+        it 'changes the stack' do
+          subject.update!
+          expect(c100_application.navigation_stack).to eq(%w(/foo /bar /dummy_step))
         end
       end
     end
