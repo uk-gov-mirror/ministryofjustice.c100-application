@@ -41,8 +41,7 @@ class AuditHelper
 
   def postcode
     # We blind a bit the postcode to anonymize it
-    # TODO: maintain backwards compatibility until all applications use the new attribute
-    postcode = c100.children_postcode || c100.screener_answers.children_postcodes
+    postcode = c100.children_postcode
     postcode.sub(/\s+/, '').upcase.at(0..-3) + '**'
   end
 

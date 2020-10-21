@@ -11,6 +11,7 @@ describe AuditHelper do
       without_notice: 'yes',
       permission_sought: nil,
       declaration_signee_capacity: 'applicant',
+      children_postcode: 'abcd 123',
     )
   }
 
@@ -19,15 +20,12 @@ describe AuditHelper do
   let(:court_arrangement) { nil }
 
   let(:court) { instance_double(Court, name: 'Test Court', gbs: 'X123') }
-  let(:screener_answers) { instance_double(ScreenerAnswers, children_postcodes: 'abcd 123') }
 
   subject { described_class.new(c100_application) }
 
   before do
     allow(c100_application).to receive(:user_id).and_return(user_id)
     allow(c100_application).to receive(:payment_type).and_return(payment_type)
-
-    allow(c100_application).to receive(:screener_answers).and_return(screener_answers)
     allow(c100_application).to receive(:court).and_return(court)
     allow(c100_application).to receive(:court_arrangement).and_return(court_arrangement)
   end
@@ -56,21 +54,6 @@ describe AuditHelper do
         arrangements: [],
         payment_details: {},
       )
-    end
-
-    # TODO: maintain backwards compatibility until all applications use the new attribute
-    context 'when new `children_postcode` attribute is present' do
-      before do
-        allow(c100_application).to receive(:children_postcode).and_return('XYZ123')
-      end
-
-      it 'returns the expected information' do
-        expect(c100_application).not_to receive(:screener_answers)
-
-        expect(
-          subject.metadata
-        ).to include(postcode: 'XYZ1**')
-      end
     end
 
     context 'when we have court arrangements' do
