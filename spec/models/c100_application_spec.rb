@@ -178,17 +178,6 @@ RSpec.describe C100Application, type: :model do
     end
   end
 
-  describe '#screener_answers_court' do
-    before do
-      allow(subject).to receive(:screener_answers).and_return(double)
-    end
-
-    it 'delegates the method to the `screener_answers`' do
-      expect(subject.screener_answers).to receive(:court)
-      subject.screener_answers_court
-    end
-  end
-
   describe '#mark_as_completed!' do
     it 'marks the application as completed and saves the audit record' do
       expect(subject).to receive(:completed!).and_return(true)
@@ -219,25 +208,6 @@ RSpec.describe C100Application, type: :model do
         expect { subject.mark_as_completed! }.to raise_error
 
         expect(subject.reload.status).to eq('in_progress')
-      end
-    end
-  end
-
-  # TODO: preparation for future screener removal
-  describe '#court' do
-    context 'when we have a court record' do
-      let(:court) { Court.new(id: 'slug') }
-      let(:attributes) { { court: court } }
-
-      it 'returns the court record' do
-        expect(subject.court).to eq(court)
-      end
-    end
-
-    context 'when we do not have a court record (legacy code)' do
-      it 'returns the court from the screener_answers table' do
-        expect(subject).to receive(:screener_answers_court).and_return('screener answers court')
-        expect(subject.court).to eq('screener answers court')
       end
     end
   end

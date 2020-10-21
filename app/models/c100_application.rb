@@ -23,7 +23,6 @@ class C100Application < ApplicationRecord
   has_one  :court_proceeding,   dependent: :destroy
   has_one  :court_arrangement,  dependent: :destroy
   has_one  :miam_exemption,     dependent: :destroy
-  has_one  :screener_answers,   dependent: :destroy
   has_one  :email_submission,   dependent: :destroy
   has_one  :payment_intent,     dependent: :destroy
 
@@ -41,8 +40,6 @@ class C100Application < ApplicationRecord
   scope :with_owner,    -> { where.not(user: nil) }
   scope :not_completed, -> { where.not(status: :completed) }
   scope :not_eligible_orphans, -> { where.not(children_postcode: nil).where(court: nil) }
-
-  delegate :court, to: :screener_answers, prefix: true, allow_nil: true
 
   # Before marking the application as completed we run a final
   # validation to ensure the basic details are fulfilled.
@@ -65,12 +62,5 @@ class C100Application < ApplicationRecord
       completed!
       CompletedApplicationsAudit.log!(self)
     end
-  end
-
-  # TODO: preparation for future screener removal
-  # Once we don't have any records using the old `screener_answers`
-  # table we can remove this method.
-  def court
-    super() || screener_answers_court
   end
 end

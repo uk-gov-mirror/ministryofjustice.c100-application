@@ -9,8 +9,6 @@ module SavepointStep
 
   private
 
-  # TODO: once all applications in the DB use the new `court` attribute,
-  # we can move this validation to `check_application_not_screening`
   def court_sanity_check
     raise Errors::ApplicationScreening unless current_c100_application.court.present?
   end
