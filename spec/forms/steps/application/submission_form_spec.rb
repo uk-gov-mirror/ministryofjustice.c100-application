@@ -90,11 +90,10 @@ RSpec.describe Steps::Application::SubmissionForm do
 
       context 'when submission type is `print_and_post`' do
         let(:submission_type) { SubmissionType::PRINT_AND_POST.to_s }
-        let(:receipt_email) { '' }
 
         context 'when the form has changed' do
           let(:c100_application) {
-            instance_double(C100Application, submission_type: submission_type, receipt_email: nil)
+            instance_double(C100Application, submission_type: submission_type, receipt_email: 'foo@bar')
           }
 
           it 'saves the record' do
@@ -110,7 +109,7 @@ RSpec.describe Steps::Application::SubmissionForm do
 
         context 'when the form has not changed' do
           let(:c100_application) {
-            instance_double(C100Application, submission_type: submission_type, receipt_email: receipt_email)
+            instance_double(C100Application, submission_type: submission_type, receipt_email: nil)
           }
 
           it 'does not save the record but returns true' do

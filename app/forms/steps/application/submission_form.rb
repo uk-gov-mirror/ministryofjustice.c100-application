@@ -11,7 +11,7 @@ module Steps
 
       def changed?
         !c100_application.submission_type.eql?(submission_type) ||
-          !c100_application.receipt_email.eql?(receipt_email)
+          !c100_application.receipt_email.to_s.eql?(receipt_email)
       end
 
       def online_submission?
