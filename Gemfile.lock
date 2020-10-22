@@ -140,7 +140,7 @@ GEM
       activesupport (>= 4.2.0)
     govuk-pay-ruby-client (1.0.2)
       faraday (~> 1.0)
-    govuk_design_system_formbuilder (1.2.7)
+    govuk_design_system_formbuilder (2.1.0)
       actionview (>= 5.2)
       activemodel (>= 5.2)
       activesupport (>= 5.2)
@@ -417,7 +417,7 @@ DEPENDENCIES
   devise (~> 4.7.1)
   dotenv-rails
   govuk-pay-ruby-client (~> 1.0.2)
-  govuk_design_system_formbuilder (~> 1.2.5)
+  govuk_design_system_formbuilder (~> 2.1.0)
   govuk_notify_rails (~> 2.1.0)
   i18n-debug
   jquery-rails
