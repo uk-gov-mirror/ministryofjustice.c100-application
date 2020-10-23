@@ -9,6 +9,10 @@ module C100App
 
     FAST_FORWARD_STEPS = [
       %r{^/steps/abuse_concerns/details.*},
+      %r{^/steps/.+/personal_details.*},
+      %r{^/steps/.+/address_details.*},
+      %r{^/steps/.+/contact_details.*},
+      %r{^/steps/children/additional_details$},
       %r{^/steps/application/details$},
     ].freeze
 
