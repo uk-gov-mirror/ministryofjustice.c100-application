@@ -8,12 +8,15 @@ module C100App
     ].freeze
 
     FAST_FORWARD_STEPS = [
+      %r{^/steps/safety_questions/address_confidentiality$},
       %r{^/steps/abuse_concerns/details.*},
       %r{^/steps/.+/personal_details.*},
       %r{^/steps/.+/address_details.*},
       %r{^/steps/.+/contact_details.*},
       %r{^/steps/children/additional_details$},
-      %r{^/steps/application/details$},
+      %r{^/steps/application/court_proceedings$},
+      %r{^/steps/application/.*details$},
+      %r{^/steps/attending_court/.+},
     ].freeze
 
     def initialize(c100_application, request)
