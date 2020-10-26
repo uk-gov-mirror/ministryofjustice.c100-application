@@ -2,9 +2,12 @@
   <fieldset class="govuk-fieldset" aria-describedby="steps-petition-orders-form-orders-hint">
     <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl"><h1 class="govuk-fieldset__heading">What are you asking the court to decide about the children involved?</h1></legend>
     <span class="govuk-hint" id="steps-petition-orders-form-orders-hint">Select all that apply</span>
-    <div class="govuk-checkboxes" data-module="govuk-checkboxes">
-      <div class="govuk-checkboxes__item"><input id="steps-petition-orders-form-orders-child-arrangements-home-field"
-                                                 class="govuk-checkboxes__input" type="checkbox"
+    <input value="" name="steps_petition_orders_form[orders][]" type="hidden" id="steps_petition_orders_form_orders">
+      <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input id="steps-petition-orders-form-orders-child-arrangements-home-field"
+                                                 class="govuk-checkboxes__input"
+                                                 type="checkbox"
                                                  value="child_arrangements_home"
                                                  name="steps_petition_orders_form[orders][]"><label
           for="steps-petition-orders-form-orders-child-arrangements-home-field"
@@ -16,15 +19,18 @@
           for="steps-petition-orders-form-orders-child-arrangements-time-field"
           class="govuk-label govuk-checkboxes__label">Decide how much time they spend with each person</label></div>
 
-      <div class="govuk-checkboxes__item"><input id="steps-petition-orders-form-orders-group-prohibited-steps-field"
-                                                 class="govuk-checkboxes__input" type="checkbox"
-                                                 value="group_prohibited_steps"
-                                                 name="steps_petition_orders_form[orders][]"
-                                                 aria-controls="steps-petition-orders-form-orders-group-prohibited-steps-conditional"
-                                                 aria-expanded="false"><label
-          for="steps-petition-orders-form-orders-group-prohibited-steps-field"
+      <div class="govuk-checkboxes__item">
+        <input id="steps-petition-orders-form-orders-group-prohibited-steps-field"
+                                                class="govuk-checkboxes__input"
+                                                aria-describedby="steps-petition-orders-form-orders-group-prohibited-steps-hint"
+                                                type="checkbox"
+                                                value="group_prohibited_steps"
+                                                name="steps_petition_orders_form[orders][]"
+                                                aria-controls="steps-petition-orders-form-orders-group-prohibited-steps-conditional"
+                                                aria-expanded="false">
+       <label for="steps-petition-orders-form-orders-group-prohibited-steps-field"
           class="govuk-label govuk-checkboxes__label">Stop the other person doing something</label><span
-          class="govuk-hint govuk-checkboxes__hint" id="steps-petition-orders-form-orders-group-prohibited-steps-hint">For example, moving abroad or abducting the children</span>
+          class="govuk-hint govuk-checkboxes__hint" id="steps-petition-orders-form-orders-hint">For example, moving abroad or abducting the children</span>
       </div>
       <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden"
            id="steps-petition-orders-form-orders-group-prohibited-steps-conditional">
@@ -67,15 +73,18 @@
           </fieldset>
         </div>
       </div>
-      <div class="govuk-checkboxes__item"><input id="steps-petition-orders-form-orders-group-specific-issues-field"
-                                                 class="govuk-checkboxes__input" type="checkbox"
-                                                 value="group_specific_issues"
-                                                 name="steps_petition_orders_form[orders][]"
-                                                 aria-controls="steps-petition-orders-form-orders-group-specific-issues-conditional"
-                                                 aria-expanded="false"><label
-          for="steps-petition-orders-form-orders-group-specific-issues-field"
-          class="govuk-label govuk-checkboxes__label">Resolve a specific issue</label><span
-          class="govuk-hint govuk-checkboxes__hint" id="steps-petition-orders-form-orders-group-specific-issues-hint">For example, what school they’ll go to</span>
+      <div class="govuk-checkboxes__item">
+        <input id="steps-petition-orders-form-orders-group-specific-issues-field"
+                                                class="govuk-checkboxes__input"
+                                                aria-describedby="steps-petition-orders-form-orders-group-specific-issues-hint"
+                                                type="checkbox"
+                                                value="group_specific_issues"
+                                                name="steps_petition_orders_form[orders][]"
+                                                aria-controls="steps-petition-orders-form-orders-group-specific-issues-conditional"
+                                                aria-expanded="false">
+        <label for="steps-petition-orders-form-orders-group-specific-issues-field"
+               class="govuk-label govuk-checkboxes__label">Resolve a specific issue</label>
+        <span class="govuk-hint govuk-checkboxes__hint" id="steps-petition-orders-form-orders-hint">For example, what school they’ll go to</span>
       </div>
       <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden"
            id="steps-petition-orders-form-orders-group-specific-issues-conditional">
@@ -126,14 +135,17 @@
                   name="steps_petition_orders_form[orders_collection][]"><label
                   for="steps-petition-orders-form-orders-collection-specific-issues-moving-abroad-field"
                   class="govuk-label govuk-checkboxes__label">Relocating the children outside of England and Wales (including Scotland and Northern Ireland)</label></div>
-              <div class="govuk-checkboxes__item"><input
+              <div class="govuk-checkboxes__item">
+                <input
                   id="steps-petition-orders-form-orders-collection-specific-issues-child-return-field"
-                  class="govuk-checkboxes__input" type="checkbox" value="specific_issues_child_return"
-                  name="steps_petition_orders_form[orders_collection][]"><label
-                  for="steps-petition-orders-form-orders-collection-specific-issues-child-return-field"
-                  class="govuk-label govuk-checkboxes__label">Returning the children to your care</label><span
-                  class="govuk-hint govuk-checkboxes__hint"
-                  id="steps-petition-orders-form-orders-collection-specific-issues-child-return-hint">If the children have been abducted, unlawfully removed or unlawfully retained</span>
+                  class="govuk-checkboxes__input"
+                  aria-describedby="steps-petition-orders-form-orders-collection-specific-issues-child-return-hint"
+                  type="checkbox"
+                  value="specific_issues_child_return"
+                  name="steps_petition_orders_form[orders_collection][]">
+                  <label for="steps-petition-orders-form-orders-collection-specific-issues-child-return-field"
+                         class="govuk-label govuk-checkboxes__label">Returning the children to your care</label>
+                  <span class="govuk-hint govuk-checkboxes__hint" id="steps-petition-orders-form-orders-collection-specific-issues-child-return-hint">If the children have been abducted, unlawfully removed or unlawfully retained</span>
               </div>
             </div>
           </fieldset>
