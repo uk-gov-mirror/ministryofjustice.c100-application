@@ -4,7 +4,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 gem 'devise', '~> 4.7.1'
-gem 'govuk_design_system_formbuilder', '~> 2.1.0'
+#gem 'govuk_design_system_formbuilder', '~> 2.1.0'
+gem 'govuk_design_system_formbuilder', github: 'zheileman/govuk_design_system_formbuilder', ref: '78758cf'
 gem 'govuk_notify_rails', '~> 2.1.0'
 gem 'govuk-pay-ruby-client', '~> 1.0.2'
 gem 'jquery-rails'

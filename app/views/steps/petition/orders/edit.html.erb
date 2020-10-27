@@ -6,7 +6,7 @@
     <%= govuk_error_summary %>
 
     <%= step_form @form_object, builder: GOVUKDesignSystemFormBuilder::FormBuilder do |f| %>
-      <%= f.govuk_check_boxes_fieldset :orders, hint: { text: t('dictionary.select_all_that_apply') } do %>
+      <%= f.govuk_check_boxes_fieldset :orders do %>
 
         <% if current_c100_application.consent_order? %>
           <%= f.govuk_check_box :orders, PetitionOrder::CONSENT_ORDER.to_s, link_errors: true %>
@@ -14,11 +14,11 @@
           <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_HOME.to_s, link_errors: true %>
           <%= f.govuk_check_box :orders, PetitionOrder::CHILD_ARRANGEMENTS_TIME.to_s %>
 
-          <%= f.govuk_check_box :orders, PetitionOrder::GROUP_PROHIBITED_STEPS.to_s, hint: { text: t('helpers.hint.steps_petition_orders_form.orders_options.group_prohibited_steps') }  do %>
+          <%= f.govuk_check_box :orders, PetitionOrder::GROUP_PROHIBITED_STEPS.to_s do %>
             <%= f.govuk_collection_check_boxes :orders_collection, PetitionOrder::PROHIBITED_STEPS, :to_s, :to_s %>
           <% end %>
 
-          <%= f.govuk_check_box :orders, PetitionOrder::GROUP_SPECIFIC_ISSUES.to_s, hint: { text: t('helpers.hint.steps_petition_orders_form.orders_options.group_specific_issues') } do %>
+          <%= f.govuk_check_box :orders, PetitionOrder::GROUP_SPECIFIC_ISSUES.to_s do %>
             <%= f.govuk_collection_check_boxes :orders_collection, PetitionOrder::SPECIFIC_ISSUES, :to_s, :to_s %>
           <% end %>
         <% end %>

@@ -1466,7 +1466,7 @@ en:
         previous_attempt_details: Include any previous attempts or threats to abduct them
         previous_attempt_agency_involved: Including in the UK or abroad
       steps_petition_orders_form:
-        orders: ""
+        orders: *select_all_that_apply
         orders_options:
           group_prohibited_steps: For example, moving abroad or abducting the children
           group_specific_issues: For example, what school they’ll go to

@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/zheileman/govuk_design_system_formbuilder.git
+  revision: 78758cf8d548ac18d8813d2a7332a60c9178b272
+  ref: 78758cf
+  specs:
+    govuk_design_system_formbuilder (2.1.1)
+      actionview (>= 5.2)
+      activemodel (>= 5.2)
+      activesupport (>= 5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -140,10 +150,6 @@ GEM
       activesupport (>= 4.2.0)
     govuk-pay-ruby-client (1.0.2)
       faraday (~> 1.0)
-    govuk_design_system_formbuilder (2.1.0)
-      actionview (>= 5.2)
-      activemodel (>= 5.2)
-      activesupport (>= 5.2)
     govuk_notify_rails (2.1.2)
       notifications-ruby-client (~> 5.1)
       rails (>= 4.1.0)
@@ -417,7 +423,7 @@ DEPENDENCIES
   devise (~> 4.7.1)
   dotenv-rails
   govuk-pay-ruby-client (~> 1.0.2)
-  govuk_design_system_formbuilder (~> 2.1.0)
+  govuk_design_system_formbuilder!
   govuk_notify_rails (~> 2.1.0)
   i18n-debug
   jquery-rails
