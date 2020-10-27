@@ -1572,6 +1572,7 @@ en:
       # MIAM exemptions
       steps_miam_exemptions_domestic_form:
         domestic: Do you have any of the following evidence of domestic violence or abuse?
+        exemptions_collection: ""
       steps_miam_exemptions_protection_form:
         protection: Do you confirm any of the following child protection concerns?
       steps_miam_exemptions_urgency_form:
@@ -1580,6 +1581,7 @@ en:
         adr: Do you confirm any of the following reasons for not attending a MIAM?
       steps_miam_exemptions_misc_form:
         misc: Do you have any other valid reasons for not attending a MIAM?
+        exemptions_collection: ""
 
       # Safety questions
       steps_safety_questions_address_confidentiality_form:
