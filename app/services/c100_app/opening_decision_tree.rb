@@ -6,6 +6,8 @@ module C100App
       case step_name
       when :children_postcode
         check_if_court_is_valid
+      when :research_consent
+        edit(:consent_order)
       when :consent_order
         after_consent_order
       when :child_protection_cases
@@ -26,7 +28,12 @@ module C100App
 
       if court
         c100_application.update!(court: court)
-        edit(:consent_order)
+
+        if Rails.configuration.x.opening.hide_research_consent_step
+          edit(:consent_order)
+        else
+          edit(:research_consent)
+        end
       else
         show(:no_court_found)
       end

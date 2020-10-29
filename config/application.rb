@@ -59,6 +59,10 @@ class Application < Rails::Application
   config.x.session.expires_in_minutes = ENV.fetch('SESSION_EXPIRES_IN_MINUTES', 60).to_i
   config.x.session.warning_when_remaining = ENV.fetch('SESSION_WARNING_WHEN_REMAINING', 5).to_i
 
+  # Toggle on/off the `research consent` question (used to gather emails of users
+  # for research purposes). Enabled by default. Set this ENV variable to disable it.
+  config.x.opening.hide_research_consent_step = ENV.key?('HIDE_RESEARCH_CONSENT_STEP')
+
   # As part of the opening postcode step, an empty C100Application record is created.
   # If the postcode is not eligible, these records are left orphans and have no use.
   # We will only leave them for some time. Can be configured here.

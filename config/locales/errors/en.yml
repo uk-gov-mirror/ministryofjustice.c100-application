@@ -115,6 +115,14 @@ en:
           attributes:
             consent_order:
               inclusion: Select what kind of application you want to make
+        steps/opening/research_consent_form:
+          attributes:
+            research_consent:
+              inclusion: Select yes if you’re willing to be contacted about using this service
+            research_consent_email:
+              invalid: *invalid_email_error
+              blank: *blank_email_error
+              typo: *email_typo_error
         steps/opening/child_protection_cases_form:
           attributes:
             child_protection_cases:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_112304) do
+ActiveRecord::Schema.define(version: 2020_10_29_112416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_10_21_112304) do
     t.text "permission_details"
     t.string "children_postcode"
     t.string "court_id"
+    t.string "research_consent"
+    t.string "research_consent_email"
     t.index ["court_id"], name: "index_c100_applications_on_court_id"
     t.index ["status"], name: "index_c100_applications_on_status"
     t.index ["user_id"], name: "index_c100_applications_on_user_id"
