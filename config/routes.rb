@@ -114,6 +114,7 @@ Rails.application.routes.draw do
       edit_step :postcode
       show_step :error_but_continue
       show_step :no_court_found
+      edit_step :research_consent
       edit_step :consent_order
       show_step :consent_order_sought
       edit_step :child_protection_cases

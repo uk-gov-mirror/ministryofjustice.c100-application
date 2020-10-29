@@ -32,7 +32,24 @@ RSpec.describe C100App::OpeningDecisionTree do
 
       it 'assigns the court to the c100 application' do
         expect(c100_application).to receive(:update!).with(court: court)
-        is_expected.to have_destination(:consent_order, :edit)
+        is_expected.to have_destination(:research_consent, :edit)
+      end
+
+      context 'research consent step' do
+        before do
+          allow(c100_application).to receive(:update!)
+          allow(Rails.configuration.x.opening).to receive(:hide_research_consent_step).and_return(research_hidden)
+        end
+
+        context 'the research consent step is enabled' do
+          let(:research_hidden) { false }
+          it { is_expected.to have_destination(:research_consent, :edit) }
+        end
+
+        context 'the research consent step is disabled' do
+          let(:research_hidden) { true }
+          it { is_expected.to have_destination(:consent_order, :edit) }
+        end
       end
     end
 
@@ -49,6 +66,21 @@ RSpec.describe C100App::OpeningDecisionTree do
         allow_any_instance_of(C100App::CourtPostcodeChecker).to receive(:court_for).and_raise("expected exception for testing, please ignore")
       end
       it { is_expected.to have_destination(:error_but_continue, :show)}
+    end
+  end
+
+  context 'when the step is `research_consent`' do
+    let(:c100_application) { instance_double(C100Application, research_consent: value) }
+    let(:step_params) { { research_consent: 'anything' } }
+
+    context 'and the answer is `yes`' do
+      let(:value) { 'yes' }
+      it { is_expected.to have_destination(:consent_order, :edit) }
+    end
+
+    context 'and the answer is `no`' do
+      let(:value) { 'no' }
+      it { is_expected.to have_destination(:consent_order, :edit) }
     end
   end
 
