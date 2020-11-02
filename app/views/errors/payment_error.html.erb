@@ -12,6 +12,12 @@
       <%=t '.more_text' %>
     </p>
 
+    <h2 class="govuk-heading-m"><%=t '.what_now_heading' %></h2>
+
+    <p class="govuk-body">
+      <%=t '.what_now_html' %>
+    </p>
+
     <p class="govuk-body govuk-!-margin-top-8">
       <%= link_button t('shared.retry_payment'), edit_steps_application_check_your_answers_path, class: 'ga-pageLink govuk-!-margin-right-1',
                       data: { module: 'govuk-button', ga_category: 'online payments', ga_label: 'retry payment' } %>

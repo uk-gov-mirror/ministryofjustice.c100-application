@@ -1021,8 +1021,13 @@ en:
     payment_error:
       page_title: Payment error
       heading: Your payment was not completed
-      lead_text: No money has been taken from your account.
-      more_text: There are a few different reasons that payments fail. You can either try again or choose another way to pay.
+      lead_text: No money has been taken from your account and your application has not been submitted.
+      more_text: There are a few different reasons that payments fail.
+      what_now_heading: What to do now
+      what_now_html: |
+        <p class="govuk-body">Try payment again or choose another way to pay.</p>
+        <p class="govuk-body">You may see the payment amount as a pending or pre-authorised transaction in your bank account, but the money will not leave your account.</p>
+        <p class="govuk-body">Depending on your bank, pending or pre-authorised transactions should clear in 7 working days.</p>
 
   helpers:
     label:
@@ -1816,7 +1821,7 @@ en:
   shared:
     start_again: Start again
     retry_payment: Try payment again
-    change_payment: Change payment method
+    change_payment: Choose another way to pay
     finish: Finish
     back_link: Back
     password_toggle:
