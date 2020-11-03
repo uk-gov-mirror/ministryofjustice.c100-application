@@ -10,6 +10,8 @@ module C100App
     FAST_FORWARD_STEPS = [
       %r{^/steps/safety_questions/address_confidentiality$},
       %r{^/steps/abuse_concerns/details.*},
+      %r{^/steps/abuse_concerns/contact$},
+      %r{^/steps/petition/protection$},
       %r{^/steps/.+/personal_details.*},
       %r{^/steps/.+/address_details.*},
       %r{^/steps/.+/contact_details.*},
