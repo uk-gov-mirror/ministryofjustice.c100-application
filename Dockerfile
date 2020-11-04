@@ -46,7 +46,7 @@ RUN addgroup -g 1000 -S appgroup && \
 RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/tmp
 WORKDIR /usr/src/app
 
-COPY Gemfile* ./
+COPY Gemfile* .ruby-version ./
 
 RUN gem install bundler -v 1.17.3 && \
     bundle config --global without test:development && \
