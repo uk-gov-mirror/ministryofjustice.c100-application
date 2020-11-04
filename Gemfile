@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby File.read('.ruby-version')
 
 gem 'devise', '~> 4.7.1'
 gem 'govuk_design_system_formbuilder', '~> 2.1.2'
@@ -19,7 +19,7 @@ gem 'uk_postcode'
 gem 'virtus'
 
 # Back office
-gem 'omniauth-auth0', '~> 2.2'
+gem 'omniauth-auth0'
 gem 'omniauth-rails_csrf_protection'
 
 # Caching and jobs processing
@@ -28,7 +28,7 @@ gem 'sidekiq', '~> 6.0'
 
 # PDF generation
 gem 'combine_pdf', '~> 1.0'
-gem 'wicked_pdf', '~> 1.4.0'
+gem 'wicked_pdf', '~> 2.1.0'
 gem 'wkhtmltopdf-binary-edge-alpine', '~> 0.12.5'
 
 group :production do
