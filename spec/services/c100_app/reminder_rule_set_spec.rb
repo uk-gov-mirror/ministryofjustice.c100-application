@@ -30,7 +30,7 @@ RSpec.describe C100App::ReminderRuleSet do
     end
     let(:finder_double) { double.as_null_object }
 
-    subject { described_class.new(dummy_config) }
+    subject { described_class.new(**dummy_config) }
 
     before do
       travel_to Time.now

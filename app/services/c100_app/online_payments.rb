@@ -34,7 +34,7 @@ module C100App
 
     def create_payment
       response = PaymentsApi::Requests::CreateCardPayment.new(
-        details_payload
+        **details_payload
       ).call
 
       update_intent!(response)

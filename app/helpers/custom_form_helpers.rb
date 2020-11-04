@@ -22,7 +22,7 @@ module CustomFormHelpers
   end
 
   def submit_button(i18n_key, opts = {}, &block)
-    govuk_submit t("helpers.submit.#{i18n_key}"), opts, &block
+    govuk_submit t("helpers.submit.#{i18n_key}"), **opts, &block
   end
 
   # Kind of hackish but `govuk_submit` does not currently accept `name` attribute
