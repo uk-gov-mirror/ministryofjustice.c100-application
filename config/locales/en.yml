@@ -385,6 +385,10 @@ en:
           page_title: Details of solicitor
           heading: Details of solicitor
           lead_text: This is the person who’s been instructed to act in these proceedings.
+      address_details:
+        edit:
+          page_title: Address details of solicitor
+          heading: "Address details of %{name}"
       contact_details:
         edit:
           page_title: Contact details of solicitor
