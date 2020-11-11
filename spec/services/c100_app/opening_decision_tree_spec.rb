@@ -31,23 +31,25 @@ RSpec.describe C100App::OpeningDecisionTree do
       end
 
       it 'assigns the court to the c100 application' do
+        expect(subject).to receive(:show_research_consent?)
         expect(c100_application).to receive(:update!).with(court: court)
-        is_expected.to have_destination(:research_consent, :edit)
+
+        is_expected.to have_destination(:consent_order, :edit)
       end
 
       context 'research consent step' do
         before do
-          allow(c100_application).to receive(:update!)
-          allow(Rails.configuration.x.opening).to receive(:hide_research_consent_step).and_return(research_hidden)
+          allow(c100_application).to receive(:created_at).and_return(Time.at(seconds))
+          allow(Rails.configuration.x.opening).to receive(:research_consent_weight).and_return(25)
         end
 
-        context 'the research consent step is enabled' do
-          let(:research_hidden) { false }
+        context 'the research consent step is shown to this user' do
+          let(:seconds) { 10 }
           it { is_expected.to have_destination(:research_consent, :edit) }
         end
 
-        context 'the research consent step is disabled' do
-          let(:research_hidden) { true }
+        context 'the research consent step is not shown to this user' do
+          let(:seconds) { 30 }
           it { is_expected.to have_destination(:consent_order, :edit) }
         end
       end
