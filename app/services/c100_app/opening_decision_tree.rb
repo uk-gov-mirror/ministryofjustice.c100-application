@@ -29,10 +29,10 @@ module C100App
       if court
         c100_application.update!(court: court)
 
-        if Rails.configuration.x.opening.hide_research_consent_step
-          edit(:consent_order)
-        else
+        if show_research_consent?
           edit(:research_consent)
+        else
+          edit(:consent_order)
         end
       else
         show(:no_court_found)
@@ -60,6 +60,12 @@ module C100App
       else
         edit('/steps/miam/acknowledgement')
       end
+    end
+
+    def show_research_consent?
+      ResearchSampler.candidate?(
+        c100_application, Rails.configuration.x.opening.research_consent_weight
+      )
     end
   end
 end
