@@ -120,6 +120,7 @@ en:
       submission_type: Submission type
       solicitor_contact_details: Your solicitor’s contact details
       solicitor_personal_details: Your solicitor’s personal details
+      solicitor_address_details: Your solicitor’s address details
 
     separators:
       children_details_index_title: Child %{index}

@@ -9,6 +9,7 @@ module Summary
         [
           Answer.new(:has_solicitor, c100.has_solicitor, change_path: edit_steps_applicant_has_solicitor_path),
           solicitor_personal_details,
+          solicitor_address_details,
           solicitor_contact_details,
         ].flatten.select(&:show?)
       end
@@ -33,15 +34,24 @@ module Summary
         ]
       end
 
+      def solicitor_address_details
+        AnswersGroup.new(
+          :solicitor_address_details,
+          [
+            FreeTextAnswer.new(:solicitor_address, solicitor.address),
+          ],
+          change_path: edit_steps_solicitor_address_details_path
+        )
+      end
+
       def solicitor_contact_details
         AnswersGroup.new(
           :solicitor_contact_details,
           [
-            FreeTextAnswer.new(:solicitor_address, solicitor.address),
-            FreeTextAnswer.new(:solicitor_dx_number, solicitor.dx_number),
             FreeTextAnswer.new(:solicitor_email, solicitor.email),
             FreeTextAnswer.new(:solicitor_phone_number, solicitor.phone_number),
             FreeTextAnswer.new(:solicitor_fax_number, solicitor.fax_number),
+            FreeTextAnswer.new(:solicitor_dx_number, solicitor.dx_number),
           ],
           change_path: edit_steps_solicitor_contact_details_path
         )

@@ -19,10 +19,10 @@ module Summary
         firm_name: 'firm_name',
         reference: 'reference',
         address: 'address',
-        dx_number: 'dx_number',
+        email: 'email',
         phone_number: 'phone_number',
         fax_number: 'fax_number',
-        email: 'email',
+        dx_number: 'dx_number',
     ) }
     let(:solicitor_account_number) { '12345' }
 
@@ -83,20 +83,20 @@ module Summary
           expect(answers[3].value).to eq('address')
 
           expect(answers[4]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[4].question).to eq(:solicitor_phone_number)
-          expect(answers[4].value).to eq('phone_number')
+          expect(answers[4].question).to eq(:solicitor_email)
+          expect(answers[4].value).to eq('email')
 
           expect(answers[5]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[5].question).to eq(:solicitor_fax_number)
-          expect(answers[5].value).to eq('fax_number')
+          expect(answers[5].question).to eq(:solicitor_phone_number)
+          expect(answers[5].value).to eq('phone_number')
 
           expect(answers[6]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[6].question).to eq(:solicitor_dx_number)
-          expect(answers[6].value).to eq('dx_number')
+          expect(answers[6].question).to eq(:solicitor_fax_number)
+          expect(answers[6].value).to eq('fax_number')
 
           expect(answers[7]).to be_an_instance_of(FreeTextAnswer)
-          expect(answers[7].question).to eq(:solicitor_email)
-          expect(answers[7].value).to eq('email')
+          expect(answers[7].question).to eq(:solicitor_dx_number)
+          expect(answers[7].value).to eq('dx_number')
 
           expect(answers[8]).to be_an_instance_of(FreeTextAnswer)
           expect(answers[8].question).to eq(:solicitor_reference)
