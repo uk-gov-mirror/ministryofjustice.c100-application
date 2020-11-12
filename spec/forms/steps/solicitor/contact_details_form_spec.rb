@@ -3,11 +3,10 @@ require 'spec_helper'
 RSpec.describe Steps::Solicitor::ContactDetailsForm do
   let(:arguments) { {
     c100_application: c100_application,
-    address: 'address',
-    dx_number: 'dx_number',
+    email: email,
     phone_number: 'phone_number',
     fax_number: 'fax_number',
-    email: email,
+    dx_number: 'dx_number',
   } }
 
   let(:email) { 'test@example.com' }
@@ -18,20 +17,25 @@ RSpec.describe Steps::Solicitor::ContactDetailsForm do
 
   describe '#save' do
     context 'validations' do
-      it { should validate_presence_of(:address) }
+      it { should validate_presence_of(:email) }
       it { should validate_presence_of(:phone_number) }
 
       context 'email validation' do
-        context 'email is not validated if not present' do
-          let(:email) { nil }
-          it { expect(subject).to be_valid }
-        end
-
-        context 'email is validated if present' do
+        context 'email is invalid' do
           let(:email) { 'xxx' }
+
           it {
             expect(subject).not_to be_valid
-            expect(subject.errors[:email]).to_not be_empty
+            expect(subject.errors.added?(:email, :invalid)).to eq(true)
+          }
+        end
+
+        context 'email domain contains a typo' do
+          let(:email) { 'test@gamil.com' }
+
+          it {
+            expect(subject).not_to be_valid
+            expect(subject.errors.added?(:email, :typo)).to eq(true)
           }
         end
       end
@@ -40,11 +44,10 @@ RSpec.describe Steps::Solicitor::ContactDetailsForm do
     it_behaves_like 'a has-one-association form',
                     association_name: :solicitor,
                     expected_attributes: {
-                      address: 'address',
-                      dx_number: 'dx_number',
+                      email: 'test@example.com',
                       phone_number: 'phone_number',
                       fax_number: 'fax_number',
-                      email: 'test@example.com',
+                      dx_number: 'dx_number',
                     }
   end
 end

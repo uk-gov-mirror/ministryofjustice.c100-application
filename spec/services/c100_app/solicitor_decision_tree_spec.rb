@@ -12,6 +12,11 @@ RSpec.describe C100App::SolicitorDecisionTree do
 
   context 'when the step is `personal_details`' do
     let(:step_params) { { personal_details: 'anything' } }
+    it { is_expected.to have_destination(:address_details, :edit) }
+  end
+
+  context 'when the step is `address_details`' do
+    let(:step_params) { { address_details: 'anything' } }
     it { is_expected.to have_destination(:contact_details, :edit) }
   end
 

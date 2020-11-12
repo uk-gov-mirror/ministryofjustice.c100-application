@@ -439,10 +439,12 @@ en:
               blank: Enter the full name
             firm_name:
               blank: Enter the name of the firm
-        steps/solicitor/contact_details_form:
+        steps/solicitor/address_details_form:
           attributes:
             address:
               blank: Enter the address
+        steps/solicitor/contact_details_form:
+          attributes:
             phone_number:
               blank: Enter the phone number
         steps/applicant/names_split_form:

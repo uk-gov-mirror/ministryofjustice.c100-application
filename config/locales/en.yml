@@ -1427,8 +1427,9 @@ en:
         full_name: Full name
         firm_name: Name of firm
         reference: Solicitor’s reference
-      steps_solicitor_contact_details_form:
+      steps_solicitor_address_details_form:
         address: Address
+      steps_solicitor_contact_details_form:
         dx_number: DX number
         phone_number: Phone number
         fax_number: Fax number
@@ -1563,8 +1564,9 @@ en:
         miam_certification_sole_trader_name: *leave_blank_if_unknown
       steps_solicitor_personal_details_form:
         reference: This is the reference for this case
-      steps_solicitor_contact_details_form:
+      steps_solicitor_address_details_form:
         address: Enter the full address including postcode
+      steps_solicitor_contact_details_form:
         dx_number: This is a secure document exchange system used by the legal profession
       steps_attending_court_intermediary_form:
         intermediary_help: An intermediary is appointed by the court to help people participate in court. For example, you may need an intermediary if you have a learning, mental or physical disability.

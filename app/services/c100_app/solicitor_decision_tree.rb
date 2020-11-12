@@ -5,6 +5,8 @@ module C100App
 
       case step_name
       when :personal_details
+        edit(:address_details)
+      when :address_details
         edit(:contact_details)
       when :contact_details
         edit('/steps/respondent/names')
