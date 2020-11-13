@@ -1,13 +1,11 @@
 module Steps
   module Solicitor
-    class AddressDetailsForm < BaseForm
+    class AddressDetailsForm < AddressBaseForm
       include HasOneAssociationForm
 
       has_one_association :solicitor
 
-      attribute :address, StrippedString
-
-      validates_presence_of :address
+      validates_presence_of :address_line_1, :town, :country, :postcode
 
       # Used to present the solicitor's name in the view
       delegate :full_name, to: :record_to_persist
@@ -18,7 +16,7 @@ module Steps
         raise C100ApplicationNotFound unless c100_application
 
         record_to_persist.update(
-          attributes_map
+          address_values.except(:address_unknown)
         )
       end
     end

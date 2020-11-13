@@ -441,8 +441,14 @@ en:
               blank: Enter the name of the firm
         steps/solicitor/address_details_form:
           attributes:
-            address:
-              blank: Enter the address
+            address_line_1:
+              blank: Enter the first line of the address
+            town:
+              blank: Enter the town or city
+            country:
+              blank: Enter the country
+            postcode:
+              blank: Enter the postcode
         steps/solicitor/contact_details_form:
           attributes:
             phone_number:
