@@ -18,7 +18,7 @@ module Summary
         full_name: 'full_name',
         firm_name: 'firm_name',
         reference: 'reference',
-        address: 'address',
+        full_address: 'address',
         email: 'email',
         phone_number: 'phone_number',
         fax_number: 'fax_number',

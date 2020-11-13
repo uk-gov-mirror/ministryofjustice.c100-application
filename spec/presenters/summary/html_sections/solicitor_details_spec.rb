@@ -16,7 +16,7 @@ module Summary
         full_name: 'name',
         firm_name: 'firm',
         reference: 'ref',
-        address: '22 acacia avenue',
+        full_address: '22 acacia avenue',
         email: 'solicitor@example.com',
         phone_number: '0123456789',
         fax_number: '0987654321',

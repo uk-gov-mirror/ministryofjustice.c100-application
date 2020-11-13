@@ -19,7 +19,7 @@ module Summary
           Answer.new(:has_solicitor, GenericYesNo::YES),
           FreeTextAnswer.new(:solicitor_full_name, solicitor.full_name),
           FreeTextAnswer.new(:solicitor_firm_name, solicitor.firm_name),
-          FreeTextAnswer.new(:solicitor_address, solicitor.address),
+          FreeTextAnswer.new(:solicitor_address, solicitor.full_address),
           FreeTextAnswer.new(:solicitor_email, solicitor.email),
           FreeTextAnswer.new(:solicitor_phone_number, solicitor.phone_number),
           FreeTextAnswer.new(:solicitor_fax_number, solicitor.fax_number),
