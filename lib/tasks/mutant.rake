@@ -87,7 +87,6 @@ def models
     C100Application
     User
     Court
-    Person
     PaymentIntent
     CompletedApplicationsAudit
   ).freeze
