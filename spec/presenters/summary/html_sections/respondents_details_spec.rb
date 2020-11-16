@@ -19,6 +19,7 @@ module Summary
         age_estimate: nil,
         gender: 'female',
         birthplace: 'birthplace',
+        address_unknown: address_unknown,
         residence_requirement_met: 'yes',
         residence_history: 'history',
         home_phone: 'home_phone',
@@ -37,6 +38,7 @@ module Summary
 
     let(:has_previous_name) { 'no' }
     let(:previous_name) { nil }
+    let(:address_unknown) { false }
 
     let(:relationship) {
       instance_double(
@@ -167,6 +169,23 @@ module Summary
           expect(details[0]).to be_an_instance_of(FreeTextAnswer)
           expect(details[0].question).to eq(:person_previous_name)
           expect(details[0].value).to eq('previous_name')
+        end
+      end
+
+      context 'for an unknown address' do
+        let(:address_unknown) { true }
+
+        before do
+          allow(respondent).to receive(:full_address).and_return(nil)
+        end
+
+        it 'renders the expected answer row' do
+          expect(answers[3]).to be_an_instance_of(AnswersGroup)
+
+          details = answers[3].answers
+          expect(details[0]).to be_an_instance_of(Answer)
+          expect(details[0].question).to eq(:person_address_unknown)
+          expect(details[0].value).to eq(true)
         end
       end
 

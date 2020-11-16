@@ -514,7 +514,10 @@ en:
       question: Place of birth
     person_address:
       question: Address
-      absence_answer: *unknown
+    person_address_unknown:
+      question: ''
+      answers:
+        'true': *unknown
     person_residence_requirement_met:
       question: Lived at this address for more than 5 years?
       answers:

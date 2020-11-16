@@ -19,6 +19,7 @@ module Summary
         age_estimate: nil,
         gender: 'female',
         birthplace: 'birthplace',
+        address_unknown: false, # for applicants this can only be `false`
         residence_requirement_met: 'yes',
         residence_history: 'history',
         home_phone: 'home_phone',
