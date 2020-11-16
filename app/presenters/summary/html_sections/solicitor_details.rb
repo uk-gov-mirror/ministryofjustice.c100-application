@@ -38,7 +38,7 @@ module Summary
         AnswersGroup.new(
           :solicitor_address_details,
           [
-            FreeTextAnswer.new(:solicitor_address, solicitor.address),
+            FreeTextAnswer.new(:solicitor_address, solicitor.full_address),
           ],
           change_path: edit_steps_solicitor_address_details_path
         )

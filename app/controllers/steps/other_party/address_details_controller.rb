@@ -2,16 +2,8 @@ module Steps
   module OtherParty
     class AddressDetailsController < Steps::OtherPartyStepController
       def edit
-        @form_object = AddressDetailsForm.new(
-          address: current_record.address,
-          address_unknown: current_record.address_unknown,
-          address_line_1: current_record.address_line_1,
-          address_line_2: current_record.address_line_2,
-          town: current_record.town,
-          country: current_record.country,
-          postcode: current_record.postcode,
-          c100_application: current_c100_application,
-          record: current_record
+        @form_object = AddressDetailsForm.build(
+          current_record, c100_application: current_c100_application
         )
       end
 
