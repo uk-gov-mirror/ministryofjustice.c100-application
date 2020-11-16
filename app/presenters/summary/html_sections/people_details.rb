@@ -64,7 +64,8 @@ module Summary
 
       def address_details_questions(person)
         [
-          FreeTextAnswer.new(:person_address, person.full_address, show: true),
+          FreeTextAnswer.new(:person_address, person.full_address),
+          Answer.new(:person_address_unknown, person.address_unknown), # This shows only if a value is present
           Answer.new(:person_residence_requirement_met, person.residence_requirement_met),
           FreeTextAnswer.new(:person_residence_history, person.residence_history)
         ]

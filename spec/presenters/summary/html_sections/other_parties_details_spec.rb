@@ -20,6 +20,7 @@ module Summary
         age_estimate: nil,
         gender: 'female',
         birthplace: nil,
+        address_unknown: address_unknown,
         residence_requirement_met: nil,
         residence_history: nil,
         home_phone: nil,
@@ -35,6 +36,8 @@ module Summary
     end
 
     subject { described_class.new(c100_application) }
+
+    let(:address_unknown) { false }
 
     let(:relationship) {
       instance_double(
@@ -140,6 +143,23 @@ module Summary
           expect(answers[0].question).to eq(:has_other_parties)
           expect(answers[0].change_path).to eq('/steps/respondent/has_other_parties')
           expect(answers[0].value).to eq('no')
+        end
+      end
+
+      context 'for an unknown address' do
+        let(:address_unknown) { true }
+
+        before do
+          allow(other_party).to receive(:full_address).and_return(nil)
+        end
+
+        it 'renders the expected answer row' do
+          expect(answers[4]).to be_an_instance_of(AnswersGroup)
+
+          details = answers[4].answers
+          expect(details[0]).to be_an_instance_of(Answer)
+          expect(details[0].question).to eq(:person_address_unknown)
+          expect(details[0].value).to eq(true)
         end
       end
 
