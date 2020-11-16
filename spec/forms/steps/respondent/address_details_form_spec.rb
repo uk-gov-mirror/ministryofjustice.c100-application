@@ -139,6 +139,22 @@ RSpec.describe Steps::Respondent::AddressDetailsForm do
 
           expect(subject.save).to be(true)
         end
+
+        context 'when `address_unknown` is selected' do
+          let(:address_unknown) { true }
+
+          it 'resets previous address details, if any' do
+            expect(respondents_collection).to receive(:find_or_initialize_by).with(
+              id: 'ae4ed69e-bcb3-49cc-b19e-7287b1f2abe9'
+            ).and_return(respondent)
+
+            expect(respondent).to receive(:update).with(
+              hash_including(address_data: {}, address_unknown: true)
+            ).and_return(true)
+
+            expect(subject.save).to be(true)
+          end
+        end
       end
     end
   end
