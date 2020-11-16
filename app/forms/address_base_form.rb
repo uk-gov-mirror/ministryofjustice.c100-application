@@ -12,6 +12,11 @@ class AddressBaseForm < BaseForm
   private
 
   def address_values
+    return {
+      address_data: {},
+      address_unknown: address_unknown,
+    } if address_unknown?
+
     {
       address_data: {
         address_line_1: address_line_1,
