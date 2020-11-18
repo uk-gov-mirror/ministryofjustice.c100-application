@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_150154) do
+ActiveRecord::Schema.define(version: 2020_11_18_124339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -309,7 +309,6 @@ ActiveRecord::Schema.define(version: 2020_11_12_150154) do
     t.boolean "dob_unknown", default: false
     t.string "age_estimate"
     t.string "birthplace"
-    t.text "address"
     t.boolean "address_unknown", default: false
     t.string "home_phone"
     t.boolean "home_phone_unknown", default: false

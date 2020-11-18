@@ -85,6 +85,8 @@ end
 def models
   %w(
     C100Application
+    Applicant
+    Solicitor
     User
     Court
     PaymentIntent

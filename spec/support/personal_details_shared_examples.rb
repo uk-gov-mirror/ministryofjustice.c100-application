@@ -130,3 +130,30 @@ RSpec.shared_examples 'a previous name validation' do
     end
   end
 end
+
+RSpec.shared_examples 'a model with structured first and last names' do
+  describe '#full_name' do
+    subject { described_class.new(arguments) }
+
+    let(:arguments) { { first_name: first_name, last_name: last_name } }
+
+    let(:first_name) { nil }
+    let(:last_name)  { nil }
+
+    context 'for a person with first and last name attributes' do
+      let(:first_name) { 'John' }
+      let(:last_name) { 'Doe' }
+      it { expect(subject.full_name).to eq('John Doe') }
+    end
+
+    context 'for a person with a first_name attribute' do
+      let(:first_name) { 'John Doe' }
+      it { expect(subject.full_name).to eq('John Doe') }
+    end
+
+    context 'for a person without a last_name attribute' do
+      let(:last_name) { 'John Doe' }
+      it { expect(subject.full_name).to eq('John Doe') }
+    end
+  end
+end
