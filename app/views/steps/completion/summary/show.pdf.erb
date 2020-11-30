@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag wicked_pdf_asset_base64('local/pdf_summary') -%>
   </head>
 
-  <body id="application-details-pdf">
+  <body id="application-details-pdf" class="status-<%= presenter.c100_application.status %>">
     <%= render presenter.sections %>
   </body>
 </html>

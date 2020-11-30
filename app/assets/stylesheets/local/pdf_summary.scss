@@ -1,3 +1,8 @@
+body:not(.status-completed) {
+  background-image: asset-data-url('draft-watermark.png');
+  background-repeat: repeat-y;
+}
+
 #application-details-pdf {
   $light-grey: #cccccc;
   $very-light-grey: #eeeeee;
@@ -28,6 +33,10 @@
     .details {
       font-size: 18px;
     }
+  }
+
+  div.blank-page {
+    min-height: 300px;
   }
 
   tr.blank-space {

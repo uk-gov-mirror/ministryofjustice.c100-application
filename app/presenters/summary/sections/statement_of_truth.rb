@@ -11,7 +11,12 @@ module Summary
 
       def answers
         [
-          Partial.new(:statement_of_truth, signee_name: signee_name, signee_capacity: signee_capacity),
+          Partial.new(
+            :statement_of_truth,
+            signee_name: signee_name,
+            signee_capacity: signee_capacity,
+            is_draft: !c100.completed?,
+          ),
         ]
       end
 

@@ -25,6 +25,10 @@ module Summary
     end
 
     describe '#answers' do
+      before do
+        allow(c100_application).to receive(:completed?).and_return(true)
+      end
+
       it 'has the correct number of rows' do
         expect(answers.count).to eq(1)
       end
@@ -63,6 +67,12 @@ module Summary
           it 'defaults to be an applicant' do
             expect(answers[0].ivar).to include(signee_capacity: UserType::APPLICANT)
           end
+        end
+      end
+
+      context 'propagates to the Partial the application draft status as an ivar' do
+        it 'returns if the application is a draft or not' do
+          expect(answers[0].ivar).to include(is_draft: false)
         end
       end
     end
