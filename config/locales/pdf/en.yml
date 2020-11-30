@@ -83,7 +83,8 @@ en:
       representative_html: |
         <p>The applicant believes that the facts stated in this application are true.</p>
         <p>%{signee_name} (solicitor) has been given the authority to make this declaration.</p>
-    statement_of_truth_hmcts_instructions: Statement of truth has been completed electronically - no signature required
+      completed: Statement of truth has been completed electronically - no signature required
+      not_completed: Statement of truth to be completed - draft application
 
   check_answers:
     headers:
