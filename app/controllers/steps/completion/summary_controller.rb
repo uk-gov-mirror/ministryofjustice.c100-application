@@ -7,7 +7,8 @@ module Steps
             presenter = Summary::PdfPresenter.new(current_c100_application)
             presenter.generate
 
-            # render plain: presenter.to_pdf
+            # Will render the template defined in `BasePdfForm#template`
+            # i.e. `steps/completion/summary/show.pdf.erb`
             send_data(presenter.to_pdf, filename: presenter.filename)
           end
         end

@@ -9,5 +9,5 @@
   </div>
 <% end %>
 
-<%= link_button 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'ga-pageLink',
+<%= link_button 'Download your PDF application', steps_completion_summary_path(format: :pdf), class: 'ga-pageLink', download: '',
                 data: { module: 'govuk-button', ga_category: 'completion', ga_label: 'download application' } %>
