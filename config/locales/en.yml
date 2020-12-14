@@ -781,14 +781,14 @@ en:
             online_payment: Once you submit your application, you cannot make any further changes. You will be able to download a copy of your submitted application after you have paid the %{fee} court fee.
             print_and_post: Once you continue, you cannot make any further changes. You can download a copy of your completed application on the next page.
           details:
-            summary: Download a draft PDF of your application
+            summary: Download a draft of your application (PDF)
             text_html: |
               <p class="govuk-body">
-                If you cannot open the file after downloading, try using
-                <a href="https://get.adobe.com/uk/reader/" class="govuk-link" rel="external" target="_blank">Adobe Acrobat Reader</a>.
+                If you cannot open the PDF file after downloading, download and install
+                <a href="https://get.adobe.com/uk/reader/" class="govuk-link" rel="external" target="_blank">Adobe Acrobat Reader</a> to try again.
               </p>
               <p class="govuk-body">
-                Please note this is not the completed application and will not be admitted in court.
+                Please note this draft is for your records. Only the completed application will be admitted in court.
               </p>
             download_draft_button: Download draft application
         resume:
