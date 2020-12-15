@@ -605,7 +605,7 @@ en:
       certification:
         edit:
           page_title: MIAM certification
-          lead_text: Your mediator should have signed a document confirming your MIAM attendance. You may need to go back to the mediator and ask for a signed document if you don't have one.
+          lead_text: The mediator should provide you with a signed document to confirm you attended a MIAM, or do not need to attend. If you haven’t got a document, you should ask the mediator for one.
       certification_date:
         edit:
           page_title: MIAM certification date
@@ -615,6 +615,14 @@ en:
           page_title: MIAM certification details
           heading: Enter details of MIAM certification
           lead_text: You can find this information at the bottom of the document your mediator signed.
+      certification_exit:
+        show:
+          page_title: MIAM certification document
+          heading: You need to get a document from the mediator
+          body_text_html: |
+            <p class="govuk-body-l">Ask the mediator to provide you with a signed document confirming you attended a MIAM, or did not need to attend.</p>
+            <p class="govuk-body">You will need to bring this document to your first court hearing.</p>
+            <p class="govuk-body">When you have a document from the mediator, return to continue with your application.</p>
     petition:
       orders:
         edit:

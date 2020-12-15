@@ -149,6 +149,7 @@ Rails.application.routes.draw do
       edit_step :attended
       edit_step :exemption_claim
       edit_step :certification
+      show_step :certification_exit
       edit_step :certification_date
       show_step :certification_expired_info
       edit_step :certification_details

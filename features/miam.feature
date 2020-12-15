@@ -26,21 +26,15 @@ Feature: MIAM journey
     Then I should see "MIAM attendance confirmation"
 
   @unhappy_path
-  Scenario Outline: Applicant attended a MIAM but lacks the certificate
+  Scenario: Applicant attended a MIAM but lacks the certificate
     Then I should see "Have you attended a MIAM?"
     And I choose "Yes"
 
     Then I should see "Have you got a document signed by the mediator?"
     And I choose "No"
 
-    Then I should see "Do you have a valid reason for not attending a MIAM?"
-    And I choose "<has_valid_reason>"
-    Then I should see "<outcome_page_header>"
-
-    Examples:
-      | has_valid_reason | outcome_page_header                                       |
-      | Yes              | Providing evidence of domestic violence or abuse concerns |
-      | No               | Safety concerns                                           |
+    Then I should see "You need to get a document from the mediator"
+    Then I should see "Save and come back later"
 
   @unhappy_path
   Scenario Outline: Applicant attended a MIAM but the certificate is too old

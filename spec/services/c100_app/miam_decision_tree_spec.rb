@@ -58,7 +58,7 @@ RSpec.describe C100App::MiamDecisionTree do
 
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination(:exemption_claim, :edit) }
+      it { is_expected.to have_destination(:certification_exit, :show) }
     end
   end
 
