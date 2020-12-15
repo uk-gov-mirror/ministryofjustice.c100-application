@@ -43,7 +43,7 @@ module C100App
       if question(:miam_certification).yes?
         edit(:certification_date)
       else
-        edit(:exemption_claim)
+        show(:certification_exit)
       end
     end
 
