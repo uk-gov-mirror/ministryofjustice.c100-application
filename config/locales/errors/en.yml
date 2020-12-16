@@ -144,6 +144,10 @@ en:
           attributes:
             miam_attended:
               inclusion: Select yes if you’ve attended a MIAM
+        steps/miam/mediator_exemption_form:
+          attributes:
+            miam_mediator_exemption:
+              inclusion: Select yes if you have an exemption from a mediator
         steps/miam/certification_form:
           attributes:
             miam_certification:
