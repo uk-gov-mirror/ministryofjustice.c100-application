@@ -26,10 +26,9 @@ RSpec.describe C100App::MiamDecisionTree do
       it { is_expected.to have_destination(:certification, :edit) }
     end
 
-    # TODO: replace destination with `mediator_exemption`
     context 'and the answer is `no`' do
       let(:value) { 'no' }
-      it { is_expected.to have_destination(:exemption_claim, :edit) }
+      it { is_expected.to have_destination(:mediator_exemption, :edit) }
     end
   end
 
