@@ -65,21 +65,9 @@ RSpec.describe C100App::MiamDecisionTree do
   context 'when the step is `miam_certification_date`' do
     let(:c100_application) { instance_double(C100Application, miam_certification_date: value.to_date) }
     let(:step_params) { { miam_certification_date: 'anything' } }
+    let(:value) { 6.months.ago }
 
-    context 'and date entered is not expired' do
-      let(:value) { 3.months.ago }
-      it { is_expected.to have_destination(:certification_details, :edit) }
-    end
-
-    context 'and date entered is not expired (equality mutant killer)' do
-      let(:value) { 4.months.ago }
-      it { is_expected.to have_destination(:certification_details, :edit) }
-    end
-
-    context 'and date entered is expired' do
-      let(:value) { 5.months.ago }
-      it { is_expected.to have_destination(:certification_expired_info, :show) }
-    end
+    it { is_expected.to have_destination(:certification_details, :edit) }
   end
 
   context 'when the step is `miam_certification_details`' do
