@@ -147,6 +147,7 @@ Rails.application.routes.draw do
     namespace :miam do
       edit_step :acknowledgement
       edit_step :attended
+      edit_step :mediator_exemption
       edit_step :exemption_claim
       edit_step :certification
       show_step :certification_exit

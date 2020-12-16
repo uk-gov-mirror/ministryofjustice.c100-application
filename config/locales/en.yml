@@ -597,9 +597,12 @@ en:
               <li>taken place within the past 4 months</li>
               <li>been about the same or a very similar issue about the children</li>
             </ul>
+      mediator_exemption:
+        edit:
+          page_title: MIAM mediator’s exemption
       exemption_claim:
         edit:
-          page_title: Exemption claim
+          page_title: MIAM exemption claim
           lead_text_html: If you’re unsure you can <a href="/about/miam_exemptions" class="govuk-link" target="_blank">check the list of valid reasons</a>.
           info_notice: If you're claiming that you do not have to attend a MIAM before making this application, you may need to provide evidence in support of this.
       certification:
@@ -1088,6 +1091,9 @@ en:
       # MIAM steps
       steps_miam_attended_form:
         miam_attended_options:
+          <<: *YESNO
+      steps_miam_mediator_exemption_form:
+        miam_mediator_exemption_options:
           <<: *YESNO
       steps_miam_certification_form:
         miam_certification_options:
@@ -1611,6 +1617,8 @@ en:
         miam_acknowledgement: Attending a MIAM
       steps_miam_attended_form:
         miam_attended: Have you attended a MIAM?
+      steps_miam_mediator_exemption_form:
+        miam_mediator_exemption: Has a mediator confirmed that you do not need to attend a MIAM?
       steps_miam_certification_form:
         miam_certification: Have you got a document signed by the mediator?
       steps_miam_certification_date_form:
