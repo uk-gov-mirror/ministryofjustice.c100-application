@@ -39,12 +39,6 @@ When(/^I enter the date (\d+)\-(\d+)\-(\d+)$/) do |day, month, year|
   step %[I fill in "Year" with "#{year}"]
 end
 
-# For MIAM the date must not be older than 4 months
-And(/^I enter a valid MIAM date$/) do
-  step %[I enter the date #{Date.yesterday.strftime("%d-%m-%Y")}]
-  step %[I click the "Continue" button]
-end
-
 # For children sub form on safety concerns
 Then(/^I submit the form details for "([^"]*)"$/) do |heading|
   step %[I should see "#{heading}"]

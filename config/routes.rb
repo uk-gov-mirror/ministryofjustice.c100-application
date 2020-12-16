@@ -151,7 +151,6 @@ Rails.application.routes.draw do
       edit_step :certification
       show_step :certification_exit
       edit_step :certification_date
-      show_step :certification_expired_info
       edit_step :certification_details
       show_step :certification_confirmation
     end

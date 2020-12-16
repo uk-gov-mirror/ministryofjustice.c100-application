@@ -13,7 +13,7 @@ module C100App
       when :miam_certification
         after_miam_certification
       when :miam_certification_date
-        after_miam_certification_date
+        edit(:certification_details)
       when :miam_certification_details
         after_miam_certification_details
       else
@@ -47,20 +47,8 @@ module C100App
       end
     end
 
-    def after_miam_certification_date
-      if certification_expired?
-        show(:certification_expired_info)
-      else
-        edit(:certification_details)
-      end
-    end
-
     def after_miam_certification_details
       show(:certification_confirmation)
-    end
-
-    def certification_expired?
-      c100_application.miam_certification_date < 4.months.ago.to_date
     end
   end
 end
