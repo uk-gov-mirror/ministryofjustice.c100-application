@@ -6,6 +6,7 @@ RSpec.describe Steps::Opening::ChildProtectionCasesForm do
                   reset_when_yes: [
                     :miam_acknowledgement,
                     :miam_attended,
+                    :miam_mediator_exemption,
                     :miam_exemption_claim,
                     :miam_certification,
                     :miam_certification_date,
