@@ -8,6 +8,8 @@ module C100App
         edit(:attended)
       when :miam_attended
         after_miam_attended
+      when :miam_mediator_exemption
+        after_miam_mediator_exemption
       when :miam_exemption_claim
         after_miam_exemption_claim
       when :miam_certification
@@ -33,6 +35,15 @@ module C100App
 
     def after_miam_attended
       if question(:miam_attended).yes?
+        edit(:certification)
+      else
+        # TODO: replace with `edit(:mediator_exemption)` to enable the new question
+        edit(:exemption_claim)
+      end
+    end
+
+    def after_miam_mediator_exemption
+      if question(:miam_mediator_exemption).yes?
         edit(:certification)
       else
         edit(:exemption_claim)

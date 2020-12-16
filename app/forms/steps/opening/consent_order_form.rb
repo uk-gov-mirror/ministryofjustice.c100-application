@@ -11,6 +11,7 @@ module Steps
         :child_protection_cases,
         :miam_acknowledgement,
         :miam_attended,
+        :miam_mediator_exemption,
         :miam_exemption_claim,
         :miam_certification,
         Steps::Miam::CertificationDateForm,
