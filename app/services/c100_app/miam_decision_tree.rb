@@ -29,7 +29,7 @@ module C100App
       if question(:miam_exemption_claim).yes?
         edit('/steps/miam_exemptions/domestic')
       else
-        show('/steps/safety_questions/start')
+        show('/steps/miam_exemptions/exit_page')
       end
     end
 

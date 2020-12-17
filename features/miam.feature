@@ -61,4 +61,4 @@ Feature: MIAM journey
     Examples:
       | has_valid_reason | outcome_page_header                                       |
       | Yes              | Providing evidence of domestic violence or abuse concerns |
-      | No               | Safety concerns                                           |
+      | No               | You must attend a MIAM                                    |
