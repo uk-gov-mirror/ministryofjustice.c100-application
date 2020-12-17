@@ -592,11 +592,7 @@ en:
         edit:
           page_title: MIAM attended
           miam_info_html: |
-            <p class="govuk-body">The <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> must have:</p>
-            <ul class="govuk-list govuk-list--bullet">
-              <li>taken place within the past 4 months</li>
-              <li>been about the same or a very similar issue about the children</li>
-            </ul>
+            <p class="govuk-body">The MIAM must be about the same issue that is being dealt with in this application.</p>
       mediator_exemption:
         edit:
           page_title: MIAM mediator’s exemption
@@ -1616,7 +1612,7 @@ en:
       steps_miam_acknowledgement_form:
         miam_acknowledgement: Attending a MIAM
       steps_miam_attended_form:
-        miam_attended: Have you attended a MIAM?
+        miam_attended: Have you attended a Mediation Information and Assessment Meeting (MIAM)?
       steps_miam_mediator_exemption_form:
         miam_mediator_exemption: Has a mediator confirmed that you do not need to attend a MIAM?
       steps_miam_certification_form:
