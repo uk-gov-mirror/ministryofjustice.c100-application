@@ -142,6 +142,10 @@ en:
       question: Have you attended a MIAM?
       answers:
         <<: *YESNO
+    miam_mediator_exemption:
+      question: Has a mediator confirmed that you do not need to attend a MIAM?
+      answers:
+        <<: *YESNO
     miam_exemption_claim:
       question: Do you have a valid reason for not attending a MIAM?
       answers:

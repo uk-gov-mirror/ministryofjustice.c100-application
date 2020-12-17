@@ -377,6 +377,11 @@ en:
       answers:
         <<: *YESNO
         not_applicable: *not_applicable
+    miam_mediator_exemption:
+      question: Has a family mediator informed you that a mediator’s exemption applies, and you do not need to attend a MIAM?
+      answers:
+        <<: *YESNO
+        not_applicable: *not_applicable
     miam_attended:
       question: Have you attended a MIAM?
       answers:

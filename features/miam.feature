@@ -38,9 +38,20 @@ Feature: MIAM journey
     Then I should see "You need to get a document from the mediator"
     Then I should see "Save and come back later"
 
-  @unhappy_path
-  Scenario Outline: Applicant did not attend a MIAM
+  @happy_path
+  Scenario: Applicant did not attend a MIAM but has mediator’s exemption
     Then I should see "Have you attended a MIAM?"
+    And I choose "No"
+    Then I should see "Has a mediator confirmed that you do not need to attend a MIAM?"
+    And I choose "Yes"
+    Then I should see "Have you got a document signed by the mediator?"
+
+  @unhappy_path
+  Scenario Outline: Applicant did not attend a MIAM and do not have a mediator’s exemption
+    Then I should see "Have you attended a MIAM?"
+    And I choose "No"
+
+    Then I should see "Has a mediator confirmed that you do not need to attend a MIAM?"
     And I choose "No"
 
     Then I should see "Do you have a valid reason for not attending a MIAM?"

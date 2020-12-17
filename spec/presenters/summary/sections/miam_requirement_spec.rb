@@ -8,7 +8,8 @@ module Summary
         child_protection_cases: 'no',
         miam_exemption_claim: 'no',
         miam_certification: 'yes',
-        miam_attended: 'yes',
+        miam_mediator_exemption: 'yes',
+        miam_attended: 'no',
     ) }
 
     subject { described_class.new(c100_application) }
@@ -38,7 +39,7 @@ module Summary
       end
 
       it 'has the correct rows' do
-        expect(answers.count).to eq(6)
+        expect(answers.count).to eq(7)
 
         expect(answers[0]).to be_an_instance_of(Partial)
         expect(answers[0].name).to eq(:miam_information)
@@ -56,12 +57,16 @@ module Summary
         expect(answers[3].value).to eq('no')
 
         expect(answers[4]).to be_an_instance_of(Answer)
-        expect(answers[4].question).to eq(:miam_certificate_received)
+        expect(answers[4].question).to eq(:miam_mediator_exemption)
         expect(answers[4].value).to eq('yes')
 
         expect(answers[5]).to be_an_instance_of(Answer)
-        expect(answers[5].question).to eq(:miam_attended)
+        expect(answers[5].question).to eq(:miam_certificate_received)
         expect(answers[5].value).to eq('yes')
+
+        expect(answers[6]).to be_an_instance_of(Answer)
+        expect(answers[6].question).to eq(:miam_attended)
+        expect(answers[6].value).to eq('no')
       end
 
       context 'uses the default value' do
@@ -72,13 +77,14 @@ module Summary
               child_protection_cases: 'no',
               miam_exemption_claim: nil,
               miam_certification: nil,
+              miam_mediator_exemption: nil,
               miam_attended: nil,
           ) }
 
           let(:consent_order) { true }
 
           it 'has the correct rows' do
-            expect(answers.count).to eq(6)
+            expect(answers.count).to eq(7)
 
             expect(answers[0]).to be_an_instance_of(Partial)
             expect(answers[0].name).to eq(:miam_information)
@@ -96,12 +102,16 @@ module Summary
             expect(answers[3].value).to eq(:not_applicable)
 
             expect(answers[4]).to be_an_instance_of(Answer)
-            expect(answers[4].question).to eq(:miam_certificate_received)
+            expect(answers[4].question).to eq(:miam_mediator_exemption)
             expect(answers[4].value).to eq(:not_applicable)
 
             expect(answers[5]).to be_an_instance_of(Answer)
-            expect(answers[5].question).to eq(:miam_attended)
+            expect(answers[5].question).to eq(:miam_certificate_received)
             expect(answers[5].value).to eq(:not_applicable)
+
+            expect(answers[6]).to be_an_instance_of(Answer)
+            expect(answers[6].question).to eq(:miam_attended)
+            expect(answers[6].value).to eq(:not_applicable)
           end
         end
 
@@ -112,13 +122,14 @@ module Summary
               child_protection_cases: 'yes',
               miam_exemption_claim: nil,
               miam_certification: nil,
+              miam_mediator_exemption: nil,
               miam_attended: nil,
           ) }
 
           let(:child_protection_cases) { true }
 
           it 'has the correct rows' do
-            expect(answers.count).to eq(6)
+            expect(answers.count).to eq(7)
 
             expect(answers[0]).to be_an_instance_of(Partial)
             expect(answers[0].name).to eq(:miam_information)
@@ -136,12 +147,16 @@ module Summary
             expect(answers[3].value).to eq(:not_applicable)
 
             expect(answers[4]).to be_an_instance_of(Answer)
-            expect(answers[4].question).to eq(:miam_certificate_received)
+            expect(answers[4].question).to eq(:miam_mediator_exemption)
             expect(answers[4].value).to eq(:not_applicable)
 
             expect(answers[5]).to be_an_instance_of(Answer)
-            expect(answers[5].question).to eq(:miam_attended)
+            expect(answers[5].question).to eq(:miam_certificate_received)
             expect(answers[5].value).to eq(:not_applicable)
+
+            expect(answers[6]).to be_an_instance_of(Answer)
+            expect(answers[6].question).to eq(:miam_attended)
+            expect(answers[6].value).to eq(:not_applicable)
           end
         end
       end

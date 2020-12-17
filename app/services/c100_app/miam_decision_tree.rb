@@ -37,8 +37,7 @@ module C100App
       if question(:miam_attended).yes?
         edit(:certification)
       else
-        # TODO: replace with `edit(:mediator_exemption)` to enable the new question
-        edit(:exemption_claim)
+        edit(:mediator_exemption)
       end
     end
 
