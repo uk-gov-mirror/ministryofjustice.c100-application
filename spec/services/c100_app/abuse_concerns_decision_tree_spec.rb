@@ -300,20 +300,9 @@ RSpec.describe C100App::AbuseConcernsDecisionTree do
     end
   end
 
-  describe 'when the step is `contact`' do
+  context 'when the step is `contact`' do
     let(:as) { 'contact' }
-    let(:exemptions_tree) { spy('exemptions_tree') }
-
-    before do
-      allow(C100App::MiamExemptionsDecisionTree).to receive(:new).with(
-        c100_application: c100_application
-      ).and_return(exemptions_tree)
-    end
-
-    it 'delegates the destination decision to the `MiamExemptionsDecisionTree`' do
-      expect(exemptions_tree).to receive(:playback_destination)
-      subject.destination
-    end
+    it { is_expected.to have_destination('/steps/petition/orders', :edit) }
   end
 
   describe 'when the step is not known' do
