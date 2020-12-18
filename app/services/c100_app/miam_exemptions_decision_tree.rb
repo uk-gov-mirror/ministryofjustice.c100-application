@@ -13,7 +13,7 @@ module C100App
       when :adr
         edit(:misc)
       when :misc
-        show('/steps/safety_questions/start')
+        after_miam_exemption_misc
       else
         raise InvalidStep, "Invalid step '#{as || step_params}'"
       end
@@ -37,6 +37,14 @@ module C100App
       MiamExemptionsPresenter.new(
         c100_application.miam_exemption
       ).exemptions.any?
+    end
+
+    def after_miam_exemption_misc
+      if has_miam_exemptions?
+        show('/steps/safety_questions/start')
+      else
+        show('/steps/miam_exemptions/exit_page')
+      end
     end
 
     def has_safety_concerns?

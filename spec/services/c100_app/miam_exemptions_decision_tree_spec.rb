@@ -31,8 +31,23 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
   end
 
   context 'when the step is `misc`' do
+    let(:c100_application) { C100Application.new(attributes) }
     let(:step_params) { { misc: 'anything' } }
-    it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+    let(:attributes) {
+      {
+        miam_exemption: nil,
+      }
+    }
+
+    context 'when there are no MIAM exemptions' do
+      it { is_expected.to have_destination('/steps/miam_exemptions/exit_page', :show) }
+    end
+
+    context 'when there are MIAM exemptions' do
+      let(:attributes) { super().merge(miam_exemption: MiamExemption.new(misc: ['applicant_under_age'])) }
+
+      it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
+    end
   end
 
   describe '#playback_destination' do
