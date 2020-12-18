@@ -14,18 +14,18 @@ Feature: MIAM journey
     Then I should see "Have you got a document signed by the mediator?"
     And I choose "Yes"
 
-    Then I should see "When did you attend the MIAM?"
+    Then I should see "When did you meet with the mediator?"
     And I enter the date 15-10-2020
 
     When I click the "Continue" button
-    Then I should see "Enter details of MIAM certification"
+    Then I should see "Enter mediator details"
 
     And I fill in "Mediator registration number (URN)" with "URN"
     And I fill in "Family mediation service name" with "Service name"
     And I fill in "Sole trader name" with "Sole trader name"
     And I click the "Continue" button
 
-    Then I should see "MIAM attendance confirmation"
+    Then I should see "Document from the mediator"
 
   @unhappy_path
   Scenario: Applicant attended a MIAM but lacks the certificate

@@ -608,12 +608,12 @@ en:
       certification_date:
         edit:
           page_title: MIAM certification date
-          lead_text: You can find the date at the bottom of the document your mediator signed.
+          lead_text: You can usually find this date on the document from the mediator.
       certification_details:
         edit:
           page_title: MIAM certification details
-          heading: Enter details of MIAM certification
-          lead_text: You can find this information at the bottom of the document your mediator signed.
+          heading: Enter mediator details
+          lead_text: You can usually find these details on the document from the mediator. If you don't know, ask the mediator.
       certification_exit:
         show:
           page_title: MIAM certification document
@@ -1618,7 +1618,7 @@ en:
       steps_miam_certification_form:
         miam_certification: Have you got a document signed by the mediator?
       steps_miam_certification_date_form:
-        miam_certification_date: When did you attend the MIAM?
+        miam_certification_date: When did you meet with the mediator?
       steps_miam_exemption_claim_form:
         miam_exemption_claim: Do you have a valid reason for not attending a MIAM?
 

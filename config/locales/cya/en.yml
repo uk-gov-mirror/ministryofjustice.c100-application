@@ -93,7 +93,7 @@ en:
       submission: How will you submit your application to court?
       solicitor_details: Details of legal representative
     groups:
-      miam_certification_details: Certification details
+      miam_certification_details: Mediator details
       abduction_passport_possession: Details of the children’s passports
       abduction_previous_attempt: Details of the previous abductions
       abduction_risk_details: Why do you think the children may be abducted or kept outside the UK without your consent?
@@ -155,7 +155,7 @@ en:
       answers:
         <<: *YESNO
     miam_certification_date:
-      question: When did you attend the MIAM?
+      question: When did you meet with the mediator?
     miam_certification_number:
       question: Mediator registration number (URN)
     miam_certification_service_name:
