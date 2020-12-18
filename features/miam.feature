@@ -25,7 +25,7 @@ Feature: MIAM journey
     And I fill in "Sole trader name" with "Sole trader name"
     And I click the "Continue" button
 
-    Then I should see "MIAM attendance confirmation"
+    Then I should see "Document from the mediator"
 
   @unhappy_path
   Scenario: Applicant attended a MIAM but lacks the certificate
