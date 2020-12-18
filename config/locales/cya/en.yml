@@ -139,7 +139,7 @@ en:
       answers:
         <<: *YESNO
     miam_attended:
-      question: Have you attended a MIAM?
+      question: Have you attended a Mediation Information and Assessment Meeting (MIAM)?
       answers:
         <<: *YESNO
     miam_mediator_exemption:
