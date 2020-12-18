@@ -40,86 +40,13 @@ RSpec.describe C100App::MiamExemptionsDecisionTree do
     }
 
     context 'when there are no MIAM exemptions' do
-      it { is_expected.to have_destination('/steps/miam_exemptions/exit_page', :show) }
+      it { is_expected.to have_destination(:exit_page, :show) }
     end
 
     context 'when there are MIAM exemptions' do
       let(:attributes) { super().merge(miam_exemption: MiamExemption.new(misc: ['applicant_under_age'])) }
 
-      it { is_expected.to have_destination('/steps/safety_questions/start', :show) }
-    end
-  end
-
-  describe '#playback_destination' do
-    let(:c100_application) { C100Application.new(attributes) }
-    let(:attributes) {
-      {
-        consent_order: 'no',
-        child_protection_cases: 'no',
-        miam_certification_number: nil,
-        substance_abuse: 'no',
-        miam_exemption: nil,
-      }
-    }
-
-    context 'when asking for a consent order' do
-      let(:attributes) { super().merge(consent_order: 'yes') }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/petition/orders', action: :edit)
-      }
-    end
-
-    context 'when children have been involved in court cases' do
-      let(:attributes) { super().merge(child_protection_cases: 'yes') }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/petition/orders', action: :edit)
-      }
-    end
-
-    context 'when MIAM certification is present' do
-      let(:attributes) { super().merge(miam_certification_number: '1234X') }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/petition/orders', action: :edit)
-      }
-    end
-
-    context 'when there are MIAM exemptions' do
-      let(:attributes) { super().merge(miam_exemption: MiamExemption.new(domestic: ['anything'])) }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/miam_exemptions/reasons_playback', action: :show)
-      }
-    end
-
-    context 'when there are safety concerns' do
-      let(:attributes) { super().merge(substance_abuse: 'yes') }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/miam_exemptions/safety_playback', action: :show)
-      }
-    end
-
-    context 'when there are no exemptions or safety concerns' do
-      let(:c100_application) { C100Application.new }
-
-      it {
-        expect(
-          subject.playback_destination
-        ).to eq(controller: '/steps/miam_exemptions/exit_page', action: :show)
-      }
+      it { is_expected.to have_destination(:reasons_playback, :show) }
     end
   end
 end

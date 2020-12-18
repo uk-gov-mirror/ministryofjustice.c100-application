@@ -88,7 +88,7 @@ Feature: MIAM journey
     And I click the "Continue" button
     Then I should see "You must attend a MIAM"
 
-  @unhappy_path
+  @happy_path
   Scenario: Applicant did not attend a MIAM and has selected a misc valid reason
     Then I should see "Have you attended a Mediation Information and Assessment Meeting (MIAM)?"
     And I choose "No"
@@ -112,4 +112,10 @@ Feature: MIAM journey
     And I check "You can’t access a mediator"
     And I check "There is no authorised family mediator with an office within 15 miles of your home"
     And I click the "Continue" button
+
+    Then I should see "You don’t have to attend a MIAM"
+    Then I should see "Other exemptions"
+    Then I should see "There is no authorised family mediator with an office within 15 miles of your home"
+
+    And I click the "Continue" link
     Then I should see "Safety concerns"

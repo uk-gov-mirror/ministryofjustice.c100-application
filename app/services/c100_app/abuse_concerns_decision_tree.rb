@@ -7,7 +7,7 @@ module C100App
       when :details
         after_details_step
       when :contact
-        miam_exemptions_playback
+        edit('/steps/petition/orders')
       else
         raise InvalidStep, "Invalid step '#{step_name}'"
       end
@@ -99,12 +99,6 @@ module C100App
       else
         raise InvalidStep, "Unknown abuse kind: #{abuse_kind}"
       end
-    end
-
-    def miam_exemptions_playback
-      MiamExemptionsDecisionTree.new(
-        c100_application: c100_application
-      ).playback_destination
     end
   end
 end
