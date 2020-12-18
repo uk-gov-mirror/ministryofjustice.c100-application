@@ -612,8 +612,8 @@ en:
       certification_details:
         edit:
           page_title: MIAM certification details
-          heading: Enter details of MIAM certification
-          lead_text: You can find this information at the bottom of the document your mediator signed.
+          heading: Enter mediator details
+          lead_text: You can usually find these details on the document from the mediator. If you don't know, ask the mediator.
       certification_exit:
         show:
           page_title: MIAM certification document

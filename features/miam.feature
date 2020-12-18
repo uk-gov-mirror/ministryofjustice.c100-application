@@ -18,7 +18,7 @@ Feature: MIAM journey
     And I enter the date 15-10-2020
 
     When I click the "Continue" button
-    Then I should see "Enter details of MIAM certification"
+    Then I should see "Enter mediator details"
 
     And I fill in "Mediator registration number (URN)" with "URN"
     And I fill in "Family mediation service name" with "Service name"
