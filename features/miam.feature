@@ -14,7 +14,7 @@ Feature: MIAM journey
     Then I should see "Have you got a document signed by the mediator?"
     And I choose "Yes"
 
-    Then I should see "When did you attend the MIAM?"
+    Then I should see "When did you meet with the mediator?"
     And I enter the date 15-10-2020
 
     When I click the "Continue" button

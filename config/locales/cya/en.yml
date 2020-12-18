@@ -155,7 +155,7 @@ en:
       answers:
         <<: *YESNO
     miam_certification_date:
-      question: When did you attend the MIAM?
+      question: When did you meet with the mediator?
     miam_certification_number:
       question: Mediator registration number (URN)
     miam_certification_service_name:
