@@ -14,9 +14,14 @@ Feature: Opening
   Scenario: Complete the opening
     When I fill in "Postcode" with "MK9 3DX"
     And I click the "Continue" button
-    Then I should see "Are you willing to be contacted to share your experience of using this service?"
-    And I should not see the save draft button
-    And I choose "No"
+
+    # Note: user research question is disabled for the time being.
+    # Refer to `config.x.opening.research_consent_weight` in `config/application.rb` to enable/disable.
+    #
+    # Then I should see "Are you willing to be contacted to share your experience of using this service?"
+    # And I should not see the save draft button
+    # And I choose "No"
+
     Then I should see "What kind of application do you want to make?"
     And I should not see the save draft button
     And I choose "Child arrangements order, prohibited steps order, specific issue order, or to change or end an existing order"
