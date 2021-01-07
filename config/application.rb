@@ -61,8 +61,8 @@ class Application < Rails::Application
 
   # Show the `research consent` question (used to gather emails of users for research
   # purposes) to this percentage of applications.
-  # Defaults to 100 if ENV is not set. Set ENV to any other value, or 0 to disable.
-  config.x.opening.research_consent_weight = ENV.fetch('RESEARCH_CONSENT_WEIGHT', 100).to_i
+  # If ENV is set, takes precedence. Can be set to any value between 0 (disabled) and 100.
+  config.x.opening.research_consent_weight = ENV.fetch('RESEARCH_CONSENT_WEIGHT', 0).to_i
 
   # As part of the opening postcode step, an empty C100Application record is created.
   # If the postcode is not eligible, these records are left orphans and have no use.
