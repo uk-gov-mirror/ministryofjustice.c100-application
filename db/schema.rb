@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_130249) do
+ActiveRecord::Schema.define(version: 2021_01_08_103926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -363,7 +363,6 @@ ActiveRecord::Schema.define(version: 2020_12_16_130249) do
     t.string "full_name"
     t.string "firm_name"
     t.string "reference"
-    t.text "address"
     t.string "dx_number"
     t.string "phone_number"
     t.string "fax_number"
