@@ -256,7 +256,7 @@ en:
     international_resident_details:
       question: *details
     international_jurisdiction:
-      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case (for example under Brussels 2 revised)?
+      question: Do you have any reason to believe that there may be an issue as to jurisdiction in this case?
       answers:
         <<: *YESNO
     international_jurisdiction_details:
