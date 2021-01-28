@@ -124,6 +124,7 @@ en:
     sections:
       ### C100 ###
       c100_court_details: *to_be_completed
+      processing_details: Processing details (for court use only)
       help_with_fees: Help with fees
       applicant_respondent: Applicant and respondent
       nature_of_application: Nature of application
@@ -169,6 +170,10 @@ en:
       ### C8 ###
       c8_applicants_details_index_title: Applicant %{index}
       c8_other_parties_details_index_title: Person %{index}
+    court_name_and_code:
+      question: Court
+    completion_date:
+      question: Date
     hwf_reference_number:
       question: Reference number
       absence_answer: *not_applicable

@@ -80,6 +80,7 @@ class SessionsController < ApplicationController
       "name" => "Milton Keynes County Court and Family Court",
       "email" => "family@miltonkeynes.countycourt.gsi.gov.uk",
       "gbs" => "Y610",
+      "cci_code" => 388,
       "address" => {
         "town" => "Central Milton Keynes",
         "postcode" => "MK9 2DT",
