@@ -59,7 +59,7 @@ class C100Application < ApplicationRecord
 
   def mark_as_completed!
     transaction do
-      completed!
+      update!(status: :completed, completed_at: Time.current)
       CompletedApplicationsAudit.log!(self)
     end
   end

@@ -7,7 +7,7 @@ class CompletedApplicationsAudit < ApplicationRecord
   def self.log!(c100_application)
     create(
       started_at: c100_application.created_at,
-      completed_at: c100_application.updated_at,
+      completed_at: c100_application.completed_at,
       reference_code: c100_application.reference_code,
       submission_type: c100_application.submission_type,
       court: c100_application.court.name,
