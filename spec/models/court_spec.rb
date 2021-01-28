@@ -9,6 +9,7 @@ describe Court do
       "slug" => 'court-slug',
       "email" => 'family@court',
       "address" => address,
+      "cci_code" => 123,
       "gbs" => 'X123',
     }
   }
@@ -36,6 +37,10 @@ describe Court do
 
     it 'sets the address' do
       expect(subject.address).to eq(address)
+    end
+
+    it 'sets the cci_code' do
+      expect(subject.cci_code).to eq(123)
     end
 
     it 'sets the gbs code' do
@@ -70,6 +75,16 @@ describe Court do
           expect(Raven).to receive(:extra_context).with(data: data)
           expect(Raven).to receive(:capture_exception).with(an_instance_of(KeyError))
           expect { subject.name }.to raise_error(KeyError, 'key not found: "address"')
+        end
+      end
+
+      context 'cci_code' do
+        let(:data) { super().except('cci_code') }
+
+        it 'sends the exception to Sentry with extra context' do
+          expect(Raven).to receive(:extra_context).with(data: data)
+          expect(Raven).to receive(:capture_exception).with(an_instance_of(KeyError))
+          expect { subject.name }.to raise_error(KeyError, 'key not found: "cci_code"')
         end
       end
     end
@@ -180,6 +195,7 @@ describe Court do
         "slug" => slug,
         "name" => 'Court Test',
         "address" => {},
+        "cci_code" => 123,
         "email" => nil,
         "gbs" => nil,
       }
@@ -217,7 +233,13 @@ describe Court do
 
         expect(
           @court.attributes
-        ).to include('name' => 'Court Test', 'email' => 'family@court', 'address' => {}, 'gbs' => 'X123')
+        ).to include(
+          'name' => 'Court Test',
+          'email' => 'family@court',
+          'address' => {},
+          'cci_code' => 123,
+          'gbs' => 'X123'
+        )
       end
     end
 
