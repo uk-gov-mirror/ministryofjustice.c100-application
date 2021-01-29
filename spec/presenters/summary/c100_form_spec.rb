@@ -69,6 +69,7 @@ module Summary
           Sections::SectionHeader,
           Sections::StatementOfTruth,
           Sections::CourtFee,
+          Sections::ProcessingDetails,
         ])
       end
     end

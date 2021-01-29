@@ -201,6 +201,17 @@ body:not(.status-completed) {
     }
   }
 
+  // Processing details can also be resized so it fits better and is not
+  // disrupting for the user (these details are just for scanning processes).
+  #processing_details {
+    td.question {
+      width: 10%;
+    }
+    td.answer {
+      width: 90%;
+    }
+  }
+
   #children_known_to_authorities {
     td {
       padding-top: 15px;

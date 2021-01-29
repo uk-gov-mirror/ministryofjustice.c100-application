@@ -111,6 +111,7 @@ module Summary
         Sections::SectionHeader.new(c100_application, name: :statement_of_truth),
         Sections::StatementOfTruth.new(c100_application),
         Sections::CourtFee.new(c100_application),
+        Sections::ProcessingDetails.new(c100_application),
       ]
     end
   end
