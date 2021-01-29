@@ -179,8 +179,17 @@ RSpec.describe C100Application, type: :model do
   end
 
   describe '#mark_as_completed!' do
+    before do
+      travel_to Time.at(123)
+    end
+
     it 'marks the application as completed and saves the audit record' do
-      expect(subject).to receive(:completed!).and_return(true)
+      expect(
+        subject
+      ).to receive(:update!).with(
+        status: :completed, completed_at: Time.at(123)
+      ).and_return(true)
+
       expect(CompletedApplicationsAudit).to receive(:log!).with(subject)
 
       subject.mark_as_completed!
@@ -203,11 +212,12 @@ RSpec.describe C100Application, type: :model do
 
       it 'reverts the application status to how it was before (rollbacks)' do
         expect(subject.status).to eq('in_progress')
-        expect(subject).to receive(:completed!).and_call_original
+        expect(subject).to receive(:update!).and_call_original
 
         expect { subject.mark_as_completed! }.to raise_error
 
         expect(subject.reload.status).to eq('in_progress')
+        expect(subject.reload.completed_at).to be_nil
       end
     end
   end

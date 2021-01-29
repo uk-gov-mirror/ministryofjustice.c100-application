@@ -7,7 +7,7 @@ RSpec.describe CompletedApplicationsAudit, type: :model do
     C100Application.new(
       id: '449362af-0bc3-4953-82a7-1363d479b876',
       created_at: Time.at(0),
-      updated_at: Time.at(100),
+      completed_at: Time.at(100),
       submission_type: 'online',
     )
   }
