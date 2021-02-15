@@ -77,7 +77,7 @@ RSpec.describe GOVUKDesignSystemFormBuilder::FormBuilder do
         it 'outputs the continue button together with a save draft button' do
           expect(
             html_output
-          ).to eq('<input type="submit" name="commit" value="Continue" class="govuk-button govuk-!-margin-right-1" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later">')
+          ).to eq('<div class="govuk-button-group"><input type="submit" name="commit" value="Continue" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Continue" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later"></div>')
         end
 
         context 'with button value customised' do
@@ -86,7 +86,7 @@ RSpec.describe GOVUKDesignSystemFormBuilder::FormBuilder do
           it 'outputs the custom value' do
             expect(
               html_output
-            ).to eq('<input type="submit" name="commit" value="Confirm and finish" class="govuk-button govuk-!-margin-right-1" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Confirm and finish" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later">')
+            ).to eq('<div class="govuk-button-group"><input type="submit" name="commit" value="Confirm and finish" class="govuk-button" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Confirm and finish" /><input type="submit" name="commit_draft" value="Save and come back later" class="govuk-button govuk-button--secondary" formnovalidate="formnovalidate" data-module="govuk-button" data-prevent-double-click="true" data-disable-with="Save and come back later"></div>')
           end
         end
       end
