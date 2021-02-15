@@ -4,7 +4,7 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl"><%=t '.heading' %></h1>
 
-    <p class="govuk-body-l govuk-!-margin-bottom-6">
+    <p class="govuk-body-l">
       <% if user_signed_in? %>
         <%=t '.lead_signed_in' %>
       <% else %>
@@ -12,7 +12,12 @@
       <% end %>
     </p>
 
-    <%= link_button t('.resume_link'), previous_step_path, class: 'govuk-!-margin-right-1 ga-pageLink', data: { module: 'govuk-button', ga_category: 'in progress warning', ga_label: 'resume application' } %>
-    <%= link_button t('.restart_link'), root_path(new: 'y'), class: 'govuk-button--warning ga-pageLink', data: { module: 'govuk-button', ga_category: 'in progress warning', ga_label: 'new application' } %>
+    <div class="govuk-button-group govuk-!-margin-top-6">
+      <%= link_button t('.resume_link'), previous_step_path, class: 'ga-pageLink',
+                      data: { module: 'govuk-button', ga_category: 'in progress warning', ga_label: 'resume application' } %>
+
+      <%= link_button t('.restart_link'), root_path(new: 'y'), class: 'govuk-button--warning ga-pageLink',
+                      data: { module: 'govuk-button', ga_category: 'in progress warning', ga_label: 'new application' } %>
+    </div>
   </div>
 </div>

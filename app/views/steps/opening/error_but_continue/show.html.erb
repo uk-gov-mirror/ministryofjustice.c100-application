@@ -15,9 +15,13 @@
 
     <h2 class="govuk-heading-l"><%= t '.what_to_do_now.heading' %></h2>
 
-    <p class="govuk-body govuk-!-margin-bottom-6"><%= t '.what_to_do_now.copy' %></p>
+    <p class="govuk-body"><%= t '.what_to_do_now.copy' %></p>
 
-    <%= link_button t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'govuk-!-margin-right-1 ga-pageLink', data: { module: 'govuk-button', ga_category: 'postcode error', ga_label: 'paper form' } %>
-    <%= link_button t('.go_back'), edit_steps_opening_postcode_path, class: 'govuk-button--secondary' %>
+    <div class="govuk-button-group govuk-!-margin-top-6">
+      <%= link_button t('.download_c100_link'), 'https://formfinder.hmctsformfinder.justice.gov.uk/c100-eng.pdf', class: 'ga-pageLink',
+                      data: { module: 'govuk-button', ga_category: 'postcode error', ga_label: 'paper form' } %>
+
+      <%= link_button t('.go_back'), edit_steps_opening_postcode_path, class: 'govuk-button--secondary' %>
+    </div>
   </div>
 </div>
