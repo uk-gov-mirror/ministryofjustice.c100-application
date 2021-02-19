@@ -919,9 +919,7 @@ en:
           lead_text: Please tell us the postcode of the children you’re making this application about.
           details:
             summary: If you do not know where the children live
-            text_html: |
-              You can use <a href="https://www.gov.uk/government/publications/form-c4-application-for-an-order-for-disclosure-of-a-childs-whereabouts"
-              class="govuk-link" rel="external" target="_blank">form C4</a> to apply for an order for someone to give a court information about where a child is.
+            text_html: If you do not know the children’s postcode please enter your own.
       no_court_found:
         show:
           page_title: Not eligible
