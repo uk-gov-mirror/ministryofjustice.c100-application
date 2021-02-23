@@ -86,6 +86,10 @@ class Court < ApplicationRecord
     !gbs.eql?(UNKNOWN_GBS)
   end
 
+  def centralised?
+    centralised_slugs.include?(slug)
+  end
+
   def stale?
     updated_at.nil? || updated_at <= REFRESH_DATA_AFTER.ago
   end
@@ -108,6 +112,10 @@ class Court < ApplicationRecord
 
   def retrieve_emails_from_api
     court_data.fetch('emails')
+  end
+
+  def centralised_slugs
+    Rails.configuration.court_slugs.fetch('centralisation')
   end
 
   def court_data
