@@ -26,6 +26,20 @@ describe Court do
     it { expect(described_class::REFRESH_DATA_AFTER).to eq(72.hours) }
   end
 
+  describe 'Centralised courts (smoke test)' do
+    it 'returns the list of slugs taking part in the centralisation' do
+      expect(
+        subject.send(:centralised_slugs)
+      ).to match_array(%w(
+        brighton-county-court
+        chelmsford-county-and-family-court
+        leeds-combined-court-centre
+        medway-county-court-and-family-court
+        west-london-family-court
+      ))
+    end
+  end
+
   describe '.build' do
     it 'sets the name' do
       expect(subject.name).to eq('Court name')
@@ -586,6 +600,28 @@ describe Court do
       it 'returns false' do
         expect(subject).to receive(:gbs).and_return('unknown')
         expect(subject.gbs_known?).to eq(false)
+      end
+    end
+  end
+
+  describe '#centralised?' do
+    before do
+      allow(subject).to receive(:slug).and_return(slug)
+    end
+
+    context 'for a centralised court' do
+      let(:slug) { 'west-london-family-court' }
+
+      it 'returns true' do
+        expect(subject.centralised?).to eq(true)
+      end
+    end
+
+    context 'for a non-centralised court' do
+      let(:slug) { 'derby-combined-court-centre' }
+
+      it 'returns false' do
+        expect(subject.centralised?).to eq(false)
       end
     end
   end

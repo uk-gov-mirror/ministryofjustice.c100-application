@@ -3,3 +3,13 @@
 #
 blocklist:
   - blocklisted-slug-example
+
+# Add court slugs to the centralisation list.
+# Currently centralisation is disabled for any court not in this list.
+#
+centralisation:
+  - brighton-county-court
+  - chelmsford-county-and-family-court
+  - leeds-combined-court-centre
+  - medway-county-court-and-family-court
+  - west-london-family-court

@@ -3,9 +3,6 @@ require 'c100_app/courtfinder_api'
 module C100App
   class CourtPostcodeChecker
     AREA_OF_LAW = "Children".freeze
-    COURT_SLUGS = YAML.load_file(
-      File.join(Rails.root, 'config', 'court_slugs.yml')
-    ).freeze
 
     def court_for(postcode)
       possible_courts = CourtfinderAPI.new.court_for(AREA_OF_LAW, postcode)
@@ -15,7 +12,7 @@ module C100App
     end
 
     def court_slugs_blocklist
-      COURT_SLUGS.fetch('blocklist')
+      Rails.configuration.court_slugs.fetch('blocklist')
     end
 
     private
