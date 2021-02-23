@@ -23,7 +23,7 @@ describe Court do
   }
 
   describe 'REFRESH_DATA_AFTER' do
-    it { expect(described_class::REFRESH_DATA_AFTER).to eq(72.hours) }
+    it { expect(described_class::REFRESH_DATA_AFTER).to eq(1.hours) }
   end
 
   describe 'Centralised courts (smoke test)' do
@@ -361,42 +361,43 @@ describe Court do
           [
             {
               'description' => 'Enquiries',
-              'address' => 'enquiries@email',
+              'address' => 'email1@email',
             },
             {
               'description' => 'All Children Enquiries',
-              'address' => 'children@email'
+              'address' => 'email2@email'
             }
           ]
         }
 
         it 'returns the email address of the matching description' do
-          expect(subject.best_enquiries_email).to eq('children@email')
+          expect(subject.best_enquiries_email).to eq('email2@email')
         end
 
         context 'and containing an email with description matching "family"' do
           let(:emails){
             [
               {
-                'description' => 'All children enquiries',
-                'address' => 'children@email'
+                'description' => 'All other enquiries',
+                'address' => 'email1@email'
               },
               {
                 'description' => 'All Family Enquiries',
-                'address' => 'family@email'
+                'address' => 'email2@email'
               }
             ]
           }
-          it 'returns the email address of the description matching children' do
-            expect(subject.best_enquiries_email).to eq('children@email')
+
+          it 'returns the email address of the description matching family' do
+            expect(subject.best_enquiries_email).to eq('email2@email')
           end
 
-          context 'and containing an email with description equal to "applications"' do
+          context 'and containing an email with description equal to "c100"' do
             let(:emails){
               [
                 {
                   'description' => 'Applications',
-                  'address' => 'applications@email'
+                  'address' => 'c100.applications@email'
                 },
                 {
                   'description' => 'All Family Enquiries',
@@ -404,8 +405,8 @@ describe Court do
                 }
               ]
             }
-            it 'returns the email address of the description equal to "Applications"' do
-              expect(subject.best_enquiries_email).to eq('applications@email')
+            it 'returns the email address of the description matching c100' do
+              expect(subject.best_enquiries_email).to eq('c100.applications@email')
             end
           end
         end
@@ -468,27 +469,27 @@ describe Court do
         end
       end
 
-      context 'containing an email with description matching "applications" and another with explanation matching "family"' do
+      context 'containing an email with description matching "c100" and another with explanation matching "family"' do
         let(:emails) {
           [
             {
-              'description' => 'Applications',
-              'address' => 'applications@email'
+              'description' => 'C100 applications',
+              'address' => 'email1@example'
             },
             {
               'description' => 'Anything',
               'explanation' => 'Family',
-              'address' => 'email@example',
+              'address' => 'email2@example',
             },
           ]
         }
 
-        it 'returns the email address of the matching explanation' do
-          expect(subject.best_enquiries_email).to eq('email@example')
+        it 'returns the email address of the matching description' do
+          expect(subject.best_enquiries_email).to eq('email1@example')
         end
       end
 
-      context 'containing an email with description matching "applications"' do
+      context 'containing an email with description matching "c100"' do
         let(:emails) {
           [
             {
@@ -503,7 +504,7 @@ describe Court do
           ]
         }
 
-        it 'returns the email address of the matching explanation' do
+        it 'returns the email address of the matching description' do
           expect(subject.best_enquiries_email).to eq('c100@email')
         end
       end
@@ -544,7 +545,7 @@ describe Court do
         }
 
         it 'returns the matching email address based on priority' do
-          expect(subject.best_enquiries_email).to eq('Children@email')
+          expect(subject.best_enquiries_email).to eq('Family@email')
         end
       end
 
@@ -644,7 +645,7 @@ describe Court do
 
     context 'for a stale court record' do
       context 'exact threshold' do
-        let(:updated_at) { 72.hours.ago }
+        let(:updated_at) { 1.hours.ago }
 
         it 'returns true' do
           expect(subject.stale?).to eq(true)
@@ -662,7 +663,7 @@ describe Court do
     end
 
     context 'for an up to date court record' do
-      let(:updated_at) { 1.day.ago }
+      let(:updated_at) { 50.minutes.ago }
 
       it 'returns false' do
         expect(subject.stale?).to eq(false)

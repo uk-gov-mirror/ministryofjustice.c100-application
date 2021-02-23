@@ -1,5 +1,5 @@
 class Court < ApplicationRecord
-  REFRESH_DATA_AFTER = 72.hours
+  REFRESH_DATA_AFTER = 1.hours
   UNKNOWN_GBS = 'unknown'.freeze
 
   has_many :c100_applications
@@ -65,16 +65,16 @@ class Court < ApplicationRecord
   end
 
   def best_enquiries_email
-    # There's no consistency to how courts list their email address descriptions,
-    # so we try to find the most suitable email address, by looking at the `explanation`
-    # or the `description` for each of the emails, or the actual email address,
+    # There's no consistency to how courts list their email addresses, so we try to find
+    # the most suitable one by looking for keywords, first in the address itself, then
+    # in the `description` and finally in the `explanation` for each of the emails,
     # and if none is found, as a last resort we try to find an email address containing
     # the `enquiries` word and if still nothing is found, we pick the first entry.
     #
     emails = retrieve_emails_from_api
-    best = best_match_for(emails, 'explanation') ||
+    best = best_match_for(emails, 'address') ||
            best_match_for(emails, 'description') ||
-           best_match_for(emails, 'address') ||
+           best_match_for(emails, 'explanation') ||
            fallback_address(emails)
 
     # We want this to raise a `KeyError` exception when no email is found
@@ -97,9 +97,9 @@ class Court < ApplicationRecord
   private
 
   def best_match_for(emails, node)
-    emails.find { |e| e[node] =~ /children/i }       || \
-      emails.find { |e| e[node] =~ /applications/i } || \
-      emails.find { |e| e[node] =~ /family/i }
+    emails.find { |e| e[node] =~ /c100/i }       || \
+      emails.find { |e| e[node] =~ /family/i }   || \
+      emails.find { |e| e[node] =~ /children/i }
   end
 
   def fallback_address(emails)
