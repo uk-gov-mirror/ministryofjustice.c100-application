@@ -1,4 +1,6 @@
 class Court < ApplicationRecord
+  include CourtContactDetails
+
   REFRESH_DATA_AFTER = 72.hours
   UNKNOWN_GBS = 'unknown'.freeze
 
@@ -53,17 +55,6 @@ class Court < ApplicationRecord
     self[:gbs] = gbs || retrieve_gbs_from_api
   end
 
-  def full_address
-    [
-      name,
-      address.fetch_values(
-        'address_lines',
-        'town',
-        'postcode',
-      )
-    ].flatten.reject(&:blank?).uniq
-  end
-
   def best_enquiries_email
     # There's no consistency to how courts list their email addresses, so we try to find
     # the most suitable one by looking for keywords, first in the address itself, then
@@ -84,10 +75,6 @@ class Court < ApplicationRecord
 
   def gbs_known?
     !gbs.eql?(UNKNOWN_GBS)
-  end
-
-  def centralised?
-    centralised_slugs.include?(slug)
   end
 
   def stale?
@@ -112,10 +99,6 @@ class Court < ApplicationRecord
 
   def retrieve_emails_from_api
     court_data.fetch('emails')
-  end
-
-  def centralised_slugs
-    Rails.configuration.court_slugs.fetch('centralisation')
   end
 
   def court_data
