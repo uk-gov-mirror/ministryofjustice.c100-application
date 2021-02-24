@@ -88,6 +88,7 @@ def models
     Applicant
     Solicitor
     User
+    Court
     PaymentIntent
     CompletedApplicationsAudit
   ).freeze

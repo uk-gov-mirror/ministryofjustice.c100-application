@@ -23,7 +23,7 @@ describe Court do
   }
 
   describe 'REFRESH_DATA_AFTER' do
-    it { expect(described_class::REFRESH_DATA_AFTER).to eq(1.hours) }
+    it { expect(described_class::REFRESH_DATA_AFTER).to eq(72.hours) }
   end
 
   describe 'Centralised courts (smoke test)' do
@@ -645,7 +645,7 @@ describe Court do
 
     context 'for a stale court record' do
       context 'exact threshold' do
-        let(:updated_at) { 1.hours.ago }
+        let(:updated_at) { 72.hours.ago }
 
         it 'returns true' do
           expect(subject.stale?).to eq(true)
@@ -663,7 +663,7 @@ describe Court do
     end
 
     context 'for an up to date court record' do
-      let(:updated_at) { 50.minutes.ago }
+      let(:updated_at) { 1.day.ago }
 
       it 'returns false' do
         expect(subject.stale?).to eq(false)
