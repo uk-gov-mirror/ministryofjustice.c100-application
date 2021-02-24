@@ -1,5 +1,5 @@
 class Court < ApplicationRecord
-  REFRESH_DATA_AFTER = 1.hours
+  REFRESH_DATA_AFTER = 72.hours
   UNKNOWN_GBS = 'unknown'.freeze
 
   has_many :c100_applications
