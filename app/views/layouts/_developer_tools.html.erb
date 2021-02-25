@@ -14,7 +14,8 @@
           <h4 class="govuk-heading-s">Current court data</h4>
           <p>
             <%= current_c100_application.court.name %><br/>
-            <%= current_c100_application.court.email %>
+            <strong>Court email:</strong> <%= current_c100_application.court.email %><br/>
+            <strong>Documents:</strong> <%= current_c100_application.court.documents_email %>
           </p>
         <% end %>
       <% end %>

@@ -5,7 +5,7 @@ module C100App
     end
 
     def to_address
-      c100_application.court.email
+      c100_application.court.documents_email
     end
 
     private
