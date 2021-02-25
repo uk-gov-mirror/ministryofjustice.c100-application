@@ -23,7 +23,7 @@
       </li>
 
       <li>
-        <%= render 'consent_order_section' %>
+        <%= render partial: 'consent_order_section' %>
       </li>
 
       <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>

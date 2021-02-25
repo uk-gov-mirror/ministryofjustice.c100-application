@@ -4,21 +4,6 @@
 
 <%= render partial: 'steps/shared/under_age_section' %>
 
-<%
-  court_and_tribunal_finder_url = link_to(
-    'Court and tribunal finder',
-    C100App::CourtfinderAPI.court_url(@court.slug),
-    class: 'govuk-link',
-    target: :_blank,
-    rel: :external
-  )
-%>
-
-<p class="govuk-body">
-  You need to send documents to: <%= @court.name %>. See <%= court_and_tribunal_finder_url %> for contact details.
-  Include your application reference code.
-</p>
-
 <p class="govuk-body">
   The court will not be able to process your application until these documents have been received.
 </p>
