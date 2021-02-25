@@ -23,27 +23,10 @@
       </li>
 
       <li>
-
-        <%= render 'with_consent_order' if @c100_application.consent_order? %>
-
-        <%= render 'without_consent_order' unless @c100_application.consent_order? %>
-
+        <%= render 'consent_order_section' %>
       </li>
 
-      <% if @c100_application.applicants.under_age? %>
-        <li>
-          <h3 class="govuk-heading-m">
-            Send certificate of suitability or court order appointing a litigation friend
-          </h3>
-
-          <%= render partial: 'steps/shared/under_age_section' %>
-
-          <p class="govuk-body">
-            Include your application reference code. The court will not be able to process your application until these documents have been received.
-          </p>
-        </li>
-      <% end %>
-
+      <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
       <li>
         <h3 class="govuk-heading-m">Post it to the court</h3>
