@@ -54,11 +54,23 @@ RSpec.describe CourtContactDetails do
     let(:address) { { 'address_lines' => address_lines, 'town' => 'town', 'postcode' => 'postcode' } }
     let(:address_lines){ ['line 1', 'line 2'] }
 
+    before do
+      allow(subject).to receive(:centralised?).and_return(centralised)
+    end
+
     context 'for a centralised court' do
-      # TODO: pending
+      let(:centralised) { true }
+
+      it 'returns the central hub postal address' do
+        expect(
+          subject.full_address
+        ).to eq(['C100 Applications', 'PO Box 1792', 'Southampton', 'SO15 9GG', 'DX: 135986 Southampton 32'])
+      end
     end
 
     context 'for a not yet centralised court' do
+      let(:centralised) { false }
+
       it 'returns a flattened array of name, address_lines, town and postcode' do
         expect(subject.full_address).to eq(['Court name', 'line 1', 'line 2', 'town', 'postcode'])
       end

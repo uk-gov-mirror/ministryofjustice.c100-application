@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe C100App::CourtOnlineSubmission do
   let(:c100_application) { instance_double(C100Application, email_submission: email_submission, court: court) }
   let(:email_submission) { instance_double(EmailSubmission, update: true) }
-  let(:court) { double(email: 'court@email.com') }
+  let(:court) { double(documents_email: 'court@email.com') }
 
   subject { described_class.new(c100_application) }
 
@@ -42,7 +42,7 @@ RSpec.describe C100App::CourtOnlineSubmission do
         ).and_return(mailer)
       end
 
-      it 'delivers the email to the court' do
+      it 'delivers the email to the court or central hub' do
         expect(
           mailer
         ).to receive(:application_to_court).with(to_address: 'court@email.com')

@@ -15,8 +15,7 @@ module CourtContactDetails
   end
 
   def full_address
-    # TODO: not yet enabled
-    # return CENTRAL_HUB_ADDRESS if centralised?
+    return CENTRAL_HUB_ADDRESS if centralised?
 
     # If the court is not yet centralised we default to its postal address
     [
