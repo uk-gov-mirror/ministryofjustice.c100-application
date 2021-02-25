@@ -16,52 +16,42 @@ RSpec.describe 'steps/completion/confirmation/show', type: :view do
       double('Court',
         name: 'Test court',
         email: 'court@example.com',
-        slug: 'test-court'
+        documents_email: 'documents@example.com',
+        slug: 'test-court',
+        full_address: ['10', 'downing', 'st'],
       )
     )
 
     render
   end
 
-  context 'when applicant is under age' do
-    it 'should render the `under_age_section` partial' do
-      expect(view).to render_template('steps/shared/_under_age_section')
+  context 'consent order' do
+    it 'should render the `consent_order_section` partial' do
+      expect(view).to render_template('steps/completion/confirmation/_consent_order_section')
     end
+  end
 
-    context 'when application is a consent order' do
-      it 'should render `consent_order_section` partial' do
-        expect(view).to render_template('steps/completion/confirmation/_consent_order_section')
+  context 'litigation friend' do
+    context 'when applicant is under age' do
+      let(:under_age) { true }
+
+      it 'should render the `under_age_section` partial' do
+        expect(view).to render_template('steps/completion/confirmation/_under_age_section')
       end
     end
 
-    context 'when application is not a consent order' do
-      let(:consent_order) { GenericYesNo::NO }
+    context 'when applicant is not under age' do
+      let(:under_age) { false }
 
-      it 'should not render `consent_order_section`' do
-        expect(view).to_not render_template('steps/completion/confirmation/_consent_order_section')
+      it 'should not render the `under_age_section` partial' do
+        expect(view).to_not render_template('steps/completion/confirmation/_under_age_section')
       end
     end
   end
 
-  context 'when applicant is an adult' do
-    let(:under_age) { false }
-
-    it 'should not render the `under_age_section` partial' do
-      expect(view).to_not render_template('steps/shared/_under_age_section')
-    end
-
-    context 'when application is a consent order' do
-      it 'should render `consent_order_section` partial' do
-        expect(view).to render_template('steps/completion/confirmation/_consent_order_section')
-      end
-    end
-
-    context 'when application is not a consent order' do
-      let(:consent_order) { GenericYesNo::NO }
-
-      it 'should not render `consent_order_section`' do
-        expect(view).to_not render_template('steps/completion/confirmation/_consent_order_section')
-      end
+  context 'court documents section' do
+    it 'should render the `court_documents` partial' do
+      expect(view).to render_template('steps/shared/_court_documents')
     end
   end
 end

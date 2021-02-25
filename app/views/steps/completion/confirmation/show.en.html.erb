@@ -32,9 +32,11 @@
       } %>
     <% end %>
 
+    <%= render partial: 'consent_order_section' if @c100_application.consent_order? %>
+
     <%= render partial: 'under_age_section' if @c100_application.applicants.under_age? %>
 
-    <%= render partial: 'consent_order_section' if @c100_application.consent_order? %>
+    <%= render partial: 'steps/shared/court_documents', locals: {court: @court} %>
 
     <%= render partial: 'steps/shared/court_help', locals: {court: @court} %>
 
