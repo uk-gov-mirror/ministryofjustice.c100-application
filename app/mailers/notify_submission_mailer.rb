@@ -44,6 +44,8 @@ class NotifySubmissionMailer < NotifyMailer
         court_name: court.name,
         court_email: court.email,
         court_url: court.url,
+        court_address: court.full_address.join("\n"),
+        documents_email: court.documents_email,
         is_under_age: notify_boolean(@c100_application.applicants.under_age?),
         is_consent_order: @c100_application.consent_order || 'no',
         payment_instructions: payment_instructions,
