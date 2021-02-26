@@ -13,5 +13,5 @@
   <dd><%= mail_to court.email, court.email, class: 'ga-pageLink govuk-link', data: { ga_category: 'completion', ga_label: 'email court' } %></dd>
 
   <dt>More information</dt>
-  <dd><%= link_to court.name, C100App::CourtfinderAPI.court_url(court.slug), class: 'govuk-link', rel: 'external', target: '_blank' %></dd>
+  <dd><%= link_to court.name, court.url, class: 'govuk-link', rel: 'external', target: '_blank' %></dd>
 </dl>

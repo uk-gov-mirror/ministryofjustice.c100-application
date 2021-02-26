@@ -17,7 +17,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
   let(:address_confidentiality) { 'no' }
 
   let(:court) {
-    double('Court',
+    Court.new(
       name: 'Test court',
       email: 'court@example.com',
       slug: 'test-court'
