@@ -50,6 +50,13 @@ RSpec.describe CourtContactDetails do
     end
   end
 
+  describe '#url' do
+    it 'delegates to the CourtfinderAPI class' do
+      expect(C100App::CourtfinderAPI).to receive(:court_url).with('court-slug')
+      subject.url
+    end
+  end
+
   describe '#full_address' do
     let(:address) { { 'address_lines' => address_lines, 'town' => 'town', 'postcode' => 'postcode' } }
     let(:address_lines){ ['line 1', 'line 2'] }

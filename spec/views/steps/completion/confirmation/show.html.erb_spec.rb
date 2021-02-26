@@ -18,6 +18,7 @@ RSpec.describe 'steps/completion/confirmation/show', type: :view do
         email: 'court@example.com',
         documents_email: 'documents@example.com',
         slug: 'test-court',
+        url: 'example.com/test-court',
         full_address: ['10', 'downing', 'st'],
       )
     )

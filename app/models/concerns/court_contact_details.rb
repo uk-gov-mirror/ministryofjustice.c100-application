@@ -14,6 +14,10 @@ module CourtContactDetails
     centralised_slugs.include?(slug)
   end
 
+  def url
+    C100App::CourtfinderAPI.court_url(slug)
+  end
+
   def full_address
     return CENTRAL_HUB_ADDRESS if centralised?
 

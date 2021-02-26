@@ -254,7 +254,7 @@ en:
           page_title: Applicant under age
           heading: As the applicant is under 18
           lead_text_html: "You’ll need to have someone over 18 to represent you in court hearings and make decisions on your behalf. They will be known as your ‘%{litigation_url}’."
-          court_and_tribunal_html: "You need to send documents to: %{court_name}. See %{court_and_tribunal_finder_url} for contact details."
+          court_and_tribunal_html: "You need to send documents to: %{court_name}. Visit %{court_and_tribunal_finder_url} for contact details."
           continue: Continue
       has_solicitor:
         edit:
