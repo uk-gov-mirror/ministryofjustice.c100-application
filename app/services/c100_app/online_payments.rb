@@ -79,7 +79,7 @@ module C100App
         application: APPLICATION_CODE,
         court_gbs: c100_application.court.gbs,
         court_name: c100_application.court.name,
-        court_email: c100_application.court.email,
+        court_email: c100_application.court.documents_email,
       }
     end
   end

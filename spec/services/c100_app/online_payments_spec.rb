@@ -32,7 +32,7 @@ RSpec.describe C100App::OnlinePayments do
   describe '.create_payment' do
     subject(:do_request) { described_class.create_payment(payment_intent) }
 
-    let(:court_double) { double('Court', name: 'Test court', email: 'court@example.com', gbs: 'X123') }
+    let(:court_double) { double('Court', name: 'Test court', documents_email: 'court@example.com', gbs: 'X123') }
     let(:response_double) {
       double(call: double(
         'Response', payment_id: payment_id, state: state, payment_url: 'https://payments.example.com'
