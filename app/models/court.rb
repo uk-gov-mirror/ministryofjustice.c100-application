@@ -57,15 +57,18 @@ class Court < ApplicationRecord
 
   def best_enquiries_email
     # There's no consistency to how courts list their email addresses, so we try to find
-    # the most suitable one by looking for keywords, first in the address itself, then
-    # in the `description` and finally in the `explanation` for each of the emails,
-    # and if none is found, as a last resort we try to find an email address containing
-    # the `enquiries` word and if still nothing is found, we pick the first entry.
+    # the most suitable one by looking for keywords.
+    #
+    # We prioritise the `explanation` field, and look for the `c100` keyword, as many of
+    # the courts will have an email entry with the words "Including C100 applications".
+    #
+    # After that, if no match is found, we look in the address itself, and if no match
+    # is found, as a last resort we try to find an email containing the word `enquiries`,
+    # and if still nothing is found, we pick the first entry.
     #
     emails = retrieve_emails_from_api
-    best = best_match_for(emails, 'address') ||
-           best_match_for(emails, 'description') ||
-           best_match_for(emails, 'explanation') ||
+    best = best_match_in_explanation(emails) ||
+           best_match_in_address(emails) ||
            fallback_address(emails)
 
     # We want this to raise a `KeyError` exception when no email is found
@@ -83,10 +86,14 @@ class Court < ApplicationRecord
 
   private
 
-  def best_match_for(emails, node)
-    emails.find { |e| e[node] =~ /c100/i }       || \
-      emails.find { |e| e[node] =~ /family/i }   || \
-      emails.find { |e| e[node] =~ /children/i }
+  def best_match_in_address(emails)
+    emails.find { |e| e['address'] =~ /c100/i }       || \
+      emails.find { |e| e['address'] =~ /family/i }   || \
+      emails.find { |e| e['address'] =~ /children/i }
+  end
+
+  def best_match_in_explanation(emails)
+    emails.find { |e| e['explanation'] =~ /c100/i }
   end
 
   def fallback_address(emails)
