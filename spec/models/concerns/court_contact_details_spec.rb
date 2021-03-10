@@ -24,6 +24,7 @@ RSpec.describe CourtContactDetails do
         leeds-combined-court-centre
         medway-county-court-and-family-court
         west-london-family-court
+        manchester-civil-justice-centre-civil-and-family-courts
       ))
     end
   end
