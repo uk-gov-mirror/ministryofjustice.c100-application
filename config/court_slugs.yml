@@ -8,8 +8,11 @@ blocklist:
 # Currently centralisation is disabled for any court not in this list.
 #
 centralisation:
+  # First rollout - 02/03/2021
   - brighton-county-court
   - chelmsford-county-and-family-court
   - leeds-combined-court-centre
   - medway-county-court-and-family-court
   - west-london-family-court
+  # Second rollout - 11/03/2021
+  - manchester-civil-justice-centre-civil-and-family-courts
