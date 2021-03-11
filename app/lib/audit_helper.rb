@@ -13,6 +13,7 @@ class AuditHelper
     {
       v: c100.version,
       postcode: postcode,
+      centralised: court.centralised?,
       c1a_form: c100.has_safety_concerns?,
       c8_form: c100.confidentiality_enabled?,
       under_age: c100.applicants.under_age?,
@@ -34,6 +35,10 @@ class AuditHelper
   # rubocop:enable Metrics/AbcSize
 
   private
+
+  def court
+    @_court ||= c100.court
+  end
 
   def arrangement
     @_arrangement ||= c100.court_arrangement
@@ -67,7 +72,7 @@ class AuditHelper
     return {} unless c100.online_payment?
 
     {
-      gbs_code: c100.court.gbs,
+      gbs_code: court.gbs,
       payment_id: c100.payment_intent.payment_id,
     }
   end
