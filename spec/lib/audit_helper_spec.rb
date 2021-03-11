@@ -19,7 +19,7 @@ describe AuditHelper do
   let(:payment_type) { 'cash' }
   let(:court_arrangement) { nil }
 
-  let(:court) { instance_double(Court, name: 'Test Court', gbs: 'X123') }
+  let(:court) { instance_double(Court, name: 'Test Court', gbs: 'X123', centralised?: false) }
 
   subject { described_class.new(c100_application) }
 
@@ -37,6 +37,7 @@ describe AuditHelper do
       ).to eq(
         v: 123,
         postcode: 'ABCD1**',
+        centralised: false,
         c1a_form: false,
         c8_form: false,
         under_age: false,
