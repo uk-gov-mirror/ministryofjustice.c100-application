@@ -1,6 +1,6 @@
 module C100App
   class CourtfinderAPI
-    API_BASE_URL = "https://courttribunalfinder.service.gov.uk".freeze
+    API_BASE_URL = "https://old.courttribunalfinder.service.gov.uk".freeze
     SEARCH_PATH  = "/search/results.json?aol=%<aol>s&postcode=%<postcode>s".freeze
     COURT_PATH   = "/courts/%<slug>s.json".freeze
     HEALTH_CHECK = "/healthcheck.json".freeze

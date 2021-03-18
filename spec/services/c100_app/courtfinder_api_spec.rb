@@ -10,7 +10,7 @@ describe C100App::CourtfinderAPI do
     it 'returns the court website URL' do
       expect(
         described_class.court_url('my-slug')
-      ).to eq('https://courttribunalfinder.service.gov.uk/courts/my-slug')
+      ).to eq('https://old.courttribunalfinder.service.gov.uk/courts/my-slug')
     end
   end
 
@@ -49,7 +49,7 @@ describe C100App::CourtfinderAPI do
         expect(
           Net::HTTP
         ).to receive(:start).with(
-          'courttribunalfinder.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true }
+          'old.courttribunalfinder.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true }
         ).and_return(response_double)
 
         subject.court_for('Children', 'MK9 3DX')

@@ -123,7 +123,7 @@ RSpec.describe NotifySubmissionMailer, type: :mailer do
         reference_code: '1970/01/4A362E1C',
         court_name: 'Test court',
         court_email: 'court@example.com',
-        court_url: 'https://courttribunalfinder.service.gov.uk/courts/test-court',
+        court_url: 'https://old.courttribunalfinder.service.gov.uk/courts/test-court',
         court_address: "Test court\nstreet1\nstreet2\ntown\npostcode",
         documents_email: 'court@example.com',
         is_under_age: 'no',
