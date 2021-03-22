@@ -6,14 +6,6 @@ describe C100App::CourtfinderAPI do
     'User-Agent' => 'child-arrangements-service',
   } }
 
-  describe '.court_url' do
-    it 'returns the court website URL' do
-      expect(
-        described_class.court_url('my-slug')
-      ).to eq('https://old.courttribunalfinder.service.gov.uk/courts/my-slug')
-    end
-  end
-
   describe '#court_for' do
     before do
       # Mock it as we are not testing this now

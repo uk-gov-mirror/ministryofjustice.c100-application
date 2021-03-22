@@ -18,10 +18,6 @@ module C100App
       use_ssl: true,
     }.freeze
 
-    def self.court_url(slug)
-      URI.join(API_BASE_URL, '/courts/', slug).to_s
-    end
-
     def court_for(area_of_law, postcode)
       safe_postcode = postcode.gsub(/[^a-z0-9]/i, '')
       path = format(SEARCH_PATH, aol: area_of_law, postcode: safe_postcode)

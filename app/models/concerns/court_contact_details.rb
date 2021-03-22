@@ -1,6 +1,10 @@
 module CourtContactDetails
   extend ActiveSupport::Concern
 
+  # Find a Court or Tribunal - URL used for user-facing access.
+  # For API access, refer to `services/c100_app/courtfinder_api.rb`
+  FACT_COURT_BASE_URL = 'https://www.find-court-tribunal.service.gov.uk/courts/'.freeze
+
   CENTRAL_HUB_EMAIL = 'C100applications@justice.gov.uk'.freeze
   CENTRAL_HUB_ADDRESS = [
     'C100 Applications',
@@ -15,7 +19,7 @@ module CourtContactDetails
   end
 
   def url
-    C100App::CourtfinderAPI.court_url(slug)
+    URI.join(FACT_COURT_BASE_URL, slug).to_s
   end
 
   def full_address

@@ -836,7 +836,7 @@ en:
         edit:
           page_title: Details of urgent hearing
           heading: Details of urgent hearing
-          court_info_html: If you need to go to court now, <a href="https://old.courttribunalfinder.service.gov.uk/search/" rel="external" target="_blank" class="govuk-link">contact your nearest family court</a> for assistance.
+          court_info_html: If you need to go to court now, <a href="https://www.find-court-tribunal.service.gov.uk/services/childcare-and-parenting/childcare-arrangements/search-by-postcode" rel="external" target="_blank" class="govuk-link">contact your nearest family court</a> for assistance.
     attending_court:
       language:
         edit:
