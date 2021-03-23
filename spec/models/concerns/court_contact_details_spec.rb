@@ -25,6 +25,16 @@ RSpec.describe CourtContactDetails do
         medway-county-court-and-family-court
         west-london-family-court
         manchester-civil-justice-centre-civil-and-family-courts
+        slough-county-court-and-family-court
+        norwich-combined-court-centre
+        milton-keynes-county-court-and-family-court
+        peterborough-combined-court-centre
+        staines-county-court-and-family-court
+        watford-county-court-and-family-court
+        guildford-county-court-and-family-court
+        reading-county-court-and-family-court
+        oxford-combined-court-centre
+        luton-justice-centre
       ))
     end
   end
