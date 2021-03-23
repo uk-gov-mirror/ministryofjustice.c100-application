@@ -79,7 +79,6 @@ RSpec.describe Steps::Opening::PostcodeForm do
       it 'saves the record' do
         expect(c100_application).to receive(:update).with(
           children_postcode: children_postcode,
-          court: nil,
         ).and_return(true)
 
         expect(subject.save).to be(true)

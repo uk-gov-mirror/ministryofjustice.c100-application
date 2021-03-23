@@ -11,7 +11,6 @@ module Steps
 
         c100_application.update(
           children_postcode: children_postcode,
-          court: nil, # reset court attribute, so we start fresh
         )
       end
     end
