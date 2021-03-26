@@ -32,6 +32,8 @@ environment (but will not send any emails as the GOV.UK Notify API key is not co
 
 ## Getting Started
 
+* Run `brew install shared-mime-info` so MimeMagic works fine if you are on a Mac.
+
 * Copy `.env.example` to `.env` and replace with suitable values.  
 You don't need to configure Notify or Auth0 at this point.
 
