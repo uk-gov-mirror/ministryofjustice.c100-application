@@ -1,14 +1,12 @@
 Feature: Opening
   Background:
     When I visit "/"
-    Then I should see "You can use this service to apply for a court order about child arrangements."
-    And  I click the "Start application" link
     Then I should see "What you’ll need to complete your application"
-    And  I click the "Continue" link
-    Then I should see "How long it takes to apply"
-    And  I click the "Continue" link
+     And I should see a "Back" link to "https://www.gov.uk/looking-after-children-divorce/apply-for-court-order"
+     And I should see a "Or return to a saved application" link to "/users/login"
+    When I click the "Continue" link
     Then I should see "Where do the children live?"
-    And  I should not see the save draft button
+     And I should not see the save draft button
 
   @happy_path
   Scenario: Complete the opening

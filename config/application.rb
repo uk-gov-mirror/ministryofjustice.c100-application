@@ -49,7 +49,7 @@ class Application < Rails::Application
   }
 
   # This is the GDS-hosted homepage for our service, and the one with a `start` button
-  config.gds_service_homepage_url = '/'.freeze  # TODO: replace this with the correct gov.uk URL, when we have one
+  config.gds_service_homepage_url = 'https://www.gov.uk/looking-after-children-divorce/apply-for-court-order'.freeze
 
   # Load the templates set (refer to `config/govuk_notify_templates.yml` for details)
   config.govuk_notify_templates = config_for(

@@ -1,108 +1,38 @@
-<% title '' %>
+<% title 'What is required' %>
+<% step_header(path: Rails.configuration.gds_service_homepage_url) %>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Apply to court about child arrangements</h1>
+<div class="govuk-grid-row app-inverted--card app-inverted-text">
+  <div class="govuk-grid-column-full">
+    <span class="govuk-caption-xl app-inverted-text">Before you continue</span>
+    <h1 class="govuk-heading-xl app-inverted-text">What you’ll need to complete your application</h1>
 
-    <p class="govuk-body-l">
-      You can use this service to apply for a court order about child arrangements. This can be for a child arrangements
-      order, a prohibited steps order, a specific issue order, and a consent order.
-    </p>
+    <p class="govuk-body app-inverted-text">You will need the following:</p>
 
-    <p class="govuk-body">
-      The process is different if you're applying in
-      <a href="https://www.mygov.scot/crime-justice-and-the-law/courts-and-sentencing" class="govuk-link" rel="external" target="_blank">Scotland</a>
-      and
-      <a href="https://www.nidirect.gov.uk/articles/solicitors-and-courts" class="govuk-link" rel="external" target="_blank">Northern Ireland</a>.
-    </p>
+    <ul class="govuk-list govuk-list--bullet app-inverted-text app-inverted-narrow-width">
+      <li>details of the other people (the respondents), including their date of birth</li>
+      <li>the child’s or children’s details, including date of birth</li>
+      <li>contact details of the respondents, including their current address</li>
+      <li>solicitor details (if you have asked one to represent you)</li>
+      <li>details of any previous family court cases</li>
+      <li>signed document confirming <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> attendance (if applicable)</li>
+      <li>written agreement for the court to formalise if you are applying for a consent order</li>
+      <li>completed and signed
+        <a href="https://www.gov.uk/government/publications/form-fp9-certificate-of-suitability-of-litigation-friend" class="govuk-link app-link--inverted" target="_blank" rel="external">certificate
+          of suitability</a> or copy of the court order appointing a ‘litigation friend’ if any of the people making
+        this application are under 18
+      </li>
+    </ul>
 
-    <div class="govuk-inset-text">
-      This service is the digital version of the C100 paper application form.
+    <div class="govuk-inset-text app-inset-text--inverted app-inverted-narrow-width">
+      If you do not know all of the details you can still complete your application but it will take longer to process.
     </div>
 
-    <h2 class="govuk-heading-l">Fees</h2>
-
-    <p class="govuk-body">
-      The court fee is <%= fee_amount %>. Only the person applying to court (the applicant) or their solicitor needs to pay. Check if
-      you can
-      <a href="https://www.gov.uk/get-help-with-court-fees" class="govuk-link" rel="external" target="_blank">get help
-        paying the court fee</a>.
-    </p>
-
-    <p class="govuk-body">
-      You can pay online (not all courts offer this option) or over the phone using a credit or debit card. You can also
-      send a cheque to the court, or pay in person at the court using cash or cheque.
-    </p>
-
-    <p class="govuk-body">
-      If you have a solicitor representing you, they may pay the court by direct debit. You’ll need to provide their
-      ‘fee account number’.
-    </p>
-
-    <p class="govuk-body">
-      Legal aid may be available.
-      <a href="https://www.gov.uk/check-legal-aid" class="govuk-link" rel="external" target="_blank">Check if you can
-        get legal aid</a>.
-    </p>
-
-    <h2 class="govuk-heading-l">Before you start your application</h2>
-
-    <p class="govuk-body">Follow these steps before you start:</p>
-
-    <ol class="govuk-list govuk-list--number app-list--icon-steps">
-      <li>
-        <h3 class="govuk-heading-m">
-          Look at alternative ways of resolving your dispute
-        </h3>
-        Read the
-        <a href="https://helpwithchildarrangements.service.justice.gov.uk" class="govuk-link" rel="external" target="_blank">child
-          arrangements guide</a> to see if there’s a more suitable option than going to court.
-      </li>
-      <li>
-        <h3 class="govuk-heading-m">
-          Check if you have a valid reason for not attending a Mediation Information and Assessment Meeting
-          (<abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>)
-        </h3>
-        A <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> is an introductory meeting that
-        explains how
-        <a href="https://helpwithchildarrangements.service.justice.gov.uk/professional-mediation" class="govuk-link" rel="external" target="_blank">mediation</a>
-        can help resolve your dispute. You’re legally required to attend one if you want to go to court, unless
-        <a href="/about/miam_exemptions" class="govuk-link" target="_blank">you’re exempt</a>.
-      </li>
-      <li>
-        <h3 class="govuk-heading-m">
-          Find a mediator and book a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr>
-        </h3>
-        If you have to attend a <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> you’ll need to
-        <a href="https://www.familymediationcouncil.org.uk/find-local-mediator/" class="govuk-link" rel="external" target="_blank">find
-          a mediator</a> to book one.
-      </li>
-      <li>
-        <h3 class="govuk-heading-m">
-          Get a document signed by your mediator
-        </h3>
-        When you attend your <abbr title="Mediation Information and Assessment Meeting">MIAM</abbr> you’ll need a
-        signed document confirming this. Bring the document to your first court hearing.
-      </li>
-    </ol>
-
-    <h2 class="govuk-heading-l">After you complete your application</h2>
-
-    <p class="govuk-body">
-      You can submit your completed application straight to the court electronically. If you enter an email address,
-      you’ll get a confirmation email. You can also download, print and send your application by post if you prefer.
-    </p>
-
     <div class="govuk-button-group govuk-!-margin-top-6">
-      <%= link_to entrypoint_what_is_needed_path, class: 'govuk-button govuk-button--start', data: { module: 'govuk-button' }, role: 'button', draggable: false do %>
-        Start application
-        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z" />
-        </svg>
-      <% end %>
+      <%= link_button 'Continue', edit_steps_opening_postcode_path, class: 'app-button--l app-button--inverted' %>
 
       <%= link_to 'Or return to a saved application', new_user_session_path,
-                  class: 'govuk-link govuk-link--no-visited-state govuk-!-font-size-19' %>
+                  class: 'govuk-link app-link--inverted ga-pageLink',
+                  data: { ga_category: 'save and return', ga_label: 'return to draft' } %>
     </div>
   </div>
 </div>
