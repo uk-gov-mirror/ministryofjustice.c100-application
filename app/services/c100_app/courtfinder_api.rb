@@ -1,9 +1,9 @@
 module C100App
   class CourtfinderAPI
-    API_BASE_URL = "https://courttribunalfinder.service.gov.uk".freeze
+    API_BASE_URL = "https://www.find-court-tribunal.service.gov.uk".freeze
     SEARCH_PATH  = "/search/results.json?aol=%<aol>s&postcode=%<postcode>s".freeze
     COURT_PATH   = "/courts/%<slug>s.json".freeze
-    HEALTH_CHECK = "/healthcheck.json".freeze
+    HEALTH_CHECK = "/health".freeze
 
     HTTP_HEADERS = {
       'Accept' => 'application/json',
@@ -17,10 +17,6 @@ module C100App
       read_timeout: 20,
       use_ssl: true,
     }.freeze
-
-    def self.court_url(slug)
-      URI.join(API_BASE_URL, '/courts/', slug).to_s
-    end
 
     def court_for(area_of_law, postcode)
       safe_postcode = postcode.gsub(/[^a-z0-9]/i, '')
@@ -42,7 +38,7 @@ module C100App
     private
 
     def status
-      get_request(HEALTH_CHECK).dig('*', 'status')
+      get_request(HEALTH_CHECK).dig('mapit-api', 'status').eql?('UP')
     rescue StandardError
       false
     end

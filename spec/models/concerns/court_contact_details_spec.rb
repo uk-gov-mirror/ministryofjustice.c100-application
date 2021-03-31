@@ -62,9 +62,8 @@ RSpec.describe CourtContactDetails do
   end
 
   describe '#url' do
-    it 'delegates to the CourtfinderAPI class' do
-      expect(C100App::CourtfinderAPI).to receive(:court_url).with('court-slug')
-      subject.url
+    it 'returns the URL to the court in FaCT' do
+      expect(subject.url).to eq('https://www.find-court-tribunal.service.gov.uk/courts/court-slug')
     end
   end
 

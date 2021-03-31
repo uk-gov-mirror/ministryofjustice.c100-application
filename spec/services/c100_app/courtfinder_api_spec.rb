@@ -6,14 +6,6 @@ describe C100App::CourtfinderAPI do
     'User-Agent' => 'child-arrangements-service',
   } }
 
-  describe '.court_url' do
-    it 'returns the court website URL' do
-      expect(
-        described_class.court_url('my-slug')
-      ).to eq('https://courttribunalfinder.service.gov.uk/courts/my-slug')
-    end
-  end
-
   describe '#court_for' do
     before do
       # Mock it as we are not testing this now
@@ -49,7 +41,7 @@ describe C100App::CourtfinderAPI do
         expect(
           Net::HTTP
         ).to receive(:start).with(
-          'courttribunalfinder.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true }
+          'www.find-court-tribunal.service.gov.uk', 443, :ENV, { open_timeout: 10, read_timeout: 20, use_ssl: true }
         ).and_return(response_double)
 
         subject.court_for('Children', 'MK9 3DX')
@@ -133,8 +125,8 @@ describe C100App::CourtfinderAPI do
   end
 
   describe '#is_ok?' do
-    let(:healthy_response) { { '*' => { 'status' => true } } }
-    let(:unhealthy_response) { { '*' => { 'status' => false } } }
+    let(:healthy_response) { { 'mapit-api' => { 'status' => 'UP' } } }
+    let(:unhealthy_response) { { 'mapit-api' => { 'status' => 'DOWN' } } }
 
     before do
       # Mock it as we are not testing this now
@@ -145,7 +137,7 @@ describe C100App::CourtfinderAPI do
       expect(
         Net::HTTP::Get
       ).to receive(:new).with(
-        '/healthcheck.json', http_headers
+        '/health', http_headers
       )
 
       subject.is_ok?
@@ -162,7 +154,7 @@ describe C100App::CourtfinderAPI do
 
       # mutant kill
       it 'digs the status' do
-        expect(healthy_response).to receive(:dig).with('*', 'status')
+        expect(healthy_response).to receive(:dig).with('mapit-api', 'status')
         subject.is_ok?
       end
     end
