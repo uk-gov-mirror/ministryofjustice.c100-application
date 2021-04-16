@@ -76,3 +76,7 @@ When(/^I have entered a child with first name "([^"]*)" and last name "([^"]*)"$
   step %[I click the "Continue" button]
   step %[I should see "Provide details for #{first_name} #{last_name}"]
 end
+
+Then(/^the analytics cookies radio buttons are defaulted to 'No'$/) do
+  cookie_management_page.analytics_question.assert_value('No')
+end

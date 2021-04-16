@@ -4,6 +4,7 @@ require 'capybara/dsl'
 require 'capybara/cucumber'
 require 'cucumber/rails'
 require 'dotenv/load'
+require_relative './capybara_screenshot'
 
 Capybara.register_driver(:chrome_headless) do |app|
   args = %w[disable-gpu no-sandbox]

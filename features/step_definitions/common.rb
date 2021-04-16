@@ -47,6 +47,10 @@ When(/^I have started an application$/) do
   step %[I should be on "/steps/opening/consent_order"]
 end
 
+When(/^I am on the home page$/) do
+  step %[I visit "/"]
+end
+
 When(/^I pause for "([^"]*)" seconds$/) do |seconds|
   sleep seconds.to_i
 end
