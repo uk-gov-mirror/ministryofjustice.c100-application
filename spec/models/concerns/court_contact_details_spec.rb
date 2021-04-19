@@ -35,6 +35,9 @@ RSpec.describe CourtContactDetails do
         reading-county-court-and-family-court
         oxford-combined-court-centre
         luton-justice-centre
+        carlisle-combined-court
+        barrow-in-furness-county-court-and-family-court
+        preston-crown-court-and-family-court-sessions-house
       ))
     end
   end
