@@ -19,6 +19,46 @@ module C100
           element :content, '.govuk-notification-banner__content .govuk-notification-banner__heading'
         end
 
+        section :cookie_banner, '.govuk-cookie-banner' do
+          element :accept_button, :button, 'Accept analytics cookies'
+          element :reject_button, :button, 'Reject analytics cookies'
+          element :link_to_cookie_page, :link, 'View cookies'
+
+          def view_cookies
+            link_to_cookie_page.click
+          end
+
+          def accept
+            accept_button.click
+          end
+
+          def reject
+            reject_button.click
+          end
+
+        end
+
+        section :cookie_confirmation_banner, '.govuk-cookie-banner.confirmation' do
+          element :hide_message_button, :button, 'Hide this message'
+          element :change_cookie_settings_link, :link, 'change your cookie settings'
+          def has_message?(*args)
+            message_container.has_message?(*args)
+          end
+
+          def hide_message
+            hide_message_button.click
+          end
+
+          def change_cookie_settings
+            change_cookie_settings_link.click
+          end
+
+          private
+
+          section :message_container, '.govuk-cookie-banner__message' do
+            element :message, '.govuk-cookie-banner__content'
+          end
+        end
 
         private
 

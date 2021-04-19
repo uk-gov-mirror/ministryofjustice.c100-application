@@ -311,7 +311,7 @@ Rails.application.routes.draw do
   resource :cookies,
            path: '/about/cookies',
            path_names: { edit: '/' },
-           only: [:edit, :update]
+           only: [:edit, :update, :create]
 
   root 'steps/opening/start#show'
 

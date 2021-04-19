@@ -24,13 +24,13 @@ end
 
 When(/^I choose "([^"]*)"$/) do |text|
   step %[I click the radio button "#{text}"]
-  find('[name=commit]').click
+  find('[name=commit][value=Continue]').click
 end
 
 And(/^I choose "([^"]*)" and fill in "([^"]*)" with "([^"]*)"$/) do |text, field, value|
   step %[I click the radio button "#{text}"]
   step %[I fill in "#{field}" with "#{value}"]
-  find('[name=commit]').click
+  find('[name=commit][value=Continue]').click
 end
 
 When(/^I enter the date (\d+)\-(\d+)\-(\d+)$/) do |day, month, year|

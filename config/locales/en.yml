@@ -984,6 +984,11 @@ en:
   home:
     index:
       heading: Start here
+  cookie_banner:
+    confirmation_message:
+      true: You've accepted analytics cookies.
+      false: You've rejected analytics cookies.
+
 
   layouts:
     footer_links:

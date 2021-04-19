@@ -38,7 +38,7 @@
 <script>
   document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
 </script>
-
+<%= yield(:cookie_banner) %>
 <a href="#main-content" class="govuk-skip-link">
   <%= content_for?(:skip_link_message) ? yield(:skip_link_message) : 'Skip to main content' %>
 </a>

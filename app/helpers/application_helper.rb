@@ -88,4 +88,14 @@ module ApplicationHelper
   def dev_tools_enabled?
     Rails.env.development? || Rails.env.test? || %w[true yes 1].include?(ENV['DEV_TOOLS_ENABLED'])
   end
+
+  def path_only(url)
+    return nil if url.nil?
+
+    URI.parse(url).tap do |uri|
+      uri.host = nil
+      uri.port = nil
+      uri.scheme = nil
+    end.to_s
+  end
 end
