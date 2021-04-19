@@ -58,3 +58,12 @@ end
 And(/^Page has title "([^"]*)"/) do |text|
   expect(page).to have_title(text)
 end
+
+And(/^analytics cookies are NOT allowed to be set$/) do
+  expect(page.evaluate_script("window['ga-disable-#{Rails.application.config.x.analytics_tracking_id}']"))
+    .to be(true), 'Google analytics is enabled it should not be'
+end
+
+Then(/^google analytics cookies are allowed to be set$/) do
+  expect(any_page).to have_google_analytics_enabled
+end

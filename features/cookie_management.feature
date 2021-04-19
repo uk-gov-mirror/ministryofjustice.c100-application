@@ -14,14 +14,16 @@ Feature: Cookie management
   Scenario: Allowing analytics cookies on the cookie management page
     When I click the "Cookies" link
     When I select 'Yes' for analytics cookies
-    And click 'Save cookie settings'
+    And I click the "Save cookie settings" button
     Then google analytics cookies are allowed to be set
-    And a confirmation box will appear telling me that my settings have been saved
+    And a confirmation box will appear telling me that my cookie settings have been saved
+    And the analytics cookies radio buttons are defaulted to 'Yes'
   Scenario: Not allowing analytics cookies on the cookie management page
     When I click the "Cookies" link
     When I select 'No' for analytics cookies
-    And click 'Save cookie settings'
-    Then google analytics cookies are NOT allowed to be set
-    And a confirmation box will appear telling me that my settings have been saved
+    And I click the "Save cookie settings" button
+    Then analytics cookies are NOT allowed to be set
+    And a confirmation box will appear telling me that my cookie settings have been saved
+    And the analytics cookies radio buttons are defaulted to 'No'
 
 

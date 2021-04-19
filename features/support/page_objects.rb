@@ -5,6 +5,12 @@ module C100
       def cookie_management_page
         CookieManagementPage.new
       end
+
+      # @return [C100::Test::PageObjects::AnyPage] The special 'any' page that can access
+      #   elements that are common to all
+      def any_page
+        AnyPage.new
+      end
     end
   end
 end

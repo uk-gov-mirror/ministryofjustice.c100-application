@@ -308,11 +308,15 @@ Rails.application.routes.draw do
     get :not_found
   end
 
+  resource :cookies,
+           path: '/about/cookies',
+           path_names: { edit: '/' },
+           only: [:edit, :update]
+
   root 'steps/opening/start#show'
 
   get 'about/accessibility'
   get 'about/contact'
-  get 'about/cookies'
   get 'about/privacy'
   get 'about/terms_and_conditions'
   get 'about/privacy_consent'

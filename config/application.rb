@@ -94,4 +94,5 @@ class Application < Rails::Application
   # Not using Fee Register for now as we only have 1 fee, but might be used in the future.
   config.x.court_fee.amount_in_pence = 215_00
   config.x.court_fee.description = 'Court fee for a child arrangements application (C100)'
+  config.x.analytics_tracking_id = ENV['GA_TRACKING_ID']
 end

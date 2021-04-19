@@ -59,7 +59,6 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0', '>= 1.0.25'
   gem 'cucumber', '< 4.0.0'
   gem 'cucumber-rails', require: false
-  gem 'et_test_helpers', git: 'https://github.com/hmcts/et_test_helpers.git', tag: 'v0.1.21'
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rubocop'
@@ -67,6 +66,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
+  gem 'site_prism', '~> 3.7', '>= 3.7.1'
   gem 'webdrivers'
   gem 'webmock'
 end

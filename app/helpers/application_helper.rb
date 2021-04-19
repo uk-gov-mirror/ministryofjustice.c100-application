@@ -44,7 +44,7 @@ module ApplicationHelper
   end
 
   def analytics_tracking_id
-    ENV['GA_TRACKING_ID']
+    Rails.application.config.x.analytics_tracking_id
   end
 
   def service_name

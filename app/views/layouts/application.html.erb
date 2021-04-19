@@ -25,6 +25,7 @@
 
 <% content_for(:flash_alert) do %>
   <%= render partial: 'layouts/flash_alert' if flash[:alert].present? %>
+  <%= render partial: 'layouts/flash_cookie_success' if flash[:cookie_success].present? %>
 <% end %>
 
 <% content_for(:content) do %>

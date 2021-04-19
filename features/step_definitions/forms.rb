@@ -77,6 +77,14 @@ When(/^I have entered a child with first name "([^"]*)" and last name "([^"]*)"$
   step %[I should see "Provide details for #{first_name} #{last_name}"]
 end
 
-Then(/^the analytics cookies radio buttons are defaulted to 'No'$/) do
-  cookie_management_page.analytics_question.assert_value('No')
+Then(/^the analytics cookies radio buttons are defaulted to '([^']*)'$/) do |value|
+  cookie_management_page.analytics_question.assert_value(value)
+end
+
+When(/^I select '([^']*)' for analytics cookies$/) do |value|
+  cookie_management_page.analytics_question.set(value)
+end
+
+And(/^a confirmation box will appear telling me that my cookie settings have been saved$/) do
+  expect(any_page).to have_cookie_preferences_updated_message
 end

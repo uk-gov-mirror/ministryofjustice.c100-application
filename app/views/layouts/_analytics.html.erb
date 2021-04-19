@@ -7,4 +7,7 @@
   ga('create', '<%= analytics_tracking_id %>', 'auto');
   ga('set', 'anonymizeIp', true);
   ga('send', 'pageview');
+  <% unless cookie_settings['usage'] %>
+  window["ga-disable-<%= analytics_tracking_id %>"] = true
+  <% end %>
 </script>
