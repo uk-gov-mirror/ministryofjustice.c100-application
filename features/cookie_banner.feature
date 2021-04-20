@@ -22,16 +22,20 @@ Feature: Cookie banner
     When I click "Accept analytics cookies" in the cookie banner
     When I click "change your cookie settings" from the cookie confirmation banner
     Then I will be taken to the cookies page
+    And google analytics cookies are allowed to be set
   Scenario: Changing cookie settings once rejected using banner
     When I click "Reject analytics cookies" in the cookie banner
     When I click "change your cookie settings" from the cookie confirmation banner
     Then I will be taken to the cookies page
+    And analytics cookies are NOT allowed to be set
   Scenario: Closing the confirmation banner after accepting analytics cookies
     When I click "Accept analytics cookies" in the cookie banner
     When I select 'hide message' from the cookie confirmation banner
     Then the cookie confirmation banner will be closed
+    And google analytics cookies are allowed to be set
   Scenario: Closing the confirmation banner after rejecting analytics cookies
     When I click "Reject analytics cookies" in the cookie banner
     When I select 'hide message' from the cookie confirmation banner
     Then the cookie confirmation banner will be closed
+    And analytics cookies are NOT allowed to be set
 

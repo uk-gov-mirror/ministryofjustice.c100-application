@@ -182,8 +182,12 @@
         </tbody>
       </table>
 
-      <%= f.govuk_collection_radio_buttons :usage, [[true, 'Yes'], [false, 'No']], :first, :last, nil, legend: { text: 'Do you want to accept analytics cookies?' } %>
-      <%= f.govuk_submit 'Save cookie settings' %>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <%= f.govuk_collection_radio_buttons :usage, [[true, 'Yes'], [false, 'No']], :first, :last, nil, legend: { text: 'Do you want to accept analytics cookies?', size: 'm' } %>
+          <%= f.govuk_submit 'Save cookie settings' %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>

@@ -95,4 +95,5 @@ class Application < Rails::Application
   config.x.court_fee.amount_in_pence = 215_00
   config.x.court_fee.description = 'Court fee for a child arrangements application (C100)'
   config.x.analytics_tracking_id = ENV['GA_TRACKING_ID']
+  config.x.cookie_expiry = 1.year
 end
