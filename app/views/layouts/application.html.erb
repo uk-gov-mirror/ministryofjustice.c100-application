@@ -9,6 +9,13 @@
   <%= render partial: 'layouts/analytics' if analytics_tracking_id.present? %>
 <% end %>
 
+<% content_for(:cookie_banner) do %>
+  <%= render partial: 'layouts/cookie_banner' unless cookie_settings['seen'] %>
+  <%- if flash[:cookie_banner_confirmation].present? %>
+  <%= render partial: 'layouts/cookie_banner_confirmation', locals: { message: flash[:cookie_banner_confirmation] } %>
+  <% end %>
+
+<% end %>
 <% content_for(:service_name) do %>
   <%= link_to service_name, '/',
               class: 'govuk-header__link govuk-header__link--service-name ga-pageLink',
@@ -25,6 +32,7 @@
 
 <% content_for(:flash_alert) do %>
   <%= render partial: 'layouts/flash_alert' if flash[:alert].present? %>
+  <%= render partial: 'layouts/flash_cookie_success' if flash[:cookie_success].present? %>
 <% end %>
 
 <% content_for(:content) do %>

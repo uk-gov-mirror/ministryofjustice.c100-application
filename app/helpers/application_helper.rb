@@ -44,7 +44,7 @@ module ApplicationHelper
   end
 
   def analytics_tracking_id
-    ENV['GA_TRACKING_ID']
+    Rails.application.config.x.analytics_tracking_id
   end
 
   def service_name
@@ -87,5 +87,15 @@ module ApplicationHelper
   # Use this to feature-flag code that should only show in test environments
   def dev_tools_enabled?
     Rails.env.development? || Rails.env.test? || %w[true yes 1].include?(ENV['DEV_TOOLS_ENABLED'])
+  end
+
+  def path_only(url)
+    return nil if url.nil?
+
+    URI.parse(url).tap do |uri|
+      uri.host = nil
+      uri.port = nil
+      uri.scheme = nil
+    end.to_s
   end
 end

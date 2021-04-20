@@ -56,6 +56,7 @@ end
 group :test do
   gem 'brakeman'
   gem 'capybara'
+  gem 'capybara-screenshot', '~> 1.0', '>= 1.0.25'
   gem 'cucumber', '< 4.0.0'
   gem 'cucumber-rails', require: false
   gem 'rails-controller-testing'
@@ -65,6 +66,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'simplecov-rcov'
+  gem 'site_prism', '~> 3.7', '>= 3.7.1'
   gem 'webdrivers'
   gem 'webmock'
 end

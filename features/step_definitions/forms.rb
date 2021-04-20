@@ -24,13 +24,13 @@ end
 
 When(/^I choose "([^"]*)"$/) do |text|
   step %[I click the radio button "#{text}"]
-  find('[name=commit]').click
+  find('[name=commit][value=Continue]').click
 end
 
 And(/^I choose "([^"]*)" and fill in "([^"]*)" with "([^"]*)"$/) do |text, field, value|
   step %[I click the radio button "#{text}"]
   step %[I fill in "#{field}" with "#{value}"]
-  find('[name=commit]').click
+  find('[name=commit][value=Continue]').click
 end
 
 When(/^I enter the date (\d+)\-(\d+)\-(\d+)$/) do |day, month, year|
@@ -75,4 +75,16 @@ When(/^I have entered a child with first name "([^"]*)" and last name "([^"]*)"$
   step %[I fill in "Last name(s)" with "#{last_name}"]
   step %[I click the "Continue" button]
   step %[I should see "Provide details for #{first_name} #{last_name}"]
+end
+
+Then(/^the analytics cookies radio buttons are defaulted to '([^']*)'$/) do |value|
+  cookie_management_page.analytics_question.assert_value(value)
+end
+
+When(/^I select '([^']*)' for analytics cookies$/) do |value|
+  cookie_management_page.analytics_question.set(value)
+end
+
+And(/^a confirmation box will appear telling me that my cookie settings have been saved$/) do
+  expect(any_page).to have_cookie_preferences_updated_message
 end
