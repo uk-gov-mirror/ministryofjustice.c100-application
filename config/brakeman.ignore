@@ -1,25 +1,26 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "Cross-Site Request Forgery",
-      "warning_code": 7,
-      "fingerprint": "f242fb9c017a95e2e38d907553322a524ca99a62df1307c7d77eedd88122b880",
-      "check_name": "ForgerySetting",
-      "message": "`protect_from_forgery` should be called in `BareApplicationController`",
-      "file": "app/controllers/bare_application_controller.rb",
-      "line": 1,
-      "link": "https://brakemanscanner.org/docs/warning_types/cross-site_request_forgery/",
-      "code": null,
+      "warning_type": "Redirect",
+      "warning_code": 18,
+      "fingerprint": "77bd79b7fd28a18a63e5bad7a646d1af1609fba0ff4a9675bd2dd83ab255222c",
+      "check_name": "Redirect",
+      "message": "Possible unprotected redirect",
+      "file": "app/controllers/cookies_controller.rb",
+      "line": 14,
+      "link": "https://brakemanscanner.org/docs/warning_types/redirect/",
+      "code": "redirect_to(path_only(params.dig(:cookie, :return_path)), :flash => ({ :cookie_banner_confirmation => t(\"cookie_banner.confirmation_message.#{cookie_form.usage}\") }))",
       "render_path": null,
       "location": {
-        "type": "controller",
-        "controller": "BareApplicationController"
+        "type": "method",
+        "class": "CookiesController",
+        "method": "create"
       },
-      "user_input": null,
-      "confidence": "High",
-      "note": "No need for a CSRF token as we only use GET endpoints or bearer token."
+      "user_input": "params.dig(:cookie, :return_path)",
+      "confidence": "Weak",
+      "note": ""
     }
   ],
-  "updated": "2019-03-06 15:58:04 +0000",
-  "brakeman_version": "4.4.0"
+  "updated": "2021-04-20 07:14:28 +0100",
+  "brakeman_version": "5.0.0"
 }
