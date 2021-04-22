@@ -22,10 +22,6 @@
             <%= f.govuk_collection_check_boxes :orders_collection, PetitionOrder::SPECIFIC_ISSUES, :to_s, :to_s %>
           <% end %>
         <% end %>
-
-        <%= f.govuk_check_box :orders, PetitionOrder::OTHER_ISSUE.to_s do
-          f.govuk_text_area :orders_additional_details
-        end %>
       <% end %>
 
       <%= f.continue_button %>

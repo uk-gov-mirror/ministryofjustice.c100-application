@@ -39,7 +39,7 @@ module Summary
 
     describe '#answers' do
       it 'has the correct rows' do
-        expect(answers.count).to eq(5)
+        expect(answers.count).to eq(4)
 
         expect(answers[0]).to be_an_instance_of(MultiAnswer)
         expect(answers[0].question).to eq(:child_arrangements_orders)
@@ -68,18 +68,13 @@ module Summary
         ])
         expect(answers[2].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-group-specific-issues-field')
 
-        expect(answers[3]).to be_an_instance_of(FreeTextAnswer)
-        expect(answers[3].question).to eq(:other_issue_details)
-        expect(answers[3].value).to eq('orders detail')
-        expect(answers[3].change_path).to eq('/steps/petition/orders#steps-petition-orders-form-orders-other-issue-field')
-
-        expect(answers[4]).to be_an_instance_of(AnswersGroup)
-        expect(answers[4].name).to eq(:protection_orders)
-        expect(answers[4].change_path).to eq('/steps/petition/protection')
-        expect(answers[4].answers.count).to eq(2)
+        expect(answers[3]).to be_an_instance_of(AnswersGroup)
+        expect(answers[3].name).to eq(:protection_orders)
+        expect(answers[3].change_path).to eq('/steps/petition/protection')
+        expect(answers[3].answers.count).to eq(2)
 
         ## protection_orders group answers ###
-        protection = answers[4].answers
+        protection = answers[3].answers
 
         expect(protection[0]).to be_an_instance_of(Answer)
         expect(protection[0].question).to eq(:protection_orders)
@@ -94,7 +89,7 @@ module Summary
         let(:orders) { ['consent_order'] }
 
         it 'has the correct rows' do
-          expect(answers.count).to eq(3)
+          expect(answers.count).to eq(2)
 
           expect(answers[0]).to be_an_instance_of(MultiAnswer)
           expect(answers[0].question).to eq(:formalise_arrangements)
