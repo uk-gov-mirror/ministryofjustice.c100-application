@@ -7,12 +7,12 @@ class StepController < ApplicationController
 
   def previous_step_path
     # Second to last element in the array, will be nil for arrays of size 0 or 1
-    current_c100_application&.navigation_stack&.slice(-2) || root_path
+    navigation_stack.previous_path || root_path
   end
   helper_method :previous_step_path
 
   def fast_forward_to_cya?
-    navigation_stack.fast_forward_to_cya?
+    navigation_stack.fast_forward_to_cya?(request.fullpath)
   end
   helper_method :fast_forward_to_cya?
 
@@ -118,12 +118,17 @@ class StepController < ApplicationController
   end
 
   def navigation_stack
-    @_navigation_stack ||= C100App::NavigationStack.new(
-      current_c100_application, request
-    )
+    @_navigation_stack ||= C100App::NavigationStack.new(current_c100_application.navigation_stack)
   end
 
   def update_navigation_stack
-    navigation_stack.update!
+    new_stack = navigation_stack.updated_for(request.fullpath)
+
+    return if new_stack == current_c100_application.navigation_stack
+
+    current_c100_application.navigation_stack = new_stack
+    current_c100_application.save!(touch: false)
+
+    @_navigation_stack = C100App::NavigationStack.new(new_stack)
   end
 end

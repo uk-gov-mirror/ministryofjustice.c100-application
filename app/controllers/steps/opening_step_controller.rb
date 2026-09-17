@@ -10,8 +10,7 @@ module Steps
     end
 
     def not_enough_progress?
-      !(current_c100_application.navigation_stack.size > 2 &&
-      %w[screening completed].exclude?(current_c100_application.status))
+      !(navigation_stack.progressed? && %w[screening completed].exclude?(current_c100_application.status))
     end
 
     def is_attempting_restart?
@@ -23,8 +22,7 @@ module Steps
     end
 
     def in_progress_enough?
-      current_c100_application.navigation_stack.size > 2 &&
-        %w[screening completed].exclude?(current_c100_application.status)
+      navigation_stack.progressed? && %w[screening completed].exclude?(current_c100_application.status)
     end
 
     def existing_application_warning

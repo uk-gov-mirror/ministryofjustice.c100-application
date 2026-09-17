@@ -29,13 +29,19 @@ RSpec.describe DummyStepController, type: :controller do
     end
 
     it 'handles the navigation stack update' do
-      expect(
-        C100App::NavigationStack
-      ).to receive(:new).with(c100_application, anything).and_return(navigation_stack)
+      get :show, session: { c100_application_id: c100_application.id }
 
-      expect(navigation_stack).to receive(:update!)
+      expect(c100_application.reload.navigation_stack).to eq(['/dummy_step'])
+    end
+
+    it 'does not update the application when the navigation stack has not changed' do
+      c100_application.update!(navigation_stack: ['/dummy_step'])
+
+      expect(c100_application).not_to receive(:save!)
 
       get :show, session: { c100_application_id: c100_application.id }
+
+      expect(c100_application.reload.navigation_stack).to eq(['/dummy_step'])
     end
   end
 
@@ -71,21 +77,19 @@ RSpec.describe DummyStepController, type: :controller do
   end
 
   describe '#fast_forward_to_cya?' do
-    let(:c100_application) { double('C100Application') }
-    let(:request) { double('Request') }
+    let(:c100_application) { double('C100Application', navigation_stack: []) }
     let(:navigation_stack) { double.as_null_object }
 
     before do
       allow(subject).to receive(:current_c100_application).and_return(c100_application)
-      allow(subject).to receive(:request).and_return(request)
     end
 
     it 'queries the navigation stack to see if fast forward is available' do
-      expect(
-        C100App::NavigationStack
-      ).to receive(:new).with(c100_application, request).and_return(navigation_stack)
+      allow(request).to receive(:fullpath).and_return('/new_step')
+      expect(C100App::NavigationStack).to receive(:new).with(c100_application.navigation_stack)
+                                                       .and_return(navigation_stack)
 
-      expect(navigation_stack).to receive(:fast_forward_to_cya?)
+      expect(navigation_stack).to receive(:fast_forward_to_cya?).with('/new_step')
 
       subject.fast_forward_to_cya?
     end
