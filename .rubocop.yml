@@ -4,7 +4,7 @@ plugins:
 AllCops:
   SuggestExtensions: false
   NewCops: disable
-  TargetRubyVersion: 4.0.5
+  TargetRubyVersion: 4.0.6
   Exclude:
     - './*'
     - 'db/**/*'

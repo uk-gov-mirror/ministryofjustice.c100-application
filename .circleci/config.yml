@@ -13,7 +13,7 @@ orbs:
 references:
   app_containers: &app_containers
     docker:
-      - image: cimg/ruby:4.0.5-browsers
+      - image: cimg/ruby:4.0.6-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
