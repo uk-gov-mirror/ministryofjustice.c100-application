@@ -39,7 +39,7 @@ module Summary
                          ).try(:name),
                          change_path: edit_steps_application_existing_court_order_upload_path)
         ].select(&:show?)
-      end # rubocop:enable Metrics/AbcSize, Metrics/MethodLength:
+      end # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
       private
 

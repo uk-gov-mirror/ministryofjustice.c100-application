@@ -7,8 +7,8 @@ module Steps
       attribute :phone_number_unknown, Boolean
 
       validates :email, email: true, unless: :email_unknown?
-      validates_presence_of  :email, unless: :email_unknown?
-      validates_presence_of  :phone_number, unless: :phone_number_unknown?
+      validates_presence_of :email, unless: :email_unknown?
+      validates_presence_of :phone_number, unless: :phone_number_unknown?
       validates :phone_number, phone_number: true, unless: :phone_number_unknown?
       validates :email, unknown_respondent_input: true, if: :email_unknown?
       validates :phone_number, unknown_respondent_input: true, if: :phone_number_unknown?

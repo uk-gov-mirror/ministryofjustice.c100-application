@@ -9,8 +9,8 @@ module Steps
       attribute :previous_attempt_agency_involved, YesNo
       attribute :previous_attempt_agency_details, String
 
-      validates_presence_of  :previous_attempt_details
-      validates_presence_of  :previous_attempt_agency_details, if: -> { previous_attempt_agency_involved&.yes? }
+      validates_presence_of :previous_attempt_details
+      validates_presence_of :previous_attempt_agency_details, if: -> { previous_attempt_agency_involved&.yes? }
 
       validates_inclusion_of :previous_attempt_agency_involved, in: GenericYesNo.values
 

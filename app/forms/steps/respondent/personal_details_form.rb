@@ -15,8 +15,8 @@ module Steps
 
       validates_inclusion_of :gender, in: Gender.values
 
-      validates_presence_of  :input_dob, unless: :dob_unknown?
-      validates_presence_of  :dob, unless: :date_entered?
+      validates_presence_of :input_dob, unless: :dob_unknown?
+      validates_presence_of :dob, unless: :date_entered?
       validates :dob, sensible_date: true, unless: :dob_unknown?
       validates :input_dob, date: true, unless: :dob_unknown?
       validates_presence_of :input_dob_estimate, if: :dob_unknown?

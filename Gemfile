@@ -12,6 +12,8 @@ gem 'pg', '~> 1.1'
 gem 'puma'
 gem 'rails', '~> 8.1'
 gem 'responders'
+gem 'json', '~> 2.21.2'
+
 
 # frontend assets management
 gem 'propshaft'
