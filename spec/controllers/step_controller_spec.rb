@@ -20,7 +20,6 @@ RSpec.describe DummyStepController, type: :controller do
 
   describe 'navigation stack' do
     let!(:c100_application) { C100Application.create }
-    let(:navigation_stack) { double.as_null_object }
 
     # In these tests we are persisting the application record,
     # so we need to cleanup after we are finished with it.
@@ -37,6 +36,7 @@ RSpec.describe DummyStepController, type: :controller do
     it 'does not update the application when the navigation stack has not changed' do
       c100_application.update!(navigation_stack: ['/dummy_step'])
 
+      allow(subject).to receive(:current_c100_application).and_return(c100_application)
       expect(c100_application).not_to receive(:save!)
 
       get :show, session: { c100_application_id: c100_application.id }
