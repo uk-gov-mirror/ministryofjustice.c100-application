@@ -60,8 +60,6 @@ gem 'csv'
 gem 'cgi', '~> 0.5.1'
 gem 'mutex_m'
 
-gem 'prometheus-client', '~> 4.2.5'
-
 group :development, :production do
   gem 'lograge'
   gem 'logstash-event'
