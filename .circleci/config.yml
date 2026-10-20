@@ -264,7 +264,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^RST-8518$/
+                - /^rst-8703-prometheus-filtered$/
       - deploy_image_to_dev:
           name: deploy-dev-live
           env_name: dev
@@ -273,7 +273,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^RST-8518$/
+                - /^rst-8703-prometheus-filtered$/
       ### staging ###
       - build_and_push_image:
           name: build-staging
