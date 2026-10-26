@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Each entry is headed by the date the dependency update run was performed.
 
+## 2026-10-26
+
+### Security
+
+- Updated ruby 4.0.7 → 4.0.9 — fixes CVE-2026-93577, CVE-2026-97229, CVE-2026-110264 (regexp compiler overflows)
+- Updated crass 1.0.7 → 1.0.8 and sanitize 7.0.0 → 7.0.1 — fixes GHSA-pq4g-8rxf-4g29 (CSS sanitizer bypass)
+- Updated pg 1.6.3 → 1.7.0 — memory-safety fixes and SQL injection guard in `set_client_encoding`
+- Updated puppeteer 24.43.1 → 25.16.0 — drops extract-zip, basic-ftp and ip-address (5 advisories, extract-zip unpatchable); zod → 4.6.7
+- Updated transitive fast-uri 3.1.8 → 3.1.9 and source-map-js 1.2.1 → 1.2.2 via `resolutions`
+
+### Changed
+
+- Updated rails 8.1.3.1 → 8.1.4, govuk-frontend 6.5.1 → 6.6.0, govuk_design_system_formbuilder 6.5.0 → 6.6.0
+- Updated sentry-ruby/rails/sidekiq 6.7.0 → 7.1.0, redis 5.4.1 → 6.0.0, json 2.21.2 → 3.1.0, prometheus-client 4.2.5 → 5.0.0
+- Updated brakeman 8.0.6 → 8.1.0, cuprite 0.18 → 0.19, listen 3.10.0 → 3.10.1, lograge 0.15.0 → 0.15.1, rspec_junit_formatter 0.6.0 → 0.8.0, selenium-webdriver 4.49.0 → 4.51.0, webmock 3.26.4 → 3.34.0
+
+### Known issues
+
+- cucumber 12.0.0 not applied: cucumber-rails 4.1.0 requires cucumber < 12
+- Deferred (released within 7 days): aws-sdk-s3, mutant-rspec, parser, pry, rubocop, vernier, sass, webpack
+- simplecov held at 0.22.0 (SonarQube cannot parse the 1.x report format)
+
 ## 2026-08-14
 
 ### Security
