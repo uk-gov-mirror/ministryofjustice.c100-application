@@ -13,7 +13,7 @@ orbs:
 references:
   app_containers: &app_containers
     docker:
-      - image: cimg/ruby:4.0.7-browsers
+      - image: cimg/ruby:4.0.9-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
@@ -264,7 +264,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^rst-8703-prometheus-filtered$/
+                - /^gem-updates-v3$/
       - deploy_image_to_dev:
           name: deploy-dev-live
           env_name: dev
@@ -273,7 +273,7 @@ workflows:
           filters:
             branches:
               only:
-                - /^rst-8703-prometheus-filtered$/
+                - /^gem-updates-v3$/
       ### staging ###
       - build_and_push_image:
           name: build-staging

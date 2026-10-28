@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '4.0.7'
+ruby '4.0.9'
 
 gem 'devise', '~> 5.0', '>= 5.0.4'
 gem 'govuk_design_system_formbuilder'
@@ -12,7 +12,7 @@ gem 'pg', '~> 1.1'
 gem 'puma'
 gem 'rails', '~> 8.1'
 gem 'responders'
-gem 'json', '~> 2.21.2'
+gem 'json', '~> 3.1'
 
 
 # frontend assets management
@@ -60,7 +60,7 @@ gem 'csv'
 gem 'cgi', '~> 0.5.1'
 gem 'mutex_m'
 
-gem 'prometheus-client', '~> 4.2.5'
+gem 'prometheus-client', '~> 5.0'
 
 group :development, :production do
   gem 'lograge'
