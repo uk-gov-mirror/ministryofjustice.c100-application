@@ -25,7 +25,7 @@ module C100App
 
     private
 
-    def fetch_token
+    def fetch_token # rubocop:disable Metrics/MethodLength
       uri = URI.parse(TOKEN_URL)
 
       request = Net::HTTP::Post.new(uri)
@@ -59,7 +59,7 @@ module C100App
       update_courtfinder_token(access_token, expires_in)
 
       access_token
-    end
+    end # rubocop:enable Metrics/MethodLength
 
     def log_and_raise(exception)
       Sentry.capture_exception(exception)
