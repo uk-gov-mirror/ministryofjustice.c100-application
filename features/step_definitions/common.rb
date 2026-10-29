@@ -97,7 +97,7 @@ end
 
 When(/^I click the postcode page "([^"]*)" button with an invalid postcode$/) do |text|
   RSpec::Mocks.with_temporary_scope do
-    C100App::CourtfinderAPI.any_instance.stub(:court_for).and_return({"courts"=>[]})
+    C100App::NewCourtfinderApi.any_instance.stub(:court_for).and_return({"courts"=>[]})
 
     find_button("#{text}").click
     expect(page).to have_current_path('/steps/opening/no_court_found')
@@ -156,14 +156,14 @@ When(/^I fill in a postcode "([^"]*)" for the children$/) do |arg|
 end
 
 When('court finder raises an error') do
-  courtfinder_mock = instance_double(C100App::CourtfinderAPI, is_ok?: false)
-  allow(C100App::CourtfinderAPI).to receive(:new).and_return(courtfinder_mock)
+  courtfinder_mock = instance_double(C100App::NewCourtfinderApi, is_ok?: false)
+  allow(C100App::NewCourtfinderApi).to receive(:new).and_return(courtfinder_mock)
   allow(courtfinder_mock).to receive(:court_for).and_raise(StandardError.new('Courtfinder API error'))
 end
 
 Given('stub court finder responses') do
-  courtfinder_mock = instance_double(C100App::CourtfinderAPI, is_ok?: false)
-  allow(C100App::CourtfinderAPI).to receive(:new).and_return(courtfinder_mock)
+  courtfinder_mock = instance_double(C100App::NewCourtfinderApi, is_ok?: false)
+  allow(C100App::NewCourtfinderApi).to receive(:new).and_return(courtfinder_mock)
 end
 
 Given('debugger') do

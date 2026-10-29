@@ -28,7 +28,7 @@ module C100App
         ->(name: 'database') { [name, database_check] },
         ->(name: 'sidekiq') { [name, (Sidekiq::ProcessSet.new.size.positive? rescue false)] },
         ->(name: 'sidekiq_latency') { [name, (Sidekiq::Queue.all.sum(&:latency) rescue false)] },
-        # ->(name: 'courtfinder'){ [name, (C100App::CourtfinderAPI.new.is_ok? rescue false)] },
+        # ->(name: 'courtfinder'){ [name, (C100App::NewCourtfinderApi.new.is_ok? rescue false)] },
       ]
     end
     # rubocop:enable Style/RescueModifier

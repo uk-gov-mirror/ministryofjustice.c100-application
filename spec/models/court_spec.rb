@@ -7,10 +7,23 @@ describe Court do
     {
       "name" => 'Court name',
       "slug" => 'court-slug',
-      "email" => 'family@court',
-      "addresses" => ['address'],
-      "family_location_code" => 123,
-      "gbs" => 'X123',
+      "courtContactDetails" => [
+        {
+          "email" => 'family@court',
+        }
+      ],
+      "courtAddresses" => [
+        {
+          "addressType" => 'VISIT_OR_CONTACT_US',
+          "addressLine1" => 'address',
+        }
+      ],
+      "courtCodes" => [
+        {
+          "countyCourtCode" => 123,
+          "gbs" => 'X123',
+        }
+      ]
     }
   }
 
@@ -28,7 +41,7 @@ describe Court do
     end
 
     it 'sets the address' do
-      expect(subject.address).to eq('address')
+      expect(subject.address).to eq({"addressLine1" => "address", "addressType" => "VISIT_OR_CONTACT_US"})
     end
 
     # Before the FACT release is in place TODO to remove it after
@@ -37,15 +50,28 @@ describe Court do
         {
           "name" => 'Court name',
           "slug" => 'court-slug',
-          "email" => 'family@court',
-          "address" => 'address',
-          "family_location_code" => 123,
-          "gbs" => 'X123',
+          "courtContactDetails" => [
+            {
+              "email" => 'family@court',
+            }
+          ],
+          "courtAddresses" => [
+            {
+              "addressType" => 'VISIT_OR_CONTACT_US',
+              "addressLine1" => 'address'
+            }
+          ],
+          "courtCodes" => [
+            {
+              "countyCourtCode" => 123,
+              "gbs" => 'X123',
+            }
+          ]
         }
       }
 
       it 'sets the address' do
-        expect(subject.address).to eq('address')
+        expect(subject.address).to eq({"addressLine1" => "address", "addressType" => "VISIT_OR_CONTACT_US"})
       end
     end
 
@@ -79,22 +105,23 @@ describe Court do
       end
 
       context 'address' do
-        let(:data) { super().except('addresses') }
+        let(:data) { super().except('courtAddresses') }
+
 
         it 'sends the exception to Sentry with extra context' do
           expect_any_instance_of(Sentry::Scope).to receive(:set_extras).with(data: data)
           expect(Sentry).to receive(:capture_exception).with(an_instance_of(KeyError))
-          expect { subject.name }.to raise_error(KeyError, 'key not found: "addresses"')
+          expect { subject.name }.to raise_error(KeyError, 'key not found: "courtAddresses"')
         end
       end
 
       context 'cci_code' do
-        let(:data) { super().except('family_location_code') }
+        let(:data) { super().except('courtCodes') }
 
         it 'sends the exception to Sentry with extra context' do
           expect_any_instance_of(Sentry::Scope).to receive(:set_extras).with(data: data)
           expect(Sentry).to receive(:capture_exception).with(an_instance_of(KeyError))
-          expect { subject.name }.to raise_error(KeyError, 'key not found: "family_location_code"')
+          expect { subject.name }.to raise_error(KeyError, 'key not found: "courtCodes"')
         end
       end
     end
@@ -112,17 +139,23 @@ describe Court do
       end
 
       context 'there is no gbs code in the data provided' do
-        let(:data) { super().except('gbs') }
+        let(:data) do
+          super().merge(
+            'courtCodes' => [
+              super().fetch('courtCodes').first.except('gbs')
+            ]
+          )
+        end
 
         before do
           allow_any_instance_of(
-            C100App::CourtfinderAPI
+            C100App::NewCourtfinderApi
           ).to receive(:court_lookup).with('court-slug').and_return(api_response)
         end
 
         context 'the API returned gbs' do
           let(:api_response) do
-            { 'gbs' => 'A123' }
+            { 'courtCodes' => [{ 'gbs' => 'A123' }] }
           end
 
           it 'sets the gbs code' do
@@ -132,7 +165,7 @@ describe Court do
 
         context 'the API returned a `nil` gbs' do
           let(:api_response) do
-            { 'gbs' => nil }
+            { 'courtCodes' => [{ 'gbs' => nil }] }
           end
 
           it 'sets the gbs fallback code' do
@@ -142,7 +175,7 @@ describe Court do
 
         context 'the API returned a blank gbs' do
           let(:api_response) do
-            { 'gbs' => '' }
+            { 'courtCodes' => [{ 'gbs' => '' }] }
           end
 
           it 'sets the gbs fallback code' do
@@ -152,7 +185,8 @@ describe Court do
 
         context 'the API failed to return gbs' do
           let(:api_response) { {} }
-          it { expect { subject.gbs }.to raise_error(KeyError, 'key not found: "gbs"') }
+
+          it { expect { subject.gbs }.to raise_error(KeyError, 'key not found: "courtCodes"') }
         end
       end
     end
@@ -170,17 +204,17 @@ describe Court do
       end
 
       context 'there is no email in the data provided' do
-        let(:data) { super().except('email') }
+        let(:data) { super().except('courtContactDetails') }
 
         before do
           allow_any_instance_of(
-            C100App::CourtfinderAPI
+            C100App::NewCourtfinderApi
           ).to receive(:court_lookup).with('court-slug').and_return(api_response)
         end
 
         context 'the API returned emails' do
           let(:api_response) do
-            { 'emails' => [{"description" => "applications", "address" => "applications@email"}] }
+            { 'courtContactDetails' => [{ 'email' => 'applications@email' }] }
           end
 
           it 'sets the email' do
@@ -190,7 +224,7 @@ describe Court do
 
         context 'the API failed to return emails' do
           let(:api_response) { {} }
-          it { expect { subject.email }.to raise_error(KeyError, 'key not found: "emails"') }
+          it { expect { subject.email }.to raise_error(KeyError, 'key not found: "courtContactDetails"') }
         end
       end
     end
@@ -202,12 +236,22 @@ describe Court do
     let(:slug) { 'court-test-7fb3d126d5e0' }
     let(:data) {
       {
-        "slug" => slug,
         "name" => 'Court Test',
-        "address" => {},
-        "family_location_code" => 123,
-        "email" => nil,
-        "gbs" => nil,
+        "slug" => slug,
+        "courtContactDetails" => [
+          {
+            "email" => nil,
+          }
+        ],
+        "courtAddresses" => [
+          {}
+        ],
+        "courtCodes" => [
+          {
+            "countyCourtCode" => 123,
+            "gbs" => nil,
+          }
+        ]
       }
     }
 
@@ -255,9 +299,16 @@ describe Court do
 
     context 'for an existing court record in the database' do
       context 'with stale data' do
-        let!(:court) {
-          Court.create(data.merge("email" => 'family@court', "gbs" => 'X123'))
-        }
+        let!(:court) do
+          Court.create(
+            slug: slug,
+            name: data.fetch('name'),
+            address: {},
+            cci_code: 123,
+            email: 'family@court',
+            gbs: 'X123'
+          )
+        end
 
         before do
           @updated_at = 4.days.from_now

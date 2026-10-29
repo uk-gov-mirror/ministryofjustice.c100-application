@@ -54,16 +54,15 @@ RSpec.describe ValidPaymentsArray do
     let(:submission_type) { SubmissionType::ONLINE.to_s }
 
     let(:court_double) { Court.build(court_data) }
-    let(:court_data) {
+    let(:court_data) do
       {
         'name' => 'Test court',
-        'email' => 'court@example.com',
-        'address' => 'Court address',
-        'family_location_code' => 123,
         'slug' => court_slug,
-        'gbs' => court_gbs,
+        'courtAddresses' => [{ 'addressType' => 'VISIT_OR_CONTACT_US', 'addressLines' => ['Court address'] }],
+        'courtCodes' => [{ 'countyCourtCode' => 123, 'gbs' => court_gbs }],
+        'courtContactDetails' => [{ 'email' => 'court@example.com' }]
       }
-    }
+    end
 
     let(:court_gbs) { 'XYZ' }
     let(:court_slug) { 'west-london-family-court' }

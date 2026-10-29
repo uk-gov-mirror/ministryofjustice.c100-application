@@ -45,7 +45,9 @@ module C100App
 
     # Temp
     def check_if_court_is_valid
+      puts 'here'
       court = CourtPostcodeChecker.new.court_for(children_postcode)
+      puts 'court:' + court.inspect
 
       if court
         c100_application.update!(court:)

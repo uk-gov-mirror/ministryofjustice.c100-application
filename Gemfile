@@ -14,6 +14,9 @@ gem 'rails', '~> 8.1'
 gem 'responders'
 gem 'json', '~> 2.21.2'
 
+# encrypting stored data
+gem 'simple_encryptable'
+
 
 # frontend assets management
 gem 'propshaft'

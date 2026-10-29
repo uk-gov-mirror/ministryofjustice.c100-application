@@ -18,10 +18,9 @@ class Court < ApplicationRecord
       slug: data.fetch('slug'),
       name: data.fetch('name'),
       address: fetch_address(data),
-      cci_code: data.fetch('family_location_code'),
-      # Email and GBS code, if not already present, come from a separate API request
-      email: data['email'],
-      gbs: data['gbs'],
+      cci_code: data.fetch('courtCodes').first&.fetch('countyCourtCode', nil),
+      email: data['courtContactDetails']&.find { |contact| contact['email'].present? }&.fetch('email', nil),
+      gbs: data.fetch('courtCodes').first&.fetch('gbs', nil)
     )
   rescue StandardError => ex
     log_and_raise(ex, data)
@@ -38,9 +37,9 @@ class Court < ApplicationRecord
       court.update(
         name: data.fetch('name'),
         address: fetch_address(data),
-        cci_code: data.fetch('family_location_code'),
-        email: data['email'],
-        gbs: data['gbs'],
+        cci_code: data.fetch('courtCodes').first&.fetch('countyCourtCode', nil),
+        email: data['courtContactDetails']&.find { |contact| contact['email'].present? }&.fetch('email', nil),
+        gbs: data.fetch('courtCodes').first&.fetch('gbs', nil),
         updated_at: Time.now
       )
     end
@@ -88,11 +87,9 @@ class Court < ApplicationRecord
   end
 
   def self.fetch_address(data)
-    if data.key?('address')
-      data.fetch('address')
-    else
-      data.fetch('addresses').first
-    end
+    data.fetch('courtAddresses').find do |item|
+      item['addressType'] == 'VISIT_OR_CONTACT_US'
+    end || data.fetch('courtAddresses').first
   end
 
   private
@@ -112,15 +109,21 @@ class Court < ApplicationRecord
   end
 
   def retrieve_gbs_from_api
-    court_data.fetch('gbs').presence || UNKNOWN_GBS
+    court_data.fetch('courtCodes').first.fetch('gbs').presence || UNKNOWN_GBS
   end
 
   def retrieve_emails_from_api
-    court_data.fetch('emails')
+    court_data.fetch('courtContactDetails').map do |contact|
+      {
+        'address' => contact.fetch('email'),
+        'description' => contact.dig('courtContactDescription', 'name'),
+        'explanation' => contact['explanation'],
+      }
+    end
   end
 
   def court_data
-    @_court_data ||= C100App::CourtfinderAPI.new.court_lookup(slug)
+    @_court_data ||= C100App::NewCourtfinderApi.new.court_lookup(slug)
   end
 
   def self.log_and_raise(exception, data)

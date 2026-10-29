@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Steps::Opening::ErrorButContinueController, type: :controller do
   before do
-    # We test the healthcheck in `courtfinder_api_spec.rb` and in
+    # We test the healthcheck in `new_courtfinder_api_spec.rb` and in
     # cucumber tests so this can be mocked to not repeat ourselves.
     allow_any_instance_of(
-      C100App::CourtfinderAPI
+      C100App::NewCourtfinderApi
     ).to receive(:is_ok?).and_return(true)
   end
 
